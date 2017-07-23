@@ -37,6 +37,26 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="dist/js/sb-admin-2.js"></script>
 
+  <script>
+  function loadDoc(url) {
+    var xhttp;
+    if (window.XMLHttpRequest) {
+      // code for modern browsers
+      xhttp = new XMLHttpRequest();
+    } else {
+      // code for IE6, IE5
+      xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("page-wrapper").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+  }
+</script>
+
 	<title>แบบแจ้งวิธีการวัดผลและประเมิณผลการศึกษา คณะเภสัชศาสตร์ ภาคการศึกษาที่ 2 ปีการศึกษา 2560 </title>
 	<style>
 		hide {
@@ -202,10 +222,11 @@
 												<!-- /input-group -->
 										</li>
 										<li>
-												<a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+												<a href="#"  onclick="loadDoc('test.php')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 										</li>
 										<li>
 												<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+
 												<ul class="nav nav-second-level">
 														<li>
 																<a href="flot.html">Flot Charts</a>
