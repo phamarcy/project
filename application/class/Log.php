@@ -38,6 +38,10 @@ class Log
 	{
 		$year = date("Y");
 		$month = date("m");
+		if(!file_exists($this->log_path))
+		{
+			mkdir($this->log_path);
+		}
 		if(!file_exists($this->log_path."/".$year))
 		{
 			mkdir($this->log_path."/".$year);
