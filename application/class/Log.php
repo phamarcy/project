@@ -23,7 +23,7 @@ class Log
 		if(is_writable($file_path."/".$filename))
 		{
 			$date = date("h:i:s a");
-			$text = $date." | ".$txt.PHP_EOL;
+			$text = $date." | ".$txt."\n";
 			fwrite($file, $text);
 			fclose($file);
 			return true;
