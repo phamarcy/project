@@ -33,6 +33,12 @@
 	<script src="dist/js/sb-admin-2.js"></script>
 
 	<script>
+		$(document).ready(function(){
+			$("a").click(function(e){
+			   e.preventDefault();
+			});
+		});
+	
 		function loadDoc(url) {
 			var xhttp;
 			if (window.XMLHttpRequest) {
@@ -49,7 +55,6 @@
 			      
 			        var contentScript = content.querySelector("#contentScript");
 			        var script = document.createElement("script");
-			        alert(contentScript);
 			        script.textContent = contentScript.textContent;
 			        document.getElementById("page-wrapper").innerHTML = this.responseText;
 			        document.body.appendChild(script);
