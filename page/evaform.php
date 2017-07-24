@@ -73,20 +73,26 @@
           <div id="text"><b>รายชื่ออาจารย์ผู้สอนบรรยาย</b> &nbsp; จำนวน &nbsp;
             <select name="leclist" id="leclist" class="form-control" onchange="lecloop()">
   <option value="0" selected>----</option>
-  <script type="text/javascript">
+  <?php 
+    for($i=0;$i<=11;$i++)
+    {
+      echo '<option value="'.$i.'">'.$i.'</option>';
+    }
+    ?>
+  <!-- <script type="text/javascript" >
     var i;
     for(i=1;i<=11;i++)
     {
       document.write('<option value="'+i+'">'+i+'</option>');
     }
-  </script>
+  </script> -->
 
  </select> &nbsp;คน
 
           </div>
         </div>
 
-        <script type="text/javascript">
+        <script type="text/javascript" id="contentScript">
           function lecloop() {
             var lec = document.getElementById("leclist");
             var i;

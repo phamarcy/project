@@ -44,7 +44,19 @@
 			}
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
-					document.getElementById("page-wrapper").innerHTML = this.responseText;
+					var content = document.createElement("div");
+			        content.innerHTML = xhttp.responseText
+			      
+			        var contentScript = content.querySelector("#contentScript");
+			        var script = document.createElement("script");
+			        alert(contentScript);
+			        script.textContent = contentScript.textContent;
+			        document.getElementById("page-wrapper").innerHTML = this.responseText;
+			        document.body.appendChild(script);
+			      
+					// var script = document.createElement("script");
+					
+					// document.body.appendChild(script);
 				}
 			};
 			xhttp.open("POST", url, true);
