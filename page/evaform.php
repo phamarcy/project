@@ -1,4 +1,6 @@
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script src="path/to/your/script.js"></script>
 <script src="js/functionjs.js" id="contentScript"></script>
 <div class="row">
   <center>
