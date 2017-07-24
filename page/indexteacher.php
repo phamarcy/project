@@ -32,13 +32,16 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="dist/js/sb-admin-2.js"></script>
 
+	<script src="js/functionjs.js" id="contentScript"></script>
+
 	<script>
-		$(document).ready(function(){
-			$('a[href="#"]').click(function(e){
-			   e.preventDefault();
-			});
-		});
-	
+
+	$(document).ready(function(){
+ 			$('a[href="#"]').click(function(e){
+ 			   e.preventDefault();
+ 			});
+ 		});
+
 		function loadDoc(url) {
 			var xhttp;
 			if (window.XMLHttpRequest) {
@@ -52,15 +55,15 @@
 				if (this.readyState == 4 && this.status == 200) {
 					var content = document.createElement("div");
 			        content.innerHTML = xhttp.responseText
-			      
+
 			        var contentScript = content.querySelector("#contentScript");
 			        var script = document.createElement("script");
 			        script.textContent = contentScript.textContent;
 			        document.getElementById("page-wrapper").innerHTML = this.responseText;
 			        document.body.appendChild(script);
-			      
+
 					// var script = document.createElement("script");
-					
+
 					// document.body.appendChild(script);
 				}
 			};
