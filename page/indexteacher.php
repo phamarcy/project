@@ -1,3 +1,8 @@
+<?php
+	session_start();
+	$_SESSION["indexteacher"] = true;
+ ?>
+
 <html>
 <header>
 	<meta charset="utf-8">
