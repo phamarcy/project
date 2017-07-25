@@ -178,10 +178,7 @@ function finexam_hour_lab() {
 
 function submitfunc() {
   var test = document.getElementById("COURSE_ID");
-  var data = {
-    'COURSE_ID': test.value
-  };
-  alert(JSON.stringify(data));
+  
 
 }
 

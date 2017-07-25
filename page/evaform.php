@@ -188,22 +188,100 @@ function finexam_hour_lab() {
 }
 
 function submitfunc() {
-  var CREDIT = {
-    'TOTAL' : document.getElementById("TOTAL").value,
-    'LEC' : document.getElementById("LEC").value,
-    'LAB' : document.getElementById("LAB").value,
-    'SELF' : document.getElementById("SELF").value
-  }
   var data = {
     'COURSE_ID': document.getElementById("COURSE_ID").value,
     'SECTION' : document.getElementById("SECTION").value,
     'NORORSPE' : document.getElementById("NORORSPE").value,
     'ENROLL' : document.getElementById("ENROLL").value,
-    'CREDIT' : CREDIT
+    'CREDIT' : {
+      'TOTAL' : document.getElementById("TOTAL").value,
+      'LEC' : document.getElementById("LEC").value,
+      'LAB' : document.getElementById("LAB").value,
+      'SELF' : document.getElementById("SELF").value
+    },
+    'TYPE_TEACHING' : document.getElementById("TYPE_TEACHING").value,
+    'TEACHER' : {
+      'LEC' : {
+        '1' : document.getElementById("TEACHERLEC_F1").value+" "+document.getElementById("TEACHERLEC_L1").value,
+        '2' : document.getElementById("TEACHERLEC_F2").value+" "+document.getElementById("TEACHERLEC_L2").value,
+        '3' : document.getElementById("TEACHERLEC_F3").value+" "+document.getElementById("TEACHERLEC_L3").value,
+        '4' : document.getElementById("TEACHERLEC_F4").value+" "+document.getElementById("TEACHERLEC_L4").value,
+        '5' : document.getElementById("TEACHERLEC_F5").value+" "+document.getElementById("TEACHERLEC_L5").value,
+        '6' : document.getElementById("TEACHERLEC_F6").value+" "+document.getElementById("TEACHERLEC_L6").value,
+        '7' : document.getElementById("TEACHERLEC_F7").value+" "+document.getElementById("TEACHERLEC_L7").value,
+        '8' : document.getElementById("TEACHERLEC_F8").value+" "+document.getElementById("TEACHERLEC_L8").value,
+        '9' : document.getElementById("TEACHERLEC_F9").value+" "+document.getElementById("TEACHERLEC_L9").value,
+        '10' : document.getElementById("TEACHERLEC_F10").value+" "+document.getElementById("TEACHERLEC_L10").value,
+        '11' : document.getElementById("TEACHERLEC_F11").value+" "+document.getElementById("TEACHERLEC_L11").value
+
+      },
+      'LAB' : {
+        '1' : document.getElementById("TEACHERLAB_F1").value+" "+document.getElementById("TEACHERLAB_L1").value,
+        '2' : document.getElementById("TEACHERLAB_F2").value+" "+document.getElementById("TEACHERLAB_L2").value,
+        '3' : document.getElementById("TEACHERLAB_F3").value+" "+document.getElementById("TEACHERLAB_L3").value,
+        '4' : document.getElementById("TEACHERLAB_F4").value+" "+document.getElementById("TEACHERLAB_L4").value,
+        '5' : document.getElementById("TEACHERLAB_F5").value+" "+document.getElementById("TEACHERLAB_L5").value,
+        '6' : document.getElementById("TEACHERLAB_F6").value+" "+document.getElementById("TEACHERLAB_L6").value,
+        '7' : document.getElementById("TEACHERLAB_F7").value+" "+document.getElementById("TEACHERLAB_L7").value,
+        '8' : document.getElementById("TEACHERLAB_F8").value+" "+document.getElementById("TEACHERLAB_L8").value,
+        '9' : document.getElementById("TEACHERLAB_F9").value+" "+document.getElementById("TEACHERLAB_L9").value,
+        '10' : document.getElementById("TEACHERLAB_F10").value+" "+document.getElementById("TEACHERLAB_L10").value,
+        '11' : document.getElementById("TEACHERLAB_F11").value+" "+document.getElementById("TEACHERLAB_L11").value
+
+      }
+    },
+    'MIDEXAM_HOUR_LEC' : document.getElementById("MIDEXAM_HOUR_LEC").value,
+    'EXAM': {
+      'HOUR' : {
+        'MID' : {
+          'LEC' : document.getElementById("MIDEXAM_HOUR_LEC").value,
+          'LAB' : document.getElementById("MIDEXAM_HOUR_LAB").value
+        },
+        'FIN' : {
+          'LEC' : document.getElementById("FINEXAM_HOUR_LEC").value,
+          'LAB' : document.getElementById("FINEXAM_HOUR_LAB").value
+        }
+      },
+      'COMMITTEE' : {
+        'MID' : {
+          'LEC' : {
+            '1' : document.getElementById("MIDEXCOM_LECF1").value+" "+document.getElementById("MIDEXCOM_LECL1").value,
+            '2' : document.getElementById("MIDEXCOM_LECF2").value+" "+document.getElementById("MIDEXCOM_LECL2").value,
+            '3' : document.getElementById("MIDEXCOM_LECF3").value+" "+document.getElementById("MIDEXCOM_LECL3").value,
+            '4' : document.getElementById("MIDEXCOM_LECF4").value+" "+document.getElementById("MIDEXCOM_LECL4").value,
+            '5' : document.getElementById("MIDEXCOM_LECF5").value+" "+document.getElementById("MIDEXCOM_LECL5").value
+          },
+          'LAB' : {
+            '1' : document.getElementById("MIDEXCOM_LABF1").value+" "+document.getElementById("MIDEXCOM_LABL1").value,
+            '2' : document.getElementById("MIDEXCOM_LABF2").value+" "+document.getElementById("MIDEXCOM_LABL2").value,
+            '3' : document.getElementById("MIDEXCOM_LABF3").value+" "+document.getElementById("MIDEXCOM_LABL3").value,
+            '4' : document.getElementById("MIDEXCOM_LABF4").value+" "+document.getElementById("MIDEXCOM_LABL4").value,
+            '5' : document.getElementById("MIDEXCOM_LABF5").value+" "+document.getElementById("MIDEXCOM_LABL5").value
+          }
+        },
+        'FIN' : {
+          'LEC' : {
+            '1' : document.getElementById("FINEXCOM_LECF1").value+" "+document.getElementById("FINEXCOM_LECL1").value,
+            '2' : document.getElementById("FINEXCOM_LECF2").value+" "+document.getElementById("FINEXCOM_LECL2").value,
+            '3' : document.getElementById("FINEXCOM_LECF3").value+" "+document.getElementById("FINEXCOM_LECL3").value,
+            '4' : document.getElementById("FINEXCOM_LECF4").value+" "+document.getElementById("FINEXCOM_LECL4").value,
+            '5' : document.getElementById("FINEXCOM_LECF5").value+" "+document.getElementById("FINEXCOM_LECL5").value
+          },
+          'LAB' : {
+            '1' : document.getElementById("FINEXCOM_LABF1").value+" "+document.getElementById("FINEXCOM_LABL1").value,
+            '2' : document.getElementById("FINEXCOM_LABF2").value+" "+document.getElementById("FINEXCOM_LABL2").value,
+            '3' : document.getElementById("FINEXCOM_LABF3").value+" "+document.getElementById("FINEXCOM_LABL3").value,
+            '4' : document.getElementById("FINEXCOM_LABF4").value+" "+document.getElementById("FINEXCOM_LABL4").value,
+            '5' : document.getElementById("FINEXCOM_LABF5").value+" "+document.getElementById("FINEXCOM_LABL5").value
+          }
+        }
+      }
+
+    }
+
 
   };
   alert(JSON.stringify(data));
-
 }
 
 
@@ -583,7 +661,7 @@ function deleteRow2(r) {
                   <br>
                   <div class="form-inline">
                     <li style="font-size: 20px">
-                      จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control" name="EXAM_HOUR_LAB" id="EXAM_HOUR_LAB" size="2" maxlength="2">&nbsp; ชั่วโมง
+                      จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" maxlength="2">&nbsp; ชั่วโมง
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                       <select name="mexholac" id="mexholac" class="form-control" onchange="midexam_hour_lab()">
       <option value="0" selected>----</option>
