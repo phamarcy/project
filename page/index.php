@@ -241,7 +241,7 @@
 							</div>
 						</li>-->
 						<li>
-							<a href="#" onclick="loadDoc('test.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
+							<a href="#" onclick="loadDoc('home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
 						</li>
 						<li>
 							<a href="#"><i class="fa fa-edit fa-fw"></i> กรอกข้อมูล<span class="fa arrow"></span></a>
