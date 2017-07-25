@@ -188,7 +188,6 @@ function submitfunc() {
 
   $('#addbtn').click(function() {
     var table = $(this).closest('table');
-    console.log(table.find('input:text').length);
     if (table.find('input:text').length < 100) {
       $('#delbtn').removeAttr("disabled");
       var x = $(this).closest('tr').nextAll('tr');
@@ -215,7 +214,6 @@ function deleteRow(r) {
 
 $('#addbtnsa').click(function() {
   var table = $(this).closest('table');
-  console.log(table.find('input:text').length);
   if (table.find('input:text').length < 100) {
     $('#delbtnsa').removeAttr("disabled");
     var x = $(this).closest('tr').nextAll('tr');
@@ -241,7 +239,6 @@ function deleteRow(r) {
 
 $('#addbtnsa2').click(function() {
   var table = $(this).closest('table');
-  console.log(table.find('input:text').length);
   if (table.find('input:text').length < 100) {
     $('#delbtnsa2').removeAttr("disabled");
     var x = $(this).closest('tr').nextAll('tr');

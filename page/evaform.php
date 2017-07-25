@@ -188,9 +188,19 @@ function finexam_hour_lab() {
 }
 
 function submitfunc() {
-  var test = document.getElementById("COURSE_ID");
+  var CREDIT = {
+    'TOTAL' : document.getElementById("TOTAL").value,
+    'LEC' : document.getElementById("LEC").value,
+    'LAB' : document.getElementById("LAB").value,
+    'SELF' : document.getElementById("SELF").value
+  }
   var data = {
-    'COURSE_ID': test.value
+    'COURSE_ID': document.getElementById("COURSE_ID").value,
+    'SECTION' : document.getElementById("SECTION").value,
+    'NORORSPE' : document.getElementById("NORORSPE").value,
+    'ENROLL' : document.getElementById("ENROLL").value,
+    'CREDIT' : CREDIT
+
   };
   alert(JSON.stringify(data));
 
@@ -199,7 +209,6 @@ function submitfunc() {
 
   $('#addbtn').click(function() {
     var table = $(this).closest('table');
-    console.log(table.find('input:text').length);
     if (table.find('input:text').length < 100) {
       $('#delbtn').removeAttr("disabled");
       var x = $(this).closest('tr').nextAll('tr');
@@ -226,7 +235,6 @@ function deleteRow(r) {
 
 $('#addbtnsa').click(function() {
   var table = $(this).closest('table');
-  console.log(table.find('input:text').length);
   if (table.find('input:text').length < 100) {
     $('#delbtnsa').removeAttr("disabled");
     var x = $(this).closest('tr').nextAll('tr');
@@ -252,7 +260,6 @@ function deleteRow(r) {
 
 $('#addbtnsa2').click(function() {
   var table = $(this).closest('table');
-  console.log(table.find('input:text').length);
   if (table.find('input:text').length < 100) {
     $('#delbtnsa2').removeAttr("disabled");
     var x = $(this).closest('tr').nextAll('tr');
