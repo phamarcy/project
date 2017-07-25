@@ -1,12 +1,6 @@
 <?php
   session_start();
  ?>
-
-<?php
-  if($_SESSION["indexteacher"] == true)
-  {
-
- ?>
 <script id="contentScript">
 
 function lecloop() {
@@ -360,10 +354,7 @@ function deleteRow2(r) {
   var row = document.getElementById('row2' + i);
   row.parentNode.removeChild(row);
 }
-
 </script>
-<?php }  $_SESSION["indexteacher"] = false; ?>
-
 <div class="row">
   <center>
     <h1 class="page-header">แบบแจ้งวิธีการวัดผลและประเมิณผลการศึกษา คณะเภสัชศาสตร์<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h1>

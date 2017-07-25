@@ -62,16 +62,30 @@
 				if (this.readyState == 4 && this.status == 200) {
 					var content = document.createElement("div");
 			        content.innerHTML = xhttp.responseText
+			     	
+			     	var old_script = document.getElementById("loadscript");
+			     	if(old_script !== null)
+			     	{
+			     		document.body.removeChild(old_script);
+			     	}
 
 			        var contentScript = content.querySelector("#contentScript");
+
+			        var main_script = document.getElementById("mainpage");
+
 			        var script = document.createElement("script");
-			        script.textContent = contentScript.textContent;
+			        script.setAttribute("id", "loadscript");
 			        document.getElementById("page-wrapper").innerHTML = this.responseText;
-			        document.body.appendChild(script);
+			        if(contentScript !== null)
+			        {
+			        	script.textContent = contentScript.textContent;
+			        	document.body.appendChild(script);
+			        }
 				}
 			};
 			xhttp.open("POST", url, true);
 			xhttp.send();
+			//$.getScript("js/function.js");
 		}
 	</script>
 
@@ -272,12 +286,8 @@
 		<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 		<div id="page-wrapper">
 
-			</div>
-
-
-
-			</div>
-
+		</div>
+	</div>
 </body>
 
 </html>

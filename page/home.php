@@ -4,6 +4,7 @@
 	<title></title>
 </head>
 <body>
-WELCOME TO MY WEBSITE
+WELCOME TO MY WEBSITE<br>
+<img src="../application/picture/home.jpg" />
 </body>
 </html>
