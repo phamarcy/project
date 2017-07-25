@@ -37,8 +37,6 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="dist/js/sb-admin-2.js"></script>
 
-	<script src="js/functionjs.js" id="contentScript"></script>
-
 	<script>
 
 	$(document).ready(function(){
@@ -66,10 +64,6 @@
 			        script.textContent = contentScript.textContent;
 			        document.getElementById("page-wrapper").innerHTML = this.responseText;
 			        document.body.appendChild(script);
-
-					// var script = document.createElement("script");
-
-					// document.body.appendChild(script);
 				}
 			};
 			xhttp.open("POST", url, true);
