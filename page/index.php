@@ -62,7 +62,7 @@
 				if (this.readyState == 4 && this.status == 200) {
 					var content = document.createElement("div");
 			        content.innerHTML = xhttp.responseText
-			     	
+
 			     	var old_script = document.getElementById("loadscript");
 			     	if(old_script !== null)
 			     	{
@@ -160,7 +160,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 						</button>
-				<a class="navbar-brand" href="indexteacher.php">Pharmacy 1.0</a>
+				<a class="navbar-brand" href="index.php">Pharmacy 1.0</a>
 			</div>
 			<!-- /.navbar-header -->
 
