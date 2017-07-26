@@ -182,6 +182,121 @@ function finexam_hour_lab() {
 }
 
 function submitfunc() {
+
+  //Loop for pack MEASURE
+  var count = $('#meastable tr').length;
+  var count2 = count-5;
+  var comment = {};
+  var cart = [];
+  var lec = {};
+  var cart2 = [];
+  var lab = {};
+  var cart3 = [];
+
+  if(count2>0)
+  {
+    for(var i=1;i<=count2;i++)
+    {
+      cart[i-1] =  document.getElementById("MEASURE_OTHERCOMMENT"+i).value;
+      cart2[i-1] = document.getElementById("MEASURE_OTHERLEC"+i).value;
+      cart3[i-1] = document.getElementById("MEASURE_OTHERLAB"+i).value;
+    }
+
+    comment = cart;
+    lec = cart2;
+    lab = cart3;
+  }
+
+
+  //Loop for pack TEACHER
+  var teacher_lec = {};
+  var teacher_lab = {};
+  var tlec = [];
+  var tlab = [];
+
+  for(var i=1;i<=document.getElementById("leclist").value;i++)
+  {
+    tlec[i-1] = document.getElementById("TEACHERLEC_F"+i).value+" "+document.getElementById("TEACHERLEC_L"+i).value;
+  }
+  for(var i=1;i<=document.getElementById("lablist").value;i++)
+  {
+    tlab[i-1] = document.getElementById("TEACHERLAB_F"+i).value+" "+document.getElementById("TEACHERLAB_L"+i).value;
+  }
+
+  teacher_lec = tlec;
+  teacher_lab = tlab;
+
+  //Loop for COMMITTEE
+  var commidlec = {};
+  var commidlab = {};
+  var comfinlec = {};
+  var comfinlab = {};
+  var cmle = [];
+  var cmla = [];
+  var cfle = [];
+  var cfla = [];
+
+  for(var i=1;i<=document.getElementById("mexholec").value;i++)
+  {
+    cmle[i-1] = document.getElementById("MIDEXCOM_LECF"+i).value+" "+document.getElementById("MIDEXCOM_LECL"+i).value;
+  }
+  for(var i=1;i<=document.getElementById("mexholac").value;i++)
+  {
+    cmla[i-1] = document.getElementById("MIDEXCOM_LABF"+i).value+" "+document.getElementById("MIDEXCOM_LABL"+i).value;
+  }
+  for(var i=1;i<=document.getElementById("fexholec").value;i++)
+  {
+    cfle[i-1] = document.getElementById("FINEXCOM_LECF"+i).value+" "+document.getElementById("FINEXCOM_LECL"+i).value;
+  }
+  for(var i=1;i<=document.getElementById("fexholac").value;i++)
+  {
+    cfla[i-1] = document.getElementById("FINEXCOM_LABF"+i).value+" "+document.getElementById("FINEXCOM_LABL"+i).value;
+  }
+
+  commidlec = cmle;
+  commidlab = cmla;
+  comfinlec = cfle;
+  comfinlab = cfla;
+
+  //Loop for SAMENA with TRAIN
+  var samina_name = {};
+  var samina_score = {};
+  var train_name = {};
+  var train_score = {};
+  var sn = [];
+  var ss = [];
+  var tn = [];
+  var ts = [];
+  var countsa = $('#samenatable tr').length;
+  var countsa2 = countsa-4;
+  var counttr = $('#samenatable2 tr').length;
+  var counttr2 = counttr-4;
+
+  if(countsa2>0)
+  {
+    for(var i=0;i<countsa2;i++)
+    {
+      sn[i] = document.getElementById("SAMEMA_NAME"+i).value;
+      ss[i] = document.getElementById("SAMENA_SCORE"+i).value;
+    }
+
+    samina_name = sn;
+    samina_score = ss;
+  }
+
+  if(counttr2>0)
+  {
+    for(var i=0;i<counttr2;i++)
+    {
+      tn[i] =  document.getElementById("TRAIN_NAME"+i).value;
+      ts[i] = document.getElementById("TRAIN_SCORE"+i).value;
+    }
+
+    train_name = tn;
+    train_score = ts;
+  }
+
+
   var data = {
     'COURSE_ID': document.getElementById("COURSE_ID").value,
     'SECTION' : document.getElementById("SECTION").value,
@@ -195,34 +310,8 @@ function submitfunc() {
     },
     'TYPE_TEACHING' : document.getElementById("TYPE_TEACHING").value,
     'TEACHER' : {
-      'LEC' : {
-        '1' : document.getElementById("TEACHERLEC_F1").value+" "+document.getElementById("TEACHERLEC_L1").value,
-        '2' : document.getElementById("TEACHERLEC_F2").value+" "+document.getElementById("TEACHERLEC_L2").value,
-        '3' : document.getElementById("TEACHERLEC_F3").value+" "+document.getElementById("TEACHERLEC_L3").value,
-        '4' : document.getElementById("TEACHERLEC_F4").value+" "+document.getElementById("TEACHERLEC_L4").value,
-        '5' : document.getElementById("TEACHERLEC_F5").value+" "+document.getElementById("TEACHERLEC_L5").value,
-        '6' : document.getElementById("TEACHERLEC_F6").value+" "+document.getElementById("TEACHERLEC_L6").value,
-        '7' : document.getElementById("TEACHERLEC_F7").value+" "+document.getElementById("TEACHERLEC_L7").value,
-        '8' : document.getElementById("TEACHERLEC_F8").value+" "+document.getElementById("TEACHERLEC_L8").value,
-        '9' : document.getElementById("TEACHERLEC_F9").value+" "+document.getElementById("TEACHERLEC_L9").value,
-        '10' : document.getElementById("TEACHERLEC_F10").value+" "+document.getElementById("TEACHERLEC_L10").value,
-        '11' : document.getElementById("TEACHERLEC_F11").value+" "+document.getElementById("TEACHERLEC_L11").value
-
-      },
-      'LAB' : {
-        '1' : document.getElementById("TEACHERLAB_F1").value+" "+document.getElementById("TEACHERLAB_L1").value,
-        '2' : document.getElementById("TEACHERLAB_F2").value+" "+document.getElementById("TEACHERLAB_L2").value,
-        '3' : document.getElementById("TEACHERLAB_F3").value+" "+document.getElementById("TEACHERLAB_L3").value,
-        '4' : document.getElementById("TEACHERLAB_F4").value+" "+document.getElementById("TEACHERLAB_L4").value,
-        '5' : document.getElementById("TEACHERLAB_F5").value+" "+document.getElementById("TEACHERLAB_L5").value,
-        '6' : document.getElementById("TEACHERLAB_F6").value+" "+document.getElementById("TEACHERLAB_L6").value,
-        '7' : document.getElementById("TEACHERLAB_F7").value+" "+document.getElementById("TEACHERLAB_L7").value,
-        '8' : document.getElementById("TEACHERLAB_F8").value+" "+document.getElementById("TEACHERLAB_L8").value,
-        '9' : document.getElementById("TEACHERLAB_F9").value+" "+document.getElementById("TEACHERLAB_L9").value,
-        '10' : document.getElementById("TEACHERLAB_F10").value+" "+document.getElementById("TEACHERLAB_L10").value,
-        '11' : document.getElementById("TEACHERLAB_F11").value+" "+document.getElementById("TEACHERLAB_L11").value
-
-      }
+      'LEC' : teacher_lec,
+      'LAB' : teacher_lab
     },
     'MIDEXAM_HOUR_LEC' : document.getElementById("MIDEXAM_HOUR_LEC").value,
     'EXAM': {
@@ -238,42 +327,85 @@ function submitfunc() {
       },
       'COMMITTEE' : {
         'MID' : {
-          'LEC' : {
-            '1' : document.getElementById("MIDEXCOM_LECF1").value+" "+document.getElementById("MIDEXCOM_LECL1").value,
-            '2' : document.getElementById("MIDEXCOM_LECF2").value+" "+document.getElementById("MIDEXCOM_LECL2").value,
-            '3' : document.getElementById("MIDEXCOM_LECF3").value+" "+document.getElementById("MIDEXCOM_LECL3").value,
-            '4' : document.getElementById("MIDEXCOM_LECF4").value+" "+document.getElementById("MIDEXCOM_LECL4").value,
-            '5' : document.getElementById("MIDEXCOM_LECF5").value+" "+document.getElementById("MIDEXCOM_LECL5").value
-          },
-          'LAB' : {
-            '1' : document.getElementById("MIDEXCOM_LABF1").value+" "+document.getElementById("MIDEXCOM_LABL1").value,
-            '2' : document.getElementById("MIDEXCOM_LABF2").value+" "+document.getElementById("MIDEXCOM_LABL2").value,
-            '3' : document.getElementById("MIDEXCOM_LABF3").value+" "+document.getElementById("MIDEXCOM_LABL3").value,
-            '4' : document.getElementById("MIDEXCOM_LABF4").value+" "+document.getElementById("MIDEXCOM_LABL4").value,
-            '5' : document.getElementById("MIDEXCOM_LABF5").value+" "+document.getElementById("MIDEXCOM_LABL5").value
-          }
+          'LEC' : commidlec,
+          'LAB' : commidlab
         },
         'FIN' : {
-          'LEC' : {
-            '1' : document.getElementById("FINEXCOM_LECF1").value+" "+document.getElementById("FINEXCOM_LECL1").value,
-            '2' : document.getElementById("FINEXCOM_LECF2").value+" "+document.getElementById("FINEXCOM_LECL2").value,
-            '3' : document.getElementById("FINEXCOM_LECF3").value+" "+document.getElementById("FINEXCOM_LECL3").value,
-            '4' : document.getElementById("FINEXCOM_LECF4").value+" "+document.getElementById("FINEXCOM_LECL4").value,
-            '5' : document.getElementById("FINEXCOM_LECF5").value+" "+document.getElementById("FINEXCOM_LECL5").value
-          },
-          'LAB' : {
-            '1' : document.getElementById("FINEXCOM_LABF1").value+" "+document.getElementById("FINEXCOM_LABL1").value,
-            '2' : document.getElementById("FINEXCOM_LABF2").value+" "+document.getElementById("FINEXCOM_LABL2").value,
-            '3' : document.getElementById("FINEXCOM_LABF3").value+" "+document.getElementById("FINEXCOM_LABL3").value,
-            '4' : document.getElementById("FINEXCOM_LABF4").value+" "+document.getElementById("FINEXCOM_LABL4").value,
-            '5' : document.getElementById("FINEXCOM_LABF5").value+" "+document.getElementById("FINEXCOM_LABL5").value
-          }
+          'LEC' : comfinlec,
+          'LAB' : comfinlab
         }
       }
-
-    }
-
-
+    },
+    'MEASURE' : {
+      'MID' : {
+        'LEC' : document.getElementById("MEASURE_MIDLEC").value,
+        'LAB' : document.getElementById("MEASURE_MIDLAB").value
+      },
+      'FIN' : {
+        'LEC' : document.getElementById("MEASURE_FINLEC").value,
+        'LAB' : document.getElementById("MEASURE_FINLAB").value
+      },
+      'TOTAL' : {
+        'LEC' : document.getElementById("MEASURE_TOTALLEC").value,
+        'LAB' : document.getElementById("MEASURE_TOTALLAB").value
+      },
+      'OTHER' : {
+        'COMMENT' : comment,
+        'LEC' : lec,
+        'LAB' : lab
+      }
+    },
+    'SEMINAR' : {
+      'NAME' : samina_name,
+      'SCORE' : samina_score,
+      'TOTAL' : document.getElementById("SAMENA_TOTAL").value
+    },
+    'TRAIN' : {
+      'NAME' : train_name,
+      'SCORE' : train_score,
+      'TOTAL' : document.getElementById("TRAIN_TOTAL").value
+    },
+    'EVALUATE' : document.getElementById("EVALUATE").value,
+    'CALCULATE' : {
+      'TYPE' : document.getElementById("CALCULATE_TYPE").value,
+      'A' : {
+        'MIN' : document.getElementById("CALCULATE_A_MIN").value
+      },
+      'B+' : {
+        'MIN' : document.getElementById("CALCULATE_Bp_MIN").value,
+        'MAX' : document.getElementById("CALCULATE_Bp_MAX").value
+      },
+      'B' : {
+        'MIN' : document.getElementById("CALCULATE_B_MIN").value,
+        'MAX' : document.getElementById("CALCULATE_B_MAX").value
+      },
+      'C+' : {
+        'MIN' : document.getElementById("CALCULATE_Cp_MIN").value,
+        'MAX' : document.getElementById("CALCULATE_Cp_MAX").value
+      },
+      'C' : {
+        'MIN' : document.getElementById("CALCULATE_C_MIN").value,
+        'MAX' : document.getElementById("CALCULATE_C_MAX").value
+      },
+      'D+' : {
+        'MIN' : document.getElementById("CALCULATE_Dp_MIN").value,
+        'MAX' : document.getElementById("CALCULATE_Dp_MAX").value
+      },
+      'D' : {
+        'MIN' : document.getElementById("CALCULATE_D_MIN").value,
+        'MAX' : document.getElementById("CALCULATE_D_MAX").value
+      },
+      'F' : {
+        'MAX' : document.getElementById("CALCULATE_F_MAX").value
+      },
+      'S' : {
+        'MIN' : document.getElementById("CALCULATE_B_MIN").value
+      },
+      'U' : {
+        'MAX' : document.getElementById("CALCULATE_U_MAX").value
+      }
+    },
+    'ABSENT' : document.getElementById("ABSENT").value
   };
   alert(JSON.stringify(data));
 }
