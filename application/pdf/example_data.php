@@ -6,6 +6,14 @@ $DATA['CREDIT']['LEC'] = 3;
 $DATA['CREDIT']['LAB'] = 0;
 $DATA['CREDIT']['SELF'] = 6;
 
+$DATA['SPE']['SECTION'] = '1';
+$DATA['SPE']['STUDENT'] = 50;
+$DATA['SPE']['CREDIT']['TOTAL'] = 3;
+$DATA['SPE']['CREDIT']['LEC'] = 3;
+$DATA['SPE']['CREDIT']['LAB'] = 0;
+$DATA['SPE']['CREDIT']['SELF'] = 6;
+
+
 $DATA['STUDENT'] = 50;
 
 $DATA['TYPE_TEACHING'] = 'LEC'; #LEC LECLAB SPE TRA SEM LAB OTH;
@@ -71,7 +79,7 @@ $DATA['CALCULATE']['F']['MAX'] = 50;
 $DATA['CALCULATE']['S']['MIN'] = 50;
 $DATA['CALCULATE']['U']['MAX'] = 0;
 
-$DATA['ABSENT'] = 'F'; #F, U, CAL
+$DATA['ABSENT'] = 'CAL'; #F, U, CAL
 
 //echo json_encode($DATA);
  ?>

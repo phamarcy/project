@@ -30,14 +30,14 @@ $pdf->SetFont('angsab','',14);
 $pdf->Cell(26,7,iconv( 'UTF-8','TIS-620','1. รหัสกระบวนวิชา'),0,0,"L");
 
 $pdf->SetFont('angsa','',14);
-$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','   '.$DATA['COURSE_ID'].'   ตอนที่   '.$DATA['SECTION'].'   จำนวนหน่วยกิจ   '.$DATA['CREDIT']['TOTAL'].'   ( '.$DATA['CREDIT']['LEC'].'-'.$DATA['CREDIT']['LAB'] .'-'.$DATA['CREDIT']['SELF'].'..)จำนวนนักสึกษาลงทะเบียนเรียน   '.$DATA['STUDENT'].'   คน'),0,1,"L");
+$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','   '.$DATA['COURSE_ID'].'   ตอนที่   '.$DATA['SECTION'].'   จำนวนหน่วยกิจ   '.$DATA['CREDIT']['TOTAL'].'   ( '.$DATA['CREDIT']['LEC'].'-'.$DATA['CREDIT']['LAB'] .'-'.$DATA['CREDIT']['SELF'].'  )จำนวนนักสึกษาลงทะเบียนเรียน   '.$DATA['STUDENT'].'   คน'),0,1,"L");
 
 $pdf->SetFont('angsab','',14);
 $pdf->SetX(30);  
 $pdf->Cell(15,7,iconv( 'UTF-8','TIS-620','ภาคพิเศษ'),0,0,"L");
 
 $pdf->SetFont('angsa','',14);
-$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','ตอนที่...-...จำนวนหน่วยกิจ...-...(......)จำนวนนักศึกษาลงทะเบียนเรียน.....-.....คน'),0,1,"L");
+$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','ตอนที่   '.$DATA['SPE']['SECTION'].'   จำนวนหน่วยกิจ '.$DATA['SPE']['CREDIT']['TOTAL'].'   ( '.$DATA['SPE']['CREDIT']['LEC'].'-'.$DATA['SPE']['CREDIT']['LAB'] .'-'.$DATA['SPE']['CREDIT']['SELF'].'  )จำนวนนักศึกษาลงทะเบียนเรียน   '.$DATA['SPE']['STUDENT'].'   คน'),0,1,"L");
 
 $pdf->SetX(20);
 $pdf->Ln();
@@ -323,48 +323,69 @@ $pdf->Cell(180,7,'','T',0);
 
 $pdf->Ln();
 // Topic 6
+$EVA_AF = $EVA_SU = '[   ]';
+if($DATA['EVALUATE'] == 'SU')
+{
+	$EVA_SU = '[ / ]';
+}
+else if ($DATA['EVALUATE'] =='AF')
+{
+	$EVA_AF = '[ / ]';
+}
+
+
 $pdf->SetFont('angsab','',14); 
 $pdf->SetX(20);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','6. การประเมิณผล'),0,1,"L");
 $pdf->SetX(25);
 $pdf->SetFont('angsa','',14); 
-$pdf->Cell(0,7,iconv('UTF-8','TIS-620',' [  ] ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว  [  ] ให้ลำดับขั้น A, B+ ,B, C+, C, D+, D, F'),0);
+$pdf->Cell(0,7,iconv('UTF-8','TIS-620',' '.$EVA_SU.' ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว  '.$EVA_AF.' ให้ลำดับขั้น A, B+ ,B, C+, C, D+, D, F'),0);
 $pdf->Ln();
+
+$CAL_CRITERIA = $CAL_GROUP = '[   ]';
+if($DATA['CALCULATE']['TYPE'] == 'GROUP')
+{
+	$CAL_GROUP = '[ / ]';
+}
+else if($DATA['CALCULATE']['TYPE'] = 'CRITERIA')
+{
+	$CAL_CRITERIA = '[ / ]';
+}
 
 $pdf->SetFont('angsab','',14);
 $pdf->SetX(25);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','วิธีการตัดเกรด'),0,1);
 $pdf->SetX(25);
-$pdf->Cell(0,7,iconv('UTF-8','TIS-620',' [   ] อิงกลุ่ม'),0,1);
+$pdf->Cell(0,7,iconv('UTF-8','TIS-620',' '.$CAL_GROUP.' อิงกลุ่ม'),0,1);
 $pdf->SetX(25);
-$pdf->Cell(30,7,iconv('UTF-8','TIS-620',' [ / ] อิงเกณฑ์'),0);
+$pdf->Cell(30,7,iconv('UTF-8','TIS-620',' '.$CAL_CRITERIA.' อิงเกณฑ์'),0);
 $pdf->SetFont('angsa','',14); 
 $pdf->Cell(30,7,iconv('UTF-8','TIS-620','ได้กำหนดเกณฑ์ดังต่อไปนี้'),0);
 $pdf->Ln();
 
 $pdf->SetX(35);
 $pdf->Cell(10,7,'A   = ',0,0,'C');
-$pdf->Cell(50,7,'...> 80.0...',0,0,'C');
+$pdf->Cell(50,7,$DATA['CALCULATE']['A']['MIN'],0,0,'C');
 $pdf->Cell(20,7,iconv('UTF-8','TIS-620','คะแนนขึ้นไป '),0,0,'C');
 
 $pdf->Cell(10,7,'D+  = ',0,0,'C');
-$pdf->Cell(20,7,'...55.0...',0,0,'C');
+$pdf->Cell(20,7,$DATA['CALCULATE']['D+']['MIN'],0,0,'C');
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','  ถึง  '),0,0,'C');
-$pdf->Cell(20,7,'...59.9...',0,0,'C');
+$pdf->Cell(20,7,$DATA['CALCULATE']['D+']['MAX'],0,0,'C');
 $pdf->Cell(20,7,iconv('UTF-8','TIS-620','คะแนน'),0,0,'C');
 $pdf->Ln();
 
 $pdf->SetX(35);
 $pdf->Cell(10,7,'B+  = ',0,0,'C');
-$pdf->Cell(20,7,'...75.0...',0,0,'C');
+$pdf->Cell(20,7,$DATA['CALCULATE']['B+']['MIN'],0,0,'C');
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','  ถึง  '),0,0,'C');
-$pdf->Cell(20,7,'...79.9...',0,0,'C');
+$pdf->Cell(20,7,$DATA['CALCULATE']['B+']['MAX'],0,0,'C');
 $pdf->Cell(20,7,iconv('UTF-8','TIS-620','คะแนน'),0,0,'C');
 
 $pdf->Cell(10,7,'D   = ',0,0,'C');
-$pdf->Cell(20,7,'...55.0...',0,0,'C');
+$pdf->Cell(20,7,$DATA['CALCULATE']['D']['MIN'],0,0,'C');
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','  ถึง  '),0,0,'C');
-$pdf->Cell(20,7,'...54.9...',0,0,'C');
+$pdf->Cell(20,7,$DATA['CALCULATE']['D']['MAX'],0,0,'C');
 $pdf->Cell(20,7,iconv('UTF-8','TIS-620','คะแนน'),0,0,'C');
 
 $pdf->Ln();
@@ -372,41 +393,56 @@ $pdf->Ln();
 $pdf->SetX(35);
 
 $pdf->Cell(10,7,'B   = ',0,0,'C');
-$pdf->Cell(20,7,'...70.0...',0,0,'C');
+$pdf->Cell(20,7,$DATA['CALCULATE']['B']['MIN'],0,0,'C');
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','  ถึง  '),0,0,'C');
-$pdf->Cell(20,7,'...74.9...',0,0,'C');
+$pdf->Cell(20,7,$DATA['CALCULATE']['B']['MAX'],0,0,'C');
 $pdf->Cell(20,7,iconv('UTF-8','TIS-620','คะแนน'),0,0,'C');
 
 $pdf->Cell(10,7,'F   = ',0,0,'C');
-$pdf->Cell(50,7,'...< 50.0...',0,0,'C');
+$pdf->Cell(50,7,$DATA['CALCULATE']['F']['MAX'],0,0,'C');
 $pdf->Cell(20,7,iconv('UTF-8','TIS-620','คะแนนลงมา '),0,0,'C');
 $pdf->Ln();
 
 $pdf->SetX(35);
 $pdf->Cell(10,7,'C+   = ',0,0,'C');
-$pdf->Cell(20,7,'...65.0...',0,0,'C');
+$pdf->Cell(20,7,$DATA['CALCULATE']['C+']['MIN'],0,0,'C');
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','  ถึง  '),0,0,'C');
-$pdf->Cell(20,7,'...69.9...',0,0,'C');
+$pdf->Cell(20,7,$DATA['CALCULATE']['C+']['MAX'],0,0,'C');
 $pdf->Cell(20,7,iconv('UTF-8','TIS-620','คะแนน'),0,0,'C');
 
 $pdf->Cell(10,7,'S   = ',0,0,'C');
-$pdf->Cell(50,7,'.........................',0,0,'C');
+$pdf->Cell(50,7,$DATA['CALCULATE']['S']['MIN'],0,0,'C');
 $pdf->Cell(20,7,iconv('UTF-8','TIS-620','คะแนนขึ้นไป '),0,0,'C');
 $pdf->Ln();
 
 $pdf->SetX(35);
 $pdf->Cell(10,7,'C   = ',0,0,'C');
-$pdf->Cell(20,7,'...60.0...',0,0,'C');
+$pdf->Cell(20,7,$DATA['CALCULATE']['C']['MIN'],0,0,'C');
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','  ถึง  '),0,0,'C');
-$pdf->Cell(20,7,'...64.9...',0,0,'C');
+$pdf->Cell(20,7,$DATA['CALCULATE']['C']['MAX'],0,0,'C');
 $pdf->Cell(20,7,iconv('UTF-8','TIS-620','คะแนน'),0,0,'C');
 
 $pdf->Cell(10,7,'U   = ',0,0,'C');
-$pdf->Cell(50,7,'.........................',0,0,'C');
+$pdf->Cell(50,7,$DATA['CALCULATE']['U']['MAX'],0,0,'C');
 $pdf->Cell(20,7,iconv('UTF-8','TIS-620','คะแนนลงมา '),0,0,'C');
 $pdf->Ln();
 $pdf->Ln();
 // Topic 7
+$AB_F = $AB_U = $AB_CAL = '[   ]';
+if($DATA['ABSENT'] == 'F')
+{
+	$AB_F = '[ / ]';
+}
+else if($DATA['ABSENT'] == 'U')
+{
+	$AB_U = '[ / ]';
+}
+else if($DATA['ABSENT'] == 'CAL')
+{
+	$AB_CAL = '[ / ]';
+}
+
+
 $pdf->SetFont('angsab','',14); 
 $pdf->SetX(20);
 $pdf->Cell(65,7,iconv( 'UTF-8','TIS-620','7. นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย'),0);
@@ -417,7 +453,7 @@ $pdf->SetX(25);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','ว่าด้วยการศึกษาชั้นปริญญาตรี อาจารย์ผู้สอนจะประเมิณดังนี้'),0);
 $pdf->Ln();
 $pdf->SetX(30);
-$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','[ / ] ให้ลำดับขั้น F  [   ] ให้อักษร U [   ] นำคะแนนทั้งหมดที่นักศึกษาได้รับก่อนการสอบไล่มาประเมิณ'),0,1);
+$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620',$AB_F.' ให้ลำดับขั้น F    '.$AB_U.' ให้อักษร U   '.$AB_CAL.' นำคะแนนทั้งหมดที่นักศึกษาได้รับก่อนการสอบไล่มาประเมิณ'),0,1);
 $pdf->SetX(25);
 
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','ลงชื่อ'),0);
@@ -448,8 +484,8 @@ $pdf->SetX(35);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','(หัวหน้าภาควิชา)'),0,1);
 
 echo $THAI_WEEK[date("w")] ,"ที่",date(" j "), $THAI_MONTH[date(" m ")-1] , " พ.ศ. ",date(" Y ")+543,"<br>"; 
-$pdf->Output("MyPDF.pdf","F");
+$pdf->Output("../../files/".$DATA['COURSE_ID']."_evaluate.pdf","F");
 ?>
-PDF Created Click <a href="MyPDF.pdf" >here</a> to Download
+PDF Created Click <a href=<?php echo '"../../files/'.$DATA['COURSE_ID'].'_evaluate.pdf"'?>>here</a> to Download
 </body>
 </html>
