@@ -25,14 +25,14 @@ $DATA['TEACHER']['LAB'][1] = 'teerasill';
 
 $DATA['EXAM']['MID']['HOUR']['LEC'] = '3';
 $DATA['EXAM']['MID']['HOUR']['LAB'] = '1.5';
-$DATA['EXAM']['MID']['COMMITTEE']['LEC'][0] = 'adiluck';
-$DATA['EXAM']['MID']['COMMITTEE']['LEC'][1] = 'somchai';
-$DATA['EXAM']['MID']['COMMITTEE']['LAB'][0] = 'ketsaraporn';
-$DATA['EXAM']['MID']['COMMITTEE']['LAB'][1] = 'teerasill';
+$DATA['EXAM']['MID']['COMMITTEE']['LEC'][0] = 'อดิลักษณ์';
+$DATA['EXAM']['MID']['COMMITTEE']['LEC'][1] = 'สมชาย';
+$DATA['EXAM']['MID']['COMMITTEE']['LAB'][0] = 'เกษราภรณ์';
+$DATA['EXAM']['MID']['COMMITTEE']['LAB'][1] = 'นรงรัต';
 
 $DATA['EXAM']['FINAL']['HOUR']['LEC'] = '3';
 $DATA['EXAM']['FINAL']['HOUR']['LAB'] = '1.5';
-$DATA['EXAM']['FINAL']['COMMITTEE']['LEC'][0] = 'adiluck';
+$DATA['EXAM']['FINAL']['COMMITTEE']['LEC'][0] = 'อดิลักษณ์';
 $DATA['EXAM']['FINAL']['COMMITTEE']['LEC'][1] = 'somchai';
 $DATA['EXAM']['FINAL']['COMMITTEE']['LAB'][0] = 'ketsaraporn';
 $DATA['EXAM']['FINAL']['COMMITTEE']['LAB'][1] = 'teerasill';
