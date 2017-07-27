@@ -41,8 +41,10 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="dist/js/sb-admin-2.js"></script>
 
-	<script>
+	<script type="text/javascript" src="dist/js/bootstrap-filestyle.min.js"></script>
 
+	<script>
+	
 	$(document).ready(function(){
  			$('a[href="#"]').click(function(e){
  			   e.preventDefault();
@@ -271,10 +273,7 @@
 							<!-- /.nav-second-level -->
 						</li>
 						<li>
-							<a href="#"><i class="fa fa-upload fa-fw"></i> อัพโหลดคะแนน (ส่งเกรด)</a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-check fa-fw"></i> ตรวจสอบสถานะการอนุมัติ</a>
+							<a href="#" onclick="loadDoc('checkstattch.php')"><i class="fa fa-check fa-fw"></i> ตรวจสอบสถานะการอนุมัติ</a>
 						</li>
 					</ul>
 				</div>

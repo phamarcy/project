@@ -1105,6 +1105,13 @@ function deleteRow2(r) {
             <input type="radio" name="ABSENT" id="ABSENT" value="F" checked>&nbsp; ให้ลำดับขั้น F &nbsp;&nbsp; <br>
             <input type="radio" name="ABSENT" id="ABSENT" value="U" >&nbsp; ให้อักษร U &nbsp;&nbsp;<br>
             <input type="radio" name="ABSENT" id="ABSENT" value="CAL" >&nbsp; นำคะแนนทั้งหมดที่นักศึกษาได้รับก่อนการสอบไล่มาประเมิณ &nbsp;&nbsp;<br>
+          </li>
+
+          <br>
+          <li style="font-size: 20px;">
+            <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์ชนิด DOC (.doc หรือ .docx) เท่านั้น) : </b><input type="file" class="filestyle" data-icon="false">
+          </li>
+
 
 
     </ol>
