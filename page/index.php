@@ -44,7 +44,7 @@
 	<script type="text/javascript" src="dist/js/bootstrap-filestyle.min.js"></script>
 
 	<script>
-	
+
 	$(document).ready(function(){
  			$('a[href="#"]').click(function(e){
  			   e.preventDefault();
@@ -127,6 +127,24 @@
 		#myBtn:hover {
 			background-color: #555;
 		}
+		.red{
+			background:rgb(236, 34, 34);
+		}
+		#statcf {
+		  color : #0e9d14;
+		}
+
+		#statn {
+		  color : #ec2c2c;
+		}
+
+		#statwt {
+		  color : #acb500;
+		}
+
+		#statal {
+		  color : #da9001;
+		}
 	</style>
 
 	<script type="text/javascript">
@@ -171,16 +189,21 @@
 				<!-- /.dropdown -->
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-										<i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+										<i class="fa fa-bell fa-fw"></i> <span class="label label-danger red">4</span>
 								</a>
 					<ul class="dropdown-menu dropdown-alerts">
 						<li>
 							<a href="#">
-								<div>
-									<i class="fa fa-comment fa-fw"></i> New Comment
-									<span class="pull-right text-muted small">4 minutes ago</span>
-								</div>
+									<div class="pannel">
+										<b id="statcf" ><i class="fa fa-check fa-fw"></i> อนุมัติ </b>
+										<span class="pull-right text-muted small">4 นาทีที่แล้ว</span>
+									</div>
+									<div class="pannel">
+										<b>กระบวนวิชา : 204111   ตอนที่ 1 ภาคปกติ</b>
+										ผ่านการอนุมัติเรียบร้อยแล้ว
+									</div>
 							</a>
+
 						</li>
 						<li class="divider"></li>
 						<li>
@@ -221,7 +244,7 @@
 						<li class="divider"></li>
 						<li>
 							<a class="text-center" href="#">
-														<strong>See All Alerts</strong>
+														<strong>ดูการแจ้งเตือนทั้งหมด</strong>
 														<i class="fa fa-angle-right"></i>
 												</a>
 						</li>
