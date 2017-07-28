@@ -127,8 +127,12 @@
 		#myBtn:hover {
 			background-color: #555;
 		}
+
+		.notilist{
+			font-size: 20px:
+		}
 		.red{
-			background:rgb(236, 34, 34);
+			background:#ec2c2c;
 		}
 		#statcf {
 		  color : #0e9d14;
@@ -145,6 +149,24 @@
 		#statal {
 		  color : #da9001;
 		}
+
+		.detail{
+		display:block;
+    width:280px;
+    word-wrap:break-word;
+		}
+		a.disabled {
+    pointer-events: none;
+    cursor: default;
+		}
+		a.color {
+    background:#ec2c2c;
+		}
+		.scrollable-menu {
+    height: auto;
+    max-height: 500px;
+    overflow-x: hidden;
+}
 	</style>
 
 	<script type="text/javascript">
@@ -190,57 +212,104 @@
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 										<i class="fa fa-bell fa-fw"></i> <span class="label label-danger red">4</span>
-								</a>
-					<ul class="dropdown-menu dropdown-alerts">
-						<li>
-							<a href="#">
-									<div class="pannel">
-										<b id="statcf" ><i class="fa fa-check fa-fw"></i> อนุมัติ </b>
-										<span class="pull-right text-muted small">4 นาทีที่แล้ว</span>
-									</div>
-									<div class="pannel">
-										<b>กระบวนวิชา : 204111   ตอนที่ 1 ภาคปกติ</b>
-										ผ่านการอนุมัติเรียบร้อยแล้ว
-									</div>
-							</a>
+						</a>
+					<ul class="dropdown-menu scrollable-menu" role="menu">
+						<li >
+							<a href="#" class="disabled">
+										<p>
+											<b id="statcf" style="font-size:18px"><i class="fa fa-check fa-fw "></i> อนุมัติ </b>
+										</p>
+										<p>กระบวนวิชา : <b>204111</b>   ตอนที่ <b>1</b> ภาคปกติ</p>
+										<div class="detail">
+											<b style="font-size:16px">ผ่านการอนุมัติเรียบร้อยแล้ว</b>
+										</div>
+										<p>
+											<span class="pull-right text-muted small">4 นาทีที่แล้ว</span>
+										</p>
 
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a href="#">
-								<div>
-									<i class="fa fa-twitter fa-fw"></i> 3 New Followers
-									<span class="pull-right text-muted small">12 minutes ago</span>
-								</div>
 							</a>
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="#">
-								<div>
-									<i class="fa fa-envelope fa-fw"></i> Message Sent
-									<span class="pull-right text-muted small">4 minutes ago</span>
-								</div>
+							<a href="#" class="disabled">
+										<p>
+											<b id="statwt" style="font-size:18px"><i class="fa fa-clock-o fa-fw"></i></i> รอการพิจารนา </b>
+										</p>
+										<p>กระบวนวิชา : <b>204111</b>   ตอนที่ <b>1</b> ภาคปกติ</p>
+										<div class="detail">
+											<b style="font-size:16px;">รอการพิจารณาการวัดผลและประเมินผลการศึกษา</b>
+										</div>
+										<p>
+											<span class="pull-right text-muted small">4 นาทีที่แล้ว</span>
+										</p>
+
 							</a>
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="#">
-								<div>
-									<i class="fa fa-tasks fa-fw"></i> New Task
-									<span class="pull-right text-muted small">4 minutes ago</span>
-								</div>
+							<a href="#" class="disabled">
+										<p>
+											<b id="statal" style="font-size:16px"><i class="fa fa-user fa-fw"></i></i> ภาควิชาเห็นชอบ รอคณะบดีอนุมัติ </b>
+										</p>
+										<p>กระบวนวิชา : <b>204111</b>   ตอนที่ <b>1</b> ภาคปกติ</p>
+										<div class="detail">
+											<b style="font-size:16px;">รอการพิจารณาจากคณะบดี</b>
+										</div>
+										<p>
+											<span class="pull-right text-muted small">30 นาทีที่แล้ว</span>
+										</p>
+
 							</a>
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="#">
-								<div>
-									<i class="fa fa-upload fa-fw"></i> Server Rebooted
-									<span class="pull-right text-muted small">4 minutes ago</span>
-								</div>
+							<a href="#" >
+										<p>
+											<b id="statn" style="font-size:16px"><i class="fa fa-check fa-fw"></i></i></i> ไม่ผ่านการอนุมัติ </b>
+										</p>
+										<p>กระบวนวิชา : <b>204111</b>   ตอนที่ <b>1</b> ภาคปกติ</p>
+										<div class="detail">
+											<b style="font-size:16px;">ไม่ผ่านการอนุมัติ</b>
+										</div>
+										<p>
+											<span class="pull-right text-muted small">30 นาทีที่แล้ว</span>
+										</p>
+
 							</a>
 						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="#" >
+										<p>
+											<b id="statn" style="font-size:16px"><i class="fa fa-check fa-fw"></i></i></i> ไม่ผ่านการอนุมัติ </b>
+										</p>
+										<p>กระบวนวิชา : <b>204111</b>   ตอนที่ <b>1</b> ภาคปกติ</p>
+										<div class="detail">
+											<b style="font-size:16px;">ทดสอบ</b>
+										</div>
+										<p>
+											<span class="pull-right text-muted small">1 วันที่แล้ว</span>
+										</p>
+
+							</a>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="#" >
+										<p>
+											<b id="statn" style="font-size:16px"><i class="fa fa-check fa-fw"></i></i></i> ไม่ผ่านการอนุมัติ </b>
+										</p>
+										<p>กระบวนวิชา : <b>204111</b>   ตอนที่ <b>1</b> ภาคปกติ</p>
+										<div class="detail">
+											<b style="font-size:16px;">ทดสอบ</b>
+										</div>
+										<p>
+											<span class="pull-right text-muted small">1 วันที่แล้ว</span>
+										</p>
+
+							</a>
+						</li>
+
 						<li class="divider"></li>
 						<li>
 							<a class="text-center" href="#">
