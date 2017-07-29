@@ -263,7 +263,7 @@
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="#" >
+							<a href="#" onclick="loadDoc('checkstattch.php')">
 										<p>
 											<b id="statn" style="font-size:16px"><i class="fa fa-check fa-fw"></i></i></i> ไม่ผ่านการอนุมัติ </b>
 										</p>
@@ -279,7 +279,7 @@
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="#" >
+							<a href="#" onclick="loadDoc('checkstattch.php')">
 										<p>
 											<b id="statn" style="font-size:16px"><i class="fa fa-check fa-fw"></i></i></i> ไม่ผ่านการอนุมัติ </b>
 										</p>
@@ -295,7 +295,7 @@
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="#" >
+							<a href="#" onclick="loadDoc('checkstattch.php')">
 										<p>
 											<b id="statn" style="font-size:16px"><i class="fa fa-check fa-fw"></i></i></i> ไม่ผ่านการอนุมัติ </b>
 										</p>
