@@ -557,10 +557,6 @@ function deleteRow2(r) {
   row.parentNode.removeChild(row);
 }
 
-window.onscroll = function() {
-  scrollFunction()
-};
-
 
 </script>
 </header>
