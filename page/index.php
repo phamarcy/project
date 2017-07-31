@@ -369,7 +369,7 @@
 									<a href="#" onclick="loadDoc('form/evaform.php')"><i class="fa fa-pencil fa-fw"></i> กรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
 								</li>
 								<li>
-									<a href="#"><i class="fa fa-pencil fa-fw"></i> กรอกแบบขออนุมัติเชิญอาจารย์พิเศษ</a>
+									<a href="#" onclick="loadDoc('form/spclteacher.php')"><i class="fa fa-pencil fa-fw"></i> กรอกแบบขออนุมัติเชิญอาจารย์พิเศษ</a>
 								</li>
 							</ul>
 							<!-- /.nav-second-level -->
