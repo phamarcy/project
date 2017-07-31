@@ -37,6 +37,12 @@
  <link rel="stylesheet" href="../dist/css/scrollbar.css">
 </header>
 <body class="mybox">
-
+<div id="wrapper" style="padding-left: 30px">
+  <div class="row">
+    <center>
+      <h1 class="page-header">แบบขออนุมัติเชิญอาจารย์พิเศษ คณะเภสัชศาสตร์<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h1>
+    </center>
+  </div>
+</div>
 </body>
 </html>

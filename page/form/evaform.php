@@ -564,7 +564,7 @@ function deleteRow2(r) {
   <div id="wrapper" style="padding-left: 30px">
 <div class="row">
   <center>
-    <h1 class="page-header">แบบแจ้งวิธีการวัดผลและประเมิณผลการศึกษา คณะเภสัชศาสตร์<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h1>
+    <h1 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h1>
   </center>
 </div>
 
