@@ -354,11 +354,11 @@
 							</div>
 						</li>-->
 						<li>
-							<a href="#" onclick="loadDoc('home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
+							<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
 						</li>
 						<?php if($_SESSION['level'] == 2){ ?>
 						<li>
-							<a href="#" onclick="loadDoc('home.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
+							<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
 						<?php }else { ?>
 						<li>
