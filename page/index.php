@@ -356,7 +356,7 @@
 						<li>
 							<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
 						</li>
-						<?php if($_SESSION['level'] == 2){ ?>
+						<?php if($_SESSION['level'] == 2 || $_SESSION['level'] == 3){ ?>
 						<li>
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
