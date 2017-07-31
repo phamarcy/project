@@ -504,7 +504,7 @@ $(document).ready(function(){
       });
     }
   });
-  
+
   $('#addbtnsa').click(function() {
     var table = $(this).closest('table');
     if (table.find('input:text').length < 100) {
@@ -547,16 +547,6 @@ function deleteRow(r) {
   var row = document.getElementById('row' + i);
   row.parentNode.removeChild(row);
 }
-
-
-
-function deleteRow(r) {
-  var i = r;
-
-  var row = document.getElementById('row' + i);
-  row.parentNode.removeChild(row);
-}
-
 
 
 function deleteRow2(r) {
