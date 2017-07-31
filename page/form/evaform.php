@@ -37,7 +37,6 @@
 
  	<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 
-  <link rel="stylesheet" href="../dist/css/scrollbar.css">
 
 <script id="contentScript">
 
@@ -578,7 +577,7 @@ function topFunction() {
 </script>
 </header>
 
-<body class="scrollbar" id="style-1">
+<body>
   <div id="wrapper" style="padding-left: 30px">
 <div class="row">
   <center>
