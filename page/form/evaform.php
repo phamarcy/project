@@ -24,8 +24,6 @@
  	<!-- Custom Fonts -->
  	<link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-  <link href="../dist/css/scrollbar.css">
-
  	<script src="../vendor/jquery/jquery.min.js"></script>
 
  	<!-- Bootstrap Core JavaScript -->
@@ -38,6 +36,8 @@
  	<script src="../dist/js/sb-admin-2.js"></script>
 
  	<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
+
+  <link rel="stylesheet" href="../dist/css/scrollbar.css">
 
 <script id="contentScript">
 
@@ -575,15 +575,11 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
-jQuery(document).ready(function(){
-    jQuery('.scrollbar-light').scrollbar();
-});
-
 </script>
 </header>
 
-<body>
-  <div class="scrollbar-light" id="wrapper" style="padding-left: 30px">
+<body class="scrollbar" id="style-1">
+  <div id="wrapper" style="padding-left: 30px">
 <div class="row">
   <center>
     <h1 class="page-header">แบบแจ้งวิธีการวัดผลและประเมิณผลการศึกษา คณะเภสัชศาสตร์<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h1>
