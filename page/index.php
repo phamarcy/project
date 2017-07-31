@@ -380,7 +380,7 @@
 		</nav>
 
 		<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-		<div id="page-wrapper">
+		<div id="page-wrapper" style="padding-left: 0px; padding-right: 0px;">
 		<iframe id="frm" frameborder="0" width="100%" height="90%"></iframe>
 		</div>
 	</div>

@@ -1,6 +1,42 @@
 <?php
   session_start();
  ?>
+ <html>
+ <header>
+ 	<meta charset="utf-8">
+ 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<meta name="description" content="">
+ 	<meta name="author" content="">
+
+ 	<!-- Bootstrap Core CSS -->
+ 	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+ 	<!-- MetisMenu CSS -->
+ 	<link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+ 	<!-- Custom CSS -->
+ 	<link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
+ 	<!-- Morris Charts CSS -->
+ 	<link href="vendor/morrisjs/morris.css" rel="stylesheet">
+
+ 	<!-- Custom Fonts -->
+ 	<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+ 	<script src="vendor/jquery/jquery.min.js"></script>
+
+ 	<!-- Bootstrap Core JavaScript -->
+ 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+ 	<!-- Metis Menu Plugin JavaScript -->
+ 	<script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+ 	<!-- Custom Theme JavaScript -->
+ 	<script src="dist/js/sb-admin-2.js"></script>
+
+ 	<script type="text/javascript" src="dist/js/bootstrap-filestyle.min.js"></script>
+
 <script id="contentScript">
 
 function lecloop() {
@@ -407,7 +443,7 @@ function submitfunc() {
     },
     'ABSENT' : document.getElementById("ABSENT").value,
   };
-  
+
   senddata(JSON.stringify(data),getfile());
 }
 function senddata(data,file_data)
@@ -415,12 +451,12 @@ function senddata(data,file_data)
   file_data.append("data",data);
   var URL = '../application/pdf/course_evaluate.php';
   $.ajax({
-                url: URL, // point to server-side PHP script 
+                url: URL, // point to server-side PHP script
                 dataType: 'text',  // what to expect back from the PHP script, if anything
                 cache: false,
                 contentType: false,
                 processData: false,
-                data: file_data,                         
+                data: file_data,
                 type: 'post',
                 success: function (result) {
                      alert("success");
@@ -438,8 +474,8 @@ function senddata(data,file_data)
 }
 function getfile()
 {
-  var file_data = $('#syllabus').prop('files')[0];   
-  var form_data = new FormData();                  
+  var file_data = $('#syllabus').prop('files')[0];
+  var form_data = new FormData();
   form_data.append('file', file_data);
   return form_data;
 }
@@ -518,7 +554,29 @@ function deleteRow2(r) {
   var row = document.getElementById('row2' + i);
   row.parentNode.removeChild(row);
 }
+
+window.onscroll = function() {
+  scrollFunction()
+};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("myBtn").style.display = "block";
+  } else {
+    document.getElementById("myBtn").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
 </script>
+</header>
+
+ิ<body>
+  <div id="wrapper">
 <div class="row">
   <center>
     <h1 class="page-header">แบบแจ้งวิธีการวัดผลและประเมิณผลการศึกษา คณะเภสัชศาสตร์<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h1>
@@ -1152,3 +1210,6 @@ function deleteRow2(r) {
     <div align="center"><input type="button" class="btn btn-success" name="submitbtn" id="submitbtn" value="ยืนยัน" onClick="submitfunc()"></div>
 </form>
 </div>
+</div>
+</body>
+</html>
