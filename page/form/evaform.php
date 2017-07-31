@@ -485,6 +485,7 @@ function getfile()
   form_data.append('file', file_data);
   return form_data;
 }
+$(document).ready(function(){
   $('#addbtn').click(function() {
     var table = $(this).closest('table');
     if (table.find('input:text').length < 100) {
@@ -503,6 +504,51 @@ function getfile()
       });
     }
   });
+  
+  $('#addbtnsa').click(function() {
+    var table = $(this).closest('table');
+    if (table.find('input:text').length < 100) {
+      $('#delbtnsa').removeAttr("disabled");
+      var x = $(this).closest('tr').nextAll('tr');
+      var rowCount = $('#samenatable tr').length;
+      $.each(x, function(i, val) {
+        val.remove();
+      });
+      table.append('<tr class="warning" id="row' + (rowCount - 4) + '"><td><div class="form-inline"><input type="button" class="btn btn-danger" name="delbtnsa' + (rowCount - 4) + '" id="delbtnsa' + (rowCount - 4) +
+        '" value="ลบ" onclick="deleteRow(' + (rowCount - 4) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="SAMEMA_NAME' + (rowCount - 4) + '" id="SAMEMA_NAME' + (rowCount - 4) +
+        '" size="30"></div></td><td><input type="text" class="form-control" name="SAMENA_SCORE' + (rowCount - 4) + '" id="SAMENA_SCORE' + (rowCount - 4) + '" size="2"></td></tr>');
+      $.each(x, function(i, val) {
+        table.append(val);
+      });
+    }
+  });
+
+  $('#addbtnsa2').click(function() {
+    var table = $(this).closest('table');
+    if (table.find('input:text').length < 100) {
+      $('#delbtnsa2').removeAttr("disabled");
+      var x = $(this).closest('tr').nextAll('tr');
+      var rowCount = $('#samenatable2 tr').length;
+      $.each(x, function(i, val) {
+        val.remove();
+      });
+      table.append('<tr class="warning" id="row2' + (rowCount - 4) + '"><td><div class="form-inline"><input type="button" class="btn btn-danger" name="delbtnsa2' + (rowCount - 4) + '" id="delbtnsa2' + (rowCount - 4) +
+        '" value="ลบ" onclick="deleteRow2(' + (rowCount - 4) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="TRAIN_NAME' + (rowCount - 4) + '" id="TRAIN_NAME' + (rowCount - 4) +
+        '" size="30"></td><td><input type="text" class="form-control" name="TRAIN_SCORE' + (rowCount - 4) + '" id="TRAIN_SCORE' + (rowCount - 4) + '" size="2"></td></tr>');
+      $.each(x, function(i, val) {
+        table.append(val);
+      });
+    }
+  });
+});
+function deleteRow(r) {
+  var i = r;
+
+  var row = document.getElementById('row' + i);
+  row.parentNode.removeChild(row);
+}
+
+
 
 function deleteRow(r) {
   var i = r;
@@ -511,48 +557,7 @@ function deleteRow(r) {
   row.parentNode.removeChild(row);
 }
 
-$('#addbtnsa').click(function() {
-  var table = $(this).closest('table');
-  if (table.find('input:text').length < 100) {
-    $('#delbtnsa').removeAttr("disabled");
-    var x = $(this).closest('tr').nextAll('tr');
-    var rowCount = $('#samenatable tr').length;
-    $.each(x, function(i, val) {
-      val.remove();
-    });
-    table.append('<tr class="warning" id="row' + (rowCount - 4) + '"><td><div class="form-inline"><input type="button" class="btn btn-danger" name="delbtnsa' + (rowCount - 4) + '" id="delbtnsa' + (rowCount - 4) +
-      '" value="ลบ" onclick="deleteRow(' + (rowCount - 4) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="SAMEMA_NAME' + (rowCount - 4) + '" id="SAMEMA_NAME' + (rowCount - 4) +
-      '" size="30"></div></td><td><input type="text" class="form-control" name="SAMENA_SCORE' + (rowCount - 4) + '" id="SAMENA_SCORE' + (rowCount - 4) + '" size="2"></td></tr>');
-    $.each(x, function(i, val) {
-      table.append(val);
-    });
-  }
-});
 
-function deleteRow(r) {
-  var i = r;
-
-  var row = document.getElementById('row' + i);
-  row.parentNode.removeChild(row);
-}
-
-$('#addbtnsa2').click(function() {
-  var table = $(this).closest('table');
-  if (table.find('input:text').length < 100) {
-    $('#delbtnsa2').removeAttr("disabled");
-    var x = $(this).closest('tr').nextAll('tr');
-    var rowCount = $('#samenatable2 tr').length;
-    $.each(x, function(i, val) {
-      val.remove();
-    });
-    table.append('<tr class="warning" id="row2' + (rowCount - 4) + '"><td><div class="form-inline"><input type="button" class="btn btn-danger" name="delbtnsa2' + (rowCount - 4) + '" id="delbtnsa2' + (rowCount - 4) +
-      '" value="ลบ" onclick="deleteRow2(' + (rowCount - 4) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="TRAIN_NAME' + (rowCount - 4) + '" id="TRAIN_NAME' + (rowCount - 4) +
-      '" size="30"></td><td><input type="text" class="form-control" name="TRAIN_SCORE' + (rowCount - 4) + '" id="TRAIN_SCORE' + (rowCount - 4) + '" size="2"></td></tr>');
-    $.each(x, function(i, val) {
-      table.append(val);
-    });
-  }
-});
 
 function deleteRow2(r) {
   var i = r;
