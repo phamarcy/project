@@ -360,6 +360,9 @@
 						<li>
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
+						<li>
+							<a href="#"><i class="fa fa-list-alt"></i> กำหนดช่วงเวลา</a>
+						</li>
 						<?php }else { ?>
 						<li>
 							<a href="#"><i class="fa fa-edit fa-fw"></i> กรอกข้อมูล<span class="fa arrow"></span></a>

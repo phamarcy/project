@@ -6,16 +6,10 @@
 if(isset($_POST['data']))
 {
 	$DATA = json_decode($_POST['data'],true);
-	var_dump($DATA);
+	//var_dump($DATA);
 }
-if(isset($_FILES['file']))
-{
-	var_dump($_FILES['file']);
-}
-die;
-require_once('example_data.php');
-$course_id = '462452';
-$section = 3;
+
+//require_once('example_data.php');
 require('fpdf17/fpdf.php');
 require_once('thai_date.php');
 define('FPDF_FONTPATH','font/');
@@ -46,11 +40,12 @@ $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','   '.$DATA['COURSE_ID'].'   ตอน�
 
 $pdf->SetFont('angsab','',14);
 $pdf->SetX(30);  
+/*
 $pdf->Cell(15,7,iconv( 'UTF-8','TIS-620','ภาคพิเศษ'),0,0,"L");
 
 $pdf->SetFont('angsa','',14);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','ตอนที่   '.$DATA['SPE']['SECTION'].'   จำนวนหน่วยกิจ '.$DATA['SPE']['CREDIT']['TOTAL'].'   ( '.$DATA['SPE']['CREDIT']['LEC'].'-'.$DATA['SPE']['CREDIT']['LAB'] .'-'.$DATA['SPE']['CREDIT']['SELF'].'  )จำนวนนักศึกษาลงทะเบียนเรียน   '.$DATA['SPE']['STUDENT'].'   คน'),0,1,"L");
-
+*/
 $pdf->SetX(20);
 // $pdf->Ln();
 // Topic 2

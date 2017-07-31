@@ -63,13 +63,13 @@ function search() {
     });
 }
 </script>
-<body class="mybox">
-<div id="wrapper">
+<body>
+<div id="wrapper " style="padding-left: 30px">
   <div class="row">
     <center>
       <h2 class="page-header">สรุปข้อมูล<br /></h2>
     </center>
-    <div class="form-inline" style="padding-left:35%">
+    <div class="form-inline" >
             <h4>ภาคการศึกษาที่ 
 		     	<div class="form-group">
 		          	<select class="form-control">
@@ -84,7 +84,8 @@ function search() {
                 	<div id="searchstatus" style="display:inline;"></div>
                 </h4>
         </div>
-  </div>
+  	</div>
+
 </div>
 </body>
 </html>
