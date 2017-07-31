@@ -358,7 +358,7 @@
 						</li>
 						<?php if($_SESSION['level'] == 2){ ?>
 						<li>
-							<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
+							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
 						<?php }else { ?>
 						<li>
@@ -373,6 +373,13 @@
 								</li>
 							</ul>
 							<!-- /.nav-second-level -->
+						</li>
+						<?php }
+						if($_SESSION['level'] > 4)
+						{
+						 ?>
+						 <li>
+							<a href="#" onclick="loadDoc('form/approve.php')"><i class="fa fa-pencil-square"></i> อนุมัติกระบวนวิชา</a>
 						</li>
 						<?php } ?>
 						<li>
