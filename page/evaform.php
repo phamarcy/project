@@ -587,7 +587,7 @@ function topFunction() {
   <div class="form-group" id="bgmain">
     <ol>
       <br><br>
-      <li style="font-size: 20px">
+      <li style="font-size: 16px">
         <div class="form-inline">
           <b>รหัสกระบวนวิชา</b> &nbsp;<input type="text" class="form-control" name="COURSE_ID" id="COURSE_ID" size="4" maxlength="6"> &nbsp;ตอนที่ &nbsp;<input type="text" class="form-control" name="SECTION" id="SECTION" size="2" maxlength="2">
           <br><br><div class="radio">
@@ -628,7 +628,7 @@ function topFunction() {
       </li>
 
       <br>
-      <li style="font-size: 20px">
+      <li style="font-size: 16px">
         <div class="form-inline">
           <b>ลักษณะการเรียนการสอน&nbsp;&nbsp;</b><br>
           <div class="radio">
@@ -645,7 +645,7 @@ function topFunction() {
       </li>
 
       <br>
-      <li style="font-size: 20px">
+      <li style="font-size: 16px">
         <div class="form-inline">
 
           <div id="text"><b>รายชื่ออาจารย์ผู้สอนบรรยาย</b> &nbsp; จำนวน &nbsp;
@@ -727,7 +727,7 @@ function topFunction() {
 
 
         <br>
-        <div style="font-size: 20px">
+        <div style="font-size: 16px">
           <div class="form-inline">
 
             <div id="text"><b>รายชื่ออาจารย์ผู้สอนปฏิบัติการ</b> &nbsp; จำนวน &nbsp;
@@ -816,17 +816,17 @@ function topFunction() {
       </li>
 
       <br>
-      <li style="font-size: 20px">
+      <li style="font-size: 16px">
         <div class="form-inline"><b> การสอบ โปรดระบุให้ชัดเจน และครบถ้วน เพื่อใช้เป็นข้อมูลการจัดตารางสอบ </b>(กรุณาระบุชื่ออาจารย์ที่ร่วมสอนในกระบวนวิชา และจำนวนกรรมการคุมสอบอาจระบุอย่างน้อย 3 คน) </div>
 
         <ul>
           <br>
-          <li style="font-size: 20px">
+          <li style="font-size: 16px">
 
             <b>สอบกลางภาคฯ</b>
             <ul>
               <div class="form-inline">
-                <li style="font-size: 20px">
+                <li style="font-size: 16px">
                   จำนวนชั่วโมงสอบการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" class="form-control" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" maxlength="2">&nbsp; ชั่วโมง
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                   <select name="mexholec" id="mexholec" class="form-control" onchange="midexam_hour_lec()">
@@ -873,7 +873,7 @@ function topFunction() {
 
                   <br>
                   <div class="form-inline">
-                    <li style="font-size: 20px">
+                    <li style="font-size: 16px">
                       จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" maxlength="2">&nbsp; ชั่วโมง
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                       <select name="mexholac" id="mexholac" class="form-control" onchange="midexam_hour_lab()">
@@ -925,11 +925,11 @@ function topFunction() {
 
             <!--0000000000000000000000000SPLIT000000000000000-->
             <br>
-            <li style="font-size: 20px">
+            <li style="font-size: 16px">
               <b>สอบไล่</b>
               <ul>
                 <div class="form-inline">
-                  <li style="font-size: 20px">
+                  <li style="font-size: 16px">
                     จำนวนชั่วโมงสอบการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" class="form-control" name="FINEXAM_HOUR_LEC" id="FINEXAM_HOUR_LEC" size="2" maxlength="2">&nbsp; ชั่วโมง
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                     <select name="fexholec" id="fexholec" class="form-control" onchange="finexam_hour_lec()">
@@ -976,7 +976,7 @@ function topFunction() {
 
                     <br>
                     <div class="form-inline">
-                      <li style="font-size: 20px">
+                      <li style="font-size: 16px">
                         จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control" name="FINEXAM_HOUR_LAB" id="FINEXAM_HOUR_LAB" size="2" maxlength="2">&nbsp; ชั่วโมง
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                         <select name="fexholac" id="fexholac" class="form-control" onchange="finexam_hour_lab()">
@@ -1028,7 +1028,7 @@ function topFunction() {
 
         <br>
         <div class="form-inline">
-          <li style="font-size: 20px;">
+          <li style="font-size: 16px;">
             <b>การวัดผลการศึกษา</b> (สัดส่วนการให้คะแนนโปรดระบุเป็นร้อยละ)<br><br>
             <table id="meastable" class="table table-bordered table-hover" width="70%" style="font-size: 18px;">
               <tr class="success">
@@ -1103,7 +1103,7 @@ function topFunction() {
           </li>
 
           <br>
-          <li style="font-size: 20px;">
+          <li style="font-size: 16px;">
             <b>การประเมิณผล</b>
             <br>
             <div class="form-inline"><input type="radio" name="EVALUATE" id="EVALUATE" value="SU" checked>&nbsp; ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว)</div>
@@ -1189,7 +1189,7 @@ function topFunction() {
           </li>
 
           <br>
-          <li style="font-size: 20px;">
+          <li style="font-size: 16px;">
             <b>นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย</b> &nbsp;&nbsp;โดยไม่ได้รับอนุญาตให้เลื่อนการสอบตามข้อบังคับฯ ของมหาวิทยาลัยเชียงใหม่ ว่าด้วยการศึกษาชั้นปริญญาตรี อาจารย์ผู้สอนจะประเมิณดังนี้
             <br>
             <input type="radio" name="ABSENT" id="ABSENT" value="F" checked>&nbsp; ให้ลำดับขั้น F &nbsp;&nbsp; <br>
@@ -1198,7 +1198,7 @@ function topFunction() {
           </li>
 
           <br>
-          <li style="font-size: 20px;">
+          <li style="font-size: 16px;">
             <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์ชนิด DOC (.doc หรือ .docx) เท่านั้น) : </b><input type="file" class="filestyle" id="syllabus" data-icon="false">
           </li>
 
