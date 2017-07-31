@@ -576,7 +576,7 @@ function topFunction() {
 </header>
 
 ิ<body>
-  <div id="wrapper">
+  <div id="wrapper" style="padding-left: 30px">
 <div class="row">
   <center>
     <h1 class="page-header">แบบแจ้งวิธีการวัดผลและประเมิณผลการศึกษา คณะเภสัชศาสตร์<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h1>
