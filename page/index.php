@@ -52,42 +52,47 @@
  		});
 
 		function loadDoc(url) {
-			var xhttp;
-			if (window.XMLHttpRequest) {
-				// code for modern browsers
-				xhttp = new XMLHttpRequest();
-			} else {
-				// code for IE6, IE5
-				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					var content = document.createElement("div");
-			        content.innerHTML = xhttp.responseText
+			var ifrm = document.createElement("iframe");
+	        ifrm.setAttribute("src", url);
+	        ifrm.style.width = "100%";
+	        ifrm.style.height = "100%";
+	        ifrm.frameBorder = 0;
+         	document.getElementById("frm").src = url;
+			// var xhttp;
+			// if (window.XMLHttpRequest) {
+			// 	// code for modern browsers
+			// 	xhttp = new XMLHttpRequest();
+			// } else {
+			// 	// code for IE6, IE5
+			// 	xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			// }
+			// xhttp.onreadystatechange = function() {
+			// 	if (this.readyState == 4 && this.status == 200) {
+			// 		var content = document.createElement("div");
+			//         content.innerHTML = xhttp.responseText
 
-			     	var old_script = document.getElementById("loadscript");
-			     	if(old_script !== null)
-			     	{
-			     		document.body.removeChild(old_script);
-			     	}
+			//      	var old_script = document.getElementById("loadscript");
+			//      	if(old_script !== null)
+			//      	{
+			//      		document.body.removeChild(old_script);
+			//      	}
 
-			        var contentScript = content.querySelector("#contentScript");
+			//         var contentScript = content.querySelector("#contentScript");
 
-			        var main_script = document.getElementById("mainpage");
+			//         var main_script = document.getElementById("mainpage");
 
-			        var script = document.createElement("script");
-			        script.setAttribute("id", "loadscript");
-			        document.getElementById("page-wrapper").innerHTML = this.responseText;
-			        if(contentScript !== null)
-			        {
-			        	script.textContent = contentScript.textContent;
-			        	document.body.appendChild(script);
-			        }
-				}
-			};
-			xhttp.open("POST", url, true);
-			xhttp.send();
-			//$.getScript("js/function.js");
+			//         var script = document.createElement("script");
+			//         script.setAttribute("id", "loadscript");
+			//         document.getElementById("page-wrapper").innerHTML = this.responseText;
+			//         if(contentScript !== null)
+			//         {
+			//         	script.textContent = contentScript.textContent;
+			//         	document.body.appendChild(script);
+			//         }
+			// 	}
+			// };
+			// xhttp.open("POST", url, true);
+			// xhttp.send();
 		}
 	</script>
 
@@ -376,7 +381,7 @@
 
 		<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 		<div id="page-wrapper">
-
+		<iframe id="frm" frameborder="0" width="100%" height="90%"></iframe>
 		</div>
 	</div>
 </body>
