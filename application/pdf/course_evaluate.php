@@ -3,6 +3,16 @@
 </head>
 <body>
 <?php
+if(isset($_POST['data']))
+{
+	$DATA = json_decode($_POST['data'],true);
+	var_dump($DATA);
+}
+if(isset($_FILES['file']))
+{
+	var_dump($_FILES['file']);
+}
+die;
 require_once('example_data.php');
 $course_id = '462452';
 $section = 3;
