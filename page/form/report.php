@@ -36,13 +36,54 @@
 
  <link rel="stylesheet" href="../dist/css/scrollbar.css">
 </header>
-
+<script type="text/javascript">
+function search() {
+    $('#searchstatus').html("<img src='../../application/picture/loading_icon.gif' height='35' >");
+    var URL = '../application/pdf/staff_report.php';
+    $.ajax({
+        url: URL, // point to server-side PHP script
+        dataType: 'text', // what to expect back from the PHP script, if anything
+        data: 'ssss',
+        type: 'post',
+        success: function(result) {
+            $("#searchstatus").hide();
+            $('#searchstatus').css('color', 'green');
+            $('#searchstatus').text("สำเร็จ");
+            $('#searchstatus').fadeIn(); 
+        },
+        failure: function(result) {
+            alert(result);
+        },
+        error: function(xhr, status, p3, p4) {
+            var err = "Error " + " " + status + " " + p3 + " " + p4;
+            if (xhr.responseText && xhr.responseText[0] == "{")
+                err = JSON.parse(xhr.responseText).Message;
+            console.log(err);
+        }
+    });
+}
+</script>
 <body class="mybox">
 <div id="wrapper">
   <div class="row">
     <center>
-      <h2 class="page-header">สรุปข้อมูล<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h1>
+      <h2 class="page-header">สรุปข้อมูล<br /></h2>
     </center>
+    <div class="form-inline" style="padding-left:35%">
+            <h4>ภาคการศึกษาที่ 
+		     	<div class="form-group">
+		          	<select class="form-control">
+		              <option>1</option>
+		              <option>2</option>
+		              <option>3</option>
+		          	</select>
+		      	</div> 
+		      		ปีการศึกษา 
+		      		<input class="form-control" placeholder="Ex. 2560" style="width: 100px;">
+                	&nbsp;<button type="button" class="btn btn-success" onclick="search()">ค้นหา</button>
+                	<div id="searchstatus" style="display:inline;"></div>
+                </h4>
+        </div>
   </div>
 </div>
 </body>
