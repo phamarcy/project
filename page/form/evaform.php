@@ -343,7 +343,7 @@ function submitfunc() {
     'COURSE_ID': document.getElementById("COURSE_ID").value,
     'SECTION' : document.getElementById("SECTION").value,
     'NORORSPE' : document.getElementById("NORORSPE").value,
-    'ENROLL' : document.getElementById("ENROLL").value,
+    'STUDENT' : document.getElementById("ENROLL").value,
     'CREDIT' : {
       'TOTAL' : document.getElementById("TOTAL").value,
       'LEC' : document.getElementById("LEC").value,
@@ -455,7 +455,7 @@ function submitfunc() {
 function senddata(data,file_data)
 {
   file_data.append("data",data);
-  var URL = '../application/pdf/course_evaluate.php';
+  var URL = '../../application/pdf/course_evaluate.php';
   $.ajax({
                 url: URL, // point to server-side PHP script
                 dataType: 'text',  // what to expect back from the PHP script, if anything
@@ -465,7 +465,7 @@ function senddata(data,file_data)
                 data: file_data,
                 type: 'post',
                 success: function (result) {
-                     alert("success");
+                     alert(result);
                 },
                 failure: function (result) {
                      alert(result);
