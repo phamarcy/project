@@ -510,7 +510,7 @@ function deleteRow(r) {
 $('#addbtnsa').click(function() {
   var table = $(this).closest('table');
   if (table.find('input:text').length < 100) {
-    $('#delbtnsa').removeAttr("disabled");
+$('#delbtnsa').removeAttr("disabled");
     var x = $(this).closest('tr').nextAll('tr');
     var rowCount = $('#samenatable tr').length;
     $.each(x, function(i, val) {
