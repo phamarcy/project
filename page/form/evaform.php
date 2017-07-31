@@ -1201,7 +1201,10 @@ function topFunction() {
 
           <br>
           <li style="font-size: 16px;">
-            <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์ชนิด DOC (.doc หรือ .docx) เท่านั้น) : </b><input type="file" class="filestyle" id="syllabus" data-icon="false">
+            <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์ชนิด DOC (.doc หรือ .docx) เท่านั้น) : </b><br />
+          <div class="col-md-3">
+            <input type="file" class="filestyle" id="syllabus" data-icon="false">
+          </div>
           </li>
 
 
