@@ -356,12 +356,17 @@
 						<li>
 							<a href="#" onclick="loadDoc('home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
 						</li>
+						<?php if($_SESSION['level'] == 2){ ?>
+						<li>
+							<a href="#" onclick="loadDoc('home.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
+						</li>
+						<?php }else { ?>
 						<li>
 							<a href="#"><i class="fa fa-edit fa-fw"></i> กรอกข้อมูล<span class="fa arrow"></span></a>
 
 							<ul class="nav nav-second-level">
 								<li>
-									<a href="#" onclick="loadDoc('evaform.php')"><i class="fa fa-pencil fa-fw"></i> กรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
+									<a href="#" onclick="loadDoc('form/evaform.php')"><i class="fa fa-pencil fa-fw"></i> กรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
 								</li>
 								<li>
 									<a href="#"><i class="fa fa-pencil fa-fw"></i> กรอกแบบขออนุมัติเชิญอาจารย์พิเศษ</a>
@@ -369,8 +374,9 @@
 							</ul>
 							<!-- /.nav-second-level -->
 						</li>
+						<?php } ?>
 						<li>
-							<a href="#" onclick="loadDoc('checkstattch.php')"><i class="fa fa-check fa-fw"></i> ตรวจสอบสถานะการอนุมัติ</a>
+							<a href="#" onclick="loadDoc('form/checkstattch.php')"><i class="fa fa-check fa-fw"></i> ตรวจสอบสถานะการอนุมัติ</a>
 						</li>
 					</ul>
 				</div>
