@@ -50,6 +50,7 @@ function search() {
             $('#searchstatus').css('color', 'green');
             $('#searchstatus').text("สำเร็จ");
             $('#searchstatus').fadeIn(); 
+            render(result);
         },
         failure: function(result) {
             alert(result);
@@ -62,6 +63,26 @@ function search() {
         }
     });
 }
+function render(data)
+{
+    //create report panel
+    var panel = document.createElement("div");
+    panel.setAttribute("class","panel panel-default");
+    //create panel header
+    var header = document.createElement("div");
+    header.setAttribute("class","panel-heading");
+    header.innerHTML = "header";
+    //create panel content
+    var content = document.createElement("div");
+    content.setAttribute("class","panel-body");
+    content.innerHTML = "Content";
+    panel.appendChild(header);
+    panel.appendChild(content);
+
+    $("#body").html(panel);
+
+
+}
 </script>
 <body>
 <div id="wrapper " style="padding-left: 30px">
@@ -69,22 +90,26 @@ function search() {
     <center>
       <h2 class="page-header">สรุปข้อมูล<br /></h2>
     </center>
-    <div class="form-inline" >
-            <h4>ภาคการศึกษาที่ 
+    <div class="form-inline">
+        <center>
+            <h style="font-size : 16px">ภาคการศึกษาที่ 
 		     	<div class="form-group">
-		          	<select class="form-control">
+		          	<select class="form-control" ">
 		              <option>1</option>
 		              <option>2</option>
 		              <option>3</option>
 		          	</select>
 		      	</div> 
 		      		ปีการศึกษา 
-		      		<input class="form-control" placeholder="Ex. 2560" style="width: 100px;">
-                	&nbsp;<button type="button" class="btn btn-success" onclick="search()">ค้นหา</button>
+		      		<input class="form-control" placeholder="Ex. 2560" >
+                	&nbsp;<button type="button" class="btn btn-success" onclick="search()" >ค้นหา</button>
                 	<div id="searchstatus" style="display:inline;"></div>
-                </h4>
+                </h>
+        </center>
         </div>
   	</div>
+  	<br>
+  </div>
 
 </div>
 </body>
