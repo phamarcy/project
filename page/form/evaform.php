@@ -40,6 +40,9 @@
   <link rel="stylesheet" href="../dist/css/scrollbar.css">
 
   <style>
+  input[type=text]{
+    height: 25px;
+  }
 
   </style>
 
@@ -486,6 +489,7 @@ function getfile()
   return form_data;
 }
 $(document).ready(function(){
+
   $('#addbtn').click(function() {
     var table = $(this).closest('table');
     if (table.find('input:text').length < 100) {
@@ -574,43 +578,22 @@ function deleteRow2(r) {
       <li style="font-size: 16px">
         <div class="form-inline">
           <b>รหัสกระบวนวิชา</b> &nbsp;<input type="text" class="form-control" name="COURSE_ID" id="COURSE_ID" size="4" maxlength="6"> &nbsp;ตอนที่ &nbsp;<input type="text" class="form-control" name="SECTION" id="SECTION" size="2" maxlength="2">
-          <br><br><div class="radio">
-            <input type="radio" name="NORORSPE" id="NORORSPE" value="NORMAL" checked>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="radio">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE" value="NORMAL" checked>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" name="NORORSPE" id="NORORSPE" value="SPECIAL">&nbsp;<b>ภาคพิเศษ</b>
-          </div><br><br>
+          </div>
+          <br>
           <div class="row">
             <div class="col-md-4">จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input type="text" class="form-control" name="ENROLL" id="ENROLL" size="2" maxlength="3"> &nbsp; คน </div>
-            <div class="col-md-4">จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="2" maxlength="2">&nbsp; ชั่วโมง</div>
-            </div><br>
+            <div class="col-md-4">จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="2" maxlength="2">&nbsp; หน่วยกิต</div>
+          </div>
           <div class="row">
             <div class="col-md-4">จำนวนชั่วโมงบรรยาย (Lecture) &nbsp;<input type="text" class="form-control" name="LEC" id="LEC" size="2" maxlength="2">&nbsp; ชั่วโมง</div>
             <div class="col-md-4">จำนวนชั่วโมงปฏิบัติการ (LAB) &nbsp;<input type="text" class="form-control" name="LAB" id="LAB" size="2" maxlength="2"> &nbsp; ชั่วโมง</div>
             <div class="col-md-4">จำนวนชั่วโมงเรียนรู้ด้วยตัวเอง &nbsp;<input type="text" class="form-control" name="SELF" id="SELF" size="2" maxlength="2">&nbsp; ชั่วโมง</div>
           </div>
-          <br>
-
-
-
-          <script type="text/javascript">
-            /*function ck_frm() {
-              var ck = document.getElementById('SPECIAL');
-              if (ck.checked == true) {
-                document.getElementById('text0').style.display = "";
-              } else {
-                document.getElementById('text0').style.display = "none";
-              }
-
-            }*/
-          </script>
-          <!--<div id="text0" style="display:none;">
-            <br>ตอนที่ &nbsp;<input type="text" class="form-control" name="SECTION" id="SECTION" size="2" maxlength="2">
-            <br><br>จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTALSPC" id="TOTALSPC" size="2" maxlength="2"> &nbsp;จำนวนหน่วยกิต (Lecture) &nbsp;<input type="text" class="form-control" name="LECSPC" id="LECSPC" size="2" maxlength="2">
-            <br><br>จำนวนหน่วยกิต (LAB) &nbsp;<input type="text" class="form-control" name="LABSPC" id="LABSPC" size="2" maxlength="2"> &nbsp;จำนวนหน่วยกิต (Self) &nbsp;<input type="text" class="form-control" name="SELFSPC" id="SELFSPC" size="2" maxlength="2">
-            <br><br>จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input type="text" class="form-control" name="ENROLLSPC" id="ENROLL" size="2" maxlength="3">
-          </div>-->
         </div>
       </li>
-
       <br>
       <li style="font-size: 16px">
         <div class="form-inline">
@@ -619,7 +602,6 @@ function deleteRow2(r) {
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LEC" checked> บรรยาย &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LECLAB"> บรรยายและงานปฏิบัติการทดลอง&nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="SPE"> กระบวนวิชาปัญหาพิเศษ&nbsp;<br>
-
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="TRA"> ฝึกงาน &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="SEM"> สัมนา &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LAB"> ปฏิบัติการ &nbsp;<br>
@@ -633,10 +615,10 @@ function deleteRow2(r) {
         <div class="form-inline">
 
           <div id="text"><b>รายชื่ออาจารย์ผู้สอนบรรยาย</b> &nbsp; จำนวน &nbsp;
-            <select name="leclist" id="leclist" class="form-control" onchange="lecloop()">
-  <option value="0" selected>----</option>
+            <select style="height: 28px;" style="height: 28px;" name="leclist" id="leclist" class="form-control" onchange="lecloop()">
+  <option value="0" selected>0</option>
   <?php
-    for($i=0;$i<=11;$i++)
+    for($i=1;$i<=11;$i++)
     {
       echo '<option value="'.$i.'">'.$i.'</option>';
     }
@@ -651,74 +633,74 @@ function deleteRow2(r) {
 
 
         <div class="form-inline hide" id="ctlec1">
-          <br><label id="li1" style="display:none;">1. &nbsp;</label>
+          <label id="li1" style="display:none;">1. &nbsp;</label>
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_F1" id="TEACHERLEC_F1" placeholder="ชื่อ" size="20">
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_L1" id="TEACHERLEC_L1" placeholder="นามสกุล" size="20">
         </div>
 
         <div class="form-inline hide" id="ctlec2">
-          <br><label id="li2" style="display:none;">2. &nbsp;</label>
+          <label id="li2" style="display:none;">2. &nbsp;</label>
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_F2" id="TEACHERLEC_F2" placeholder="ชื่อ" size="20">
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_L2" id="TEACHERLEC_L2" placeholder="นามสกุล" size="20">
         </div>
 
         <div class="form-inline hide" id="ctlec3">
-          <br><label id="li3" style="display:none;">3. &nbsp;</label>
+          <label id="li3" style="display:none;">3. &nbsp;</label>
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_F3" id="TEACHERLEC_F3" placeholder="ชื่อ" size="20">
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_L3" id="TEACHERLEC_L3" placeholder="นามสกุล" size="20">
         </div>
         <div class="form-inline hide" id="ctlec4">
-          <br><label id="li4" style="display:none;">4. &nbsp;</label>
+          <label id="li4" style="display:none;">4. &nbsp;</label>
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_F4" id="TEACHERLEC_F4" placeholder="ชื่อ" size="20">
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_L4" id="TEACHERLEC_L4" placeholder="นามสกุล" size="20">
         </div>
         <div class="form-inline hide" id="ctlec5">
-          <br><label id="li5" style="display:none;">5. &nbsp;</label>
+          <label id="li5" style="display:none;">5. &nbsp;</label>
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_F5" id="TEACHERLEC_F5" placeholder="ชื่อ" size="20">
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_L5" id="TEACHERLEC_L5" placeholder="นามสกุล" size="20">
         </div>
         <div class="form-inline hide" id="ctlec6">
-          <br><label id="li6" style="display:none;">6. &nbsp;</label>
+          <label id="li6" style="display:none;">6. &nbsp;</label>
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_F6" id="TEACHERLEC_F6" placeholder="ชื่อ" size="20">
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_L6" id="TEACHERLEC_L6" placeholder="นามสกุล" size="20">
         </div>
         <div class="form-inline hide" id="ctlec7">
-          <br><label id="li7" style="display:none;">7. &nbsp;</label>
+          <label id="li7" style="display:none;">7. &nbsp;</label>
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_F7" id="TEACHERLEC_F7" placeholder="ชื่อ" size="20">
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_L7" id="TEACHERLEC_L7" placeholder="นามสกุล" size="20">
         </div>
         <div class="form-inline hide" id="ctlec8">
-          <br><label id="li8" style="display:none;">8. &nbsp;</label>
+          <label id="li8" style="display:none;">8. &nbsp;</label>
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_F8" id="TEACHERLEC_F8" placeholder="ชื่อ" size="20">
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_L8" id="TEACHERLEC_L8" placeholder="นามสกุล" size="20">
         </div>
         <div class="form-inline hide" id="ctlec9">
-          <br><label id="li9" style="display:none;">9. &nbsp;</label>
+          <label id="li9" style="display:none;">9. &nbsp;</label>
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_F9" id="TEACHERLEC_F9" placeholder="ชื่อ" size="20">
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_L9" id="TEACHERLEC_L9" placeholder="นามสกุล" size="20">
         </div>
         <div class="form-inline hide" id="ctlec10">
-          <br><label id="li10" style="display:none;">10.&nbsp; </label>
+          <label id="li10" style="display:none;">10.&nbsp; </label>
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_F10" id="TEACHERLEC_F10" placeholder="ชื่อ" size="20">
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_L10" id="TEACHERLEC_L10" placeholder="นามสกุล" size="20">
         </div>
         <div class="form-inline hide" id="ctlec11">
-          <br><label id="li11" style="display:none;">11.&nbsp; </label>
+          <label id="li11" style="display:none;">11.&nbsp; </label>
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_F11" id="TEACHERLEC_F11" placeholder="ชื่อ" size="20">
           <input type="text" style="display:none;" class="form-control" name="TEACHERLEC_L11" id="TEACHERLEC_L11" placeholder="นามสกุล" size="20">
         </div>
 
 
 
-        <br>
+
         <div style="font-size: 16px">
           <div class="form-inline">
 
             <div id="text"><b>รายชื่ออาจารย์ผู้สอนปฏิบัติการ</b> &nbsp; จำนวน &nbsp;
-              <select name="lablist" id="lablist" class="form-control" onchange="labloop()">
-  <option value="0" selected>----</option>
+              <select style="height: 28px;" name="lablist" id="lablist" class="form-control" onchange="labloop()">
+  <option value="0" selected>0</option>
   <?php
-    for($i=0;$i<=11;$i++)
+    for($i=1;$i<=11;$i++)
     {
       echo '<option value="'.$i.'">'.$i.'</option>';
     }
@@ -730,69 +712,69 @@ function deleteRow2(r) {
           </div>
 
           <div class="form-inline hide" id="ctlab1">
-            <br><label id="la1" style="display:none;">1. &nbsp;</label>
+            <label id="la1" style="display:none;">1. &nbsp;</label>
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_F1" id="TEACHERLAB_F1" placeholder="ชื่อ" size="20">
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_L1" id="TEACHERLAB_L1" placeholder="นามสกุล" size="20">
           </div>
 
 
           <div class="form-inline hide" id="ctlab2">
-            <br><label id="la2" style="display:none;">2. &nbsp;</label>
+            <label id="la2" style="display:none;">2. &nbsp;</label>
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_F2" id="TEACHERLAB_F2" placeholder="ชื่อ" size="20">
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_L2" id="TEACHERLAB_L2" placeholder="นามสกุล" size="20">
           </div>
 
 
           <div class="form-inline hide" id="ctlab3">
-            <br><label id="la3" style="display:none;">3. &nbsp;</label>
+            <label id="la3" style="display:none;">3. &nbsp;</label>
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_F3" id="TEACHERLAB_F3" placeholder="ชื่อ" size="20">
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_L3" id="TEACHERLAB_L3" placeholder="นามสกุล" size="20">
           </div>
 
           <div class="form-inline hide" id="ctlab4">
-            <br><label id="la4" style="display:none;">4. &nbsp;</label>
+            <label id="la4" style="display:none;">4. &nbsp;</label>
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_F4" id="TEACHERLAB_F4" placeholder="ชื่อ" size="20">
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_L4" id="TEACHERLAB_L4" placeholder="นามสกุล" size="20">
           </div>
 
           <div class="form-inline hide" id="ctlab5">
-            <br><label id="la5" style="display:none;">5. &nbsp;</label>
+            <label id="la5" style="display:none;">5. &nbsp;</label>
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_F5" id="TEACHERLAB_F5" placeholder="ชื่อ" size="20">
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_L5" id="TEACHERLAB_L5" placeholder="นามสกุล" size="20">
           </div>
 
           <div class="form-inline hide" id="ctlab6">
-            <br><label id="la6" style="display:none;">6. &nbsp;</label>
+            <label id="la6" style="display:none;">6. &nbsp;</label>
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_F6" id="TEACHERLAB_F6" placeholder="ชื่อ" size="20">
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_L6" id="TEACHERLAB_L6" placeholder="นามสกุล" size="20">
           </div>
 
           <div class="form-inline hide" id="ctlab7">
-            <br><label id="la7" style="display:none;">7. &nbsp;</label>
+            <label id="la7" style="display:none;">7. &nbsp;</label>
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_F7" id="TEACHERLAB_F7" placeholder="ชื่อ" size="20">
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_L7" id="TEACHERLAB_L7" placeholder="นามสกุล" size="20">
           </div>
 
           <div class="form-inline hide" id="ctlab8">
-            <br><label id="la8" style="display:none;">8. &nbsp;</label>
+            <label id="la8" style="display:none;">8. &nbsp;</label>
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_F8" id="TEACHERLAB_F8" placeholder="ชื่อ" size="20">
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_L8" id="TEACHERLAB_L8" placeholder="นามสกุล" size="20">
           </div>
 
           <div class="form-inline hide" id="ctlab9">
-            <br><label id="la9" style="display:none;">9. &nbsp;</label>
+            <label id="la9" style="display:none;">9. &nbsp;</label>
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_F9" id="TEACHERLAB_F9" placeholder="ชื่อ" size="20">
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_L9" id="TEACHERLAB_L9" placeholder="นามสกุล" size="20">
           </div>
 
           <div class="form-inline hide" id="ctlab10">
-            <br><label id="la10" style="display:none;">10.&nbsp; </label>
+            <label id="la10" style="display:none;">10.&nbsp; </label>
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_F10" id="TEACHERLAB_F10" placeholder="ชื่อ" size="20">
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_L10" id="TEACHERLAB_L10" placeholder="นามสกุล" size="20">
           </div>
 
           <div class="form-inline hide" id="ctlab11">
-            <br><label id="la11" style="display:none;">11.&nbsp; </label>
+            <label id="la11" style="display:none;">11.&nbsp; </label>
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_F11" id="TEACHERLAB_F11" placeholder="ชื่อ" size="20">
             <input type="text" style="display:none;" class="form-control" name="TEACHERLAB_L11" id="TEACHERLAB_L11" placeholder="นามสกุล" size="20">
           </div>
@@ -813,16 +795,16 @@ function deleteRow2(r) {
                 <li style="font-size: 16px">
                   จำนวนชั่วโมงสอบการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" class="form-control" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" maxlength="2">&nbsp; ชั่วโมง
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                  <select name="mexholec" id="mexholec" class="form-control" onchange="midexam_hour_lec()">
-      <option value="0" selected>----</option>
+                  <select style="height: 28px;" name="mexholec" id="mexholec" class="form-control" onchange="midexam_hour_lec()">
+      <option value="0" selected>0</option>
       <?php
-        for($i=0;$i<=11;$i++)
+        for($i=1;$i<=11;$i++)
         {
           echo '<option value="'.$i.'">'.$i.'</option>';
         }
         ?>
 
-    </select> &nbsp; คน (แยกห้องกันคุม) <br>
+    </select> &nbsp; คน (แยกห้องกันคุม)
 
 
                   <div class="form-inline hide" id="mehlec1">
@@ -860,10 +842,10 @@ function deleteRow2(r) {
                     <li style="font-size: 16px">
                       จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" maxlength="2">&nbsp; ชั่วโมง
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                      <select name="mexholac" id="mexholac" class="form-control" onchange="midexam_hour_lab()">
-      <option value="0" selected>----</option>
+                      <select style="height: 28px;" name="mexholac" id="mexholac" class="form-control" onchange="midexam_hour_lab()">
+      <option value="0" selected>0</option>
       <?php
-        for($i=0;$i<=11;$i++)
+        for($i=1;$i<=11;$i++)
         {
           echo '<option value="'.$i.'">'.$i.'</option>';
         }
@@ -916,10 +898,10 @@ function deleteRow2(r) {
                   <li style="font-size: 16px">
                     จำนวนชั่วโมงสอบการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" class="form-control" name="FINEXAM_HOUR_LEC" id="FINEXAM_HOUR_LEC" size="2" maxlength="2">&nbsp; ชั่วโมง
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                    <select name="fexholec" id="fexholec" class="form-control" onchange="finexam_hour_lec()">
-      <option value="0" selected>----</option>
+                    <select style="height: 28px;" name="fexholec" id="fexholec" class="form-control" onchange="finexam_hour_lec()">
+      <option value="0" selected>0</option>
       <?php
-        for($i=0;$i<=11;$i++)
+        for($i=1;$i<=11;$i++)
         {
           echo '<option value="'.$i.'">'.$i.'</option>';
         }
@@ -929,44 +911,44 @@ function deleteRow2(r) {
 
 
                     <div class="form-inline hide" id="fmehlec1">
-                      <br><label id="fmehle1" style="display:none;">1.&nbsp; </label>
+                      <label id="fmehle1" style="display:none;">1.&nbsp; </label>
                       <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LECF1" id="FINEXCOM_LECF1" placeholder="ชื่อ" size="20">
                       <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LECL1" id="FINEXCOM_LECL1" placeholder="นามสกุล" size="20">
                     </div>
 
                     <div class="form-inline hide" id="fmehlec2">
-                      <br><label id="fmehle2" style="display:none;">2.&nbsp; </label>
+                      <label id="fmehle2" style="display:none;">2.&nbsp; </label>
                       <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LECF2" id="FINEXCOM_LECF2" placeholder="ชื่อ" size="20">
                       <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LECL2" id="FINEXCOM_LECL2" placeholder="นามสกุล" size="20">
                     </div>
 
                     <div class="form-inline hide" id="fmehlec3">
-                      <br><label id="fmehle3" style="display:none;">3.&nbsp; </label>
+                      <label id="fmehle3" style="display:none;">3.&nbsp; </label>
                       <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LECF3" id="FINEXCOM_LECF3" placeholder="ชื่อ" size="20">
                       <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LECL3" id="FINEXCOM_LECL3" placeholder="นามสกุล" size="20">
                     </div>
 
                     <div class="form-inline hide" id="fmehlec4">
-                      <br><label id="fmehle4" style="display:none;">4.&nbsp; </label>
+                      <label id="fmehle4" style="display:none;">4.&nbsp; </label>
                       <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LECF4" id="FINEXCOM_LECF4" placeholder="ชื่อ" size="20">
                       <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LECL4" id="FINEXCOM_LECL4" placeholder="นามสกุล" size="20">
                     </div>
 
                     <div class="form-inline hide" id="fmehlec5">
-                      <br><label id="fmehle5" style="display:none;">5.&nbsp; </label>
+                      <label id="fmehle5" style="display:none;">5.&nbsp; </label>
                       <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LECF5" id="FINEXCOM_LECF5" placeholder="ชื่อ" size="20">
                       <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LECL5" id="FINEXCOM_LECL5" placeholder="นามสกุล" size="20">
                     </div>
 
-                    <br>
+
                     <div class="form-inline">
                       <li style="font-size: 16px">
                         จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control" name="FINEXAM_HOUR_LAB" id="FINEXAM_HOUR_LAB" size="2" maxlength="2">&nbsp; ชั่วโมง
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                        <select name="fexholac" id="fexholac" class="form-control" onchange="finexam_hour_lab()">
-      <option value="0" selected>----</option>
+                        <select style="height: 28px;" name="fexholac" id="fexholac" class="form-control" onchange="finexam_hour_lab()">
+      <option value="0" selected>0</option>
       <?php
-        for($i=0;$i<=11;$i++)
+        for($i=1;$i<=11;$i++)
         {
           echo '<option value="'.$i.'">'.$i.'</option>';
         }
@@ -1033,8 +1015,7 @@ function deleteRow2(r) {
                 <td><input type="text" class="form-control" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="2"></td>
               </tr>
               <tr>
-                <td colspan="2">3. อื่นๆ โปรดระบุ งานมอบหมาย </td>
-                <td colspan="2" style="text-align: center;"><input type="button" class="btn btn-success" name="addbtn" id="addbtn" value="เพิ่ม"> </td>
+                <td colspan="4">3. อื่นๆ โปรดระบุ งานมอบหมาย &nbsp;&nbsp;<input type="button" class="btn btn-success" name="addbtn" id="addbtn" value="เพิ่ม"> </td>
               </tr>
               <tr>
                 <td colspan="2" style="text-align: center;"><b>รวมคะแนน</b></td>
@@ -1118,8 +1099,8 @@ function deleteRow2(r) {
               <tr align="center">
                 <td>A</td>
                 <td><input type="text" class="form-control" name="CALCULATE_A_MIN" id="CALCULATE_A_MIN" placeholder="คะแนน"></td>
-                <td></td>
-                <td></td>
+                <td>ถึง</td>
+                <td><input type="text" class="form-control" name="CALCULATE_A_MIN" id="CALCULATE_A_MAX" placeholder="คะแนน" disabled></td>
                 <td></td>
                 <td>D+</td>
                 <td><input type="text" class="form-control" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" placeholder="คะแนน"></td>
@@ -1146,8 +1127,8 @@ function deleteRow2(r) {
                 <td><input type="text" class="form-control" name="CALCULATE_B_MAX" id="CALCULATE_B_MAX" placeholder="คะแนน"></td>
                 <td></td>
                 <td>F</td>
-                <td></td>
-                <td></td>
+                <td><input type="text" class="form-control" name="CALCULATE_F_MAX" id="CALCULATE_F_MIN" placeholder="คะแนน" disabled></td>
+                <td>ถึง</td>
                 <td><input type="text" class="form-control" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" placeholder="คะแนน"></td>
                 <td></td>
               </tr>
@@ -1159,8 +1140,8 @@ function deleteRow2(r) {
                 <td></td>
                 <td>S</td>
                 <td><input type="text" class="form-control" name="CALCULATE_S_MIN" id="CALCULATE_S_MIN" placeholder="คะแนน"></td>
-                <td></td>
-                <td></td>
+                <td>ถึง</td>
+                <td><input type="text" class="form-control" name="CALCULATE_S_MAX" id="CALCULATE_S_MIN" placeholder="คะแนน" disabled></td>
                 <td></td>
               </tr>
               <tr align="center">
@@ -1170,8 +1151,8 @@ function deleteRow2(r) {
                 <td><input type="text" class="form-control" name="CALCULATE_C_MAX" id="CALCULATE_C_MAX" placeholder="คะแนน"></td>
                 <td></td>
                 <td>U</td>
-                <td></td>
-                <td></td>
+                <td><input type="text" class="form-control" name="CALCULATE_U_MAX" id="CALCULATE_U_MIN" placeholder="คะแนน" disabled></td>
+                <td>ถึง</td>
                 <td><input type="text" class="form-control" name="CALCULATE_U_MAX" id="CALCULATE_U_MAX" placeholder="คะแนน"></td>
                 <td></td>
               </tr>
@@ -1191,7 +1172,7 @@ function deleteRow2(r) {
 
           <br>
           <li style="font-size: 16px;">
-            <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์ชนิด DOC (.doc หรือ .docx) เท่านั้น) : </b><br />
+            <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์จากโปรแกรม Microsoft Word (.doc หรือ .docx) เท่านั้น) : </b><br />
           <div class="col-md-3">
             <input type="file" class="filestyle" id="syllabus" data-icon="false">
           </div>

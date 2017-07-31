@@ -36,6 +36,12 @@
 
  <link rel="stylesheet" href="../dist/css/scrollbar.css">
 
+ <style>
+ input[type=text],input[type=date],input[type=time]{
+   height: 25px;
+ }
+ </style>
+
  <script>
  $(document).ready(function(){
    $('#adddetail').click(function() {
@@ -81,37 +87,37 @@ function deleteRow(r) {
       <br>
       <li style="font-size: 16px">
         <b>รายละเอียดของอาจารย์พิเศษ</b>
-        <br><br>
+        <br>
         <div class="row">
           <ul>
           <div class="form-inline">
             <li>ชื่อ &nbsp;&nbsp;<input type="text" class="form-control" id="fname" size="20">&nbsp;&nbsp;&nbsp;&nbsp;
             นามสกุล &nbsp;&nbsp;<input type="text" class="form-control" id="lname" size="20"></li>
           </div>
-          <br>
+
           <div class="form-inline">
             <li>ตำแหน่ง &nbsp;&nbsp;<input type="text" class="form-control" id="position" size="35"></li>
           </div>
-          <br>
+
           <div class="form-inline">
             <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<input type="text" class="form-control" id="qualification" size="35"></li>
           </div>
-          <br>
+
           <div class="form-inline">
             <li>สถานที่ทำงาน &nbsp;&nbsp;<br /><textarea class="form-control" id="workplace" rows="4" cols="70"></textarea></li>
           </div>
-          <br>
+
           <div class="form-inline">
             <li>สถานที่ติดต่อ  &nbsp;&nbsp;<br /><textarea class="form-control" id="contactplace" rows="4" cols="70"></textarea></li>
           </div>
-          <br>
+
           <div class="form-inline">
             <li>โทรศัพท์ &nbsp;&nbsp;<input type="text" class="form-control" id="tel" size="20">
               &nbsp;ต่อ&nbsp;<input type="text" class="form-control" id="subtel" size="2"></li>
         </div>
-        <br>
+
         <div class="form-inline">
-          <li>E-mail &nbsp;&nbsp;<input type="email" class="form-control" id="qualification" size="45"></li>
+          <li>E-mail &nbsp;&nbsp;<input style="height: 25px;" type="email" class="form-control" id="qualification" size="45"></li>
         </div>
       </ul>
     </div>
@@ -121,40 +127,34 @@ function deleteRow(r) {
         <b>รายละเอียดกระบวนวิชา</b>
           <div class="row">
             <ul>
-              <br>
               <div class="form-inline">
                 <li>กระบวนวิชาที่สอน &nbsp;<input type="text" class="form-control" name="" id="course" size="20"></li>
               </div>
-              <br>
               <div class="form-inline">
                 <li>กระบวนวิชานี้เป็นวิชา &nbsp;<br />
                   <div class="radio">
-                    <input type="radio" id="type_course" value="require"> &nbsp;บังคับ
-                    &nbsp;<input type="radio" id="type_course" value="choose"> &nbsp;เลือก
-                    &nbsp;<input type="radio" id="type_course" value="new"> &nbsp;เปิดใหม่
-                    &nbsp;<input type="radio" id="type_course" value="old"> &nbsp;เปิดอยู่แล้ว
+                    <input type="radio" name="type_course" id="type_course" value="require" checked> &nbsp;บังคับ
+                    &nbsp;<input type="radio" name="type_course" id="type_course" value="choose"> &nbsp;เลือก
+                    &nbsp;<input type="radio" name="type_course" id="type_course" value="new"> &nbsp;เปิดใหม่
+                    &nbsp;<input type="radio" name="type_course" id="type_course" value="old"> &nbsp;เปิดอยู่แล้ว
                   </div>
                 </li>
               </div>
-              <br>
               <div class="form-inline">
                 <li>หัวข้อที่เชิญมาสอน <br>
                     <div class="radio">
-                      <input type="radio" id="topic" value="yet"> &nbsp;อาจารย์พิเศษยังไม่เคยสอน
-                      &nbsp;<input type="radio" id="topic" value="already"> &nbsp;อาจารย์พิเศษเคยสอนมาแล้ว
+                      <input type="radio" name="topic" id="topic" value="yet" checked> &nbsp;อาจารย์พิเศษยังไม่เคยสอน
+                      &nbsp;<input type="radio" name="topic" id="topic" value="already"> &nbsp;อาจารย์พิเศษเคยสอนมาแล้ว
                     </div>
                   </li>
                 </li>
               </div>
-              <br>
               <div class="form-inline">
                 <li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control" name="" id="hour" size="3"> &nbsp;ของทั้งกระบวนวิชา</li>
               </div>
-              <br>
               <div class="form-inline">
                 <li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70"></textarea></li>
               </div>
-              <br>
                 <li> รายละเอียดในการสอน <br>
                   <div class="col-md-10">
                   <table id="detailteaching" class="table table-bordered table-hover" style="font-size: 17px; ">
