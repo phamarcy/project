@@ -39,6 +39,10 @@
 
   <link rel="stylesheet" href="../dist/css/scrollbar.css">
 
+  <style>
+
+  </style>
+
 <script id="contentScript">
 
 function lecloop() {
@@ -564,14 +568,14 @@ function deleteRow2(r) {
   <div id="wrapper" style="padding-left: 30px">
 <div class="row">
   <center>
-    <h1 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h1>
+    <h2 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h2>
   </center>
 </div>
 
 <form action="" name="form1" method="post">
   <div class="form-group" id="bgmain">
     <ol>
-      <br><br>
+      <br>
       <li style="font-size: 16px">
         <div class="form-inline">
           <b>รหัสกระบวนวิชา</b> &nbsp;<input type="text" class="form-control" name="COURSE_ID" id="COURSE_ID" size="4" maxlength="6"> &nbsp;ตอนที่ &nbsp;<input type="text" class="form-control" name="SECTION" id="SECTION" size="2" maxlength="2">
@@ -1015,7 +1019,9 @@ function deleteRow2(r) {
         <div class="form-inline">
           <li style="font-size: 16px;">
             <b>การวัดผลการศึกษา</b> (สัดส่วนการให้คะแนนโปรดระบุเป็นร้อยละ)<br><br>
-            <table id="meastable" class="table table-bordered table-hover" width="70%" style="font-size: 18px;">
+            <div class="row">
+            <div class="col-md-10">
+            <table id="meastable" class="table table-bordered table-hover" style="font-size: 18px;">
               <tr class="success">
                 <th width="67%" colspan="2"> </th>
                 <th style="text-align: center;">ภาคทฤษฏี</th>
@@ -1041,9 +1047,11 @@ function deleteRow2(r) {
                 <td><input type="text" class="form-control" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="2"></td>
               </tr>
             </table>
+            </div>
+          </div>
 
             <div class="row">
-              <dir class="col-md-6">
+              <div class="col-md-5">
                 <table id="samenatable" class="table table-bordered table-hover" width="100%" style="font-size: 18px;">
                   <tbody>
                     <tr class="success">
@@ -1062,9 +1070,9 @@ function deleteRow2(r) {
                     </tr>
                   </tbody>
                 </table>
-              </dir>
+              </div>
 
-              <dir class="col-md-6">
+              <div class="col-md-5">
                 <table id="samenatable2" class="table table-bordered table-hover" width="100%" style="font-size: 18px;">
                   <tbody>
                     <tr class="success">
@@ -1097,7 +1105,9 @@ function deleteRow2(r) {
             <div class="form-inline"><input type="radio" name="CALCULATE" id="CALCULATE_TYPE" value="GROUP" checked>&nbsp; อิงกลุ่ม</div>
             <div class="form-inline"><input type="radio" name="CALCULATE" id="CALCULATE_TYPE" value="CRITERIA">&nbsp; อิงเกณฑ์ &nbsp;&nbsp;ได้กำหนดเกณฑ์ดังต่อไปนี้</div>
             <br>
-            <table class="table table-hover" width="100%" style="font-size: 18px; ">
+            <div class="row">
+            <div class="col-md-10">
+            <table class="table table-hover" style="font-size: 17px; ">
               <tr align="center">
                 <th>เกรด</th>
                 <th>คะแนนต่ำสุด</th>
@@ -1171,6 +1181,8 @@ function deleteRow2(r) {
                 <td></td>
               </tr>
             </table>
+          </div>
+        </div>
           </li>
 
           <br>
