@@ -40,9 +40,7 @@
  input[type=text],input[type=date],input[type=time]{
    height: 25px;
  }
- body {
-   overflow: hidden;
- }
+ 
  </style>
 
  <script>
