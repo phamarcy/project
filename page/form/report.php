@@ -39,7 +39,7 @@
 <script type="text/javascript">
 function search() {
     $('#searchstatus').html("<img src='../../application/picture/loading_icon.gif' height='35' >");
-    var URL = '../application/pdf/staff_report.php';
+    var URL = '../../application/report/staff_report.php';
     $.ajax({
         url: URL, // point to server-side PHP script
         dataType: 'text', // what to expect back from the PHP script, if anything
@@ -49,7 +49,7 @@ function search() {
             $("#searchstatus").hide();
             $('#searchstatus').css('color', 'green');
             $('#searchstatus').text("สำเร็จ");
-            $('#searchstatus').fadeIn(); 
+            $('#searchstatus').fadeIn();
             render(result);
         },
         failure: function(result) {
@@ -87,15 +87,15 @@ function render(data)
     <h3 class="page-header"><center>สรุปข้อมูล</center></h3>
     <div class="form-inline">
         <center>
-            <h style="font-size : 16px">ภาคการศึกษาที่ 
+            <h style="font-size : 16px">ภาคการศึกษาที่
 		     	<div class="form-group">
 		          	<select class="form-control" ">
 		              <option>1</option>
 		              <option>2</option>
 		              <option>3</option>
 		          	</select>
-		      	</div> 
-		      		ปีการศึกษา 
+		      	</div>
+		      		ปีการศึกษา
 		      		<input class="form-control" placeholder="Ex. 2560" style="width: 100px;">
                 	&nbsp;<button type="button" class="btn btn-success" onclick="search()" >ค้นหา</button>
                 	<div id="searchstatus" style="display:inline;"></div>
