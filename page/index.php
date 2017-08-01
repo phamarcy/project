@@ -44,6 +44,9 @@
 	<script type="text/javascript" src="dist/js/bootstrap-filestyle.min.js"></script>
 
 	<script>
+  function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  }
 
 	$(document).ready(function(){
  			$('a[href="#"]').click(function(e){
@@ -172,6 +175,10 @@
     max-height: 500px;
     overflow-x: hidden;
 }
+		#frm {
+			overflow-x: hidden;
+		}
+
 	</style>
 
 	<script type="text/javascript">
@@ -397,7 +404,7 @@
 
 		<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 		<div id="page-wrapper" style="padding-left: 0px; padding-right: 0px;">
-		<iframe id="frm" frameborder="0" width="100%" height="90%"></iframe>
+		<iframe id="frm" frameborder="0" width="100%" height="90%" scrolling="no" onload="resizeIframe(this)"></iframe>
 		</div>
 	</div>
 </body>
