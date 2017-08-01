@@ -44,6 +44,9 @@
     height: 25px;
   }
 
+  body {
+    overflow-y: hidden;
+  }
   </style>
 
 <script id="contentScript">
@@ -576,7 +579,7 @@ function deleteRow2(r) {
 </script>
 </header>
 <body class="mybox">
-  <div id="wrapper" style="padding-left: 30px">
+  <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
 <div class="row">
   <center>
     <h2 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h2>

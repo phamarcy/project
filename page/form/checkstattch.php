@@ -61,6 +61,7 @@
 </style>
 </header>
 <body class="mybox">
+  <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
 <div class="row">
   <center>
     <h1 class="page-header">ตรวจสอบสถานะการอนุมัติ<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h1>
@@ -287,6 +288,7 @@
 
 
 
+</div>
 </div>
 </div>
 </body>
