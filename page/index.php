@@ -207,7 +207,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 						</button>
-				<a class="navbar-brand" href="index.php">Pharmacy 1.0</a>
+				<a class="navbar-brand" href="#" onclick="loadDoc('form/home.php')">ระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่</a>
 			</div>
 			<!-- /.navbar-header -->
 
