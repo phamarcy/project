@@ -46,6 +46,17 @@
  </style>
 
  <script>
+
+ // Charecter fixed
+ $(function() {//<-- wrapped here
+   $('.numonly').on('input', function() {
+     this.value = this.value.replace(/[^0-9.]/g, ''); //<-- replace all other than given set of values
+   });
+   $('.charonly').on('input', function() {
+     this.value = this.value.replace(/[^a-zA-Zก-ฮๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ.]/g, ''); //<-- replace all other than given set of values
+   });
+ });
+
  $(document).ready(function(){
    $('#adddetail').click(function() {
      var table = $(this).closest('table');
@@ -94,16 +105,16 @@ function deleteRow(r) {
         <div class="row">
           <ul>
           <div class="form-inline">
-            <li>ชื่อ &nbsp;&nbsp;<input type="text" class="form-control" id="fname" size="20">&nbsp;&nbsp;&nbsp;&nbsp;
-            นามสกุล &nbsp;&nbsp;<input type="text" class="form-control" id="lname" size="20"></li>
+            <li>ชื่อ &nbsp;&nbsp;<input type="text" class="form-control charonly" id="fname" size="20">&nbsp;&nbsp;&nbsp;&nbsp;
+            นามสกุล &nbsp;&nbsp;<input type="text" class="form-control charonly" id="lname" size="20"></li>
           </div>
 
           <div class="form-inline">
-            <li>ตำแหน่ง &nbsp;&nbsp;<input type="text" class="form-control" id="position" size="35"></li>
+            <li>ตำแหน่ง &nbsp;&nbsp;<input type="text" class="form-control charonly" id="position" size="35"></li>
           </div>
 
           <div class="form-inline">
-            <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<input type="text" class="form-control" id="qualification" size="35"></li>
+            <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<input type="text" class="form-control charonly" id="qualification" size="35"></li>
           </div>
 
           <div class="form-inline">
@@ -115,8 +126,8 @@ function deleteRow(r) {
           </div>
 
           <div class="form-inline">
-            <li>โทรศัพท์ &nbsp;&nbsp;<input type="text" class="form-control" id="tel" size="20">
-              &nbsp;ต่อ&nbsp;<input type="text" class="form-control" id="subtel" size="2"></li>
+            <li>โทรศัพท์ &nbsp;&nbsp;<input type="text" class="form-control numonly" id="tel" size="20">
+              &nbsp;ต่อ&nbsp;<input type="text" class="form-control numonly" id="subtel" size="2"></li>
         </div>
 
         <div class="form-inline">
@@ -131,7 +142,7 @@ function deleteRow(r) {
           <div class="row">
             <ul>
               <div class="form-inline">
-                <li>กระบวนวิชาที่สอน &nbsp;<input type="text" class="form-control" name="" id="course" size="20"></li>
+                <li>รหัสกระบวนวิชาที่สอน &nbsp;<input type="text" class="form-control numonly" name="" id="course" size="20"></li>
               </div>
               <div class="form-inline">
                 <li>กระบวนวิชานี้เป็นวิชา &nbsp;<br />
@@ -153,7 +164,7 @@ function deleteRow(r) {
                 </li>
               </div>
               <div class="form-inline">
-                <li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control" name="" id="hour" size="3"> &nbsp;ของทั้งกระบวนวิชา</li>
+                <li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control numonly" name="" id="hour" size="3"> &nbsp;ของทั้งกระบวนวิชา</li>
               </div>
               <div class="form-inline">
                 <li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70"></textarea></li>
@@ -190,20 +201,20 @@ function deleteRow(r) {
             <li>ค่าสอนพิเศษ</li>
             <div class="radio">
               <input type="radio"  name="costspec" id="costspec" value="choice1" checked>&nbsp;ปริญญาตรีบรรยาย 400/ชม.&nbsp;&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control" id="choice1hour" size="5">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control" id="choice1cost" size="5">&nbsp;&nbsp;บาท
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1hour" size="5">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1cost" size="5">&nbsp;&nbsp;บาท
               <br>
               <input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ 200/ชม.&nbsp;&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control" id="choice2hour" size="5">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control" id="choice2cost" size="5">&nbsp;&nbsp;บาท
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2hour" size="5">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2cost" size="5">&nbsp;&nbsp;บาท
             </div>
           </div>
           <div class="form-inline">
             <li>ค่าพาหนะเดินทาง </li>
             <div class="checkbox">
-              <label><input type="checkbox" name="trans" id="trans" value="plane">&nbsp;&nbsp;เครื่องบิน ระหว่าง เชียงใหม่-กรุงเทพ &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control" name="planecost" id="planecost" size="5">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="trans" id="trans" value="plane">&nbsp;&nbsp;เครื่องบิน ระหว่าง เชียงใหม่-กรุงเทพ &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="planecost" id="planecost" size="5">&nbsp;&nbsp;บาท</label>
               <br>
-              <label><input type="checkbox" name="trans" id="trans" value="taxi">&nbsp;&nbsp;ค่า taxiดอนเมือง-ลาดพร้าว &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control" name="taxicost" id="taxicost" size="5">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="trans" id="trans" value="taxi">&nbsp;&nbsp;ค่า taxiดอนเมือง-ลาดพร้าว &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="taxicost" id="taxicost" size="5">&nbsp;&nbsp;บาท</label>
               <br>
-              <label><input type="checkbox" name="trans" id="trans" value="selfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง 60 กม.ๆ ละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control" name="selfcost" id="selfcost" size="5">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="trans" id="trans" value="selfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง 60 กม.ๆ ละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="selfcost" id="selfcost" size="5">&nbsp;&nbsp;บาท</label>
               </div>
           </div>
           <div class="form-inline">
@@ -212,13 +223,13 @@ function deleteRow(r) {
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" checked>&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน 800 บาท/คน/คืน &nbsp;&nbsp;
             </div>
-            <br>จำนวน&nbsp;&nbsp;<input type="text" class="form-control" name="numnight" id="numnight" size="5">&nbsp;&nbsp;คืน
-            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control" name="pernight" id="pernight" size="5">&nbsp;&nbsp;บาท
+            <br>จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="numnight" id="numnight" size="5">&nbsp;&nbsp;คืน
+            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5">&nbsp;&nbsp;บาท
 
           </div>
           <br>
           <div class="form-inline">
-            <li style="font-size: 18px;"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control" name="totalcost" id="totalcost" size="10">&nbsp;&nbsp;บาท</li>
+            <li style="font-size: 18px;"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control numonly" name="totalcost" id="totalcost" size="10">&nbsp;&nbsp;บาท</li>
           </div>
         </ul>
       </li>
