@@ -87,7 +87,7 @@ function deleteRow(r) {
 
 </header>
 <body class="mybox">
-<div id="wrapper" style="padding-left: 30px;">
+<div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
   <div class="row">
     <center>
       <h2 class="page-header">แบบขออนุมัติเชิญอาจารย์พิเศษ คณะเภสัชศาสตร์<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h2>
