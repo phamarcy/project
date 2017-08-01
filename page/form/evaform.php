@@ -489,6 +489,7 @@ function getfile()
   return form_data;
 }
 
+// Charecter fixed
 $(function() {//<-- wrapped here
   $('.numonly').on('input', function() {
     this.value = this.value.replace(/[^0-9.]/g, ''); //<-- replace all other than given set of values
