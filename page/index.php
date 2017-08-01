@@ -361,7 +361,7 @@
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
 						<li>
-							<a href="#"><i class="fa fa-list-alt"></i> กำหนดช่วงเวลา</a>
+							<a href="#" onclick="loadDoc('form/deadline.php')"><i class="fa fa-list-alt"></i> กำหนดช่วงเวลา</a>
 						</li>
 						<?php }else { ?>
 						<li>

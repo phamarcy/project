@@ -80,16 +80,11 @@ function render(data)
     panel.appendChild(content);
 
     $("#body").html(panel);
-
-
 }
 </script>
 <body>
-<div id="wrapper " style="padding-left: 30px">
-  <div class="row">
-    <center>
-      <h2 class="page-header">สรุปข้อมูล<br /></h2>
-    </center>
+<div >
+    <h3 class="page-header"><center>สรุปข้อมูล</center></h3>
     <div class="form-inline">
         <center>
             <h style="font-size : 16px">ภาคการศึกษาที่ 
@@ -101,14 +96,18 @@ function render(data)
 		          	</select>
 		      	</div> 
 		      		ปีการศึกษา 
-		      		<input class="form-control" placeholder="Ex. 2560" >
+		      		<input class="form-control" placeholder="Ex. 2560" style="width: 100px;">
                 	&nbsp;<button type="button" class="btn btn-success" onclick="search()" >ค้นหา</button>
                 	<div id="searchstatus" style="display:inline;"></div>
                 </h>
         </center>
         </div>
-  	</div>
+        <br>
+        <div class="container" id="body">
+        </div>
+
   	<br>
+    asdsa
   </div>
 
 </div>
