@@ -42,7 +42,7 @@ function loaddataAll()
     loaddata('approve');
 }
 function loaddata(type) {
-   
+
     url = "../../application/deadline/update_deadline.php?type="+type+"&query=search";
     var data;
     var object;
@@ -70,7 +70,7 @@ function render(data,type) {
     }
     $("#loading").html("");
     $(".container").fadeIn();
-   
+
 }
 $(document).ready(function() {
     $("#addbtn_approve").click(function() {
@@ -85,18 +85,18 @@ $(document).ready(function() {
     });
 });
 $(document).on('click', "#submitbtn_course", function() {
-    url = "../../application/deadline/update_deadline.php?query=course&type=add";
+    url = "../../application/deadline/update_deadline.php?query=add&type=course";
     var form = $(this).parent();
     var formData = {};
     $(form).find("input[id]").each(function(index, node) {
         formData[node.id] = node.value;
     });
-    $.post(url, { 'DATA': formData }).done(function(data) { 
+    $.post(url, { 'DATA': formData }).done(function(data) {
         alert(data);
     });
 });
 $(document).on('click', "#submitbtn_approve", function() {
-    url = "../../application/deadline/update_deadline.php?query=approve&type=add";
+    url = "../../application/deadline/update_deadline.php?query=add&type=approve";
     var form = $(this).parent();
     var formData = {};
     $(form).find("input[id]").each(function(index, node) {
@@ -113,7 +113,7 @@ $(document).on('click', "#delete", function() {
 </script>
 
 <body onload="loaddataAll()">
-    <h3 class="page-header" style="margin-bottom: 0px;"><center>กำหนดช่วงเวลา</center></h3>   
+    <h3 class="page-header" style="margin-bottom: 0px;"><center>กำหนดช่วงเวลา</center></h3>
     <div class="panel-body" style="padding-top: 0px;">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
@@ -148,8 +148,8 @@ $(document).on('click', "#delete", function() {
                                                     <option>2</option>
                                                     <option>3</option>
                                                 </select>
-                                            </div> 
-                                            ปีการศึกษา 
+                                            </div>
+                                            ปีการศึกษา
                                             <input class="form-control" id="year" placeholder="Ex. 2560" style="width: 100px;">
                                         </div>
                                         <br>
@@ -161,7 +161,7 @@ $(document).on('click', "#delete", function() {
                                         <a href="#" id="delete" style="position: absolute; right: 10px; top: 10px;">X</a>
                                     </form>
                                 </div>
-                            </div>       
+                            </div>
                     </div>
                 </div>
             </div>
@@ -187,8 +187,8 @@ $(document).on('click', "#delete", function() {
                                                     <option>2</option>
                                                     <option>3</option>
                                                 </select>
-                                            </div> 
-                                            ปีการศึกษา 
+                                            </div>
+                                            ปีการศึกษา
                                             <input class="form-control" id="year" placeholder="Ex. 2560" style="width: 100px;">
                                         </div>
                                         <br>
@@ -200,7 +200,7 @@ $(document).on('click', "#delete", function() {
                                         <a href="#" id="delete" style="position: absolute; right: 10px; top: 10px;">X</a>
                                     </form>
                                 </div>
-                            </div>       
+                            </div>
                     </div>
                 </div>
             </div>

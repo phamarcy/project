@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 if(!isset($_SESSION['level']))
 {
@@ -14,6 +14,7 @@ else
 		if($query == 'add')
 		{
 			var_dump($_POST['DATA']);
+			die;
 		}
 		else if($query == 'search')
 		{
@@ -37,7 +38,7 @@ else
 			{
 				$DATA['error'] = 'invalid type ';
 			}
-		}	
+		}
 	}
 	else
 	{
