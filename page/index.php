@@ -46,10 +46,6 @@
 	  <link rel="stylesheet" href="dist/css/scrollbar.css">
 
 	<script>
-  function resizeIframe(obj) {
-    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-  }
-
 	$(document).ready(function(){
  			$('a[href="#"]').click(function(e){
  			   e.preventDefault();
@@ -406,7 +402,7 @@
 
 		<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 		<div id="page-wrapper" style="padding-left: 0px; padding-right: 0px;">
-		<iframe id="frm" frameborder="0" width="100%" height="90%" scrolling="yes" onload="resizeIframe(this)"></iframe>
+		<iframe id="frm" frameborder="0" width="100%" height="90%" scrolling="yes"></iframe>
 		</div>
 	</div>
 </body>
