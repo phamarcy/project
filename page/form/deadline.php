@@ -141,7 +141,7 @@ $(document).on('click', "#delete", function() {
                                 <br>
                                     <form>
                                         <div class="form-inline">
-                                            <h style="width: 100px; " ">ภาคการศึกษาที่ </h>
+                                            <h style="width: 100px;  ">ภาคการศึกษาที่ </h>
                                             <div class="form-group">
                                                 <select class="form-control" id="semester" style="width: 70px; ">
                                                     <option>1</option>

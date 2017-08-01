@@ -366,7 +366,7 @@
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
 						<li>
-							<a href="#" onclick="loadDoc('form/deadline.php')"><i class="fa fa-list-alt"></i> กำหนดช่วงเวลา</a>
+							<a href="#" onclick="loadDoc('form/deadline.php')"><i class="fa fa-list-alt fa-fw"></i> กำหนดช่วงเวลา</a>
 						</li>
 						<?php }else { ?>
 						<li>
@@ -382,12 +382,13 @@
 							</ul>
 							<!-- /.nav-second-level -->
 						</li>
+
 						<?php }
 						if($_SESSION['level'] > 4)
 						{
 						 ?>
-						 <li>
-							<a href="#" onclick="loadDoc('form/approve.php')"><i class="fa fa-pencil-square"></i> อนุมัติกระบวนวิชา</a>
+						<li>
+							<a href="#" onclick="loadDoc('form/approve.php')"><i class="fa fa-pencil-square fa-fw"></i> อนุมัติกระบวนวิชา</a>
 						</li>
 						<?php } ?>
 						<li>
