@@ -1185,7 +1185,11 @@ function deleteRow2(r) {
     </ol>
     </div>
     <br><br>
-    <div align="center"><input type="button" class="btn btn-success" name="submitbtn" id="submitbtn" value="ยืนยัน" onClick="submitfunc()"></div>
+    <div align="center">
+      <input type="button" style="font-size: 18px;" class="btn btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" onClick="submitfunc()"> &nbsp;
+      <input type="button" style="font-size: 18px;" class="btn btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
+      <input type="button" style="font-size: 18px;" class="btn btn-danger" name="resetbtn" id="resetbtn" value="รีเซ็ตข้อมูล">
+    </div>
 </form>
 </div>
 </div>
