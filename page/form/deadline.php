@@ -31,7 +31,33 @@
 }
 </style>
 <script type="text/javascript">
+function loaddata()
+{
+    $('#loading').html("<center><img src='../../application/picture/loading_icon.gif'></center>");
+    $(".container").hide();
+    url = "../../application/deadline/update_deadline.php?type=SEARCH";
+    var data;
+    var object;
+     $.getJSON(url, function(result){
+        
+        var count = result.data.length;
+        var data = result.data;
+        for(var i=0;i < count;i++)
+        {
+            object = document.getElementById("group").cloneNode(true);
+            $(object).find("#year").val(data[i].year);
+            $(object).find("#semester").val(data[i].semester);
+            $(object).find("#opendate").val(data[i].opendate);
+            $(object).find("#lastdate").val(data[i].lastdate);
+            $(object).find("#submitbtn").prop('disabled',true);
+            $(object).appendTo("#body");
+        }
+        $("#loading").html("");
+        $(".container").fadeIn(); 
+    });
+}
 $(document).ready(function(){
+
     $("#addbtn").click(function(){
         var i = 0;
         var object = document.getElementById("group");
@@ -39,7 +65,7 @@ $(document).ready(function(){
     });
 });
 $(document).on('click',"#submitbtn", function(){
-    url = "../../application/deadline/update_deadline.php";
+    url = "../../application/deadline/update_deadline.php?type=ADD";
     var form = $(this).parent();
     var formData = {};
     $(form).find("input[id]").each(function (index, node) {
@@ -51,11 +77,12 @@ $(document).on('click',"#submitbtn", function(){
 });
 </script>
 
-<body>
+<body onload="loaddata()">
     <h3 class="page-header"><center>กำหนดช่วงเวลา</center></h3>
     <div class="form-inline">
     </div>
     <br>
+    <div id="loading"></div>
     <div class="container">
         <div class="panel panel-default" >
             <div class="panel-heading">
@@ -92,6 +119,8 @@ $(document).on('click',"#submitbtn", function(){
             </div>       
         </div>
        
+    </div>
+    <div id="test">
     </div>
 </body>
 </html>
