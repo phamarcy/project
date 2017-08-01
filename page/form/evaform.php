@@ -488,6 +488,7 @@ function getfile()
   form_data.append('file', file_data);
   return form_data;
 }
+
 $(document).ready(function(){
 
   $('#addbtn').click(function() {
@@ -527,24 +528,6 @@ $(document).ready(function(){
     }
   });
 
-<<<<<<< HEAD
-$('#addbtnsa').click(function() {
-  var table = $(this).closest('table');
-  if (table.find('input:text').length < 100) {
-$('#delbtnsa').removeAttr("disabled");
-    var x = $(this).closest('tr').nextAll('tr');
-    var rowCount = $('#samenatable tr').length;
-    $.each(x, function(i, val) {
-      val.remove();
-    });
-    table.append('<tr class="warning" id="row' + (rowCount - 4) + '"><td><div class="form-inline"><input type="button" class="btn btn-danger" name="delbtnsa' + (rowCount - 4) + '" id="delbtnsa' + (rowCount - 4) +
-      '" value="ลบ" onclick="deleteRow(' + (rowCount - 4) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="SAMEMA_NAME' + (rowCount - 4) + '" id="SAMEMA_NAME' + (rowCount - 4) +
-      '" size="30"></div></td><td><input type="text" class="form-control" name="SAMENA_SCORE' + (rowCount - 4) + '" id="SAMENA_SCORE' + (rowCount - 4) + '" size="2"></td></tr>');
-    $.each(x, function(i, val) {
-      table.append(val);
-    });
-  }
-=======
   $('#addbtnsa2').click(function() {
     var table = $(this).closest('table');
     if (table.find('input:text').length < 100) {
@@ -562,8 +545,8 @@ $('#delbtnsa').removeAttr("disabled");
       });
     }
   });
->>>>>>> 6b19bfb77651a022522b7e9d623fe2bb00c12743
 });
+
 function deleteRow(r) {
   var i = r;
 
@@ -827,36 +810,36 @@ function deleteRow2(r) {
 
 
                   <div class="form-inline hide" id="mehlec1">
-                    <br><label id="mehle1" style="display:none;">1.&nbsp; </label>
+                    <label id="mehle1" style="display:none;">1.&nbsp; </label>
                     <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LECF1" id="MIDEXCOM_LECF1" placeholder="ชื่อ" size="20">
                     <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LECL1" id="MIDEXCOM_LECL1" placeholder="นามสกุล" size="20">
                   </div>
 
                   <div class="form-inline hide" id="mehlec2">
-                    <br><label id="mehle2" style="display:none;">2.&nbsp; </label>
+                    <label id="mehle2" style="display:none;">2.&nbsp; </label>
                     <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LECF2" id="MIDEXCOM_LECF2" placeholder="ชื่อ" size="20">
                     <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LECL2" id="MIDEXCOM_LECL2" placeholder="นามสกุล" size="20">
                   </div>
 
                   <div class="form-inline hide" id="mehlec3">
-                    <br><label id="mehle3" style="display:none;">3.&nbsp; </label>
+                    <label id="mehle3" style="display:none;">3.&nbsp; </label>
                     <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LECF3" id="MIDEXCOM_LECF3" placeholder="ชื่อ" size="20">
                     <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LECL3" id="MIDEXCOM_LECL3" placeholder="นามสกุล" size="20">
                   </div>
 
                   <div class="form-inline hide" id="mehlec4">
-                    <br><label id="mehle4" style="display:none;">4.&nbsp; </label>
+                    <label id="mehle4" style="display:none;">4.&nbsp; </label>
                     <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LECF4" id="MIDEXCOM_LECF4" placeholder="ชื่อ" size="20">
                     <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LECL4" id="MIDEXCOM_LECL4" placeholder="นามสกุล" size="20">
                   </div>
 
                   <div class="form-inline hide" id="mehlec5">
-                    <br><label id="mehle5" style="display:none;">5.&nbsp; </label>
+                    <label id="mehle5" style="display:none;">5.&nbsp; </label>
                     <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LECF5" id="MIDEXCOM_LECF5" placeholder="ชื่อ" size="20">
                     <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LECL5" id="MIDEXCOM_LECL5" placeholder="นามสกุล" size="20">
                   </div>
 
-                  <br>
+
                   <div class="form-inline">
                     <li style="font-size: 16px">
                       จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" maxlength="2">&nbsp; ชั่วโมง
@@ -874,31 +857,31 @@ function deleteRow2(r) {
 
 
                       <div class="form-inline hide" id="ehlab1">
-                        <br><label id="ehla1" style="display:none;">1.&nbsp; </label>
+                        <label id="ehla1" style="display:none;">1.&nbsp; </label>
                         <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LABF1" id="MIDEXCOM_LABF1" placeholder="ชื่อ" size="20">
                         <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LABL1" id="MIDEXCOM_LABL1" placeholder="นามสกุล" size="20">
                       </div>
 
                       <div class="form-inline hide" id="ehlab2">
-                        <br><label id="ehla2" style="display:none;">2.&nbsp; </label>
+                        <label id="ehla2" style="display:none;">2.&nbsp; </label>
                         <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LABF2" id="MIDEXCOM_LABF2" placeholder="ชื่อ" size="20">
                         <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LABL2" id="MIDEXCOM_LABL2" placeholder="นามสกุล" size="20">
                       </div>
 
                       <div class="form-inline hide" id="ehlab3">
-                        <br><label id="ehla3" style="display:none;">3.&nbsp; </label>
+                        <label id="ehla3" style="display:none;">3.&nbsp; </label>
                         <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LABF3" id="MIDEXCOM_LABF3" placeholder="ชื่อ" size="20">
                         <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LABL3" id="MIDEXCOM_LABL3" placeholder="นามสกุล" size="20">
                       </div>
 
                       <div class="form-inline hide" id="ehlab4">
-                        <br><label id="ehla4" style="display:none;">4.&nbsp; </label>
+                        <label id="ehla4" style="display:none;">4.&nbsp; </label>
                         <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LABF4" id="MIDEXCOM_LABF4" placeholder="ชื่อ" size="20">
                         <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LABL4" id="MIDEXCOM_LABL4" placeholder="นามสกุล" size="20">
                       </div>
 
                       <div class="form-inline hide" id="ehlab5">
-                        <br><label id="ehla5" style="display:none;">5.&nbsp; </label>
+                        <label id="ehla5" style="display:none;">5.&nbsp; </label>
                         <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LABF5" id="MIDEXCOM_LABF5" placeholder="ชื่อ" size="20">
                         <input type="text" style="display:none;" class="form-control" name="MIDEXCOM_LABL5" id="MIDEXCOM_LABL5" placeholder="นามสกุล" size="20">
                       </div>
@@ -909,7 +892,7 @@ function deleteRow2(r) {
 
 
             <!--0000000000000000000000000SPLIT000000000000000-->
-            <br>
+
             <li style="font-size: 16px">
               <b>สอบไล่</b>
               <ul>
@@ -977,31 +960,31 @@ function deleteRow2(r) {
 
 
                         <div class="form-inline hide" id="fehlab1">
-                          <br><label id="fehla1" style="display:none;">1.&nbsp; </label>
+                          <label id="fehla1" style="display:none;">1.&nbsp; </label>
                           <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LABF1" id="FINEXCOM_LABF1" placeholder="ชื่อ" size="20">
                           <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LABL1" id="FINEXCOM_LABL1" placeholder="นามสกุล" size="20">
                         </div>
 
                         <div class="form-inline hide" id="fehlab2">
-                          <br><label id="fehla2" style="display:none;">2.&nbsp; </label>
+                          <label id="fehla2" style="display:none;">2.&nbsp; </label>
                           <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LABF2" id="FINEXCOM_LABF2" placeholder="ชื่อ" size="20">
                           <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LABL2" id="FINEXCOM_LABL2" placeholder="นามสกุล" size="20">
                         </div>
 
                         <div class="form-inline hide" id="fehlab3">
-                          <br><label id="fehla3" style="display:none;">3.&nbsp; </label>
+                          <label id="fehla3" style="display:none;">3.&nbsp; </label>
                           <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LABF3" id="FINEXCOM_LABF3" placeholder="ชื่อ" size="20">
                           <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LABL3" id="FINEXCOM_LABL3" placeholder="นามสกุล" size="20">
                         </div>
 
                         <div class="form-inline hide" id="fehlab4">
-                          <br><label id="fehla4" style="display:none;">4.&nbsp; </label>
+                          <label id="fehla4" style="display:none;">4.&nbsp; </label>
                           <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LABF4" id="FINEXCOM_LABF4" placeholder="ชื่อ" size="20">
                           <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LABL4" id="FINEXCOM_LABL4" placeholder="นามสกุล" size="20">
                         </div>
 
                         <div class="form-inline hide" id="fehlab5">
-                          <br><label id="fehla5" style="display:none;">5.&nbsp; </label>
+                          <label id="fehla5" style="display:none;">5.&nbsp; </label>
                           <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LABF5" id="FINEXCOM_LABF5" placeholder="ชื่อ" size="20">
                           <input type="text" style="display:none;" class="form-control" name="FINEXCOM_LABL5" id="FINEXCOM_LABL5" placeholder="นามสกุล" size="20">
                         </div>
