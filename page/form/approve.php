@@ -65,7 +65,8 @@
                                     <div id="collapseOne" class="panel-collapse collapse in">
                                         <div class="panel-body">
                                           <div class="table-responsive">
-                                              <table class="table table-striped table-hover">
+
+                                              <table class="table " >
                                                   <thead>
                                                       <tr>
                                                           <th>#</th>
@@ -80,7 +81,7 @@
                                                       </tr>
                                                   </thead>
                                                   <tbody>
-                                                      <tr>
+                                                      <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
                                                           <td>1</td>
                                                           <td>Mark</td>
                                                           <td>Mark</td>
@@ -91,7 +92,21 @@
                                                           <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
                                                           <td><button type="button" class="btn btn-danger">ไม่อนุมัติ</button></td>
                                                       </tr>
-                                                      <tr>
+                                                      <tr class="hiddenRow">
+                                                          <td colspan="12">
+                                                            <div class="accordian-body collapse" id="demo1">
+                                                              <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                  <b>คอมเม้นต์</b>
+                                                                </div>
+                                                                <div class="panel-body">
+
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
+                                                      </tr>
+                                                      <tr data-toggle="collapse" data-target="#demo2" class="accordion-toggle">
                                                           <td>2</td>
                                                           <td>Jacob</td>
                                                           <td>Mark</td>
@@ -102,7 +117,21 @@
                                                           <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
                                                           <td><button type="button" class="btn btn-danger">ไม่อนุมัติ</button></td>
                                                       </tr>
-                                                      <tr>
+                                                      <tr class="hiddenRow">
+                                                          <td colspan="12" class="hiddenRow">
+                                                            <div class="accordian-body collapse" id="demo2">
+                                                              <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                  <b>คอมเม้นต์</b>
+                                                                </div>
+                                                                <div class="panel-body">
+
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
+                                                      </tr>
+                                                      <tr data-toggle="collapse" data-target="#demo3" class="accordion-toggle">
                                                           <td>3</td>
                                                           <td>Larry</td>
                                                           <td>Mark</td>
@@ -112,6 +141,20 @@
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
                                                           <td><button type="button" class="btn btn-danger">ไม่อนุมัติ</button></td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td colspan="12" class="hiddenRow">
+                                                            <div class="accordian-body collapse" id="demo3">
+                                                              <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                  <b>คอมเม้นต์</b>
+                                                                </div>
+                                                                <div class="panel-body">
+
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
                                                       </tr>
                                                   </tbody>
                                               </table>
@@ -143,7 +186,7 @@
                                                       </tr>
                                                   </thead>
                                                   <tbody>
-                                                      <tr>
+                                                      <tr  data-toggle="collapse" data-target="#demo21" class="accordion-toggle">
                                                           <td>1</td>
                                                           <td>Mark</td>
                                                           <td>Mark</td>
@@ -153,7 +196,21 @@
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-danger">ยกเลิกอนุมัติ</button></td>
                                                       </tr>
-                                                      <tr>
+                                                      <tr class="hiddenRow">
+                                                          <td colspan="12">
+                                                            <div class="accordian-body collapse" id="demo21">
+                                                              <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                  <b>คอมเม้นต์</b>
+                                                                </div>
+                                                                <div class="panel-body">
+
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
+                                                      </tr>
+                                                      <tr  data-toggle="collapse" data-target="#demo22" class="accordion-toggle">
                                                           <td>2</td>
                                                           <td>Jacob</td>
                                                           <td>Mark</td>
@@ -163,7 +220,21 @@
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-danger">ยกเลิกอนุมัติ</button></td>
                                                       </tr>
-                                                      <tr>
+                                                      <tr class="hiddenRow">
+                                                          <td colspan="12">
+                                                            <div class="accordian-body collapse" id="demo22">
+                                                              <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                  <b>คอมเม้นต์</b>
+                                                                </div>
+                                                                <div class="panel-body">
+
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
+                                                      </tr>
+                                                      <tr  data-toggle="collapse" data-target="#demo23" class="accordion-toggle">
                                                           <td>3</td>
                                                           <td>Larry</td>
                                                           <td>Mark</td>
@@ -172,6 +243,20 @@
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-danger">ยกเลิกอนุมัติ</button></td>
+                                                      </tr>
+                                                      <tr class="hiddenRow">
+                                                          <td colspan="12">
+                                                            <div class="accordian-body collapse" id="demo23">
+                                                              <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                  <b>คอมเม้นต์</b>
+                                                                </div>
+                                                                <div class="panel-body">
+
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
                                                       </tr>
                                                   </tbody>
                                               </table>
@@ -188,7 +273,7 @@
                                     <div id="collapseThree" class="panel-collapse collapse">
                                         <div class="panel-body">
                                           <div class="table-responsive">
-                                              <table class="table table-striped table-hover">
+                                              <table class="table table-striped table-hover" >
                                                   <thead>
                                                       <tr>
                                                           <th>#</th>
@@ -202,7 +287,7 @@
                                                       </tr>
                                                   </thead>
                                                   <tbody>
-                                                      <tr>
+                                                      <tr  data-toggle="collapse" data-target="#demo31" class="accordion-toggle">
                                                           <td>1</td>
                                                           <td>Mark</td>
                                                           <td>Mark</td>
@@ -212,7 +297,23 @@
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
                                                       </tr>
-                                                      <tr>
+                                                      <tr class="hiddenRow">
+                                                          <td colspan="12">
+                                                            <div class="accordian-body collapse" id="demo31">
+                                                              <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                  <b>คอมเม้นต์</b>
+                                                                </div>
+                                                                <div class="panel-body">
+
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
+                                                      </tr>
+
+                                                      <tr data-toggle="collapse" data-target="#demo32" class="accordion-toggle">
+
                                                           <td>2</td>
                                                           <td>Jacob</td>
                                                           <td>Mark</td>
@@ -222,7 +323,22 @@
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
                                                       </tr>
-                                                      <tr>
+                                                      <tr class="hiddenRow">
+                                                          <td colspan="12">
+                                                            <div class="accordian-body collapse" id="demo32">
+                                                              <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                  <b>คอมเม้นต์</b>
+                                                                </div>
+                                                                <div class="panel-body">
+
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
+                                                      </tr>
+
+                                                      <tr data-toggle="collapse" data-target="#demo33" class="accordion-toggle">
                                                           <td>3</td>
                                                           <td>Larry</td>
                                                           <td>Mark</td>
@@ -232,6 +348,21 @@
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
                                                       </tr>
+                                                      <tr class="hiddenRow">
+                                                          <td colspan="12">
+                                                            <div class="accordian-body collapse" id="demo33">
+                                                              <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                  <b>คอมเม้นต์</b>
+                                                                </div>
+                                                                <div class="panel-body">
+
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
+                                                      </tr>
+
                                                   </tbody>
                                               </table>
                                           </div>

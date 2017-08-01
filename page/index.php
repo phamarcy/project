@@ -176,6 +176,9 @@
 		#frm {
 			overflow-x: hidden;
 		}
+		.hiddenRow {
+    	padding: 0 !important;
+		}
 
 	</style>
 
