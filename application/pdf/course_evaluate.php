@@ -37,12 +37,12 @@ $pdf->AddFont('cordiab','','cordiab.php');
 
 
 $pdf->SetFont('angsab','',20);
-$pdf->SetX(25);   
+$pdf->SetX(25);
 $pdf->Cell(0,10,iconv( 'UTF-8','TIS-620','แบบแจ้งวิธีการวัดผลและประเมิณผลการศึกษา คณะเภสัชศาสตร์'),0,1,"C");
 //$pdf->SetFont('angsa','',20);
 $pdf->Cell(0,10,iconv( 'UTF-8','TIS-620','ภาคการศึกษาที่ 2 ปีการศึกษา 2560'),0,1,"C");
 
-$pdf->SetX(20);    
+$pdf->SetX(20);
 $pdf->SetFont('angsab','',14);
 
 // Topic 1
@@ -52,7 +52,7 @@ $pdf->SetFont('angsa','',14);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','   '.$DATA['COURSE_ID'].'   ตอนที่   '.$DATA['SECTION'].'   จำนวนหน่วยกิจ   '.$DATA['CREDIT']['TOTAL'].'   ( '.$DATA['CREDIT']['LEC'].'-'.$DATA['CREDIT']['LAB'] .'-'.$DATA['CREDIT']['SELF'].'  )จำนวนนักศึกษาลงทะเบียนเรียน   '.$DATA['STUDENT'].'   คน'),0,1,"L");
 
 $pdf->SetFont('angsab','',14);
-$pdf->SetX(30);  
+$pdf->SetX(30);
 /*
 $pdf->Cell(15,7,iconv( 'UTF-8','TIS-620','ภาคพิเศษ'),0,0,"L");
 
@@ -62,7 +62,7 @@ $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','ตอนที่   '.$DATA['SPE']['SE
 $pdf->SetX(20);
 // $pdf->Ln();
 // Topic 2
-$pdf->SetFont('angsab','',14);  
+$pdf->SetFont('angsab','',14);
 $pdf->Cell(40,7,iconv( 'UTF-8','TIS-620','2. ลักษณะการเรียนการสอน: '),0,0,"L");
 
 $CHECKBOX['LEC'] = $CHECKBOX['LECLAB'] = $CHECKBOX['SPE'] = $CHECKBOX['TRA'] = $CHECKBOX['SEM'] = $CHECKBOX['LAB'] = $CHECKBOX['OTH'] = '[   ]';
@@ -103,7 +103,7 @@ $pdf->Cell(50,7,iconv( 'UTF-8','TIS-620',$CHECKBOX['LECLAB'].' บรรยา�
 $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620',$CHECKBOX['SPE'].' กระบวนวิชาปัญหาพิเศษ'),0);
 $pdf->Ln();
 
-$pdf->SetX(60); 
+$pdf->SetX(60);
 
 $pdf->Cell(20, 7, iconv( 'UTF-8','TIS-620',$CHECKBOX['TRA'].' ฝึกงาน'), 0);
 $pdf->Cell(20, 7, iconv( 'UTF-8','TIS-620',$CHECKBOX['SEM'].' สัมนา'), 0);
@@ -114,7 +114,7 @@ $pdf->Ln();
 $pdf->SetX(20);
 // $pdf->Ln();
 // Topic 3
-$pdf->SetFont('angsab','',14); 
+$pdf->SetFont('angsab','',14);
 $pdf->Cell(50,7,iconv( 'UTF-8','TIS-620','3. รายชื่ออาจารย์ผู้สอน '),0,1,"L");
 $pdf->SetX(35);
 $pdf->SetFont('angsa','',14);
@@ -132,7 +132,7 @@ for($i=1;$i<12;$i++)
 		$pdf->Ln();
 		$pdf->SetX(55);
 	}
-	
+
 }
 $pdf->Ln();
 
@@ -153,13 +153,13 @@ for($i=1;$i<=12;$i++)
 		$pdf->Ln();
 		$pdf->SetX(55);
 	}
-	
+
 }
 //$pdf->Ln();
 // Topic 4
 
 $pdf->SetX(20);
-$pdf->SetFont('angsab','',14); 
+$pdf->SetFont('angsab','',14);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','4. การสอบ โปรดระบุให้ชัดเจน และครบถ้วน เพื่อใช้เป็นข้อมูลการจัดตารางสอบ (กรุณาระบุชื่ออาจารย์ที่ร่วมสอนในกระบวนวิชา'),0,1,"L");
 $pdf->SetX(20);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','และจำนวนกรรมการคุมสอบอาจระบุอย่างน้อย 3 คน'),0,1,"L");
@@ -218,14 +218,14 @@ $SUMSCORE['LEC'] = 0;
 $SUMSCORE['LAB'] = 0;
 
 $pdf->SetX(20);
-$pdf->SetFont('angsab','',14); 
+$pdf->SetFont('angsab','',14);
 $pdf->Cell(100,7,iconv( 'UTF-8','TIS-620','5. การวัดผลการศึกษา'),0);
 
 $pdf->SetFont('angsa','',14);
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620','สัดส่วนการให้คะแนน (ระบุเป็นร้อยละ)'),0);
 $pdf->Ln();
 
-$pdf->SetFont('angsab','',14); 
+$pdf->SetFont('angsab','',14);
 $pdf->SetX(120);
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620','ภาคทฤษฏี'),0,0,"C");
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620','ภาคปฏิบัติ'),0,0,"C");
@@ -236,16 +236,16 @@ $pdf->SetX(25);
 $pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','1. สอบกลางภาคการศึกษา'),0);
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID']['LEC'] ),0,0,"C");
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID']['LAB'] ),0,0,"C");
-$SUMSCORE['LEC'] += $DATA['MEASURE']['MID']['LEC'];
-$SUMSCORE['LAB'] += $DATA['MEASURE']['MID']['LAB'];
+$SUMSCORE['LEC'] += float($DATA['MEASURE']['MID']['LEC']);
+$SUMSCORE['LAB'] += float($DATA['MEASURE']['MID']['LAB']);
 $pdf->Ln();
 
 $pdf->SetX(25);
 $pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','2. สอบไล่'),0);
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['FINAL']['LEC']),0,0,"C");
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['FINAL']['LAB']),0,0,"C");
-$SUMSCORE['LEC'] += $DATA['MEASURE']['FINAL']['LEC'];
-$SUMSCORE['LAB'] += $DATA['MEASURE']['FINAL']['LAB'];
+$SUMSCORE['LEC'] += floatval($DATA['MEASURE']['FINAL']['LEC']);
+$SUMSCORE['LAB'] += floatval($DATA['MEASURE']['FINAL']['LAB']);
 $pdf->Ln();
 
 $pdf->SetX(25);
@@ -258,13 +258,13 @@ for($i=0;$i<count($DATA['MEASURE']['OTHER']);$i++)
 	$pdf->Cell(85,7,iconv( 'UTF-8','TIS-620','- '.$DATA['MEASURE']['OTHER'][$i]['NAME']),0,0);
 	$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][$i]['LEC']),0,0,"C");
 	$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][$i]['LAB']),0,0,"C");
-	$SUMSCORE['LEC'] += $DATA['MEASURE']['OTHER'][$i]['LEC'];
-	$SUMSCORE['LAB'] += $DATA['MEASURE']['OTHER'][$i]['LAB'];
+	$SUMSCORE['LEC'] += floatval($DATA['MEASURE']['OTHER'][$i]['LEC']);
+	$SUMSCORE['LAB'] += floatval($DATA['MEASURE']['OTHER'][$i]['LAB']);
 	$pdf->Ln();
 }
 
 $pdf->SetX(40);
-$pdf->SetFont('angsab','',14); 
+$pdf->SetFont('angsab','',14);
 $pdf->Cell(80,7,iconv( 'UTF-8','TIS-620','รวมคะแนน'),0);
 $pdf->SetFont('angsa','',14);
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',number_format($SUMSCORE['LEC'], 1, '.', '')),0,0,"C");
@@ -272,7 +272,7 @@ $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',number_format($SUMSCORE['LAB'], 1, '.',
 $pdf->Ln();
 
 $pdf->SetX(30);
-$pdf->SetFont('angsab','',16); 
+$pdf->SetFont('angsab','',16);
 $pdf->Write( 7 , iconv( 'UTF-8','TIS-620' , $DATA['MEASURE']['COMMENT'] ) );
 $pdf->Ln();
 $pdf->Ln();
@@ -281,7 +281,7 @@ $pdf->Ln();
 
 $pdf->AddPage();
 $pdf->SetMargins(20,10,10,0);
-$pdf->SetFont('angsab','',14); 
+$pdf->SetFont('angsab','',14);
 $pdf->Cell(30,7,'','LT',0);
 $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','กระบวนวิชาสัมนา'),'T','C',0);
 $pdf->Cell(30,7,'','RT',0);
@@ -321,7 +321,7 @@ for($i=0;$i<$count_training;$i++)
 	$SUMSCORE['TRAIN'] += $DATA['TRAIN'][$i]['SCORE'];
 }
 
-$pdf->SetFont('angsa','',14); 
+$pdf->SetFont('angsa','',14);
 for($i=0;$i<$max;$i++)
 {
 	$pdf->Cell(60,7,iconv( 'UTF-8','TIS-620',$i < $count_seminar ? $DATA['SEMINAR'][$i]['NAME'] : ''),'LTR',0); #ชื่อวิชาสัมมนา
@@ -331,7 +331,7 @@ for($i=0;$i<$max;$i++)
 	$pdf->Ln();
 }
 
-$pdf->SetFont('angsab','',14); 
+$pdf->SetFont('angsab','',14);
 $pdf->Cell(30,7,'','LT',0);
 $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','รวมคะแนน'),'RT','R',0);
 $pdf->Cell(30,7,number_format($SUMSCORE['SEMINAR'], 1, '.', ''),'T',0,"C");
@@ -355,11 +355,11 @@ else if ($DATA['EVALUATE'] =='AF')
 }
 
 
-$pdf->SetFont('angsab','',14); 
+$pdf->SetFont('angsab','',14);
 $pdf->SetX(20);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','6. การประเมิณผล'),0,1,"L");
 $pdf->SetX(25);
-$pdf->SetFont('angsa','',14); 
+$pdf->SetFont('angsa','',14);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620',' '.$EVA_SU.' ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว  '.$EVA_AF.' ให้ลำดับขั้น A, B+ ,B, C+, C, D+, D, F'),0);
 $pdf->Ln();
 
@@ -380,7 +380,7 @@ $pdf->SetX(25);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620',' '.$CAL_GROUP.' อิงกลุ่ม'),0,1);
 $pdf->SetX(25);
 $pdf->Cell(30,7,iconv('UTF-8','TIS-620',' '.$CAL_CRITERIA.' อิงเกณฑ์'),0);
-$pdf->SetFont('angsa','',14); 
+$pdf->SetFont('angsa','',14);
 $pdf->Cell(30,7,iconv('UTF-8','TIS-620','ได้กำหนดเกณฑ์ดังต่อไปนี้'),0);
 $pdf->Ln();
 
@@ -464,10 +464,10 @@ else if($DATA['ABSENT'] == 'CAL')
 }
 
 
-$pdf->SetFont('angsab','',14); 
+$pdf->SetFont('angsab','',14);
 $pdf->SetX(20);
 $pdf->Cell(65,7,iconv( 'UTF-8','TIS-620','7. นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย'),0);
-$pdf->SetFont('angsa','',14); 
+$pdf->SetFont('angsa','',14);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','โดยไม่ได้รับอนุญาตให้เลื่อนการสอบตามข้อบังคับฯ ของมหาวิทยาลัยเชียงใหม่'),0);
 $pdf->Ln();
 $pdf->SetX(25);
@@ -487,10 +487,10 @@ $pdf->SetX(35);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','(ผู้รับผิดชอบกระบวนวิชา)'),0,1);
 
 $pdf->Ln();
-$pdf->SetFont('angsab','',14); 
+$pdf->SetFont('angsab','',14);
 $pdf->SetX(20);
 $pdf->Cell(65,7,iconv( 'UTF-8','TIS-620','8. ความเห็นของหัวหน้าภาควิชา'),0);
-$pdf->SetFont('angsa','',14); 
+$pdf->SetFont('angsa','',14);
 $pdf->SetX(85);
 $pdf->Write( 7 , iconv( 'UTF-8','TIS-620' , 'เห็นชอบ' ) );
 $pdf->Ln();
@@ -504,7 +504,7 @@ $pdf->Ln();
 $pdf->SetX(35);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','(หัวหน้าภาควิชา)'),0,1);
 
-echo $THAI_WEEK[date("w")] ,"ที่",date(" j "), $THAI_MONTH[date(" m ")-1] , " พ.ศ. ",date(" Y ")+543,"<br>"; 
+echo $THAI_WEEK[date("w")] ,"ที่",date(" j "), $THAI_MONTH[date(" m ")-1] , " พ.ศ. ",date(" Y ")+543,"<br>";
 $pdf->Output("../../files/".$DATA['COURSE_ID']."_evaluate.pdf","F");
 ?>
 PDF Created Click <a href=<?php echo '"../../files/'.$DATA['COURSE_ID'].'_evaluate.pdf"'?>>here</a> to Download
