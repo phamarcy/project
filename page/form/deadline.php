@@ -25,8 +25,11 @@ session_start();
     <script src="../vendor/metisMenu/metisMenu.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
     <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
+
     <link rel="stylesheet" href="../dist/css/scrollbar.css">
+
 </header>
 <style>
 .form-control {
@@ -47,14 +50,15 @@ function loaddata(type) {
     var data;
     var object;
     $.getJSON(url, function(result) {
+    }).done(function(result) {
         if (typeof result.data === 'undefined' || result.data === null) {
             $("#loading").html('<div class="alert alert-danger">Error : ' + result.error + '</div>');
         } else {
-
             render(result.data,type);
         }
-
-    });
+      }).fail(function() {
+          $("#loading").html('<div class="alert alert-danger">Error : Cannot load data, please contact admin</div>');
+        });
 }
 
 function render(data,type) {
@@ -65,13 +69,21 @@ function render(data,type) {
         $(object).find("#semester").val(data[i].semester);
         $(object).find("#opendate").val(data[i].opendate);
         $(object).find("#lastdate").val(data[i].lastdate);
-        $(object).find("#submitbtn_"+type).prop('disabled', true);
         $(object).find("#delete").prop('disabled', false);
+        lock(object,true);
         $(object).appendTo("#body_"+type);
     }
     $("#loading").html("");
     $(".container").fadeIn();
-
+}
+function lock(object,type)
+{
+  $(object).find("#year").prop('disabled', type);
+  $(object).find("#semester").prop('disabled', type);
+  $(object).find("#opendate").prop('disabled', type);
+  $(object).find("#lastdate").prop('disabled', type);
+  $(object).find("button[name=submit]").prop('disabled',type);
+  $(object).find("#edit").prop('disabled',!type);
 }
 $(document).ready(function() {
     $("#addbtn_approve").click(function() {
@@ -79,6 +91,7 @@ $(document).ready(function() {
         var object = document.getElementById("group_approve");
         var object_clone = $(object).clone();
         $(object_clone).find("#delete").prop('disabled', false);
+        lock(object_clone,false);
         $(object_clone).find("input").val("").end().prependTo("#body_approve");
     });
     $("#addbtn_course").click(function() {
@@ -86,10 +99,13 @@ $(document).ready(function() {
         var object = document.getElementById("group_course");
         var object_clone = $(object).clone();
         $(object_clone).find("#delete").prop('disabled', false);
+        lock(object_clone,false);
         $(object_clone).find("input").val("").end().prependTo("#body_course");
     });
+
 });
 $(document).on('click', "#submitbtn_course", function() {
+    var button = $(this);
     url = "../../application/deadline/update_deadline.php?query=add&type=course";
     var form = $(this).parent();
     var formData = {};
@@ -98,9 +114,13 @@ $(document).on('click', "#submitbtn_course", function() {
     });
     $.post(url, { 'DATA': formData }).done(function(data) {
         alert(data);
-    });
+        lock(form,true);
+    }).fail(function() {
+      alert("Cannot update data, please contact admin");
+      });
 });
 $(document).on('click', "#submitbtn_approve", function() {
+    var button = $(this);
     url = "../../application/deadline/update_deadline.php?query=add&type=approve";
     var form = $(this).parent();
     var formData = {};
@@ -109,22 +129,29 @@ $(document).on('click', "#submitbtn_approve", function() {
     });
     $.post(url, { 'DATA': formData }).done(function(data) {
         alert(data);
-    });
+        lock(form,true);
+    }).fail(function() {
+      alert("Cannot update data, please contact admin");
+      });
 });
 $(document).on('click', "#delete", function() {
     var object = $(this).parent().parent();
     $(object).fadeOut(300, function() { $(this).remove(); });
 });
+$(document).on('click', "#edit", function() {
+    var object = $(this).parent();
+    lock(object,false);
+});
 </script>
 
-<body onload="loaddataAll()">
+<body onload="loaddataAll()" id="mainbody">
     <h3 class="page-header" style="margin-bottom: 0px;"><center>กำหนดช่วงเวลา</center></h3>
     <div class="panel-body" style="padding-top: 0px;">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#home" data-toggle="tab">กรอกข้อมูลกระบวนวิชา</a>
+            <li class="active"><a href="#home" data-toggle="tab">กำหนดเวลากรอกข้อมูลกระบวนวิชา</a>
             </li>
-            <li><a href="#profile" data-toggle="tab">อนุมัติกระบวนวิชา</a>
+            <li><a href="#profile" data-toggle="tab">กำหนดเวลาอนุมัติกระบวนวิชา</a>
             </li>
         </ul>
         <!-- loading tab -->
@@ -155,14 +182,15 @@ $(document).on('click', "#delete", function() {
                                                 </select>
                                             </div>
                                             ปีการศึกษา
-                                            <input class="form-control" id="year" placeholder="Ex. 2560" style="width: 100px;">
+                                            <input class="form-control" id="year" name="year" placeholder="Ex. 2560" style="width: 100px;">
                                         </div>
                                         <br>
                                         <div class="form-inline">
                                             วันเปิดการกรอกข้อมูลกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
                                             วันสุดท้ายของการกรอกข้อมูลกระบวนวิชา <input class="form-control" type="date" id="lastdate">
                                         </div>
-                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_course">บันทึก</button>
+                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
+                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_course"  name="submit">บันทึก</button>
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
                                 </div>
@@ -194,14 +222,15 @@ $(document).on('click', "#delete", function() {
                                                 </select>
                                             </div>
                                             ปีการศึกษา
-                                            <input class="form-control" id="year" placeholder="Ex. 2560" style="width: 100px;">
+                                            <input class="form-control" id="year" name="year" placeholder="Ex. 2560" style="width: 100px;">
                                         </div>
                                         <br>
                                         <div class="form-inline">
                                             วันเปิดการอนุมัติกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
                                             วันสุดท้ายของการอนุมัติกระบวนวิชา <input class="form-control" type="date" id="lastdate">
                                         </div>
-                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_approve">บันทึก</button>
+                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
+                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_approve" name="submit">บันทึก</button>
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
                                 </div>

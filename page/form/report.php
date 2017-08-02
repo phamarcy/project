@@ -89,7 +89,7 @@ function render(data)
         <center>
             <h style="font-size : 16px">ภาคการศึกษาที่
 		     	<div class="form-group">
-		          	<select class="form-control" ">
+		          	<select class="form-control">
 		              <option>1</option>
 		              <option>2</option>
 		              <option>3</option>
@@ -105,9 +105,7 @@ function render(data)
         <br>
         <div class="container" id="body">
         </div>
-
   	<br>
-    asdsa
   </div>
 
 </div>
