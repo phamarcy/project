@@ -66,6 +66,7 @@ function render(data,type) {
         $(object).find("#opendate").val(data[i].opendate);
         $(object).find("#lastdate").val(data[i].lastdate);
         $(object).find("#submitbtn_"+type).prop('disabled', true);
+        $(object).find("#delete").prop('disabled', false);
         $(object).appendTo("#body_"+type);
     }
     $("#loading").html("");
@@ -76,12 +77,16 @@ $(document).ready(function() {
     $("#addbtn_approve").click(function() {
         var i = 0;
         var object = document.getElementById("group_approve");
-        $(object).clone().find("input").val("").end().prependTo("#body_approve");
+        var object_clone = $(object).clone();
+        $(object_clone).find("#delete").prop('disabled', false);
+        $(object_clone).find("input").val("").end().prependTo("#body_approve");
     });
     $("#addbtn_course").click(function() {
         var i = 0;
         var object = document.getElementById("group_course");
-        $(object).clone().find("input").val("").end().prependTo("#body_course");
+        var object_clone = $(object).clone();
+        $(object_clone).find("#delete").prop('disabled', false);
+        $(object_clone).find("input").val("").end().prependTo("#body_course");
     });
 });
 $(document).on('click', "#submitbtn_course", function() {
@@ -158,7 +163,7 @@ $(document).on('click', "#delete", function() {
                                             วันสุดท้ายของการกรอกข้อมูลกระบวนวิชา <input class="form-control" type="date" id="lastdate">
                                         </div>
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_course">บันทึก</button>
-                                        <a href="#" id="delete" style="position: absolute; right: 10px; top: 10px;">X</a>
+                                        <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
                                 </div>
                             </div>
@@ -180,7 +185,7 @@ $(document).on('click', "#delete", function() {
                                 <br>
                                     <form>
                                         <div class="form-inline">
-                                            <h style="width: 100px; " ">ภาคการศึกษาที่ </h>
+                                            <h style="width: 100px;">ภาคการศึกษาที่ </h>
                                             <div class="form-group">
                                                 <select class="form-control" id="semester" style="width: 70px; ">
                                                     <option>1</option>
@@ -197,7 +202,7 @@ $(document).on('click', "#delete", function() {
                                             วันสุดท้ายของการอนุมัติกระบวนวิชา <input class="form-control" type="date" id="lastdate">
                                         </div>
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_approve">บันทึก</button>
-                                        <a href="#" id="delete" style="position: absolute; right: 10px; top: 10px;">X</a>
+                                        <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
                                 </div>
                             </div>
