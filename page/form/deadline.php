@@ -163,7 +163,7 @@ $(document).on('click', "#edit", function() {
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
                             <div class="form-inline">
-                                <h5 style="font-size : 16px">กำหนดเวลากรอกข้อมูลรายละเอียดกระบวนวิชา
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดเวลากรอกข้อมูลรายละเอียดกระบวนวิชา
                                     <button type="button" class="btn btn-default" id="addbtn_course">เพิ่ม</button>
                                  </h5>
                             </div>
@@ -203,7 +203,7 @@ $(document).on('click', "#edit", function() {
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
                             <div class="form-inline">
-                                <h5 style="font-size : 16px">กำหนดเวลาอนุมัติกระบวนวิชา
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดเวลาอนุมัติกระบวนวิชา
                                     <button type="button" class="btn btn-default" id="addbtn_approve">เพิ่ม</button>
                                  </h5>
                             </div>
