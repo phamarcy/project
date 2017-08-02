@@ -234,14 +234,22 @@ function submitfunc() {
   //Loop for pack MEASURE
   var count = $('#meastable tr').length;
   var count2 = count-5;
-  var comment = {};
-  var cart = [];
-  var lec = {};
   var cart2 = [];
-  var lab = {};
-  var cart3 = [];
-
+  var cart3 = {};
   if(count2>0)
+  {
+    for(var i=1;i<=count2;i++)
+    {
+      var cart = {
+        'NAME' : document.getElementById("MEASURE_OTHERCOMMENT"+i).value,
+        'LEC' : document.getElementById("MEASURE_OTHERLEC"+i).value,
+        'LAB' : document.getElementById("MEASURE_OTHERLAB"+i).value
+      };
+      cart2.push(cart);
+    }
+    cart3 = cart2;
+  }
+  /*if(count2>0)
   {
     for(var i=1;i<=count2;i++)
     {
@@ -253,7 +261,7 @@ function submitfunc() {
     comment = cart;
     lec = cart2;
     lab = cart3;
-  }
+  }*/
 
 
   //Loop for pack TEACHER
@@ -307,14 +315,10 @@ function submitfunc() {
   comfinlab = cfla;
 
   //Loop for SAMENA with TRAIN
-  var samina_name = {};
-  var samina_score = {};
-  var train_name = {};
-  var train_score = {};
-  var sn = [];
-  var ss = [];
-  var tn = [];
-  var ts = [];
+  var carts2 = [];
+  var carts3 = {};
+  var cartt2 = [];
+  var cartt3 = {};
   var countsa = $('#samenatable tr').length;
   var countsa2 = countsa-4;
   var counttr = $('#samenatable2 tr').length;
@@ -324,24 +328,44 @@ function submitfunc() {
   {
     for(var i=0;i<countsa2;i++)
     {
+      var carts = {
+        'NAME' : document.getElementById("SAMEMA_NAME"+i).value,
+        'SCORE' : document.getElementById("SAMENA_SCORE"+i).value
+      };
+      carts2.push(carts);
+    }
+    carts3 = carts2;
+
+    /*for(var i=0;i<countsa2;i++)
+    {
       sn[i] = document.getElementById("SAMEMA_NAME"+i).value;
       ss[i] = document.getElementById("SAMENA_SCORE"+i).value;
     }
 
     samina_name = sn;
-    samina_score = ss;
+    samina_score = ss;*/
   }
 
   if(counttr2>0)
   {
     for(var i=0;i<counttr2;i++)
     {
+      var cartt = {
+        'NAME' : document.getElementById("TRAIN_NAME"+i).value,
+        'SCORE' : document.getElementById("TRAIN_SCORE"+i).value
+      };
+      cartt2.push(cartt);
+    }
+    cartt3 = cartt2;
+
+    /*for(var i=0;i<counttr2;i++)
+    {
       tn[i] =  document.getElementById("TRAIN_NAME"+i).value;
       ts[i] = document.getElementById("TRAIN_SCORE"+i).value;
     }
 
     train_name = tn;
-    train_score = ts;
+    train_score = ts;*/
   }
 
 
@@ -363,22 +387,22 @@ function submitfunc() {
     },
     'MIDEXAM_HOUR_LEC' : document.getElementById("MIDEXAM_HOUR_LEC").value,
     'EXAM': {
-      'HOUR' : {
-        'MID' : {
+      'MID' : {
+        'HOUR' : {
           'LEC' : document.getElementById("MIDEXAM_HOUR_LEC").value,
           'LAB' : document.getElementById("MIDEXAM_HOUR_LAB").value
         },
-        'FIN' : {
-          'LEC' : document.getElementById("FINEXAM_HOUR_LEC").value,
-          'LAB' : document.getElementById("FINEXAM_HOUR_LAB").value
-        }
-      },
-      'COMMITTEE' : {
-        'MID' : {
+        'COMMITTEE' : {
           'LEC' : commidlec,
           'LAB' : commidlab
+        }
+      },
+      'FINAL' : {
+        'HOUR' : {
+          'LEC' : document.getElementById("FINEXAM_HOUR_LEC").value,
+          'LAB' : document.getElementById("FINEXAM_HOUR_LAB").value
         },
-        'FIN' : {
+        'COMMITTEE' : {
           'LEC' : comfinlec,
           'LAB' : comfinlab
         }
@@ -389,7 +413,7 @@ function submitfunc() {
         'LEC' : document.getElementById("MEASURE_MIDLEC").value,
         'LAB' : document.getElementById("MEASURE_MIDLAB").value
       },
-      'FIN' : {
+      'FINAL' : {
         'LEC' : document.getElementById("MEASURE_FINLEC").value,
         'LAB' : document.getElementById("MEASURE_FINLAB").value
       },
@@ -397,22 +421,10 @@ function submitfunc() {
         'LEC' : document.getElementById("MEASURE_TOTALLEC").value,
         'LAB' : document.getElementById("MEASURE_TOTALLAB").value
       },
-      'OTHER' : {
-        'COMMENT' : comment,
-        'LEC' : lec,
-        'LAB' : lab
-      }
+      'OTHER' : cart3
     },
-    'SEMINAR' : {
-      'NAME' : samina_name,
-      'SCORE' : samina_score,
-      'TOTAL' : document.getElementById("SAMENA_TOTAL").value
-    },
-    'TRAIN' : {
-      'NAME' : train_name,
-      'SCORE' : train_score,
-      'TOTAL' : document.getElementById("TRAIN_TOTAL").value
-    },
+    'SEMINAR' : carts3,
+    'TRAIN' : cartt3,
     'EVALUATE' : document.getElementById("EVALUATE").value,
     'CALCULATE' : {
       'TYPE' : document.getElementById("CALCULATE_TYPE").value,
@@ -456,6 +468,7 @@ function submitfunc() {
     'ABSENT' : document.getElementById("ABSENT").value,
   };
 
+  alert(JSON.stringify(data));
   senddata(JSON.stringify(data),getfile());
 }
 function senddata(data,file_data)
