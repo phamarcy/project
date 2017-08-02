@@ -1130,7 +1130,7 @@ function deleteRow2(r) {
                 <td>A</td>
                 <td><input type="text" class="form-control numonly" name="CALCULATE_A_MIN" id="CALCULATE_A_MIN" placeholder="คะแนน"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_A_MIN" id="CALCULATE_A_MAX" placeholder="คะแนน" disabled></td>
+                <td><input type="text" class="form-control numonly" name="CALCULATE_A_MIN" id="CALCULATE_A_MAX" placeholder="100" disabled></td>
                 <td></td>
                 <td>D+</td>
                 <td><input type="text" class="form-control numonly" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" placeholder="คะแนน"></td>
@@ -1157,7 +1157,7 @@ function deleteRow2(r) {
                 <td><input type="text" class="form-control numonly" name="CALCULATE_B_MAX" id="CALCULATE_B_MAX" placeholder="คะแนน"></td>
                 <td></td>
                 <td>F</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_F_MAX" id="CALCULATE_F_MIN" placeholder="คะแนน" disabled></td>
+                <td><input type="text" class="form-control numonly" name="CALCULATE_F_MAX" id="CALCULATE_F_MIN" placeholder="0" disabled></td>
                 <td>ถึง</td>
                 <td><input type="text" class="form-control numonly" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" placeholder="คะแนน"></td>
                 <td></td>
@@ -1171,7 +1171,7 @@ function deleteRow2(r) {
                 <td>S</td>
                 <td><input type="text" class="form-control numonly" name="CALCULATE_S_MIN" id="CALCULATE_S_MIN" placeholder="คะแนน"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_S_MAX" id="CALCULATE_S_MIN" placeholder="คะแนน" disabled></td>
+                <td><input type="text" class="form-control numonly" name="CALCULATE_S_MAX" id="CALCULATE_S_MIN" placeholder="100" disabled></td>
                 <td></td>
               </tr>
               <tr align="center">
@@ -1181,7 +1181,7 @@ function deleteRow2(r) {
                 <td><input type="text" class="form-control numonly" name="CALCULATE_C_MAX" id="CALCULATE_C_MAX" placeholder="คะแนน"></td>
                 <td></td>
                 <td>U</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_U_MAX" id="CALCULATE_U_MIN" placeholder="คะแนน" disabled></td>
+                <td><input type="text" class="form-control numonly" name="CALCULATE_U_MAX" id="CALCULATE_U_MIN" placeholder="0" disabled></td>
                 <td>ถึง</td>
                 <td><input type="text" class="form-control numonly" name="CALCULATE_U_MAX" id="CALCULATE_U_MAX" placeholder="คะแนน"></td>
                 <td></td>
