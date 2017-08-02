@@ -182,7 +182,7 @@ $(document).on('click', "#edit", function() {
                                                 </select>
                                             </div>
                                             ปีการศึกษา
-                                            <input class="form-control" id="year" name="year" placeholder="Ex. 2560" style="width: 100px;">
+                                            <input class="form-control" id="year" name="year" placeholder="e.g. 2560" style="width: 100px;">
                                         </div>
                                         <br>
                                         <div class="form-inline">
@@ -222,7 +222,7 @@ $(document).on('click', "#edit", function() {
                                                 </select>
                                             </div>
                                             ปีการศึกษา
-                                            <input class="form-control" id="year" name="year" placeholder="Ex. 2560" style="width: 100px;">
+                                            <input class="form-control" id="year" name="year" placeholder="e.g. 2560" style="width: 100px;">
                                         </div>
                                         <br>
                                         <div class="form-inline">

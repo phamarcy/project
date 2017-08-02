@@ -96,7 +96,7 @@ function render(data)
 		          	</select>
 		      	</div>
 		      		ปีการศึกษา
-		      		<input class="form-control" placeholder="Ex. 2560" style="width: 100px;">
+		      		<input class="form-control" placeholder="e.g. 2560" style="width: 100px;">
                 	&nbsp;<button type="button" class="btn btn-success" onclick="search()" >ค้นหา</button>
                 	<div id="searchstatus" style="display:inline;"></div>
                 </h>
