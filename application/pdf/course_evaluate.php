@@ -236,8 +236,8 @@ $pdf->SetX(25);
 $pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','1. สอบกลางภาคการศึกษา'),0);
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID']['LEC'] ),0,0,"C");
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID']['LAB'] ),0,0,"C");
-$SUMSCORE['LEC'] += float($DATA['MEASURE']['MID']['LEC']);
-$SUMSCORE['LAB'] += float($DATA['MEASURE']['MID']['LAB']);
+$SUMSCORE['LEC'] += floatval($DATA['MEASURE']['MID']['LEC']);
+$SUMSCORE['LAB'] += floatval($DATA['MEASURE']['MID']['LAB']);
 $pdf->Ln();
 
 $pdf->SetX(25);
