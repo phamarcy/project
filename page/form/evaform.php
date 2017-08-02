@@ -584,9 +584,9 @@ function deleteRow2(r) {
   <center>
     <h3 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์</h3>
     <div class="form-inline">
-            <h style="width: 100px;">รหัสกระบวนวิชา </h>
+            <h style="font-size: 14px;">รหัสกระบวนวิชา
             <input class="form-control" id="course_find" placeholder="Ex.204111" style="width: 100px;">
-             <h style="width: 100px;">ภาคการศึกษาที่ </h>
+             ภาคการศึกษาที่
              <div class="form-group">
                  <select class="form-control" id="semester" style="width: 70px; ">
                      <option>1</option>
@@ -596,7 +596,7 @@ function deleteRow2(r) {
              </div>
              ปีการศึกษา
              <input class="form-control" id="year" placeholder="Ex. 2560" style="width: 100px;">
-             <button type="button" class="btn btn-primary">ค้นหา</button>
+             <button type="button" class="btn btn-primary">ค้นหา</button></h>
      </div>
   </center>
 </div>
@@ -605,7 +605,7 @@ function deleteRow2(r) {
   <div class="form-group" id="bgmain">
     <ol>
       <br>
-      <li style="font-size: 16px">
+      <li style="font-size: 14px">
         <div class="form-inline">
           <b>รหัสกระบวนวิชา</b> &nbsp;<input type="text" class="form-control numonly" name="COURSE_ID" id="COURSE_ID" size="4" maxlength="6"> &nbsp;ตอนที่ &nbsp;<input type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="3">
           <div class="radio">
@@ -625,7 +625,7 @@ function deleteRow2(r) {
         </div>
       </li>
       <br>
-      <li style="font-size: 16px">
+      <li style="font-size: 14px">
         <div class="form-inline">
           <b>ลักษณะการเรียนการสอน&nbsp;&nbsp;</b><br>
           <div class="radio">
@@ -641,7 +641,7 @@ function deleteRow2(r) {
       </li>
 
       <br>
-      <li style="font-size: 16px">
+      <li style="font-size: 14px">
         <div class="form-inline">
 
           <div id="text"><b>รายชื่ออาจารย์ผู้สอนบรรยาย</b> &nbsp; จำนวน &nbsp;
@@ -723,7 +723,7 @@ function deleteRow2(r) {
 
 
 
-        <div style="font-size: 16px">
+        <div style="font-size: 14px">
           <div class="form-inline">
 
             <div id="text"><b>รายชื่ออาจารย์ผู้สอนปฏิบัติการ</b> &nbsp; จำนวน &nbsp;
@@ -812,17 +812,17 @@ function deleteRow2(r) {
       </li>
 
       <br>
-      <li style="font-size: 16px">
+      <li style="font-size: 14px">
         <div class="form-inline"><b> การสอบ โปรดระบุให้ชัดเจน และครบถ้วน เพื่อใช้เป็นข้อมูลการจัดตารางสอบ </b>(กรุณาระบุชื่ออาจารย์ที่ร่วมสอนในกระบวนวิชา และจำนวนกรรมการคุมสอบอาจระบุอย่างน้อย 3 คน) </div>
 
         <ul>
           <br>
-          <li style="font-size: 16px">
+          <li style="font-size: 14px">
 
             <b>สอบกลางภาคฯ</b>
             <ul>
               <div class="form-inline">
-                <li style="font-size: 16px">
+                <li style="font-size: 14px">
                   จำนวนชั่วโมงสอบการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" maxlength="3">&nbsp; ชั่วโมง
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                   <select style="height: 28px;" name="mexholec" id="mexholec" class="form-control numonly" onchange="midexam_hour_lec()">
@@ -869,7 +869,7 @@ function deleteRow2(r) {
 
 
                   <div class="form-inline">
-                    <li style="font-size: 16px">
+                    <li style="font-size: 14px">
                       จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" maxlength="3">&nbsp; ชั่วโมง
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                       <select style="height: 28px;" name="mexholac" id="mexholac" class="form-control numonly" onchange="midexam_hour_lab()">
@@ -921,11 +921,11 @@ function deleteRow2(r) {
 
             <!--0000000000000000000000000SPLIT000000000000000-->
 
-            <li style="font-size: 16px">
+            <li style="font-size: 14px">
               <b>สอบไล่</b>
               <ul>
                 <div class="form-inline">
-                  <li style="font-size: 16px">
+                  <li style="font-size: 14px">
                     จำนวนชั่วโมงสอบการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="FINEXAM_HOUR_LEC" id="FINEXAM_HOUR_LEC" size="2" maxlength="3">&nbsp; ชั่วโมง
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                     <select style="height: 28px;" name="fexholec" id="fexholec" class="form-control numonly" onchange="finexam_hour_lec()">
@@ -972,7 +972,7 @@ function deleteRow2(r) {
 
 
                     <div class="form-inline">
-                      <li style="font-size: 16px">
+                      <li style="font-size: 14px">
                         จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="FINEXAM_HOUR_LAB" id="FINEXAM_HOUR_LAB" size="2" maxlength="3">&nbsp; ชั่วโมง
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                         <select style="height: 28px;" name="fexholac" id="fexholac" class="form-control numonly" onchange="finexam_hour_lab()">
@@ -1024,11 +1024,11 @@ function deleteRow2(r) {
 
         <br>
         <div class="form-inline">
-          <li style="font-size: 16px;">
+          <li style="font-size: 14px;">
             <b>การวัดผลการศึกษา</b> (สัดส่วนการให้คะแนนโปรดระบุเป็นร้อยละ)<br><br>
             <div class="row">
             <div class="col-md-10">
-            <table id="meastable" class="table table-bordered table-hover" style="font-size: 18px;">
+            <table id="meastable" class="table table-bordered table-hover" style="font-size: 14px;">
               <tr class="success">
                 <th width="67%" colspan="2"> </th>
                 <th style="text-align: center;">ภาคทฤษฏี</th>
@@ -1058,7 +1058,7 @@ function deleteRow2(r) {
 
             <div class="row">
               <div class="col-md-5">
-                <table id="samenatable" class="table table-bordered table-hover" width="100%" style="font-size: 18px;">
+                <table id="samenatable" class="table table-bordered table-hover" width="100%" style="font-size: 14px;">
                   <tbody>
                     <tr class="success">
                       <th colspan="2" style="text-align: center;">กระบวนวิชาสัมนา</th>
@@ -1079,7 +1079,7 @@ function deleteRow2(r) {
               </div>
 
               <div class="col-md-5">
-                <table id="samenatable2" class="table table-bordered table-hover" width="100%" style="font-size: 18px;">
+                <table id="samenatable2" class="table table-bordered table-hover" width="100%" style="font-size: 14px;">
                   <tbody>
                     <tr class="success">
                       <th colspan="2" style="text-align: center;">ฝึกปฏิบัติ/ปัญหาพิเศษ</th>
@@ -1102,7 +1102,7 @@ function deleteRow2(r) {
           </li>
 
           <br>
-          <li style="font-size: 16px;">
+          <li style="font-size: 14px;">
             <b>การประเมิณผล</b>
             <br>
             <div class="form-inline"><input type="radio" name="EVALUATE" id="EVALUATE" value="SU" checked>&nbsp; ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว)</div>
@@ -1113,7 +1113,7 @@ function deleteRow2(r) {
             <br>
             <div class="row">
             <div class="col-md-10">
-            <table class="table table-hover" style="font-size: 17px; ">
+            <table class="table table-hover" style="font-size: 14px; ">
               <tr align="center">
                 <th>เกรด</th>
                 <th>คะแนนต่ำสุด</th>
@@ -1192,7 +1192,7 @@ function deleteRow2(r) {
           </li>
 
           <br>
-          <li style="font-size: 16px;">
+          <li style="font-size: 14px;">
             <b>นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย</b> &nbsp;&nbsp;โดยไม่ได้รับอนุญาตให้เลื่อนการสอบตามข้อบังคับฯ ของมหาวิทยาลัยเชียงใหม่ ว่าด้วยการศึกษาชั้นปริญญาตรี อาจารย์ผู้สอนจะประเมิณดังนี้
             <br>
             <input type="radio" name="ABSENT" id="ABSENT" value="F" checked>&nbsp; ให้ลำดับขั้น F &nbsp;&nbsp; <br>
@@ -1201,7 +1201,7 @@ function deleteRow2(r) {
           </li>
 
           <br>
-          <li style="font-size: 16px;">
+          <li style="font-size: 14px;">
             <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์จากโปรแกรม Microsoft Word (.doc หรือ .docx) เท่านั้น) : </b><br />
           <div class="col-md-3">
             <input type="file" class="filestyle" id="syllabus" data-icon="false">

@@ -47,7 +47,8 @@
      <center>
        <h3 class="page-header">มอบอำนาจการอนุมัติ</h3>
        <div class="form-inline">
-                <h style="width: 100px;">ภาคการศึกษาที่ </h>
+               <h style="font-size: 16px;">
+                 ภาคการศึกษาที่
                 <div class="form-group">
                     <select class="form-control" id="semester" style="width: 70px; ">
                         <option>1</option>
@@ -57,22 +58,22 @@
                 </div>
                 ปีการศึกษา
                 <input class="form-control" id="year" placeholder="Ex. 2560" style="width: 100px;">
-                <button type="button" class="btn btn-primary">ค้นหา</button>
+                <button type="button" class="btn btn-primary">ค้นหา</button></h>
         </div>
      </center>
    </div>
    <br>
-   <div class="panel panel-default">
+   <div class="panel panel-default" style="font-size: 14px;">
      <div class="panel-heading">
-       <h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3>
+       ภาคการศึกษาที่ 2 ปีการศึกษา 2560
      </div>
      <div class="panel-body">
        <div class="panel panel-primary">
          <div class="panel-heading">
-           <h4>สถานะการมอบอำนาจล่าสุด</h4>
+           สถานะการมอบอำนาจล่าสุด
          </div>
          <div class="panel-body">
-           <table class="table table-hover">
+           <table class="table table-hover" style="font-size: 14px;">
              <tr>
                <th>ชื่อ</th>
                <th>นามสกุล</th>
@@ -92,10 +93,10 @@
        </div>
          <div class="panel panel-yellow">
            <div class="panel-heading">
-             <h4>ค้นหาชื่อผู้ใช้เพื่อมอบอำนาจ</h4>
+            ค้นหาชื่อผู้ใช้เพื่อมอบอำนาจ
            </div>
            <div class="panel-body" style="font-size: 16px;">
-            <div class="form-inline">
+            <div class="form-inline" style="font-size: 14px;">
              ชื่อ&nbsp;&nbsp;<input type="text" class="form-control" id="fname">&nbsp;&nbsp;นามสกุล&nbsp;&nbsp;<input type="text" class="form-control" id="lname">
              <input type="button" class="btn btn-warning" id="ค้นหา" value="ค้นหา">
            </div>
@@ -103,10 +104,10 @@
        </div>
        <div class="panel panel-green">
          <div class="panel-heading">
-           <h4>รายชื่อที่พบ</h4>
+           รายชื่อที่พบ
          </div>
          <div class="panel-body">
-           <table class="table table-hover">
+           <table class="table table-hover" style="font-size: 14px;">
              <tr>
                <th>ชื่อ</th>
                <th>นามสกุล</th>

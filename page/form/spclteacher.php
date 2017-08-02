@@ -92,7 +92,9 @@ function deleteRow(r) {
     <center>
       <h3 class="page-header">แบบขออนุมัติเชิญอาจารย์พิเศษ คณะเภสัชศาสตร</h3>
       <div class="form-inline">
-               <h style="width: 100px;">ภาคการศึกษาที่ </h>
+              <h style="font-size: 14px;;">รหัสกระบวนวิชา
+              <input class="form-control" id="course_find" placeholder="Ex.204111" style="width: 100px;">
+               ภาคการศึกษาที่
                <div class="form-group">
                    <select class="form-control" id="semester" style="width: 70px; ">
                        <option>1</option>
@@ -102,7 +104,7 @@ function deleteRow(r) {
                </div>
                ปีการศึกษา
                <input class="form-control" id="year" placeholder="Ex. 2560" style="width: 100px;">
-               <button type="button" class="btn btn-primary">ค้นหา</button>
+               <button type="button" class="btn btn-primary">ค้นหา</button></h>
        </div>
     </center>
   </div>
@@ -110,7 +112,7 @@ function deleteRow(r) {
   <form action="" name="form1" method="post">
     <ol>
       <br>
-      <li style="font-size: 16px">
+      <li style="font-size: 14px;">
         <b>รายละเอียดของอาจารย์พิเศษ</b>
         <br>
         <div class="row">
@@ -148,7 +150,7 @@ function deleteRow(r) {
     </div>
       </li>
       <br>
-      <li style="font-size: 16px">
+      <li style="font-size: 14px;">
         <b>รายละเอียดกระบวนวิชา</b>
           <div class="row">
             <ul>
@@ -182,7 +184,7 @@ function deleteRow(r) {
               </div>
                 <li> รายละเอียดในการสอน <br>
                   <div class="col-md-10">
-                  <table id="detailteaching" class="table table-bordered table-hover" style="font-size: 17px; ">
+                  <table id="detailteaching" class="table table-bordered table-hover" style="font-size: 14px; ">
                     <tr align="center" class="success">
                       <th colspan="2" style="text-align: center;">หัวข้อบรรยายปฏิบัติการ</th>
                       <th style="text-align: center;">วัน/เดือน/ปี ที่สอน</th>
@@ -198,7 +200,7 @@ function deleteRow(r) {
             </ul>
           </div>
       </li>
-      <li  style="font-size: 16px;">
+      <li  style="font-size: 14px;;">
         <b>ค่าใช้จ่าย </b>
         <ul>
           <div class="form-inline">
@@ -223,7 +225,7 @@ function deleteRow(r) {
             <div class="checkbox">
               <label><input type="checkbox" name="trans" id="trans" value="plane">&nbsp;&nbsp;เครื่องบิน ระหว่าง เชียงใหม่-กรุงเทพ &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="planecost" id="planecost" size="5" maxlength="10">&nbsp;&nbsp;บาท</label>
               <br>
-              <label><input type="checkbox" name="trans" id="trans" value="taxi">&nbsp;&nbsp;ค่า taxiดอนเมือง-ลาดพร้าว &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="taxicost" id="taxicost" size="5" maxlength="10">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="trans" id="trans" value="taxi">&nbsp;&nbsp;ค่า taxi ดอนเมือง-ลาดพร้าว &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="taxicost" id="taxicost" size="5" maxlength="10">&nbsp;&nbsp;บาท</label>
               <br>
               <label><input type="checkbox" name="trans" id="trans" value="selfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง 60 กม.ๆ ละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="selfcost" id="selfcost" size="5" maxlength="10">&nbsp;&nbsp;บาท</label>
               </div>
@@ -240,7 +242,7 @@ function deleteRow(r) {
           </div>
           <br>
           <div class="form-inline">
-            <li style="font-size: 18px;"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control numonly" name="totalcost" id="totalcost" size="10" maxlength="10">&nbsp;&nbsp;บาท</li>
+            <li style="font-size: 16px;"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control numonly" name="totalcost" id="totalcost" size="10" maxlength="10">&nbsp;&nbsp;บาท</li>
           </div>
         </ul>
       </li>
