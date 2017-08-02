@@ -582,7 +582,22 @@ function deleteRow2(r) {
   <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
 <div class="row">
   <center>
-    <h2 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h2>
+    <h3 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์</h3>
+    <div class="form-inline">
+            <h style="width: 100px;">รหัสกระบวนวิชา </h>
+            <input class="form-control" id="course_find" placeholder="Ex.204111" style="width: 100px;">
+             <h style="width: 100px;">ภาคการศึกษาที่ </h>
+             <div class="form-group">
+                 <select class="form-control" id="semester" style="width: 70px; ">
+                     <option>1</option>
+                     <option>2</option>
+                     <option>3</option>
+                 </select>
+             </div>
+             ปีการศึกษา
+             <input class="form-control" id="year" placeholder="Ex. 2560" style="width: 100px;">
+             <button type="button" class="btn btn-primary">ค้นหา</button>
+     </div>
   </center>
 </div>
 

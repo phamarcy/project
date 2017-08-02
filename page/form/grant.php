@@ -45,7 +45,7 @@
  <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
    <div class="row">
      <center>
-       <h2 class="page-header">มอบอำนาจการอนุมัติ</h2>
+       <h3 class="page-header">มอบอำนาจการอนุมัติ</h3>
        <div class="form-inline">
                 <h style="width: 100px;">ภาคการศึกษาที่ </h>
                 <div class="form-group">

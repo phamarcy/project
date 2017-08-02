@@ -64,7 +64,20 @@
   <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
 <div class="row">
   <center>
-    <h1 class="page-header">ตรวจสอบสถานะการอนุมัติ<br /><h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3></h1>
+    <h3 class="page-header">ตรวจสอบสถานะการอนุมัต</h3>
+    <div class="form-inline">
+             <h style="width: 100px;">ภาคการศึกษาที่ </h>
+             <div class="form-group">
+                 <select class="form-control" id="semester" style="width: 70px; ">
+                     <option>1</option>
+                     <option>2</option>
+                     <option>3</option>
+                 </select>
+             </div>
+             ปีการศึกษา
+             <input class="form-control" id="year" placeholder="Ex. 2560" style="width: 100px;">
+             <button type="button" class="btn btn-primary">ค้นหา</button>
+     </div>
   </center>
 </div>
 
@@ -77,7 +90,7 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-        <i class="fa fa-search fa-fw"></i><b> รายชื่อกระบวนวิชา</b></a>
+        <i class="fa fa-search fa-fw"></i><b> รายชื่อกระบวนวิชา</b> ภาคการศึกษาที่ 1 ปีการศึกษา 2560</a>
       </h4>
     </div>
     <div id="collapse1" class="panel-collapse collapse in">
