@@ -3,6 +3,7 @@
 </head>
 <body>
 <?php
+date_default_timezone_set("Asia/Bangkok");
 if(isset($_POST['data']))
 {
 	// Write_temp_data($_POST['data']);
