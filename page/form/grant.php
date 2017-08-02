@@ -64,12 +64,12 @@
    </div>
    <br>
    <div class="panel panel-default" style="font-size: 14px;">
-     <div class="panel-heading">
+     <div class="panel-heading"  style="padding: 0px 0px; padding-left: 10px;">
        ภาคการศึกษาที่ 2 ปีการศึกษา 2560
      </div>
      <div class="panel-body">
        <div class="panel panel-primary">
-         <div class="panel-heading">
+         <div class="panel-heading"  style="padding: 0px 0px; padding-left: 10px;">
            สถานะการมอบอำนาจล่าสุด
          </div>
          <div class="panel-body">
@@ -92,7 +92,7 @@
          </div>
        </div>
          <div class="panel panel-yellow">
-           <div class="panel-heading">
+           <div class="panel-heading" style="padding: 0px 0px; padding-left: 10px;">
             ค้นหาชื่อผู้ใช้เพื่อมอบอำนาจ
            </div>
            <div class="panel-body" style="font-size: 16px;">
@@ -103,7 +103,7 @@
          </div>
        </div>
        <div class="panel panel-green">
-         <div class="panel-heading">
+         <div class="panel-heading" style="padding: 0px 0px; padding-left: 10px;">
            รายชื่อที่พบ
          </div>
          <div class="panel-body">
