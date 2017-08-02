@@ -90,7 +90,7 @@ function deleteRow(r) {
 <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
   <div class="row">
     <center>
-      <h3 class="page-header">แบบขออนุมัติเชิญอาจารย์พิเศษ คณะเภสัชศาสตร</h3>
+      <h3 class="page-header">แบบขออนุมัติเชิญอาจารย์พิเศษ คณะเภสัชศาสตร์</h3>
       <div class="form-inline">
               <h style="font-size: 14px;;">รหัสกระบวนวิชา
               <input class="form-control" id="course_find" placeholder="Ex.204111" style="width: 100px;">
