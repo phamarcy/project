@@ -393,7 +393,15 @@
 						<li>
 							<a href="#" onclick="loadDoc('form/approve.php')"><i class="fa fa-pencil-square fa-fw"></i> อนุมัติกระบวนวิชา</a>
 						</li>
-						<?php } ?>
+						<?php
+							if($_SESSION['level']==6)
+							{ ?>
+								<li>
+									<a href="#" onclick="loadDoc('form/grant.php')"><i class="fa fa-users fa-fw"></i> มอบอำนาจการอนุมัติ</a>
+								</li>
+								<?php
+							}
+						} ?>
 						<li>
 							<a href="#" onclick="loadDoc('form/checkstattch.php')"><i class="fa fa-check fa-fw"></i> ตรวจสอบสถานะการอนุมัติ</a>
 						</li>
