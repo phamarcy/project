@@ -421,7 +421,8 @@ function submitfunc() {
         'LEC' : document.getElementById("MEASURE_TOTALLEC").value,
         'LAB' : document.getElementById("MEASURE_TOTALLAB").value
       },
-      'OTHER' : cart3
+      'OTHER' : cart3,
+      'COMMENT' : document.getElementById("suggestion").value
     },
     'SEMINAR' : carts3,
     'TRAIN' : cartt3,
@@ -1068,7 +1069,11 @@ function deleteRow2(r) {
             </table>
             </div>
           </div>
-
+          <div class="form-inline">
+            ข้อเสนอแนะอื่นๆ
+            <br> <textarea class="form-control" id="suggestion" rows="4" cols="125"></textarea>
+          </div>
+          <br>
             <div class="row">
               <div class="col-md-5">
                 <table id="samenatable" class="table table-bordered table-hover" width="100%" style="font-size: 14px;">
