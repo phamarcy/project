@@ -364,12 +364,14 @@
 						<li>
 							<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
 						</li>
-						<?php if($_SESSION['level'] == 2 || $_SESSION['level'] == 3){ ?>
+						<?php if($_SESSION['level'] == 2) { ?>
+							<li>
+								<a href="#" onclick="loadDoc('form/deadline.php')"><i class="fa fa-list-alt fa-fw"></i> กำหนดช่วงเวลา</a>
+							</li>
+						<?php }?>
+						<?php if($_SESSION['level'] == 3 || $_SESSION['level'] == 2){ ?>
 						<li>
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
-						</li>
-						<li>
-							<a href="#" onclick="loadDoc('form/deadline.php')"><i class="fa fa-list-alt fa-fw"></i> กำหนดช่วงเวลา</a>
 						</li>
 						<?php }else { ?>
 						<li>
@@ -387,7 +389,7 @@
 						</li>
 
 						<?php }
-						if($_SESSION['level'] > 4)
+						if($_SESSION['level'] >= 4)
 						{
 						 ?>
 						<li>
