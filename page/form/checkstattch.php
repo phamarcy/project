@@ -38,6 +38,7 @@
  	<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 
   <link rel="stylesheet" href="../dist/css/scrollbar.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
 
 <script id="contentScript">
 
@@ -64,20 +65,25 @@
   <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
 <div class="row">
   <center>
-    <h3 class="page-header">ตรวจสอบสถานะการอนุมัติ</h3>
-    <div class="form-inline">
-            <h style="font-size: 16px;">ภาคการศึกษาที่
-             <div class="form-group">
-                 <select class="form-control" id="semester" style="width: 70px; ">
-                     <option>1</option>
-                     <option>2</option>
-                     <option>3</option>
-                 </select>
-             </div>
-             ปีการศึกษา
-             <input class="form-control" id="year" placeholder="e.g. 2560" style="width: 100px;">
-             <button type="button" class="btn btn-primary">ค้นหา</button></h>
-     </div>
+    <h3 class="page-header">การอนุมัติกระบวนวิชา</h3>
+        <form data-toggle="validator" role="form">
+          <div class="form-inline" style="font-size:16px;">
+                   <div class="form-group">
+                      <label id="semester" class="control-label">ปีการศึกษา</label>
+                       <select class="form-control required" id="semester" style="width: 70px;" id="select" required>
+                          <option value="">--</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                       </select>
+                   </div>
+                   <div class="form-group">
+                     <label for="inputyear" class="control-label">ปีการศึกษา</label>
+                     <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required>
+                   </div>
+                  <button type="submit" class="btn btn-primary">ค้นหา</button>
+           </div>
+        </form>
   </center>
 </div>
 
