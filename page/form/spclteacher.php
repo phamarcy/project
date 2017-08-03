@@ -103,7 +103,7 @@ function deleteRow(r) {
                    </select>
                </div>
                ปีการศึกษา
-               <input class="form-control" id="year" placeholder="Ex. 2560" style="width: 100px;">
+               <input class="form-control" id="year" placeholder="e.g. 2560" style="width: 100px;">
                <button type="button" class="btn btn-primary">ค้นหา</button></h>
        </div>
     </center>
