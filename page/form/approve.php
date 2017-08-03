@@ -6,67 +6,81 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-    <!-- Morris Charts CSS -->
-    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-    <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
+
     <link rel="stylesheet" href="../dist/css/scrollbar.css">
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
+
+<style >
+/*div[class="row"] {
+  border: 1px dotted rgba(0, 0, 0, 0.5);
+}
+
+div[class^="col-"] {
+  background-color: rgba(255, 0, 0, 0.2);
+}*/
+</style>
 </header>
 
 
 <body class="mybox">
     <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
-      <div class="row" >
-        <center>
-            <h1 class="page-header">อนุมัติกระบวนวิชา<br /></h1>
-            <div class="form-inline">
-                <h style="width: 100px;">ภาคการศึกษาที่ </h>
-                <div class="form-group">
-                    <select class="form-control" id="semester" style="width: 70px; ">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
-                </div>
-                ปีการศึกษา
-                <input class="form-control" id="year" placeholder="Ex. 2560" style="width: 100px;">
-                <button type="button" class="btn btn-primary">ค้นหา</button>
 
-            </div>
-        </center>
-      </div>
+
+      <div class="container">
+        <div class="row">
+          <center>
+            <h3 class="page-header">การอนุมัติกระบวนวิชา</h3>
+                <form data-toggle="validator" role="form">
+                  <div class="form-inline" style="font-size:16px;">
+                           <div class="form-group">
+                              <label id="semester" class="control-label">ปีการศึกษา</label>
+                               <select class="form-control required" id="semester" style="width: 70px;" id="select" required>
+                                  <option value="">--</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                               </select>
+                           </div>
+                           <div class="form-group">
+                             <label for="inputyear" class="control-label">ปีการศึกษา</label>
+                             <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required>
+                           </div>
+                          <button type="submit" class="btn btn-primary">ค้นหา</button>
+                   </div>
+                </form>
+          </center>
+        </div>
+
       <br>
       <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</h3>
+                          <h4 class="panel-title">
+                              <b>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</b>
+                          </h4>
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
                             <div class="panel-group" id="accordion">
                                 <div class="panel panel-yellow">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><h4><b>รอการอนุมัติ</b></h4></a>
-                                        </h4>
-                                    </div>
+                                  <div class="panel-heading">
+                                      <div class="panel-title">
+                                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">รอการอนุมัติ</a>
+                                      </div >
+                                  </div>
+
                                     <div id="collapseOne" class="panel-collapse collapse in">
                                         <div class="panel-body">
                                           <div class="table-responsive">
-
-                                              <table class="table " >
+                                              <table class="table ">
                                                   <thead>
                                                       <tr>
                                                           <th>#</th>
@@ -97,7 +111,7 @@
                                                             <div class="accordian-body collapse" id="demo1">
                                                               <div class="panel panel-default">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นต์</b>
+                                                                  <b>คอมเม้นท์</b>
                                                                 </div>
                                                                 <div class="panel-body">
 
@@ -122,7 +136,7 @@
                                                             <div class="accordian-body collapse" id="demo2">
                                                               <div class="panel panel-default">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นต์</b>
+                                                                  <b>คอมเม้นท์</b>
                                                                 </div>
                                                                 <div class="panel-body">
 
@@ -147,7 +161,7 @@
                                                             <div class="accordian-body collapse" id="demo3">
                                                               <div class="panel panel-default">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นต์</b>
+                                                                  <b>คอมเม้นท์</b>
                                                                 </div>
                                                                 <div class="panel-body">
 
@@ -165,9 +179,9 @@
 
                                 <div class="panel panel-green">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><h4><b>อนุมัติ</b></h4></a>
-                                        </h4>
+                                        <div class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">อนุมัติ</a>
+                                        </div>
                                     </div>
                                     <div id="collapseTwo" class="panel-collapse collapse">
                                         <div class="panel-body">
@@ -201,7 +215,7 @@
                                                             <div class="accordian-body collapse" id="demo21">
                                                               <div class="panel panel-default">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นต์</b>
+                                                                  <b>คอมเม้นท์</b>
                                                                 </div>
                                                                 <div class="panel-body">
 
@@ -225,7 +239,7 @@
                                                             <div class="accordian-body collapse" id="demo22">
                                                               <div class="panel panel-default">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นต์</b>
+                                                                  <b>คอมเม้นท์</b>
                                                                 </div>
                                                                 <div class="panel-body">
 
@@ -249,7 +263,7 @@
                                                             <div class="accordian-body collapse" id="demo23">
                                                               <div class="panel panel-default">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นต์</b>
+                                                                  <b>คอมเม้นท์</b>
                                                                 </div>
                                                                 <div class="panel-body">
 
@@ -266,9 +280,9 @@
                               </div>
                                 <div class="panel panel-red">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><h4><b>ไม่อนุมัติ</b></h4></a>
-                                        </h4>
+                                        <div class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">ไม่อนุมัติ</a>
+                                        </div>
                                     </div>
                                     <div id="collapseThree" class="panel-collapse collapse">
                                         <div class="panel-body">
@@ -302,7 +316,7 @@
                                                             <div class="accordian-body collapse" id="demo31">
                                                               <div class="panel panel-default">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นต์</b>
+                                                                  <b>คอมเม้นท์</b>
                                                                 </div>
                                                                 <div class="panel-body">
 
@@ -328,7 +342,7 @@
                                                             <div class="accordian-body collapse" id="demo32">
                                                               <div class="panel panel-default">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นต์</b>
+                                                                  <b>คอมเม้นท์</b>
                                                                 </div>
                                                                 <div class="panel-body">
 
@@ -353,7 +367,7 @@
                                                             <div class="accordian-body collapse" id="demo33">
                                                               <div class="panel panel-default">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นต์</b>
+                                                                  <b>คอมเม้นท์</b>
                                                                 </div>
                                                                 <div class="panel-body">
 

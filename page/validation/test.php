@@ -14,226 +14,73 @@
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
     <link href="validation.css" >
     <script src="validation.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
 
 </header>
 
 
 <body class="mybox">
-    <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
-      <div class="container">
 
-                <form class="well form-horizontal" action=" " method="post"  id="contact_form">
-            <fieldset>
-
-            <!-- Form Name -->
-            <legend>Contact Us Today!</legend>
-
-            <!-- Text input-->
-
-            <div class="form-group">
-              <label class="col-md-4 control-label">First Name</label>
-              <div class="col-md-4 inputGroupContainer">
-              <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
-                </div>
-              </div>
+      <form data-toggle="validator" role="form">
+        <div class="form-group">
+          <label for="inputName" class="control-label">Name</label>
+          <input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" required>
+        </div>
+        <div class="form-group has-feedback">
+          <label for="inputTwitter" class="control-label">Twitter</label>
+          <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="15" class="form-control" id="inputTwitter" placeholder="1000hz" required>
+          </div>
+          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+          <div class="help-block with-errors">Hey look, this one has feedback icons!</div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail" class="control-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
+          <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword" class="control-label">Password</label>
+          <div class="form-inline row">
+            <div class="form-group col-sm-6">
+              <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+              <div class="help-block">Minimum of 6 characters</div>
             </div>
-
-            <!-- Text input-->
-
-            <div class="form-group">
-              <label class="col-md-4 control-label" >Last Name</label>
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input name="last_name" placeholder="Last Name" class="form-control"  type="text">
-                </div>
-              </div>
+            <div class="form-group col-sm-6">
+              <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
+              <div class="help-block with-errors"></div>
             </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="radio">
+            <label>
+              <input type="radio" name="underwear" required>
+              Boxers
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="underwear" required>
+              Briefs
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" id="terms" data-error="Before you wreck yourself" required>
+              Check yourself
+            </label>
+            <div class="help-block with-errors"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        </form>
 
-            <!-- Text input-->
-                   <div class="form-group">
-              <label class="col-md-4 control-label">E-Mail</label>
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-              <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
-                </div>
-              </div>
-            </div>
-
-
-            <!-- Text input-->
-
-            <div class="form-group">
-              <label class="col-md-4 control-label">Phone #</label>
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-              <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
-                </div>
-              </div>
-            </div>
-
-            <!-- Text input-->
-
-            <div class="form-group">
-              <label class="col-md-4 control-label">Address</label>
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-              <input name="address" placeholder="Address" class="form-control" type="text">
-                </div>
-              </div>
-            </div>
-
-            <!-- Text input-->
-
-            <div class="form-group">
-              <label class="col-md-4 control-label">City</label>
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-              <input name="city" placeholder="city" class="form-control"  type="text">
-                </div>
-              </div>
-            </div>
-
-            <!-- Select Basic -->
-
-            <div class="form-group">
-              <label class="col-md-4 control-label">State</label>
-                <div class="col-md-4 selectContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                <select name="state" class="form-control selectpicker" >
-                  <option value=" " >Please select your state</option>
-                  <option>Alabama</option>
-                  <option>Alaska</option>
-                  <option >Arizona</option>
-                  <option >Arkansas</option>
-                  <option >California</option>
-                  <option >Colorado</option>
-                  <option >Connecticut</option>
-                  <option >Delaware</option>
-                  <option >District of Columbia</option>
-                  <option> Florida</option>
-                  <option >Georgia</option>
-                  <option >Hawaii</option>
-                  <option >daho</option>
-                  <option >Illinois</option>
-                  <option >Indiana</option>
-                  <option >Iowa</option>
-                  <option> Kansas</option>
-                  <option >Kentucky</option>
-                  <option >Louisiana</option>
-                  <option>Maine</option>
-                  <option >Maryland</option>
-                  <option> Mass</option>
-                  <option >Michigan</option>
-                  <option >Minnesota</option>
-                  <option>Mississippi</option>
-                  <option>Missouri</option>
-                  <option>Montana</option>
-                  <option>Nebraska</option>
-                  <option>Nevada</option>
-                  <option>New Hampshire</option>
-                  <option>New Jersey</option>
-                  <option>New Mexico</option>
-                  <option>New York</option>
-                  <option>North Carolina</option>
-                  <option>North Dakota</option>
-                  <option>Ohio</option>
-                  <option>Oklahoma</option>
-                  <option>Oregon</option>
-                  <option>Pennsylvania</option>
-                  <option>Rhode Island</option>
-                  <option>South Carolina</option>
-                  <option>South Dakota</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option> Uttah</option>
-                  <option>Vermont</option>
-                  <option>Virginia</option>
-                  <option >Washington</option>
-                  <option >West Virginia</option>
-                  <option>Wisconsin</option>
-                  <option >Wyoming</option>
-                </select>
-              </div>
-            </div>
-            </div>
-
-            <!-- Text input-->
-
-            <div class="form-group">
-              <label class="col-md-4 control-label">Zip Code</label>
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-              <input name="zip" placeholder="Zip Code" class="form-control"  type="text">
-                </div>
-            </div>
-            </div>
-
-            <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label">Website or domain name</label>
-               <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-              <input name="website" placeholder="Website or domain name" class="form-control" type="text">
-                </div>
-              </div>
-            </div>
-
-            <!-- radio checks -->
-             <div class="form-group">
-                                    <label class="col-md-4 control-label">Do you have hosting?</label>
-                                    <div class="col-md-4">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="hosting" value="yes" /> Yes
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="hosting" value="no" /> No
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-            <!-- Text area -->
-
-            <div class="form-group">
-              <label class="col-md-4 control-label">Project Description</label>
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                    	<textarea class="form-control" name="comment" placeholder="Project Description"></textarea>
-              </div>
-              </div>
-            </div>
-
-            <!-- Success message -->
-            <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
-
-            <!-- Button -->
-            <div class="form-group">
-              <label class="col-md-4 control-label"></label>
-              <div class="col-md-4">
-                <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
-              </div>
-            </div>
-
-            </fieldset>
-            </form>
-            </div>
-                </div><!-- /.container -->
-
-    </div>
 </body>
 
 </html>
