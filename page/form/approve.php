@@ -27,6 +27,7 @@
 div[class^="col-"] {
   background-color: rgba(255, 0, 0, 0.2);
 }*/
+
 </style>
 </header>
 
@@ -92,10 +93,11 @@ div[class^="col-"] {
                                                           <th>เอกสาร</th>
                                                           <th></th>
                                                           <th></th>
+                                                          <th></th>
                                                       </tr>
                                                   </thead>
                                                   <tbody>
-                                                      <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
+                                                      <tr >
                                                           <td>1</td>
                                                           <td>Mark</td>
                                                           <td>Mark</td>
@@ -103,6 +105,7 @@ div[class^="col-"] {
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
                                                           <td><button type="button" class="btn btn-danger">ไม่อนุมัติ</button></td>
                                                       </tr>
@@ -111,16 +114,48 @@ div[class^="col-"] {
                                                             <div class="accordian-body collapse" id="demo1">
                                                               <div class="panel panel-default">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นท์</b>
+                                                                  <b>เพิ่มคอมเม้นท์</b>
                                                                 </div>
                                                                 <div class="panel-body">
-
+                                                                    <div class="row">
+                                                                      <div class="col-md-12">
+                                                                        <form>
+                                                                          <div class="form-group">
+                                                                            <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                          </div>
+                                                                          <button class="btn btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                        </form>
+                                                                      </div>
+                                                                    </div>
+                                                                </div>
+                                                              </div>
+                                                              <div class="panel panel-green">
+                                                                <div class="panel-heading">
+                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                  <table class="table ">
+                                                                    <thead>
+                                                                      <th style="width:150px">คณะกรรมการ</th>
+                                                                      <th>คอมเม้นท์</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                      <tr>
+                                                                        <td >สมยศ อิอิ</td>
+                                                                        <td>Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16 เมื่อเครื่องพิมพ์โนเนมเครื่องหนึ่งนำรางตัวพิมพ์มาสลับสับตำแหน่งตัวอักษรเพื่อทำหนังสือตัวอย่าง Lorem Ipsum อยู่ยงคงกระพันมาไม่ใช่แค่เพียงห้าศตวรรษ แต่อยู่มาจนถึงยุคที่พลิกโฉมเข้าสู่งานเรียงพิมพ์ด้วยวิธีทางอิเล็กทรอนิกส์ และยังคงสภาพเดิมไว้อย่างไม่มีการเปลี่ยนแปลง มันได้รับความนิยมมากขึ้นในยุค ค.ศ. 1960 เมื่อแผ่น Letraset วางจำหน่ายโดยมีข้อความบนนั้นเป็น Lorem Ipsum และล่าสุดกว่านั้น คือเมื่อซอฟท์แวร์การทำสื่อสิ่งพิมพ์ (Desktop Publishing) อย่าง Aldus PageMaker ได้รวมเอา Lorem Ipsum เวอร์ชั่นต่างๆ เข้าไว้ในซอฟท์แวร์ด้วย</td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td >สมสมัย อิอิ</td>
+                                                                        <td>มีหลักฐานที่เป็นข้อเท็จจริงยืนยันมานานแล้ว ว่าเนื้อหาที่อ่านรู้เรื่องนั้นจะไปกวนสมาธิของคนอ่านให้เขวไปจากส่วนที้เป็น Layout เรานำ Lorem Ipsum มาใช้เพราะความที่มันมีการกระจายของตัวอักษรธรรมดาๆ แบบพอประมาณ ซึ่งเอามาใช้แทนการเขียนว่า ‘ตรงนี้เป็นเนื้อหา, ตรงนี้เป็นเนื้อหา' ได้ และยังทำให้มองดูเหมือนกับภาษาอังกฤษที่อ่านได้ปกติ ปัจจุบันมีแพ็กเกจของซอฟท์แวร์การทำสื่อสิ่งพิมพ์ และซอฟท์แวร์การสร้างเว็บเพจ (Web Page Editor) หลายตัวที่ใช้ Lorem Ipsum เป็นแบบจำลองเนื้อหาที่เป็นค่าตั้งต้น และเวลาที่เสิร์ชด้วยคำว่า 'lorem ipsum' ผลการเสิร์ชที่ได้ก็จะไม่พบบรรดาเว็บไซต์ที่ยังคงอยู่ในช่วงเริ่มสร้างด้วย โดยหลายปีที่ผ่านมาก็มีการคิดค้นเวอร์ชั่นต่างๆ ของ Lorem Ipsum ขึ้นมาใช้ บ้างก็เป็นความบังเอิญ บ้างก็เป็นความตั้งใจ (เช่น การแอบแทรกมุกตลก)</td>
+                                                                      </tr>
+                                                                    </tbody>
+                                                                  </table>
                                                                 </div>
                                                               </div>
                                                             </div>
                                                           </td>
                                                       </tr>
-                                                      <tr data-toggle="collapse" data-target="#demo2" class="accordion-toggle">
+                                                      <tr >
                                                           <td>2</td>
                                                           <td>Jacob</td>
                                                           <td>Mark</td>
@@ -128,6 +163,7 @@ div[class^="col-"] {
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
                                                           <td><button type="button" class="btn btn-danger">ไม่อนุมัติ</button></td>
                                                       </tr>
@@ -145,7 +181,7 @@ div[class^="col-"] {
                                                             </div>
                                                           </td>
                                                       </tr>
-                                                      <tr data-toggle="collapse" data-target="#demo3" class="accordion-toggle">
+                                                      <tr >
                                                           <td>3</td>
                                                           <td>Larry</td>
                                                           <td>Mark</td>
@@ -153,6 +189,7 @@ div[class^="col-"] {
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo3" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
                                                           <td><button type="button" class="btn btn-danger">ไม่อนุมัติ</button></td>
                                                       </tr>
@@ -200,7 +237,7 @@ div[class^="col-"] {
                                                       </tr>
                                                   </thead>
                                                   <tbody>
-                                                      <tr  data-toggle="collapse" data-target="#demo21" class="accordion-toggle">
+                                                      <tr >
                                                           <td>1</td>
                                                           <td>Mark</td>
                                                           <td>Mark</td>
@@ -208,6 +245,7 @@ div[class^="col-"] {
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo21" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-danger">ยกเลิกอนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
@@ -224,7 +262,7 @@ div[class^="col-"] {
                                                             </div>
                                                           </td>
                                                       </tr>
-                                                      <tr  data-toggle="collapse" data-target="#demo22" class="accordion-toggle">
+                                                      <tr>
                                                           <td>2</td>
                                                           <td>Jacob</td>
                                                           <td>Mark</td>
@@ -232,6 +270,7 @@ div[class^="col-"] {
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo22" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-danger">ยกเลิกอนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
@@ -248,7 +287,7 @@ div[class^="col-"] {
                                                             </div>
                                                           </td>
                                                       </tr>
-                                                      <tr  data-toggle="collapse" data-target="#demo23" class="accordion-toggle">
+                                                      <tr  >
                                                           <td>3</td>
                                                           <td>Larry</td>
                                                           <td>Mark</td>
@@ -256,6 +295,7 @@ div[class^="col-"] {
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo23" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-danger">ยกเลิกอนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
@@ -301,7 +341,7 @@ div[class^="col-"] {
                                                       </tr>
                                                   </thead>
                                                   <tbody>
-                                                      <tr  data-toggle="collapse" data-target="#demo31" class="accordion-toggle">
+                                                      <tr >
                                                           <td>1</td>
                                                           <td>Mark</td>
                                                           <td>Mark</td>
@@ -309,6 +349,7 @@ div[class^="col-"] {
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo31" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
@@ -326,7 +367,7 @@ div[class^="col-"] {
                                                           </td>
                                                       </tr>
 
-                                                      <tr data-toggle="collapse" data-target="#demo32" class="accordion-toggle">
+                                                      <tr >
 
                                                           <td>2</td>
                                                           <td>Jacob</td>
@@ -335,6 +376,7 @@ div[class^="col-"] {
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo32" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
@@ -352,7 +394,7 @@ div[class^="col-"] {
                                                           </td>
                                                       </tr>
 
-                                                      <tr data-toggle="collapse" data-target="#demo33" class="accordion-toggle">
+                                                      <tr>
                                                           <td>3</td>
                                                           <td>Larry</td>
                                                           <td>Mark</td>
@@ -360,6 +402,7 @@ div[class^="col-"] {
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo33" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
