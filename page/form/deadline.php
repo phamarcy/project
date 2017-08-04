@@ -112,6 +112,7 @@ $(document).ready(function() {
 
 });
 $(document).on('click', "#submitbtn_course", function() {
+    if (confirm('ต้องการบันทึกหรือไม่ ?')) {
     var button = $(this);
     url = "../../application/deadline/update_deadline.php?query=add&type=course";
     var form = $(this).parent();
@@ -134,8 +135,13 @@ $(document).on('click', "#submitbtn_course", function() {
     }).fail(function() {
       alert("Cannot update data, please contact admin");
       });
+    }else {
+
+    }
 });
 $(document).on('click', "#submitbtn_approve", function() {
+  if (confirm('ต้องการบันทึกหรือไม่ ?')) {
+    // Save it!
     var button = $(this);
     url = "../../application/deadline/update_deadline.php?query=add&type=approve";
     var form = $(this).parent();
@@ -157,6 +163,9 @@ $(document).on('click', "#submitbtn_approve", function() {
     }).fail(function() {
       alert("Cannot update data, please contact admin");
       });
+    } else {
+        // Do nothing!
+    }
 });
 $(document).on('click', "#delete", function() {
     var object = $(this).parent().parent();
