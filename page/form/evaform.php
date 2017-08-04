@@ -597,23 +597,31 @@ function deleteRow2(r) {
 <div class="row">
   <center>
     <h3 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์</h3>
-    <div class="form-inline">
-      <form data-toggle="validator" role="form">
-            <h style="font-size: 14px;">รหัสกระบวนวิชา
-            <input class="form-control" id="course_find" placeholder="Ex.204111" style="width: 100px;" required>
-             ภาคการศึกษาที่
-             <div class="form-group">
-                 <select class="form-control" id="semester" style="width: 70px; " required>
-                     <option>1</option>
-                     <option>2</option>
-                     <option>3</option>
-                 </select>
-             </div>
-             ปีการศึกษา
-             <input class="form-control" id="year" placeholder="e.g. 2560" style="width: 100px;" required>
-             <input type="submit" class="btn btn-primary" value="ค้นหา"></h>
-           </form>
-     </div>
+
+        <form data-toggle="validator" role="form">
+          <div class="form-inline" style="font-size:16px;">
+                    <div class="form-group">
+                       <label id="semester" class="control-label">รหัสกระบวนวิชา</label>
+                       <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required>
+                    </div>
+                   <div class="form-group">
+                      <label id="semester" class="control-label">ปีการศึกษา</label>
+                       <select class="form-control required" id="semester" style="width: 70px;" id="select" required>
+                          <option value="">--</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                       </select>
+                   </div>
+                   <div class="form-group">
+                     <label for="inputyear" class="control-label">ปีการศึกษา</label>
+                     <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required>
+                   </div>
+                  <button type="submit" class="btn btn-primary">ค้นหา</button>
+           </div>
+        </form>
+
+
   </center>
 </div>
 

@@ -60,7 +60,6 @@ div[class^="col-"] {
                 </form>
           </center>
         </div>
-
       <br>
       <div class="panel panel-default">
                         <div class="panel-heading">
@@ -83,14 +82,14 @@ div[class^="col-"] {
                                           <div class="table-responsive">
                                               <table class="table ">
                                                   <thead>
-                                                      <tr>
+                                                      <tr >
                                                           <th>#</th>
                                                           <th>รหัสวิชา</th>
                                                           <th>ชื่อวิชา</th>
                                                           <th>อาจารย์ผู้สอน</th>
                                                           <th>เอกสาร</th>
-                                                          <th>เอกสาร</th>
-                                                          <th>เอกสาร</th>
+                                                          <th style="width:150px">แบบประเมิน</th>
+                                                          <th>Course Syllabus</th>
                                                           <th></th>
                                                           <th></th>
                                                           <th></th>
@@ -104,7 +103,7 @@ div[class^="col-"] {
                                                           <td>Otto</td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
+                                                          <td style="text-align:center;"><button type="button" class="btn btn-primary">Primary</button></td>
                                                           <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
                                                           <td><button type="button" class="btn btn-danger">ไม่อนุมัติ</button></td>
