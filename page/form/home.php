@@ -52,7 +52,7 @@ session_start();
 	<body>
 		<div class="center">
 			<?php
-				if($_SESSION['level'] == 1 )
+				if($_SESSION['level'] != 2 && $_SESSION['level'] !=3 )
 			{
 				?>
 					<div class="well">
@@ -88,7 +88,7 @@ session_start();
 											</div>
 									</div>
 							</div>
-						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับกรอกข้อมูล 20 สิงหาคม 2560 </b></div>
+						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับกรอกข้อมูลกระบวนวิชา 20 สิงหาคม 2560 </b></div>
 					</div>
 		<?php	}		?>
 		</div>
