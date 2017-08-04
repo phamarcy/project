@@ -11,13 +11,13 @@
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="../dist/css/scrollbar.css">
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
 
 <style >
 /*div[class="row"] {
@@ -34,26 +34,30 @@ div[class^="col-"] {
 
 <body class="mybox">
     <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
-
-
       <div class="container">
         <div class="row">
           <center>
             <h3 class="page-header">การอนุมัติกระบวนวิชา</h3>
-                <form data-toggle="validator" role="form">
+                <form  role="form">
                   <div class="form-inline" style="font-size:16px;">
                            <div class="form-group">
-                              <label id="semester" class="control-label">ปีการศึกษา</label>
-                               <select class="form-control required" id="semester" style="width: 70px;" id="select" required>
+                              <label id="semester" class="control-label">ภาคการศึกษา</label>
+                               <select class="form-control required" id="semester" style="width: 70px;" id="select" required oninvalid="this.setCustomValidity('กรุณาเลือกภาคการศึกษา')" oninput="setCustomValidity('')" >
                                   <option value="">--</option>
                                   <option value="1">1</option>
                                   <option value="2">2</option>
                                   <option value="3">3</option>
                                </select>
+                               <div class="form-group">
+                                 <div class="help-block with-errors" style="font-size:12px;"></div>
+                               </div>
                            </div>
                            <div class="form-group">
                              <label for="inputyear" class="control-label">ปีการศึกษา</label>
-                             <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required>
+                             <input type="text" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"    max="9999" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษา')" oninput="setCustomValidity('')" title="กรุณากรอกตัวเลข">
+                               <div class="form-group">
+                                 <div class="help-block with-errors" style="font-size:12px;"></div>
+                               </div>
                            </div>
                           <button type="submit" class="btn btn-primary">ค้นหา</button>
                    </div>
@@ -70,7 +74,7 @@ div[class^="col-"] {
                         <!-- .panel-heading -->
                         <div class="panel-body">
                             <div class="panel-group" id="accordion">
-                                <div class="panel panel-yellow">
+                                <div class="panel panel-warning">
                                   <div class="panel-heading">
                                       <div class="panel-title">
                                           <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">รอการอนุมัติ</a>
@@ -86,10 +90,9 @@ div[class^="col-"] {
                                                           <th>#</th>
                                                           <th>รหัสวิชา</th>
                                                           <th>ชื่อวิชา</th>
-                                                          <th>อาจารย์ผู้สอน</th>
-                                                          <th>เอกสาร</th>
-                                                          <th style="width:150px">แบบประเมิน</th>
-                                                          <th>Course Syllabus</th>
+                                                          <th  style="text-align:center;">1</th>
+                                                          <th  style="text-align:center;">2</th>
+                                                          <th  style="text-align:center;">3</th>
                                                           <th></th>
                                                           <th></th>
                                                           <th></th>
@@ -99,14 +102,13 @@ div[class^="col-"] {
                                                       <tr >
                                                           <td>1</td>
                                                           <td>Mark</td>
-                                                          <td>Mark</td>
                                                           <td>Otto</td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td style="text-align:center;"><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
-                                                          <td><button type="button" class="btn btn-danger">ไม่อนุมัติ</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">comment</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -156,15 +158,22 @@ div[class^="col-"] {
                                                       </tr>
                                                       <tr >
                                                           <td>2</td>
-                                                          <td>Jacob</td>
                                                           <td>Mark</td>
                                                           <td>Thornton</td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
-                                                          <td><button type="button" class="btn btn-danger">ไม่อนุมัติ</button></td>
+                                                          <td  style="text-align:center;">
+                                                            <button type="button" class="btn btn-outline btn-primary btn-circle "><i class="fa fa-file-word-o"></i></button>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <button type="button" class="btn btn-outline btn-primary btn-circle "><i class="fa fa-file-pdf-o"></i></button>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <button type="button" class="btn btn-outline btn-primary btn-circle "><i class="fa fa-file-pdf-o"></i></button>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <button type="button" class="btn btn-outline btn-primary btn-circle "><i class="fa fa-list"></i></button>
+                                                          </td>
+                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12" class="hiddenRow">
@@ -182,15 +191,14 @@ div[class^="col-"] {
                                                       </tr>
                                                       <tr >
                                                           <td>3</td>
-                                                          <td>Larry</td>
                                                           <td>Mark</td>
                                                           <td>the Bird</td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo3" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
-                                                          <td><button type="button" class="btn btn-danger">ไม่อนุมัติ</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo3" class="accordion-toggle">comment</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
                                                       </tr>
                                                       <tr>
                                                           <td colspan="12" class="hiddenRow">
@@ -213,7 +221,7 @@ div[class^="col-"] {
                                     </div>
                                 </div>
 
-                                <div class="panel panel-green">
+                                <div class="panel panel-success">
                                     <div class="panel-heading">
                                         <div class="panel-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">อนุมัติ</a>
@@ -241,11 +249,11 @@ div[class^="col-"] {
                                                           <td>Mark</td>
                                                           <td>Mark</td>
                                                           <td>Otto</td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo21" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-danger">ยกเลิกอนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo21" class="accordion-toggle">comment</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกอนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -317,7 +325,7 @@ div[class^="col-"] {
                                     </div>
                                 </div>
                               </div>
-                                <div class="panel panel-red">
+                                <div class="panel panel-danger">
                                     <div class="panel-heading">
                                         <div class="panel-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">ไม่อนุมัติ</a>
