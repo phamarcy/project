@@ -1,14 +1,121 @@
-<br><br><br><br>
-<div class="jumbotron">
-	<div class="container">
-		<div class="col-md-6">
-			<h1 style="color:#34d675;">ยินดีต้อนรับ</h1>
-		  <p><u>ไม่มีการแจ้งเตือน</u>
-				<br>หากต้องการกรอกข้อมูล <br>สามารถเลือกกรอกแบบฟอร์มทางซ้ายมือค่ะ</p>
-		</div>
-		<div class="col-md-4">
-			<img src="giphy.gif" alt="">
-		</div>
+<!DOCTYPE html>
+<?php
+session_start();
+?>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
 
-	</div>
-</div>
+		<!-- Bootstrap Core CSS -->
+		<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- MetisMenu CSS -->
+		<link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+		<!-- Custom CSS -->
+		<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+		<!-- Morris Charts CSS -->
+		<link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+		<!-- Custom Fonts -->
+		<link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+		<script src="../vendor/jquery/jquery.min.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+		<!-- Metis Menu Plugin JavaScript -->
+		<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+		<!-- Custom Theme JavaScript -->
+		<script src="../dist/js/sb-admin-2.js"></script>
+
+		<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
+
+			<link rel="stylesheet" href="../dist/css/scrollbar.css">
+		<title></title>
+		<style>
+		.center {
+    margin: auto;
+    width: 80%;
+		margin-top: 5%;
+    padding: 5px;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="center">
+			<?php
+				if($_SESSION['level'] == 1 )
+			{
+				?>
+					<div class="well">
+						<center><h4><b> ภาคเรียนที่ 1 ปีการศึกษา 2560 </b></h4></center>
+						<h4> รายวิชาที่ต้องกรอกข้อมูล </h4><br>
+							<div class="panel panel-default">
+									<div class="panel-heading">
+											<div class="panel-title" style="font-size: 14px;">
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">ภาควิชา วิทยาศาสตร์เภสัชกรรม</a>
+											</div>
+									</div>
+									<div id="collapseOne" class="panel-collapse collapse">
+											<div class="panel-body">
+												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
+												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
+												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
+												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
+											</div>
+									</div>
+							</div>
+							<div class="panel panel-default">
+									<div class="panel-heading">
+											<div class="panel-title" style="font-size: 14px;">
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">ภาควิชา บริบาลเภสัชกรรม</a>
+											</div>
+									</div>
+									<div id="collapseTwo" class="panel-collapse collapse">
+											<div class="panel-body">
+												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
+												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
+												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
+												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
+											</div>
+									</div>
+							</div>
+						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับกรอกข้อมูล 20 สิงหาคม 2560 </b></div>
+					</div>
+		<?php	}		?>
+		</div>
+	</body>
+</html>
+<?php
+function curl($type)
+{
+  $data['type'] = $type;
+  $url = '../../application/information/';
+  $ch = curl_init();
+
+        // set url
+        curl_setopt($ch, CURLOPT_URL, $url);
+
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        //set post data
+        curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
+
+        // $output contains the output string
+        $output = curl_exec($ch);
+
+        // close curl resource to free up system resources
+        curl_close($ch);
+
+        return $output;
+}
+ ?>
