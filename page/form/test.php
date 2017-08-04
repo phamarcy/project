@@ -40,10 +40,10 @@
 
     var regex = /^[a-zA-Zก-ฮๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ.]*$/;
     if (regex.test(document.getElementById("input1").value)) {
-        document.getElementById("test").innerHTML = "";
+        document.getElementById("test").style.visibility = "hidden";
         return true;
     } else {
-        document.getElementById("test").innerHTML = "*กรุณากรอกอักขระโดยไม่ใส่ตัวเลข";
+        document.getElementById("test").style.visibility = "visible";
         return false;
     }
 
@@ -55,8 +55,8 @@
           <div class="col-md-5">
             <input  id="input1" class="form-control" type="text" onkeypress="onlyAlphabets()">
 
-          <p id="test" style="color: red;">
-
+          <p id="test" style="color: red; visibility: hidden;">
+            *กรุณากรอกเป็นตัวอักขระภาษาไทยหรือภาษาอังกฤษโดยไม่มีตัวเลข
           </p>
 
 

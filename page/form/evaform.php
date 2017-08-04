@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="../dist/css/scrollbar.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
   <style>
-  input[type=text]{
-    height: 25px;
+  input[type=text],input[type=number]{
+    height: 30px;
   }
 
   body {
@@ -605,7 +605,7 @@ function deleteRow2(r) {
                        <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required>
                     </div>
                    <div class="form-group">
-                      <label id="semester" class="control-label">ปีการศึกษา</label>
+                      <label id="semester" class="control-label">ภาคการศึกษา</label>
                        <select class="form-control required" id="semester" style="width: 70px;" id="select" required>
                           <option value="">--</option>
                           <option value="1">1</option>
@@ -625,26 +625,32 @@ function deleteRow2(r) {
   </center>
 </div>
 
-<form action="" name="form1" method="post">
+<form action="" name="form1" method="post"  data-toggle="validator" role="form">
   <div class="form-group" id="bgmain">
     <ol>
       <br>
       <li style="font-size: 14px">
         <div class="form-inline">
-          <b>รหัสกระบวนวิชา</b> &nbsp;<input type="text" class="form-control numonly" name="COURSE_ID" id="COURSE_ID" size="4" maxlength="6" required> &nbsp;ตอนที่ &nbsp;<input type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="3" required>
+          <div class="form-group">
+          <b>รหัสกระบวนวิชา</b> &nbsp;<input type="number" class="form-control numonly" name="COURSE_ID" id="COURSE_ID" data-minlength="6" max="999999" required data-required-error="กรุณากรอกข้อมูล">
+            <div class="form-group">
+              <div class="help-block with-errors"></div>
+            </div>
+          </div>
+         &nbsp;ตอนที่ &nbsp;<input type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="3" required>
           <div class="radio">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE" value="NORMAL" checked>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" name="NORORSPE" id="NORORSPE" value="SPECIAL">&nbsp;<b>ภาคพิเศษ</b>
           </div>
           <br>
           <div class="row">
-            <div class="col-md-4">จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input type="text" class="form-control numonly" name="ENROLL" id="ENROLL" size="2" maxlength="4" required> &nbsp; คน </div>
-            <div class="col-md-4">จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control numonly" name="TOTAL" id="TOTAL" size="2" maxlength="3" required>&nbsp; หน่วยกิต</div>
+            <div class="col-md-5">จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input type="text" class="form-control numonly" name="ENROLL" id="ENROLL" size="2" maxlength="4" required> &nbsp; คน </div>
+            <div class="col-md-5">จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control numonly" name="TOTAL" id="TOTAL" size="2" maxlength="3" required>&nbsp; หน่วยกิต</div>
           </div>
           <div class="row">
-            <div class="col-md-4">จำนวนชั่วโมงบรรยาย (Lecture) &nbsp;<input type="text" class="form-control numonly" name="LEC" id="LEC" size="2" maxlength="3" required>&nbsp; ชั่วโมง</div>
-            <div class="col-md-4">จำนวนชั่วโมงปฏิบัติการ (LAB) &nbsp;<input type="text" class="form-control numonly" name="LAB" id="LAB" size="2" maxlength="3" required> &nbsp; ชั่วโมง</div>
-            <div class="col-md-4">จำนวนชั่วโมงเรียนรู้ด้วยตัวเอง &nbsp;<input type="text" class="form-control numonly" name="SELF" id="SELF" size="2" maxlength="3" required>&nbsp; ชั่วโมง</div>
+            <div class="col-md-5">จำนวนชั่วโมงบรรยาย (Lecture) &nbsp;<input type="text" class="form-control numonly" name="LEC" id="LEC" size="2" maxlength="3" required>&nbsp; ชั่วโมง</div>
+            <div class="col-md-5">จำนวนชั่วโมงปฏิบัติการ (LAB) &nbsp;<input type="text" class="form-control numonly" name="LAB" id="LAB" size="2" maxlength="3" required> &nbsp; ชั่วโมง</div>
+            <div class="col-md-5">จำนวนชั่วโมงเรียนรู้ด้วยตัวเอง &nbsp;<input type="text" class="form-control numonly" name="SELF" id="SELF" size="2" maxlength="3" required>&nbsp; ชั่วโมง</div>
           </div>
         </div>
       </li>
