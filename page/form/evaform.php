@@ -632,25 +632,25 @@ function deleteRow2(r) {
       <li style="font-size: 14px">
         <div class="form-inline">
           <div class="form-group">
-          <b>รหัสกระบวนวิชา</b> &nbsp;<input type="number" class="form-control numonly" name="COURSE_ID" id="COURSE_ID" data-minlength="6" max="999999" required data-required-error="กรุณากรอกข้อมูล">
+          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="number" class="form-control numonly" name="COURSE_ID" id="COURSE_ID" data-minlength="6" min="0" max="999999" required data-required-error="กรุณากรอกข้อมูล">
             <div class="form-group">
               <div class="help-block with-errors"></div>
             </div>
           </div>
-         &nbsp;ตอนที่ &nbsp;<input type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="3" required>
+         &nbsp;ตอนที่ &nbsp;<input style="width: 70px;"type="number" class="form-control numonly" name="SECTION" id="SECTION" size="2" data-minlength="2" min="0" max="99"required>
           <div class="radio">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE" value="NORMAL" checked>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" name="NORORSPE" id="NORORSPE" value="SPECIAL">&nbsp;<b>ภาคพิเศษ</b>
           </div>
           <br>
           <div class="row">
-            <div class="col-md-5">จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input type="text" class="form-control numonly" name="ENROLL" id="ENROLL" size="2" maxlength="4" required> &nbsp; คน </div>
-            <div class="col-md-5">จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control numonly" name="TOTAL" id="TOTAL" size="2" maxlength="3" required>&nbsp; หน่วยกิต</div>
+            <div class="col-md-5">จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="ENROLL" id="ENROLL" size="2" data-minlength="3" min="0" max="1000" required> &nbsp; คน </div>
+            <div class="col-md-5">จำนวนหน่วยกิตทั้งหมด &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="TOTAL" id="TOTAL" size="2" data-minlength="3" min="0" max="100" required>&nbsp; หน่วยกิต</div>
           </div>
           <div class="row">
-            <div class="col-md-5">จำนวนชั่วโมงบรรยาย (Lecture) &nbsp;<input type="text" class="form-control numonly" name="LEC" id="LEC" size="2" maxlength="3" required>&nbsp; ชั่วโมง</div>
-            <div class="col-md-5">จำนวนชั่วโมงปฏิบัติการ (LAB) &nbsp;<input type="text" class="form-control numonly" name="LAB" id="LAB" size="2" maxlength="3" required> &nbsp; ชั่วโมง</div>
-            <div class="col-md-5">จำนวนชั่วโมงเรียนรู้ด้วยตัวเอง &nbsp;<input type="text" class="form-control numonly" name="SELF" id="SELF" size="2" maxlength="3" required>&nbsp; ชั่วโมง</div>
+            <div class="col-md-5">จำนวนชั่วโมงบรรยาย (Lecture) &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="LEC" id="LEC" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง</div>
+            <div class="col-md-5">จำนวนชั่วโมงปฏิบัติการ (LAB) &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="LAB" id="LAB" size="2" data-minlength="3" min="0" max="100" required> &nbsp; ชั่วโมง</div>
+            <div class="col-md-5">จำนวนชั่วโมงเรียนรู้ด้วยตัวเอง &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="SELF" id="SELF" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง</div>
           </div>
         </div>
       </li>
@@ -853,7 +853,7 @@ function deleteRow2(r) {
             <ul>
               <div class="form-inline">
                 <li style="font-size: 14px">
-                  จำนวนชั่วโมงสอบการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" maxlength="3" required>&nbsp; ชั่วโมง
+                  จำนวนชั่วโมงสอบการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="number" style="width: 70px" class="form-control numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                   <select style="height: 28px;" name="mexholec" id="mexholec" class="form-control numonly" onchange="midexam_hour_lec()">
       <option value="0" selected>0</option>
@@ -900,7 +900,7 @@ function deleteRow2(r) {
 
                   <div class="form-inline">
                     <li style="font-size: 14px">
-                      จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" maxlength="3" required>&nbsp; ชั่วโมง
+                      จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                       <select style="height: 28px;" name="mexholac" id="mexholac" class="form-control numonly" onchange="midexam_hour_lab()">
       <option value="0" selected>0</option>
@@ -956,7 +956,7 @@ function deleteRow2(r) {
               <ul>
                 <div class="form-inline">
                   <li style="font-size: 14px">
-                    จำนวนชั่วโมงสอบการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="FINEXAM_HOUR_LEC" id="FINEXAM_HOUR_LEC" size="2" maxlength="3" required>&nbsp; ชั่วโมง
+                    จำนวนชั่วโมงสอบการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input  style="width: 70px"type="number" class="form-control numonly" name="FINEXAM_HOUR_LEC" id="FINEXAM_HOUR_LEC" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                     <select style="height: 28px;" name="fexholec" id="fexholec" class="form-control numonly" onchange="finexam_hour_lec()">
       <option value="0" selected>0</option>
@@ -1003,7 +1003,7 @@ function deleteRow2(r) {
 
                     <div class="form-inline">
                       <li style="font-size: 14px">
-                        จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="FINEXAM_HOUR_LAB" id="FINEXAM_HOUR_LAB" size="2" maxlength="3" required>&nbsp; ชั่วโมง
+                        จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="FINEXAM_HOUR_LAB" id="FINEXAM_HOUR_LAB" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                         <select style="height: 28px;" name="fexholac" id="fexholac" class="form-control numonly" onchange="finexam_hour_lab()">
       <option value="0" selected>0</option>
