@@ -41,6 +41,10 @@
    height: 25px;
  }
 
+ input[type=number]{
+   height: 30px;
+ }
+
  </style>
 
  <script>
@@ -94,7 +98,7 @@ function deleteRow(r) {
       <div class="form-inline">
         <form data-toggle="validator" role="form">
               <h style="font-size: 14px;">รหัสกระบวนวิชา
-              <input class="form-control" id="course_find" placeholder="Ex.204111" style="width: 100px;" required>
+              <input class="form-control" id="course_find" placeholder="e.g. 204111" style="width: 100px;" required>
                ภาคการศึกษาที่
                <div class="form-group">
                    <select class="form-control" id="semester" style="width: 70px; " required>
@@ -105,7 +109,7 @@ function deleteRow(r) {
                </div>
                ปีการศึกษา
                <input class="form-control" id="year" placeholder="e.g. 2560" style="width: 100px;" required>
-               <input type="submit" class="btn btn-primary" value="ค้นหา"></h>
+               <input type="submit" class="btn btn-outline btn-primary" value="ค้นหา"></h>
              </form>
        </div>
     </center>
@@ -157,7 +161,7 @@ function deleteRow(r) {
           <div class="row">
             <ul>
               <div class="form-inline">
-                <li>รหัสกระบวนวิชาที่สอน &nbsp;<input type="text" class="form-control numonly" name="" id="course" size="6" maxlength="6" required></li>
+                <li>รหัสกระบวนวิชาที่สอน &nbsp;<input type="number" class="form-control numonly" name="" id="course" size="6" data-minlength="6" min="0" max="999999" required></li>
               </div>
               <div class="form-inline">
                 <li>กระบวนวิชานี้เป็นวิชา &nbsp;<br />
@@ -179,7 +183,7 @@ function deleteRow(r) {
                 </li>
               </div>
               <div class="form-inline">
-                <li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control numonly" name="" id="hour" size="3" maxlength="3" required> &nbsp;ของทั้งกระบวนวิชา</li>
+                <li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="number" class="form-control numonly" name="" id="hour" size="3" data-minlength="3" min="0" max="100" required> &nbsp;ของทั้งกระบวนวิชา</li>
               </div>
               <div class="form-inline">
                 <li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70" required></textarea></li>
@@ -194,7 +198,7 @@ function deleteRow(r) {
                       <th style="text-align: center;">ห้องเรียน</th>
                     </tr>
                     <tr>
-                      <td colspan="5" style="text-align: center;"><input type="button" class="btn btn-success" name="addbtn" id="adddetail" value="เพิ่ม" required> </td>
+                      <td colspan="5" style="text-align: center;"><input type="button" class="btn btn-outline btn-success" name="addbtn" id="adddetail" value="เพิ่ม" required> </td>
                     </tr>
                   </table>
                 </div>
@@ -216,20 +220,20 @@ function deleteRow(r) {
             <li>ค่าสอนพิเศษ</li>
             <div class="radio">
               <input type="radio"  name="costspec" id="costspec" value="choice1" checked>&nbsp;ปริญญาตรีบรรยาย 400/ชม.&nbsp;&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1hour" size="5" maxlength="3" required>&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1cost" size="5" maxlength="10">&nbsp;&nbsp;บาท
+              จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice1hour" size="5" data-minlength="2" min="0" max="99" required>&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท
               <br>
               <input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ 200/ชม.&nbsp;&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2hour" size="5"maxlength="3" required>&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2cost" size="5" maxlength="10">&nbsp;&nbsp;บาท
+              จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice2hour" size="5" data-minlength="2" min="0" max="99" required>&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice2cost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท
             </div>
           </div>
           <div class="form-inline">
             <li>ค่าพาหนะเดินทาง </li>
             <div class="checkbox">
-              <label><input type="checkbox" name="trans" id="trans" value="plane">&nbsp;&nbsp;เครื่องบิน ระหว่าง เชียงใหม่-กรุงเทพ &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="planecost" id="planecost" size="5" maxlength="10">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="trans" id="trans" value="plane">&nbsp;&nbsp;เครื่องบิน ระหว่าง เชียงใหม่-กรุงเทพ &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               <br>
-              <label><input type="checkbox" name="trans" id="trans" value="taxi">&nbsp;&nbsp;ค่า taxi ดอนเมือง-ลาดพร้าว &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="taxicost" id="taxicost" size="5" maxlength="10">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="trans" id="trans" value="taxi">&nbsp;&nbsp;ค่า taxi ดอนเมือง-ลาดพร้าว &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               <br>
-              <label><input type="checkbox" name="trans" id="trans" value="selfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง 60 กม.ๆ ละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="selfcost" id="selfcost" size="5" maxlength="10">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="trans" id="trans" value="selfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง 60 กม.ๆ ละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="selfcost" id="selfcost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               </div>
           </div>
           <div class="form-inline">
@@ -238,13 +242,13 @@ function deleteRow(r) {
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" checked>&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน 800 บาท/คน/คืน &nbsp;&nbsp;
             </div>
-            <br>จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="numnight" id="numnight" size="5" maxlength="3" required>&nbsp;&nbsp;คืน
-            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" maxlength="10" required>&nbsp;&nbsp;บาท
+            <br>จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" data-minlength="5" min="0" max="99999" required>&nbsp;&nbsp;คืน
+            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="pernight" id="pernight" size="5" data-minlength="5" min="0" max="99999" required>&nbsp;&nbsp;บาท
 
           </div>
           <br>
           <div class="form-inline">
-            <li style="font-size: 16px;"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control numonly" name="totalcost" id="totalcost" size="10" maxlength="10" required>&nbsp;&nbsp;บาท</li>
+            <li style="font-size: 16px;"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="number" class="form-control numonly" name="totalcost" id="totalcost" size="10" data-minlength="5" min="0" max="99999" required>&nbsp;&nbsp;บาท</li>
           </div>
         </ul>
       </li>
@@ -252,9 +256,9 @@ function deleteRow(r) {
     <br>
     <br>
     <div align="center">
-      <input type="button" style="font-size: 18px;" class="btn btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล"> &nbsp;
-      <input type="button" style="font-size: 18px;" class="btn btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
-      <input type="button" style="font-size: 18px;" class="btn btn-danger" name="resetbtn" id="resetbtn" value="รีเซ็ตข้อมูล">
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล"> &nbsp;
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" value="รีเซ็ตข้อมูล">
     </div>
 
 </div>
