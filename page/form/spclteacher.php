@@ -92,19 +92,21 @@ function deleteRow(r) {
     <center>
       <h3 class="page-header">แบบขออนุมัติเชิญอาจารย์พิเศษ คณะเภสัชศาสตร์</h3>
       <div class="form-inline">
-              <h style="font-size: 14px;;">รหัสกระบวนวิชา
-              <input class="form-control" id="course_find" placeholder="Ex.204111" style="width: 100px;">
+        <form data-toggle="validator" role="form">
+              <h style="font-size: 14px;">รหัสกระบวนวิชา
+              <input class="form-control" id="course_find" placeholder="Ex.204111" style="width: 100px;" required>
                ภาคการศึกษาที่
                <div class="form-group">
-                   <select class="form-control" id="semester" style="width: 70px; ">
+                   <select class="form-control" id="semester" style="width: 70px; " required>
                        <option>1</option>
                        <option>2</option>
                        <option>3</option>
                    </select>
                </div>
                ปีการศึกษา
-               <input class="form-control" id="year" placeholder="e.g. 2560" style="width: 100px;">
-               <button type="button" class="btn btn-primary">ค้นหา</button></h>
+               <input class="form-control" id="year" placeholder="e.g. 2560" style="width: 100px;" required>
+               <input type="submit" class="btn btn-primary" value="ค้นหา"></h>
+             </form>
        </div>
     </center>
   </div>
@@ -118,33 +120,33 @@ function deleteRow(r) {
         <div class="row">
           <ul>
           <div class="form-inline">
-            <li>ชื่อ &nbsp;&nbsp;<input type="text" class="form-control charonly" id="fname" size="20">&nbsp;&nbsp;&nbsp;&nbsp;
-            นามสกุล &nbsp;&nbsp;<input type="text" class="form-control charonly" id="lname" size="20"></li>
+            <li>ชื่อ &nbsp;&nbsp;<input type="text" class="form-control charonly" id="fname" size="20" required>&nbsp;&nbsp;&nbsp;&nbsp;
+            นามสกุล &nbsp;&nbsp;<input type="text" class="form-control charonly" id="lname" size="20" required></li>
           </div>
 
           <div class="form-inline">
-            <li>ตำแหน่ง &nbsp;&nbsp;<input type="text" class="form-control charonly" id="position" size="35"></li>
+            <li>ตำแหน่ง &nbsp;&nbsp;<input type="text" class="form-control charonly" id="position" size="35" required></li>
           </div>
 
           <div class="form-inline">
-            <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<input type="text" class="form-control charonly" id="qualification" size="35"></li>
+            <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<input type="text" class="form-control charonly" id="qualification" size="35" required></li>
           </div>
 
           <div class="form-inline">
-            <li>สถานที่ทำงาน &nbsp;&nbsp;<br /><textarea class="form-control" id="workplace" rows="4" cols="70"></textarea></li>
+            <li>สถานที่ทำงาน &nbsp;&nbsp;<br /><textarea class="form-control" id="workplace" rows="4" cols="70"  required></textarea></li>
           </div>
 
           <div class="form-inline">
-            <li>สถานที่ติดต่อ  &nbsp;&nbsp;<br /><textarea class="form-control" id="contactplace" rows="4" cols="70"></textarea></li>
+            <li>สถานที่ติดต่อ  &nbsp;&nbsp;<br /><textarea class="form-control" id="contactplace" rows="4" cols="70" required></textarea></li>
           </div>
 
           <div class="form-inline">
-            <li>โทรศัพท์ &nbsp;&nbsp;<input type="text" class="form-control numonly" id="tel" size="20" maxlength="10">
-              &nbsp;ต่อ&nbsp;<input type="text" class="form-control numonly" id="subtel" size="2" maxlength="2"></li>
+            <li>โทรศัพท์ &nbsp;&nbsp;<input type="text" class="form-control numonly" id="tel" size="20" maxlength="10" required>
+              &nbsp;ต่อ&nbsp;<input type="text" class="form-control numonly" id="subtel" size="2" maxlength="2" required></li>
         </div>
 
         <div class="form-inline">
-          <li>E-mail &nbsp;&nbsp;<input style="height: 25px;" type="email" class="form-control" id="qualification" size="45"></li>
+          <li>E-mail &nbsp;&nbsp;<input style="height: 25px;" type="email" class="form-control" id="qualification" size="45" required></li>
         </div>
       </ul>
     </div>
@@ -155,7 +157,7 @@ function deleteRow(r) {
           <div class="row">
             <ul>
               <div class="form-inline">
-                <li>รหัสกระบวนวิชาที่สอน &nbsp;<input type="text" class="form-control numonly" name="" id="course" size="6" maxlength="6"></li>
+                <li>รหัสกระบวนวิชาที่สอน &nbsp;<input type="text" class="form-control numonly" name="" id="course" size="6" maxlength="6" required></li>
               </div>
               <div class="form-inline">
                 <li>กระบวนวิชานี้เป็นวิชา &nbsp;<br />
@@ -177,10 +179,10 @@ function deleteRow(r) {
                 </li>
               </div>
               <div class="form-inline">
-                <li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control numonly" name="" id="hour" size="3" maxlength="3"> &nbsp;ของทั้งกระบวนวิชา</li>
+                <li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control numonly" name="" id="hour" size="3" maxlength="3" required> &nbsp;ของทั้งกระบวนวิชา</li>
               </div>
               <div class="form-inline">
-                <li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70"></textarea></li>
+                <li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70" required></textarea></li>
               </div>
                 <li> รายละเอียดในการสอน <br>
                   <div class="col-md-10">
@@ -192,7 +194,7 @@ function deleteRow(r) {
                       <th style="text-align: center;">ห้องเรียน</th>
                     </tr>
                     <tr>
-                      <td colspan="5" style="text-align: center;"><input type="button" class="btn btn-success" name="addbtn" id="adddetail" value="เพิ่ม"> </td>
+                      <td colspan="5" style="text-align: center;"><input type="button" class="btn btn-success" name="addbtn" id="adddetail" value="เพิ่ม" required> </td>
                     </tr>
                   </table>
                 </div>
@@ -214,10 +216,10 @@ function deleteRow(r) {
             <li>ค่าสอนพิเศษ</li>
             <div class="radio">
               <input type="radio"  name="costspec" id="costspec" value="choice1" checked>&nbsp;ปริญญาตรีบรรยาย 400/ชม.&nbsp;&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1hour" size="5" maxlength="3">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1cost" size="5" maxlength="10">&nbsp;&nbsp;บาท
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1hour" size="5" maxlength="3" required>&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1cost" size="5" maxlength="10">&nbsp;&nbsp;บาท
               <br>
               <input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ 200/ชม.&nbsp;&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2hour" size="5"maxlength="3">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2cost" size="5" maxlength="10">&nbsp;&nbsp;บาท
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2hour" size="5"maxlength="3" required>&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2cost" size="5" maxlength="10">&nbsp;&nbsp;บาท
             </div>
           </div>
           <div class="form-inline">
@@ -236,13 +238,13 @@ function deleteRow(r) {
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" checked>&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน 800 บาท/คน/คืน &nbsp;&nbsp;
             </div>
-            <br>จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="numnight" id="numnight" size="5" maxlength="3">&nbsp;&nbsp;คืน
-            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" maxlength="10">&nbsp;&nbsp;บาท
+            <br>จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="numnight" id="numnight" size="5" maxlength="3" required>&nbsp;&nbsp;คืน
+            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" maxlength="10" required>&nbsp;&nbsp;บาท
 
           </div>
           <br>
           <div class="form-inline">
-            <li style="font-size: 16px;"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control numonly" name="totalcost" id="totalcost" size="10" maxlength="10">&nbsp;&nbsp;บาท</li>
+            <li style="font-size: 16px;"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control numonly" name="totalcost" id="totalcost" size="10" maxlength="10" required>&nbsp;&nbsp;บาท</li>
           </div>
         </ul>
       </li>
