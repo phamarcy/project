@@ -92,6 +92,21 @@ function lock(object,type)
   $(object).find("button[name=submit]").prop('disabled',type);
   $(object).find("#edit").prop('disabled',!type);
 }
+function checkdate(date_before,date_after)
+{
+    if(date_after.getTime() > date_before.getTime())
+    {
+      return 1;
+    }
+    else if (date_after.getTime() < date_before.getTime())
+    {
+      return -1;
+    }
+    else
+    {
+      return 0;
+    }
+}
 $(document).ready(function() {
     $("#addbtn_approve").click(function() {
         var i = 0;
@@ -111,6 +126,47 @@ $(document).ready(function() {
     });
 
 });
+
+//check is last_date greater than first_date
+$(document).on('change', '#lastdate', function() {
+    var last_date = new Date($(this).val());
+    var first_date = $(this).parent().find("#opendate").val();
+    if(first_date != null)
+    {
+        first_date = new Date($(this).parent().find("#opendate").val());
+        var result = checkdate(first_date,last_date);
+        if(result != 1)
+        {
+          $(this).parent().find("#warning").html('วันที่ไม่ถูกต้อง');
+          $(this).parent().find("#warning").css("color","red");
+        }
+        else
+        {
+          $(this).parent().find("#warning").html('');
+        }
+    }
+});
+
+$(document).on('change', '#opendate', function() {
+    var last_date = $(this).parent().find("#lastdate").val();
+    var first_date = new Date($(this).val());
+    console.log(last_date);
+    if(last_date != '')
+    {
+        last_date = new Date($(this).parent().find("#lastdate").val());
+        var result = checkdate(first_date,last_date);
+        if(result != 1)
+        {
+          $(this).parent().find("#warning").html('วันที่ไม่ถูกต้อง');
+          $(this).parent().find("#warning").css("color","red");
+        }
+        else
+        {
+          $(this).parent().find("#warning").html('');
+        }
+    }
+});
+
 $(document).on('click', "#submitbtn_course", function() {
     if (confirm('ต้องการบันทึกหรือไม่ ?')) {
     var button = $(this);
@@ -220,7 +276,7 @@ $(document).on('click', "#edit", function() {
                                         <br>
                                         <div class="form-inline">
                                             วันเปิดการกรอกข้อมูลกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการกรอกข้อมูลกระบวนวิชา <input class="form-control" type="date" id="lastdate">
+                                            วันสุดท้ายของการกรอกข้อมูลกระบวนวิชา <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
                                         </div>
                                         <br>
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
@@ -262,6 +318,7 @@ $(document).on('click', "#edit", function() {
                                         <div class="form-inline">
                                             วันเปิดการอนุมัติกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
                                             วันสุดท้ายของการอนุมัติกระบวนวิชา <input class="form-control" type="date" id="lastdate">
+                                            <div id="warning"></div>
                                         </div>
                                         <br>
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
