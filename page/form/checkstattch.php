@@ -81,7 +81,7 @@
                      <label for="inputyear" class="control-label">ปีการศึกษา</label>
                      <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required>
                    </div>
-                  <button type="submit" class="btn btn-primary">ค้นหา</button>
+                  <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
            </div>
         </form>
   </center>
@@ -244,7 +244,7 @@
           </div>
           <div id="collapse11" class="panel-collapse collapse">
             <div class="panel-body">กรุณากรอกชื่อวันและเวลาที่แน่นอนสำหรับการหยุดสอน
-              <br><br><button class="btn btn-danger" name="editeva" id="editeva" >แก้ไข</button>
+              <br><br><button class="btn btn-outline btn-danger" name="editeva" id="editeva" >แก้ไข</button>
             </div>
           </div>
         </div>

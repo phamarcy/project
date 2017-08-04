@@ -38,7 +38,6 @@
  	<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 
   <link rel="stylesheet" href="../dist/css/scrollbar.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
   <style>
   input[type=text],input[type=number]{
     height: 30px;
@@ -598,7 +597,7 @@ function deleteRow2(r) {
   <center>
     <h3 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์</h3>
 
-        <form data-toggle="validator" role="form">
+        <form >
           <div class="form-inline" style="font-size:16px;">
                     <div class="form-group">
                        <label id="semester" class="control-label">รหัสกระบวนวิชา</label>
@@ -617,7 +616,7 @@ function deleteRow2(r) {
                      <label for="inputyear" class="control-label">ปีการศึกษา</label>
                      <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required>
                    </div>
-                  <button type="submit" class="btn btn-primary">ค้นหา</button>
+                  <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
            </div>
         </form>
 
@@ -625,14 +624,14 @@ function deleteRow2(r) {
   </center>
 </div>
 
-<form action="" name="form1" method="post"  data-toggle="validator" role="form">
+<form action="" name="form1" method="post">
   <div class="form-group" id="bgmain">
     <ol>
       <br>
       <li style="font-size: 14px">
         <div class="form-inline">
           <div class="form-group">
-          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="number" class="form-control numonly" name="COURSE_ID" id="COURSE_ID" data-minlength="6" min="0" max="999999" required data-required-error="กรุณากรอกข้อมูล">
+          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="number" class="form-control numonly" name="COURSE_ID" id="COURSE_ID"  min="0" max="999999" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')">
             <div class="form-group">
               <div class="help-block with-errors"></div>
             </div>
@@ -1075,7 +1074,7 @@ function deleteRow2(r) {
                 <td><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="2" required></td>
               </tr>
               <tr>
-                <td colspan="4">3. อื่นๆ โปรดระบุ งานมอบหมาย &nbsp;&nbsp;<input type="button" class="btn btn-success" name="addbtn" id="addbtn" value="เพิ่ม"> </td>
+                <td colspan="4">3. อื่นๆ โปรดระบุ งานมอบหมาย &nbsp;&nbsp;<input type="button" class="btn btn-outline btn-success" name="addbtn" id="addbtn" value="เพิ่ม"> </td>
               </tr>
               <tr>
                 <td colspan="2" style="text-align: center;"><b>รวมคะแนน</b></td>
@@ -1102,7 +1101,7 @@ function deleteRow2(r) {
                       <td align="center">&nbsp;สัดส่วนการให้คะแนน&nbsp;</td>
                     </tr>
                     <tr>
-                      <td align="center" colspan="2"><input type="button" class="btn btn-success" name="addbtnsa" id="addbtnsa" value="เพิ่ม"></td>
+                      <td align="center" colspan="2"><input type="button" class="btn btn-outline btn-success" name="addbtnsa" id="addbtnsa" value="เพิ่ม"></td>
                     </tr>
                     <tr>
                       <td align="right"><b>รวมคะแนน</b></td>
@@ -1123,7 +1122,7 @@ function deleteRow2(r) {
                       <td align="center">&nbsp;สัดส่วนการให้คะแนน&nbsp;</td>
                     </tr>
                     <tr>
-                      <td align="center" colspan="2"><input type="button" class="btn btn-success" name="addbtnsa2" id="addbtnsa2" value="เพิ่ม"></td>
+                      <td align="center" colspan="2"><input type="button" class="btn btn-outline btn-success" name="addbtnsa2" id="addbtnsa2" value="เพิ่ม"></td>
                     </tr>
                     <tr>
                       <td align="right"><b>รวมคะแนน</b></td>
@@ -1248,9 +1247,9 @@ function deleteRow2(r) {
     </div>
     <br><br>
     <div align="center">
-      <input type="button" style="font-size: 18px;" class="btn btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" onClick="submitfunc()"> &nbsp;
-      <input type="button" style="font-size: 18px;" class="btn btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
-      <input type="button" style="font-size: 18px;" class="btn btn-danger" name="resetbtn" id="resetbtn" value="รีเซ็ตข้อมูล">
+      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" value="รีเซ็ตข้อมูล">
     </div>
 </form>
 </div>
