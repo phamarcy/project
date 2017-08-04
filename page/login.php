@@ -1,4 +1,4 @@
-<?php 
+<?php
 if(isset($_POST['level']))
 {
     session_start();
@@ -72,6 +72,7 @@ if(isset($_POST['level']))
                                             <option value="4">คณะกรรมการภาค</option>
                                             <option value="5">คณะกรรมการคณะ</option>
                                             <option value="6">ผู้บริหาร</option>
+                                            <option value="7">admin</option>
                                         </select>
                                     </div>
                                 <input type="submit" class="btn btn-lg btn-success btn-block" name="submitbtn">

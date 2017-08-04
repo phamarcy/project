@@ -3,6 +3,9 @@
 	if(!isset($_SESSION['level']))
 	{
 	    header('Location: login.php');
+	}else if($_SESSION['level'] == 7)
+	{
+		header('Location: form/admin.php');
 	}
 	$_SESSION["indexteacher"] = true;
  ?>
@@ -59,41 +62,6 @@
 	        ifrm.style.height = "100%";
 	        ifrm.frameBorder = 0;
          	document.getElementById("frm").src = url;
-			// var xhttp;
-			// if (window.XMLHttpRequest) {
-			// 	// code for modern browsers
-			// 	xhttp = new XMLHttpRequest();
-			// } else {
-			// 	// code for IE6, IE5
-			// 	xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			// }
-			// xhttp.onreadystatechange = function() {
-			// 	if (this.readyState == 4 && this.status == 200) {
-			// 		var content = document.createElement("div");
-			//         content.innerHTML = xhttp.responseText
-
-			//      	var old_script = document.getElementById("loadscript");
-			//      	if(old_script !== null)
-			//      	{
-			//      		document.body.removeChild(old_script);
-			//      	}
-
-			//         var contentScript = content.querySelector("#contentScript");
-
-			//         var main_script = document.getElementById("mainpage");
-
-			//         var script = document.createElement("script");
-			//         script.setAttribute("id", "loadscript");
-			//         document.getElementById("page-wrapper").innerHTML = this.responseText;
-			//         if(contentScript !== null)
-			//         {
-			//         	script.textContent = contentScript.textContent;
-			//         	document.body.appendChild(script);
-			//         }
-			// 	}
-			// };
-			// xhttp.open("POST", url, true);
-			// xhttp.send();
 		}
 	</script>
 
@@ -351,16 +319,6 @@
 			<div class="navbar-default sidebar" role="navigation">
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
-						<!--<li class="sidebar-search">
-							<div class="input-group custom-search-form">
-								<input type="text" class="form-control" placeholder="Search...">
-								<span class="input-group-btn">
-														<button class="btn btn-default" type="button">
-																<i class="fa fa-search"></i>
-														</button>
-												</span>
-							</div>
-						</li>-->
 						<li>
 							<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
 						</li>

@@ -51,8 +51,15 @@ function loaddata(type) {
     var object;
     $.getJSON(url, function(result) {
     }).done(function(result) {
-        if (typeof result.data === 'undefined' || result.data === null) {
-            $("#loading").html('<div class="alert alert-danger">Error : ' + result.error + '</div>');
+        if (typeof result.data === 'undefined' || result.data === null ) {
+            if(typeof result.error === 'undefined' || result.error === null)
+            {
+              $("#loading").html('<div class="alert alert-danger">Error : Loding failed </div>');
+            }
+            else
+            {
+              $("#loading").html('<div class="alert alert-danger">Error : ' + result.error + '</div>');
+            }
         } else {
             render(result.data,type);
         }
@@ -66,9 +73,9 @@ function render(data,type) {
     for (var i = 0; i < count; i++) {
         object = document.getElementById("group_"+type).cloneNode(true);
         $(object).find("#year").val(data[i].year);
-        $(object).find("#semester").val(data[i].semester);
-        $(object).find("#opendate").val(data[i].opendate);
-        $(object).find("#lastdate").val(data[i].lastdate);
+        $(object).find("#semester").val(data[i].semester_num);
+        $(object).find("#opendate").val(data[i].open_date);
+        $(object).find("#lastdate").val(data[i].last_date);
         $(object).find("#delete").prop('disabled', false);
         lock(object,true);
         $(object).appendTo("#body_"+type);
@@ -112,9 +119,18 @@ $(document).on('click', "#submitbtn_course", function() {
     $(form).find("input[id]").each(function(index, node) {
         formData[node.id] = node.value;
     });
+    formData['semester'] = $(form).find('#semester').val();
     $.post(url, { 'DATA': formData }).done(function(data) {
-        alert(data);
-        lock(form,true);
+        console.log(data);
+        var result = JSON.parse(data);
+        if (typeof result.success === 'undefined' || result.success === null ) {
+            alert(result.error);
+        }
+        else {
+          alert(result.success);
+          lock(form,true);
+        }
+
     }).fail(function() {
       alert("Cannot update data, please contact admin");
       });
@@ -127,9 +143,17 @@ $(document).on('click', "#submitbtn_approve", function() {
     $(form).find("input[id]").each(function(index, node) {
         formData[node.id] = node.value;
     });
+    formData['semester'] = $(form).find('#semester').val();
     $.post(url, { 'DATA': formData }).done(function(data) {
-        alert(data);
-        lock(form,true);
+        console.log(data);
+        var result = JSON.parse(data);
+        if (typeof result.success === 'undefined' || result.success === null ) {
+            alert(result.error);
+        }
+        else {
+          alert(result.success);
+          lock(form,true);
+        }
     }).fail(function() {
       alert("Cannot update data, please contact admin");
       });
@@ -189,6 +213,7 @@ $(document).on('click', "#edit", function() {
                                             วันเปิดการกรอกข้อมูลกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
                                             วันสุดท้ายของการกรอกข้อมูลกระบวนวิชา <input class="form-control" type="date" id="lastdate">
                                         </div>
+                                        <br>
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_course"  name="submit">บันทึก</button>
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
@@ -229,6 +254,7 @@ $(document).on('click', "#edit", function() {
                                             วันเปิดการอนุมัติกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
                                             วันสุดท้ายของการอนุมัติกระบวนวิชา <input class="form-control" type="date" id="lastdate">
                                         </div>
+                                        <br>
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_approve" name="submit">บันทึก</button>
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>

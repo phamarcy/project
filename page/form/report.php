@@ -37,6 +37,7 @@
  <link rel="stylesheet" href="../dist/css/scrollbar.css">
 </header>
 <script type="text/javascript">
+//search report data in first load
 function search() {
     $('#searchstatus').html("<img src='../../application/picture/loading_icon.gif' height='35' >");
     var URL = '../../application/report/staff_report.php';
@@ -63,6 +64,7 @@ function search() {
         }
     });
 }
+//render data boxes
 function render(data)
 {
     //create report panel
