@@ -1,4 +1,8 @@
 <?php
+
+// this class is use for manage deadline data
+// adiluck chooprateep adiluckyo@gmail.com
+
 require_once('Database.php');
 //require_once('Log.php');
 Class Deadline
@@ -11,7 +15,8 @@ Class Deadline
       $this->DB = new Database();
       $this->LOG = new Log();
   }
-
+//Search all data from database
+//require string type : course,approve
   public function Search_all($type)
   {
       if($type == 'course')
@@ -34,6 +39,8 @@ Class Deadline
       }
   }
 
+//update data in Database
+//require array : data, string : type
   public function Update($data,$type)
   {
 

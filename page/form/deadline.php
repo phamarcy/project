@@ -37,6 +37,8 @@ session_start();
 }
 </style>
 <script type="text/javascript">
+
+//show loading gif
 function loaddataAll()
 {
     $('#loading').html("<center><img src='../../application/picture/loading_icon.gif'></center>");
@@ -44,6 +46,8 @@ function loaddataAll()
     loaddata('course');
     loaddata('approve');
 }
+
+//get deadline data
 function loaddata(type) {
 
     url = "../../application/deadline/update_deadline.php?type="+type+"&query=search";
@@ -68,6 +72,7 @@ function loaddata(type) {
         });
 }
 
+// render data boxes
 function render(data,type) {
     var count = data.length;
     for (var i = 0; i < count; i++) {
@@ -83,6 +88,8 @@ function render(data,type) {
     $("#loading").html("");
     $(".container").fadeIn();
 }
+
+//lock,unlock all input
 function lock(object,type)
 {
   $(object).find("#year").prop('disabled', type);
@@ -92,6 +99,8 @@ function lock(object,type)
   $(object).find("button[name=submit]").prop('disabled',type);
   $(object).find("#edit").prop('disabled',!type);
 }
+
+//validate is date data correct?
 function checkdate(date_before,date_after)
 {
     if(date_after.getTime() > date_before.getTime())
@@ -107,7 +116,9 @@ function checkdate(date_before,date_after)
       return 0;
     }
 }
+
 $(document).ready(function() {
+  //add more data button
     $("#addbtn_approve").click(function() {
         var i = 0;
         var object = document.getElementById("group_approve");
@@ -147,6 +158,7 @@ $(document).on('change', '#lastdate', function() {
     }
 });
 
+//check if date is correct
 $(document).on('change', '#opendate', function() {
     var last_date = $(this).parent().find("#lastdate").val();
     var first_date = new Date($(this).val());
@@ -167,6 +179,7 @@ $(document).on('change', '#opendate', function() {
     }
 });
 
+//submit data to database
 $(document).on('click', "#submitbtn_course", function() {
     if (confirm('ต้องการบันทึกหรือไม่ ?')) {
     var button = $(this);
@@ -223,10 +236,14 @@ $(document).on('click', "#submitbtn_approve", function() {
         // Do nothing!
     }
 });
+
+//delete data boxes
 $(document).on('click', "#delete", function() {
     var object = $(this).parent().parent();
     $(object).fadeOut(300, function() { $(this).remove(); });
 });
+
+//edit data
 $(document).on('click', "#edit", function() {
     var object = $(this).parent();
     lock(object,false);
