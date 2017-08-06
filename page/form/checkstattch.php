@@ -67,7 +67,7 @@
   <center>
     <h3 class="page-header">การอนุมัติกระบวนวิชา</h3>
         <form data-toggle="validator" role="form">
-          <div class="form-inline" style="font-size:16px;">
+          <div class="form-inline" style="font-size:14px;">
                    <div class="form-group">
                       <label id="semester" class="control-label">ปีการศึกษา</label>
                        <select class="form-control required" id="semester" style="width: 70px;" id="select" required>
@@ -94,36 +94,36 @@
 
   <div class="panel panel-info">
     <div class="panel-heading">
-      <h4 class="panel-title">
+      <h3 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
         <i class="fa fa-search fa-fw"></i><b> รายชื่อกระบวนวิชา</b> ภาคการศึกษาที่ 1 ปีการศึกษา 2560</a>
-      </h4>
+      </h3>
     </div>
     <div id="collapse1" class="panel-collapse collapse in">
-      <div class="panel-body">
+      <div class="panel-body" style="font-size:14px;">
         <!-- 1 -->
         <div class="panel-group" id="accordion1">
         <div class="panel panel-success">
           <div class="panel-heading">
-            <h4 class="panel-title">
+            <h3 class="panel-title">
               <a data-toggle="collapse" href="#collapse2">
               <li><b><u>รหัสกระบวนวิชา</u></b> : 204111 <b>ตอนที่</b> 1 <b>ภาคปกติ</b></a></li>
               <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b>
-            </h4>
+            </h3>
           </div>
           <div id="collapse2" class="panel-collapse collapse">
-            <div class="panel-body">
+            <div class="panel-body" style="font-size:14px;">
 
               <div class="panel-group">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h4 class="panel-title">
+                  <h3 class="panel-title">
                     <a data-toggle="collapse" href="#collapse3">
                      <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
-                  </h4>
+                  </h3>
                 </div>
                 <div id="collapse3" class="panel-collapse collapse">
-                  <div class="panel-body">ไม่มีคอมเมนท์</div>
+                  <div class="panel-body" style="font-size:14px;">ไม่มีคอมเมนท์</div>
                 </div>
               </div>
             </div>
@@ -131,13 +131,13 @@
             <div class="panel-group">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h4 class="panel-title">
+                <h3 class="panel-title">
                   <a data-toggle="collapse" href="#collapse4">
                   <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
-                </h4>
+                </h3>
               </div>
               <div id="collapse4" class="panel-collapse collapse">
-                <div class="panel-body">ไม่มีคอมเมนท์</div>
+                <div class="panel-body" style="font-size:14px;">ไม่มีคอมเมนท์</div>
               </div>
             </div>
           </div>
@@ -145,13 +145,13 @@
           <div class="panel-group">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4 class="panel-title">
+              <h3 class="panel-title">
                 <a data-toggle="collapse" href="#collapse5">
                   <i class="fa fa-file-o fa-fw"></i><b> Course Syllabus </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
-              </h4>
+              </h3>
             </div>
             <div id="collapse5" class="panel-collapse collapse">
-              <div class="panel-body">ไม่มีคอมเมนท์</div>
+              <div class="panel-body" style="font-size:14px;">ไม่มีคอมเมนท์</div>
             </div>
           </div>
         </div>
@@ -165,25 +165,25 @@
       <div class="panel-group" id="accordion2">
       <div class="panel panel-warning">
         <div class="panel-heading">
-          <h4 class="panel-title">
+          <h3 class="panel-title">
             <a data-toggle="collapse" href="#collapse6">
             <li><b><u>รหัสกระบวนวิชา</u></b> : 204111 <b>ตอนที่</b> 2 <b>ภาคปกติ</b></a></li>
             <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <b id="statwt">รอการพิจารนา <i class="fa fa-clock-o fa-fw"></i></b>
-          </h4>
+          </h3>
         </div>
         <div id="collapse6" class="panel-collapse collapse">
-          <div class="panel-body">
+          <div class="panel-body" style="font-size:14px;">
 
             <div class="panel-group">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h4 class="panel-title">
+                <h3 class="panel-title">
                   <a data-toggle="collapse" href="#collapse7">
                    <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statwt">รอการพิจารนา <i class="fa fa-clock-o fa-fw"></i></b></a>
-                </h4>
+                </h3>
               </div>
               <div id="collapse7" class="panel-collapse collapse">
-                <div class="panel-body">ไม่มีคอมเมนท์</div>
+                <div class="panel-body" style="font-size:14px;">ไม่มีคอมเมนท์</div>
               </div>
             </div>
           </div>
@@ -191,13 +191,13 @@
           <div class="panel-group">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4 class="panel-title">
+              <h3 class="panel-title">
                 <a data-toggle="collapse" href="#collapse8">
                 <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
-              </h4>
+              </h3>
             </div>
             <div id="collapse8" class="panel-collapse collapse">
-              <div class="panel-body">ไม่มีคอมเมนท์</div>
+              <div class="panel-body" style="font-size:14px;">ไม่มีคอมเมนท์</div>
             </div>
           </div>
         </div>
@@ -211,25 +211,25 @@
     <div class="panel-group" id="accordion3">
     <div class="panel panel-danger">
       <div class="panel-heading">
-        <h4 class="panel-title">
+        <h3 class="panel-title">
           <a data-toggle="collapse" href="#collapse9">
           <li><b><u>รหัสกระบวนวิชา</u></b> : 204111 <b>ตอนที่</b> 3 <b>ภาคพิเศษ</b></a></li>
           <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <b id="statn">ไม่ผ่านการอนุมัติ <i class="fa fa-times fa-fw"></i></b>
-        </h4>
+        </h3>
       </div>
       <div id="collapse9" class="panel-collapse collapse">
-        <div class="panel-body">
+        <div class="panel-body" style="font-size:14px;">
 
           <div class="panel-group">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4 class="panel-title">
+              <h3 class="panel-title">
                 <a data-toggle="collapse" href="#collapse10">
                  <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
-              </h4>
+              </h3>
             </div>
             <div id="collapse10" class="panel-collapse collapse">
-              <div class="panel-body">ไม่มีคอมเมนท์</div>
+              <div class="panel-body" style="font-size:14px;">ไม่มีคอมเมนท์</div>
             </div>
           </div>
         </div>
@@ -237,13 +237,13 @@
         <div class="panel-group">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title">
+            <h3 class="panel-title">
               <a data-toggle="collapse" href="#collapse11">
               <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statn">ไม่ผ่านการอนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
-            </h4>
+            </h3>
           </div>
           <div id="collapse11" class="panel-collapse collapse">
-            <div class="panel-body">กรุณากรอกชื่อวันและเวลาที่แน่นอนสำหรับการหยุดสอน
+            <div class="panel-body" style="font-size:14px;">กรุณากรอกชื่อวันและเวลาที่แน่นอนสำหรับการหยุดสอน
               <br><br><button class="btn btn-outline btn-danger" name="editeva" id="editeva" >แก้ไข</button>
             </div>
           </div>
@@ -259,25 +259,25 @@
     <div class="panel-group" id="accordion4">
     <div class="panel panel-warning">
       <div class="panel-heading">
-        <h4 class="panel-title">
+        <h3 class="panel-title">
           <a data-toggle="collapse" href="#collapse12">
           <li><b><u>รหัสกระบวนวิชา</u></b> : 001101 <b>ตอนที่</b> 1 <b>ภาคปกติ</b></a></li>
           <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <b id="statal">ภาควิชาเห็นชอบ รอคณะบดีอนุมัติ <i class="fa fa-user fa-fw"></i></b>
-        </h4>
+        </h3>
       </div>
       <div id="collapse12" class="panel-collapse collapse">
-        <div class="panel-body">
+        <div class="panel-body" style="font-size:14px;">
 
           <div class="panel-group">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4 class="panel-title">
+              <h3 class="panel-title">
                 <a data-toggle="collapse" href="#collapse13">
                  <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
-              </h4>
+              </h3>
             </div>
             <div id="collapse13" class="panel-collapse collapse">
-              <div class="panel-body">ไม่มีคอมเมนท์</div>
+              <div class="panel-body" style="font-size:14px;">ไม่มีคอมเมนท์</div>
             </div>
           </div>
         </div>
@@ -285,13 +285,13 @@
         <div class="panel-group">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title">
+            <h3 class="panel-title">
               <a data-toggle="collapse" href="#collapse14">
               <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statal">ภาควิชาเห็นชอบ รอคณะบดีอนุมัติ <i class="fa fa-user fa-fw"></i></b></a>
-            </h4>
+            </h3>
           </div>
           <div id="collapse14" class="panel-collapse collapse">
-            <div class="panel-body">ไม่มีคอมเมนท์
+            <div class="panel-body" style="font-size:14px;">ไม่มีคอมเมนท์
             </div>
           </div>
         </div>

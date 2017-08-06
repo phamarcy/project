@@ -54,7 +54,7 @@ div[class^="col-"] {
                            </div>
                            <div class="form-group">
                              <label for="inputyear" class="control-label">ปีการศึกษา</label>
-                             <input type="text" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"    max="9999" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษา')" oninput="setCustomValidity('')" title="กรุณากรอกตัวเลข">
+                             <input type="text" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"    max="9999" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษา')" oninput="setCustomValidity('')" pattern=".{4,4}"  oninvalid="setCustomValidity('Plz enter on Alphabets ')" onchange="try{setCustomValidity('')} catch(e){}">
                                <div class="form-group">
                                  <div class="help-block with-errors" style="font-size:12px;"></div>
                                </div>
@@ -131,13 +131,13 @@ div[class^="col-"] {
                                                                           <div class="form-group">
                                                                             <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
                                                                           </div>
-                                                                          <button class="btn btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                          <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
                                                                         </form>
                                                                       </div>
                                                                     </div>
                                                                 </div>
                                                               </div>
-                                                              <div class="panel panel-green">
+                                                              <div class="panel panel-success">
                                                                 <div class="panel-heading">
                                                                   <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
@@ -229,23 +229,23 @@ div[class^="col-"] {
                                     <div id="collapseTwo" class="panel-collapse collapse">
                                         <div class="panel-body">
                                           <div class="table-responsive">
-                                              <table class="table table-striped table-hover">
+                                              <table class="table ">
                                                   <thead>
                                                       <tr>
-                                                          <th>#</th>
-                                                          <th>รหัสวิชา</th>
-                                                          <th>ชื่อวิชา</th>
-                                                          <th>อาจารย์ผู้สอน</th>
-                                                          <th>เอกสาร</th>
-                                                          <th>เอกสาร</th>
-                                                          <th>เอกสาร</th>
-                                                          <th></th>
+                                                        <th>#</th>
+                                                        <th>รหัสวิชา</th>
+                                                        <th>ชื่อวิชา</th>
+                                                        <th  style="text-align:center;">Course</th>
+                                                        <th  style="text-align:center;">Evaluate</th>
+                                                        <th  style="text-align:center;">Special</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
                                                       </tr>
                                                   </thead>
                                                   <tbody>
                                                       <tr >
                                                           <td>1</td>
-                                                          <td>Mark</td>
                                                           <td>Mark</td>
                                                           <td>Otto</td>
                                                           <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
@@ -271,7 +271,6 @@ div[class^="col-"] {
                                                       <tr>
                                                           <td>2</td>
                                                           <td>Jacob</td>
-                                                          <td>Mark</td>
                                                           <td>Thornton</td>
                                                           <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
@@ -296,7 +295,6 @@ div[class^="col-"] {
                                                       <tr  >
                                                           <td>3</td>
                                                           <td>Larry</td>
-                                                          <td>Mark</td>
                                                           <td>the Bird</td>
                                                           <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
@@ -333,23 +331,23 @@ div[class^="col-"] {
                                     <div id="collapseThree" class="panel-collapse collapse">
                                         <div class="panel-body">
                                           <div class="table-responsive">
-                                              <table class="table table-striped table-hover" >
+                                              <table class="table  " >
                                                   <thead>
                                                       <tr>
-                                                          <th>#</th>
-                                                          <th>รหัสวิชา</th>
-                                                          <th>ชื่อวิชา</th>
-                                                          <th>อาจารย์ผู้สอน</th>
-                                                          <th>เอกสาร</th>
-                                                          <th>เอกสาร</th>
-                                                          <th>เอกสาร</th>
-                                                          <th></th>
+                                                        <th>#</th>
+                                                        <th>รหัสวิชา</th>
+                                                        <th>ชื่อวิชา</th>
+                                                        <th  style="text-align:center;">Course</th>
+                                                        <th  style="text-align:center;">Evaluate</th>
+                                                        <th  style="text-align:center;">Special</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
                                                       </tr>
                                                   </thead>
                                                   <tbody>
                                                       <tr >
                                                           <td>1</td>
-                                                          <td>Mark</td>
                                                           <td>Mark</td>
                                                           <td>Otto</td>
                                                           <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
@@ -377,7 +375,6 @@ div[class^="col-"] {
 
                                                           <td>2</td>
                                                           <td>Jacob</td>
-                                                          <td>Mark</td>
                                                           <td>Thornton</td>
                                                           <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
@@ -403,7 +400,6 @@ div[class^="col-"] {
                                                       <tr>
                                                           <td>3</td>
                                                           <td>Larry</td>
-                                                          <td>Mark</td>
                                                           <td>the Bird</td>
                                                           <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
