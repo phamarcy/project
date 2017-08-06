@@ -89,8 +89,12 @@ session_start();
 									</div>
 							</div>
 						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับกรอกข้อมูลกระบวนวิชา 20 สิงหาคม 2560 </b></div>
-					</div>
-		<?php	}		?>
+						<br>
+		<?php	}
+					if($_SESSION['level'] >= 4) {  ?>
+						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา 20 สิงหาคม 2560 </b></div>
+						<?php } ?>
+			</div>
 		</div>
 	</body>
 </html>

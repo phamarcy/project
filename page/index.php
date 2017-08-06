@@ -172,7 +172,7 @@
 	</script>
 </header>
 
-<body>
+<body onload="loadDoc('form/home.php')">
 	<div id="wrapper">
 
 		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
