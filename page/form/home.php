@@ -92,7 +92,7 @@ session_start();
 						<br>
 		<?php	}
 					if($_SESSION['level'] == 4 || $_SESSION['level'] == 5) {  ?>
-						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับลงความเห็นกระบวนวิชา 25 สิงหาคม 2560 </b></div>
+						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับประเมิณกระบวนวิชา 25 สิงหาคม 2560 </b></div>
 						<?php }
 						else if($_SESSION['level'] == 6)
 						{ ?>
