@@ -57,7 +57,7 @@ session_start();
 				?>
 					<div class="well">
 						<center><h4><b> ภาคเรียนที่ 1 ปีการศึกษา 2560 </b></h4></center>
-						<h4> รายวิชาที่ต้องกรอกข้อมูล </h4><br>
+						<h4> รายวิชาที่รับผิดชอบ </h4><br>
 							<div class="panel panel-default">
 									<div class="panel-heading">
 											<div class="panel-title" style="font-size: 14px;">
@@ -65,11 +65,11 @@ session_start();
 											</div>
 									</div>
 									<div id="collapseOne" class="panel-collapse collapse">
-											<div class="panel-body">
-												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
-												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
-												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
-												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
+											<div class="panel-body" >
+												<div class="fa fa-circle"> 463503	Principles in Phytochemistry </div><br><br>
+												<div class="fa fa-circle"> 463512 Pharmaceutical Biotechnology 2 </div><br><br>
+												<div class="fa fa-circle"> 463543	Pharmaceutical Quality Assurance 3 </div><br><br>
+												<div class="fa fa-circle"> 463544	Pharmaceutical Quality Assurance 4 </div><br><br>
 											</div>
 									</div>
 							</div>
@@ -81,10 +81,10 @@ session_start();
 									</div>
 									<div id="collapseTwo" class="panel-collapse collapse">
 											<div class="panel-body">
-												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
-												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
-												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
-												<div class="fa fa-circle"> 204111 Fundamental of computer science </div><br><br>
+												<div class="fa fa-circle"> 463504	Natural Pharmaceutical Products </div><br><br>
+												<div class="fa fa-circle"> 463558	Pharmaceutical Compounding in Hospitals </div><br><br>
+												<div class="fa fa-circle"> 464541	Pharmacoepidemiology 2 </div><br><br>
+												<div class="fa fa-circle"> 464504 	Medication Risk Management and Drug Use Evaluation </div><br><br>
 											</div>
 									</div>
 							</div>
@@ -92,7 +92,7 @@ session_start();
 						<br>
 		<?php	}
 					if($_SESSION['level'] >= 4) {  ?>
-						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา 20 สิงหาคม 2560 </b></div>
+						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา 25 สิงหาคม 2560 </b></div>
 						<?php } ?>
 			</div>
 		</div>
