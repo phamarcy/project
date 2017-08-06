@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
 session_start();
+$result = curl($_SESSION['level']);
+$result = json_decode($result,true);
+$deadline = $result['deadline'];
+$data = $result['data'];
 ?>
 <html>
 	<head>
@@ -58,45 +62,36 @@ session_start();
 					<div class="well">
 						<center><h4><b> ภาคเรียนที่ 1 ปีการศึกษา 2560 </b></h4></center>
 						<h4> รายวิชาที่รับผิดชอบ </h4><br>
-							<div class="panel panel-default">
-									<div class="panel-heading">
-											<div class="panel-title" style="font-size: 14px;">
-													<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">ภาควิชา วิทยาศาสตร์เภสัชกรรม</a>
+						<?php for($i=0;$i<count($data);$i++)
+						{
+
+								echo '<div class="panel panel-default">
+										<div class="panel-heading">
+												<div class="panel-title" style="font-size: 14px;">
+														<a data-toggle="collapse" data-parent="#accordion" href="#'.$i.'">ภาควิชา '.$data[$i]['department'].
+														'</a>
+												</div>
+										</div>';
+								echo '<div id="'.$i.'" class="panel-collapse collapse">
+										<div class="panel-body" >';
+								for($j=0;$j<count($data[$i]['course']);$j++)
+								{
+									echo '<div class="fa fa-circle"> '.$data[$i]['course'][$j]['id'].'	'.$data[$i]['course'][$j]['name'].' </div><br><br>';
+								}
+								echo '	</div>
 											</div>
-									</div>
-									<div id="collapseOne" class="panel-collapse collapse">
-											<div class="panel-body" >
-												<div class="fa fa-circle"> 463503	Principles in Phytochemistry </div><br><br>
-												<div class="fa fa-circle"> 463512 Pharmaceutical Biotechnology 2 </div><br><br>
-												<div class="fa fa-circle"> 463543	Pharmaceutical Quality Assurance 3 </div><br><br>
-												<div class="fa fa-circle"> 463544	Pharmaceutical Quality Assurance 4 </div><br><br>
-											</div>
-									</div>
-							</div>
-							<div class="panel panel-default">
-									<div class="panel-heading">
-											<div class="panel-title" style="font-size: 14px;">
-													<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">ภาควิชา บริบาลเภสัชกรรม</a>
-											</div>
-									</div>
-									<div id="collapseTwo" class="panel-collapse collapse">
-											<div class="panel-body">
-												<div class="fa fa-circle"> 463504	Natural Pharmaceutical Products </div><br><br>
-												<div class="fa fa-circle"> 463558	Pharmaceutical Compounding in Hospitals </div><br><br>
-												<div class="fa fa-circle"> 464541	Pharmacoepidemiology 2 </div><br><br>
-												<div class="fa fa-circle"> 464504 	Medication Risk Management and Drug Use Evaluation </div><br><br>
-											</div>
-									</div>
-							</div>
-						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับกรอกข้อมูลกระบวนวิชา 20 สิงหาคม 2560 </b></div>
+									</div>';
+						}
+						?>
+						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับกรอกข้อมูลกระบวนวิชา <?php echo $deadline['edit']['day'].' '.$deadline['edit']['month'].' '.$deadline['edit']['year']; ?> </b></div>
 						<br>
 		<?php	}
 					if($_SESSION['level'] == 4 || $_SESSION['level'] == 5) {  ?>
-						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับประเมิณกระบวนวิชา 25 สิงหาคม 2560 </b></div>
+						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับประเมิณกระบวนวิชา <?php echo $deadline['con']['day'].' '.$deadline['con']['month'].' '.$deadline['con']['year']; ?> </b></div>
 						<?php }
 						else if($_SESSION['level'] == 6)
 						{ ?>
-							<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา 27 สิงหาคม 2560 </b></div>
+							<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline['approve']['day'].' '.$deadline['approve']['month'].' '.$deadline['approve']['year']; ?> </b></div>
 					<?php	} ?>
 			</div>
 		</div>
@@ -105,25 +100,30 @@ session_start();
 <?php
 function curl($type)
 {
-  $data['type'] = $type;
-  $url = '../../application/information/';
+	$schema = isset($_SERVER['HTTPS']) ? "https:" : "http:";
+	$dirname = basename(dirname(dirname((dirname($_SERVER['PHP_SELF'])))));
+	$url    = $schema."//".$_SERVER['HTTP_HOST']."/".$dirname."/application/information/index.php";
   $ch = curl_init();
+  // set url
+  curl_setopt($ch, CURLOPT_URL, $url);
+  //return the transfer as a string
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  //set post data
+	curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query(array('type' => $type)));
+  // $output contains the output string
+  $output = curl_exec($ch);
 
-        // set url
-        curl_setopt($ch, CURLOPT_URL, $url);
+	if($output=== false)
+	{
+			return 'Curl error: ' . curl_error($ch);
+	}
+	else
+	{
+			return $output;
+	}
+  // close curl resource to free up system resources
+	curl_close($ch);
 
-        //return the transfer as a string
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        //set post data
-        curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
-
-        // $output contains the output string
-        $output = curl_exec($ch);
-
-        // close curl resource to free up system resources
-        curl_close($ch);
-
-        return $output;
 }
  ?>

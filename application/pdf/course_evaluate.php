@@ -25,7 +25,7 @@ if(isset($_POST['data']))
 // }
 //require_once('example_data.php');
 require('fpdf17/fpdf.php');
-require_once('thai_date.php');
+require_once(__DIR__.'/../lib/thai_date.php');
 define('FPDF_FONTPATH','font/');
 
 $pdf=new FPDF();
