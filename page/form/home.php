@@ -91,9 +91,13 @@ session_start();
 						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับกรอกข้อมูลกระบวนวิชา 20 สิงหาคม 2560 </b></div>
 						<br>
 		<?php	}
-					if($_SESSION['level'] >= 4) {  ?>
-						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา 25 สิงหาคม 2560 </b></div>
-						<?php } ?>
+					if($_SESSION['level'] == 4 || $_SESSION['level'] == 5) {  ?>
+						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับลงความเห็นกระบวนวิชา 25 สิงหาคม 2560 </b></div>
+						<?php }
+						else if($_SESSION['level'] == 6)
+						{ ?>
+							<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา 27 สิงหาคม 2560 </b></div>
+					<?php	} ?>
 			</div>
 		</div>
 	</body>
