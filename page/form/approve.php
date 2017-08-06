@@ -73,6 +73,13 @@ div[class^="col-"] {
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
+                          <h4><b>หมายเหตุ</b></h4>
+                            <ol style="font-size:16px;">
+                                <li>Course Syllabus (Course)</li>
+                                <li>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา (Evaluate)</li>
+                                <li>แบบขออนุมัติอาจารย์พิเศษ (Special)</li>
+                                <p class="text-info">* คำย่อภาษาอังกฤษใช้เป็นตัวย่อในตาราง</p>
+                            </ol>
                             <div class="panel-group" id="accordion">
                                 <div class="panel panel-warning">
                                   <div class="panel-heading">
@@ -90,9 +97,9 @@ div[class^="col-"] {
                                                           <th>#</th>
                                                           <th>รหัสวิชา</th>
                                                           <th>ชื่อวิชา</th>
-                                                          <th  style="text-align:center;">1</th>
-                                                          <th  style="text-align:center;">2</th>
-                                                          <th  style="text-align:center;">3</th>
+                                                          <th  style="text-align:center;">Course</th>
+                                                          <th  style="text-align:center;">Evaluate</th>
+                                                          <th  style="text-align:center;">Special</th>
                                                           <th></th>
                                                           <th></th>
                                                           <th></th>
@@ -103,9 +110,9 @@ div[class^="col-"] {
                                                           <td>1</td>
                                                           <td>Mark</td>
                                                           <td>Otto</td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
@@ -160,18 +167,10 @@ div[class^="col-"] {
                                                           <td>2</td>
                                                           <td>Mark</td>
                                                           <td>Thornton</td>
-                                                          <td  style="text-align:center;">
-                                                            <button type="button" class="btn btn-outline btn-primary btn-circle "><i class="fa fa-file-word-o"></i></button>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <button type="button" class="btn btn-outline btn-primary btn-circle "><i class="fa fa-file-pdf-o"></i></button>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <button type="button" class="btn btn-outline btn-primary btn-circle "><i class="fa fa-file-pdf-o"></i></button>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <button type="button" class="btn btn-outline btn-primary btn-circle "><i class="fa fa-list"></i></button>
-                                                          </td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo2" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
                                                       </tr>
@@ -193,9 +192,9 @@ div[class^="col-"] {
                                                           <td>3</td>
                                                           <td>Mark</td>
                                                           <td>the Bird</td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo3" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
@@ -249,9 +248,9 @@ div[class^="col-"] {
                                                           <td>Mark</td>
                                                           <td>Mark</td>
                                                           <td>Otto</td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">Primary</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo21" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกอนุมัติ</button></td>
                                                       </tr>
@@ -274,11 +273,11 @@ div[class^="col-"] {
                                                           <td>Jacob</td>
                                                           <td>Mark</td>
                                                           <td>Thornton</td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo22" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-danger">ยกเลิกอนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo22" class="accordion-toggle">comment</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกอนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -299,11 +298,11 @@ div[class^="col-"] {
                                                           <td>Larry</td>
                                                           <td>Mark</td>
                                                           <td>the Bird</td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo23" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-danger">ยกเลิกอนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo23" class="accordion-toggle">comment</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกอนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -353,11 +352,11 @@ div[class^="col-"] {
                                                           <td>Mark</td>
                                                           <td>Mark</td>
                                                           <td>Otto</td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo31" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo31" class="accordion-toggle">comment</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -380,11 +379,11 @@ div[class^="col-"] {
                                                           <td>Jacob</td>
                                                           <td>Mark</td>
                                                           <td>Thornton</td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo32" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo32" class="accordion-toggle">comment</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -406,11 +405,11 @@ div[class^="col-"] {
                                                           <td>Larry</td>
                                                           <td>Mark</td>
                                                           <td>the Bird</td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary">Primary</button></td>
-                                                          <td><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo33" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-success">อนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo33" class="accordion-toggle">comment</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
