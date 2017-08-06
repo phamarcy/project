@@ -7,6 +7,7 @@ date_default_timezone_set("Asia/Bangkok");
 if(isset($_POST['data']))
 {
 	// Write_temp_data($_POST['data']);
+	die($_POST['data']);
 	$DATA = json_decode($_POST['data'],true);
 	//var_dump($DATA);
 }
