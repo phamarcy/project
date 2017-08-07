@@ -95,6 +95,80 @@
        }
        });
 
+       $('#transplane').click(function(){
+          if (this.checked) {
+              $("#AIR_DEPART").prop('required',true);
+              $("#AIR_ARRIVE").prop('required',true);
+              $("#planecost").prop('required',true);
+          }
+          else
+          {
+            $("#AIR_DEPART").prop('required',false);
+            $("#AIR_ARRIVE").prop('required',false);
+            $("#planecost").prop('required',false);
+          }
+      });
+
+      $('#transtaxi').click(function(){
+         if (this.checked) {
+             $("#TAXI_DEPART").prop('required',true);
+             $("#TAXI_ARRIVE").prop('required',true);
+             $("#taxicost").prop('required',true);
+         }
+         else
+         {
+           $("#TAXI_DEPART").prop('required',false);
+           $("#TAXI_ARRIVE").prop('required',false);
+           $("#taxicost").prop('required',false);
+         }
+     });
+
+     $('#transselfcar').click(function(){
+        if (this.checked) {
+            $("#SELF_DISTANCT").prop('required',true);
+            $("#selfcost").prop('required',true);
+        }
+        else
+        {
+          $("#SELF_DISTANCT").prop('required',false);
+          $("#selfcost").prop('required',false);
+        }
+    });
+
+    // CALCULATE
+    $('#choice1hour').keyup(function(){
+        var textone;
+        var texttwo;
+        textone = parseFloat($('#choice1hour').val());
+        var result = textone*400;
+        $('#choice1cost').val(result.toFixed(2));
+    });
+
+    $('#choice2hour').keyup(function(){
+        var textone;
+        var texttwo;
+        textone = parseFloat($('#choice2hour').val());
+        var result = textone*200;
+        alert(result);
+        $('#choice2cost').val(result.toFixed(2));
+    });
+
+    $('#SELF_DISTANCT').keyup(function(){
+        var textone;
+        var texttwo;
+        textone = parseFloat($('#selfcost').val());
+        var result = textone*5.00 ;
+        alert(result);
+        $('#selfcost').val(result.toFixed(2));
+    });
+
+    $('#numnight').keyup(function(){
+        var textone;
+        var texttwo;
+        textone = parseFloat($('#pernight').val());
+        var result = textone*5 ;
+        $('#pernight').val(result.toFixed(2));
+    });
 
 
    $('#adddetail').click(function() {
@@ -269,20 +343,22 @@ function deleteRow(r) {
             <li>ค่าสอนพิเศษ</li>
             <div class="radio">
               <input type="radio"  name="costspec" id="costspec" value="choice1" checked>&nbsp;ปริญญาตรีบรรยาย 400/ชม.&nbsp;&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice1hour" size="5" data-minlength="2" min="0" max="99" required>&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท
+              จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice1hour" size="5" data-minlength="2" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท
               <br>
               <input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ 200/ชม.&nbsp;&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice2hour" size="5" data-minlength="2" min="0" max="99" required>&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice2cost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท
+              จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice2hour" size="5" data-minlength="2" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice2cost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท
             </div>
           </div>
           <div class="form-inline">
             <li>ค่าพาหนะเดินทาง </li>
             <div class="checkbox">
-              <label><input type="checkbox" name="trans" id="trans" value="plane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="transplane" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               <br>
-              <label><input type="checkbox" name="trans" id="trans" value="taxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="transtaxi" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               <br>
-              <label><input type="checkbox" name="trans" id="trans" value="selfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;<input type="number" class="form-control numonly" name="SELF_DISTANCT" id="SELF_DISTANCT" style="width: 70px"/> &nbsp;กิโลเมตร  กิโลเมตรละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="selfcost" id="selfcost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="transselfcar" id="transselfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;
+                <input type="number" class="form-control numonly" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="2" min="0" max="9999"> &nbsp;กิโลเมตร  กิโลเมตรละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
+                <input type="number" class="form-control numonly" name="selfcost" id="selfcost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               </div>
           </div>
           <div class="form-inline">
@@ -291,8 +367,8 @@ function deleteRow(r) {
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" checked>&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน 800 บาท/คน/คืน &nbsp;&nbsp;
             </div>
-            <br>จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" data-minlength="5" min="0" max="99999" required  oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;คืน
-            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="pernight" id="pernight" size="5" data-minlength="5" min="0" max="99999" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท
+            <br>จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999" required  oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;คืน
+            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="pernight" id="pernight" size="5" min="0" max="99999" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท
 
           </div>
           <br>
