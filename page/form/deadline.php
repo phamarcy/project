@@ -193,7 +193,7 @@ $(document).on('click', "#submitbtn_course", function() {
           if(node.value == '')
           {
             error = 1;
-            $(this).css("background-color","F7CBCB");
+            $(this).css("border-color","red");
           }else
           {
             formData[node.id] = node.value;
