@@ -35,7 +35,7 @@
 
   	<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 
-  	  <link rel="stylesheet" href="../dist/css/scrollbar.css">
+  	<link rel="stylesheet" href="../dist/css/scrollbar.css">
     <title></title>
   </head>
   <body>
@@ -66,8 +66,8 @@
         <!-- /.dropdown -->
       </ul>
     </nav>
-    <div class="wrapper">
-      Hello
+    <div class="container " style="margin-top: 20px;">
+      
     </div>
   </body>
 </html>
