@@ -33,7 +33,7 @@
  <script src="../dist/js/sb-admin-2.js"></script>
 
  <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
-
+ <script type="text/javascript" src="../js/function.js"></script>
  <link rel="stylesheet" href="../dist/css/scrollbar.css">
 </header>
 <script type="text/javascript">
@@ -98,16 +98,17 @@ $(document).ready(function(){
     <div class="form-inline">
         <center>
             <h style="font-size : 16px">ภาคการศึกษาที่
-		     	<div class="form-group">
-		          	<select class="form-control">
-		              <option>1</option>
-		              <option>2</option>
-		              <option>3</option>
+		     	<div class="form-group" >
+		          	<select class="form-control" required>
+                  <option value="">--</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
 		          	</select>
 		      	</div>
 		      		ปีการศึกษา
-		      		<input type="number" class="form-control" placeholder="e.g. 2560" style="width: 100px;" min="0" required>
-                	&nbsp;<button type="submit" class="btn btn-success"  >ค้นหา</button>
+		      		<input type="text" class="form-control numonly" placeholder="e.g. 2560" style="width: 100px;" maxlength="7" required>
+                	&nbsp;<button type="submit" class="btn btn-success btn-outline"   >ค้นหา</button>
                 	<div id="searchstatus" style="display:inline;"></div>
                 </h>
         </center>

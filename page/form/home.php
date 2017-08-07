@@ -101,8 +101,8 @@ $data = $result['data'];
 function curl($type)
 {
 	$schema = isset($_SERVER['HTTPS']) ? "https:" : "http:";
-	$dirname = basename(dirname(dirname((dirname($_SERVER['PHP_SELF'])))));
-	$url    = $schema."//".$_SERVER['HTTP_HOST']."/".$dirname."/application/information/index.php";
+	$dirname = dirname(dirname((dirname($_SERVER['REQUEST_URI']))));
+	$url    = $schema."//".$_SERVER['HTTP_HOST'].$dirname."/application/information/index.php";
   $ch = curl_init();
   // set url
   curl_setopt($ch, CURLOPT_URL, $url);

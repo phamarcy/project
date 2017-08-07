@@ -242,8 +242,13 @@
             </h3>
           </div>
           <div id="collapse11" class="panel-collapse collapse">
-            <div class="panel-body" style="font-size:14px;">กรุณากรอกชื่อวันและเวลาที่แน่นอนสำหรับการหยุดสอน
-              <br><br><button class="btn btn-outline btn-danger" name="editeva" id="editeva" >แก้ไข</button>
+
+              <?php if($_SESSION['level']==6){ ?>
+                <div class="panel-body" style="font-size:14px;">กรุณากรอกชื่อวันและเวลาที่แน่นอนสำหรับการหยุดสอน
+                  <br><br>
+                <button class="btn btn-outline btn-danger" name="editeva" id="editeva" >แก้ไข</button>
+              <?php   } ?>
+
             </div>
           </div>
         </div>
