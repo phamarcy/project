@@ -196,6 +196,7 @@ $(document).on('click', "#submitbtn_course", function() {
             $(this).css("border-color","red");
           }else
           {
+            $(this).css("border-color","rgb(204, 204, 204)");
             formData[node.id] = node.value;
           }
       });
@@ -232,9 +233,19 @@ $(document).on('click', "#submitbtn_approve", function() {
     url = "../../application/deadline/update_deadline.php?query=add&type=approve";
     var form = $(this).parent();
     var formData = {};
+    var error = 0;
     $(form).find("input[id]").each(function(index, node) {
+      if(node.value == '')
+      {
+        error = 1;
+        $(this).css("border-color","red");
+      }else
+      {
+        $(this).css("border-color","rgb(204, 204, 204)");
         formData[node.id] = node.value;
+      }
     });
+    if(error == 0){
     formData['semester'] = $(form).find('#semester').val();
     $.post(url, { 'DATA': formData }).done(function(data) {
         console.log(data);
@@ -249,6 +260,11 @@ $(document).on('click', "#submitbtn_approve", function() {
     }).fail(function() {
       alert("Cannot update data, please contact admin");
       });
+      }
+      else
+      {
+          alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+      }
     } else {
         // Do nothing!
     }
