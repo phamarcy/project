@@ -468,34 +468,36 @@ function submitfunc() {
     'ABSENT' : document.getElementById("ABSENT").value,
   };
 
-  alert(JSON.stringify(data));
+  //alert(JSON.stringify(data));
   senddata(JSON.stringify(data),getfile());
 }
 function senddata(data,file_data)
 {
-  file_data.append("data",data);
-  var URL = '../../application/pdf/course_evaluate.php';
-  $.ajax({
-                url: URL, // point to server-side PHP script
-                dataType: 'text',  // what to expect back from the PHP script, if anything
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: file_data,
-                type: 'post',
-                success: function (result) {
-                     alert(result);
-                },
-                failure: function (result) {
-                     alert(result);
-                },
-                error: function (xhr, status, p3, p4) {
-                     var err = "Error " + " " + status + " " + p3 + " " + p4;
-                     if (xhr.responseText && xhr.responseText[0] == "{")
-                          err = JSON.parse(xhr.responseText).Message;
-                     console.log(err);
-                }
-     });
+
+  prompt("data", data);
+  // file_data.append("data",data);
+  // var URL = '../../application/pdf/course_evaluate.php';
+  // $.ajax({
+  //               url: URL, // point to server-side PHP script
+  //               dataType: 'text',  // what to expect back from the PHP script, if anything
+  //               cache: false,
+  //               contentType: false,
+  //               processData: false,
+  //               data: file_data,
+  //               type: 'post',
+  //               success: function (result) {
+  //                    alert(result);
+  //               },
+  //               failure: function (result) {
+  //                    alert(result);
+  //               },
+  //               error: function (xhr, status, p3, p4) {
+  //                    var err = "Error " + " " + status + " " + p3 + " " + p4;
+  //                    if (xhr.responseText && xhr.responseText[0] == "{")
+  //                         err = JSON.parse(xhr.responseText).Message;
+  //                    console.log(err);
+  //               }
+  //    });
 }
 function getfile()
 {
@@ -626,7 +628,7 @@ function other_type() {
           <div class="form-inline" style="font-size:16px;">
                     <div class="form-group">
                        <label id="semester" class="control-label">รหัสกระบวนวิชา</label>
-                       <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required>
+                       <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 204111" min="0"  required>
                     </div>
                    <div class="form-group">
                       <label id="semester" class="control-label">ภาคการศึกษา</label>
@@ -639,7 +641,7 @@ function other_type() {
                    </div>
                    <div class="form-group">
                      <label for="inputyear" class="control-label">ปีการศึกษา</label>
-                     <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required>
+                     <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"   max="9999" required>
                    </div>
                   <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
            </div>
@@ -672,9 +674,15 @@ function other_type() {
             <div class="col-md-5">จำนวนหน่วยกิตทั้งหมด &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="TOTAL" id="TOTAL" size="2" maxlength="3" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนหน่วยกิตทั้งหมดให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; หน่วยกิต</div>
           </div>
           <div class="row">
+<<<<<<< HEAD
             <div class="col-md-5">จำนวนชั่วโมงบรรยาย (Lecture) &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="LEC" id="LEC" size="2" maxlength="3" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงบรรยายให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง/สัปดาห์</div>
             <div class="col-md-5">จำนวนชั่วโมงปฏิบัติการ (Lab) &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="LAB" id="LAB" size="2" maxlength="3" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงปฏิบัติการให้ถูกต้อง')" oninput="setCustomValidity('')"> &nbsp; ชั่วโมง/สัปดาห์</div>
             <div class="col-md-5">จำนวนชั่วโมงเรียนรู้ด้วยตัวเอง (Self-Learning)&nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="SELF" id="SELF" size="2" maxlength="3" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงเรียนรู้ด้วยตัวเองให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง/สัปดาห์</div>
+=======
+            <div class="col-md-5">จำนวนชั่วโมงบรรยาย (Lecture) &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="LEC" id="LEC" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง/สัปดาห์</div>
+            <div class="col-md-5">จำนวนชั่วโมงปฏิบัติการ (Lab) &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="LAB" id="LAB" size="2" data-minlength="3" min="0" max="100" required> &nbsp; ชั่วโมง/สัปดาห์</div>
+            <div class="col-md-5">จำนวนชั่วโมงเรียนรู้ด้วยตัวเอง (Self learning) &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="SELF" id="SELF" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง/สัปดาห์</div>
+>>>>>>> 34face39d9967b193908f14e03effbd7a9aa2fc6
           </div>
         </div>
       </li>
@@ -689,8 +697,12 @@ function other_type() {
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="TRA"> ฝึกงาน &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="SEM"> สัมมนา &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LAB"> ปฏิบัติการ &nbsp;<br>
+<<<<<<< HEAD
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="OTH" onchange="other_type()"> อื่นๆ &nbsp;
             <input type="text" class="form-control" name="TYPE_TEACHING_OTHER" id="TYPE_TEACHING_OTHER">
+=======
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="OTH"> อื่นๆ &nbsp; <input type="text"  class="form-control"  name="TYPE_TEACHING_NAME" id="TYPE_TEACHING_NAME" placeholder="โปรดระบุ"/>
+>>>>>>> 34face39d9967b193908f14e03effbd7a9aa2fc6
           </div>
         </div>
       </li>
@@ -719,60 +731,60 @@ function other_type() {
 
         <div class="form-inline hide" id="ctlec1">
           <label id="li1" style="display:none;">1. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F1" placeholder="ชื่อ" size="20" required>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L1" id="TEACHERLEC_L1" placeholder="นามสกุล" size="20" required>
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F1" placeholder="ชื่อ" size="20" >
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L1" id="TEACHERLEC_L1" placeholder="นามสกุล" size="20" >
         </div>
 
         <div class="form-inline hide" id="ctlec2">
           <label id="li2" style="display:none;">2. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F2" id="TEACHERLEC_F2" placeholder="ชื่อ" size="20" required>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L2" id="TEACHERLEC_L2" placeholder="นามสกุล" size="20" required>
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F2" id="TEACHERLEC_F2" placeholder="ชื่อ" size="20" >
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L2" id="TEACHERLEC_L2" placeholder="นามสกุล" size="20" >
         </div>
 
         <div class="form-inline hide" id="ctlec3">
           <label id="li3" style="display:none;">3. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F3" id="TEACHERLEC_F3" placeholder="ชื่อ" size="20" required>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L3" id="TEACHERLEC_L3" placeholder="นามสกุล" size="20" required>
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F3" id="TEACHERLEC_F3" placeholder="ชื่อ" size="20" >
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L3" id="TEACHERLEC_L3" placeholder="นามสกุล" size="20" >
         </div>
         <div class="form-inline hide" id="ctlec4">
           <label id="li4" style="display:none;">4. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F4" id="TEACHERLEC_F4" placeholder="ชื่อ" size="20" required>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L4" id="TEACHERLEC_L4" placeholder="นามสกุล" size="20" required>
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F4" id="TEACHERLEC_F4" placeholder="ชื่อ" size="20" >
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L4" id="TEACHERLEC_L4" placeholder="นามสกุล" size="20" >
         </div>
         <div class="form-inline hide" id="ctlec5">
           <label id="li5" style="display:none;">5. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F5" id="TEACHERLEC_F5" placeholder="ชื่อ" size="20" required>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L5" id="TEACHERLEC_L5" placeholder="นามสกุล" size="20" required>
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F5" id="TEACHERLEC_F5" placeholder="ชื่อ" size="20" >
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L5" id="TEACHERLEC_L5" placeholder="นามสกุล" size="20" >
         </div>
         <div class="form-inline hide" id="ctlec6">
           <label id="li6" style="display:none;">6. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F6" id="TEACHERLEC_F6" placeholder="ชื่อ" size="20" required>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L6" id="TEACHERLEC_L6" placeholder="นามสกุล" size="20" required>
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F6" id="TEACHERLEC_F6" placeholder="ชื่อ" size="20" >
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L6" id="TEACHERLEC_L6" placeholder="นามสกุล" size="20" >
         </div>
         <div class="form-inline hide" id="ctlec7">
           <label id="li7" style="display:none;">7. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F7" id="TEACHERLEC_F7" placeholder="ชื่อ" size="20" required>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L7" id="TEACHERLEC_L7" placeholder="นามสกุล" size="20" required>
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F7" id="TEACHERLEC_F7" placeholder="ชื่อ" size="20" >
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L7" id="TEACHERLEC_L7" placeholder="นามสกุล" size="20" >
         </div>
         <div class="form-inline hide" id="ctlec8">
           <label id="li8" style="display:none;">8. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F8" id="TEACHERLEC_F8" placeholder="ชื่อ" size="20" required>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L8" id="TEACHERLEC_L8" placeholder="นามสกุล" size="20" required>
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F8" id="TEACHERLEC_F8" placeholder="ชื่อ" size="20" >
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L8" id="TEACHERLEC_L8" placeholder="นามสกุล" size="20" >
         </div>
         <div class="form-inline hide" id="ctlec9">
           <label id="li9" style="display:none;">9. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F9" id="TEACHERLEC_F9" placeholder="ชื่อ" size="20" required>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L9" id="TEACHERLEC_L9" placeholder="นามสกุล" size="20" required>
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F9" id="TEACHERLEC_F9" placeholder="ชื่อ" size="20" >
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L9" id="TEACHERLEC_L9" placeholder="นามสกุล" size="20" >
         </div>
         <div class="form-inline hide" id="ctlec10">
           <label id="li10" style="display:none;">10.&nbsp; </label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F10" id="TEACHERLEC_F10" placeholder="ชื่อ" size="20" required>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L10" id="TEACHERLEC_L10" placeholder="นามสกุล" size="20" required>
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F10" id="TEACHERLEC_F10" placeholder="ชื่อ" size="20" >
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L10" id="TEACHERLEC_L10" placeholder="นามสกุล" size="20" >
         </div>
         <div class="form-inline hide" id="ctlec11">
           <label id="li11" style="display:none;">11.&nbsp; </label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F11" id="TEACHERLEC_F11" placeholder="ชื่อ" size="20" required>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L11" id="TEACHERLEC_L11" placeholder="นามสกุล" size="20" required>
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F11" id="TEACHERLEC_F11" placeholder="ชื่อ" size="20" >
+          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L11" id="TEACHERLEC_L11" placeholder="นามสกุล" size="20" >
         </div>
 
 
@@ -797,71 +809,71 @@ function other_type() {
           </div>
 
           <div class="form-inline hide" id="ctlab1">
-            <label id="la1" style="display:none;">1. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F1" id="TEACHERLAB_F1" placeholder="ชื่อ" size="20" required>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L1" id="TEACHERLAB_L1" placeholder="นามสกุล" size="20" required>
+            <label id="la1" style="display:none;">1. &nbsp;</label
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F1" id="TEACHERLAB_F1" placeholder="ชื่อ" size="20" >
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L1" id="TEACHERLAB_L1" placeholder="นามสกุล" size="20" >
           </div>
 
 
           <div class="form-inline hide" id="ctlab2">
             <label id="la2" style="display:none;">2. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F2" id="TEACHERLAB_F2" placeholder="ชื่อ" size="20" required>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L2" id="TEACHERLAB_L2" placeholder="นามสกุล" size="20" required>
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F2" id="TEACHERLAB_F2" placeholder="ชื่อ" size="20" >
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L2" id="TEACHERLAB_L2" placeholder="นามสกุล" size="20" >
           </div>
 
 
           <div class="form-inline hide" id="ctlab3">
             <label id="la3" style="display:none;">3. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F3" id="TEACHERLAB_F3" placeholder="ชื่อ" size="20" required>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L3" id="TEACHERLAB_L3" placeholder="นามสกุล" size="20" required>
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F3" id="TEACHERLAB_F3" placeholder="ชื่อ" size="20" >
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L3" id="TEACHERLAB_L3" placeholder="นามสกุล" size="20" >
           </div>
 
           <div class="form-inline hide" id="ctlab4">
             <label id="la4" style="display:none;">4. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F4" id="TEACHERLAB_F4" placeholder="ชื่อ" size="20" required>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L4" id="TEACHERLAB_L4" placeholder="นามสกุล" size="20" required>
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F4" id="TEACHERLAB_F4" placeholder="ชื่อ" size="20" >
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L4" id="TEACHERLAB_L4" placeholder="นามสกุล" size="20" >
           </div>
 
           <div class="form-inline hide" id="ctlab5">
             <label id="la5" style="display:none;">5. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F5" id="TEACHERLAB_F5" placeholder="ชื่อ" size="20" required>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L5" id="TEACHERLAB_L5" placeholder="นามสกุล" size="20" required>
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F5" id="TEACHERLAB_F5" placeholder="ชื่อ" size="20" >
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L5" id="TEACHERLAB_L5" placeholder="นามสกุล" size="20" >
           </div>
 
           <div class="form-inline hide" id="ctlab6">
             <label id="la6" style="display:none;">6. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F6" id="TEACHERLAB_F6" placeholder="ชื่อ" size="20" required>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L6" id="TEACHERLAB_L6" placeholder="นามสกุล" size="20" required>
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F6" id="TEACHERLAB_F6" placeholder="ชื่อ" size="20" >
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L6" id="TEACHERLAB_L6" placeholder="นามสกุล" size="20" >
           </div>
 
           <div class="form-inline hide" id="ctlab7">
             <label id="la7" style="display:none;">7. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F7" id="TEACHERLAB_F7" placeholder="ชื่อ" size="20" required>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L7" id="TEACHERLAB_L7" placeholder="นามสกุล" size="20" required>
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F7" id="TEACHERLAB_F7" placeholder="ชื่อ" size="20" >
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L7" id="TEACHERLAB_L7" placeholder="นามสกุล" size="20" >
           </div>
 
           <div class="form-inline hide" id="ctlab8">
             <label id="la8" style="display:none;">8. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F8" id="TEACHERLAB_F8" placeholder="ชื่อ" size="20" required>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L8" id="TEACHERLAB_L8" placeholder="นามสกุล" size="20" required>
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F8" id="TEACHERLAB_F8" placeholder="ชื่อ" size="20" >
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L8" id="TEACHERLAB_L8" placeholder="นามสกุล" size="20" >
           </div>
 
           <div class="form-inline hide" id="ctlab9">
             <label id="la9" style="display:none;">9. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F9" id="TEACHERLAB_F9" placeholder="ชื่อ" size="20" required>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L9" id="TEACHERLAB_L9" placeholder="นามสกุล" size="20" required>
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F9" id="TEACHERLAB_F9" placeholder="ชื่อ" size="20" >
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L9" id="TEACHERLAB_L9" placeholder="นามสกุล" size="20" >
           </div>
 
           <div class="form-inline hide" id="ctlab10">
             <label id="la10" style="display:none;">10.&nbsp; </label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F10" id="TEACHERLAB_F10" placeholder="ชื่อ" size="20" required>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L10" id="TEACHERLAB_L10" placeholder="นามสกุล" size="20" required>
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F10" id="TEACHERLAB_F10" placeholder="ชื่อ" size="20" >
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L10" id="TEACHERLAB_L10" placeholder="นามสกุล" size="20" >
           </div>
 
           <div class="form-inline hide" id="ctlab11">
             <label id="la11" style="display:none;">11.&nbsp; </label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F11" id="TEACHERLAB_F11" placeholder="ชื่อ" size="20" required>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L11" id="TEACHERLAB_L11" placeholder="นามสกุล" size="20" required>
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F11" id="TEACHERLAB_F11" placeholder="ชื่อ" size="20" >
+            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L11" id="TEACHERLAB_L11" placeholder="นามสกุล" size="20" >
           </div>
 
       </li>
@@ -878,7 +890,11 @@ function other_type() {
             <ul>
               <div class="form-inline">
                 <li style="font-size: 14px">
+<<<<<<< HEAD
                   จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" style="width: 70px" class="form-control numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" data-minlength="3" min="0" max="100" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงการสอบบรรยายให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง
+=======
+                  จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="number" style="width: 70px" class="form-control numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง
+>>>>>>> 34face39d9967b193908f14e03effbd7a9aa2fc6
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                   <select style="height: 28px;" name="mexholec" id="mexholec" class="form-control numonly" onchange="midexam_hour_lec()">
       <option value="0" selected>0</option>
@@ -894,38 +910,42 @@ function other_type() {
 
                   <div class="form-inline hide" id="mehlec1">
                     <label id="mehle1" style="display:none;">1.&nbsp; </label>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF1" id="MIDEXCOM_LECF1" placeholder="ชื่อ" size="20" required>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL1" id="MIDEXCOM_LECL1" placeholder="นามสกุล" size="20" required>
+                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF1" id="MIDEXCOM_LECF1" placeholder="ชื่อ" size="20" >
+                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL1" id="MIDEXCOM_LECL1" placeholder="นามสกุล" size="20" >
                   </div>
 
                   <div class="form-inline hide" id="mehlec2">
                     <label id="mehle2" style="display:none;">2.&nbsp; </label>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF2" id="MIDEXCOM_LECF2" placeholder="ชื่อ" size="20" required>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL2" id="MIDEXCOM_LECL2" placeholder="นามสกุล" size="20" required>
+                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF2" id="MIDEXCOM_LECF2" placeholder="ชื่อ" size="20" >
+                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL2" id="MIDEXCOM_LECL2" placeholder="นามสกุล" size="20" >
                   </div>
 
                   <div class="form-inline hide" id="mehlec3">
                     <label id="mehle3" style="display:none;">3.&nbsp; </label>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF3" id="MIDEXCOM_LECF3" placeholder="ชื่อ" size="20" required>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL3" id="MIDEXCOM_LECL3" placeholder="นามสกุล" size="20" required>
+                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF3" id="MIDEXCOM_LECF3" placeholder="ชื่อ" size="20" >
+                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL3" id="MIDEXCOM_LECL3" placeholder="นามสกุล" size="20" >
                   </div>
 
                   <div class="form-inline hide" id="mehlec4">
                     <label id="mehle4" style="display:none;">4.&nbsp; </label>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF4" id="MIDEXCOM_LECF4" placeholder="ชื่อ" size="20" required>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL4" id="MIDEXCOM_LECL4" placeholder="นามสกุล" size="20" required>
+                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF4" id="MIDEXCOM_LECF4" placeholder="ชื่อ" size="20" >
+                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL4" id="MIDEXCOM_LECL4" placeholder="นามสกุล" size="20" >
                   </div>
 
                   <div class="form-inline hide" id="mehlec5">
                     <label id="mehle5" style="display:none;">5.&nbsp; </label>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF5" id="MIDEXCOM_LECF5" placeholder="ชื่อ" size="20" required>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL5" id="MIDEXCOM_LECL5" placeholder="นามสกุล" size="20" required>
+                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF5" id="MIDEXCOM_LECF5" placeholder="ชื่อ" size="20" >
+                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL5" id="MIDEXCOM_LECL5" placeholder="นามสกุล" size="20" >
                   </div>
 
 
                   <div class="form-inline">
                     <li style="font-size: 14px">
+<<<<<<< HEAD
                       จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" data-minlength="3" min="0" max="100" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงการสอบปฏิบัติการให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง
+=======
+                      จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง
+>>>>>>> 34face39d9967b193908f14e03effbd7a9aa2fc6
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                       <select style="height: 28px;" name="mexholac" id="mexholac" class="form-control numonly" onchange="midexam_hour_lab()">
       <option value="0" selected>0</option>
@@ -941,32 +961,32 @@ function other_type() {
 
                       <div class="form-inline hide" id="ehlab1">
                         <label id="ehla1" style="display:none;">1.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF1" id="MIDEXCOM_LABF1" placeholder="ชื่อ" size="20" required>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL1" id="MIDEXCOM_LABL1" placeholder="นามสกุล" size="20" required>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF1" id="MIDEXCOM_LABF1" placeholder="ชื่อ" size="20">
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL1" id="MIDEXCOM_LABL1" placeholder="นามสกุล" size="20">
                       </div>
 
                       <div class="form-inline hide" id="ehlab2">
                         <label id="ehla2" style="display:none;">2.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF2" id="MIDEXCOM_LABF2" placeholder="ชื่อ" size="20" required>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL2" id="MIDEXCOM_LABL2" placeholder="นามสกุล" size="20" required>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF2" id="MIDEXCOM_LABF2" placeholder="ชื่อ" size="20">
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL2" id="MIDEXCOM_LABL2" placeholder="นามสกุล" size="20">
                       </div>
 
                       <div class="form-inline hide" id="ehlab3">
                         <label id="ehla3" style="display:none;">3.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF3" id="MIDEXCOM_LABF3" placeholder="ชื่อ" size="20" required>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL3" id="MIDEXCOM_LABL3" placeholder="นามสกุล" size="20" required>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF3" id="MIDEXCOM_LABF3" placeholder="ชื่อ" size="20">
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL3" id="MIDEXCOM_LABL3" placeholder="นามสกุล" size="20">
                       </div>
 
                       <div class="form-inline hide" id="ehlab4">
                         <label id="ehla4" style="display:none;">4.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF4" id="MIDEXCOM_LABF4" placeholder="ชื่อ" size="20" required>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL4" id="MIDEXCOM_LABL4" placeholder="นามสกุล" size="20" required>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF4" id="MIDEXCOM_LABF4" placeholder="ชื่อ" size="20">
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL4" id="MIDEXCOM_LABL4" placeholder="นามสกุล" size="20">
                       </div>
 
                       <div class="form-inline hide" id="ehlab5">
                         <label id="ehla5" style="display:none;">5.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF5" id="MIDEXCOM_LABF5" placeholder="ชื่อ" size="20" required>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL5" id="MIDEXCOM_LABL5" placeholder="นามสกุล" size="20" required>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF5" id="MIDEXCOM_LABF5" placeholder="ชื่อ" size="20">
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL5" id="MIDEXCOM_LABL5" placeholder="นามสกุล" size="20">
                       </div>
                     </li>
                   </div>
@@ -997,32 +1017,32 @@ function other_type() {
 
                     <div class="form-inline hide" id="fmehlec1">
                       <label id="fmehle1" style="display:none;">1.&nbsp; </label>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF1" id="FINEXCOM_LECF1" placeholder="ชื่อ" size="20" required>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL1" id="FINEXCOM_LECL1" placeholder="นามสกุล" size="20" required>
+                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF1" id="FINEXCOM_LECF1" placeholder="ชื่อ" size="20" >
+                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL1" id="FINEXCOM_LECL1" placeholder="นามสกุล" size="20" >
                     </div>
 
                     <div class="form-inline hide" id="fmehlec2">
                       <label id="fmehle2" style="display:none;">2.&nbsp; </label>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF2" id="FINEXCOM_LECF2" placeholder="ชื่อ" size="20" required>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL2" id="FINEXCOM_LECL2" placeholder="นามสกุล" size="20" required>
+                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF2" id="FINEXCOM_LECF2" placeholder="ชื่อ" size="20" >
+                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL2" id="FINEXCOM_LECL2" placeholder="นามสกุล" size="20" >
                     </div>
 
                     <div class="form-inline hide" id="fmehlec3">
                       <label id="fmehle3" style="display:none;">3.&nbsp; </label>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF3" id="FINEXCOM_LECF3" placeholder="ชื่อ" size="20" required>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL3" id="FINEXCOM_LECL3" placeholder="นามสกุล" size="20" required>
+                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF3" id="FINEXCOM_LECF3" placeholder="ชื่อ" size="20" >
+                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL3" id="FINEXCOM_LECL3" placeholder="นามสกุล" size="20" >
                     </div>
 
                     <div class="form-inline hide" id="fmehlec4">
                       <label id="fmehle4" style="display:none;">4.&nbsp; </label>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF4" id="FINEXCOM_LECF4" placeholder="ชื่อ" size="20" required>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL4" id="FINEXCOM_LECL4" placeholder="นามสกุล" size="20" required>
+                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF4" id="FINEXCOM_LECF4" placeholder="ชื่อ" size="20" >
+                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL4" id="FINEXCOM_LECL4" placeholder="นามสกุล" size="20" >
                     </div>
 
                     <div class="form-inline hide" id="fmehlec5">
                       <label id="fmehle5" style="display:none;">5.&nbsp; </label>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF5" id="FINEXCOM_LECF5" placeholder="ชื่อ" size="20" required>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL5" id="FINEXCOM_LECL5" placeholder="นามสกุล" size="20" required>
+                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF5" id="FINEXCOM_LECF5" placeholder="ชื่อ" size="20" >
+                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL5" id="FINEXCOM_LECL5" placeholder="นามสกุล" size="20" >
                     </div>
 
 
@@ -1044,32 +1064,32 @@ function other_type() {
 
                         <div class="form-inline hide" id="fehlab1">
                           <label id="fehla1" style="display:none;">1.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF1" id="FINEXCOM_LABF1" placeholder="ชื่อ" size="20" required>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL1" id="FINEXCOM_LABL1" placeholder="นามสกุล" size="20" required>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF1" id="FINEXCOM_LABF1" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL1" id="FINEXCOM_LABL1" placeholder="นามสกุล" size="20" >
                         </div>
 
                         <div class="form-inline hide" id="fehlab2">
                           <label id="fehla2" style="display:none;">2.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF2" id="FINEXCOM_LABF2" placeholder="ชื่อ" size="20" required>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL2" id="FINEXCOM_LABL2" placeholder="นามสกุล" size="20" required>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF2" id="FINEXCOM_LABF2" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL2" id="FINEXCOM_LABL2" placeholder="นามสกุล" size="20" >
                         </div>
 
                         <div class="form-inline hide" id="fehlab3">
                           <label id="fehla3" style="display:none;">3.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF3" id="FINEXCOM_LABF3" placeholder="ชื่อ" size="20" required>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL3" id="FINEXCOM_LABL3" placeholder="นามสกุล" size="20" required>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF3" id="FINEXCOM_LABF3" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL3" id="FINEXCOM_LABL3" placeholder="นามสกุล" size="20" >
                         </div>
 
                         <div class="form-inline hide" id="fehlab4">
                           <label id="fehla4" style="display:none;">4.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF4" id="FINEXCOM_LABF4" placeholder="ชื่อ" size="20" required>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL4" id="FINEXCOM_LABL4" placeholder="นามสกุล" size="20" required>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF4" id="FINEXCOM_LABF4" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL4" id="FINEXCOM_LABL4" placeholder="นามสกุล" size="20" >
                         </div>
 
                         <div class="form-inline hide" id="fehlab5">
                           <label id="fehla5" style="display:none;">5.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF5" id="FINEXCOM_LABF5" placeholder="ชื่อ" size="20" required>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL5" id="FINEXCOM_LABL5" placeholder="นามสกุล" size="20" required>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF5" id="FINEXCOM_LABF5" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL5" id="FINEXCOM_LABL5" placeholder="นามสกุล" size="20" >
                         </div>
                       </li>
                     </div>
@@ -1100,12 +1120,16 @@ function other_type() {
                 <td><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="2" required></td>
               </tr>
               <tr>
+<<<<<<< HEAD
                 <td colspan="4">3. อื่นๆ โปรดระบุ &nbsp;&nbsp;<input type="button" class="btn btn-outline btn-success" name="addbtn" id="addbtn" value="เพิ่ม"> </td>
+=======
+                <td colspan="4">3. อื่นๆ โปรดระบุ  &nbsp;&nbsp;<input type="button" class="btn btn-outline btn-success" name="addbtn" id="addbtn" value="เพิ่ม"> </td>
+>>>>>>> 34face39d9967b193908f14e03effbd7a9aa2fc6
               </tr>
               <tr>
                 <td colspan="2" style="text-align: center;"><b>รวมคะแนน</b></td>
-                <td><input type="text" class="form-control numonly" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="2" required></td>
-                <td><input type="text" class="form-control numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="2" required></td>
+                <td><input type="text" class="form-control numonly" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="2" ></td>
+                <td><input type="text" class="form-control numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="2" ></td>
               </tr>
             </table>
             </div>
@@ -1131,7 +1155,7 @@ function other_type() {
                     </tr>
                     <tr>
                       <td align="right"><b>รวมคะแนน</b></td>
-                      <td><input type="text" class="form-control numonly" name="SAMENA_TOTAL" id="SAMENA_TOTAL" size="2"  required></td>
+                      <td><input type="text" class="form-control numonly" name="SAMENA_TOTAL" id="SAMENA_TOTAL" size="2"  ></td>
                     </tr>
                   </tbody>
                 </table>
@@ -1152,7 +1176,7 @@ function other_type() {
                     </tr>
                     <tr>
                       <td align="right"><b>รวมคะแนน</b></td>
-                      <td><input type="text" class="form-control numonly" name="TRAIN_TOTAL" id="TRAIN_TOTAL" size="2" required></td>
+                      <td><input type="text" class="form-control numonly" name="TRAIN_TOTAL" id="TRAIN_TOTAL" size="2" ></td>
                     </tr>
                   </tbody>
                 </table>
@@ -1279,7 +1303,7 @@ function other_type() {
     </div>
     <br><br>
     <div align="center">
-      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" onclick="submitfunc()" > &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" value="รีเซ็ตข้อมูล">
     </div>
