@@ -37,7 +37,7 @@ div[class^="col-"] {
       <div class="container">
         <div class="row">
           <center>
-            <h3 class="page-header">การอนุมัติกระบวนวิชา</h3>
+            <h3 class="page-header">กำหนดกระบวนวิชาให้กับอาจารย์</h3>
                 <form  role="form">
                   <div class="form-inline" style="font-size:16px;">
                            <div class="form-group">
@@ -73,429 +73,104 @@ div[class^="col-"] {
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
-                          <h4><b>หมายเหตุ</b></h4>
-                            <ol style="font-size:16px;">
-                                <li>Course Syllabus (Course)</li>
-                                <li>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา (Evaluate)</li>
-                                <li>แบบขออนุมัติอาจารย์พิเศษ (Special)</li>
-                                <p class="text-info">* คำย่อภาษาอังกฤษใช้เป็นตัวย่อในตาราง</p>
-                            </ol>
-                            <div class="panel-group" id="accordion">
-                                <div class="panel panel-warning">
-                                  <div class="panel-heading">
-                                      <div class="panel-title">
-                                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">รอการอนุมัติ</a>
-                                      </div >
-                                  </div>
 
-                                    <div id="collapseOne" class="panel-collapse collapse in">
-                                        <div class="panel-body">
-                                          <div class="table-responsive">
-                                              <table class="table ">
-                                                  <thead>
-                                                      <tr >
-                                                          <th>#</th>
-                                                          <th>รหัสวิชา</th>
-                                                          <th>ชื่อวิชา</th>
-                                                          <th  style="text-align:center;">Course</th>
-                                                          <th  style="text-align:center;">Evaluate</th>
-                                                          <th  style="text-align:center;">Special</th>
-                                                          <th></th>
-                                                          <th></th>
-                                                          <th></th>
-                                                      </tr>
-                                                  </thead>
-                                                  <tbody>
-                                                      <tr >
-                                                          <td>1</td>
-                                                          <td>463503</td>
-                                                          <td>Principles in Phytochemistry</td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo1">
-                                                              <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                  <b>เพิ่มคอมเม้นท์</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                    <div class="row">
-                                                                      <div class="col-md-12">
-                                                                        <form>
-                                                                          <div class="form-group">
-                                                                            <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                          </div>
-                                                                          <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
-                                                                        </form>
-                                                                      </div>
-                                                                    </div>
-                                                                </div>
-                                                              </div>
-                                                              <div class="panel panel-success">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                  <table class="table ">
-                                                                    <thead>
-                                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                                      <th>คอมเม้นท์</th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                      <tr>
-                                                                        <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                                        <td>Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16 เมื่อเครื่องพิมพ์โนเนมเครื่องหนึ่งนำรางตัวพิมพ์มาสลับสับตำแหน่งตัวอักษรเพื่อทำหนังสือตัวอย่าง Lorem Ipsum อยู่ยงคงกระพันมาไม่ใช่แค่เพียงห้าศตวรรษ แต่อยู่มาจนถึงยุคที่พลิกโฉมเข้าสู่งานเรียงพิมพ์ด้วยวิธีทางอิเล็กทรอนิกส์ และยังคงสภาพเดิมไว้อย่างไม่มีการเปลี่ยนแปลง มันได้รับความนิยมมากขึ้นในยุค ค.ศ. 1960 เมื่อแผ่น Letraset วางจำหน่ายโดยมีข้อความบนนั้นเป็น Lorem Ipsum และล่าสุดกว่านั้น คือเมื่อซอฟท์แวร์การทำสื่อสิ่งพิมพ์ (Desktop Publishing) อย่าง Aldus PageMaker ได้รวมเอา Lorem Ipsum เวอร์ชั่นต่างๆ เข้าไว้ในซอฟท์แวร์ด้วย</td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                                        <td>มีหลักฐานที่เป็นข้อเท็จจริงยืนยันมานานแล้ว ว่าเนื้อหาที่อ่านรู้เรื่องนั้นจะไปกวนสมาธิของคนอ่านให้เขวไปจากส่วนที้เป็น Layout เรานำ Lorem Ipsum มาใช้เพราะความที่มันมีการกระจายของตัวอักษรธรรมดาๆ แบบพอประมาณ ซึ่งเอามาใช้แทนการเขียนว่า ‘ตรงนี้เป็นเนื้อหา, ตรงนี้เป็นเนื้อหา' ได้ และยังทำให้มองดูเหมือนกับภาษาอังกฤษที่อ่านได้ปกติ ปัจจุบันมีแพ็กเกจของซอฟท์แวร์การทำสื่อสิ่งพิมพ์ และซอฟท์แวร์การสร้างเว็บเพจ (Web Page Editor) หลายตัวที่ใช้ Lorem Ipsum เป็นแบบจำลองเนื้อหาที่เป็นค่าตั้งต้น และเวลาที่เสิร์ชด้วยคำว่า 'lorem ipsum' ผลการเสิร์ชที่ได้ก็จะไม่พบบรรดาเว็บไซต์ที่ยังคงอยู่ในช่วงเริ่มสร้างด้วย โดยหลายปีที่ผ่านมาก็มีการคิดค้นเวอร์ชั่นต่างๆ ของ Lorem Ipsum ขึ้นมาใช้ บ้างก็เป็นความบังเอิญ บ้างก็เป็นความตั้งใจ (เช่น การแอบแทรกมุกตลก)</td>
-                                                                      </tr>
-                                                                    </tbody>
-                                                                  </table>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-                                                      <tr >
-                                                          <td>2</td>
-                                                          <td>463512 </td>
-                                                          <td>harmaceutical Biotechnology 2</td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo2" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12" class="hiddenRow">
-                                                            <div class="accordian-body collapse" id="demo2">
-                                                              <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                  <b>เพิ่มคอมเม้นท์</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                    <div class="row">
-                                                                      <div class="col-md-12">
-                                                                        <form>
-                                                                          <div class="form-group">
-                                                                            <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                          </div>
-                                                                          <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
-                                                                        </form>
-                                                                      </div>
-                                                                    </div>
-                                                                </div>
-                                                              </div>
-                                                              <div class="panel panel-success">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                  <table class="table ">
-                                                                    <thead>
-                                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                                      <th>คอมเม้นท์</th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.จาริณี ธรรมฉันธะ</td>
-                                                                        <td>Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16 เมื่อเครื่องพิมพ์โนเนมเครื่องหนึ่งนำรางตัวพิมพ์มาสลับสับตำแหน่งตัวอักษรเพื่อทำหนังสือตัวอย่าง Lorem Ipsum อยู่ยงคงกระพันมาไม่ใช่แค่เพียงห้าศตวรรษ แต่อยู่มาจนถึงยุคที่พลิกโฉมเข้าสู่งานเรียงพิมพ์ด้วยวิธีทางอิเล็กทรอนิกส์ และยังคงสภาพเดิมไว้อย่างไม่มีการเปลี่ยนแปลง มันได้รับความนิยมมากขึ้นในยุค ค.ศ. 1960 เมื่อแผ่น Letraset วางจำหน่ายโดยมีข้อความบนนั้นเป็น Lorem Ipsum และล่าสุดกว่านั้น คือเมื่อซอฟท์แวร์การทำสื่อสิ่งพิมพ์ (Desktop Publishing) อย่าง Aldus PageMaker ได้รวมเอา Lorem Ipsum เวอร์ชั่นต่างๆ เข้าไว้ในซอฟท์แวร์ด้วย</td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="width:170px">ดร.ชญานุช เตชะปัญญารักษ์</td>
-                                                                        <td>มีหลักฐานที่เป็นข้อเท็จจริงยืนยันมานานแล้ว ว่าเนื้อหาที่อ่านรู้เรื่องนั้นจะไปกวนสมาธิของคนอ่านให้เขวไปจากส่วนที้เป็น Layout เรานำ Lorem Ipsum มาใช้เพราะความที่มันมีการกระจายของตัวอักษรธรรมดาๆ แบบพอประมาณ ซึ่งเอามาใช้แทนการเขียนว่า ‘ตรงนี้เป็นเนื้อหา, ตรงนี้เป็นเนื้อหา' ได้ และยังทำให้มองดูเหมือนกับภาษาอังกฤษที่อ่านได้ปกติ ปัจจุบันมีแพ็กเกจของซอฟท์แวร์การทำสื่อสิ่งพิมพ์ และซอฟท์แวร์การสร้างเว็บเพจ (Web Page Editor) หลายตัวที่ใช้ Lorem Ipsum เป็นแบบจำลองเนื้อหาที่เป็นค่าตั้งต้น และเวลาที่เสิร์ชด้วยคำว่า 'lorem ipsum' ผลการเสิร์ชที่ได้ก็จะไม่พบบรรดาเว็บไซต์ที่ยังคงอยู่ในช่วงเริ่มสร้างด้วย โดยหลายปีที่ผ่านมาก็มีการคิดค้นเวอร์ชั่นต่างๆ ของ Lorem Ipsum ขึ้นมาใช้ บ้างก็เป็นความบังเอิญ บ้างก็เป็นความตั้งใจ (เช่น การแอบแทรกมุกตลก)</td>
-                                                                      </tr>
-                                                                    </tbody>
-                                                                  </table>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-                                                      <tr >
-                                                          <td>3</td>
-                                                          <td>463543</td>
-                                                          <td>Pharmaceutical Quality Assurance 3</td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo3" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
-                                                      </tr>
-                                                      <tr>
-                                                          <td colspan="12" class="hiddenRow">
-                                                            <div class="accordian-body collapse" id="demo3">
-                                                              <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                  <b>เพิ่มคอมเม้นท์</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                    <div class="row">
-                                                                      <div class="col-md-12">
-                                                                        <form>
-                                                                          <div class="form-group">
-                                                                            <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                          </div>
-                                                                          <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
-                                                                        </form>
-                                                                      </div>
-                                                                    </div>
-                                                                </div>
-                                                              </div>
-                                                              <div class="panel panel-success">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                  <table class="table ">
-                                                                    <thead>
-                                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                                      <th>คอมเม้นท์</th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
-                                                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus blandit fermentum. Etiam rhoncus urna a lobortis sagittis. Donec at leo ut velit eleifend porttitor. Vivamus iaculis massa quis ante lacinia efficitur. In volutpat elit lorem, ut dictum metus ultricies porttitor. Nunc vel tortor congue, tempus libero sit amet, elementum risus. Vestibulum ut finibus nisl. Aenean sit amet sem id odio dapibus dignissim at vel elit. Proin eget ipsum sagittis, aliquet nunc eget, bibendum quam. Pellentesque tempor, velit sed feugiat gravida, felis est faucibus quam, non posuere est magna vitae erat. Proin lorem sapien, laoreet vitae felis id, facilisis efficitur libero. Proin porta vehicula sem et rutrum. Aliquam mattis maximus velit, sit amet imperdiet quam eleifend a. Aenean quis elit turpis. Vivamus ultricies quam ut urna finibus, non bibendum dui tempus. Aliquam varius quam eu facilisis auctor.</td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
-                                                                        <td>Nulla facilisi. Cras eu eros felis. Suspendisse consectetur ex ligula, vitae semper orci condimentum in. Etiam tincidunt nulla ligula, eget placerat sapien consequat at. Mauris quis leo sit amet neque volutpat blandit. Quisque faucibus nisi metus, eu dictum felis hendrerit sit amet. Maecenas a semper ligula. Ut sodales feugiat convallis. Duis in augue augue. Sed bibendum leo vel elit placerat vehicula. Duis condimentum felis tellus, a volutpat tellus congue sit amet. Nam vestibulum, diam vel semper maximus, nunc risus tristique massa, ac congue nibh ipsum sit amet velit. Ut aliquam enim et eros suscipit pretium. Aenean eget mauris volutpat, ultrices sapien nec, aliquam elit. Vestibulum dui magna, lacinia et odio a, ornare hendrerit nisi.</td>
-                                                                      </tr>
-                                                                    </tbody>
-                                                                  </table>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-                                                  </tbody>
-                                              </table>
-                                          </div>
-                                        </div>
+                            <div class="panel panel-warning">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <b>กำหนดวิชาให้กับอาจารย์</b>
+                                </h4>
+                              </div>
+                              <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                      <div class="form-group">
+                                        <label style="font-size:16px;">รายชื่ออาจารย์</label>
+                                        <select class="form-control" name="">
+                                          <option value="">อ.ชญานุช เตชะปัญญารักษ์</option>
+                                          <option value="">อ.สุขุม มานีมาน</option>
+                                          <option value="">อ.วสุพล ศุทธกิจ</option>
+                                          <option value="">อ.วัลภา มานีมาน</option>
+                                          <option value="">อ.ยุวดี ถิรธราดล</option>
+                                          <option value="">อ.มนตรี องค์เทียมสัคค์</option>
+                                        </select>
+                                      </div>
+
                                     </div>
-                                </div>
-
-                                <div class="panel panel-success">
-                                    <div class="panel-heading">
-                                        <div class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">อนุมัติ</a>
-                                        </div>
+                                    <div class="col-md-8">
+                                      <div class="form-group">
+                                        <label style="font-size:16px;">รายชื่ออาจารย์</label>
+                                        <select class="form-control" name="">
+                                          <option value="">462533	HEALTH BEHAVIORS AND PHARMACEUTICAL CARE</option>
+                                          <option value="">461525	BASIC KNOWLEDGE OF THAI TRADITIONAL MEDICINEE</option>
+                                          <option value="">461532	DRUG SYNTHESIS</option>
+                                          <option value="">461575	DELIVERY SYSTEMS IN COSMETICS</option>
+                                          <option value="">463522	EVIDENCE-BASED DIETARY SUPPLEMENTS</option>
+                                          <option value="">463571	QUALITY CONTROL FOR FOOD AND COSMETICS</option>
+                                        </select>
+                                      </div>
                                     </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                          <div class="table-responsive">
-                                              <table class="table ">
-                                                  <thead>
-                                                      <tr>
-                                                        <th>#</th>
-                                                        <th>รหัสวิชา</th>
-                                                        <th>ชื่อวิชา</th>
-                                                        <th  style="text-align:center;">Course</th>
-                                                        <th  style="text-align:center;">Evaluate</th>
-                                                        <th  style="text-align:center;">Special</th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
-                                                      </tr>
-                                                  </thead>
-                                                  <tbody>
-                                                      <tr >
-                                                          <td>1</td>
-                                                          <td>Mark</td>
-                                                          <td>Otto</td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo21" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกอนุมัติ</button></td>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo21">
-                                                              <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์</b>
-                                                                </div>
-                                                                <div class="panel-body">
-
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-                                                      <tr>
-                                                          <td>2</td>
-                                                          <td>Jacob</td>
-                                                          <td>Thornton</td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo22" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกอนุมัติ</button></td>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo22">
-                                                              <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์</b>
-                                                                </div>
-                                                                <div class="panel-body">
-
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-                                                      <tr  >
-                                                          <td>3</td>
-                                                          <td>Larry</td>
-                                                          <td>the Bird</td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo23" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกอนุมัติ</button></td>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo23">
-                                                              <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์</b>
-                                                                </div>
-                                                                <div class="panel-body">
-
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-                                                  </tbody>
-                                              </table>
-                                          </div>
+                                    <div class="col-md-8">
+                                      <button class="btn btn-outline btn-primary"type="submit" name="button">ส่ง</button>
                                     </div>
                                 </div>
                               </div>
-                                <div class="panel panel-danger">
-                                    <div class="panel-heading">
-                                        <div class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">ไม่อนุมัติ</a>
-                                        </div>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                          <div class="table-responsive">
-                                              <table class="table  " >
-                                                  <thead>
-                                                      <tr>
-                                                        <th>#</th>
-                                                        <th>รหัสวิชา</th>
-                                                        <th>ชื่อวิชา</th>
-                                                        <th  style="text-align:center;">Course</th>
-                                                        <th  style="text-align:center;">Evaluate</th>
-                                                        <th  style="text-align:center;">Special</th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
-                                                      </tr>
-                                                  </thead>
-                                                  <tbody>
-                                                      <tr >
-                                                          <td>1</td>
-                                                          <td>Mark</td>
-                                                          <td>Otto</td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo31" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo31">
-                                                              <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์</b>
-                                                                </div>
-                                                                <div class="panel-body">
-
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-
-                                                      <tr >
-
-                                                          <td>2</td>
-                                                          <td>Jacob</td>
-                                                          <td>Thornton</td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo32" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo32">
-                                                              <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์</b>
-                                                                </div>
-                                                                <div class="panel-body">
-
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-
-                                                      <tr>
-                                                          <td>3</td>
-                                                          <td>Larry</td>
-                                                          <td>the Bird</td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo33" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo33">
-                                                              <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์</b>
-                                                                </div>
-                                                                <div class="panel-body">
-
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-
-                                                  </tbody>
-                                              </table>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
-                        <!-- .panel-body -->
-                    </div>
+
+
+
+                            <table class="table " >
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>ชื่อ-นามสกุล</th>
+                                  <th>รหัสวิชา</th>
+                                  <th>ชื่อวิชา</th>
+                                  <th></th>
+                                </tr>
+                              </thead>
+                              <tbody >
+                                <tr>
+                                  <td rowspan="3">1</td>
+                                  <td rowspan="3">อ.สุขุม มานีมาน</td>
+                                  <td>462533</td>
+                                  <td>HEALTH BEHAVIORS AND PHARMACEUTICAL CARE</td>
+                                  <td><button class="btn btn-outline btn-danger"type="button" name="button" >ลบ</button></td>
+                                </tr>
+                                <tr>
+                                  <td>461525</td>
+                                  <td>BASIC KNOWLEDGE OF THAI TRADITIONAL MEDICINEE</td>
+                                  <td><button class="btn btn-outline btn-danger"type="button" name="button" >ลบ</button></td>
+                                </tr>
+                                <tr>
+                                  <td>461532</td>
+                                  <td>DRUG SYNTHESIS</td>
+                                  <td><button class="btn btn-outline btn-danger"type="button" name="button" >ลบ</button></td>
+                                </tr>
+                                <tr>
+                                  <td rowspan="2">2</td>
+                                  <td rowspan="2">อ.เบญจวรรณ ศุทธกิจ</td>
+                                  <td>461575</td>
+                                  <td>DELIVERY SYSTEMS IN COSMETICS</td>
+                                  <td><button class="btn btn-outline btn-danger"type="button" name="button" >ลบ</button></td>
+                                </tr>
+                                <tr>
+                                  <td>463522</td>
+                                  <td>EVIDENCE-BASED DIETARY SUPPLEMENTS</td>
+                                  <td><button class="btn btn-outline btn-danger"type="button" name="button" >ลบ</button></td>
+                                </tr>
+                                <tr>
+                                  <td >3</td>
+                                  <td >อ.ขุ้น ธรรมฉันธะ</td>
+                                  <td>463571</td>
+                                  <td>QUALITY CONTROL FOR FOOD AND COSMETICS</td>
+                                  <td><button class="btn btn-outline btn-danger"type="button" name="button" >ลบ</button></td>
+                                </tr>
+
+                              </tbody>
+                            </table>
+
+
+                      </div>
 
 
     </div>
