@@ -83,9 +83,17 @@ function render(data)
 
     $("#body").html(panel);
 }
+$(document).ready(function(){
+  $('form').submit(false);
+  $("#search-panel").submit(function() {
+        search();
+    });
+});
+
 </script>
 <body>
 <div >
+  <form id="search-panel">
     <h3 class="page-header"><center>สรุปข้อมูล</center></h3>
     <div class="form-inline">
         <center>
@@ -98,8 +106,8 @@ function render(data)
 		          	</select>
 		      	</div>
 		      		ปีการศึกษา
-		      		<input class="form-control" placeholder="e.g. 2560" style="width: 100px;">
-                	&nbsp;<button type="button" class="btn btn-success" onclick="search()" >ค้นหา</button>
+		      		<input type="number" class="form-control" placeholder="e.g. 2560" style="width: 100px;" min="0" required>
+                	&nbsp;<button type="submit" class="btn btn-success"  >ค้นหา</button>
                 	<div id="searchstatus" style="display:inline;"></div>
                 </h>
         </center>
@@ -108,6 +116,7 @@ function render(data)
         <div class="container" id="body">
         </div>
   	<br>
+  </form>
   </div>
 
 </div>
