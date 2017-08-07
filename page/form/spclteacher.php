@@ -149,27 +149,71 @@
         var texttwo;
         textone = parseFloat($('#choice2hour').val());
         var result = textone*200;
-        alert(result);
         $('#choice2cost').val(result.toFixed(2));
     });
 
     $('#SELF_DISTANCT').keyup(function(){
         var textone;
         var texttwo;
-        textone = parseFloat($('#selfcost').val());
+        textone = parseFloat($('#SELF_DISTANCT').val());
         var result = textone*5.00 ;
-        alert(result);
         $('#selfcost').val(result.toFixed(2));
     });
 
-    $('#numnight').keyup(function(){
-        var textone;
-        var texttwo;
-        textone = parseFloat($('#pernight').val());
-        var result = textone*5 ;
-        $('#pernight').val(result.toFixed(2));
-    });
 
+    $("input[name='hotelchoice']").change(function(){
+      if($(this).val()=="way1")
+      {
+        $('#numnight').val("");
+        $('#pernight').val("");
+        $('#numnight').keyup(function(){
+            var textone;
+            var texttwo;
+            textone = parseFloat($('#numnight').val());
+            var result = textone*1500;
+            $('#pernight').val(result.toFixed(2));
+        });
+      }
+      else
+      {
+        $('#numnight').val("");
+        $('#pernight').val("");
+        $('#numnight').keyup(function(){
+            var textone;
+            var texttwo;
+            textone = parseFloat($('#numnight').val());
+            var result = textone*800;
+            $('#pernight').val(result.toFixed(2));
+        });
+      }
+      });
+
+      function lastcal() {
+        var temp1;
+        var temp2;
+        var temp3;
+        var temp4;
+        var temp5;
+        var temp6;
+        var totaltemp;
+
+         temp1 = parseFloat(document.getElementById("choice1cost").value);
+         temp2 = parseFloat(document.getElementById("choice2cost").value);
+         temp3 = parseFloat(document.getElementById("planecost").value);
+         temp4 = parseFloat(document.getElementById("taxicost").value);
+         temp5 = parseFloat(document.getElementById("selfcost").value);
+         temp6 = parseFloat(document.getElementById("pernight").value);
+         totaltemp = temp1 + temp2 + temp3 + temp4 + temp5 + temp6;
+         alert(totaltemp);
+         $("#totalcost").val(totaltemp);
+        /*  temp1 = parseFloat($('#choice2cost').val());
+          temp2 = parseFloat($('#planecost').val());
+          temp3 = parseFloat($('#taxicost').val());
+          temp4 = parseFloat($('#selfcost').val());
+          temp5 = parseFloat($('#pernight').val());
+          totaltemp = temp1 + temp2 + temp3 + temp4 + temp5;
+          $('#totalcost').val(totaltemp.toFixed(2));*/
+        }
 
    $('#adddetail').click(function() {
      var table = $(this).closest('table');
@@ -288,7 +332,7 @@ function deleteRow(r) {
               <div class="form-inline">
                 <li>กระบวนวิชานี้เป็นวิชา &nbsp;<br />
                   <div class="radio">
-                    <input type="radio" name="type_course" id="type_course" value="require" checked> &nbsp;บังคับ
+                    <input type="radio" name="type_course" id="type_course" value="require"> &nbsp;บังคับ
                     &nbsp;<input type="radio" name="type_course" id="type_course" value="choose"> &nbsp;เลือก
                     &nbsp;<input type="radio" name="type_course" id="type_course" value="new"> &nbsp;เปิดใหม่
                     &nbsp;<input type="radio" name="type_course" id="type_course" value="old"> &nbsp;เปิดอยู่แล้ว
@@ -298,7 +342,7 @@ function deleteRow(r) {
               <div class="form-inline">
                 <li>หัวข้อที่เชิญมาสอน <br>
                     <div class="radio">
-                      <input type="radio" name="topic" id="topic" value="yet" checked> &nbsp;อาจารย์พิเศษยังไม่เคยสอน
+                      <input type="radio" name="topic" id="topic" value="yet"> &nbsp;อาจารย์พิเศษยังไม่เคยสอน
                       &nbsp;<input type="radio" name="topic" id="topic" value="already"> &nbsp;อาจารย์พิเศษเคยสอนมาแล้ว
                     </div>
                   </li>
@@ -334,7 +378,7 @@ function deleteRow(r) {
           <div class="form-inline">
             <li>อาจารย์พิเศษเป็น &nbsp;</li>
             <div class="radio">
-              <input type="radio"  name="levelteacher" id="levelteacher" value="pro" checked>&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control charonly" name="GOV_LEVEL" id="GOV_LEVEL"/>
+              <input type="radio"  name="levelteacher" id="levelteacher" value="pro">&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control charonly" name="GOV_LEVEL" id="GOV_LEVEL"/>
               <br>
               <input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ &nbsp;<input type="text" class="form-control charonly" name="NORM_LEVEL" id="NORM_LEVEL"/>
             </div>
@@ -342,7 +386,7 @@ function deleteRow(r) {
           <div class="form-inline">
             <li>ค่าสอนพิเศษ</li>
             <div class="radio">
-              <input type="radio"  name="costspec" id="costspec" value="choice1" checked>&nbsp;ปริญญาตรีบรรยาย 400/ชม.&nbsp;&nbsp;
+              <input type="radio"  name="costspec" id="costspec" value="choice1">&nbsp;ปริญญาตรีบรรยาย 400/ชม.&nbsp;&nbsp;
               จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice1hour" size="5" data-minlength="2" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท
               <br>
               <input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ 200/ชม.&nbsp;&nbsp;
@@ -364,7 +408,7 @@ function deleteRow(r) {
           <div class="form-inline">
             <li>ค่าที่พัก</li>
             <div class="radio">
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" checked>&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1">&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน 800 บาท/คน/คืน &nbsp;&nbsp;
             </div>
             <br>จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999" required  oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;คืน
@@ -373,7 +417,8 @@ function deleteRow(r) {
           </div>
           <br>
           <div class="form-inline">
-            <li style="font-size: 16px;"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="number" class="form-control numonly" name="totalcost" id="totalcost" size="10" data-minlength="5" min="0" max="99999" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท</li>
+            <li style="font-size: 16px;"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="number" class="form-control numonly" name="totalcost" id="totalcost" size="10" data-minlength="5" min="0" max="99999" onclick="lastcal();" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท</li>
+            <input type="button" name="asd" value="คำนวณ" onclick="lastcal();">
           </div>
         </ul>
       </li>
