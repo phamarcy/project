@@ -603,7 +603,7 @@ function deleteRow2(r) {
           <div class="form-inline" style="font-size:16px;">
                     <div class="form-group">
                        <label id="semester" class="control-label">รหัสกระบวนวิชา</label>
-                       <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4" required>
+                       <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 204111" min="0" step="1" required>
                     </div>
                    <div class="form-group">
                       <label id="semester" class="control-label">ภาคการศึกษา</label>
