@@ -60,6 +60,43 @@
  });
 
  $(document).ready(function(){
+
+   // manage required form
+   $("#GOV_LEVEL").prop('required',true);
+   $("input[name='levelteacher']").change(function(){
+     if($(this).val()=="pro")
+     {
+         $("#GOV_LEVEL").prop('required',true);
+         $("#NORM_LEVEL").prop('required',false);
+     }
+     else
+     {
+       $("#GOV_LEVEL").prop('required',false);
+       $("#NORM_LEVEL").prop('required',true);
+     }
+     });
+
+     $("#choice1hour").prop('required',true);
+     $("#choice1cost").prop('required',true);
+     $("input[name='costspec']").change(function(){
+       if($(this).val()=="choice1")
+       {
+           $("#choice1hour").prop('required',true);
+           $("#choice1cost").prop('required',true);
+           $("#choice2hour").prop('required',false);
+           $("#choice2cost").prop('required',false);
+       }
+       else
+       {
+         $("#choice1hour").prop('required',false);
+         $("#choice1cost").prop('required',false);
+         $("#choice2hour").prop('required',true);
+         $("#choice2cost").prop('required',true);
+       }
+       });
+
+
+
    $('#adddetail').click(function() {
      var table = $(this).closest('table');
      if (table.find('input:text').length < 100) {
@@ -95,62 +132,70 @@ function deleteRow(r) {
   <div class="row">
     <center>
       <h3 class="page-header">แบบขออนุมัติเชิญอาจารย์พิเศษ คณะเภสัชศาสตร์</h3>
-      <div class="form-inline">
-        <form data-toggle="validator" role="form">
-              <h style="font-size: 14px;">รหัสกระบวนวิชา
-              <input class="form-control" id="course_find" placeholder="e.g. 204111" style="width: 100px;" required>
-               ภาคการศึกษาที่
-               <div class="form-group">
-                   <select class="form-control" id="semester" style="width: 70px; " required>
-                       <option>1</option>
-                       <option>2</option>
-                       <option>3</option>
-                   </select>
-               </div>
-               ปีการศึกษา
-               <input class="form-control" id="year" placeholder="e.g. 2560" style="width: 100px;" required>
-               <input type="submit" class="btn btn-outline btn-primary" value="ค้นหา"></h>
-             </form>
-       </div>
+      <form >
+        <div class="form-inline" style="font-size:16px;">
+                  <div class="form-group">
+                    <h style="font-size: 14px;">รหัสกระบวนวิชา
+                     <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 204111" maxlength="6"  required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')">
+                  </div>
+                 <div class="form-group">
+                    ภาคการศึกษา
+                     <select class="form-control required" id="semester" style="width: 70px;" id="select" required>
+                        <option value="">--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                     </select>
+                 </div>
+                 <div class="form-group">
+                   ปีการศึกษา</h>
+                   <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษาให้ถูกต้อง')" oninput="setCustomValidity('')">
+                 </div>
+                <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
+         </div>
+      </form>
+      <div class="row form-inline" style="font-size:16px;">
+      ภาควิชา <input type="text" class="form-control charonly" size="25" name="department" id="department" required oninvalid="this.setCustomValidity('กรุณาระบุภาควิชาให้ถูกต้อง')" oninput="setCustomValidity('')">
+      </div>
     </center>
   </div>
 
   <form action="" name="form1" method="post">
     <ol>
-      <br>
+
       <li style="font-size: 14px;">
         <b>รายละเอียดของอาจารย์พิเศษ</b>
         <br>
         <div class="row">
           <ul>
           <div class="form-inline">
-            <li>ชื่อ &nbsp;&nbsp;<input type="text" class="form-control charonly" id="fname" size="20" required>&nbsp;&nbsp;&nbsp;&nbsp;
-            นามสกุล &nbsp;&nbsp;<input type="text" class="form-control charonly" id="lname" size="20" required></li>
+            <li>ชื่อ &nbsp;&nbsp;<input type="text" class="form-control charonly" id="fname" size="20" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อ')" oninput="setCustomValidity('')">&nbsp;&nbsp;&nbsp;&nbsp;
+            นามสกุล &nbsp;&nbsp;<input type="text" class="form-control charonly" id="lname" size="20" required oninvalid="this.setCustomValidity('กรุณากรอกนามสกุล')" oninput="setCustomValidity('')"></li>
           </div>
 
           <div class="form-inline">
-            <li>ตำแหน่ง &nbsp;&nbsp;<input type="text" class="form-control charonly" id="position" size="35" required></li>
+            <li>ตำแหน่ง &nbsp;&nbsp;<input type="text" class="form-control charonly" id="position" size="35" required oninvalid="this.setCustomValidity('กรุณากรอกตำแหน่ง')" oninput="setCustomValidity('')"></li>
           </div>
 
           <div class="form-inline">
-            <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<input type="text" class="form-control charonly" id="qualification" size="35" required></li>
+            <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<input type="text" class="form-control charonly" id="qualification" size="35" required oninvalid="this.setCustomValidity('กรุณากรอกคุณวุฒิหรือสาขาที่เชี่ยวชาญ')" oninput="setCustomValidity('')"></li>
           </div>
 
           <div class="form-inline">
-            <li>สถานที่ทำงาน &nbsp;&nbsp;<br /><textarea class="form-control" id="workplace" rows="4" cols="70"  required></textarea></li>
+            <li>สถานที่ทำงาน &nbsp;&nbsp;<br /><textarea class="form-control" id="workplace" rows="4" cols="70"  required oninvalid="this.setCustomValidity('กรุณากรอกสถานที่ทำงาน')" oninput="setCustomValidity('')"></textarea></li>
           </div>
 
           <div class="form-inline">
-            <li>สถานที่ติดต่อ  &nbsp;&nbsp;<br /><textarea class="form-control" id="contactplace" rows="4" cols="70" required></textarea></li>
+            <li>สถานที่ติดต่อ  &nbsp;&nbsp;<br /><textarea class="form-control" id="contactplace" rows="4" cols="70" required oninvalid="this.setCustomValidity('กรุณากรอกสถานที่ติดต่อ')" oninput="setCustomValidity('')"></textarea></li>
           </div>
 
           <div class="form-inline">
-            <li>โทรศัพท์ &nbsp;&nbsp;<input type="text" class="form-control numonly" id="tel" size="20" maxlength="10" required>
-              &nbsp;ต่อ&nbsp;<input type="text" class="form-control numonly" id="subtel" size="2" maxlength="2" required></li>
+            <li>โทรศัพท์ &nbsp;&nbsp;<input type="text" class="form-control numonly" id="tel" size="20" maxlength="10" required oninvalid="this.setCustomValidity('กรุณากรอกหมายเลขโทรศัพท์')" oninput="setCustomValidity('')">
+              &nbsp;ต่อ&nbsp;<input type="text" class="form-control numonly" id="subtel" size="2" maxlength="2" required oninvalid="this.setCustomValidity('กรุณาระบุให้ถูกต้อง')" oninput="setCustomValidity('')"></li>
         </div>
 
         <div class="form-inline">
-          <li>E-mail &nbsp;&nbsp;<input style="height: 25px;" type="email" class="form-control" id="qualification" size="45" required></li>
+          <li>E-mail &nbsp;&nbsp;<input style="height: 25px;" type="email" class="form-control" id="qualification" size="45" required oninvalid="this.setCustomValidity('กรุณากรอกอีเมล์ให้ถูกต้อง')" oninput="setCustomValidity('')"></li>
         </div>
       </ul>
     </div>
@@ -161,7 +206,10 @@ function deleteRow(r) {
           <div class="row">
             <ul>
               <div class="form-inline">
-                <li>รหัสกระบวนวิชาที่สอน &nbsp;<input type="number" class="form-control numonly" name="" id="course" size="6" data-minlength="6" min="0" max="999999" required></li>
+                <li>รหัสกระบวนวิชาที่สอน &nbsp;<input type="text" class="form-control numonly" name="" id="course" size="6" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')"></li>
+              </div>
+              <div class="form-inline">
+                <li>จำนวนนักศึกษา &nbsp;<input type="number" class="form-control numonly" name="" id="numstudent" size="6" data-minlength="6" min="0" max="1000" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนนักศึกษา')" oninput="setCustomValidity('')"> คน</li>
               </div>
               <div class="form-inline">
                 <li>กระบวนวิชานี้เป็นวิชา &nbsp;<br />
@@ -183,10 +231,10 @@ function deleteRow(r) {
                 </li>
               </div>
               <div class="form-inline">
-                <li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="number" class="form-control numonly" name="" id="hour" size="3" data-minlength="3" min="0" max="100" required> &nbsp;ของทั้งกระบวนวิชา</li>
+                <li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="number" class="form-control numonly" name="" id="hour" size="3" data-minlength="3" min="0" max="100" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงให้ถูกต้อง')" oninput="setCustomValidity('')"> &nbsp;ของทั้งกระบวนวิชา</li>
               </div>
               <div class="form-inline">
-                <li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70" required></textarea></li>
+                <li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70" required oninvalid="this.setCustomValidity('กรุณาระบุเหตุผลในการเชิญอาจารย์พิเศษ')" oninput="setCustomValidity('')"></textarea></li>
               </div>
                 <li> รายละเอียดในการสอน <br>
                   <div class="col-md-10">
@@ -212,8 +260,9 @@ function deleteRow(r) {
           <div class="form-inline">
             <li>อาจารย์พิเศษเป็น &nbsp;</li>
             <div class="radio">
-              <input type="radio"  name="levelteacher" id="levelteacher" value="pro" checked>&nbsp;ข้าราชการระดับ <input type="text" class="form-control" name="GOV_LEVEL"/>
-              &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ <input type="text" class="form-control" name="NORM_LEVEL"/>
+              <input type="radio"  name="levelteacher" id="levelteacher" value="pro" checked>&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control charonly" name="GOV_LEVEL" id="GOV_LEVEL"/>
+              <br>
+              <input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ &nbsp;<input type="text" class="form-control charonly" name="NORM_LEVEL" id="NORM_LEVEL"/>
             </div>
           </div>
           <div class="form-inline">
@@ -229,11 +278,11 @@ function deleteRow(r) {
           <div class="form-inline">
             <li>ค่าพาหนะเดินทาง </li>
             <div class="checkbox">
-              <label><input type="checkbox" name="trans" id="trans" value="plane">&nbsp;&nbsp;เครื่องบิน ระหว่าง <input type="text" class="form-control" name="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="trans" id="trans" value="plane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               <br>
-              <label><input type="checkbox" name="trans" id="trans" value="taxi">&nbsp;&nbsp;ค่า taxi <input type="text" class="form-control" name="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="trans" id="trans" value="taxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               <br>
-              <label><input type="checkbox" name="trans" id="trans" value="selfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง <input type="number" class="form-control numonly" name="SELF_DISTANCT" style="width: 70px"/> กม.ๆ ละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="selfcost" id="selfcost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="trans" id="trans" value="selfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;<input type="number" class="form-control numonly" name="SELF_DISTANCT" id="SELF_DISTANCT" style="width: 70px"/> &nbsp;กิโลเมตร  กิโลเมตรละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="selfcost" id="selfcost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               </div>
           </div>
           <div class="form-inline">
@@ -242,13 +291,13 @@ function deleteRow(r) {
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" checked>&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน 800 บาท/คน/คืน &nbsp;&nbsp;
             </div>
-            <br>จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" data-minlength="5" min="0" max="99999" required>&nbsp;&nbsp;คืน
-            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="pernight" id="pernight" size="5" data-minlength="5" min="0" max="99999" required>&nbsp;&nbsp;บาท
+            <br>จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" data-minlength="5" min="0" max="99999" required  oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;คืน
+            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="pernight" id="pernight" size="5" data-minlength="5" min="0" max="99999" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท
 
           </div>
           <br>
           <div class="form-inline">
-            <li style="font-size: 16px;"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="number" class="form-control numonly" name="totalcost" id="totalcost" size="10" data-minlength="5" min="0" max="99999" required>&nbsp;&nbsp;บาท</li>
+            <li style="font-size: 16px;"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="number" class="form-control numonly" name="totalcost" id="totalcost" size="10" data-minlength="5" min="0" max="99999" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท</li>
           </div>
         </ul>
       </li>
@@ -256,7 +305,7 @@ function deleteRow(r) {
     <br>
     <br>
     <div align="center">
-      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล"> &nbsp;
+      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" value="รีเซ็ตข้อมูล">
     </div>

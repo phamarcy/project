@@ -627,11 +627,11 @@ function other_type() {
         <form >
           <div class="form-inline" style="font-size:16px;">
                     <div class="form-group">
-                       <label id="semester" class="control-label">รหัสกระบวนวิชา</label>
-                       <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 204111" min="0"  required>
+                      <h style="font-size: 14px;">รหัสกระบวนวิชา
+                       <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 204111" maxlength="6"  required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')">
                     </div>
                    <div class="form-group">
-                      <label id="semester" class="control-label">ภาคการศึกษา</label>
+                      ภาคการศึกษา
                        <select class="form-control required" id="semester" style="width: 70px;" id="select" required>
                           <option value="">--</option>
                           <option value="1">1</option>
@@ -640,8 +640,8 @@ function other_type() {
                        </select>
                    </div>
                    <div class="form-group">
-                     <label for="inputyear" class="control-label">ปีการศึกษา</label>
-                     <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"   max="9999" required>
+                     ปีการศึกษา</h>
+                     <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษาให้ถูกต้อง')" oninput="setCustomValidity('')">
                    </div>
                   <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
            </div>
