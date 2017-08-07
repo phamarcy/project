@@ -12,12 +12,12 @@
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <link rel="stylesheet" href="../dist/css/scrollbar.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
 <style >
 /*div[class="row"] {
@@ -29,6 +29,7 @@ div[class^="col-"] {
 }*/
 
 </style>
+
 </header>
 
 
@@ -38,30 +39,7 @@ div[class^="col-"] {
         <div class="row">
           <center>
             <h3 class="page-header">กำหนดกระบวนวิชาให้กับอาจารย์</h3>
-                <form  role="form">
-                  <div class="form-inline" style="font-size:16px;">
-                           <div class="form-group">
-                              <label id="semester" class="control-label">ภาคการศึกษา</label>
-                               <select class="form-control required" id="semester" style="width: 70px;" id="select" required oninvalid="this.setCustomValidity('กรุณาเลือกภาคการศึกษา')" oninput="setCustomValidity('')" >
-                                  <option value="">--</option>
-                                  <option value="1">1</option>
-                                  <option value="2">2</option>
-                                  <option value="3">3</option>
-                               </select>
-                               <div class="form-group">
-                                 <div class="help-block with-errors" style="font-size:12px;"></div>
-                               </div>
-                           </div>
-                           <div class="form-group">
-                             <label for="inputyear" class="control-label">ปีการศึกษา</label>
-                             <input type="text" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"    max="9999" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษา')" oninput="setCustomValidity('')" pattern=".{4,4}"  oninvalid="setCustomValidity('Plz enter on Alphabets ')" onchange="try{setCustomValidity('')} catch(e){}">
-                               <div class="form-group">
-                                 <div class="help-block with-errors" style="font-size:12px;"></div>
-                               </div>
-                           </div>
-                          <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
-                   </div>
-                </form>
+
           </center>
         </div>
       <br>
@@ -94,11 +72,10 @@ div[class^="col-"] {
                                           <option value="">อ.มนตรี องค์เทียมสัคค์</option>
                                         </select>
                                       </div>
-
                                     </div>
                                     <div class="col-md-8">
                                       <div class="form-group">
-                                        <label style="font-size:16px;">รายชื่ออาจารย์</label>
+                                        <label style="font-size:16px;">วิชา</label>
                                         <select class="form-control" name="">
                                           <option value="">462533	HEALTH BEHAVIORS AND PHARMACEUTICAL CARE</option>
                                           <option value="">461525	BASIC KNOWLEDGE OF THAI TRADITIONAL MEDICINEE</option>
@@ -115,7 +92,6 @@ div[class^="col-"] {
                                 </div>
                               </div>
                             </div>
-
 
 
                             <table class="table " >
@@ -165,15 +141,12 @@ div[class^="col-"] {
                                   <td>QUALITY CONTROL FOR FOOD AND COSMETICS</td>
                                   <td><button class="btn btn-outline btn-danger"type="button" name="button" >ลบ</button></td>
                                 </tr>
-
                               </tbody>
                             </table>
-
-
                       </div>
-
-
     </div>
 </body>
-
+<script type="text/javascript">
+  $('select').select2();
+</script>
 </html>
