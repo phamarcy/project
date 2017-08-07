@@ -121,7 +121,7 @@
           <div class="form-inline" style="font-size:14px;">
                    <div class="form-group">
                       <label id="semester" class="control-label">ภาคการศึกษา</label>
-                       <select class="form-control required" id="semester" style="width: 70px;"  required>
+                       <select class="form-control required" id="semester" style="width: 70px;"  required  oninvalid="this.setCustomValidity('กรุณาเลือกภาคการศึกษา')" oninput="setCustomValidity('')">
                           <option value="">--</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
@@ -130,7 +130,7 @@
                    </div>
                    <div class="form-group">
                      <label for="inputyear" class="control-label">ปีการศึกษา</label>
-                     <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required>
+                     <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required  oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษา')" oninput="setCustomValidity('')">
                    </div>
                   <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
            </div>
