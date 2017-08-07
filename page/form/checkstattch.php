@@ -39,9 +39,61 @@
 
   <link rel="stylesheet" href="../dist/css/scrollbar.css">
 
-<script id="contentScript">
+  <script type="text/javascript">
+  //search report data in first load
+  function search() {
+      $('#searchstatus').html("<img src='../../application/picture/loading_icon.gif' height='35' >");
+      var URL = '../../application/report/staff_report.php';
+      $.ajax({
+          url: URL, // point to server-side PHP script
+          dataType: 'text', // what to expect back from the PHP script, if anything
+          data: 'ssss',
+          type: 'post',
+          success: function(result) {
+              $("#searchstatus").hide();
+              $('#searchstatus').css('color', 'green');
+              $('#searchstatus').text("สำเร็จ");
+              $('#searchstatus').fadeIn();
+              render(result);
+          },
+          failure: function(result) {
+              alert(result);
+          },
+          error: function(xhr, status, p3, p4) {
+              var err = "Error " + " " + status + " " + p3 + " " + p4;
+              if (xhr.responseText && xhr.responseText[0] == "{")
+                  err = JSON.parse(xhr.responseText).Message;
+              console.log(err);
+          }
+      });
+  }
+  //render data boxes
+  function render(data)
+  {
+      //create report panel
+      var panel = document.createElement("div");
+      panel.setAttribute("class","panel panel-default");
+      //create panel header
+      var header = document.createElement("div");
+      header.setAttribute("class","panel-heading");
+      header.innerHTML = "header";
+      //create panel content
+      var content = document.createElement("div");
+      content.setAttribute("class","panel-body");
+      content.innerHTML = "Content";
+      panel.appendChild(header);
+      panel.appendChild(content);
 
-</script>
+      $("#body").html(panel);
+  }
+  $(document).ready(function(){
+    $('form').submit(false);
+    $("#search-panel").submit(function() {
+          search();
+      });
+  });
+
+  </script>
 <style>
 #statcf {
   color : #0e9d14;
@@ -68,7 +120,7 @@
         <form data-toggle="validator" role="form">
           <div class="form-inline" style="font-size:14px;">
                    <div class="form-group">
-                      <label id="semester" class="control-label">ปีการศึกษา</label>
+                      <label id="semester" class="control-label">ภาคการศึกษา</label>
                        <select class="form-control required" id="semester" style="width: 70px;"  required>
                           <option value="">--</option>
                           <option value="1">1</option>
@@ -85,12 +137,8 @@
         </form>
   </center>
 </div>
-
-<br>
-
 <div class="container">
 <div class="panel-group" id="accordion0">
-
   <div class="panel panel-info">
     <div class="panel-heading">
       <h3 class="panel-title">

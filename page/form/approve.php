@@ -1,3 +1,6 @@
+<?php
+  session_start();
+ ?>
 <html>
 <header>
     <meta charset="utf-8">
@@ -18,7 +21,7 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
-
+    <script type="text/javascript" src="../js/function.js"></script>
 <style >
 /*div[class="row"] {
   border: 1px dotted rgba(0, 0, 0, 0.5);
@@ -29,6 +32,7 @@ div[class^="col-"] {
 }*/
 
 </style>
+
 </header>
 
 
@@ -38,7 +42,7 @@ div[class^="col-"] {
         <div class="row">
           <center>
             <h3 class="page-header">การอนุมัติกระบวนวิชา</h3>
-                <form  role="form">
+                <form  id="search-panel">
                   <div class="form-inline" style="font-size:16px;">
                            <div class="form-group">
                               <label id="semester" class="control-label">ภาคการศึกษา</label>
@@ -52,12 +56,9 @@ div[class^="col-"] {
                                  <div class="help-block with-errors" style="font-size:12px;"></div>
                                </div>
                            </div>
-                           <div class="form-group">
+                           <div class="form-group ">
                              <label for="inputyear" class="control-label">ปีการศึกษา</label>
-                             <input type="text" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"    max="9999" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษา')" oninput="setCustomValidity('')" pattern=".{4,4}"  oninvalid="setCustomValidity('Plz enter on Alphabets ')" onchange="try{setCustomValidity('')} catch(e){}">
-                               <div class="form-group">
-                                 <div class="help-block with-errors" style="font-size:12px;"></div>
-                               </div>
+                             <input type="text" class="form-control numonly"  style="width: 150px;" placeholder="e.g. 2560"    maxlength="4" pattern=".{4,4}" required  oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษา')" oninput="setCustomValidity('')">
                            </div>
                           <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
                    </div>
@@ -65,6 +66,7 @@ div[class^="col-"] {
           </center>
         </div>
       <br>
+
       <div class="panel panel-default">
                         <div class="panel-heading">
                           <h4 class="panel-title">
@@ -144,16 +146,22 @@ div[class^="col-"] {
                                                                 <div class="panel-body">
                                                                   <table class="table ">
                                                                     <thead>
-                                                                      <th style="width:170px">คณะกรรมการ</th>
+                                                                      <?php if ($_SESSION['level'] > 4 ): ?>
+                                                                          <th style="width:170px">คณะกรรมการ</th>
+                                                                      <?php endif; ?>
                                                                       <th>คอมเม้นท์</th>
                                                                     </thead>
                                                                     <tbody>
                                                                       <tr>
-                                                                        <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                                                                        <?php if ($_SESSION['level'] > 4 ): ?>
+                                                                            <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                                                                        <?php endif; ?>
                                                                         <td>Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16 เมื่อเครื่องพิมพ์โนเนมเครื่องหนึ่งนำรางตัวพิมพ์มาสลับสับตำแหน่งตัวอักษรเพื่อทำหนังสือตัวอย่าง Lorem Ipsum อยู่ยงคงกระพันมาไม่ใช่แค่เพียงห้าศตวรรษ แต่อยู่มาจนถึงยุคที่พลิกโฉมเข้าสู่งานเรียงพิมพ์ด้วยวิธีทางอิเล็กทรอนิกส์ และยังคงสภาพเดิมไว้อย่างไม่มีการเปลี่ยนแปลง มันได้รับความนิยมมากขึ้นในยุค ค.ศ. 1960 เมื่อแผ่น Letraset วางจำหน่ายโดยมีข้อความบนนั้นเป็น Lorem Ipsum และล่าสุดกว่านั้น คือเมื่อซอฟท์แวร์การทำสื่อสิ่งพิมพ์ (Desktop Publishing) อย่าง Aldus PageMaker ได้รวมเอา Lorem Ipsum เวอร์ชั่นต่างๆ เข้าไว้ในซอฟท์แวร์ด้วย</td>
                                                                       </tr>
                                                                       <tr>
-                                                                        <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                                                                        <?php if ($_SESSION['level'] > 4 ): ?>
+                                                                            <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                                                                        <?php endif; ?>
                                                                         <td>มีหลักฐานที่เป็นข้อเท็จจริงยืนยันมานานแล้ว ว่าเนื้อหาที่อ่านรู้เรื่องนั้นจะไปกวนสมาธิของคนอ่านให้เขวไปจากส่วนที้เป็น Layout เรานำ Lorem Ipsum มาใช้เพราะความที่มันมีการกระจายของตัวอักษรธรรมดาๆ แบบพอประมาณ ซึ่งเอามาใช้แทนการเขียนว่า ‘ตรงนี้เป็นเนื้อหา, ตรงนี้เป็นเนื้อหา' ได้ และยังทำให้มองดูเหมือนกับภาษาอังกฤษที่อ่านได้ปกติ ปัจจุบันมีแพ็กเกจของซอฟท์แวร์การทำสื่อสิ่งพิมพ์ และซอฟท์แวร์การสร้างเว็บเพจ (Web Page Editor) หลายตัวที่ใช้ Lorem Ipsum เป็นแบบจำลองเนื้อหาที่เป็นค่าตั้งต้น และเวลาที่เสิร์ชด้วยคำว่า 'lorem ipsum' ผลการเสิร์ชที่ได้ก็จะไม่พบบรรดาเว็บไซต์ที่ยังคงอยู่ในช่วงเริ่มสร้างด้วย โดยหลายปีที่ผ่านมาก็มีการคิดค้นเวอร์ชั่นต่างๆ ของ Lorem Ipsum ขึ้นมาใช้ บ้างก็เป็นความบังเอิญ บ้างก็เป็นความตั้งใจ (เช่น การแอบแทรกมุกตลก)</td>
                                                                       </tr>
                                                                     </tbody>
@@ -496,9 +504,10 @@ div[class^="col-"] {
                         </div>
                         <!-- .panel-body -->
                     </div>
-
-
+                  </div>
+                </div>
     </div>
+
 </body>
 
 </html>
