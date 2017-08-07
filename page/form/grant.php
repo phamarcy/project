@@ -35,7 +35,6 @@
  <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 
  <link rel="stylesheet" href="../dist/css/scrollbar.css">
- <script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
 
  <scrip>
 
@@ -46,12 +45,12 @@
  <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
    <div class="row">
      <center>
-       <h3 class="page-header">การอนุมัติกระบวนวิชา</h3>
+       <h3 class="page-header">มอบอำนาจการอนุมัติกระบวนวิชา</h3>
            <form data-toggle="validator" role="form">
              <div class="form-inline" style="font-size:16px;">
                       <div class="form-group">
                          <label id="semester" class="control-label">ปีการศึกษา</label>
-                          <select class="form-control required" id="semester" style="width: 70px;" id="select" required>
+                          <select class="form-control required" id="semester" style="width: 70px;" required>
                              <option value="">--</option>
                              <option value="1">1</option>
                              <option value="2">2</option>
@@ -60,9 +59,9 @@
                       </div>
                       <div class="form-group">
                         <label for="inputyear" class="control-label">ปีการศึกษา</label>
-                        <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required>
+                        <input type="number" class="form-control"  style="width: 150px;" placeholder="e.g. 2560"   max="9999" required>
                       </div>
-                     <button type="submit" class="btn btn-primary">ค้นหา</button>
+                     <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
               </div>
            </form>
      </center>
@@ -73,7 +72,7 @@
        ภาคการศึกษาที่ 2 ปีการศึกษา 2560
      </div>
      <div class="panel-body">
-       <div class="panel panel-primary">
+       <div class="panel panel-info">
          <div class="panel-heading"  style="padding: 0px 0px; padding-left: 10px;">
            สถานะการมอบอำนาจล่าสุด
          </div>
@@ -91,23 +90,25 @@
                <td>ใจดี</td>
                <td>คณะกรรมการคณะ</td>
                <td>ได้รับมอบอำนาจการอนุมัติ</td>
-               <td><input type="button" class="btn btn-danger" id="cancelgrantbtn" value="ยกเลิกการมอบอำนาจ"></td>
+               <td><input type="button" class="btn btn-outline btn-danger" id="cancelgrantbtn" value="ยกเลิกการมอบอำนาจ"></td>
              </tr>
            </table>
          </div>
        </div>
-         <div class="panel panel-yellow">
+         <div class="panel panel-warning">
            <div class="panel-heading" style="padding: 0px 0px; padding-left: 10px;">
             ค้นหาชื่อผู้ใช้เพื่อมอบอำนาจ
            </div>
            <div class="panel-body" style="font-size: 16px;">
             <div class="form-inline" style="font-size: 14px;">
-             ชื่อ&nbsp;&nbsp;<input type="text" class="form-control" id="fname">&nbsp;&nbsp;นามสกุล&nbsp;&nbsp;<input type="text" class="form-control" id="lname">
-             <input type="button" class="btn btn-warning" id="ค้นหา" value="ค้นหา">
+              <form class="" action="" method="post">
+                ชื่อ&nbsp;&nbsp;<input type="text" class="form-control" id="fname">&nbsp;&nbsp;นามสกุล&nbsp;&nbsp;<input type="text" class="form-control" id="lname" >
+                <input type="submit" class="btn btn-outline btn-warning" id="ค้นหา" value="ค้นหา">
+              </form>
            </div>
          </div>
        </div>
-       <div class="panel panel-green">
+       <div class="panel panel-success">
          <div class="panel-heading" style="padding: 0px 0px; padding-left: 10px;">
            รายชื่อที่พบ
          </div>
@@ -125,7 +126,7 @@
                <td>คำอุ๊</td>
                <td>คณะกรรมการคณะ</td>
                <td>ยังไม่ได้รับมอบอำนาจ</td>
-               <td><input type="button" class="btn btn-danger" id="grantbtn" value="มอบอำนาจ" disabled></td>
+               <td><input type="button" class="btn btn-outline btn-danger" id="grantbtn" value="มอบอำนาจ" disabled></td>
              </tr>
            </table>
          </div>

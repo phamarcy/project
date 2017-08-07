@@ -38,7 +38,6 @@
  	<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 
   <link rel="stylesheet" href="../dist/css/scrollbar.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
 
 <script id="contentScript">
 
@@ -70,7 +69,7 @@
           <div class="form-inline" style="font-size:14px;">
                    <div class="form-group">
                       <label id="semester" class="control-label">ปีการศึกษา</label>
-                       <select class="form-control required" id="semester" style="width: 70px;" id="select" required>
+                       <select class="form-control required" id="semester" style="width: 70px;"  required>
                           <option value="">--</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
