@@ -212,8 +212,8 @@ function deleteRow(r) {
           <div class="form-inline">
             <li>อาจารย์พิเศษเป็น &nbsp;</li>
             <div class="radio">
-              <input type="radio"  name="levelteacher" id="levelteacher" value="pro" checked>&nbsp;ข้าราชการระดับชำนาฐการ
-              &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ
+              <input type="radio"  name="levelteacher" id="levelteacher" value="pro" checked>&nbsp;ข้าราชการระดับ <input type="text" class="form-control" name="GOV_LEVEL"/>
+              &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ <input type="text" class="form-control" name="NORM_LEVEL"/>
             </div>
           </div>
           <div class="form-inline">
@@ -229,11 +229,11 @@ function deleteRow(r) {
           <div class="form-inline">
             <li>ค่าพาหนะเดินทาง </li>
             <div class="checkbox">
-              <label><input type="checkbox" name="trans" id="trans" value="plane">&nbsp;&nbsp;เครื่องบิน ระหว่าง เชียงใหม่-กรุงเทพ &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="trans" id="trans" value="plane">&nbsp;&nbsp;เครื่องบิน ระหว่าง <input type="text" class="form-control" name="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               <br>
-              <label><input type="checkbox" name="trans" id="trans" value="taxi">&nbsp;&nbsp;ค่า taxi ดอนเมือง-ลาดพร้าว &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="trans" id="trans" value="taxi">&nbsp;&nbsp;ค่า taxi <input type="text" class="form-control" name="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               <br>
-              <label><input type="checkbox" name="trans" id="trans" value="selfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง 60 กม.ๆ ละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="selfcost" id="selfcost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="trans" id="trans" value="selfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง <input type="number" class="form-control numonly" name="SELF_DISTANCT" style="width: 70px"/> กม.ๆ ละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="selfcost" id="selfcost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               </div>
           </div>
           <div class="form-inline">

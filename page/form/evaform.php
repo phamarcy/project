@@ -664,7 +664,7 @@ function deleteRow2(r) {
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="TRA"> ฝึกงาน &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="SEM"> สัมมนา &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LAB"> ปฏิบัติการ &nbsp;<br>
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="OTH"> อื่นๆ &nbsp; <input type="text"  class="form-control"  name="TYPE_TEACHING_NAME" id="TYPE_TEACHING_NAME"/>
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="OTH"> อื่นๆ &nbsp; <input type="text"  class="form-control"  name="TYPE_TEACHING_NAME" id="TYPE_TEACHING_NAME" placeholder="โปรดระบุ"/>
           </div>
         </div>
       </li>
