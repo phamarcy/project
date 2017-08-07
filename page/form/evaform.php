@@ -469,33 +469,34 @@ function submitfunc() {
   };
 
   alert(JSON.stringify(data));
-  senddata(JSON.stringify(data),getfile());
+//  senddata(JSON.stringify(data),getfile());
 }
 function senddata(data,file_data)
 {
-  file_data.append("data",data);
-  var URL = '../../application/pdf/course_evaluate.php';
-  $.ajax({
-                url: URL, // point to server-side PHP script
-                dataType: 'text',  // what to expect back from the PHP script, if anything
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: file_data,
-                type: 'post',
-                success: function (result) {
-                     alert(result);
-                },
-                failure: function (result) {
-                     alert(result);
-                },
-                error: function (xhr, status, p3, p4) {
-                     var err = "Error " + " " + status + " " + p3 + " " + p4;
-                     if (xhr.responseText && xhr.responseText[0] == "{")
-                          err = JSON.parse(xhr.responseText).Message;
-                     console.log(err);
-                }
-     });
+  prompt("data", data);
+  // file_data.append("data",data);
+  // var URL = '../../application/pdf/course_evaluate.php';
+  // $.ajax({
+  //               url: URL, // point to server-side PHP script
+  //               dataType: 'text',  // what to expect back from the PHP script, if anything
+  //               cache: false,
+  //               contentType: false,
+  //               processData: false,
+  //               data: file_data,
+  //               type: 'post',
+  //               success: function (result) {
+  //                    alert(result);
+  //               },
+  //               failure: function (result) {
+  //                    alert(result);
+  //               },
+  //               error: function (xhr, status, p3, p4) {
+  //                    var err = "Error " + " " + status + " " + p3 + " " + p4;
+  //                    if (xhr.responseText && xhr.responseText[0] == "{")
+  //                         err = JSON.parse(xhr.responseText).Message;
+  //                    console.log(err);
+  //               }
+  //    });
 }
 function getfile()
 {
