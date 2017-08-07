@@ -65,7 +65,7 @@
   <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
 <div class="row">
   <center>
-    <h3 class="page-header">การอนุมัติกระบวนวิชา</h3>
+    <h3 class="page-header">ตรวจสอบสถานะการอนุมัติกระบวนวิชา</h3>
         <form data-toggle="validator" role="form">
           <div class="form-inline" style="font-size:14px;">
                    <div class="form-group">
