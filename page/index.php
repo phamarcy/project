@@ -50,6 +50,18 @@
 
 	<script>
 	$(document).ready(function(){
+		$(document).on("click", function () {
+    		$("#noti").hide("slow");
+		});
+		$("#icon-dropdown").click(function(){
+			$("#noti").slideToggle();
+		})
+		$('#frm').on("load",function(){
+	        var iframe = $('#frm').contents();
+	        iframe.find("html").click(function(){
+    				$("#noti").hide("slow");
+	        });
+				});
  			$('a[href="#"]').click(function(e){
  			   e.preventDefault();
  			});
@@ -169,6 +181,9 @@
 			document.body.scrollTop = 0;
 			document.documentElement.scrollTop = 0;
 		}
+
+
+
 	</script>
 </header>
 
@@ -177,7 +192,7 @@
 
 		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
 								<span class="sr-only">Toggle navigation</span>
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
@@ -190,11 +205,11 @@
 			<ul class="nav navbar-top-links navbar-right">
 				<b>ยินดีต้อนรับ | <font color="#51cc62"> คุณ คำแก้ว มาลูน </font></b>
 				<!-- /.dropdown -->
-				<li class="dropdown">
+				<li class="dropdown" id="icon-dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 										<i class="fa fa-bell fa-fw"></i> <span class="label label-danger red">4</span>
 						</a>
-					<ul class="dropdown-menu scrollable-menu" role="menu">
+					<ul class="dropdown-menu scrollable-menu" role="menu" id="noti">
 						<li >
 							<a href="#" class="disabled">
 										<p>

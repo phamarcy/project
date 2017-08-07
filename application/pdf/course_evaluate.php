@@ -8,22 +8,33 @@ if(isset($_POST['data']))
 {
 	// Write_temp_data($_POST['data']);
 	die($_POST['data']);
-	$DATA = json_decode($_POST['data'],true);
+	$data = $_POST['data'];
+	$DATA = json_decode($data,true);
+	if($DATA['type'] == '1')
+	{
+			Write_temp_data($data);
+	}
 	//var_dump($DATA);
 }
-// function Write_temp_data($temp_data)
-// {
-// 	$data = json_decode($temp_data,true);
-// 	$TEMP_PATH = __DIR__.'/../../files/temp_data';
-// 	if(!file_exists($TEMP_PATH))
-// 	{
-// 		mkdir($TEMP_PATH);
-// 	}
-// 	$temp_file = fopen($TEMP_PATH."/".$data['COURSE_ID']."_".$data['SEMESTER']."_".$data['YEAR']."txt", "w");
-// 	fwrite($temp_data, $txt);
-// 	fclose($temp_file);
+else
+{
+	$return['error'] = 'No data';
+	return json_encode($return);
+}
+function Write_temp_data($temp_data)
+{
+	$data = json_decode($temp_data,true);
+	$TEMP_PATH = __DIR__.'/../../files/temp_data';
+	if(!file_exists($TEMP_PATH))
+	{
+		mkdir($TEMP_PATH);
+	}
+	$temp_file = fopen($TEMP_PATH."/".$data['COURSE_ID']."_".$data['SEMESTER']."_".$data['YEAR']."txt", "w");
+	fwrite($temp_data, $txt);
+	fclose($temp_file);
 
-// }
+}
+//start generate pdf
 //require_once('example_data.php');
 require('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
