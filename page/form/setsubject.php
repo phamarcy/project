@@ -64,12 +64,14 @@ div[class^="col-"] {
                                       <div class="form-group">
                                         <label style="font-size:16px;">รายชื่ออาจารย์</label>
                                         <select class="form-control" name="">
-                                          <option value="">อ.ชญานุช เตชะปัญญารักษ์</option>
-                                          <option value="">อ.สุขุม มานีมาน</option>
-                                          <option value="">อ.วสุพล ศุทธกิจ</option>
-                                          <option value="">อ.วัลภา มานีมาน</option>
-                                          <option value="">อ.ยุวดี ถิรธราดล</option>
-                                          <option value="">อ.มนตรี องค์เทียมสัคค์</option>
+                                          <option value="">รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</option>
+                                          <option value="">รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</option>
+                                          <option value="">ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</option>
+                                          <option value="">ผศ.ดร. ภญ.รัตนาภรณ์   อาวิพันธ์</option>
+                                          <option value="">รศ.ดร. ภญ.หทัยกาญจน์   เชาวนพูนผล</option>
+                                          <option value="">ผศ.ดร. ภก.สกนธ์   สุภากุล</option>
+                                          <option value="">ผศ.ดร. ภญ.อำไพ   พฤติวรพงศ์กุล</option>
+                                          <option value="">อ.ดร. ภก.สมจริง   รุ่งแจ้ง</option>
                                         </select>
                                       </div>
                                     </div>
