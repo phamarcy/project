@@ -181,30 +181,47 @@ $(document).on('change', '#opendate', function() {
 
 //submit data to database
 $(document).on('click', "#submitbtn_course", function() {
-    if (confirm('ต้องการบันทึกหรือไม่ ?')) {
-    var button = $(this);
-    url = "../../application/deadline/update_deadline.php?query=add&type=course";
-    var form = $(this).parent();
-    var formData = {};
-    $(form).find("input[id]").each(function(index, node) {
-        formData[node.id] = node.value;
-    });
-    formData['semester'] = $(form).find('#semester').val();
-    $.post(url, { 'DATA': formData }).done(function(data) {
-        console.log(data);
-        var result = JSON.parse(data);
-        if (typeof result.success === 'undefined' || result.success === null ) {
-            alert(result.error);
-        }
-        else {
-          alert(result.success);
-          lock(form,true);
-        }
-
-    }).fail(function() {
-      alert("Cannot update data, please contact admin");
+    if (confirm('ต้องการบันทึกหรือไม่ ?'))
+    {
+      var button = $(this);
+      url = "../../application/deadline/update_deadline.php?query=add&type=course";
+      var form = $(this).parent();
+      var formData = {};
+      var error = 0;
+      $(form).find("input[id]").each(function(index, node)
+      {
+          if(node.value == '')
+          {
+            error = 1;
+            $(this).css("background-color","F7CBCB");
+          }else
+          {
+            formData[node.id] = node.value;
+          }
       });
-    }else {
+      if(error == 0){
+      formData['semester'] = $(form).find('#semester').val();
+      $.post(url, { 'DATA': formData }).done(function(data) {
+          console.log(data);
+          var result = JSON.parse(data);
+          if (typeof result.success === 'undefined' || result.success === null ) {
+              alert(result.error);
+          }
+          else {
+            alert(result.success);
+            lock(form,true);
+          }
+
+      }).fail(function() {
+        alert("Cannot update data, please contact admin");
+        });
+      }else
+      {
+          alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+      }
+    }
+    else
+    {
 
     }
 });
