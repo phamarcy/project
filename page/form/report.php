@@ -33,7 +33,7 @@
  <script src="../dist/js/sb-admin-2.js"></script>
 
  <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
-
+ <script type="text/javascript" src="../js/function.js"></script>
  <link rel="stylesheet" href="../dist/css/scrollbar.css">
 </header>
 <script type="text/javascript">
@@ -107,7 +107,7 @@ $(document).ready(function(){
 		          	</select>
 		      	</div>
 		      		ปีการศึกษา
-		      		<input type="number" class="form-control" placeholder="e.g. 2560" style="width: 100px;" min="0" required>
+		      		<input type="text" class="form-control numonly" placeholder="e.g. 2560" style="width: 100px;" maxlength="7" required>
                 	&nbsp;<button type="submit" class="btn btn-success btn-outline"   >ค้นหา</button>
                 	<div id="searchstatus" style="display:inline;"></div>
                 </h>
