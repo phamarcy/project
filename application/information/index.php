@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__.'/../lib/thai_date.php');
 session_start();
+require_once(__DIR__.'/../lib/thai_date.php');
 $DATA = array();
 if(isset($_POST['type']))
 {
