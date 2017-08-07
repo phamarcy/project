@@ -601,7 +601,7 @@ function deleteRow2(r) {
           <div class="form-inline" style="font-size:16px;">
                     <div class="form-group">
                        <label id="semester" class="control-label">รหัสกระบวนวิชา</label>
-                       <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4"  max="9999" required>
+                       <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560"  data-minlength="4" required>
                     </div>
                    <div class="form-group">
                       <label id="semester" class="control-label">ภาคการศึกษา</label>
@@ -647,9 +647,9 @@ function deleteRow2(r) {
             <div class="col-md-5">จำนวนหน่วยกิตทั้งหมด &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="TOTAL" id="TOTAL" size="2" data-minlength="3" min="0" max="100" required>&nbsp; หน่วยกิต</div>
           </div>
           <div class="row">
-            <div class="col-md-5">จำนวนชั่วโมงบรรยาย (Lecture) &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="LEC" id="LEC" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง</div>
-            <div class="col-md-5">จำนวนชั่วโมงปฏิบัติการ (LAB) &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="LAB" id="LAB" size="2" data-minlength="3" min="0" max="100" required> &nbsp; ชั่วโมง</div>
-            <div class="col-md-5">จำนวนชั่วโมงเรียนรู้ด้วยตัวเอง &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="SELF" id="SELF" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง</div>
+            <div class="col-md-5">จำนวนชั่วโมงบรรยาย (Lecture) &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="LEC" id="LEC" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง/สัปดาห์</div>
+            <div class="col-md-5">จำนวนชั่วโมงปฏิบัติการ (Lab) &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="LAB" id="LAB" size="2" data-minlength="3" min="0" max="100" required> &nbsp; ชั่วโมง/สัปดาห์</div>
+            <div class="col-md-5">จำนวนชั่วโมงเรียนรู้ด้วยตัวเอง (Self learning) &nbsp;<input style="width: 70px" type="number" class="form-control numonly" name="SELF" id="SELF" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง/สัปดาห์</div>
           </div>
         </div>
       </li>
@@ -662,9 +662,9 @@ function deleteRow2(r) {
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LECLAB"> บรรยายและงานปฏิบัติการทดลอง&nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="SPE"> กระบวนวิชาปัญหาพิเศษ&nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="TRA"> ฝึกงาน &nbsp;<br>
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="SEM"> สัมนา &nbsp;<br>
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="SEM"> สัมมนา &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LAB"> ปฏิบัติการ &nbsp;<br>
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="OTH"> อื่นๆ &nbsp;
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="OTH"> อื่นๆ &nbsp; <input type="text"  class="form-control"  name="TYPE_TEACHING_NAME" id="TYPE_TEACHING_NAME"/>
           </div>
         </div>
       </li>
@@ -852,7 +852,7 @@ function deleteRow2(r) {
             <ul>
               <div class="form-inline">
                 <li style="font-size: 14px">
-                  จำนวนชั่วโมงสอบการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="number" style="width: 70px" class="form-control numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง
+                  จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="number" style="width: 70px" class="form-control numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                   <select style="height: 28px;" name="mexholec" id="mexholec" class="form-control numonly" onchange="midexam_hour_lec()">
       <option value="0" selected>0</option>
@@ -899,7 +899,7 @@ function deleteRow2(r) {
 
                   <div class="form-inline">
                     <li style="font-size: 14px">
-                      จำนวนชั่วโมงสอบการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง
+                      จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" data-minlength="3" min="0" max="100" required>&nbsp; ชั่วโมง
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                       <select style="height: 28px;" name="mexholac" id="mexholac" class="form-control numonly" onchange="midexam_hour_lab()">
       <option value="0" selected>0</option>
@@ -1074,7 +1074,7 @@ function deleteRow2(r) {
                 <td><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="2" required></td>
               </tr>
               <tr>
-                <td colspan="4">3. อื่นๆ โปรดระบุ งานมอบหมาย &nbsp;&nbsp;<input type="button" class="btn btn-outline btn-success" name="addbtn" id="addbtn" value="เพิ่ม"> </td>
+                <td colspan="4">3. อื่นๆ โปรดระบุ  &nbsp;&nbsp;<input type="button" class="btn btn-outline btn-success" name="addbtn" id="addbtn" value="เพิ่ม"> </td>
               </tr>
               <tr>
                 <td colspan="2" style="text-align: center;"><b>รวมคะแนน</b></td>
@@ -1094,7 +1094,7 @@ function deleteRow2(r) {
                 <table id="samenatable" class="table table-bordered table-hover" width="100%" style="font-size: 14px;">
                   <tbody>
                     <tr class="success">
-                      <th colspan="2" style="text-align: center;">กระบวนวิชาสัมนา</th>
+                      <th colspan="2" style="text-align: center;">กระบวนวิชาสัมมนา</th>
                     </tr>
                     <tr>
                       <td width="65%" align="center">กิจกรรม</td>
@@ -1136,7 +1136,7 @@ function deleteRow2(r) {
 
           <br>
           <li style="font-size: 14px;">
-            <b>การประเมิณผล</b>
+            <b>การประเมินผล</b>
             <br>
             <div class="form-inline"><input type="radio" name="EVALUATE" id="EVALUATE" value="SU" checked>&nbsp; ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว)</div>
             <div class="form-inline"><input type="radio" name="EVALUATE" id="EVALUATE" value="AF">&nbsp; ให้ลำดับขั้น A, B+ ,B, C+, C, D+, D, F </div>
@@ -1226,11 +1226,11 @@ function deleteRow2(r) {
 
           <br>
           <li style="font-size: 14px;">
-            <b>นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย</b> &nbsp;&nbsp;โดยไม่ได้รับอนุญาตให้เลื่อนการสอบตามข้อบังคับฯ ของมหาวิทยาลัยเชียงใหม่ ว่าด้วยการศึกษาชั้นปริญญาตรี อาจารย์ผู้สอนจะประเมิณดังนี้
+            <b>นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย</b> &nbsp;&nbsp;โดยไม่ได้รับอนุญาตให้เลื่อนการสอบตามข้อบังคับฯ ของมหาวิทยาลัยเชียงใหม่ ว่าด้วยการศึกษาชั้นปริญญาตรี อาจารย์ผู้สอนจะประเมินดังนี้
             <br>
             <input type="radio" name="ABSENT" id="ABSENT" value="F" checked>&nbsp; ให้ลำดับขั้น F &nbsp;&nbsp; <br>
             <input type="radio" name="ABSENT" id="ABSENT" value="U" >&nbsp; ให้อักษร U &nbsp;&nbsp;<br>
-            <input type="radio" name="ABSENT" id="ABSENT" value="CAL" >&nbsp; นำคะแนนทั้งหมดที่นักศึกษาได้รับก่อนการสอบไล่มาประเมิณ &nbsp;&nbsp;<br>
+            <input type="radio" name="ABSENT" id="ABSENT" value="CAL" >&nbsp; นำคะแนนทั้งหมดที่นักศึกษาได้รับก่อนการสอบไล่มาประเมิน &nbsp;&nbsp;<br>
           </li>
 
           <br>
