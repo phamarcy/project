@@ -117,12 +117,26 @@ function checkdate(date_before,date_after)
     }
 }
 
+function reset_object(object)
+{
+  $(object).find("input[id]").each(function(index, node)
+  {
+        $(this).css("border-color","rgb(204, 204, 204)");
+  });
+  $(object).find("#warning").val("");
+}
+function reset_date(object)
+{
+    $(object).find("#opendate").css("border-color","rgb(204, 204, 204)");
+    $(object).find("#lastdate").css("border-color","rgb(204, 204, 204)");
+}
 $(document).ready(function() {
   //add more data button
     $("#addbtn_approve").click(function() {
         var i = 0;
         var object = document.getElementById("group_approve");
         var object_clone = $(object).clone();
+
         $(object_clone).find("#delete").prop('disabled', false);
         lock(object_clone,false);
         $(object_clone).find("input").val("").end().prependTo("#body_approve");
@@ -131,6 +145,10 @@ $(document).ready(function() {
         var i = 0;
         var object = document.getElementById("group_course");
         var object_clone = $(object).clone();
+        $(object_clone).find("input[id]").each(function(index, node)
+        {
+              $(this).css("border-color","rgb(204, 204, 204)");
+        });
         $(object_clone).find("#delete").prop('disabled', false);
         lock(object_clone,false);
         $(object_clone).find("input").val("").end().prependTo("#body_course");
@@ -153,6 +171,7 @@ $(document).on('change', '#lastdate', function() {
         }
         else
         {
+          //reset_date($(this).parent());
           $(this).parent().find("#warning").html('');
         }
     }
@@ -162,7 +181,6 @@ $(document).on('change', '#lastdate', function() {
 $(document).on('change', '#opendate', function() {
     var last_date = $(this).parent().find("#lastdate").val();
     var first_date = new Date($(this).val());
-    console.log(last_date);
     if(last_date != '')
     {
         last_date = new Date($(this).parent().find("#lastdate").val());
@@ -174,6 +192,7 @@ $(document).on('change', '#opendate', function() {
         }
         else
         {
+          //reset_date($(this).parent());
           $(this).parent().find("#warning").html('');
         }
     }
@@ -214,7 +233,7 @@ $(document).on('click', "#submitbtn_course", function() {
           }
 
       }).fail(function() {
-        alert("Cannot update data, please contact admin");
+        alert("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่");
         });
       }else
       {
@@ -255,10 +274,11 @@ $(document).on('click', "#submitbtn_approve", function() {
         }
         else {
           alert(result.success);
+          reset_object(form);
           lock(form,true);
         }
     }).fail(function() {
-      alert("Cannot update data, please contact admin");
+        alert("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่");
       });
       }
       else
