@@ -51,7 +51,6 @@ div[class^="col-"] {
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
-
                             <div class="panel panel-warning">
                               <div class="panel-heading">
                                 <h4 class="panel-title">

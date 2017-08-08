@@ -23,6 +23,8 @@
 
  	<!-- Custom Fonts -->
  	<link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
 
  	<script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -37,64 +39,12 @@
 
  	<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 
-  <link rel="stylesheet" href="../dist/css/scrollbar.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
-  <script type="text/javascript">
-  //search report data in first load
-  function search() {
-      $('#searchstatus').html("<img src='../../application/picture/loading_icon.gif' height='35' >");
-      var URL = '../../application/report/staff_report.php';
-      $.ajax({
-          url: URL, // point to server-side PHP script
-          dataType: 'text', // what to expect back from the PHP script, if anything
-          data: 'ssss',
-          type: 'post',
-          success: function(result) {
-              $("#searchstatus").hide();
-              $('#searchstatus').css('color', 'green');
-              $('#searchstatus').text("สำเร็จ");
-              $('#searchstatus').fadeIn();
-              render(result);
-          },
-          failure: function(result) {
-              alert(result);
-          },
-          error: function(xhr, status, p3, p4) {
-              var err = "Error " + " " + status + " " + p3 + " " + p4;
-              if (xhr.responseText && xhr.responseText[0] == "{")
-                  err = JSON.parse(xhr.responseText).Message;
-              console.log(err);
-          }
-      });
-  }
-  //render data boxes
-  function render(data)
-  {
-      //create report panel
-      var panel = document.createElement("div");
-      panel.setAttribute("class","panel panel-default");
-      //create panel header
-      var header = document.createElement("div");
-      header.setAttribute("class","panel-heading");
-      header.innerHTML = "header";
-      //create panel content
-      var content = document.createElement("div");
-      content.setAttribute("class","panel-body");
-      content.innerHTML = "Content";
-      panel.appendChild(header);
-      panel.appendChild(content);
-
-      $("#body").html(panel);
-  }
-  $(document).ready(function(){
-    $('form').submit(false);
-    $("#search-panel").submit(function() {
-          search();
-      });
-  });
-
-  </script>
 <style>
+a[disabled="disabled"] {
+        pointer-events: none;
+}
 #statcf {
   color : #0e9d14;
 }
@@ -117,26 +67,28 @@
     <div class="row">
       <center>
         <h3 class="page-header">ตรวจสอบสถานะการอนุมัติกระบวนวิชา</h3>
-        <form data-toggle="validator" role="form">
-          <div class="form-inline" style="font-size:14px;">
-            <div class="form-group">
-              <label id="semester" class="control-label">ภาคการศึกษา</label>
-              <select class="form-control required" id="semester" style="width: 70px;" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษา')" oninput="setCustomValidity('')">
-                              <option value="">--</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="inputyear" class="control-label">ปีการศึกษา</label>
-              <input type="number" class="form-control" id="inputyear" style="width: 150px;" placeholder="e.g. 2560" data-minlength="4" max="9999" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษา')" oninput="setCustomValidity('')">
-            </div>
-            <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
-          </div>
-        </form>
       </center>
+      <div class="form-inline">
+          <center>
+              <h style="font-size : 16px">วิชา
+  		     	<div class="form-group" >
+              <select class="form-control" name="">
+                <option value="">462533	HEALTH BEHAVIORS AND PHARMACEUTICAL CARE</option>
+                <option value="">461525	BASIC KNOWLEDGE OF THAI TRADITIONAL MEDICINEE</option>
+                <option value="">461532	DRUG SYNTHESIS</option>
+                <option value="">461575	DELIVERY SYSTEMS IN COSMETICS</option>
+                <option value="">463522	EVIDENCE-BASED DIETARY SUPPLEMENTS</option>
+                <option value="">463571	QUALITY CONTROL FOR FOOD AND COSMETICS</option>
+              </select>
+  		      	</div>
+
+              	&nbsp;<button type="submit" class="btn btn-success btn-outline"   >ค้นหา</button>
+              	<div id="searchstatus" style="display:inline;"></div>
+                  </h>
+          </center>
+          </div>
     </div>
+<br>
 <div class="container">
   <div class="panel-group" id="accordion0">
     <div class="panel panel-info">
@@ -153,7 +105,7 @@
           <div class="panel panel-success">
             <div class="panel-heading">
               <h3 class="panel-title">
-                <a data-toggle="collapse" href="#collapse2">
+                <a data-toggle="collapse" href="#collapse2" >
                 <li><b><u>รหัสกระบวนวิชา</u></b> : 204111 <b>ตอนที่</b> 1 <b>ภาคปกติ</b></a></li>
                 <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b>
               </h3>
@@ -165,7 +117,7 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h3 class="panel-title">
-                      <a data-toggle="collapse" href="#collapse3">
+                      <a data-toggle="collapse" href="#collapse3" disabled="disabled">
                        <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
                     </h3>
                   </div>
@@ -182,7 +134,7 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse4">
+                    <a data-toggle="collapse" href="#collapse4" disabled="disabled">
                     <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
                   </h3>
                 </div>
@@ -198,7 +150,7 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">
-                  <a data-toggle="collapse" href="#collapse5">
+                  <a data-toggle="collapse" href="#collapse5" disabled="disabled">
                     <i class="fa fa-file-o fa-fw"></i><b> Course Syllabus </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
                 </h3>
               </div>
@@ -232,7 +184,7 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse7">
+                    <a data-toggle="collapse" href="#collapse7" disabled="disabled">
                      <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statwt">รอการพิจารนา <i class="fa fa-clock-o fa-fw"></i></b></a>
                   </h3>
                 </div>
@@ -248,7 +200,7 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">
-                  <a data-toggle="collapse" href="#collapse8">
+                  <a data-toggle="collapse" href="#collapse8" disabled="disabled">
                   <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
                 </h3>
               </div>
@@ -282,7 +234,7 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">
-                  <a data-toggle="collapse" href="#collapse10">
+                  <a data-toggle="collapse" href="#collapse10" disabled="disabled">
                    <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
                 </h3>
               </div>
@@ -298,7 +250,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">
-                <a data-toggle="collapse" href="#collapse11">
+                <a data-toggle="collapse" href="#collapse11" disabled="disabled">
                 <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statn">ไม่ผ่านการอนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
               </h3>
             </div>
@@ -335,7 +287,7 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">
-                  <a data-toggle="collapse" href="#collapse13">
+                  <a data-toggle="collapse" href="#collapse13" disabled="disabled">
                    <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
                 </h3>
               </div>
@@ -351,7 +303,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">
-                <a data-toggle="collapse" href="#collapse14">
+                <a data-toggle="collapse" href="#collapse14" disabled="disabled">
                 <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statal">ภาควิชาเห็นชอบ รอคณะบดีอนุมัติ <i class="fa fa-user fa-fw"></i></b></a>
               </h3>
             </div>
@@ -381,4 +333,7 @@
 </div>
 </div>
 </body>
+<script type="text/javascript">
+  $('select').select2();
+</script>
 </html>
