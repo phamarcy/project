@@ -188,32 +188,10 @@
       }
       });
 
-      function lastcal() {
-        var temp1;
-        var temp2;
-        var temp3;
-        var temp4;
-        var temp5;
-        var temp6;
-        var totaltemp;
+      // callist
 
-         temp1 = parseFloat(document.getElementById("choice1cost").value);
-         temp2 = parseFloat(document.getElementById("choice2cost").value);
-         temp3 = parseFloat(document.getElementById("planecost").value);
-         temp4 = parseFloat(document.getElementById("taxicost").value);
-         temp5 = parseFloat(document.getElementById("selfcost").value);
-         temp6 = parseFloat(document.getElementById("pernight").value);
-         totaltemp = temp1 + temp2 + temp3 + temp4 + temp5 + temp6;
-         alert(totaltemp);
-         $("#totalcost").val(totaltemp);
-        /*  temp1 = parseFloat($('#choice2cost').val());
-          temp2 = parseFloat($('#planecost').val());
-          temp3 = parseFloat($('#taxicost').val());
-          temp4 = parseFloat($('#selfcost').val());
-          temp5 = parseFloat($('#pernight').val());
-          totaltemp = temp1 + temp2 + temp3 + temp4 + temp5;
-          $('#totalcost').val(totaltemp.toFixed(2));*/
-        }
+      $("#callist").hide();
+
 
    $('#adddetail').click(function() {
      var table = $(this).closest('table');
@@ -242,6 +220,29 @@ function deleteRow(r) {
  var row = document.getElementById('row' + i);
  row.parentNode.removeChild(row);
 }
+
+function lastcal() {
+  var temp1;
+  var temp2;
+  var temp3;
+  var temp4;
+  var temp5;
+  var temp6;
+  var totaltemp;
+
+  document.getElementById("choice1cost").value==null||document.getElementById("choice1cost").value==0 ? temp1 = parseFloat("0") : temp1 = parseFloat(document.getElementById("choice1cost").value);
+  document.getElementById("choice2cost").value==null||document.getElementById("choice2cost").value==0 ? temp2 = parseFloat("0") : temp2 = parseFloat(document.getElementById("choice2cost").value);
+  document.getElementById("planecost").value==null||document.getElementById("planecost").value==0 ? temp3 = parseFloat("0") : temp3 = parseFloat(document.getElementById("planecost").value);
+  document.getElementById("taxicost").value==null||document.getElementById("taxicost").value==0 ? temp4 = parseFloat("0") : temp4 = parseFloat(document.getElementById("taxicost").value);
+  document.getElementById("selfcost").value==null||document.getElementById("selfcost").value==0 ? temp5 = parseFloat("0") : temp5 = parseFloat(document.getElementById("selfcost").value);
+  document.getElementById("pernight").value==null||document.getElementById("pernight").value==0 ? temp6 = parseFloat("0") : temp6 = parseFloat(document.getElementById("pernight").value);
+
+   totaltemp = temp1 + temp2 + temp3 + temp4 + temp5 + temp6;
+   //alert(totaltemp);
+   $("#totalcost").val(totaltemp);
+   $("#callist").show();
+  
+  }
  </script>
 
 </header>
@@ -417,8 +418,12 @@ function deleteRow(r) {
           </div>
           <br>
           <div class="form-inline">
-            <li style="font-size: 16px;"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="number" class="form-control numonly" name="totalcost" id="totalcost" size="10" data-minlength="5" min="0" max="99999" onclick="lastcal();" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท</li>
-            <input type="button" name="asd" value="คำนวณ" onclick="lastcal();">
+            <input type="button" class="btn btn-outline btn-default" name="calculatebtn" id="calculatebtn" value="คำนวณค่าใช้จ่ายทั้งหมด" onclick="lastcal();">
+          </div>
+          <br>
+          <div class="form-inline">
+            <li style="font-size: 16px;" id="callist"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="number" class="form-control numonly" name="totalcost" id="totalcost" size="10" data-minlength="5" min="0" max="99999" onclick="lastcal();" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท</li>
+
           </div>
         </ul>
       </li>
@@ -430,7 +435,7 @@ function deleteRow(r) {
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" value="รีเซ็ตข้อมูล">
     </div>
-
+</form>
 </div>
 </body>
 </html>
