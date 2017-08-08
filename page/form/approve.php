@@ -79,7 +79,7 @@ div[class^="col-"] {
                             <ol style="font-size:16px;">
                                 <li>Course Syllabus (Course)</li>
                                 <li>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา (Evaluate)</li>
-                                <li>แบบขออนุมัติอาจารย์พิเศษ (Special)</li>
+                                <li>แบบขออนุมัติอาจารย์พิเศษ (Instructor)</li>
                                 <p class="text-info">* คำย่อภาษาอังกฤษใช้เป็นตัวย่อในตาราง</p>
                             </ol>
                             <div class="panel-group" id="accordion">
@@ -93,15 +93,15 @@ div[class^="col-"] {
                                     <div id="collapseOne" class="panel-collapse collapse in">
                                         <div class="panel-body">
                                           <div class="table-responsive">
-                                              <table class="table ">
+                                              <table class="table " style="font-size:14px;">
                                                   <thead>
                                                       <tr >
-                                                          <th>#</th>
+                                                          <th>ลำดับ</th>
                                                           <th>รหัสวิชา</th>
                                                           <th>ชื่อวิชา</th>
                                                           <th  style="text-align:center;">Course</th>
                                                           <th  style="text-align:center;">Evaluate</th>
-                                                          <th  style="text-align:center;">Special</th>
+                                                          <th  style="text-align:center;">Instructor</th>
                                                           <th></th>
                                                           <th></th>
                                                           <th></th>
@@ -110,11 +110,17 @@ div[class^="col-"] {
                                                   <tbody>
                                                       <tr >
                                                           <td>1</td>
-                                                          <td>463503</td>
-                                                          <td>Principles in Phytochemistry</td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td>202141</td>
+                                                          <td>BIOLOGY FOR PHARMACY STUDENTS</td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
@@ -122,28 +128,41 @@ div[class^="col-"] {
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
                                                             <div class="accordian-body collapse" id="demo1">
-                                                              <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                  <b>เพิ่มคอมเม้นท์</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                    <div class="row">
-                                                                      <div class="col-md-12">
-                                                                        <form>
-                                                                          <div class="form-group">
-                                                                            <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                          </div>
-                                                                          <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
-                                                                        </form>
-                                                                      </div>
-                                                                    </div>
-                                                                </div>
-                                                              </div>
                                                               <div class="panel panel-success">
                                                                 <div class="panel-heading">
                                                                   <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
+                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal">เพิ่มคอมเม้นท์</button>
+                                                                  <!-- Modal -->
+                                                                    <div id="myModal" class="modal fade" role="dialog">
+                                                                      <div class="modal-dialog">
+
+                                                                        <!-- Modal content-->
+                                                                        <div class="modal-content">
+                                                                          <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                          </div>
+                                                                          <div class="modal-body">
+                                                                            <div class="row">
+                                                                              <div class="col-md-12">
+                                                                                <form>
+                                                                                  <div class="form-group">
+                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                                  </div>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                </form>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                          </div>
+                                                                        </div>
+
+                                                                      </div>
+                                                                    </div>
                                                                   <table class="table ">
                                                                     <thead>
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
@@ -173,11 +192,17 @@ div[class^="col-"] {
                                                       </tr>
                                                       <tr >
                                                           <td>2</td>
-                                                          <td>463512 </td>
-                                                          <td>harmaceutical Biotechnology 2</td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td>203151</td>
+                                                          <td>GENERAL CHEMISTRY FOR THE HEALTH SCIENCES</td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo2" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
@@ -185,28 +210,41 @@ div[class^="col-"] {
                                                       <tr class="hiddenRow">
                                                           <td colspan="12" class="hiddenRow">
                                                             <div class="accordian-body collapse" id="demo2">
-                                                              <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                  <b>เพิ่มคอมเม้นท์</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                    <div class="row">
-                                                                      <div class="col-md-12">
-                                                                        <form>
-                                                                          <div class="form-group">
-                                                                            <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                          </div>
-                                                                          <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
-                                                                        </form>
-                                                                      </div>
-                                                                    </div>
-                                                                </div>
-                                                              </div>
                                                               <div class="panel panel-success">
                                                                 <div class="panel-heading">
                                                                   <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
+                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal2">เพิ่มคอมเม้นท์</button>
+                                                                  <!-- Modal -->
+                                                                    <div id="myModal2" class="modal fade" role="dialog">
+                                                                      <div class="modal-dialog">
+
+                                                                        <!-- Modal content-->
+                                                                        <div class="modal-content">
+                                                                          <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                          </div>
+                                                                          <div class="modal-body">
+                                                                            <div class="row">
+                                                                              <div class="col-md-12">
+                                                                                <form>
+                                                                                  <div class="form-group">
+                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                                  </div>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                </form>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                          </div>
+                                                                        </div>
+
+                                                                      </div>
+                                                                    </div>
                                                                   <table class="table ">
                                                                     <thead>
                                                                       <th style="width:170px">คณะกรรมการ</th>
@@ -230,11 +268,17 @@ div[class^="col-"] {
                                                       </tr>
                                                       <tr >
                                                           <td>3</td>
-                                                          <td>463543</td>
-                                                          <td>Pharmaceutical Quality Assurance 3</td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td  style="text-align:center;"><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td>463592</td>
+                                                          <td>RESEARCH AND DEVELOPMENT OF NEW DRUGS</td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo3" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
@@ -242,28 +286,41 @@ div[class^="col-"] {
                                                       <tr>
                                                           <td colspan="12" class="hiddenRow">
                                                             <div class="accordian-body collapse" id="demo3">
-                                                              <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                  <b>เพิ่มคอมเม้นท์</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                    <div class="row">
-                                                                      <div class="col-md-12">
-                                                                        <form>
-                                                                          <div class="form-group">
-                                                                            <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                          </div>
-                                                                          <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
-                                                                        </form>
-                                                                      </div>
-                                                                    </div>
-                                                                </div>
-                                                              </div>
                                                               <div class="panel panel-success">
                                                                 <div class="panel-heading">
                                                                   <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
+                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal3">เพิ่มคอมเม้นท์</button>
+                                                                  <!-- Modal -->
+                                                                    <div id="myModal3" class="modal fade" role="dialog">
+                                                                      <div class="modal-dialog">
+
+                                                                        <!-- Modal content-->
+                                                                        <div class="modal-content">
+                                                                          <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                          </div>
+                                                                          <div class="modal-body">
+                                                                            <div class="row">
+                                                                              <div class="col-md-12">
+                                                                                <form>
+                                                                                  <div class="form-group">
+                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                                  </div>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                </form>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                          </div>
+                                                                        </div>
+
+                                                                      </div>
+                                                                    </div>
                                                                   <table class="table ">
                                                                     <thead>
                                                                       <th style="width:170px">คณะกรรมการ</th>
@@ -301,10 +358,10 @@ div[class^="col-"] {
                                     <div id="collapseTwo" class="panel-collapse collapse">
                                         <div class="panel-body">
                                           <div class="table-responsive">
-                                              <table class="table ">
+                                              <table class="table " style="font-size:14px;">
                                                   <thead>
                                                       <tr>
-                                                        <th>#</th>
+                                                        <th>ลำดับ</th>
                                                         <th>รหัสวิชา</th>
                                                         <th>ชื่อวิชา</th>
                                                         <th  style="text-align:center;">Course</th>
@@ -318,23 +375,74 @@ div[class^="col-"] {
                                                   <tbody>
                                                       <tr >
                                                           <td>1</td>
-                                                          <td>Mark</td>
-                                                          <td>Otto</td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td>463311</td>
+                                                          <td>PHARMACEUTICAL BIOTECHNOLOGY 1</td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo21" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกอนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
                                                             <div class="accordian-body collapse" id="demo21">
-                                                              <div class="panel panel-default">
+                                                              <div class="panel panel-success">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นท์</b>
+                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
+                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal4">เพิ่มคอมเม้นท์</button>
+                                                                  <!-- Modal -->
+                                                                    <div id="myModal4" class="modal fade" role="dialog">
+                                                                      <div class="modal-dialog">
 
+                                                                        <!-- Modal content-->
+                                                                        <div class="modal-content">
+                                                                          <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                          </div>
+                                                                          <div class="modal-body">
+                                                                            <div class="row">
+                                                                              <div class="col-md-12">
+                                                                                <form>
+                                                                                  <div class="form-group">
+                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                                  </div>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                </form>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                          </div>
+                                                                        </div>
+
+                                                                      </div>
+                                                                    </div>
+                                                                  <table class="table ">
+                                                                    <thead>
+                                                                      <th style="width:170px">คณะกรรมการ</th>
+                                                                      <th>คอมเม้นท์</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                      <tr>
+                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
+                                                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus blandit fermentum. Etiam rhoncus urna a lobortis sagittis. Donec at leo ut velit eleifend porttitor. Vivamus iaculis massa quis ante lacinia efficitur. In volutpat elit lorem, ut dictum metus ultricies porttitor. Nunc vel tortor congue, tempus libero sit amet, elementum risus. Vestibulum ut finibus nisl. Aenean sit amet sem id odio dapibus dignissim at vel elit. Proin eget ipsum sagittis, aliquet nunc eget, bibendum quam. Pellentesque tempor, velit sed feugiat gravida, felis est faucibus quam, non posuere est magna vitae erat. Proin lorem sapien, laoreet vitae felis id, facilisis efficitur libero. Proin porta vehicula sem et rutrum. Aliquam mattis maximus velit, sit amet imperdiet quam eleifend a. Aenean quis elit turpis. Vivamus ultricies quam ut urna finibus, non bibendum dui tempus. Aliquam varius quam eu facilisis auctor.</td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
+                                                                        <td>Nulla facilisi. Cras eu eros felis. Suspendisse consectetur ex ligula, vitae semper orci condimentum in. Etiam tincidunt nulla ligula, eget placerat sapien consequat at. Mauris quis leo sit amet neque volutpat blandit. Quisque faucibus nisi metus, eu dictum felis hendrerit sit amet. Maecenas a semper ligula. Ut sodales feugiat convallis. Duis in augue augue. Sed bibendum leo vel elit placerat vehicula. Duis condimentum felis tellus, a volutpat tellus congue sit amet. Nam vestibulum, diam vel semper maximus, nunc risus tristique massa, ac congue nibh ipsum sit amet velit. Ut aliquam enim et eros suscipit pretium. Aenean eget mauris volutpat, ultrices sapien nec, aliquam elit. Vestibulum dui magna, lacinia et odio a, ornare hendrerit nisi.</td>
+                                                                      </tr>
+                                                                    </tbody>
+                                                                  </table>
                                                                 </div>
                                                               </div>
                                                             </div>
@@ -342,23 +450,74 @@ div[class^="col-"] {
                                                       </tr>
                                                       <tr>
                                                           <td>2</td>
-                                                          <td>Jacob</td>
-                                                          <td>Thornton</td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td>463331</td>
+                                                          <td>ORGANIC MEDICINAL CHEMISTRY 1</td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo22" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกอนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
                                                             <div class="accordian-body collapse" id="demo22">
-                                                              <div class="panel panel-default">
+                                                              <div class="panel panel-success">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นท์</b>
+                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
+                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal5">เพิ่มคอมเม้นท์</button>
+                                                                  <!-- Modal -->
+                                                                    <div id="myModal5" class="modal fade" role="dialog">
+                                                                      <div class="modal-dialog">
 
+                                                                        <!-- Modal content-->
+                                                                        <div class="modal-content">
+                                                                          <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                          </div>
+                                                                          <div class="modal-body">
+                                                                            <div class="row">
+                                                                              <div class="col-md-12">
+                                                                                <form>
+                                                                                  <div class="form-group">
+                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                                  </div>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                </form>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                          </div>
+                                                                        </div>
+
+                                                                      </div>
+                                                                    </div>
+                                                                  <table class="table ">
+                                                                    <thead>
+                                                                      <th style="width:170px">คณะกรรมการ</th>
+                                                                      <th>คอมเม้นท์</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                      <tr>
+                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
+                                                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus blandit fermentum. Etiam rhoncus urna a lobortis sagittis. Donec at leo ut velit eleifend porttitor. Vivamus iaculis massa quis ante lacinia efficitur. In volutpat elit lorem, ut dictum metus ultricies porttitor. Nunc vel tortor congue, tempus libero sit amet, elementum risus. Vestibulum ut finibus nisl. Aenean sit amet sem id odio dapibus dignissim at vel elit. Proin eget ipsum sagittis, aliquet nunc eget, bibendum quam. Pellentesque tempor, velit sed feugiat gravida, felis est faucibus quam, non posuere est magna vitae erat. Proin lorem sapien, laoreet vitae felis id, facilisis efficitur libero. Proin porta vehicula sem et rutrum. Aliquam mattis maximus velit, sit amet imperdiet quam eleifend a. Aenean quis elit turpis. Vivamus ultricies quam ut urna finibus, non bibendum dui tempus. Aliquam varius quam eu facilisis auctor.</td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
+                                                                        <td>Nulla facilisi. Cras eu eros felis. Suspendisse consectetur ex ligula, vitae semper orci condimentum in. Etiam tincidunt nulla ligula, eget placerat sapien consequat at. Mauris quis leo sit amet neque volutpat blandit. Quisque faucibus nisi metus, eu dictum felis hendrerit sit amet. Maecenas a semper ligula. Ut sodales feugiat convallis. Duis in augue augue. Sed bibendum leo vel elit placerat vehicula. Duis condimentum felis tellus, a volutpat tellus congue sit amet. Nam vestibulum, diam vel semper maximus, nunc risus tristique massa, ac congue nibh ipsum sit amet velit. Ut aliquam enim et eros suscipit pretium. Aenean eget mauris volutpat, ultrices sapien nec, aliquam elit. Vestibulum dui magna, lacinia et odio a, ornare hendrerit nisi.</td>
+                                                                      </tr>
+                                                                    </tbody>
+                                                                  </table>
                                                                 </div>
                                                               </div>
                                                             </div>
@@ -366,23 +525,74 @@ div[class^="col-"] {
                                                       </tr>
                                                       <tr  >
                                                           <td>3</td>
-                                                          <td>Larry</td>
-                                                          <td>the Bird</td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td>464301</td>
+                                                          <td>FUNDAMENTAL OF PHARMACOKINETICS</td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo23" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกอนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
                                                             <div class="accordian-body collapse" id="demo23">
-                                                              <div class="panel panel-default">
+                                                              <div class="panel panel-success">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นท์</b>
+                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
+                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal6">เพิ่มคอมเม้นท์</button>
+                                                                  <!-- Modal -->
+                                                                    <div id="myModal6" class="modal fade" role="dialog">
+                                                                      <div class="modal-dialog">
 
+                                                                        <!-- Modal content-->
+                                                                        <div class="modal-content">
+                                                                          <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                          </div>
+                                                                          <div class="modal-body">
+                                                                            <div class="row">
+                                                                              <div class="col-md-12">
+                                                                                <form>
+                                                                                  <div class="form-group">
+                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                                  </div>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                </form>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                          </div>
+                                                                        </div>
+
+                                                                      </div>
+                                                                    </div>
+                                                                  <table class="table ">
+                                                                    <thead>
+                                                                      <th style="width:170px">คณะกรรมการ</th>
+                                                                      <th>คอมเม้นท์</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                      <tr>
+                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
+                                                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus blandit fermentum. Etiam rhoncus urna a lobortis sagittis. Donec at leo ut velit eleifend porttitor. Vivamus iaculis massa quis ante lacinia efficitur. In volutpat elit lorem, ut dictum metus ultricies porttitor. Nunc vel tortor congue, tempus libero sit amet, elementum risus. Vestibulum ut finibus nisl. Aenean sit amet sem id odio dapibus dignissim at vel elit. Proin eget ipsum sagittis, aliquet nunc eget, bibendum quam. Pellentesque tempor, velit sed feugiat gravida, felis est faucibus quam, non posuere est magna vitae erat. Proin lorem sapien, laoreet vitae felis id, facilisis efficitur libero. Proin porta vehicula sem et rutrum. Aliquam mattis maximus velit, sit amet imperdiet quam eleifend a. Aenean quis elit turpis. Vivamus ultricies quam ut urna finibus, non bibendum dui tempus. Aliquam varius quam eu facilisis auctor.</td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
+                                                                        <td>Nulla facilisi. Cras eu eros felis. Suspendisse consectetur ex ligula, vitae semper orci condimentum in. Etiam tincidunt nulla ligula, eget placerat sapien consequat at. Mauris quis leo sit amet neque volutpat blandit. Quisque faucibus nisi metus, eu dictum felis hendrerit sit amet. Maecenas a semper ligula. Ut sodales feugiat convallis. Duis in augue augue. Sed bibendum leo vel elit placerat vehicula. Duis condimentum felis tellus, a volutpat tellus congue sit amet. Nam vestibulum, diam vel semper maximus, nunc risus tristique massa, ac congue nibh ipsum sit amet velit. Ut aliquam enim et eros suscipit pretium. Aenean eget mauris volutpat, ultrices sapien nec, aliquam elit. Vestibulum dui magna, lacinia et odio a, ornare hendrerit nisi.</td>
+                                                                      </tr>
+                                                                    </tbody>
+                                                                  </table>
                                                                 </div>
                                                               </div>
                                                             </div>
@@ -403,10 +613,10 @@ div[class^="col-"] {
                                     <div id="collapseThree" class="panel-collapse collapse">
                                         <div class="panel-body">
                                           <div class="table-responsive">
-                                              <table class="table  " >
+                                              <table class="table  " style="font-size:14px;">
                                                   <thead>
                                                       <tr>
-                                                        <th>#</th>
+                                                        <th>ลำดับ</th>
                                                         <th>รหัสวิชา</th>
                                                         <th>ชื่อวิชา</th>
                                                         <th  style="text-align:center;">Course</th>
@@ -420,23 +630,74 @@ div[class^="col-"] {
                                                   <tbody>
                                                       <tr >
                                                           <td>1</td>
-                                                          <td>Mark</td>
-                                                          <td>Otto</td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td>463332</td>
+                                                          <td>ORGANIC MEDICINAL CHEMISTRY 2</td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo31" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
                                                             <div class="accordian-body collapse" id="demo31">
-                                                              <div class="panel panel-default">
+                                                              <div class="panel panel-success">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นท์</b>
+                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
+                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal7">เพิ่มคอมเม้นท์</button>
+                                                                  <!-- Modal -->
+                                                                    <div id="myModal7" class="modal fade" role="dialog">
+                                                                      <div class="modal-dialog">
 
+                                                                        <!-- Modal content-->
+                                                                        <div class="modal-content">
+                                                                          <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                          </div>
+                                                                          <div class="modal-body">
+                                                                            <div class="row">
+                                                                              <div class="col-md-12">
+                                                                                <form>
+                                                                                  <div class="form-group">
+                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                                  </div>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                </form>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                          </div>
+                                                                        </div>
+
+                                                                      </div>
+                                                                    </div>
+                                                                  <table class="table ">
+                                                                    <thead>
+                                                                      <th style="width:170px">คณะกรรมการ</th>
+                                                                      <th>คอมเม้นท์</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                      <tr>
+                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
+                                                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus blandit fermentum. Etiam rhoncus urna a lobortis sagittis. Donec at leo ut velit eleifend porttitor. Vivamus iaculis massa quis ante lacinia efficitur. In volutpat elit lorem, ut dictum metus ultricies porttitor. Nunc vel tortor congue, tempus libero sit amet, elementum risus. Vestibulum ut finibus nisl. Aenean sit amet sem id odio dapibus dignissim at vel elit. Proin eget ipsum sagittis, aliquet nunc eget, bibendum quam. Pellentesque tempor, velit sed feugiat gravida, felis est faucibus quam, non posuere est magna vitae erat. Proin lorem sapien, laoreet vitae felis id, facilisis efficitur libero. Proin porta vehicula sem et rutrum. Aliquam mattis maximus velit, sit amet imperdiet quam eleifend a. Aenean quis elit turpis. Vivamus ultricies quam ut urna finibus, non bibendum dui tempus. Aliquam varius quam eu facilisis auctor.</td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
+                                                                        <td>Nulla facilisi. Cras eu eros felis. Suspendisse consectetur ex ligula, vitae semper orci condimentum in. Etiam tincidunt nulla ligula, eget placerat sapien consequat at. Mauris quis leo sit amet neque volutpat blandit. Quisque faucibus nisi metus, eu dictum felis hendrerit sit amet. Maecenas a semper ligula. Ut sodales feugiat convallis. Duis in augue augue. Sed bibendum leo vel elit placerat vehicula. Duis condimentum felis tellus, a volutpat tellus congue sit amet. Nam vestibulum, diam vel semper maximus, nunc risus tristique massa, ac congue nibh ipsum sit amet velit. Ut aliquam enim et eros suscipit pretium. Aenean eget mauris volutpat, ultrices sapien nec, aliquam elit. Vestibulum dui magna, lacinia et odio a, ornare hendrerit nisi.</td>
+                                                                      </tr>
+                                                                    </tbody>
+                                                                  </table>
                                                                 </div>
                                                               </div>
                                                             </div>
@@ -446,23 +707,74 @@ div[class^="col-"] {
                                                       <tr >
 
                                                           <td>2</td>
-                                                          <td>Jacob</td>
-                                                          <td>Thornton</td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td>463342</td>
+                                                          <td>PHARMACEUTICAL QUALITY ASSURANCE 2</td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo32" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
                                                             <div class="accordian-body collapse" id="demo32">
-                                                              <div class="panel panel-default">
+                                                              <div class="panel panel-success">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นท์</b>
+                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
+                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal8">เพิ่มคอมเม้นท์</button>
+                                                                  <!-- Modal -->
+                                                                    <div id="myModal8" class="modal fade" role="dialog">
+                                                                      <div class="modal-dialog">
 
+                                                                        <!-- Modal content-->
+                                                                        <div class="modal-content">
+                                                                          <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                          </div>
+                                                                          <div class="modal-body">
+                                                                            <div class="row">
+                                                                              <div class="col-md-12">
+                                                                                <form>
+                                                                                  <div class="form-group">
+                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                                  </div>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                </form>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                          </div>
+                                                                        </div>
+
+                                                                      </div>
+                                                                    </div>
+                                                                  <table class="table ">
+                                                                    <thead>
+                                                                      <th style="width:170px">คณะกรรมการ</th>
+                                                                      <th>คอมเม้นท์</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                      <tr>
+                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
+                                                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus blandit fermentum. Etiam rhoncus urna a lobortis sagittis. Donec at leo ut velit eleifend porttitor. Vivamus iaculis massa quis ante lacinia efficitur. In volutpat elit lorem, ut dictum metus ultricies porttitor. Nunc vel tortor congue, tempus libero sit amet, elementum risus. Vestibulum ut finibus nisl. Aenean sit amet sem id odio dapibus dignissim at vel elit. Proin eget ipsum sagittis, aliquet nunc eget, bibendum quam. Pellentesque tempor, velit sed feugiat gravida, felis est faucibus quam, non posuere est magna vitae erat. Proin lorem sapien, laoreet vitae felis id, facilisis efficitur libero. Proin porta vehicula sem et rutrum. Aliquam mattis maximus velit, sit amet imperdiet quam eleifend a. Aenean quis elit turpis. Vivamus ultricies quam ut urna finibus, non bibendum dui tempus. Aliquam varius quam eu facilisis auctor.</td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
+                                                                        <td>Nulla facilisi. Cras eu eros felis. Suspendisse consectetur ex ligula, vitae semper orci condimentum in. Etiam tincidunt nulla ligula, eget placerat sapien consequat at. Mauris quis leo sit amet neque volutpat blandit. Quisque faucibus nisi metus, eu dictum felis hendrerit sit amet. Maecenas a semper ligula. Ut sodales feugiat convallis. Duis in augue augue. Sed bibendum leo vel elit placerat vehicula. Duis condimentum felis tellus, a volutpat tellus congue sit amet. Nam vestibulum, diam vel semper maximus, nunc risus tristique massa, ac congue nibh ipsum sit amet velit. Ut aliquam enim et eros suscipit pretium. Aenean eget mauris volutpat, ultrices sapien nec, aliquam elit. Vestibulum dui magna, lacinia et odio a, ornare hendrerit nisi.</td>
+                                                                      </tr>
+                                                                    </tbody>
+                                                                  </table>
                                                                 </div>
                                                               </div>
                                                             </div>
@@ -471,23 +783,74 @@ div[class^="col-"] {
 
                                                       <tr>
                                                           <td>3</td>
-                                                          <td>Larry</td>
-                                                          <td>the Bird</td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary">คลิ๊กดู</button></td>
+                                                          <td>464445</td>
+                                                          <td>PHARMACY PUBLIC HEALTH</td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
+                                                          <td  style="text-align:center;">
+                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                          </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo33" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
                                                             <div class="accordian-body collapse" id="demo33">
-                                                              <div class="panel panel-default">
+                                                              <div class="panel panel-success">
                                                                 <div class="panel-heading">
-                                                                  <b>คอมเม้นท์</b>
+                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
+                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal9">เพิ่มคอมเม้นท์</button>
+                                                                  <!-- Modal -->
+                                                                    <div id="myModal9" class="modal fade" role="dialog">
+                                                                      <div class="modal-dialog">
 
+                                                                        <!-- Modal content-->
+                                                                        <div class="modal-content">
+                                                                          <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                          </div>
+                                                                          <div class="modal-body">
+                                                                            <div class="row">
+                                                                              <div class="col-md-12">
+                                                                                <form>
+                                                                                  <div class="form-group">
+                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                                  </div>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                </form>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                          </div>
+                                                                        </div>
+
+                                                                      </div>
+                                                                    </div>
+                                                                  <table class="table ">
+                                                                    <thead>
+                                                                      <th style="width:170px">คณะกรรมการ</th>
+                                                                      <th>คอมเม้นท์</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                      <tr>
+                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
+                                                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus blandit fermentum. Etiam rhoncus urna a lobortis sagittis. Donec at leo ut velit eleifend porttitor. Vivamus iaculis massa quis ante lacinia efficitur. In volutpat elit lorem, ut dictum metus ultricies porttitor. Nunc vel tortor congue, tempus libero sit amet, elementum risus. Vestibulum ut finibus nisl. Aenean sit amet sem id odio dapibus dignissim at vel elit. Proin eget ipsum sagittis, aliquet nunc eget, bibendum quam. Pellentesque tempor, velit sed feugiat gravida, felis est faucibus quam, non posuere est magna vitae erat. Proin lorem sapien, laoreet vitae felis id, facilisis efficitur libero. Proin porta vehicula sem et rutrum. Aliquam mattis maximus velit, sit amet imperdiet quam eleifend a. Aenean quis elit turpis. Vivamus ultricies quam ut urna finibus, non bibendum dui tempus. Aliquam varius quam eu facilisis auctor.</td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
+                                                                        <td>Nulla facilisi. Cras eu eros felis. Suspendisse consectetur ex ligula, vitae semper orci condimentum in. Etiam tincidunt nulla ligula, eget placerat sapien consequat at. Mauris quis leo sit amet neque volutpat blandit. Quisque faucibus nisi metus, eu dictum felis hendrerit sit amet. Maecenas a semper ligula. Ut sodales feugiat convallis. Duis in augue augue. Sed bibendum leo vel elit placerat vehicula. Duis condimentum felis tellus, a volutpat tellus congue sit amet. Nam vestibulum, diam vel semper maximus, nunc risus tristique massa, ac congue nibh ipsum sit amet velit. Ut aliquam enim et eros suscipit pretium. Aenean eget mauris volutpat, ultrices sapien nec, aliquam elit. Vestibulum dui magna, lacinia et odio a, ornare hendrerit nisi.</td>
+                                                                      </tr>
+                                                                    </tbody>
+                                                                  </table>
                                                                 </div>
                                                               </div>
                                                             </div>
