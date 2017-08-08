@@ -52,14 +52,21 @@
 	$(document).ready(function(){
 		$(document).on("click", function () {
     		$("#noti").hide("slow");
+				$("#logout").hide("slow");
 		});
 		$("#icon-dropdown").click(function(){
 			$("#noti").slideToggle();
+			$("#logout").hide("slow");
+		});
+		$("#icon-logout").click(function(){
+			$("#logout").slideToggle();
+			$("#noti").hide("slow");
 		})
 		$('#frm').on("load",function(){
 	        var iframe = $('#frm').contents();
 	        iframe.find("html").click(function(){
     				$("#noti").hide("slow");
+						$("#logout").hide("slow");
 	        });
 				});
  			$('a[href="#"]').click(function(e){
@@ -317,11 +324,11 @@
 					<!-- /.dropdown-alerts -->
 				</li>
 				<!-- /.dropdown -->
-				<li class="dropdown">
+				<li class="dropdown" id="icon-logout">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 										<i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
 								</a>
-					<ul class="dropdown-menu dropdown-user">
+					<ul class="dropdown-menu dropdown-user" id="logout">
 						<li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 						</li>
 					</ul>
