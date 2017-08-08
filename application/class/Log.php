@@ -1,7 +1,8 @@
 <?php
 require_once(__DIR__."/../config/configuration_variable.php");
+date_default_timezone_set("Asia/Bangkok");
 /**
-* 
+*
 */
 class Log
 {
@@ -49,9 +50,9 @@ class Log
 		if(!file_exists($this->log_path."/".$year."/".$month))
 		{
 			mkdir($this->log_path."/".$year."/".$month);
-		}	
+		}
 
-			
+
 	}
 }
 

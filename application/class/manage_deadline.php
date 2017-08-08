@@ -27,7 +27,7 @@ Class Deadline
       {
         $type = 2;
       }
-      $sql = "SELECT * FROM `semester_deadline` WHERE `deadline_type` = ".$type;
+      $sql = "SELECT * FROM `semester` WHERE `deadline_type` = ".$type;
       $result = $this->DB->Query($sql);
       if($result != null)
       {
@@ -56,7 +56,7 @@ Class Deadline
     {
       $type = 3;
     }
-    $sql = "INSERT INTO `semester_deadline` ( `semester_num`, `year`, `deadline_type`, `open_date`, `last_date`)
+    $sql = "INSERT INTO `semester` ( `semester_num`, `year`, `deadline_type`, `open_date`, `last_date`)
     VALUES ( '1', '2559', '".$type."', '".$data['opendate']."', '".$data['lastdate']."')
     ON DUPLICATE KEY UPDATE `open_date` = '".$data['opendate']."', last_date = '".$data['lastdate']."'";
     $result = $this->DB->Insert_Update_Delete($sql);
