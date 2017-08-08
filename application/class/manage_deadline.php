@@ -62,7 +62,7 @@ Class Deadline
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result == true)
     {
-      $return['success'] = 'Update successfully';
+      $return['success'] = 'บันทึกเรียบร้อยแล้ว';
       return $return;
     }
     else
