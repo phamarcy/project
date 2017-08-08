@@ -57,7 +57,7 @@ Class Deadline
       $type = 3;
     }
     $sql = "INSERT INTO `semester` ( `semester_num`, `year`, `deadline_type`, `open_date`, `last_date`)
-    VALUES ( '1', '2559', '".$type."', '".$data['opendate']."', '".$data['lastdate']."')
+    VALUES ( '".$data['semester']."', '".$data['year']."', '".$type."', '".$data['opendate']."', '".$data['lastdate']."')
     ON DUPLICATE KEY UPDATE `open_date` = '".$data['opendate']."', last_date = '".$data['lastdate']."'";
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result == true)
