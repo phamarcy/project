@@ -123,7 +123,7 @@ function reset_object(object)
   {
         $(this).css("border-color","rgb(204, 204, 204)");
   });
-  $(object).find("#warning").val("");
+  $(object).find("#warning").html("");
 }
 function reset_date(object)
 {
@@ -136,7 +136,7 @@ $(document).ready(function() {
         var i = 0;
         var object = document.getElementById("group_approve");
         var object_clone = $(object).clone();
-
+        reset_object(object_clone);
         $(object_clone).find("#delete").prop('disabled', false);
         lock(object_clone,false);
         $(object_clone).find("input").val("").end().prependTo("#body_approve");
@@ -145,10 +145,7 @@ $(document).ready(function() {
         var i = 0;
         var object = document.getElementById("group_course");
         var object_clone = $(object).clone();
-        $(object_clone).find("input[id]").each(function(index, node)
-        {
-              $(this).css("border-color","rgb(204, 204, 204)");
-        });
+        reset_object(object_clone);
         $(object_clone).find("#delete").prop('disabled', false);
         lock(object_clone,false);
         $(object_clone).find("input").val("").end().prependTo("#body_course");
@@ -249,6 +246,7 @@ $(document).on('click', "#submitbtn_course", function() {
           }
           else {
             alert(result.success);
+            reset_object(form);
             lock(form,true);
           }
 
