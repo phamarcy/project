@@ -68,11 +68,13 @@
      {
          $("#GOV_LEVEL").prop('required',true);
          $("#NORM_LEVEL").prop('required',false);
+         $("#NORM_LEVEL").val("");
      }
      else
      {
        $("#GOV_LEVEL").prop('required',false);
        $("#NORM_LEVEL").prop('required',true);
+       $("#GOV_LEVEL").val("");
      }
      });
 
@@ -106,6 +108,9 @@
             $("#AIR_DEPART").prop('required',false);
             $("#AIR_ARRIVE").prop('required',false);
             $("#planecost").prop('required',false);
+            $("#AIR_DEPART").val("");
+            $("#AIR_ARRIVE").val("");
+            $("#planecost").val("");
           }
       });
 
@@ -120,6 +125,9 @@
            $("#TAXI_DEPART").prop('required',false);
            $("#TAXI_ARRIVE").prop('required',false);
            $("#taxicost").prop('required',false);
+           $("#TAXI_DEPART").val("");
+           $("#TAXI_ARRIVE").val("");
+           $("#taxicost").val("");
          }
      });
 
@@ -132,25 +140,47 @@
         {
           $("#SELF_DISTANCT").prop('required',false);
           $("#selfcost").prop('required',false);
+          $("#SELF_DISTANCT").val("");
+          $("#selfcost").val("");
         }
     });
 
     // CALCULATE
-    $('#choice1hour').keyup(function(){
-        var textone;
-        var texttwo;
-        textone = parseFloat($('#choice1hour').val());
-        var result = textone*400;
-        $('#choice1cost').val(result.toFixed(2));
-    });
 
-    $('#choice2hour').keyup(function(){
-        var textone;
-        var texttwo;
-        textone = parseFloat($('#choice2hour').val());
-        var result = textone*200;
-        $('#choice2cost').val(result.toFixed(2));
-    });
+    $("input[name='costspec']").change(function(){
+      if($(this).val()=="choice1")
+      {
+        $('#choice1hour').val("");
+        $('#choice1cost').val("");
+        $('#choice2hour').val("");
+        $('#choice2cost').val("");
+        $('#choice1hour').keyup(function(){
+            var textone;
+            var texttwo;
+            textone = parseFloat($('#choice1hour').val());
+            var result = textone*400;
+            $('#choice1cost').val(result.toFixed(2));
+        });
+      }
+      else
+      {
+        $('#choice1hour').val("");
+        $('#choice1cost').val("");
+        $('#choice2hour').val("");
+        $('#choice2cost').val("");
+        $('#choice2hour').keyup(function(){
+            var textone;
+            var texttwo;
+            textone = parseFloat($('#choice2hour').val());
+            var result = textone*200;
+            $('#choice2cost').val(result.toFixed(2));
+        });
+      }
+      });
+
+
+
+
 
     $('#SELF_DISTANCT').keyup(function(){
         var textone;
@@ -273,13 +303,15 @@ function lastcal() {
                 <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
          </div>
       </form>
+
+      <form action="" name="form1" method="post">
       <div class="row form-inline" style="font-size:16px;">
       ภาควิชา <input type="text" class="form-control charonly" size="25" name="department" id="department" required oninvalid="this.setCustomValidity('กรุณาระบุภาควิชาให้ถูกต้อง')" oninput="setCustomValidity('')">
       </div>
     </center>
   </div>
 
-  <form action="" name="form1" method="post">
+
     <ol>
 
       <li style="font-size: 14px;">
@@ -310,7 +342,7 @@ function lastcal() {
 
           <div class="form-inline">
             <li>โทรศัพท์ &nbsp;&nbsp;<input type="text" class="form-control numonly" id="tel" size="20" maxlength="10" required oninvalid="this.setCustomValidity('กรุณากรอกหมายเลขโทรศัพท์')" oninput="setCustomValidity('')">
-              &nbsp;ต่อ&nbsp;<input type="text" class="form-control numonly" id="subtel" size="2" maxlength="2" required oninvalid="this.setCustomValidity('กรุณาระบุให้ถูกต้อง')" oninput="setCustomValidity('')"></li>
+              &nbsp;ต่อ&nbsp;<input type="text" class="form-control numonly" id="subtel" size="2" maxlength="2"></li>
         </div>
 
         <div class="form-inline">
@@ -325,15 +357,15 @@ function lastcal() {
           <div class="row">
             <ul>
               <div class="form-inline">
-                <li>รหัสกระบวนวิชาที่สอน &nbsp;<input type="text" class="form-control numonly" name="" id="course" size="6" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')"></li>
+                <li>รหัสกระบวนวิชาที่สอน &nbsp;<input type="text" class="form-control numonly" name="" id="course" size="6" maxlength="6" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')"></li>
               </div>
               <div class="form-inline">
-                <li>จำนวนนักศึกษา &nbsp;<input type="number" class="form-control numonly" name="" id="numstudent" size="6" data-minlength="6" min="0" max="1000" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนนักศึกษา')" oninput="setCustomValidity('')"> คน</li>
+                <li>จำนวนนักศึกษา &nbsp;<input type="text" class="form-control numonly" name="" id="numstudent" size="6" maxlength="6"  required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนนักศึกษา')" oninput="setCustomValidity('')"> คน</li>
               </div>
               <div class="form-inline">
                 <li>กระบวนวิชานี้เป็นวิชา &nbsp;<br />
                   <div class="radio">
-                    <input type="radio" name="type_course" id="type_course" value="require"> &nbsp;บังคับ
+                    <input type="radio" name="type_course" id="type_course" value="require" required> &nbsp;บังคับ
                     &nbsp;<input type="radio" name="type_course" id="type_course" value="choose"> &nbsp;เลือก
                     &nbsp;<input type="radio" name="type_course" id="type_course" value="new"> &nbsp;เปิดใหม่
                     &nbsp;<input type="radio" name="type_course" id="type_course" value="old"> &nbsp;เปิดอยู่แล้ว
@@ -343,7 +375,7 @@ function lastcal() {
               <div class="form-inline">
                 <li>หัวข้อที่เชิญมาสอน <br>
                     <div class="radio">
-                      <input type="radio" name="topic" id="topic" value="yet"> &nbsp;อาจารย์พิเศษยังไม่เคยสอน
+                      <input type="radio" name="topic" id="topic" value="yet" required> &nbsp;อาจารย์พิเศษยังไม่เคยสอน
                       &nbsp;<input type="radio" name="topic" id="topic" value="already"> &nbsp;อาจารย์พิเศษเคยสอนมาแล้ว
                     </div>
                   </li>
@@ -379,7 +411,7 @@ function lastcal() {
           <div class="form-inline">
             <li>อาจารย์พิเศษเป็น &nbsp;</li>
             <div class="radio">
-              <input type="radio"  name="levelteacher" id="levelteacher" value="pro">&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control charonly" name="GOV_LEVEL" id="GOV_LEVEL"/>
+              <input type="radio"  name="levelteacher" id="levelteacher" value="pro" required>&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control charonly" name="GOV_LEVEL" id="GOV_LEVEL"/>
               <br>
               <input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ &nbsp;<input type="text" class="form-control charonly" name="NORM_LEVEL" id="NORM_LEVEL"/>
             </div>
@@ -387,33 +419,33 @@ function lastcal() {
           <div class="form-inline">
             <li>ค่าสอนพิเศษ</li>
             <div class="radio">
-              <input type="radio"  name="costspec" id="costspec" value="choice1">&nbsp;ปริญญาตรีบรรยาย 400/ชม.&nbsp;&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice1hour" size="5" data-minlength="2" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท
+              <input type="radio"  name="costspec" id="costspec" value="choice1" required>&nbsp;ปริญญาตรีบรรยาย 400/ชม.&nbsp;&nbsp;
+              จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice1hour" size="5" data-minlength="2" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท
               <br>
               <input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ 200/ชม.&nbsp;&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice2hour" size="5" data-minlength="2" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice2cost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท
+              จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice2hour" size="5" data-minlength="2" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2cost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท
             </div>
           </div>
           <div class="form-inline">
             <li>ค่าพาหนะเดินทาง </li>
             <div class="checkbox">
-              <label><input type="checkbox" name="transplane" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="transplane" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               <br>
-              <label><input type="checkbox" name="transtaxi" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+              <label><input type="checkbox" name="transtaxi" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               <br>
               <label><input type="checkbox" name="transselfcar" id="transselfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;
-                <input type="number" class="form-control numonly" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="2" min="0" max="9999"> &nbsp;กิโลเมตร  กิโลเมตรละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
-                <input type="number" class="form-control numonly" name="selfcost" id="selfcost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+                <input type="text" class="form-control numonly" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="2" min="0" max="9999"> &nbsp;กิโลเมตร  กิโลเมตรละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
+                <input type="text" class="form-control numonly" name="selfcost" id="selfcost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label>
               </div>
           </div>
           <div class="form-inline">
             <li>ค่าที่พัก</li>
             <div class="radio">
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1">&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" required>&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน 800 บาท/คน/คืน &nbsp;&nbsp;
             </div>
             <br>จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999" required  oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;คืน
-            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="pernight" id="pernight" size="5" min="0" max="99999" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท
+            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" min="0" max="99999" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท
 
           </div>
           <br>
@@ -422,7 +454,7 @@ function lastcal() {
           </div>
           <br>
           <div class="form-inline">
-            <li style="font-size: 16px;" id="callist"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="number" class="form-control numonly" name="totalcost" id="totalcost" size="10" data-minlength="5" min="0" max="99999" onclick="lastcal();" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท</li>
+            <li style="font-size: 16px;" id="callist"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control numonly" name="totalcost" id="totalcost" size="10" data-minlength="5" min="0" max="99999" onclick="lastcal();" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท</li>
 
           </div>
         </ul>
