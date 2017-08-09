@@ -203,10 +203,27 @@ $(document).on('click', "#submitbtn_course", function() {
     if (confirm('ต้องการบันทึกหรือไม่ ?'))
     {
       var button = $(this);
-      url = "../../application/deadline/update_deadline.php?query=add&type=course";
-      var form = $(this).parent();
       var formData = {};
       var error = 0;
+      url = "../../application/deadline/update_deadline.php?query=add&type=course";
+      var form = $(this).parent();
+      var last_date = $(this).parent().find("#lastdate").val();
+      var first_date = $(this).parent().find("#opendate").val();
+      if(last_date !='' && first_date != '')
+      {
+          first_date = new Date(first_date);
+          last_date = new Date(last_date);
+          var date_check = checkdate(first_date,last_date);
+          if(date_check != 1)
+          {
+              error = 1;
+          }
+      }
+      else
+      {
+        error = 1;
+      }
+
       $(form).find("input[id]").each(function(index, node)
       {
           if(node.value == '')
@@ -219,9 +236,12 @@ $(document).on('click', "#submitbtn_course", function() {
             formData[node.id] = node.value;
           }
       });
-      if(error == 0){
+      if(error == 0)
+      {
       formData['semester'] = $(form).find('#semester').val();
+      $(form).find("#warning").html("<img src='../../application/picture/loading_icon.gif' height='42'> ");
       $.post(url, { 'DATA': formData }).done(function(data) {
+          $(form).find("#warning").html("");
           console.log(data);
           var result = JSON.parse(data);
           if (typeof result.success === 'undefined' || result.success === null ) {
@@ -232,12 +252,17 @@ $(document).on('click', "#submitbtn_course", function() {
             lock(form,true);
           }
 
+
       }).fail(function() {
+        $(form).find("#warning").html("");
         alert("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่");
+
         });
-      }else
+
+      }
+      else
       {
-          alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+          $(form).find("#warning").html('<div class="glyphicon glyphicon-alert" style="color: red;"> <b>กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน</b></div>');
       }
     }
     else
@@ -253,6 +278,23 @@ $(document).on('click', "#submitbtn_approve", function() {
     var form = $(this).parent();
     var formData = {};
     var error = 0;
+    var last_date = $(this).parent().find("#lastdate").val();
+    var first_date = $(this).parent().find("#opendate").val();
+    if(last_date !='' && first_date != '')
+    {
+        first_date = new Date(first_date);
+        last_date = new Date(last_date);
+        var date_check = checkdate(first_date,last_date);
+        if(date_check != 1)
+        {
+            error = 1;
+        }
+    }
+    else
+    {
+      error = 1;
+    }
+
     $(form).find("input[id]").each(function(index, node) {
       if(node.value == '')
       {
@@ -266,9 +308,11 @@ $(document).on('click', "#submitbtn_approve", function() {
     });
     if(error == 0){
     formData['semester'] = $(form).find('#semester').val();
+    $(form).find("#warning").html("<img src='../../application/picture/loading_icon.gif' height='42'> ");
     $.post(url, { 'DATA': formData }).done(function(data) {
         console.log(data);
         var result = JSON.parse(data);
+          $(form).find("#warning").html("");
         if (typeof result.success === 'undefined' || result.success === null ) {
             alert(result.error);
         }
@@ -280,10 +324,11 @@ $(document).on('click', "#submitbtn_approve", function() {
     }).fail(function() {
         alert("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่");
       });
+
       }
       else
       {
-          alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+          $(form).find("#warning").html('<div class="glyphicon glyphicon-alert" style="color: red;"> <b>กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน</b></div>');
       }
     } else {
         // Do nothing!
