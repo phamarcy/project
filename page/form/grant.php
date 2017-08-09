@@ -46,24 +46,28 @@
    <div class="row">
      <center>
        <h3 class="page-header">มอบอำนาจการอนุมัติกระบวนวิชา</h3>
-           <form data-toggle="validator" role="form">
-             <div class="form-inline" style="font-size:16px;">
-                      <div class="form-group">
-                         <label id="semester" class="control-label">ปีการศึกษา</label>
-                          <select class="form-control required" id="semester" style="width: 70px;" required>
-                             <option value="">--</option>
-                             <option value="1">1</option>
-                             <option value="2">2</option>
-                             <option value="3">3</option>
-                          </select>
-                      </div>
-                      <div class="form-group">
-                        <label for="inputyear" class="control-label">ปีการศึกษา</label>
-                        <input type="number" class="form-control"  style="width: 150px;" placeholder="e.g. 2560"   max="9999" required>
-                      </div>
-                     <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
-              </div>
-           </form>
+       <form >
+         <div class="form-inline" style="font-size:16px;">
+                   <div class="form-group">
+                     <h style="font-size: 14px;">รหัสกระบวนวิชา
+                      <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 204111" maxlength="6"  required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')">
+                   </div>
+                  <div class="form-group">
+                     ภาคการศึกษา
+                      <select class="form-control required" id="semester" style="width: 70px;" id="select" required oninvalid="this.setCustomValidity('กรุณากรอกภาคการศึกษาให้ถูกต้อง')">
+                         <option value="">--</option>
+                         <option value="1">1</option>
+                         <option value="2">2</option>
+                         <option value="3">3</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                    ปีการศึกษา</h>
+                    <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษาให้ถูกต้อง')" oninput="setCustomValidity('')">
+                  </div>
+                 <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
+          </div>
+       </form>
      </center>
    </div>
    <br>

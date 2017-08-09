@@ -632,7 +632,7 @@ function other_type() {
                     </div>
                    <div class="form-group">
                       ภาคการศึกษา
-                       <select class="form-control required" id="semester" style="width: 70px;" id="select" required>
+                       <select class="form-control required" id="semester" style="width: 70px;" id="select" required oninvalid="this.setCustomValidity('กรุณากรอกภาคการศึกษาให้ถูกต้อง')">
                           <option value="">--</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
