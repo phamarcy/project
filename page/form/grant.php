@@ -22,6 +22,8 @@
  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
  <script src="../vendor/jquery/jquery.min.js"></script>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
 
  <!-- Bootstrap Core JavaScript -->
  <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -34,11 +36,9 @@
 
  <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 
- <link rel="stylesheet" href="../dist/css/scrollbar.css">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
- <scrip>
 
- </script>
 
  </header>
  <body class="mybox">
@@ -46,31 +46,8 @@
    <div class="row">
      <center>
        <h3 class="page-header">มอบอำนาจการอนุมัติกระบวนวิชา</h3>
-       <form >
-         <div class="form-inline" style="font-size:16px;">
-                   <div class="form-group">
-                     <h style="font-size: 14px;">รหัสกระบวนวิชา
-                      <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 204111" maxlength="6"  required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')">
-                   </div>
-                  <div class="form-group">
-                     ภาคการศึกษา
-                      <select class="form-control required" id="semester" style="width: 70px;" id="select" required oninvalid="this.setCustomValidity('กรุณากรอกภาคการศึกษาให้ถูกต้อง')">
-                         <option value="">--</option>
-                         <option value="1">1</option>
-                         <option value="2">2</option>
-                         <option value="3">3</option>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                    ปีการศึกษา</h>
-                    <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษาให้ถูกต้อง')" oninput="setCustomValidity('')">
-                  </div>
-                 <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
-          </div>
-       </form>
      </center>
    </div>
-   <br>
    <div class="panel panel-default" style="font-size: 14px;">
      <div class="panel-heading"  style="padding: 0px 0px; padding-left: 10px;">
        ภาคการศึกษาที่ 2 ปีการศึกษา 2560
@@ -106,37 +83,28 @@
            <div class="panel-body" style="font-size: 16px;">
             <div class="form-inline" style="font-size: 14px;">
               <form class="" action="" method="post">
-                ชื่อ&nbsp;&nbsp;<input type="text" class="form-control" id="fname">&nbsp;&nbsp;นามสกุล&nbsp;&nbsp;<input type="text" class="form-control" id="lname" >
-                <input type="submit" class="btn btn-outline btn-warning" id="ค้นหา" value="ค้นหา">
+                <div class="form-group">
+                  <select class="form-control" name="">
+                    <option value="">รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</option>
+                    <option value="">รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</option>
+                    <option value="">ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</option>
+                    <option value="">ผศ.ดร. ภญ.รัตนาภรณ์   อาวิพันธ์</option>
+                    <option value="">รศ.ดร. ภญ.หทัยกาญจน์   เชาวนพูนผล</option>
+                    <option value="">ผศ.ดร. ภก.สกนธ์   สุภากุล</option>
+                    <option value="">ผศ.ดร. ภญ.อำไพ   พฤติวรพงศ์กุล</option>
+                    <option value="">อ.ดร. ภก.สมจริง   รุ่งแจ้ง</option>
+                  </select>
+                </div>
+                <input type="submit" class="btn btn-outline btn-warning" id="ค้นหา" value="มอบอำนาจ">
               </form>
            </div>
-         </div>
-       </div>
-       <div class="panel panel-success">
-         <div class="panel-heading" style="padding: 0px 0px; padding-left: 10px;">
-           รายชื่อที่พบ
-         </div>
-         <div class="panel-body">
-           <table class="table table-hover" style="font-size: 14px;">
-             <tr>
-               <th>ชื่อ</th>
-               <th>นามสกุล</th>
-               <th>สถานะผู้ใช้งาน</th>
-               <th>สถานะการมอบอำนาจ</th>
-               <th></th>
-             </tr>
-             <tr>
-               <td>วิเชียร</td>
-               <td>คำอุ๊</td>
-               <td>คณะกรรมการคณะ</td>
-               <td>ยังไม่ได้รับมอบอำนาจ</td>
-               <td><input type="button" class="btn btn-outline btn-danger" id="grantbtn" value="มอบอำนาจ" disabled></td>
-             </tr>
-           </table>
          </div>
        </div>
      </div>
    </div>
  </div>
  </body>
+ <script type="text/javascript">
+   $('select').select2();
+ </script>
  </html>
