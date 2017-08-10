@@ -227,12 +227,12 @@
      var table = $(this).closest('table');
      if (table.find('input:text').length < 100) {
        $('#delbtn').removeAttr("disabled");
-       var x = $(this).closest('tr').nextAll('tr');
+       var x = $("tr[name=addtr]:last").closest('tr').nextAll('tr');
        var rowCount = $('#detailteaching tr').length;
        $.each(x, function(i, val) {
          val.remove();
        });
-       table.append('<tr class="warning" id="row' + (rowCount - 1) + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-danger" name="delbtn' + (rowCount - 1) + '" id="delbtn' + (rowCount - 1) +
+       table.append('<tr class="warning" name="addtr" id="row' + (rowCount - 1) + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-danger" name="delbtn' + (rowCount - 1) + '" id="delbtn' + (rowCount - 1) +
          '" value="ลบ" onclick="deleteRow(' + (rowCount - 1) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="detail_topic' + (rowCount - 1) + '" id="detail_topic' + (rowCount - 1) +
          '" size="50"></div></td><td><input type="date" class="form-control" name="dateteach' + (rowCount - 1) + '" id="dateteach' + (rowCount - 1) +
          '" size="2"></td><td style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + (rowCount - 1) + '" id="timebegin' + (rowCount - 1) + '" size="2"><br> ถึง <br /><input type="time" class="form-control" name="timeend'
@@ -396,7 +396,7 @@ function lastcal() {
                       <th style="text-align: center;">เวลา</th>
                       <th style="text-align: center;">ห้องเรียน</th>
                     </tr>
-                    <tr>
+                    <tr name="addtr">
                       <td colspan="5" style="text-align: center;"><input type="button" class="btn btn-outline btn-success" name="addbtn" id="adddetail" value="เพิ่ม" required> </td>
                     </tr>
                   </table>

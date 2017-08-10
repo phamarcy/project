@@ -239,12 +239,19 @@ function submitfunc() {
   {
     for(var i=1;i<=count2;i++)
     {
-      var cart = {
-        'NAME' : document.getElementById("MEASURE_OTHERCOMMENT"+i).value,
-        'LEC' : document.getElementById("MEASURE_OTHERLEC"+i).value,
-        'LAB' : document.getElementById("MEASURE_OTHERLAB"+i).value
-      };
-      cart2.push(cart);
+      if(document.getElementById("MEASURE_OTHERCOMMENT"+i) == null)
+      {
+        continue;
+      }
+      else {
+        var cart = {
+          'NAME' : document.getElementById("MEASURE_OTHERCOMMENT"+i).value,
+          'LEC' : document.getElementById("MEASURE_OTHERLEC"+i).value,
+          'LAB' : document.getElementById("MEASURE_OTHERLAB"+i).value
+        };
+        cart2.push(cart);
+      }
+
     }
     cart3 = cart2;
   }
@@ -327,11 +334,18 @@ function submitfunc() {
   {
     for(var i=0;i<countsa2;i++)
     {
-      var carts = {
-        'NAME' : document.getElementById("SAMEMA_NAME"+i).value,
-        'SCORE' : document.getElementById("SAMENA_SCORE"+i).value
-      };
-      carts2.push(carts);
+      if(document.getElementById("SAMEMA_NAME"+i) == null)
+      {
+        continue;
+      }
+      else {
+        var carts = {
+          'NAME' : document.getElementById("SAMEMA_NAME"+i).value,
+          'SCORE' : document.getElementById("SAMENA_SCORE"+i).value
+        };
+        carts2.push(carts);
+      }
+
     }
     carts3 = carts2;
 
@@ -349,11 +363,19 @@ function submitfunc() {
   {
     for(var i=0;i<counttr2;i++)
     {
-      var cartt = {
-        'NAME' : document.getElementById("TRAIN_NAME"+i).value,
-        'SCORE' : document.getElementById("TRAIN_SCORE"+i).value
-      };
-      cartt2.push(cartt);
+      if(document.getElementById("TRAIN_NAME"+i) == null)
+      {
+        continue;
+      }
+      else {
+        var cartt = {
+          'NAME' : document.getElementById("TRAIN_NAME"+i).value,
+          'SCORE' : document.getElementById("TRAIN_SCORE"+i).value
+        };
+        cartt2.push(cartt);
+
+      }
+
     }
     cartt3 = cartt2;
 
@@ -538,12 +560,12 @@ $(document).ready(function(){
     var table = $(this).closest('table');
     if (table.find('input:text').length < 100) {
       $('#delbtn').removeAttr("disabled");
-      var x = $(this).closest('tr').nextAll('tr');
+      var x = $("tr[name=addtr]:last").closest('tr').nextAll('tr');
       var rowCount = $('#meastable tr').length;
       $.each(x, function(i, val) {
         val.remove();
       });
-      table.append('<tr class="warning" id="row' + (rowCount - 4) + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + (rowCount - 4) + '" id="delbtn' + (rowCount - 4) +
+      table.append('<tr class="warning" name="addtr" id="row' + (rowCount - 4) + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + (rowCount - 4) + '" id="delbtn' + (rowCount - 4) +
         '" value="ลบ" onclick="deleteRow(' + (rowCount - 4) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="MEASURE_OTHERCOMMENT' + (rowCount - 4) + '" id="MEASURE_OTHERCOMMENT' + (rowCount - 4) +
         '" size="50"></div></td><td><input type="text" class="form-control" name="MEASURE_OTHERLEC' + (rowCount - 4) + '" id="MEASURE_OTHERLEC' + (rowCount - 4) +
         '" size="2"></td><td><input type="text" class="form-control" name="MEASURE_OTHERLAB' + (rowCount - 4) + '" id="MEASURE_OTHERLAB' + (rowCount - 4) + '" size="2"></td></tr>');
@@ -557,12 +579,12 @@ $(document).ready(function(){
     var table = $(this).closest('table');
     if (table.find('input:text').length < 100) {
       $('#delbtnsa').removeAttr("disabled");
-      var x = $(this).closest('tr').nextAll('tr');
+      var x = $("tr[name=addtr2]:last").closest('tr').nextAll('tr');
       var rowCount = $('#samenatable tr').length;
       $.each(x, function(i, val) {
         val.remove();
       });
-      table.append('<tr class="warning" id="row' + (rowCount - 4) + '"><td><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtnsa' + (rowCount - 4) + '" id="delbtnsa' + (rowCount - 4) +
+      table.append('<tr class="warning" name="addtr2" id="row' + (rowCount - 4) + '"><td><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtnsa' + (rowCount - 4) + '" id="delbtnsa' + (rowCount - 4) +
         '" value="ลบ" onclick="deleteRow(' + (rowCount - 4) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="SAMEMA_NAME' + (rowCount - 4) + '" id="SAMEMA_NAME' + (rowCount - 4) +
         '" size="30"></div></td><td><input type="text" class="form-control" name="SAMENA_SCORE' + (rowCount - 4) + '" id="SAMENA_SCORE' + (rowCount - 4) + '" size="2"></td></tr>');
       $.each(x, function(i, val) {
@@ -575,12 +597,12 @@ $(document).ready(function(){
     var table = $(this).closest('table');
     if (table.find('input:text').length < 100) {
       $('#delbtnsa2').removeAttr("disabled");
-      var x = $(this).closest('tr').nextAll('tr');
+      var x = $("tr[name=addtr3]:last").closest('tr').nextAll('tr');
       var rowCount = $('#samenatable2 tr').length;
       $.each(x, function(i, val) {
         val.remove();
       });
-      table.append('<tr class="warning" id="row2' + (rowCount - 4) + '"><td><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtnsa2' + (rowCount - 4) + '" id="delbtnsa2' + (rowCount - 4) +
+      table.append('<tr class="warning" name="addtr3" id="row2' + (rowCount - 4) + '"><td><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtnsa2' + (rowCount - 4) + '" id="delbtnsa2' + (rowCount - 4) +
         '" value="ลบ" onclick="deleteRow2(' + (rowCount - 4) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="TRAIN_NAME' + (rowCount - 4) + '" id="TRAIN_NAME' + (rowCount - 4) +
         '" size="30"></td><td><input type="text" class="form-control" name="TRAIN_SCORE' + (rowCount - 4) + '" id="TRAIN_SCORE' + (rowCount - 4) + '" size="2"></td></tr>');
       $.each(x, function(i, val) {
@@ -1105,7 +1127,7 @@ function other_type() {
                 <td><input type="text" class="form-control numonly" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="2" required></td>
                 <td><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="2" required></td>
               </tr>
-              <tr>
+              <tr name="addtr">
 
                 <td colspan="4">3. อื่นๆ โปรดระบุ &nbsp;&nbsp;<input type="button" class="btn btn-outline btn-success" name="addbtn" id="addbtn" value="เพิ่ม"> </td>
 
@@ -1134,7 +1156,7 @@ function other_type() {
                       <td width="65%" align="center">กิจกรรม</td>
                       <td align="center">&nbsp;สัดส่วนการให้คะแนน&nbsp;</td>
                     </tr>
-                    <tr>
+                    <tr name="addtr2">
                       <td align="center" colspan="2"><input type="button" class="btn btn-outline btn-success" name="addbtnsa" id="addbtnsa" value="เพิ่ม"></td>
                     </tr>
                     <tr>
@@ -1155,7 +1177,7 @@ function other_type() {
                       <td width="65%" align="center">กิจกรรม</td>
                       <td align="center">&nbsp;สัดส่วนการให้คะแนน&nbsp;</td>
                     </tr>
-                    <tr>
+                    <tr name="addtr3">
                       <td align="center" colspan="2"><input type="button" class="btn btn-outline btn-success" name="addbtnsa2" id="addbtnsa2" value="เพิ่ม"></td>
                     </tr>
                     <tr>
