@@ -88,7 +88,7 @@ div[class^="col-"] {
                                       </div>
                                     </div>
                                     <div class="col-md-8">
-                                      <button class="btn btn-outline btn-primary"type="submit" name="button">ส่ง</button>
+                                      <button class="btn btn-outline btn-primary"type="submit" name="button">ยืนยัน</button>
                                     </div>
                                 </div>
                               </div>
