@@ -1,9 +1,20 @@
 <?php
+require_once(__DIR__.'/../../application/class/curl.php');
 session_start();
-$result = curl($_SESSION['level']);
-$result = json_decode($result,true);
-$deadline = $result['deadline'];
-$data = $result['data'];
+$curl = new CURL("application/information/index.php");
+$data['level'] = $_SESSION['level'];
+$result = $curl->Request($data);
+if($result == false)
+{
+	die("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาติดต่อผู้ดูแลระบบ");
+}
+else
+{
+	$result = json_decode($result,true);
+	$deadline = $result['deadline'];
+	$data = $result['data'];
+}
+
 ?>
 <html>
 	<head>

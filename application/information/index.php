@@ -2,9 +2,9 @@
 session_start();
 require_once(__DIR__.'/../lib/thai_date.php');
 $DATA = array();
-if(isset($_POST['type']))
+if(isset($_POST['level']))
 {
-  $type = $_POST['type'];
+  $level = $_POST['level'];
   $data[0]['department'] = 'วิทยาศาสตร์เภสัชกรรม';
   $data[0]['course'][0]['id'] = '463503';
   $data[0]['course'][0]['name'] = 'Principles in Phytochemistry';
@@ -26,13 +26,13 @@ if(isset($_POST['type']))
   $DATA['deadline']['edit']['day'] = '20';
   $DATA['deadline']['edit']['month'] = 'สิงหาคม';
   $DATA['deadline']['edit']['year'] = '2560';
-  if($type == '4' || $type == '5')
+  if($level == '4' || $level == '5')
   {
     $DATA['deadline']['con']['day'] = '22';
     $DATA['deadline']['con']['month'] = 'สิงหาคม';
     $DATA['deadline']['con']['year'] = '2560';
   }
-  else if($type == '6')
+  else if($level == '6')
   {
     $DATA['deadline']['approve']['day'] = '25';
     $DATA['deadline']['approve']['month'] = 'สิงหาคม';
@@ -42,7 +42,7 @@ if(isset($_POST['type']))
 }
 else
 {
-
+  $DATA['error'] = 'No session';
 }
 echo json_encode($DATA);
  ?>
