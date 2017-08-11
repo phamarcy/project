@@ -56,6 +56,7 @@
 		});
 		$("#icon-dropdown").click(function(){
 			$("#noti").slideToggle();
+			$(".label-danger").hide("fast");
 			$("#logout").hide("slow");
 		});
 		$("#icon-logout").click(function(){
