@@ -40,9 +40,7 @@ div[class^="col-"] {
     <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
       <div class="container">
         <div class="row">
-
             <center>
-
               <h3 class="page-header">การอนุมัติกระบวนวิชา</h3>
                   <form  data-toggle="validator" role="form">
                     <div   class="form-group " style="font-size:16px;">
@@ -70,8 +68,6 @@ div[class^="col-"] {
                           <div class="help-block with-errors" for="year" style="font-size:12px;"></div>
                         </div>
                       </div>
-
-
                      </div>
                   </form>
               </center>
