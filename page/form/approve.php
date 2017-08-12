@@ -16,12 +16,12 @@
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <link rel="stylesheet" href="../dist/css/scrollbar.css">
-
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
 <style >
 /*div[class="row"] {
   border: 1px dotted rgba(0, 0, 0, 0.5);
@@ -40,30 +40,41 @@ div[class^="col-"] {
     <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
       <div class="container">
         <div class="row">
-          <center>
-            <h3 class="page-header">การอนุมัติกระบวนวิชา</h3>
-                <form  id="search-panel">
-                  <div class="form-inline" style="font-size:16px;">
-                           <div class="form-group">
+
+            <center>
+
+              <h3 class="page-header">การอนุมัติกระบวนวิชา</h3>
+                  <form  data-toggle="validator" role="form">
+                    <div   class="form-group " style="font-size:16px;">
+                      <div class="col-md-5 ">
+                        <div class="form-group pull-right">
+                            <div class="form-inline">
                               <label id="semester" class="control-label">ภาคการศึกษา</label>
-                               <select class="form-control required" id="semester" style="width: 70px;" id="select" required oninvalid="this.setCustomValidity('กรุณาเลือกภาคการศึกษา')" oninput="setCustomValidity('')" >
+                               <select class="form-control required" id="semester" style="width: 70px;" id="select" required  data-required-error="กรุณาเลือกภาคการศึกษา">
                                   <option value="">--</option>
                                   <option value="1">1</option>
                                   <option value="2">2</option>
                                   <option value="3">3</option>
                                </select>
-                               <div class="form-group">
-                                 <div class="help-block with-errors" style="font-size:12px;"></div>
-                               </div>
-                           </div>
-                           <div class="form-group ">
-                             <label for="inputyear" class="control-label">ปีการศึกษา</label>
-                             <input type="text" class="form-control numonly"  style="width: 150px;" placeholder="e.g. 2560"    maxlength="4" pattern=".{4,4}" required  oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษา')" oninput="setCustomValidity('')">
-                           </div>
-                          <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
-                   </div>
-                </form>
-          </center>
+                            </div>
+                              <div class="help-block with-errors "  for="semester" style="font-size:12px;"></div>
+                          </div>
+                      </div>
+                      <div class="col-md-6 ">
+                        <div class="form-group pull-left">
+                          <div class="form-inline ">
+                            <label for="inputyear" class="control-label">ปีการศึกษา</label>
+                            <input type="text" class="form-control numonly" id="year" style="width: 150px;" placeholder="e.g. 2560"   maxlength="4" pattern=".{4,4}" required data-required-error="กรุณากรอกปีการศึกษา" data-pattern-error="กรุณากรอกปีการศึกษาให้ถูกต้อง">
+                            <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
+                          </div>
+                          <div class="help-block with-errors" for="year" style="font-size:12px;"></div>
+                        </div>
+                      </div>
+
+
+                     </div>
+                  </form>
+              </center>
         </div>
       <br>
 
