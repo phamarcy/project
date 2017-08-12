@@ -673,7 +673,7 @@ function other_type() {
   </center>
 </div>
 
-<form action="" name="form1" method="post">
+<form action="" name="form1" method="post" onsubmit="submitfunc()">
   <div class="form-group" id="bgmain">
     <ol>
       <br>
@@ -1309,7 +1309,7 @@ function other_type() {
     </div>
     <br><br>
     <div align="center">
-      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" onclick="submitfunc()" > &nbsp;
+      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" value="รีเซ็ตข้อมูล">
     </div>
