@@ -182,13 +182,13 @@ div[class^="col-"] {
                                                                         <?php if ($_SESSION['level'] > 4 ): ?>
                                                                             <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
                                                                         <?php endif; ?>
-                                                                        <td>Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16 เมื่อเครื่องพิมพ์โนเนมเครื่องหนึ่งนำรางตัวพิมพ์มาสลับสับตำแหน่งตัวอักษรเพื่อทำหนังสือตัวอย่าง Lorem Ipsum อยู่ยงคงกระพันมาไม่ใช่แค่เพียงห้าศตวรรษ แต่อยู่มาจนถึงยุคที่พลิกโฉมเข้าสู่งานเรียงพิมพ์ด้วยวิธีทางอิเล็กทรอนิกส์ และยังคงสภาพเดิมไว้อย่างไม่มีการเปลี่ยนแปลง มันได้รับความนิยมมากขึ้นในยุค ค.ศ. 1960 เมื่อแผ่น Letraset วางจำหน่ายโดยมีข้อความบนนั้นเป็น Lorem Ipsum และล่าสุดกว่านั้น คือเมื่อซอฟท์แวร์การทำสื่อสิ่งพิมพ์ (Desktop Publishing) อย่าง Aldus PageMaker ได้รวมเอา Lorem Ipsum เวอร์ชั่นต่างๆ เข้าไว้ในซอฟท์แวร์ด้วย</td>
+                                                                        <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
                                                                       </tr>
                                                                       <tr>
                                                                         <?php if ($_SESSION['level'] > 4 ): ?>
                                                                             <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                         <?php endif; ?>
-                                                                        <td>มีหลักฐานที่เป็นข้อเท็จจริงยืนยันมานานแล้ว ว่าเนื้อหาที่อ่านรู้เรื่องนั้นจะไปกวนสมาธิของคนอ่านให้เขวไปจากส่วนที้เป็น Layout เรานำ Lorem Ipsum มาใช้เพราะความที่มันมีการกระจายของตัวอักษรธรรมดาๆ แบบพอประมาณ ซึ่งเอามาใช้แทนการเขียนว่า ‘ตรงนี้เป็นเนื้อหา, ตรงนี้เป็นเนื้อหา' ได้ และยังทำให้มองดูเหมือนกับภาษาอังกฤษที่อ่านได้ปกติ ปัจจุบันมีแพ็กเกจของซอฟท์แวร์การทำสื่อสิ่งพิมพ์ และซอฟท์แวร์การสร้างเว็บเพจ (Web Page Editor) หลายตัวที่ใช้ Lorem Ipsum เป็นแบบจำลองเนื้อหาที่เป็นค่าตั้งต้น และเวลาที่เสิร์ชด้วยคำว่า 'lorem ipsum' ผลการเสิร์ชที่ได้ก็จะไม่พบบรรดาเว็บไซต์ที่ยังคงอยู่ในช่วงเริ่มสร้างด้วย โดยหลายปีที่ผ่านมาก็มีการคิดค้นเวอร์ชั่นต่างๆ ของ Lorem Ipsum ขึ้นมาใช้ บ้างก็เป็นความบังเอิญ บ้างก็เป็นความตั้งใจ (เช่น การแอบแทรกมุกตลก)</td>
+                                                                        <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
                                                                       </tr>
                                                                     </tbody>
                                                                   </table>
@@ -774,11 +774,11 @@ div[class^="col-"] {
                                                                     <tbody>
                                                                       <tr>
                                                                         <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
-                                                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus blandit fermentum. Etiam rhoncus urna a lobortis sagittis. Donec at leo ut velit eleifend porttitor. Vivamus iaculis massa quis ante lacinia efficitur. In volutpat elit lorem, ut dictum metus ultricies porttitor. Nunc vel tortor congue, tempus libero sit amet, elementum risus. Vestibulum ut finibus nisl. Aenean sit amet sem id odio dapibus dignissim at vel elit. Proin eget ipsum sagittis, aliquet nunc eget, bibendum quam. Pellentesque tempor, velit sed feugiat gravida, felis est faucibus quam, non posuere est magna vitae erat. Proin lorem sapien, laoreet vitae felis id, facilisis efficitur libero. Proin porta vehicula sem et rutrum. Aliquam mattis maximus velit, sit amet imperdiet quam eleifend a. Aenean quis elit turpis. Vivamus ultricies quam ut urna finibus, non bibendum dui tempus. Aliquam varius quam eu facilisis auctor.</td>
+                                                                        <td>เกณฑ์คะแนนยังค่อยข้างสูง</td>
                                                                       </tr>
                                                                       <tr>
                                                                         <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
-                                                                        <td>Nulla facilisi. Cras eu eros felis. Suspendisse consectetur ex ligula, vitae semper orci condimentum in. Etiam tincidunt nulla ligula, eget placerat sapien consequat at. Mauris quis leo sit amet neque volutpat blandit. Quisque faucibus nisi metus, eu dictum felis hendrerit sit amet. Maecenas a semper ligula. Ut sodales feugiat convallis. Duis in augue augue. Sed bibendum leo vel elit placerat vehicula. Duis condimentum felis tellus, a volutpat tellus congue sit amet. Nam vestibulum, diam vel semper maximus, nunc risus tristique massa, ac congue nibh ipsum sit amet velit. Ut aliquam enim et eros suscipit pretium. Aenean eget mauris volutpat, ultrices sapien nec, aliquam elit. Vestibulum dui magna, lacinia et odio a, ornare hendrerit nisi.</td>
+                                                                        <td>เอกสารครบถ้วน แนะปรับคะแนนกิจกรรมเพิ่มขึ้น</td>
                                                                       </tr>
                                                                     </tbody>
                                                                   </table>
@@ -850,11 +850,11 @@ div[class^="col-"] {
                                                                     <tbody>
                                                                       <tr>
                                                                         <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
-                                                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus blandit fermentum. Etiam rhoncus urna a lobortis sagittis. Donec at leo ut velit eleifend porttitor. Vivamus iaculis massa quis ante lacinia efficitur. In volutpat elit lorem, ut dictum metus ultricies porttitor. Nunc vel tortor congue, tempus libero sit amet, elementum risus. Vestibulum ut finibus nisl. Aenean sit amet sem id odio dapibus dignissim at vel elit. Proin eget ipsum sagittis, aliquet nunc eget, bibendum quam. Pellentesque tempor, velit sed feugiat gravida, felis est faucibus quam, non posuere est magna vitae erat. Proin lorem sapien, laoreet vitae felis id, facilisis efficitur libero. Proin porta vehicula sem et rutrum. Aliquam mattis maximus velit, sit amet imperdiet quam eleifend a. Aenean quis elit turpis. Vivamus ultricies quam ut urna finibus, non bibendum dui tempus. Aliquam varius quam eu facilisis auctor.</td>
+                                                                        <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
                                                                       </tr>
                                                                       <tr>
                                                                         <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
-                                                                        <td>Nulla facilisi. Cras eu eros felis. Suspendisse consectetur ex ligula, vitae semper orci condimentum in. Etiam tincidunt nulla ligula, eget placerat sapien consequat at. Mauris quis leo sit amet neque volutpat blandit. Quisque faucibus nisi metus, eu dictum felis hendrerit sit amet. Maecenas a semper ligula. Ut sodales feugiat convallis. Duis in augue augue. Sed bibendum leo vel elit placerat vehicula. Duis condimentum felis tellus, a volutpat tellus congue sit amet. Nam vestibulum, diam vel semper maximus, nunc risus tristique massa, ac congue nibh ipsum sit amet velit. Ut aliquam enim et eros suscipit pretium. Aenean eget mauris volutpat, ultrices sapien nec, aliquam elit. Vestibulum dui magna, lacinia et odio a, ornare hendrerit nisi.</td>
+                                                                        <td>อาจารย์ผู้สอนมีจำนวนน้อยมาก</td>
                                                                       </tr>
                                                                     </tbody>
                                                                   </table>
