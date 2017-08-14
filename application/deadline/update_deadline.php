@@ -35,6 +35,11 @@ else
 				$result = $deadline->Search_all('2');
 				$DATA['data'] = $result;
 			}
+			else if($type == 'evaluate')
+			{
+				$result = $deadline->Search_all('3');
+				$DATA['data'] = $result;
+			}
 			else
 			{
 				$DATA['error'] = 'invalid type ';

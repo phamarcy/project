@@ -27,6 +27,10 @@ Class Deadline
       {
         $type = 2;
       }
+      else if($type == 'evaluate')
+      {
+        $type = 3;
+      }
       $sql = "SELECT * FROM `semester` WHERE `deadline_type` = ".$type;
       $result = $this->DB->Query($sql);
       if($result != null)
@@ -52,9 +56,13 @@ Class Deadline
     {
       $type = 2;
     }
-    else
+    else if($type == 'evaluate')
     {
       $type = 3;
+    }
+    else {
+      $return['error'] = 'Update failed, Invalid type';
+      return $return;
     }
     $sql = "INSERT INTO `semester` ( `semester_num`, `year`, `deadline_type`, `open_date`, `last_date`)
     VALUES ( '".$data['semester']."', '".$data['year']."', '".$type."', '".$data['opendate']."', '".$data['lastdate']."')

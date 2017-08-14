@@ -44,6 +44,7 @@ function loaddataAll()
     $('#loading').html("<center><img src='../../application/picture/loading_icon.gif'></center>");
     $(".container").hide();
     loaddata('course');
+    loaddata('evaluate');
     loaddata('approve');
 }
 
@@ -132,23 +133,17 @@ function reset_date(object)
 }
 $(document).ready(function() {
   //add more data button
-    $("#addbtn_approve").click(function() {
+    $("#addbtn_course, #addbtn_evaluate, #addbtn_approve").click(function() {
+        var id = $(this).attr('id');
+        var type = id.split("_");
+        type = type[1];
         var i = 0;
-        var object = document.getElementById("group_approve");
+        var object = document.getElementById("group_"+type);
         var object_clone = $(object).clone();
         reset_object(object_clone);
         $(object_clone).find("#delete").prop('disabled', false);
         lock(object_clone,false);
-        $(object_clone).find("input").val("").end().prependTo("#body_approve");
-    });
-    $("#addbtn_course").click(function() {
-        var i = 0;
-        var object = document.getElementById("group_course");
-        var object_clone = $(object).clone();
-        reset_object(object_clone);
-        $(object_clone).find("#delete").prop('disabled', false);
-        lock(object_clone,false);
-        $(object_clone).find("input").val("").end().prependTo("#body_course");
+        $(object_clone).find("input").val("").end().prependTo("#body_"+type);
     });
 
 });
@@ -196,13 +191,17 @@ $(document).on('change', '#opendate', function() {
 });
 
 //submit data to database
-$(document).on('click', "#submitbtn_course", function() {
+$(document).on('click', "#submitbtn_course, #submitbtn_approve, #submitbtn_evaluate", function() {
+    var id = $(this).attr('id');
+    var type = id.split("_");
+    type = type[1];
+    alert(type);
     if (confirm('ต้องการบันทึกหรือไม่ ?'))
     {
       var button = $(this);
       var formData = {};
       var error = 0;
-      url = "../../application/deadline/update_deadline.php?query=add&type=course";
+      url = "../../application/deadline/update_deadline.php?query=add&type="+type;
       var form = $(this).parent();
       var last_date = $(this).parent().find("#lastdate").val();
       var first_date = $(this).parent().find("#opendate").val();
@@ -249,8 +248,6 @@ $(document).on('click', "#submitbtn_course", function() {
             reset_object(form);
             lock(form,true);
           }
-
-
       }).fail(function() {
         $(form).find("#warning").html("");
         alert("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่");
@@ -266,70 +263,6 @@ $(document).on('click', "#submitbtn_course", function() {
     else
     {
 
-    }
-});
-$(document).on('click', "#submitbtn_approve", function() {
-  if (confirm('ต้องการบันทึกหรือไม่ ?')) {
-    // Save it!
-    var button = $(this);
-    url = "../../application/deadline/update_deadline.php?query=add&type=approve";
-    var form = $(this).parent();
-    var formData = {};
-    var error = 0;
-    var last_date = $(this).parent().find("#lastdate").val();
-    var first_date = $(this).parent().find("#opendate").val();
-    if(last_date !='' && first_date != '')
-    {
-        first_date = new Date(first_date);
-        last_date = new Date(last_date);
-        var date_check = checkdate(first_date,last_date);
-        if(date_check != 1)
-        {
-            error = 1;
-        }
-    }
-    else
-    {
-      error = 1;
-    }
-
-    $(form).find("input[id]").each(function(index, node) {
-      if(node.value == '')
-      {
-        error = 1;
-        $(this).css("border-color","red");
-      }else
-      {
-        $(this).css("border-color","rgb(204, 204, 204)");
-        formData[node.id] = node.value;
-      }
-    });
-    if(error == 0){
-    formData['semester'] = $(form).find('#semester').val();
-    $(form).find("#warning").html("<img src='../../application/picture/loading_icon.gif' height='42'> ");
-    $.post(url, { 'DATA': formData }).done(function(data) {
-        console.log(data);
-        var result = JSON.parse(data);
-          $(form).find("#warning").html("");
-        if (typeof result.success === 'undefined' || result.success === null ) {
-            alert(result.error);
-        }
-        else {
-          alert(result.success);
-          reset_object(form);
-          lock(form,true);
-        }
-    }).fail(function() {
-        alert("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่");
-      });
-
-      }
-      else
-      {
-          $(form).find("#warning").html('<div class="glyphicon glyphicon-alert" style="color: red;"> <b>กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน</b></div>');
-      }
-    } else {
-        // Do nothing!
     }
 });
 
@@ -351,16 +284,18 @@ $(document).on('click', "#edit", function() {
     <div class="panel-body" style="padding-top: 0px;">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#home" data-toggle="tab">กำหนดเวลากรอกข้อมูลกระบวนวิชา</a>
+            <li class="active"><a href="#course" data-toggle="tab">กำหนดเวลากรอกข้อมูลกระบวนวิชา</a>
             </li>
-            <li><a href="#profile" data-toggle="tab">กำหนดเวลาอนุมัติกระบวนวิชา</a>
+            <li><a href="#evaluate" data-toggle="tab">กำหนดเวลาเห็นชอบกระบวนวิชา</a>
+            </li>
+            <li><a href="#approve" data-toggle="tab">กำหนดเวลาอนุมัติกระบวนวิชา</a>
             </li>
         </ul>
         <!-- loading tab -->
         <div id="loading"></div>
         <!-- Tab panes -->
         <div class="tab-content">
-            <div class="tab-pane fade in active" id="home">
+            <div class="tab-pane fade in active" id="course">
                 <div class="container">
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
@@ -401,7 +336,7 @@ $(document).on('click', "#edit", function() {
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="profile">
+            <div class="tab-pane fade" id="approve">
                 <div class="container">
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
@@ -436,6 +371,48 @@ $(document).on('click', "#edit", function() {
                                         <br>
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_approve" name="submit">บันทึก</button>
+                                        <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="evaluate">
+                <div class="container">
+                    <div class="panel panel-default" style="margin-top: 20px;">
+                        <div class="panel-heading">
+                            <div class="form-inline">
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดเวลาประเมิณกระบวนวิชา
+                                    <button type="button" class="btn btn-default" id="addbtn_evaluate">เพิ่ม</button>
+                                 </h5>
+                            </div>
+                        </div>
+                            <div class="panel-body" id="body_evaluate">
+                                <div class="well" style="position: relative;" id="group_evaluate">
+                                <br>
+                                    <form>
+                                        <div class="form-inline">
+                                            <h style="width: 100px;">ภาคการศึกษาที่ </h>
+                                            <div class="form-group">
+                                                <select class="form-control" id="semester" style="width: 70px; ">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                            </div>
+                                            ปีการศึกษา
+                                            <input class="form-control" id="year" name="year" placeholder="e.g. 2560" style="width: 100px;">
+                                        </div>
+                                        <br>
+                                        <div class="form-inline">
+                                            วันเปิดการประเมิณกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
+                                            วันสุดท้ายของการประเมิณกระบวนวิชา <input class="form-control" type="date" id="lastdate">
+                                            <div id="warning"></div>
+                                        </div>
+                                        <br>
+                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
+                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_evaluate" name="submit">บันทึก</button>
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
                                 </div>
