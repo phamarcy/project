@@ -286,7 +286,7 @@ $(document).on('click', "#edit", function() {
         <ul class="nav nav-tabs">
             <li class="active"><a href="#course" data-toggle="tab">กำหนดเวลากรอกข้อมูลกระบวนวิชา</a>
             </li>
-            <li><a href="#evaluate" data-toggle="tab">กำหนดเวลาเห็นชอบกระบวนวิชา</a>
+            <li><a href="#evaluate" data-toggle="tab">กำหนดเวลาประเมินกระบวนวิชา</a>
             </li>
             <li><a href="#approve" data-toggle="tab">กำหนดเวลาอนุมัติกระบวนวิชา</a>
             </li>
@@ -383,7 +383,7 @@ $(document).on('click', "#edit", function() {
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
                             <div class="form-inline">
-                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดเวลาประเมิณกระบวนวิชา
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดเวลาประเมินกระบวนวิชา
                                     <button type="button" class="btn btn-default" id="addbtn_evaluate">เพิ่ม</button>
                                  </h5>
                             </div>
@@ -406,8 +406,8 @@ $(document).on('click', "#edit", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการประเมิณกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการประเมิณกระบวนวิชา <input class="form-control" type="date" id="lastdate">
+                                            วันเปิดการประเมินกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
+                                            วันสุดท้ายของการประเมินกระบวนวิชา <input class="form-control" type="date" id="lastdate">
                                             <div id="warning"></div>
                                         </div>
                                         <br>
