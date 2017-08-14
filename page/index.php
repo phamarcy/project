@@ -90,7 +90,7 @@
 	<title>ยินดีต้อนรับ</title>
 	<style>
 	#frm {
-		background:url('../application/picture/loading_icon2.gif') center no-repeat;
+		background:url('../application/picture/loading_icon.gif') center no-repeat;
 	}
 
 		hide {
