@@ -195,7 +195,6 @@ $(document).on('click', "#submitbtn_course, #submitbtn_approve, #submitbtn_evalu
     var id = $(this).attr('id');
     var type = id.split("_");
     type = type[1];
-    alert(type);
     if (confirm('ต้องการบันทึกหรือไม่ ?'))
     {
       var button = $(this);
