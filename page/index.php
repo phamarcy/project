@@ -372,6 +372,9 @@
 								<li>
 									<a href="#" onclick="loadDoc('form/spclteacher.php')"><i class="fa fa-pencil fa-fw"></i> กรอกแบบขออนุมัติเชิญอาจารย์พิเศษ</a>
 								</li>
+								<li>
+									<a href="#" onclick="loadDoc('form/upload.php')"><i class="fa fa-upload  fa-fw"></i> อัปโหลดคะแนน</a>
+								</li>
 							</ul>
 							<!-- /.nav-second-level -->
 						</li>
