@@ -57,7 +57,7 @@ div[class^="col-"] {
               <p class="text-danger">*หมายเหตุ ไฟล์ที่ต้องการอัปโหลดต้องเป็นไฟล์ Excel ที่มีนามสกุล .xls หรือ .xlsx </p>
               <div class="form-inline">
                 <label >เลือกไฟล์</label>
-                <input class="form-control" type="file" name="file" value="">
+                <input class="form-control" type="file" name="file" accept=".xls, .xlsx" >
                 <button type="submit" name="button" class="btn btn-primary btn-outline">อัปโหลด</button>
               </div>
             </center>

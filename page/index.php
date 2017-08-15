@@ -384,7 +384,7 @@
 						{
 						 ?>
 						<li>
-							<a href="#" onclick="loadDoc('form/approve.php')"><i class="fa fa-pencil-square fa-fw"></i> อนุมัติกระบวนวิชา</a>
+							<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> ประเมินกระบวนวิชา</a>
 						</li>
 						<?php
 							if($_SESSION['level']==6)

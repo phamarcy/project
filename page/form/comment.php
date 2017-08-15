@@ -45,7 +45,7 @@ div[class^="col-"] {
       <div class="container">
         <div class="row">
             <center>
-              <h3 class="page-header">การอนุมัติกระบวนวิชา</h3>
+              <h3 class="page-header">ประเมินกระบวนวิชา</h3>
 
               <!--data-toggle="validator" role="form" ใส้ตัวนี้ในform -->
                   <form  data-toggle="validator" role="form">
@@ -99,7 +99,7 @@ div[class^="col-"] {
                                 <div class="panel panel-warning">
                                   <div class="panel-heading">
                                       <div class="panel-title">
-                                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">รอการอนุมัติ</a>
+                                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">รอการประเมิน</a>
                                       </div >
                                   </div>
 
@@ -135,8 +135,8 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success">เห็นชอบ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่เห็นชอบ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -217,8 +217,8 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo2" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success">เห็นชอบ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่เห็นชอบ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12" class="hiddenRow">
@@ -293,8 +293,8 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo3" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่อนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success">เห็นชอบ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่เห็นชอบ</button></td>
                                                       </tr>
                                                       <tr>
                                                           <td colspan="12" class="hiddenRow">
@@ -365,7 +365,7 @@ div[class^="col-"] {
                                 <div class="panel panel-success">
                                     <div class="panel-heading">
                                         <div class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">อนุมัติ</a>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">ผ่ากการประเมิน</a>
                                         </div>
                                     </div>
                                     <div id="collapseTwo" class="panel-collapse collapse">
@@ -400,7 +400,7 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo21" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกอนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกไม่เห็นชอบ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -475,7 +475,7 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo22" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกอนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกไม่เห็นชอบ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -550,7 +550,7 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo23" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกอนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกไม่เห็นชอบ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -601,8 +601,8 @@ div[class^="col-"] {
                                                                         <td>กระบวนวิชา464301 ยังไม่ผ่าน เพราะหลักสูตรเกินกรุณาตรวจสอบหลักสูตรอีกครั้ง</td>
                                                                       </tr>
                                                                       <tr>
-                                                                        <td style="width:170px">วันที่ที่จะให้อาจารย์พิเศษมาช่วยบรรยายตรงกับรายวิชา464301 เนื่องจากสถานที่ไม่เอื้ออำนวยขอความกรุณากลับไปตรวจสอบอีกครั้ง</td>
-                                                                        <td></td>
+                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
+                                                                        <td>วันที่ที่จะให้อาจารย์พิเศษมาช่วยบรรยายตรงกับรายวิชา464301 เนื่องจากสถานที่ไม่เอื้ออำนวยขอความกรุณากลับไปตรวจสอบอีกครั้ง</td>
                                                                       </tr>
                                                                     </tbody>
                                                                   </table>
@@ -620,7 +620,7 @@ div[class^="col-"] {
                                 <div class="panel panel-danger">
                                     <div class="panel-heading">
                                         <div class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">ไม่อนุมัติ</a>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">ไม่ผ่านการประเมิน</a>
                                         </div>
                                     </div>
                                     <div id="collapseThree" class="panel-collapse collapse">
@@ -655,7 +655,7 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo31" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success">เห็นชอบ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -732,7 +732,7 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo32" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success">เห็นชอบ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -808,7 +808,7 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo33" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">อนุมัติ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success">เห็นชอบ</button></td>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
