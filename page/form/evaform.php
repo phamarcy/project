@@ -690,10 +690,10 @@ function other_type() {
           <div class="form-group">
             &nbsp;ตอนที่ &nbsp;<input style="width: 70px;"type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="2" required pattern=".{2,2}" >
           </div>
-          <div class="radio">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE" value="NORMAL" checked>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="form-group"><div class="radio">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE" value="NORMAL" required>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" name="NORORSPE" id="NORORSPE" value="SPECIAL">&nbsp;<b>ภาคพิเศษ</b>
-          </div>
+          </div></div>
           <br>
           <div class="row">
             <div class="col-md-5 form-group">จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="ENROLL" id="ENROLL" size="2" maxlength="3" pattern=".{1,3}" required> &nbsp; คน </div>
@@ -711,17 +711,18 @@ function other_type() {
       <li style="font-size: 14px">
         <div class="form-inline">
           <b>ลักษณะการเรียนการสอน&nbsp;&nbsp;</b><br>
-          <div class="radio">
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LEC" checked> บรรยาย &nbsp;<br>
+          <div class="form-group"><div class="radio">
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LEC" required> บรรยาย &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LECLAB"> บรรยายและงานปฏิบัติการทดลอง&nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="SPE"> กระบวนวิชาปัญหาพิเศษ&nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="TRA"> ฝึกงาน &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="SEM"> สัมมนา &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LAB"> ปฏิบัติการ &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="OTH" onchange="other_type()"> อื่นๆ &nbsp;
+          </div>
+        </div><br>
             <input type="text" class="form-control" name="TYPE_TEACHING_NAME" id="TYPE_TEACHING_NAME" placeholder="โปรดระบุ">
 
-          </div>
         </div>
       </li>
 
@@ -1204,11 +1205,17 @@ function other_type() {
           <li style="font-size: 14px;">
             <b>การประเมินผล</b>
             <br>
-            <div class="form-inline"><input type="radio" name="EVALUATE" id="EVALUATE" value="SU" checked>&nbsp; ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว)</div>
-            <div class="form-inline"><input type="radio" name="EVALUATE" id="EVALUATE" value="AF">&nbsp; ให้ลำดับขั้น A, B+ ,B, C+, C, D+, D, F </div>
-            <br><b>วิธีการตัดเกรด</b>
-            <div class="form-inline"><input type="radio" name="CALCULATE" id="CALCULATE_TYPE" value="GROUP" checked>&nbsp; อิงกลุ่ม</div>
-            <div class="form-inline"><input type="radio" name="CALCULATE" id="CALCULATE_TYPE" value="CRITERIA">&nbsp; อิงเกณฑ์ &nbsp;&nbsp;ได้กำหนดเกณฑ์ดังต่อไปนี้</div>
+            <div class="form-inline">
+              <div class="form-group"><div class="radio">
+              <input type="radio" name="EVALUATE" id="EVALUATE" value="SU" required> ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว) <br>
+              <input type="radio" name="EVALUATE" id="EVALUATE" value="AF"> ให้ลำดับขั้น A, B+ ,B, C+, C, D+, D, F
+              </div></div>
+              <br><b>วิธีการตัดเกรด</b><br>
+              <div class="form-group"><div class="radio">
+              <input type="radio" name="CALCULATE" id="CALCULATE_TYPE" value="GROUP" required> อิงกลุ่ม <br>
+              <input type="radio" name="CALCULATE" id="CALCULATE_TYPE" value="CRITERIA"> อิงเกณฑ์ &nbsp;&nbsp;ได้กำหนดเกณฑ์ดังต่อไปนี้
+            </div></div>
+          </div>
             <br>
             <div class="row">
             <div class="col-md-10">
@@ -1300,16 +1307,18 @@ function other_type() {
           <li style="font-size: 14px;">
             <b>นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย</b> &nbsp;&nbsp;โดยไม่ได้รับอนุญาตให้เลื่อนการสอบตามข้อบังคับฯ ของมหาวิทยาลัยเชียงใหม่ ว่าด้วยการศึกษาชั้นปริญญาตรี อาจารย์ผู้สอนจะประเมินดังนี้
             <br>
-            <input type="radio" name="ABSENT" id="ABSENT" value="F" checked>&nbsp; ให้ลำดับขั้น F &nbsp;&nbsp; <br>
-            <input type="radio" name="ABSENT" id="ABSENT" value="U" >&nbsp; ให้อักษร U &nbsp;&nbsp;<br>
-            <input type="radio" name="ABSENT" id="ABSENT" value="CAL" >&nbsp; นำคะแนนทั้งหมดที่นักศึกษาได้รับก่อนการสอบไล่มาประเมิน &nbsp;&nbsp;<br>
+            <div class="form-inline"><div class="form-group"><div class="radio">
+            <input type="radio" name="ABSENT" id="ABSENT" value="F" required>&nbsp;ให้ลำดับขั้น F &nbsp;&nbsp; <br>
+            <input type="radio" name="ABSENT" id="ABSENT" value="U" >&nbsp;ให้อักษร U &nbsp;&nbsp;<br>
+            <input type="radio" name="ABSENT" id="ABSENT" value="CAL" >&nbsp;นำคะแนนทั้งหมดที่นักศึกษาได้รับก่อนการสอบไล่มาประเมิน &nbsp;&nbsp;<br>
+          </div></div></div>
           </li>
 
           <br>
           <li style="font-size: 14px;">
             <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์จากโปรแกรม Microsoft Word (.doc หรือ .docx) เท่านั้น) : </b><br />
           <div class="col-md-3 form-group">
-            <input type="file" class="filestyle" id="syllabus" data-icon="false" required>
+            <input type="file" class="filestyle" id="syllabus" data-icon="false" accept=".doc,.docx" required>
           </div>
           </li>
 

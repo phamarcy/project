@@ -313,7 +313,12 @@ function lastcal() {
       <form action="" data-toggle="validator" role="form" name="form1" method="post">
       <div class="row form-inline" style="font-size:16px;">
         <center><div class="form-group">
-      ภาควิชา <input type="text" class="form-control charonly" size="25" name="department" id="department" required >
+      ภาควิชา
+        <select class="form-control required" id="department" style="width: auto;" id="select" required >
+         <option value="">--------------</option>
+         <option value="1">ภาควิชาวิทยาศาสตร์เภสัชกรรม</option>
+         <option value="2">ภาควิชาบริบาลเภสัชกรรม</option>
+      </select>
         </div></center>
       </div>
 
