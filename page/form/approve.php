@@ -20,7 +20,11 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
+
+
+    <!--ใช้ตัวนี้-->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
 
 <style >
 /*div[class="row"] {
@@ -42,6 +46,8 @@ div[class^="col-"] {
         <div class="row">
             <center>
               <h3 class="page-header">การอนุมัติกระบวนวิชา</h3>
+
+              <!--data-toggle="validator" role="form" ใส้ตัวนี้ในform -->
                   <form  data-toggle="validator" role="form">
                     <div   class="form-group " style="font-size:16px;">
                       <div class="col-md-5 ">

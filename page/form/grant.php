@@ -43,39 +43,45 @@
  </header>
  <body class="mybox">
  <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
+
    <div class="row">
      <center>
        <h3 class="page-header">มอบอำนาจการอนุมัติกระบวนวิชา</h3>
      </center>
    </div>
-   <div class="panel panel-default" style="font-size: 14px;">
-     <div class="panel-heading"  style="padding: 0px 0px; padding-left: 10px;">
-       ภาคการศึกษาที่ 2 ปีการศึกษา 2560
-     </div>
-     <div class="panel-body">
-       <div class="panel panel-info">
-         <div class="panel-heading"  style="padding: 0px 0px; padding-left: 10px;">
-           สถานะการมอบอำนาจล่าสุด
-         </div>
-         <div class="panel-body">
-           <table class="table table-hover" style="font-size: 14px;">
-             <tr>
-               <th>ชื่อ</th>
-               <th>นามสกุล</th>
-               <th>สถานะผู้ใช้งาน</th>
-               <th>สถานะการมอบอำนาจ</th>
-               <th></th>
-             </tr>
-             <tr>
-               <td>วิชัย</td>
-               <td>ใจดี</td>
-               <td>คณะกรรมการคณะ</td>
-               <td>ได้รับมอบอำนาจการอนุมัติ</td>
-               <td><input type="button" class="btn btn-outline btn-danger" id="cancelgrantbtn" value="ยกเลิกการมอบอำนาจ"></td>
-             </tr>
-           </table>
-         </div>
+   <div class="panel panel-default">
+       <div class="panel-heading">
+         <h4 class="panel-title">
+             <b>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</b>
+         </h4>
        </div>
+       <!-- .panel-heading -->
+       <div class="panel-body">
+         <div class="panel panel-info">
+           <div class="panel-heading"  >
+             สถานะการมอบอำนาจล่าสุด
+           </div>
+           <div class="panel-body">
+             <table class="table table-hover" style="font-size: 14px;">
+               <thead>
+                 <th>ชื่อ</th>
+                 <th>นามสกุล</th>
+                 <th>สถานะผู้ใช้งาน</th>
+                 <th>สถานะการมอบอำนาจ</th>
+                 <th></th>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>วิชัย</td>
+                   <td>ใจดี</td>
+                   <td>คณะกรรมการคณะ</td>
+                   <td>ได้รับมอบอำนาจการอนุมัติ</td>
+                   <td><input type="button" class="btn btn-outline btn-danger" id="cancelgrantbtn" value="ยกเลิกการมอบอำนาจ"></td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
          <div class="panel panel-warning">
            <div class="panel-heading" style="padding: 0px 0px; padding-left: 10px;">
             ค้นหาชื่อผู้ใช้เพื่อมอบอำนาจ
@@ -100,8 +106,9 @@
            </div>
          </div>
        </div>
-     </div>
+       </div>
    </div>
+
  </div>
  </body>
  <script type="text/javascript">
