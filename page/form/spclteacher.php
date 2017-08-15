@@ -289,11 +289,11 @@ function lastcal() {
         <div class="form-inline" style="font-size:16px;">
                   <div class="form-group">
                     รหัสกระบวนวิชา
-                     <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 204111" maxlength="6"  required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')">
+                     <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 204111" maxlength="6"  required >
                   </div>
                  <div class="form-group">
                     ภาคการศึกษา
-                     <select class="form-control required" id="semester" style="width: 70px;" id="select" required oninvalid="this.setCustomValidity('กรุณากรอกภาคการศึกษาให้ถูกต้อง')">
+                     <select class="form-control required" id="semester" style="width: 70px;" id="select" required >
                         <option value="">--</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -302,7 +302,7 @@ function lastcal() {
                  </div>
                  <div class="form-group">
                    ปีการศึกษา
-                   <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษาให้ถูกต้อง')" oninput="setCustomValidity('')">
+                   <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4" required >
                  </div>
                 <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
          </div>
@@ -313,7 +313,7 @@ function lastcal() {
       <form action="" data-toggle="validator" role="form" name="form1" method="post">
       <div class="row form-inline" style="font-size:16px;">
         <center><div class="form-group">
-      ภาควิชา <input type="text" class="form-control charonly" size="25" name="department" id="department" required oninvalid="this.setCustomValidity('กรุณาระบุภาควิชาให้ถูกต้อง')" oninput="setCustomValidity('')">
+      ภาควิชา <input type="text" class="form-control charonly" size="25" name="department" id="department" required >
         </div></center>
       </div>
 
@@ -328,33 +328,33 @@ function lastcal() {
         <div class="row">
           <ul>
           <div class="form-inline">
-            <li>ชื่อ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="fname" size="20" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อ')" oninput="setCustomValidity('')"></div>&nbsp;&nbsp;&nbsp;&nbsp;
-            นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="lname" size="20" required oninvalid="this.setCustomValidity('กรุณากรอกนามสกุล')" oninput="setCustomValidity('')"></div></li>
+            <li>ชื่อ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="fname" size="20" required ></div>&nbsp;&nbsp;&nbsp;&nbsp;
+            นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="lname" size="20" required ></div></li>
           </div>
 
           <div class="form-inline">
-            <li>ตำแหน่ง &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="position" size="35" required oninvalid="this.setCustomValidity('กรุณากรอกตำแหน่ง')" oninput="setCustomValidity('')"></div></li>
+            <li>ตำแหน่ง &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="position" size="35" required ></div></li>
           </div>
 
           <div class="form-inline">
-            <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="qualification" size="35" required oninvalid="this.setCustomValidity('กรุณากรอกคุณวุฒิหรือสาขาที่เชี่ยวชาญ')" oninput="setCustomValidity('')"></div></li>
+            <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="qualification" size="35" required ></div></li>
           </div>
 
           <div class="form-inline">
-            <li>สถานที่ทำงาน &nbsp;&nbsp;<br /><div class="form-group"><textarea class="form-control" id="workplace" rows="4" cols="70"  required oninvalid="this.setCustomValidity('กรุณากรอกสถานที่ทำงาน')" oninput="setCustomValidity('')"></textarea></div></li>
+            <li>สถานที่ทำงาน &nbsp;&nbsp;<br /><div class="form-group"><textarea class="form-control" id="workplace" rows="4" cols="70"  required ></textarea></div></li>
           </div>
 
           <div class="form-inline">
-            <li>สถานที่ติดต่อ  &nbsp;&nbsp;<br /><div class="form-group"><textarea class="form-control" id="contactplace" rows="4" cols="70" required oninvalid="this.setCustomValidity('กรุณากรอกสถานที่ติดต่อ')" oninput="setCustomValidity('')"></textarea></div></li>
+            <li>สถานที่ติดต่อ  &nbsp;&nbsp;<br /><div class="form-group"><textarea class="form-control" id="contactplace" rows="4" cols="70" required ></textarea></div></li>
           </div>
 
           <div class="form-inline">
-            <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control numonly" id="tel" size="20" maxlength="10" required oninvalid="this.setCustomValidity('กรุณากรอกหมายเลขโทรศัพท์')" oninput="setCustomValidity('')"></div>
+            <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control numonly" id="tel" size="20" maxlength="10" required ></div>
               &nbsp;ต่อ&nbsp;<input type="text" class="form-control numonly" id="subtel" size="2" maxlength="2"></li>
         </div>
 
         <div class="form-inline">
-          <li>E-mail &nbsp;&nbsp;<div class="form-group"><input style="height: 25px;" type="email" class="form-control" id="qualification" size="45" required oninvalid="this.setCustomValidity('กรุณากรอกอีเมล์ให้ถูกต้อง')" oninput="setCustomValidity('')"></div></li>
+          <li>E-mail &nbsp;&nbsp;<div class="form-group"><input style="height: 25px;" type="email" class="form-control" id="qualification" size="45" required ></div></li>
         </div>
       </ul>
     </div>
@@ -365,10 +365,10 @@ function lastcal() {
           <div class="row">
             <ul>
               <div class="form-inline">
-                <li>รหัสกระบวนวิชาที่สอน &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="" id="course" size="6" maxlength="6" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')"></div></li>
+                <li>รหัสกระบวนวิชาที่สอน &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="" id="course" size="6" maxlength="6" required ></div></li>
               </div>
               <div class="form-inline">
-                <li>จำนวนนักศึกษา &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="" id="numstudent" size="6" maxlength="6"  required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนนักศึกษา')" oninput="setCustomValidity('')"></div> คน</li>
+                <li>จำนวนนักศึกษา &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="" id="numstudent" size="6" maxlength="6"  required ></div> คน</li>
               </div>
               <div class="form-inline">
                 <li>กระบวนวิชานี้เป็นวิชา &nbsp;<br />
@@ -393,10 +393,10 @@ function lastcal() {
               </div>
 
               <div class="form-inline">
-                <li><div class="form-group">จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="number" class="form-control numonly" name="" id="hour" size="3" data-minlength="3" min="0" max="100" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงให้ถูกต้อง')" oninput="setCustomValidity('')"> &nbsp;ของทั้งกระบวนวิชา</div></li>
+                <li><div class="form-group">จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="number" class="form-control numonly" name="" id="hour" size="3" data-minlength="3" min="0" max="100" required > &nbsp;ของทั้งกระบวนวิชา</div></li>
               </div>
               <div class="form-inline">
-                <div class="form-group"><li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70" required oninvalid="this.setCustomValidity('กรุณาระบุเหตุผลในการเชิญอาจารย์พิเศษ')" oninput="setCustomValidity('')"></textarea></li></div>
+                <div class="form-group"><li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70" required ></textarea></li></div>
               </div>
                 <li> รายละเอียดในการสอน <br>
                   <div class="col-md-10">
@@ -457,8 +457,8 @@ function lastcal() {
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" required>&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน 800 บาท/คน/คืน &nbsp;&nbsp;
             </div></div>
-            <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999" required  oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;คืน
-            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" min="0" max="99999" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท
+            <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999" required  >&nbsp;&nbsp;คืน
+            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" min="0" max="99999" required >&nbsp;&nbsp;บาท
           </div>
           </div>
           <br>
@@ -467,7 +467,7 @@ function lastcal() {
           </div>
           <br>
           <div class="form-inline">
-            <li style="font-size: 16px;" id="callist"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control numonly" name="totalcost" id="totalcost" size="10" data-minlength="5" min="0" max="99999" onclick="lastcal();" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท</li>
+            <li style="font-size: 16px;" id="callist"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control numonly" name="totalcost" id="totalcost" size="10" data-minlength="5" min="0" max="99999" onclick="lastcal();" required >&nbsp;&nbsp;บาท</li>
 
           </div>
         </ul>
