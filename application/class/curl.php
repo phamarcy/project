@@ -14,10 +14,12 @@ class CURL
   {
     $this->PROTOCOL = isset($_SERVER['HTTPS']) ? "https:" : "http:";
   	$this->DIR_NAME = dirname(dirname((dirname($_SERVER['REQUEST_URI']))));
-  	$this->URL    = $this->PROTOCOL."//".$_SERVER['HTTP_HOST'].$this->DIR_NAME."/".$path;
+  	// $this->URL    = $this->PROTOCOL."//".$_SERVER['HTTP_HOST'].$this->DIR_NAME."/".$path;
+    $url = $this->GET_SERVER_URL();
+    $this->URL = $url."/".$path;
     $this->LOG = new Log();
   }
-  function Request($data)
+  public function Request($data)
   {
     $ch = curl_init();
     // set url
@@ -39,6 +41,14 @@ class CURL
   	}
     // close curl resource to free up system resources
   	curl_close($ch);
+  }
+
+  public function GET_SERVER_URL()
+  {
+    $PROTOCOL = isset($_SERVER['HTTPS']) ? "https:" : "http:";
+    $DIR_NAME = dirname(dirname((dirname($_SERVER['REQUEST_URI']))));
+    $URL    = $PROTOCOL."//".$_SERVER['HTTP_HOST'].$DIR_NAME;
+    return $URL;
   }
 }
 

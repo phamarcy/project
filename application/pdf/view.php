@@ -9,7 +9,7 @@ if(isset($_GET['type']) && isset($_GET['info']))
      if(isset($_GET['id']))
      {
        $SPECIAL_ID = $_GET['id']; //instructor id
-       $FILE_NAME = $PATH_FILE."special_instructor/".$SPECIAL_ID.".pdf";
+       $FILE_NAME = $PATH_FILE.$FILE_TYPE."/special_instructor/".$SPECIAL_ID.".pdf";
      }
      else {
        error();
@@ -21,7 +21,7 @@ if(isset($_GET['type']) && isset($_GET['info']))
      if(isset($_GET['course']))
      {
        $FILE_COURSE = $_GET['course'];
-       $FILE_NAME = $PATH_FILE.$FILE_TYPE."/".$FILE_COURSE."_".$INFORMATION_TYPE.".pdf";
+       $FILE_NAME = $PATH_FILE.$FILE_TYPE."/".$INFORMATION_TYPE.'/'.$FILE_COURSE."_".$INFORMATION_TYPE.".pdf";
      }
      else {
        error();
