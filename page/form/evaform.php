@@ -37,6 +37,9 @@
 
  	<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 
+  <!-- validator -->
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
   <link rel="stylesheet" href="../dist/css/scrollbar.css">
   <style>
   input[type=text],input[type=number]{
@@ -45,6 +48,9 @@
 
   body {
     overflow-y: hidden;
+  }
+
+  .no-gutter > [class*="col-"]{
   }
   </style>
 
@@ -646,60 +652,58 @@ function other_type() {
   <center>
     <h3 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์</h3>
 
-        <form >
-          <div class="form-inline" style="font-size:16px;">
-                    <div class="form-group">
-                      <h style="font-size: 14px;">รหัสกระบวนวิชา
-                       <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 204111" maxlength="6"  required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')">
-                    </div>
-                   <div class="form-group">
-                      ภาคการศึกษา
-                       <select class="form-control" id="semester" style="width: 70px;" id="select" required >
-                          <option value="">--</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                       </select>
-                   </div>
-                   <div class="form-group">
-                     ปีการศึกษา</h>
-                     <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษาให้ถูกต้อง')" oninput="setCustomValidity('')">
-                   </div>
-                  <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
-           </div>
-        </form>
+    <form data-toggle="validator" role="form">
+      <div class="form-inline" style="font-size:16px;">
+                <div class="form-group">
+                  รหัสกระบวนวิชา
+                   <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')">
+                </div>
+               <div class="form-group">
+                  ภาคการศึกษา
+                   <select class="form-control required" id="semester" style="width: 70px;" id="select" required oninvalid="this.setCustomValidity('กรุณากรอกภาคการศึกษาให้ถูกต้อง')">
+                      <option value="">--</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                   </select>
+               </div>
+               <div class="form-group">
+                 ปีการศึกษา
+                 <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4"  pattern=".{4,4}" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษาให้ถูกต้อง')" oninput="setCustomValidity('')">
+               </div>
+              <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
+       </div>
+    </form>
 
 
   </center>
 </div>
 
-<form action="" name="form1" method="post" onsubmit="submitfunc()">
-  <div class="form-group" id="bgmain">
+<form data-toggle="validator" role="form" name="form1" method="post" onsubmit="submitfunc()">
     <ol>
       <br>
       <li style="font-size: 14px">
         <div class="form-inline">
           <div class="form-group">
-          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID" id="COURSE_ID"   maxlength="6" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง')" oninput="setCustomValidity('')">
-            <div class="form-group">
-              <div class="help-block with-errors"></div>
-            </div>
+          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID" id="COURSE_ID"   maxlength="6" required pattern=".{6,6}" >
           </div>
-         &nbsp;ตอนที่ &nbsp;<input style="width: 70px;"type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="2" required oninvalid="this.setCustomValidity('กรุณากรอกตอนที่ให้ถูกต้อง')" oninput="setCustomValidity('')">
+          <div class="form-group">
+            &nbsp;ตอนที่ &nbsp;<input style="width: 70px;"type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="2" required pattern=".{2,2}" oninvalid="this.setCustomValidity('กรุณากรอกตอนที่ให้ถูกต้อง')" oninput="setCustomValidity('')">
+          </div>
           <div class="radio">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE" value="NORMAL" checked>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" name="NORORSPE" id="NORORSPE" value="SPECIAL">&nbsp;<b>ภาคพิเศษ</b>
           </div>
           <br>
           <div class="row">
-            <div class="col-md-5">จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="ENROLL" id="ENROLL" size="2" maxlength="3" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนนักศึกษาที่ลงทะเบียนเรียนให้ถูกต้อง')" oninput="setCustomValidity('')"> &nbsp; คน </div>
-            <div class="col-md-5">จำนวนหน่วยกิตทั้งหมด &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="TOTAL" id="TOTAL" size="2" maxlength="3" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนหน่วยกิตทั้งหมดให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; หน่วยกิต</div>
+            <div class="col-md-5 form-group">จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="ENROLL" id="ENROLL" size="2" maxlength="3" pattern=".{1,3}" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนนักศึกษาที่ลงทะเบียนเรียนให้ถูกต้อง')" oninput="setCustomValidity('')"> &nbsp; คน </div>
+            <div class="col-md-5 form-group">จำนวนหน่วยกิตทั้งหมด &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="TOTAL" id="TOTAL" size="2" maxlength="3" required pattern=".{1,3}" oninvalid="this.setCustomValidity('กรุณากรอกจำนวนหน่วยกิตทั้งหมดให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; หน่วยกิต</div>
           </div>
           <div class="row">
 
-            <div class="col-md-5">จำนวนชั่วโมงบรรยาย (Lecture) &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="LEC" id="LEC" size="2" maxlength="3" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงบรรยายให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง/สัปดาห์</div>
-            <div class="col-md-5">จำนวนชั่วโมงปฏิบัติการ (Lab) &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="LAB" id="LAB" size="2" maxlength="3" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงปฏิบัติการให้ถูกต้อง')" oninput="setCustomValidity('')"> &nbsp; ชั่วโมง/สัปดาห์</div>
-            <div class="col-md-5">จำนวนชั่วโมงเรียนรู้ด้วยตัวเอง (Self-Learning)&nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="SELF" id="SELF" size="2" maxlength="3" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงเรียนรู้ด้วยตัวเองให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง/สัปดาห์</div>
+            <div class="col-md-5 form-group">จำนวนชั่วโมงบรรยาย (Lecture) &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="LEC" id="LEC" size="2" maxlength="3" required pattern=".{1,3}"  oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงบรรยายให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง/สัปดาห์</div>
+            <div class="col-md-5 form-group">จำนวนชั่วโมงปฏิบัติการ (Lab) &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="LAB" id="LAB" size="2" maxlength="3" required pattern=".{1,3}"  oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงปฏิบัติการให้ถูกต้อง')" oninput="setCustomValidity('')"> &nbsp; ชั่วโมง/สัปดาห์</div>
+            <div class="col-md-5 form-group">จำนวนชั่วโมงเรียนรู้ด้วยตัวเอง (Self-Learning)&nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="SELF" id="SELF" size="2" maxlength="3" required pattern=".{1,3}"  oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงเรียนรู้ด้วยตัวเองให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง/สัปดาห์</div>
           </div>
         </div>
       </li>
@@ -823,7 +827,7 @@ function other_type() {
           </div>
 
           <div class="form-inline hide" id="ctlab1">
-            <label id="la1" style="display:none;">1. &nbsp;</label
+            <label id="la1" style="display:none;">1. &nbsp;</label>
             <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F1" id="TEACHERLAB_F1" placeholder="ชื่อ" size="20" >
             <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L1" id="TEACHERLAB_L1" placeholder="นามสกุล" size="20" >
           </div>
@@ -904,13 +908,14 @@ function other_type() {
             <ul>
               <div class="form-inline">
                 <li style="font-size: 14px">
-                  จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" style="width: 70px" class="form-control numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" data-minlength="3" min="0" max="100" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงการสอบบรรยายให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง
-
+                  <div class="form-group">
+                  จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" style="width: 70px" class="form-control numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" maxlength="3" required pattern=".{1,3}" oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงการสอบบรรยายให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง
+                </div>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                   <select style="height: 28px;" name="mexholec" id="mexholec" class="form-control numonly" onchange="midexam_hour_lec()">
       <option value="0" selected>0</option>
       <?php
-        for($i=1;$i<=11;$i++)
+        for($i=1;$i<=5;$i++)
         {
           echo '<option value="'.$i.'">'.$i.'</option>';
         }
@@ -952,13 +957,14 @@ function other_type() {
 
                   <div class="form-inline">
                     <li style="font-size: 14px">
-                      จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" data-minlength="3" min="0" max="100" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงการสอบปฏิบัติการให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง
-
+                      <div class="form-group">
+                      จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" maxlength="3" required pattern=".{1,3}" oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงการสอบปฏิบัติการให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง
+                    </div>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                       <select style="height: 28px;" name="mexholac" id="mexholac" class="form-control numonly" onchange="midexam_hour_lab()">
       <option value="0" selected>0</option>
       <?php
-        for($i=1;$i<=11;$i++)
+        for($i=1;$i<=5;$i++)
         {
           echo '<option value="'.$i.'">'.$i.'</option>';
         }
@@ -1009,12 +1015,14 @@ function other_type() {
               <ul>
                 <div class="form-inline">
                   <li style="font-size: 14px">
-                    จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input  style="width: 70px"type="text" class="form-control numonly" name="FINEXAM_HOUR_LEC" id="FINEXAM_HOUR_LEC" size="2" data-minlength="3" min="0" max="100" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงการสอบปฏิบัติการให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง
+                    <div class="form-group">
+                    จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input  style="width: 70px"type="text" class="form-control numonly" name="FINEXAM_HOUR_LEC" id="FINEXAM_HOUR_LEC" size="2" maxlength="3" required pattern=".{1,3}" oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงการสอบปฏิบัติการให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง
+                    </div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                     <select style="height: 28px;" name="fexholec" id="fexholec" class="form-control numonly" onchange="finexam_hour_lec()">
       <option value="0" selected>0</option>
       <?php
-        for($i=1;$i<=11;$i++)
+        for($i=1;$i<=5;$i++)
         {
           echo '<option value="'.$i.'">'.$i.'</option>';
         }
@@ -1056,12 +1064,14 @@ function other_type() {
 
                     <div class="form-inline">
                       <li style="font-size: 14px">
-                        จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="FINEXAM_HOUR_LAB" id="FINEXAM_HOUR_LAB" size="2" data-minlength="3" min="0" max="100" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงการสอบปฏิบัติการให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง
+                        <div class="form-group">
+                        จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="FINEXAM_HOUR_LAB" id="FINEXAM_HOUR_LAB" size="2" maxlength="3" required pattern=".{1,3}" oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงการสอบปฏิบัติการให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp; ชั่วโมง
+                      </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
                         <select style="height: 28px;" name="fexholac" id="fexholac" class="form-control numonly" onchange="finexam_hour_lab()">
       <option value="0" selected>0</option>
       <?php
-        for($i=1;$i<=11;$i++)
+        for($i=1;$i<=5;$i++)
         {
           echo '<option value="'.$i.'">'.$i.'</option>';
         }
@@ -1119,13 +1129,13 @@ function other_type() {
               </tr>
               <tr>
                 <td colspan="2">1. สอบกลางภาคการศึกษา</td>
-                <td><input type="text" class="form-control numonly" name="MEASURE_MIDLEC" id="MEASURE_MIDLEC" size="2" required></td>
-                <td><input type="text" class="form-control numonly" name="MEASURE_MIDLAB" id="MEASURE_MIDLAB" size="2" required></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC" id="MEASURE_MIDLEC" size="2" required></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB" id="MEASURE_MIDLAB" size="2" required></div></td>
               </tr>
               <tr>
                 <td colspan="2">2. สอบไล่ </td>
-                <td><input type="text" class="form-control numonly" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="2" required></td>
-                <td><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="2" required></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="2" required></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="2" required></div></td>
               </tr>
               <tr name="addtr">
 
@@ -1134,8 +1144,8 @@ function other_type() {
               </tr>
               <tr>
                 <td colspan="2" style="text-align: center;"><b>รวมคะแนน</b></td>
-                <td><input type="text" class="form-control numonly" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="2" ></td>
-                <td><input type="text" class="form-control numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="2" ></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="2" required></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="2" required></div></td>
               </tr>
             </table>
             </div>
@@ -1298,8 +1308,8 @@ function other_type() {
           <br>
           <li style="font-size: 14px;">
             <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์จากโปรแกรม Microsoft Word (.doc หรือ .docx) เท่านั้น) : </b><br />
-          <div class="col-md-3">
-            <input type="file" class="filestyle" id="syllabus" data-icon="false">
+          <div class="col-md-3 form-group">
+            <input type="file" class="filestyle" id="syllabus" data-icon="false" required>
           </div>
           </li>
 

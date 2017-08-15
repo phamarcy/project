@@ -36,6 +36,10 @@
 
  <link rel="stylesheet" href="../dist/css/scrollbar.css">
 
+ <!-- validator -->
+ <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
+
  <style>
  input[type=text],input[type=date],input[type=time]{
    height: 25px;
@@ -281,10 +285,10 @@ function lastcal() {
   <div class="row">
     <center>
       <h3 class="page-header">แบบขออนุมัติเชิญอาจารย์พิเศษ คณะเภสัชศาสตร์</h3>
-      <form >
+      <form data-toggle="validator" role="form">
         <div class="form-inline" style="font-size:16px;">
                   <div class="form-group">
-                    <h style="font-size: 14px;">รหัสกระบวนวิชา
+                    รหัสกระบวนวิชา
                      <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 204111" maxlength="6"  required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')">
                   </div>
                  <div class="form-group">
@@ -297,19 +301,23 @@ function lastcal() {
                      </select>
                  </div>
                  <div class="form-group">
-                   ปีการศึกษา</h>
+                   ปีการศึกษา
                    <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4" required oninvalid="this.setCustomValidity('กรุณากรอกปีการศึกษาให้ถูกต้อง')" oninput="setCustomValidity('')">
                  </div>
                 <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
          </div>
+         </div>
       </form>
+      </center>
 
-      <form action="" name="form1" method="post">
+      <form action="" data-toggle="validator" role="form" name="form1" method="post">
       <div class="row form-inline" style="font-size:16px;">
+        <center><div class="form-group">
       ภาควิชา <input type="text" class="form-control charonly" size="25" name="department" id="department" required oninvalid="this.setCustomValidity('กรุณาระบุภาควิชาให้ถูกต้อง')" oninput="setCustomValidity('')">
+        </div></center>
       </div>
-    </center>
-  </div>
+
+
 
 
     <ol>
@@ -320,33 +328,33 @@ function lastcal() {
         <div class="row">
           <ul>
           <div class="form-inline">
-            <li>ชื่อ &nbsp;&nbsp;<input type="text" class="form-control charonly" id="fname" size="20" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อ')" oninput="setCustomValidity('')">&nbsp;&nbsp;&nbsp;&nbsp;
-            นามสกุล &nbsp;&nbsp;<input type="text" class="form-control charonly" id="lname" size="20" required oninvalid="this.setCustomValidity('กรุณากรอกนามสกุล')" oninput="setCustomValidity('')"></li>
+            <li>ชื่อ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="fname" size="20" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อ')" oninput="setCustomValidity('')"></div>&nbsp;&nbsp;&nbsp;&nbsp;
+            นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="lname" size="20" required oninvalid="this.setCustomValidity('กรุณากรอกนามสกุล')" oninput="setCustomValidity('')"></div></li>
           </div>
 
           <div class="form-inline">
-            <li>ตำแหน่ง &nbsp;&nbsp;<input type="text" class="form-control charonly" id="position" size="35" required oninvalid="this.setCustomValidity('กรุณากรอกตำแหน่ง')" oninput="setCustomValidity('')"></li>
+            <li>ตำแหน่ง &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="position" size="35" required oninvalid="this.setCustomValidity('กรุณากรอกตำแหน่ง')" oninput="setCustomValidity('')"></div></li>
           </div>
 
           <div class="form-inline">
-            <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<input type="text" class="form-control charonly" id="qualification" size="35" required oninvalid="this.setCustomValidity('กรุณากรอกคุณวุฒิหรือสาขาที่เชี่ยวชาญ')" oninput="setCustomValidity('')"></li>
+            <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="qualification" size="35" required oninvalid="this.setCustomValidity('กรุณากรอกคุณวุฒิหรือสาขาที่เชี่ยวชาญ')" oninput="setCustomValidity('')"></div></li>
           </div>
 
           <div class="form-inline">
-            <li>สถานที่ทำงาน &nbsp;&nbsp;<br /><textarea class="form-control" id="workplace" rows="4" cols="70"  required oninvalid="this.setCustomValidity('กรุณากรอกสถานที่ทำงาน')" oninput="setCustomValidity('')"></textarea></li>
+            <li>สถานที่ทำงาน &nbsp;&nbsp;<br /><div class="form-group"><textarea class="form-control" id="workplace" rows="4" cols="70"  required oninvalid="this.setCustomValidity('กรุณากรอกสถานที่ทำงาน')" oninput="setCustomValidity('')"></textarea></div></li>
           </div>
 
           <div class="form-inline">
-            <li>สถานที่ติดต่อ  &nbsp;&nbsp;<br /><textarea class="form-control" id="contactplace" rows="4" cols="70" required oninvalid="this.setCustomValidity('กรุณากรอกสถานที่ติดต่อ')" oninput="setCustomValidity('')"></textarea></li>
+            <li>สถานที่ติดต่อ  &nbsp;&nbsp;<br /><div class="form-group"><textarea class="form-control" id="contactplace" rows="4" cols="70" required oninvalid="this.setCustomValidity('กรุณากรอกสถานที่ติดต่อ')" oninput="setCustomValidity('')"></textarea></div></li>
           </div>
 
           <div class="form-inline">
-            <li>โทรศัพท์ &nbsp;&nbsp;<input type="text" class="form-control numonly" id="tel" size="20" maxlength="10" required oninvalid="this.setCustomValidity('กรุณากรอกหมายเลขโทรศัพท์')" oninput="setCustomValidity('')">
+            <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control numonly" id="tel" size="20" maxlength="10" required oninvalid="this.setCustomValidity('กรุณากรอกหมายเลขโทรศัพท์')" oninput="setCustomValidity('')"></div>
               &nbsp;ต่อ&nbsp;<input type="text" class="form-control numonly" id="subtel" size="2" maxlength="2"></li>
         </div>
 
         <div class="form-inline">
-          <li>E-mail &nbsp;&nbsp;<input style="height: 25px;" type="email" class="form-control" id="qualification" size="45" required oninvalid="this.setCustomValidity('กรุณากรอกอีเมล์ให้ถูกต้อง')" oninput="setCustomValidity('')"></li>
+          <li>E-mail &nbsp;&nbsp;<div class="form-group"><input style="height: 25px;" type="email" class="form-control" id="qualification" size="45" required oninvalid="this.setCustomValidity('กรุณากรอกอีเมล์ให้ถูกต้อง')" oninput="setCustomValidity('')"></div></li>
         </div>
       </ul>
     </div>
@@ -357,35 +365,38 @@ function lastcal() {
           <div class="row">
             <ul>
               <div class="form-inline">
-                <li>รหัสกระบวนวิชาที่สอน &nbsp;<input type="text" class="form-control numonly" name="" id="course" size="6" maxlength="6" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')"></li>
+                <li>รหัสกระบวนวิชาที่สอน &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="" id="course" size="6" maxlength="6" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสกระบวนวิชา')" oninput="setCustomValidity('')"></div></li>
               </div>
               <div class="form-inline">
-                <li>จำนวนนักศึกษา &nbsp;<input type="text" class="form-control numonly" name="" id="numstudent" size="6" maxlength="6"  required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนนักศึกษา')" oninput="setCustomValidity('')"> คน</li>
+                <li>จำนวนนักศึกษา &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="" id="numstudent" size="6" maxlength="6"  required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนนักศึกษา')" oninput="setCustomValidity('')"></div> คน</li>
               </div>
               <div class="form-inline">
                 <li>กระบวนวิชานี้เป็นวิชา &nbsp;<br />
-                  <div class="radio">
+                  <div class="form-group"><div class="radio">
                     <input type="radio" name="type_course" id="type_course" value="require" required> &nbsp;บังคับ
                     &nbsp;<input type="radio" name="type_course" id="type_course" value="choose"> &nbsp;เลือก
                     &nbsp;<input type="radio" name="type_course" id="type_course" value="new"> &nbsp;เปิดใหม่
                     &nbsp;<input type="radio" name="type_course" id="type_course" value="old"> &nbsp;เปิดอยู่แล้ว
-                  </div>
+                  </div></div>
                 </li>
               </div>
               <div class="form-inline">
                 <li>หัวข้อที่เชิญมาสอน <br>
-                    <div class="radio">
+                    <div class="form-group">
+                      <div class="radio">
                       <input type="radio" name="topic" id="topic" value="yet" required> &nbsp;อาจารย์พิเศษยังไม่เคยสอน
                       &nbsp;<input type="radio" name="topic" id="topic" value="already"> &nbsp;อาจารย์พิเศษเคยสอนมาแล้ว
                     </div>
+                  </div>
                   </li>
                 </li>
               </div>
+
               <div class="form-inline">
-                <li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="number" class="form-control numonly" name="" id="hour" size="3" data-minlength="3" min="0" max="100" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงให้ถูกต้อง')" oninput="setCustomValidity('')"> &nbsp;ของทั้งกระบวนวิชา</li>
+                <li><div class="form-group">จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="number" class="form-control numonly" name="" id="hour" size="3" data-minlength="3" min="0" max="100" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนชั่วโมงให้ถูกต้อง')" oninput="setCustomValidity('')"> &nbsp;ของทั้งกระบวนวิชา</div></li>
               </div>
               <div class="form-inline">
-                <li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70" required oninvalid="this.setCustomValidity('กรุณาระบุเหตุผลในการเชิญอาจารย์พิเศษ')" oninput="setCustomValidity('')"></textarea></li>
+                <div class="form-group"><li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70" required oninvalid="this.setCustomValidity('กรุณาระบุเหตุผลในการเชิญอาจารย์พิเศษ')" oninput="setCustomValidity('')"></textarea></li></div>
               </div>
                 <li> รายละเอียดในการสอน <br>
                   <div class="col-md-10">
@@ -411,42 +422,44 @@ function lastcal() {
           <div class="form-inline">
             <li>อาจารย์พิเศษเป็น &nbsp;</li>
             <div class="radio">
-              <input type="radio"  name="levelteacher" id="levelteacher" value="pro" required>&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control charonly" name="GOV_LEVEL" id="GOV_LEVEL"/>
+              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="pro" required>&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control charonly" name="GOV_LEVEL" id="GOV_LEVEL"/></div>
               <br>
-              <input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ &nbsp;<input type="text" class="form-control charonly" name="NORM_LEVEL" id="NORM_LEVEL"/>
+              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ &nbsp;<input type="text" class="form-control charonly" name="NORM_LEVEL" id="NORM_LEVEL"/></div>
             </div>
           </div>
           <div class="form-inline">
             <li>ค่าสอนพิเศษ</li>
             <div class="radio">
-              <input type="radio"  name="costspec" id="costspec" value="choice1" required>&nbsp;ปริญญาตรีบรรยาย 400/ชม.&nbsp;&nbsp;
+              <div class="form-group">
+                <input type="radio"  name="costspec" id="costspec" value="choice1" required>&nbsp;ปริญญาตรีบรรยาย 400/ชม.&nbsp;&nbsp;
               จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice1hour" size="5" data-minlength="2" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท
-              <br>
-              <input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ 200/ชม.&nbsp;&nbsp;
+              </div><br>
+              <div class="form-group"><input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ 200/ชม.&nbsp;&nbsp;
               จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice2hour" size="5" data-minlength="2" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2cost" size="5" data-minlength="5" min="0" max="99999">&nbsp;&nbsp;บาท
+              </div>
             </div>
           </div>
           <div class="form-inline">
             <li>ค่าพาหนะเดินทาง </li>
             <div class="checkbox">
-              <label><input type="checkbox" name="transplane" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+              <div class="form-group"><label><input type="checkbox" name="transplane" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label></div>
               <br>
-              <label><input type="checkbox" name="transtaxi" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+              <div class="form-group"><label><input type="checkbox" name="transtaxi" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label></div>
               <br>
-              <label><input type="checkbox" name="transselfcar" id="transselfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;
+              <div class="form-group"><label><input type="checkbox" name="transselfcar" id="transselfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;
                 <input type="text" class="form-control numonly" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="2" min="0" max="9999"> &nbsp;กิโลเมตร  กิโลเมตรละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
-                <input type="text" class="form-control numonly" name="selfcost" id="selfcost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label>
+                <input type="text" class="form-control numonly" name="selfcost" id="selfcost" size="5" data-minlength="2" min="0" max="99999">&nbsp;&nbsp;บาท</label></div>
               </div>
           </div>
           <div class="form-inline">
             <li>ค่าที่พัก</li>
-            <div class="radio">
+            <div class="form-group"><div class="radio">
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" required>&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน 800 บาท/คน/คืน &nbsp;&nbsp;
-            </div>
-            <br>จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999" required  oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;คืน
+            </div></div>
+            <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999" required  oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;คืน
             &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" min="0" max="99999" required oninvalid="this.setCustomValidity('กรุณาระบุจำนวนให้ถูกต้อง')" oninput="setCustomValidity('')">&nbsp;&nbsp;บาท
-
+          </div>
           </div>
           <br>
           <div class="form-inline">
