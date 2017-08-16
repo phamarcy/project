@@ -41,6 +41,13 @@
     $(document).ready(function(){
 
     });
+
+    $(document).on("click","#change-data",function(){
+      var form = $(this).parent();
+      $("input").prop("disabled",false);
+      $("select").prop("disabled",false);
+    });
+
     $(document).on("click","#submitbtn",function(){
       var form = $(this).parent();
       var config_name = $(form).attr("id");
@@ -94,6 +101,8 @@
             //   reset_object(form);
             //   lock(form,true);
             // }
+            $("input").prop("disabled",true);
+            $("select").prop("disabled",true);
           $(form).find("#warning").css("color","green").html("บันทึกสำเร็จ").fadeIn().delay(1500).fadeOut();
         }).fail(function() {
           $(form).find("#warning").html("");
@@ -144,14 +153,15 @@
                   <div class="form-inline">
                       <h style="width: 100px;  ">ภาคการศึกษาที่ </h>
                       <div class="form-group">
-                          <select class="form-control" id="semester" style="width: 70px; ">
+                          <select class="form-control" id="semester" style="width: 70px;" disabled>
                               <option>1</option>
                               <option>2</option>
                               <option>3</option>
                           </select>
                       </div>
                       ปีการศึกษา
-                      <input class="form-control" id="year" name="year" placeholder="e.g. 2560" style="width: 100px;">
+                      <input class="form-control" id="year" name="year" placeholder="e.g. 2560" style="width: 100px;" value="2560" disabled>
+                      <button type="button" class="btn btn-outline btn-default" id="change-data">เปลี่ยน</button>
                     <img id="loading" src="" height="35px"/>
                   </div>
                   <br>
