@@ -795,6 +795,10 @@ function checkreq() {
   }
 }
 
+function confreset() {
+    confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
+}
+
 </script>
 </header>
 <body class="mybox">
@@ -1481,7 +1485,7 @@ function checkreq() {
     <div align="center">
       <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq();" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
-      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" value="รีเซ็ตข้อมูล">
+      <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>
 </form>
 </div>
