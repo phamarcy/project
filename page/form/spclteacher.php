@@ -323,6 +323,7 @@ function lastcal() {
       </form>
       </center>
 
+      <div class="panel panel-default"> <br>
       <form action="" data-toggle="validator" role="form" name="form1" method="post">
       <div class="row form-inline" style="font-size:16px;">
         <center><div class="form-group">
@@ -524,6 +525,7 @@ function lastcal() {
       <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>
 </form>
+</div>
 </div>
 </body>
 </html>

@@ -732,6 +732,7 @@ function confreset() {
   </center>
 </div>
 
+<div class="panel panel-default">
 <form data-toggle="validator" role="form" name="form1" method="post">
     <ol>
       <br>
@@ -1082,7 +1083,7 @@ function confreset() {
         }
         ?>
 
-    </select> &nbsp; คน (แยกห้องกันคุม) <br>
+    </select> &nbsp; คน (แยกห้องกันคุม) </div><br>
 
 
                     <div class="form-inline hide" id="fmehlec1">
@@ -1170,7 +1171,7 @@ function confreset() {
         </ul>
 
         <br>
-        <div class="form-inline">
+
           <li style="font-size: 14px;">
             <b>การวัดผลการศึกษา</b> (สัดส่วนการให้คะแนนโปรดระบุเป็นร้อยละ)<br><br>
             <div class="row">
@@ -1251,7 +1252,7 @@ function confreset() {
                   </tbody>
                 </table>
             </div>
-
+          </div>
           </li>
 
           <br>
@@ -1378,7 +1379,6 @@ function confreset() {
 
 
     </ol>
-    </div>
     <br><br>
     <div align="center">
       <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq();" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
@@ -1386,6 +1386,7 @@ function confreset() {
       <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>
 </form>
+</div>
 </div>
 </div>
 </body>
