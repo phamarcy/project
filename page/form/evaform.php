@@ -399,7 +399,7 @@ function submitfunc() {
   var data = {
     'COURSE_ID': document.getElementById("COURSE_ID").value,
     'SECTION' : document.getElementById("SECTION").value,
-    'NORORSPE' : document.getElementById("NORORSPE").value,
+    'NORORSPE' : document.querySelector("input[name='NORORSPE']:checked").value,
     'STUDENT' : document.getElementById("ENROLL").value,
     'CREDIT' : {
       'TOTAL' : document.getElementById("TOTAL").value,
@@ -407,7 +407,7 @@ function submitfunc() {
       'LAB' : document.getElementById("LAB").value,
       'SELF' : document.getElementById("SELF").value
     },
-    'TYPE_TEACHING' : document.getElementById("TYPE_TEACHING").value,
+    'TYPE_TEACHING' : document.querySelector("input[name='TYPE_TEACHING']:checked").value,
     'TEACHER' : {
       'LEC' : teacher_lec,
       'LAB' : teacher_lab
@@ -453,9 +453,9 @@ function submitfunc() {
     },
     'SEMINAR' : carts3,
     'TRAIN' : cartt3,
-    'EVALUATE' : document.getElementById("EVALUATE").value,
+    'EVALUATE' : document.querySelector("input[name='EVALUATE_TYPE']:checked").value,
     'CALCULATE' : {
-      'TYPE' : document.getElementById("CALCULATE_TYPE").value,
+      'TYPE' : document.querySelector("input[name='CALCULATE']:checked").value,
       'A' : {
         'MIN' : document.getElementById("CALCULATE_A_MIN").value
       },
@@ -493,7 +493,7 @@ function submitfunc() {
         'MAX' : document.getElementById("CALCULATE_U_MAX").value
       }
     },
-    'ABSENT' : document.getElementById("ABSENT").value,
+    'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,
   };
 
   //alert(JSON.stringify(data));
@@ -546,6 +546,147 @@ $(function() {//<-- wrapped here
 });
 
 $(document).ready(function(){
+
+  //radio
+  $("input[name='EVALUATE_TYPE']").change(function(){
+    alert();
+    if($(this).val()=="SU")
+    {
+      $('#CALCULATE_A_MIN').prop('disabled', true);
+      $('#CALCULATE_Bp_MIN').prop('disabled', true);
+      $('#CALCULATE_Bp_MAX').prop('disabled', true);
+      $('#CALCULATE_B_MIN').prop('disabled', true);
+      $('#CALCULATE_B_MAX').prop('disabled', true);
+      $('#CALCULATE_Cp_MIN').prop('disabled', true);
+      $('#CALCULATE_Cp_MAX').prop('disabled', true);
+      $('#CALCULATE_C_MIN').prop('disabled', true);
+      $('#CALCULATE_C_MAX').prop('disabled', true);
+      $('#CALCULATE_Dp_MIN').prop('disabled', true);
+      $('#CALCULATE_Dp_MAX').prop('disabled', true);
+      $('#CALCULATE_D_MIN').prop('disabled', true);
+      $('#CALCULATE_D_MAX').prop('disabled', true);
+      $('#CALCULATE_F_MAX').prop('disabled', true);
+
+      $('#CALCULATE_S_MIN').prop('required', true);
+      $('#CALCULATE_U_MAX').prop('required', true);
+      $('#CALCULATE_S_MIN').prop('disabled', false);
+      $('#CALCULATE_U_MAX').prop('disabled', false);
+    }
+    else if($(this).val()=="AF")
+    {
+      $('#CALCULATE_A_MIN').prop('disabled', false);
+      $('#CALCULATE_Bp_MIN').prop('disabled', false);
+      $('#CALCULATE_Bp_MAX').prop('disabled', false);
+      $('#CALCULATE_B_MIN').prop('disabled', false);
+      $('#CALCULATE_B_MAX').prop('disabled', false);
+      $('#CALCULATE_Cp_MIN').prop('disabled', false);
+      $('#CALCULATE_Cp_MAX').prop('disabled', false);
+      $('#CALCULATE_C_MIN').prop('disabled', false);
+      $('#CALCULATE_C_MAX').prop('disabled', false);
+      $('#CALCULATE_Dp_MIN').prop('disabled', false);
+      $('#CALCULATE_Dp_MAX').prop('disabled', false);
+      $('#CALCULATE_D_MIN').prop('disabled', false);
+      $('#CALCULATE_D_MAX').prop('disabled', false);
+      $('#CALCULATE_F_MAX').prop('disabled', false);
+      $('#CALCULATE_S_MIN').prop('disabled', true);
+      $('#CALCULATE_U_MAX').prop('disabled', true);
+
+      $('#CALCULATE_A_MIN').prop('required', true);
+      $('#CALCULATE_Bp_MIN').prop('required', true);
+      $('#CALCULATE_Bp_MAX').prop('required', true);
+      $('#CALCULATE_B_MIN').prop('required', true);
+      $('#CALCULATE_B_MAX').prop('required', true);
+      $('#CALCULATE_Cp_MIN').prop('required', true);
+      $('#CALCULATE_Cp_MAX').prop('required', true);
+      $('#CALCULATE_C_MIN').prop('required', true);
+      $('#CALCULATE_C_MAX').prop('required', true);
+      $('#CALCULATE_Dp_MIN').prop('required', true);
+      $('#CALCULATE_Dp_MAX').prop('required', true);
+      $('#CALCULATE_D_MIN').prop('required', true);
+      $('#CALCULATE_D_MAX').prop('required', true);
+      $('#CALCULATE_F_MAX').prop('required', true);
+    }
+    });
+
+    $("input[name='CALCULATE']").change(function(){
+      if($(this).val()=="GROUP")
+      {
+        $('#CALCULATE_A_MIN').prop('disabled', true);
+        $('#CALCULATE_Bp_MIN').prop('disabled', true);
+        $('#CALCULATE_Bp_MAX').prop('disabled', true);
+        $('#CALCULATE_B_MIN').prop('disabled', true);
+        $('#CALCULATE_B_MAX').prop('disabled', true);
+        $('#CALCULATE_Cp_MIN').prop('disabled', true);
+        $('#CALCULATE_Cp_MAX').prop('disabled', true);
+        $('#CALCULATE_C_MIN').prop('disabled', true);
+        $('#CALCULATE_C_MAX').prop('disabled', true);
+        $('#CALCULATE_Dp_MIN').prop('disabled', true);
+        $('#CALCULATE_Dp_MAX').prop('disabled', true);
+        $('#CALCULATE_D_MIN').prop('disabled', true);
+        $('#CALCULATE_D_MAX').prop('disabled', true);
+        $('#CALCULATE_F_MAX').prop('disabled', true);
+        $('#CALCULATE_S_MIN').prop('disabled', true);
+        $('#CALCULATE_U_MAX').prop('disabled', true);
+      }
+      else if ($(this).val()=="CRITERIA" && $("input[name='EVALUATE_TYPE']:checked").val()=="SU")
+      {
+
+        $('#CALCULATE_A_MIN').prop('disabled', true);
+        $('#CALCULATE_Bp_MIN').prop('disabled', true);
+        $('#CALCULATE_Bp_MAX').prop('disabled', true);
+        $('#CALCULATE_B_MIN').prop('disabled', true);
+        $('#CALCULATE_B_MAX').prop('disabled', true);
+        $('#CALCULATE_Cp_MIN').prop('disabled', true);
+        $('#CALCULATE_Cp_MAX').prop('disabled', true);
+        $('#CALCULATE_C_MIN').prop('disabled', true);
+        $('#CALCULATE_C_MAX').prop('disabled', true);
+        $('#CALCULATE_Dp_MIN').prop('disabled', true);
+        $('#CALCULATE_Dp_MAX').prop('disabled', true);
+        $('#CALCULATE_D_MIN').prop('disabled', true);
+        $('#CALCULATE_D_MAX').prop('disabled', true);
+        $('#CALCULATE_F_MAX').prop('disabled', true);
+
+        $('#CALCULATE_S_MIN').prop('required', true);
+        $('#CALCULATE_U_MAX').prop('required', true);
+        $('#CALCULATE_S_MIN').prop('disabled', false);
+        $('#CALCULATE_U_MAX').prop('disabled', false);
+      }
+      else if ($(this).val()=="CRITERIA" && $("input[name='EVALUATE_TYPE']:checked").val()=="AF"){
+        $('#CALCULATE_A_MIN').prop('disabled', false);
+        $('#CALCULATE_Bp_MIN').prop('disabled', false);
+        $('#CALCULATE_Bp_MAX').prop('disabled', false);
+        $('#CALCULATE_B_MIN').prop('disabled', false);
+        $('#CALCULATE_B_MAX').prop('disabled', false);
+        $('#CALCULATE_Cp_MIN').prop('disabled', false);
+        $('#CALCULATE_Cp_MAX').prop('disabled', false);
+        $('#CALCULATE_C_MIN').prop('disabled', false);
+        $('#CALCULATE_C_MAX').prop('disabled', false);
+        $('#CALCULATE_Dp_MIN').prop('disabled', false);
+        $('#CALCULATE_Dp_MAX').prop('disabled', false);
+        $('#CALCULATE_D_MIN').prop('disabled', false);
+        $('#CALCULATE_D_MAX').prop('disabled', false);
+        $('#CALCULATE_F_MAX').prop('disabled', false);
+        $('#CALCULATE_S_MIN').prop('disabled', true);
+        $('#CALCULATE_U_MAX').prop('disabled', true);
+
+        $('#CALCULATE_A_MIN').prop('required', true);
+        $('#CALCULATE_Bp_MIN').prop('required', true);
+        $('#CALCULATE_Bp_MAX').prop('required', true);
+        $('#CALCULATE_B_MIN').prop('required', true);
+        $('#CALCULATE_B_MAX').prop('required', true);
+        $('#CALCULATE_Cp_MIN').prop('required', true);
+        $('#CALCULATE_Cp_MAX').prop('required', true);
+        $('#CALCULATE_C_MIN').prop('required', true);
+        $('#CALCULATE_C_MAX').prop('required', true);
+        $('#CALCULATE_Dp_MIN').prop('required', true);
+        $('#CALCULATE_Dp_MAX').prop('required', true);
+        $('#CALCULATE_D_MIN').prop('required', true);
+        $('#CALCULATE_D_MAX').prop('required', true);
+        $('#CALCULATE_F_MAX').prop('required', true);
+      }
+    });
+
+
 
   $("#TYPE_TEACHING_NAME").hide();
   $("input[name='TYPE_TEACHING']").change(function(){
@@ -634,12 +775,12 @@ function deleteRow2(r) {
 }
 
 function other_type() {
-  if(document.getElementById("TYPE_TEACHING").value=="OTH")
+  if(document.querySelector("input[name='TYPE_TEACHING']:checked").value=="OTH")
   {
-    document.getElementById("TYPE_TEACHING_OTHER").style.display = "";
+    document.getElementById("TYPE_TEACHING_NAME").style.display = "";
   }
   else {
-    document.getElementById("TYPE_TEACHING_OTHER").style.display = "none";
+    document.getElementById("TYPE_TEACHING_NAME").style.display = "none";
   }
 }
 
@@ -691,8 +832,8 @@ function other_type() {
             &nbsp;ตอนที่ &nbsp;<input style="width: 70px;"type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="2" required pattern=".{2,2}" >
           </div>
           <div class="form-group"><div class="radio">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE" value="NORMAL" required>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="radio" name="NORORSPE" id="NORORSPE" value="SPECIAL">&nbsp;<b>ภาคพิเศษ</b>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE1" value="NORMAL" required>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="NORORSPE" id="NORORSPE2" value="SPECIAL">&nbsp;<b>ภาคพิเศษ</b>
           </div></div>
           <br>
           <div class="row">
@@ -712,13 +853,13 @@ function other_type() {
         <div class="form-inline">
           <b>ลักษณะการเรียนการสอน&nbsp;&nbsp;</b><br>
           <div class="form-group"><div class="radio">
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LEC" required> บรรยาย &nbsp;<br>
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LECLAB"> บรรยายและงานปฏิบัติการทดลอง&nbsp;<br>
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="SPE"> กระบวนวิชาปัญหาพิเศษ&nbsp;<br>
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="TRA"> ฝึกงาน &nbsp;<br>
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="SEM"> สัมมนา &nbsp;<br>
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="LAB"> ปฏิบัติการ &nbsp;<br>
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING" value="OTH" onchange="other_type()"> อื่นๆ &nbsp;
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING1" value="LEC" required> บรรยาย &nbsp;<br>
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING2" value="LECLAB"> บรรยายและงานปฏิบัติการทดลอง&nbsp;<br>
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING3" value="SPE"> กระบวนวิชาปัญหาพิเศษ&nbsp;<br>
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING4" value="TRA"> ฝึกงาน &nbsp;<br>
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING5" value="SEM"> สัมมนา &nbsp;<br>
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING6" value="LAB"> ปฏิบัติการ &nbsp;<br>
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING7" value="OTH" onchange="other_type()"> อื่นๆ &nbsp;
           </div>
         </div><br>
             <input type="text" class="form-control" name="TYPE_TEACHING_NAME" id="TYPE_TEACHING_NAME" placeholder="โปรดระบุ">
@@ -1207,13 +1348,13 @@ function other_type() {
             <br>
             <div class="form-inline">
               <div class="form-group"><div class="radio">
-              <input type="radio" name="EVALUATE" id="EVALUATE" value="SU" required> ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว) <br>
-              <input type="radio" name="EVALUATE" id="EVALUATE" value="AF"> ให้ลำดับขั้น A, B+ ,B, C+, C, D+, D, F
+                <input type="radio" name="EVALUATE_TYPE" id="EVALUATE1" value="AF" required> ให้ลำดับขั้น A, B+ ,B, C+, C, D+, D, F <br>
+                <input type="radio" name="EVALUATE_TYPE" id="EVALUATE2" value="SU"> ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว)
               </div></div>
               <br><b>วิธีการตัดเกรด</b><br>
               <div class="form-group"><div class="radio">
-              <input type="radio" name="CALCULATE" id="CALCULATE_TYPE" value="GROUP" required> อิงกลุ่ม <br>
-              <input type="radio" name="CALCULATE" id="CALCULATE_TYPE" value="CRITERIA"> อิงเกณฑ์ &nbsp;&nbsp;ได้กำหนดเกณฑ์ดังต่อไปนี้
+              <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม <br>
+              <input type="radio" name="CALCULATE" id="CALCULATE_TYPE2" value="CRITERIA"> อิงเกณฑ์ &nbsp;&nbsp;ได้กำหนดเกณฑ์ดังต่อไปนี้
             </div></div>
           </div>
             <br>
@@ -1308,9 +1449,9 @@ function other_type() {
             <b>นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย</b> &nbsp;&nbsp;โดยไม่ได้รับอนุญาตให้เลื่อนการสอบตามข้อบังคับฯ ของมหาวิทยาลัยเชียงใหม่ ว่าด้วยการศึกษาชั้นปริญญาตรี อาจารย์ผู้สอนจะประเมินดังนี้
             <br>
             <div class="form-inline"><div class="form-group"><div class="radio">
-            <input type="radio" name="ABSENT" id="ABSENT" value="F" required>&nbsp;ให้ลำดับขั้น F &nbsp;&nbsp; <br>
-            <input type="radio" name="ABSENT" id="ABSENT" value="U" >&nbsp;ให้อักษร U &nbsp;&nbsp;<br>
-            <input type="radio" name="ABSENT" id="ABSENT" value="CAL" >&nbsp;นำคะแนนทั้งหมดที่นักศึกษาได้รับก่อนการสอบไล่มาประเมิน &nbsp;&nbsp;<br>
+            <input type="radio" name="ABSENT" id="ABSENT1" value="F" required>&nbsp;ให้ลำดับขั้น F &nbsp;&nbsp; <br>
+            <input type="radio" name="ABSENT" id="ABSENT2" value="U" >&nbsp;ให้อักษร U &nbsp;&nbsp;<br>
+            <input type="radio" name="ABSENT" id="ABSENT3" value="CAL" >&nbsp;นำคะแนนทั้งหมดที่นักศึกษาได้รับก่อนการสอบไล่มาประเมิน &nbsp;&nbsp;<br>
           </div></div></div>
           </li>
 
