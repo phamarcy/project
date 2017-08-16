@@ -31,6 +31,13 @@ session_start();
     <link rel="stylesheet" href="../dist/css/scrollbar.css">
 
     <title></title>
+    <style>
+    .panel-heading {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    </style>
   </head>
   <body>
   <h3 class="page-header" style="margin-bottom: 0px;"><center><b>จัดการกระบวนวิชา</b></center></h3>
@@ -42,20 +49,20 @@ session_start();
         <div class="panel-body">
           <div class="panel panel-warning">
             <div class="panel-heading">
-                <h5><b>เพิ่มกระบวนวิชา</b></h5>
+                <b>เพิ่มกระบวนวิชา</b>
             </div>
             <div class="panel-body">
               <div class="form-inline">
               <form>
                 <input class="form-control" id="code" placeholder="e.g. 452111" style="width: 100px;">
-                <button type="button" class="btn btn-outline btn-default" id="submit"  name="submit">เพิ่ม</button>
+                <button type="button" class="btn btn-outline btn-primary" id="submit"  name="submit">เพิ่ม</button>
               </form>
               </div>
             </div>
           </div>
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h5><b>กระบวนวิชาที่สังกัดในภาควิชา</b></h5>
+              <b>กระบวนวิชาที่สังกัดในภาควิชา</b>
             </div>
             <div class="panel-body">
               <table class="table table-hover" style="font-size:14px">
