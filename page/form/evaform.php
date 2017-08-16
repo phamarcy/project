@@ -551,137 +551,35 @@ $(document).ready(function(){
   $("input[name='EVALUATE_TYPE']").change(function(){
     if($(this).val()=="SU")
     {
-      $('#CALCULATE_A_MIN').prop('disabled', true);
-      $('#CALCULATE_Bp_MIN').prop('disabled', true);
-      $('#CALCULATE_Bp_MAX').prop('disabled', true);
-      $('#CALCULATE_B_MIN').prop('disabled', true);
-      $('#CALCULATE_B_MAX').prop('disabled', true);
-      $('#CALCULATE_Cp_MIN').prop('disabled', true);
-      $('#CALCULATE_Cp_MAX').prop('disabled', true);
-      $('#CALCULATE_C_MIN').prop('disabled', true);
-      $('#CALCULATE_C_MAX').prop('disabled', true);
-      $('#CALCULATE_Dp_MIN').prop('disabled', true);
-      $('#CALCULATE_Dp_MAX').prop('disabled', true);
-      $('#CALCULATE_D_MIN').prop('disabled', true);
-      $('#CALCULATE_D_MAX').prop('disabled', true);
-      $('#CALCULATE_F_MAX').prop('disabled', true);
-
-      $('#CALCULATE_S_MIN').prop('required', true);
-      $('#CALCULATE_U_MAX').prop('required', true);
-      $('#CALCULATE_S_MIN').prop('disabled', false);
-      $('#CALCULATE_U_MAX').prop('disabled', false);
+      $('.atof').prop('disabled',true);
+      $('.stou').prop('required',true);
+      $('.stou').prop('disabled',false);
     }
     else if($(this).val()=="AF")
     {
-      $('#CALCULATE_A_MIN').prop('disabled', false);
-      $('#CALCULATE_Bp_MIN').prop('disabled', false);
-      $('#CALCULATE_Bp_MAX').prop('disabled', false);
-      $('#CALCULATE_B_MIN').prop('disabled', false);
-      $('#CALCULATE_B_MAX').prop('disabled', false);
-      $('#CALCULATE_Cp_MIN').prop('disabled', false);
-      $('#CALCULATE_Cp_MAX').prop('disabled', false);
-      $('#CALCULATE_C_MIN').prop('disabled', false);
-      $('#CALCULATE_C_MAX').prop('disabled', false);
-      $('#CALCULATE_Dp_MIN').prop('disabled', false);
-      $('#CALCULATE_Dp_MAX').prop('disabled', false);
-      $('#CALCULATE_D_MIN').prop('disabled', false);
-      $('#CALCULATE_D_MAX').prop('disabled', false);
-      $('#CALCULATE_F_MAX').prop('disabled', false);
-      $('#CALCULATE_S_MIN').prop('disabled', true);
-      $('#CALCULATE_U_MAX').prop('disabled', true);
-
-      $('#CALCULATE_A_MIN').prop('required', true);
-      $('#CALCULATE_Bp_MIN').prop('required', true);
-      $('#CALCULATE_Bp_MAX').prop('required', true);
-      $('#CALCULATE_B_MIN').prop('required', true);
-      $('#CALCULATE_B_MAX').prop('required', true);
-      $('#CALCULATE_Cp_MIN').prop('required', true);
-      $('#CALCULATE_Cp_MAX').prop('required', true);
-      $('#CALCULATE_C_MIN').prop('required', true);
-      $('#CALCULATE_C_MAX').prop('required', true);
-      $('#CALCULATE_Dp_MIN').prop('required', true);
-      $('#CALCULATE_Dp_MAX').prop('required', true);
-      $('#CALCULATE_D_MIN').prop('required', true);
-      $('#CALCULATE_D_MAX').prop('required', true);
-      $('#CALCULATE_F_MAX').prop('required', true);
+      $('.atof').prop('disabled',false);
+      $('.stou').prop('disabled',true);
+      $('.atof').prop('required',true);
     }
     });
 
     $("input[name='CALCULATE']").change(function(){
       if($(this).val()=="GROUP")
       {
-        $('#CALCULATE_A_MIN').prop('disabled', true);
-        $('#CALCULATE_Bp_MIN').prop('disabled', true);
-        $('#CALCULATE_Bp_MAX').prop('disabled', true);
-        $('#CALCULATE_B_MIN').prop('disabled', true);
-        $('#CALCULATE_B_MAX').prop('disabled', true);
-        $('#CALCULATE_Cp_MIN').prop('disabled', true);
-        $('#CALCULATE_Cp_MAX').prop('disabled', true);
-        $('#CALCULATE_C_MIN').prop('disabled', true);
-        $('#CALCULATE_C_MAX').prop('disabled', true);
-        $('#CALCULATE_Dp_MIN').prop('disabled', true);
-        $('#CALCULATE_Dp_MAX').prop('disabled', true);
-        $('#CALCULATE_D_MIN').prop('disabled', true);
-        $('#CALCULATE_D_MAX').prop('disabled', true);
-        $('#CALCULATE_F_MAX').prop('disabled', true);
-        $('#CALCULATE_S_MIN').prop('disabled', true);
-        $('#CALCULATE_U_MAX').prop('disabled', true);
+        $('.atof').prop('disabled',true);
+        $('.stou').prop('disabled',true);
       }
       else if ($(this).val()=="CRITERIA" && $("input[name='EVALUATE_TYPE']:checked").val()=="SU")
       {
-
-        $('#CALCULATE_A_MIN').prop('disabled', true);
-        $('#CALCULATE_Bp_MIN').prop('disabled', true);
-        $('#CALCULATE_Bp_MAX').prop('disabled', true);
-        $('#CALCULATE_B_MIN').prop('disabled', true);
-        $('#CALCULATE_B_MAX').prop('disabled', true);
-        $('#CALCULATE_Cp_MIN').prop('disabled', true);
-        $('#CALCULATE_Cp_MAX').prop('disabled', true);
-        $('#CALCULATE_C_MIN').prop('disabled', true);
-        $('#CALCULATE_C_MAX').prop('disabled', true);
-        $('#CALCULATE_Dp_MIN').prop('disabled', true);
-        $('#CALCULATE_Dp_MAX').prop('disabled', true);
-        $('#CALCULATE_D_MIN').prop('disabled', true);
-        $('#CALCULATE_D_MAX').prop('disabled', true);
-        $('#CALCULATE_F_MAX').prop('disabled', true);
-
-        $('#CALCULATE_S_MIN').prop('required', true);
-        $('#CALCULATE_U_MAX').prop('required', true);
-        $('#CALCULATE_S_MIN').prop('disabled', false);
-        $('#CALCULATE_U_MAX').prop('disabled', false);
+        $('.atof').prop('disabled',true);
+        $('.stou').prop('required',true);
+        $('.stou').prop('disabled',false);
       }
-      else if ($(this).val()=="CRITERIA" && $("input[name='EVALUATE_TYPE']:checked").val()=="AF"){
-        $('#CALCULATE_A_MIN').prop('disabled', false);
-        $('#CALCULATE_Bp_MIN').prop('disabled', false);
-        $('#CALCULATE_Bp_MAX').prop('disabled', false);
-        $('#CALCULATE_B_MIN').prop('disabled', false);
-        $('#CALCULATE_B_MAX').prop('disabled', false);
-        $('#CALCULATE_Cp_MIN').prop('disabled', false);
-        $('#CALCULATE_Cp_MAX').prop('disabled', false);
-        $('#CALCULATE_C_MIN').prop('disabled', false);
-        $('#CALCULATE_C_MAX').prop('disabled', false);
-        $('#CALCULATE_Dp_MIN').prop('disabled', false);
-        $('#CALCULATE_Dp_MAX').prop('disabled', false);
-        $('#CALCULATE_D_MIN').prop('disabled', false);
-        $('#CALCULATE_D_MAX').prop('disabled', false);
-        $('#CALCULATE_F_MAX').prop('disabled', false);
-        $('#CALCULATE_S_MIN').prop('disabled', true);
-        $('#CALCULATE_U_MAX').prop('disabled', true);
-
-        $('#CALCULATE_A_MIN').prop('required', true);
-        $('#CALCULATE_Bp_MIN').prop('required', true);
-        $('#CALCULATE_Bp_MAX').prop('required', true);
-        $('#CALCULATE_B_MIN').prop('required', true);
-        $('#CALCULATE_B_MAX').prop('required', true);
-        $('#CALCULATE_Cp_MIN').prop('required', true);
-        $('#CALCULATE_Cp_MAX').prop('required', true);
-        $('#CALCULATE_C_MIN').prop('required', true);
-        $('#CALCULATE_C_MAX').prop('required', true);
-        $('#CALCULATE_Dp_MIN').prop('required', true);
-        $('#CALCULATE_Dp_MAX').prop('required', true);
-        $('#CALCULATE_D_MIN').prop('required', true);
-        $('#CALCULATE_D_MAX').prop('required', true);
-        $('#CALCULATE_F_MAX').prop('required', true);
+      else if ($(this).val()=="CRITERIA" && $("input[name='EVALUATE_TYPE']:checked").val()=="AF")
+      {
+        $('.atof').prop('disabled',false);
+        $('.stou').prop('disabled',true);
+        $('.atof').prop('required',true);
       }
     });
 
@@ -1389,62 +1287,62 @@ function confreset() {
               </tr>
               <tr align="center">
                 <td>A</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_A_MIN" id="CALCULATE_A_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_A_MIN" id="CALCULATE_A_MIN" placeholder="คะแนน"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_A_MIN" id="CALCULATE_A_MAX" placeholder="100" disabled></td>
+                <td><input type="text" class="form-control numonly" name="CALCULATE_A_MAX" id="CALCULATE_A_MAX" placeholder="100" disabled></td>
                 <td></td>
                 <td>D+</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" placeholder="คะแนน"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_Dp_MAX" id="CALCULATE_Dp_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Dp_MAX" id="CALCULATE_Dp_MAX" placeholder="คะแนน"></td>
                 <td></td>
               </tr>
               <tr align="center">
                 <td>B+</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_Bp_MIN" id="CALCULATE_Bp_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Bp_MIN" id="CALCULATE_Bp_MIN" placeholder="คะแนน"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_Bp_MAX" id="CALCULATE_Bp_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Bp_MAX" id="CALCULATE_Bp_MAX" placeholder="คะแนน"></td>
                 <td></td>
                 <td>D</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_D_MIN" id="CALCULATE_D_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_D_MIN" id="CALCULATE_D_MIN" placeholder="คะแนน"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_D_MAX" id="CALCULATE_D_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_D_MAX" id="CALCULATE_D_MAX" placeholder="คะแนน"></td>
                 <td></td>
               </tr>
               <tr align="center">
                 <td>B</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_B_MIN" id="CALCULATE_B_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_B_MIN" id="CALCULATE_B_MIN" placeholder="คะแนน"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_B_MAX" id="CALCULATE_B_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_B_MAX" id="CALCULATE_B_MAX" placeholder="คะแนน"></td>
                 <td></td>
                 <td>F</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_F_MAX" id="CALCULATE_F_MIN" placeholder="0" disabled></td>
+                <td><input type="text" class="form-control numonly" name="CALCULATE_F_MIN" id="CALCULATE_F_MIN" placeholder="0" disabled></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" placeholder="คะแนน"></td>
                 <td></td>
               </tr>
               <tr align="center">
                 <td>C+</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_Cp_MIN" id="CALCULATE_Cp_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Cp_MIN" id="CALCULATE_Cp_MIN" placeholder="คะแนน"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_Cp_MAX" id="CALCULATE_Cp_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Cp_MAX" id="CALCULATE_Cp_MAX" placeholder="คะแนน"></td>
                 <td></td>
                 <td>S</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_S_MIN" id="CALCULATE_S_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly stou" name="CALCULATE_S_MIN" id="CALCULATE_S_MIN" placeholder="คะแนน"></td>
                 <td>ถึง</td>
                 <td><input type="text" class="form-control numonly" name="CALCULATE_S_MAX" id="CALCULATE_S_MIN" placeholder="100" disabled></td>
                 <td></td>
               </tr>
               <tr align="center">
                 <td>C</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_C_MIN" id="CALCULATE_C_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_C_MIN" id="CALCULATE_C_MIN" placeholder="คะแนน"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_C_MAX" id="CALCULATE_C_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_C_MAX" id="CALCULATE_C_MAX" placeholder="คะแนน"></td>
                 <td></td>
                 <td>U</td>
                 <td><input type="text" class="form-control numonly" name="CALCULATE_U_MAX" id="CALCULATE_U_MIN" placeholder="0" disabled></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_U_MAX" id="CALCULATE_U_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly stou" name="CALCULATE_U_MAX" id="CALCULATE_U_MAX" placeholder="คะแนน"></td>
                 <td></td>
               </tr>
             </table>
