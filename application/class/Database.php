@@ -21,6 +21,19 @@ class Database
 
     }
 
+		public function Change_DB($DB_NAME)
+		{
+			$result = mysqli_select_db($this->connection, $DB_NAME);
+			if($result == true)
+			{
+				return true;
+			}
+			else
+			{
+				$this->log->Write("Database error : " . mysqli_error($this->connection));
+				return false;
+			}
+		}
     public function Query($sql)
     {
     	$data = array();

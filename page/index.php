@@ -351,13 +351,13 @@
 						</li>
 						<?php if($_SESSION['level'] == 2) { ?>
 							<li>
-								<a href="#" onclick="loadDoc('form/deadline.php')"><i class="fa fa-list-alt fa-fw"></i> กำหนดช่วงเวลา</a>
-							</li>
-							<li>
 								<a href="#" onclick="loadDoc('form/setsubject.php')"><i class="fa fa-user-md fa-fw"></i> กำหนดวิชาให้อาจารย์</a>
 							</li>
-						<?php }?>
-						<?php if($_SESSION['level'] == 3 || $_SESSION['level'] == 2){ ?>
+						<?php }if($_SESSION['level'] == 3){?>
+							<li>
+								<a href="#" onclick="loadDoc('form/deadline.php')"><i class="fa fa-list-alt fa-fw"></i> กำหนดช่วงเวลา</a>
+							</li>
+						<?php }if($_SESSION['level'] == 3 || $_SESSION['level'] == 2){ ?>
 						<li>
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
