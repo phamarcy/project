@@ -45,17 +45,15 @@ div[class^="col-"] {
       <br>
       <div class="panel panel-default">
                         <div class="panel-heading">
-                          <h4 class="panel-title">
-                              <b>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</b>
-                          </h4>
+                              <h5><b>ภาคการศึกษาที่ 2 ปีการศึกษา 2560 ภาควิชาบริบาลเภสัชกรรม</b></h5>
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
                             <div class="panel panel-warning">
                               <div class="panel-heading">
-                                <h4 class="panel-title">
+                                <h5>
                                     <b>กำหนดวิชาให้กับอาจารย์</b>
-                                </h4>
+                                </h5>
                               </div>
                               <div class="panel-body">
                                 <div class="row">
