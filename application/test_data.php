@@ -1,0 +1,10 @@
+<?php
+if(isset($_POST['DATA']))
+{
+  var_dump($_POST);
+}
+if(isset($_GET))
+{
+  var_dump($_GET);
+}
+ ?>
