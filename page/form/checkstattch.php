@@ -1,4 +1,4 @@
-<?php
+ <?php
   session_start();
  ?>
  <html>
@@ -218,7 +218,7 @@ a[disabled="disabled"] {
                         <?php if ($_SESSION['level'] > 4 ): ?>
                             <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
                         <?php endif; ?>
-                        <td>ควรเพิ่มกิรกรรมในส่วนของกระบวนวิชาสัมนา</td>
+                        <td>ควรเพิ่มกิจกรรมในส่วนของกระบวนวิชาสัมนา</td>
                       </tr>
                       <tr>
                         <?php if ($_SESSION['level'] > 4 ): ?>
