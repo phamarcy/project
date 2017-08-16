@@ -549,7 +549,6 @@ $(document).ready(function(){
 
   //radio
   $("input[name='EVALUATE_TYPE']").change(function(){
-    alert();
     if($(this).val()=="SU")
     {
       $('#CALCULATE_A_MIN').prop('disabled', true);
@@ -785,6 +784,17 @@ function other_type() {
 }
 
 
+function checkreq() {
+  if($("[required]").val()!=null && $("[required]").val()!="")
+  {
+    alert('บันทึกข้อมูลสำเร็จ');
+    submitfunc();
+  }
+  else {
+    alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+  }
+}
+
 </script>
 </header>
 <body class="mybox">
@@ -820,7 +830,7 @@ function other_type() {
   </center>
 </div>
 
-<form data-toggle="validator" role="form" name="form1" method="post" onsubmit="submitfunc()">
+<form data-toggle="validator" role="form" name="form1" method="post">
     <ol>
       <br>
       <li style="font-size: 14px">
@@ -1469,7 +1479,7 @@ function other_type() {
     </div>
     <br><br>
     <div align="center">
-      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
+      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq();" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" value="รีเซ็ตข้อมูล">
     </div>
