@@ -33,16 +33,16 @@ session_start();
     <title></title>
   </head>
   <body>
-  <h3 class="page-header" style="margin-bottom: 0px;"><center>จัดการกระบวนวิชา</center></h3>
+  <h3 class="page-header" style="margin-bottom: 0px;"><center><b>จัดการกระบวนวิชา</b></center></h3>
     <div class="container" style="margin-top:30px">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h4><b>ภาคการศึกษาที่ 1 ปีการศึกษา 2560 ภาควิชาบริบาลเภสัชกรรม</b></h4>
+          <h5><b>ภาคการศึกษาที่ 1 ปีการศึกษา 2560 ภาควิชาบริบาลเภสัชกรรม</b></h5>
         </div>
         <div class="panel-body">
           <div class="panel panel-warning">
             <div class="panel-heading">
-                เพิ่มกระบวนวิชา
+                <h5><b>เพิ่มกระบวนวิชา</b></h5>
             </div>
             <div class="panel-body">
               <div class="form-inline">
@@ -55,10 +55,10 @@ session_start();
           </div>
           <div class="panel panel-info">
             <div class="panel-heading">
-              <b>กระบวนวิชาที่สังกัดในภาควิชา</b>
+              <h5><b>กระบวนวิชาที่สังกัดในภาควิชา</b></h5>
             </div>
             <div class="panel-body">
-              <table class="table table-hover">
+              <table class="table table-hover" style="font-size:14px">
                 <col width="130">
                 <col width="80">
                 <thead>
