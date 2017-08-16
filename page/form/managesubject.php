@@ -37,7 +37,7 @@ session_start();
     <div class="container" style="margin-top:30px">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <b>ภาคการศึกษาที่ 1 ปีการศึกษา 2560 ภาควิชาบริบาลเภสัชกรรม</b>
+          <h4><b>ภาคการศึกษาที่ 1 ปีการศึกษา 2560 ภาควิชาบริบาลเภสัชกรรม</b></h4>
         </div>
         <div class="panel-body">
           <div class="panel panel-warning">

@@ -71,7 +71,7 @@ else
 				?>
 					<div class="well">
 						<center><h4><b> ภาคเรียนที่ 1 ปีการศึกษา 2560 </b></h4></center>
-						<h4> รายวิชาที่รับผิดชอบ </h4><br>
+						<h5><b> รายวิชาที่รับผิดชอบ </b></h5><br>
 						<?php for($i=0;$i<count($data);$i++)
 						{
 
@@ -83,25 +83,25 @@ else
 												</div>
 										</div>';
 								echo '<div id="'.$i.'" class="panel-collapse collapse">
-										<div class="panel-body" >';
+										<div class="panel-body" style="font-size: 14px;">';
 								for($j=0;$j<count($data[$i]['course']);$j++)
 								{
-									echo '<div class="fa fa-circle"> '.$data[$i]['course'][$j]['id'].'	'.$data[$i]['course'][$j]['name'].' </div><br><br>';
+									echo '<div class="fa fa-circle"></div> '.$data[$i]['course'][$j]['id'].'	'.$data[$i]['course'][$j]['name'].'<br><br>';
 								}
 								echo '	</div>
 											</div>
 									</div>';
 						}
 						?>
-						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับกรอกข้อมูลกระบวนวิชา <?php echo $deadline['edit']['day'].' '.$deadline['edit']['month'].' '.$deadline['edit']['year']; ?> </b></div>
+						<div class="glyphicon glyphicon-alert" style="color: red;"></div><b style="color: red;"> วันสุดท้ายสำหรับกรอกข้อมูลกระบวนวิชา <?php echo $deadline['edit']['day'].' '.$deadline['edit']['month'].' '.$deadline['edit']['year']; ?> </b>
 						<br>
 		<?php	}
 					if($_SESSION['level'] == 4 || $_SESSION['level'] == 5) {  ?>
-						<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับประเมิณกระบวนวิชา <?php echo $deadline['con']['day'].' '.$deadline['con']['month'].' '.$deadline['con']['year']; ?> </b></div>
+						<div class="glyphicon glyphicon-alert" style="color: red;"></div><b style="color: red;"> วันสุดท้ายสำหรับประเมิณกระบวนวิชา <?php echo $deadline['con']['day'].' '.$deadline['con']['month'].' '.$deadline['con']['year']; ?> </b>
 						<?php }
 						else if($_SESSION['level'] == 6)
 						{ ?>
-							<div class="glyphicon glyphicon-alert" style="color: red;"><b> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline['approve']['day'].' '.$deadline['approve']['month'].' '.$deadline['approve']['year']; ?> </b></div>
+							<div class="glyphicon glyphicon-alert" style="color: red;"></div><b style="color: red;"> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline['approve']['day'].' '.$deadline['approve']['month'].' '.$deadline['approve']['year']; ?> </b>
 					<?php	} ?>
 			</div>
 		</div>
