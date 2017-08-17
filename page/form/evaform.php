@@ -52,6 +52,10 @@
 
   .no-gutter > [class*="col-"]{
   }
+
+  .floatrm {
+    float: none !important;
+  }
   </style>
 
 <script id="contentScript">
@@ -552,14 +556,16 @@ $(document).ready(function(){
     if($(this).val()=="SU")
     {
       $('.atof').prop('disabled',true);
+      $('.atof').prop('required',false);
       $('.stou').prop('required',true);
       $('.stou').prop('disabled',false);
     }
     else if($(this).val()=="AF")
     {
       $('.atof').prop('disabled',false);
-      $('.stou').prop('disabled',true);
       $('.atof').prop('required',true);
+      $('.stou').prop('disabled',true);
+      $('.stou').prop('required',false);
     }
     });
 
@@ -568,18 +574,22 @@ $(document).ready(function(){
       {
         $('.atof').prop('disabled',true);
         $('.stou').prop('disabled',true);
+        $('.atof').prop('required',false);
+        $('.stou').prop('required',false);
       }
       else if ($(this).val()=="CRITERIA" && $("input[name='EVALUATE_TYPE']:checked").val()=="SU")
       {
         $('.atof').prop('disabled',true);
+        $('.atof').prop('required',false);
         $('.stou').prop('required',true);
         $('.stou').prop('disabled',false);
       }
       else if ($(this).val()=="CRITERIA" && $("input[name='EVALUATE_TYPE']:checked").val()=="AF")
       {
         $('.atof').prop('disabled',false);
-        $('.stou').prop('disabled',true);
         $('.atof').prop('required',true);
+        $('.stou').prop('disabled',true);
+        $('.stou').prop('required',false);
       }
     });
 
@@ -690,6 +700,7 @@ function checkreq() {
   }
   else {
     alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+    return false;
   }
 }
 
@@ -707,11 +718,11 @@ function confreset() {
 
     <form data-toggle="validator" role="form">
       <div class="form-inline" style="font-size:16px;">
-                <div class="form-group">
+                <div class="form-group ">
                   รหัสกระบวนวิชา
                    <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required >
                 </div>
-               <div class="form-group">
+               <div class="form-group ">
                   ภาคการศึกษา
                    <select class="form-control required" id="semester" style="width: 70px;" id="select" required >
                       <option value="">--</option>
@@ -719,12 +730,13 @@ function confreset() {
                       <option value="2">2</option>
                       <option value="3">3</option>
                    </select>
-               </div>
-               <div class="form-group">
+                  </div>
+               <div class="form-group ">
                  ปีการศึกษา
-                 <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4"  pattern=".{4,4}" required>
+                 <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4"  pattern=".{4,4}" required >
                </div>
-              <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
+               <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
+
        </div>
     </form>
 
@@ -742,7 +754,7 @@ function confreset() {
           <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID" id="COURSE_ID"   maxlength="6" required pattern=".{6,6}" >
           </div>
           <div class="form-group">
-            &nbsp;ตอนที่ &nbsp;<input style="width: 70px;"type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="2" required pattern=".{2,2}" >
+            &nbsp;ตอนที่ &nbsp;<input style="width: 70px;"type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="2" required pattern=".{1,2}" >
           </div>
           <div class="form-group"><div class="radio">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE1" value="NORMAL" required>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
