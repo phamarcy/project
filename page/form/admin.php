@@ -54,7 +54,7 @@
       var formData = {};
       var error = 0;
       var loading_pic = '../../application/picture/loading_icon.gif';
-      var url = '../../application/test_data.php';
+      var url = '../../application/admin/update_config.php';
       formData['config_type'] = config_name;
       $(form).find("#warning").hide();
       $(form).find("input").each(function(index, node)
@@ -92,18 +92,17 @@
             $(form).find("#loading").attr("src",'');
             $(form).find("#warning").html("");
             console.log(data);
-            // var result = JSON.parse(data);
-            // if (typeof result.success === 'undefined' || result.success === null ) {
-            //     alert(result.error);
-            // }
-            // else {
-            //   alert(result.success);
-            //   reset_object(form);
-            //   lock(form,true);
-            // }
-            $("input").prop("disabled",true);
-            $("select").prop("disabled",true);
-          $(form).find("#warning").css("color","green").html("บันทึกสำเร็จ").fadeIn().delay(1500).fadeOut();
+            var result = JSON.parse(data);
+            if (typeof result.success === 'undefined' || result.success === null ) {
+              $(form).find("#warning").css("color","green").html(result.error).fadeIn().delay(1500).fadeOut();
+            }
+            else {
+
+              $("input").prop("disabled",true);
+              $("select").prop("disabled",true);
+            $(form).find("#warning").css("color","green").html(result.success).fadeIn().delay(1500).fadeOut();
+            }
+
         }).fail(function() {
           $(form).find("#warning").html("");
           alert("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่");
