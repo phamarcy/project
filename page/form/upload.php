@@ -15,9 +15,10 @@
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../dist/css/bootstrap_file_field.css" rel="stylesheet" type="text/css" >
 
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
@@ -47,24 +48,33 @@ div[class^="col-"] {
       <br>
       <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title">
+            <h5 class="panel-title">
                 <b>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</b>
-            </h4>
+            </h5>
           </div>
           <!-- .panel-heading -->
           <div class="panel-body">
             <center>
               <p class="text-danger">*หมายเหตุ ไฟล์ที่ต้องการอัปโหลดต้องเป็นไฟล์ Excel ที่มีนามสกุล .xls หรือ .xlsx </p>
-              <div class="form-inline">
-                <label >เลือกไฟล์</label>
-                <input class="form-control" type="file" name="file" accept=".xls, .xlsx" >
-                <button type="submit" name="button" class="btn btn-primary btn-outline">อัปโหลด</button>
-              </div>
+
+                <form role="form" data-toggle="validator">
+                    <div class="form-group">
+                      <div class="form-inline">
+                        <label >เลือกไฟล์</label>
+                        <input type="file" class="form-control" name="fileName" data-required-error="กรุณาเลือกไฟล์" accept=".xls,.xlsx" onchange="validate_fileupload(this);" required>
+                        <button type="submit" name="button" class="btn btn-primary btn-outline" onclick="return valid_form();">อัปโหลด</button>
+                      </div>
+                      <div class="help-block with-errors "  for="semester" style="font-size:12px;"></div>
+                    </div>
+
+                </form>
+
             </center>
           </div>
       </div>
     </div>
 </div>
+<script type="text/javascript" src="../dist/js/bootstrap_file_field.js"></script>
 
 </body>
 

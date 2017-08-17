@@ -96,10 +96,10 @@ a[disabled="disabled"] {
   <div class="panel-group" id="accordion0">
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title">
+        <h5 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
           <i class="fa fa-search fa-fw"></i><b> รายชื่อกระบวนวิชา</b> ภาคการศึกษาที่ 1 ปีการศึกษา 2560</a>
-        </h3>
+        </h5>
       </div>
       <div id="collapse1" class="panel-collapse collapse in">
         <div class="panel-body" style="font-size:14px;">

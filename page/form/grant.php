@@ -51,9 +51,9 @@
    </div>
    <div class="panel panel-default">
        <div class="panel-heading">
-         <h4 class="panel-title">
+         <h5 class="panel-title">
              <b>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</b>
-         </h4>
+         </h5>
        </div>
        <!-- .panel-heading -->
        <div class="panel-body">
@@ -83,7 +83,7 @@
            </div>
          </div>
          <div class="panel panel-warning">
-           <div class="panel-heading" style="padding: 0px 0px; padding-left: 10px;">
+           <div class="panel-heading" >
             ค้นหาชื่อผู้ใช้เพื่อมอบอำนาจ
            </div>
            <div class="panel-body" style="font-size: 16px;">

@@ -82,13 +82,13 @@ div[class^="col-"] {
 
       <div class="panel panel-default">
                         <div class="panel-heading">
-                          <h4 class="panel-title">
+                          <h5 class="panel-title">
                               <b>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</b>
-                          </h4>
+                          </h5>
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
-                          <h4><b>หมายเหตุ</b></h4>
+                          <h5><b>หมายเหตุ</b></h5>
                             <ol style="font-size:16px;">
                                 <li>Course Syllabus (Course)</li>
                                 <li>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา (Evaluate)</li>
@@ -155,7 +155,7 @@ div[class^="col-"] {
                                                                         <div class="modal-content">
                                                                           <div class="modal-header">
                                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
                                                                           </div>
                                                                           <div class="modal-body">
                                                                             <div class="row">
@@ -237,7 +237,7 @@ div[class^="col-"] {
                                                                         <div class="modal-content">
                                                                           <div class="modal-header">
                                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
                                                                           </div>
                                                                           <div class="modal-body">
                                                                             <div class="row">
@@ -313,7 +313,7 @@ div[class^="col-"] {
                                                                         <div class="modal-content">
                                                                           <div class="modal-header">
                                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
                                                                           </div>
                                                                           <div class="modal-body">
                                                                             <div class="row">
@@ -365,7 +365,7 @@ div[class^="col-"] {
                                 <div class="panel panel-success">
                                     <div class="panel-heading">
                                         <div class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">ผ่ากการประเมิน</a>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">ผ่านการประเมิน</a>
                                         </div>
                                     </div>
                                     <div id="collapseTwo" class="panel-collapse collapse">
@@ -419,7 +419,7 @@ div[class^="col-"] {
                                                                         <div class="modal-content">
                                                                           <div class="modal-header">
                                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
                                                                           </div>
                                                                           <div class="modal-body">
                                                                             <div class="row">
@@ -494,7 +494,7 @@ div[class^="col-"] {
                                                                         <div class="modal-content">
                                                                           <div class="modal-header">
                                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
                                                                           </div>
                                                                           <div class="modal-body">
                                                                             <div class="row">
@@ -569,7 +569,7 @@ div[class^="col-"] {
                                                                         <div class="modal-content">
                                                                           <div class="modal-header">
                                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
                                                                           </div>
                                                                           <div class="modal-body">
                                                                             <div class="row">
@@ -674,7 +674,7 @@ div[class^="col-"] {
                                                                         <div class="modal-content">
                                                                           <div class="modal-header">
                                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
                                                                           </div>
                                                                           <div class="modal-body">
                                                                             <div class="row">
@@ -751,7 +751,7 @@ div[class^="col-"] {
                                                                         <div class="modal-content">
                                                                           <div class="modal-header">
                                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
                                                                           </div>
                                                                           <div class="modal-body">
                                                                             <div class="row">
@@ -827,7 +827,7 @@ div[class^="col-"] {
                                                                         <div class="modal-content">
                                                                           <div class="modal-header">
                                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h4 class="modal-title">คอมเม้นท์</h4>
+                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
                                                                           </div>
                                                                           <div class="modal-body">
                                                                             <div class="row">
