@@ -1,0 +1,15 @@
+11:12:08 am | Query error : 
+11:12:08 am | Query error : 
+11:12:37 am | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT LAST_INSERT_ID()' at line 1
+11:14:36 am | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT LAST_INSERT_ID()' at line 1
+11:50:07 am | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT LAST_INSERT_ID()' at line 2
+11:50:49 am | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT LAST_INSERT_ID()' at line 3
+03:07:57 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''1','2017-08-16','2017-08-19')
+    ON DUPLICATE KEY UPDATE `open_date` = '2017-' at line 2
+03:08:02 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''1','2017-08-16','2017-08-19')
+    ON DUPLICATE KEY UPDATE `open_date` = '2017-' at line 2
+03:10:06 pm | Query error : Unknown column 'deadline_type' in 'where clause'
+03:10:07 pm | Query error : Unknown column 'deadline_type' in 'where clause'
+03:10:08 pm | Query error : Unknown column 'deadline_type' in 'where clause'
+03:10:34 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''1','2017-08-16','2017-08-19')
+    ON DUPLICATE KEY UPDATE `open_date` = '2017-' at line 2

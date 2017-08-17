@@ -17,8 +17,8 @@ class Database
 	    {
 	    	$this->log->Write("Connection to database failed: " . $this->connection->connect_error);
 	    	die("Connection failed: " . $this->connection->connect_error);
-		}
-
+			}
+			mysqli_set_charset($this->connection,"utf8");
     }
 
 		public function Change_DB($DB_NAME)
@@ -59,7 +59,7 @@ class Database
 		{
 			echo $this->connection->connect_error;
 			$this->log->Write("Query error : " . mysqli_error($this->connection));
-	    	return false;
+	    return false;
 		}
 
     }

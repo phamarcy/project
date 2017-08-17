@@ -12,7 +12,6 @@ Class Deadline
 
   function __construct()
   {
-      $this->DB = new Database();
       $this->LOG = new Log();
   }
 //Search all data from database
@@ -31,8 +30,12 @@ Class Deadline
       {
         $type = 3;
       }
-      $sql = "SELECT * FROM `semester` WHERE `deadline_type` = ".$type;
+      $this->DB = new Database();
+      $sql = "SELECT s.`semester_num`,s.`year`,d.`last_date`,d.`open_date`
+        FROM `deadline` d,`semester` s
+       WHERE d.`semester_id` = s.`semester_id` and d.`deadline_type` = ".$type;
       $result = $this->DB->Query($sql);
+      $this->Close_connection();
       if($result != null)
       {
         return $result;
@@ -64,10 +67,13 @@ Class Deadline
       $return['error'] = 'Update failed, Invalid type';
       return $return;
     }
-    $sql = "INSERT INTO `semester` ( `semester_num`, `year`, `deadline_type`, `open_date`, `last_date`)
-    VALUES ( '".$data['semester']."', '".$data['year']."', '".$type."', '".$data['opendate']."', '".$data['lastdate']."')
+    $semester_id = $this->Get_Semester_id($data['semester'],$data['year']);
+    $this->DB = new Database();
+    $sql = "INSERT INTO `deadline`(`semester_id`, `deadline_type`, `open_date`, `last_date`)
+    VALUES (".$semester_id.",'".$type."','".$data['opendate']."','".$data['lastdate']."')
     ON DUPLICATE KEY UPDATE `open_date` = '".$data['opendate']."', last_date = '".$data['lastdate']."'";
     $result = $this->DB->Insert_Update_Delete($sql);
+    $this->Close_connection();
     if($result == true)
     {
       $return['success'] = 'บันทึกเรียบร้อยแล้ว';
@@ -81,7 +87,66 @@ Class Deadline
 
   }
 
-  public function Close_connection()
+  public function Get_Semester_id($semester,$year)
+  {
+    $this->DB = new Database();
+    //Search semester id form semester table
+    $sql = "SELECT `semester_id` FROM `semester` WHERE `semester_num` = ".$semester." AND `year` = '".$year."'";
+    $semester_id = $this->DB->Query($sql);
+
+
+    if($semester_id == null) //if not exist, insert new semester
+    {
+      $sql = "INSERT INTO `semester` (`semester_num`, `year`) VALUES (".$semester.",'".$year."');";
+      $result = $this->DB->Insert_Update_Delete($sql);
+      if($result)
+      {
+        $sql = "SELECT LAST_INSERT_ID();";
+        $result = $this->DB->Query($sql);
+        $this->Close_connection();
+        if($result)
+        {
+          $semester_id = $result[0]['LAST_INSERT_ID()'];
+          return $semester_id;
+        }
+        else
+        {
+          $this->LOG->Write("Error : Get semester id failed");
+          return $false;
+        }
+      }
+      else {
+        $this->LOG->Write("Error : insert new semester failed");
+        return $false;
+      }
+    }
+    else //if exist search semester id
+    {
+        $sql = "SELECT `semester_id` FROM `semester` WHERE `semester_num` = ".$semester." AND `year` = '".$year."'";
+        $result = $this->DB->Query($sql);
+        $this->Close_connection();
+        if($result)
+        {
+          $semester_id = $result[0]['semester_id'];
+          return $semester_id;
+        }
+        else
+        {
+          $this->LOG->Write("Error : search semester id failed");
+          return false;
+        }
+    }
+
+  }
+  public function Get_Current_Semester()
+  {
+    $data['id'] = 31;
+    $data['semester'] = '1';
+    $data['year'] = '2560';
+    return $data;
+  }
+
+  private function Close_connection()
   {
     $this->DB->Close_connection();
   }
