@@ -399,7 +399,6 @@ function submitfunc(casesubmit) {
     train_score = ts;*/
   }
 
-
   var data = {
     'COURSE_ID': document.getElementById("COURSE_ID").value,
     'SECTION' : document.getElementById("SECTION").value,
@@ -761,7 +760,7 @@ function confreset() {
 </div>
 
 <div class="panel panel-default">
-<form data-toggle="validator" role="form" name="form1" method="post">
+<form data-toggle="validator" role="form" name="form1" id="form1" method="post">
     <ol>
       <br>
       <li style="font-size: 14px">
