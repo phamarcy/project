@@ -57,12 +57,13 @@ div[class^="col-"] {
             <center>
               <p class="text-danger">*หมายเหตุ ไฟล์ที่ต้องการอัปโหลดต้องเป็นไฟล์ Excel ที่มีนามสกุล .xls หรือ .xlsx </p>
 
-                <form role="form" data-toggle="validator">
+                <form id="data" role="form" data-toggle="validator">
                     <div class="form-group">
                       <div class="form-inline">
                         <label >เลือกไฟล์</label>
-                        <input type="file" class="form-control" name="fileName" data-required-error="กรุณาเลือกไฟล์" accept=".xls,.xlsx"  required>
-                        <button type="submit" name="button" class="btn btn-primary btn-outline" onclick="return valid_form();">อัปโหลด</button>
+                        <input type="file" class="form-control" id="filexcel" name="fileexcel" data-required-error="กรุณาเลือกไฟล์" accept=".xls,.xlsx"  required>
+                        <input type="text" name="name" id="name" value="">
+                        <button type="submit" id="btnSend" name="button" class="btn btn-primary btn-outline" >อัปโหลด</button>
                       </div>
                     </div>
 
@@ -74,35 +75,24 @@ div[class^="col-"] {
     </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function() {
-    $('form').submit(function(event) { //Trigger on form submit
-        $('#name + .throw_error').empty(); //Clear the messages first
-        $('#success').empty();
+$("form#data").submit(function(){
+    //var file = document.forms['data']['filexcel'].files[0];
+    var formData = new FormData(this);
 
-        //Validate fields if required using jQuery
-
-        var postForm = { //Fetch form data
-            'name'     : $('input[name=name]').val() //Store name fields value
-        };
-
-        $.ajax({ //Process the form using $.ajax()
-            type      : 'POST', //Method type
-            url       : '../../application/test_data.php', //Your form processing file URL
-            data      : postForm, //Forms name
-            dataType  : 'json',
-            success   : function(data) {
-                            if (!data.success) { //If fails
-                                if (data.errors.name) { //Returned if any error from process.php
-                                    $('.throw_error').fadeIn(1000).html(data.errors.name); //Throw relevant error
-                                }
-                            }
-                            else {
-                                    $('#success').fadeIn(1000).append('<p>' + data.posted + '</p>'); //If successful, than throw a success message
-                                }
-                            }
-        });
-        event.preventDefault(); //Prevent the default submit
+    $.ajax({
+        url: '../../application/test_data.php',
+        type: 'POST',
+        data: formData,
+        async: false,
+        success: function (data) {
+            console.log(data);
+        },
+        cache: false,
+        contentType: false,
+        processData: false
     });
+
+    return false;
 });
 </script>
 </body>

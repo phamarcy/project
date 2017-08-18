@@ -7,4 +7,8 @@ if(isset($_GET))
 {
   var_dump($_GET);
 }
+if(isset($_FILES))
+{
+  var_dump($_FILES);
+}
  ?>
