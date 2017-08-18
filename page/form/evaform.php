@@ -238,7 +238,7 @@ function finexam_hour_lab() {
   }
 }
 
-function submitfunc() {
+function submitfunc(casesubmit) {
 
   //Loop for pack MEASURE
   var count = $('#meastable tr').length;
@@ -498,6 +498,7 @@ function submitfunc() {
       }
     },
     'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,
+    'SUBMIT' : casesubmit
   };
 
   //alert(JSON.stringify(data));
@@ -692,22 +693,21 @@ function other_type() {
 }
 
 
-function checkreq() {
+function checkreq(casesubmit) {
   if($("[required]").val()!=null && $("[required]").val()!="")
   {
-    alert('บันทึกข้อมูลสำเร็จ');
-    submitfunc();
+    //alert('บันทึกข้อมูลสำเร็จ');
+    submitfunc(casesubmit);
   }
   else {
+
     alert('กรุณากรอกข้อมูลให้ครบถ้วน');
     return false;
   }
 }
 
 function checktran() {
-  if($("#inputyear").val()!=null && $("#inputyear").val()!="" &&
-      $("#semester").val()!=null && $("#semester").val()!="" &&
-    $("#inputsubject").val()!=null && $("inputsubject").val()!="")
+  if($("#inputyear").val()!=null && $("#inputyear").val()!="" && $("#semester").val()!=null && $("#semester").val()!="" && $("#inputsubject").val()!=null && $("inputsubject").val()!="")
   {
     alert('ตรวจพบข้อมูล');
   }
@@ -1408,8 +1408,8 @@ function confreset() {
     </ol>
     <br><br>
     <div align="center">
-      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq();" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
-      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
+      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq('1')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2')"> &nbsp;
       <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>
 </form>
