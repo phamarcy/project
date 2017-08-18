@@ -583,8 +583,13 @@ $(document).ready(function(){
         $('.stou').prop('disabled',true);
         $('.atof').prop('required',false);
         $('.stou').prop('required',false);
+        $('#EVALUATE1').prop('required',false);
+        $('#EVALUATE2').prop('required',false);
+        $('#EVALUATE1').prop('disabled',true);
+        $('#EVALUATE2').prop('disabled',true);
+        $('.opacity01').css("opacity","0.1");
       }
-      else if ($(this).val()=="CRITERIA" && $("input[name='EVALUATE_TYPE']:checked").val()=="SU")
+      else if ($(this).val()=="CRITERIA")
       {
         $('.atof').val("");
         $('.stou').val("");
@@ -592,15 +597,13 @@ $(document).ready(function(){
         $('.atof').prop('required',false);
         $('.stou').prop('required',true);
         $('.stou').prop('disabled',false);
-      }
-      else if ($(this).val()=="CRITERIA" && $("input[name='EVALUATE_TYPE']:checked").val()=="AF")
-      {
-        $('.atof').val("");
-        $('.stou').val("");
-        $('.atof').prop('disabled',false);
-        $('.atof').prop('required',true);
-        $('.stou').prop('disabled',true);
-        $('.stou').prop('required',false);
+        $('#EVALUATE1').prop('required',true);
+        $('#EVALUATE2').prop('required',true);
+        $('#EVALUATE1').prop('disabled',false);
+        $('#EVALUATE2').prop('disabled',false);
+        $('.opacity01').css("opacity","1");
+        document.getElementById("EVALUATE1").checked = false;
+        document.getElementById("EVALUATE2").checked = false;
       }
     });
 
@@ -1309,19 +1312,20 @@ function confreset() {
 
           <br>
           <li style="font-size: 14px;">
-            <b>การประเมินผล</b>
+            <b>วิธีการตัดเกรด</b>
             <br>
             <div class="form-inline">
-              <div class="form-group"><div class="radio">
-                <input type="radio" name="EVALUATE_TYPE" id="EVALUATE1" value="AF" required> ให้ลำดับขั้น A, B+ ,B, C+, C, D+, D, F <br>
-                <input type="radio" name="EVALUATE_TYPE" id="EVALUATE2" value="SU"> ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว)
-              </div></div>
-              <br><b>วิธีการตัดเกรด</b><br>
               <div class="form-group"><div class="radio">
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม <br>
               <div id="explain"> <textarea class="form-control" name="EXPLAINATION" id="EXPLAINATION" placeholder="โปรดระบุ" rows="4" cols="125"></textarea> <br></div>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE2" value="CRITERIA"> อิงเกณฑ์ &nbsp;&nbsp;ได้กำหนดเกณฑ์ดังต่อไปนี้
             </div></div>
+              <br><b class="opacity01">การประเมินผล</b><br>
+              <div class="form-group opacity01"><div class="radio">
+                <input type="radio" name="EVALUATE_TYPE" id="EVALUATE1" value="AF" required> ให้ลำดับขั้น A, B+ ,B, C+, C, D+, D, F <br>
+                <input type="radio" name="EVALUATE_TYPE" id="EVALUATE2" value="SU"> ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว)
+              </div></div>
+
           </div>
             <br>
             <div class="row">
