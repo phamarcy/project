@@ -704,9 +704,24 @@ function checkreq() {
   }
 }
 
+function checktran() {
+  if($("#inputyear").val()!=null && $("#inputyear").val()!="" &&
+      $("#semester").val()!=null && $("#semester").val()!="" &&
+    $("#inputsubject").val()!=null && $("inputsubject").val()!="")
+  {
+    alert('ตรวจพบข้อมูล');
+  }
+  else {
+    alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+    return false;
+  }
+}
+
 function confreset() {
     confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
 }
+
+
 
 </script>
 </header>
@@ -720,7 +735,7 @@ function confreset() {
       <div class="form-inline" style="font-size:16px;">
                 <div class="form-group ">
                   รหัสกระบวนวิชา
-                   <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required >
+                   <input type="text" class="form-control numonly" id="inputsubject" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required >
                 </div>
                <div class="form-group ">
                   ภาคการศึกษา
@@ -735,7 +750,7 @@ function confreset() {
                  ปีการศึกษา
                  <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4"  pattern=".{4,4}" required >
                </div>
-               <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
+               <button type="submit" class="btn btn-outline btn-primary" onclick="checktran();">ค้นหา</button>
 
        </div>
     </form>

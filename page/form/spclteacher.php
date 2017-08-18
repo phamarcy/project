@@ -278,6 +278,37 @@ function lastcal() {
 
   }
 
+  function checkreq() {
+    if($("[required]").val()!=null && $("[required]").val()!="")
+    {
+      alert('บันทึกข้อมูลสำเร็จ');
+      submitfunc();
+    }
+    else {
+      alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+      return false;
+    }
+  }
+
+  function checktran() {
+    if($("#inputfname").val()!=null && $("#inputfname").val()!="" &&
+      $("#inputlname").val()!=null && $("#inputlname").val()!="" &&
+      $("#inputyear").val()!=null && $("#inputyear").val()!="" &&
+      $("#semester").val()!=null && $("#semester").val()!="" &&
+      $("#inputsubject").val()!=null && $("inputsubject").val()!="")
+    {
+      alert('ตรวจพบข้อมูล');
+    }
+    else {
+      alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+      return false;
+    }
+  }
+
+  function confreset() {
+      confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
+  }
+
   function confreset() {
       confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
   }
@@ -302,7 +333,7 @@ function lastcal() {
                   </div>
                   <div class="form-group">
                     รหัสกระบวนวิชา
-                     <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 204111" maxlength="6"  required >
+                     <input type="text" class="form-control numonly" id="inputsubject" size="7" placeholder="e.g. 204111" maxlength="6"  required >
                   </div>
                  <div class="form-group">
                     ภาคการศึกษา
@@ -317,7 +348,7 @@ function lastcal() {
                    ปีการศึกษา
                    <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4" required >
                  </div>
-                <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
+                <button type="submit" class="btn btn-outline btn-primary" onclick="checktran();">ค้นหา</button>
          </div>
          </div>
       </form>
@@ -362,33 +393,33 @@ function lastcal() {
           <br>
           <div class="form-inline">
             <li>สถานที่ทำงาน &nbsp;&nbsp;<br />
-              <div class="form-group">บ้านเลขที &nbsp;&nbsp;<input type="text" class="form-control" id="wknumber" size="5" maxlength="15" ></div>&nbsp;
-              <div class="form-group">ชื่อหมู่บ้าน &nbsp;&nbsp;<input type="text" class="form-control" id="wksubad" size="20" maxlength="100" ></div>&nbsp;
-              <div class="form-group">หมู่ที่ &nbsp;&nbsp;<input type="text" class="form-control" id="wksubadnum" size="5" maxlength="3" ></div>&nbsp; <br>
-              <div class="form-group">ถนน &nbsp;&nbsp;<input type="text" class="form-control" id="wkroad" size="20" maxlength="100" ></div>&nbsp;
+              <div class="form-group">บ้านเลขที &nbsp;&nbsp;<input type="text" class="form-control" id="wknumber" size="5" maxlength="15" required ></div>&nbsp;
+              <div class="form-group">ชื่อหมู่บ้าน &nbsp;&nbsp;<input type="text" class="form-control" id="wksubad" size="20" maxlength="100" required></div>&nbsp;
+              <div class="form-group">หมู่ที่ &nbsp;&nbsp;<input type="text" class="form-control" id="wksubadnum" size="5" maxlength="3" required></div>&nbsp; <br>
+              <div class="form-group">ถนน &nbsp;&nbsp;<input type="text" class="form-control" id="wkroad" size="20" maxlength="100" required></div>&nbsp;
               <div class="form-group">ซอย &nbsp;&nbsp;<input type="text" class="form-control" id="wksoi" size="20" maxlength="100" ></div>&nbsp; <br>
               <div class="form-group">ตึก/อาคาร &nbsp;&nbsp;<input type="text" class="form-control" id="wkbuild" size="20" maxlength="100" ></div>&nbsp;
               <div class="form-group">ชั้น &nbsp;&nbsp;<input type="text" class="form-control" id="wkfloor" size="20" maxlength="3" ></div>&nbsp; <br>
-              <div class="form-group">ตำบล &nbsp;&nbsp;<input type="text" class="form-control" id="wkdistrict1" size="20" maxlength="100" ></div>&nbsp;
-              <div class="form-group">อำเภอ &nbsp;&nbsp;<input type="text" class="form-control" id="wkdistrict2" size="20" maxlength="100" ></div>&nbsp;<br>
-              <div class="form-group">จังหวัด &nbsp;&nbsp;<input type="text" class="form-control" id="wkprovince" size="20" maxlength="100" ></div>&nbsp;
-              <div class="form-group">รหัสไปรษณีย์ &nbsp;&nbsp;<input type="text" class="form-control" id="wkcode" size="6" maxlength="5" ></div>
+              <div class="form-group">ตำบล &nbsp;&nbsp;<input type="text" class="form-control" id="wkdistrict1" size="20" maxlength="100" required></div>&nbsp;
+              <div class="form-group">อำเภอ &nbsp;&nbsp;<input type="text" class="form-control" id="wkdistrict2" size="20" maxlength="100" requiredv></div>&nbsp;<br>
+              <div class="form-group">จังหวัด &nbsp;&nbsp;<input type="text" class="form-control" id="wkprovince" size="20" maxlength="100" required></div>&nbsp;
+              <div class="form-group">รหัสไปรษณีย์ &nbsp;&nbsp;<input type="text" class="form-control" id="wkcode" size="6" maxlength="5" required></div>
             </li>
           </div>
           <br>
           <div class="form-inline">
             <li>สถานที่ติดต่อ <br>
-              <div class="form-group">บ้านเลขที &nbsp;&nbsp;<input type="text" class="form-control" id="contnumber" size="5" maxlength="15" ></div>&nbsp;
-              <div class="form-group">ชื่อหมู่บ้าน &nbsp;&nbsp;<input type="text" class="form-control" id="contsubad" size="20" maxlength="100" ></div>&nbsp;
-              <div class="form-group">หมู่ที่ &nbsp;&nbsp;<input type="text" class="form-control" id="contsubadnum" size="5" maxlength="3" ></div>&nbsp; <br>
-              <div class="form-group">ถนน &nbsp;&nbsp;<input type="text" class="form-control" id="controad" size="20" maxlength="100" ></div>&nbsp;
+              <div class="form-group">บ้านเลขที &nbsp;&nbsp;<input type="text" class="form-control" id="contnumber" size="5" maxlength="15" required></div>&nbsp;
+              <div class="form-group">ชื่อหมู่บ้าน &nbsp;&nbsp;<input type="text" class="form-control" id="contsubad" size="20" maxlength="100" required></div>&nbsp;
+              <div class="form-group">หมู่ที่ &nbsp;&nbsp;<input type="text" class="form-control" id="contsubadnum" size="5" maxlength="3" required></div>&nbsp; <br>
+              <div class="form-group">ถนน &nbsp;&nbsp;<input type="text" class="form-control" id="controad" size="20" maxlength="100" required></div>&nbsp;
               <div class="form-group">ซอย &nbsp;&nbsp;<input type="text" class="form-control" id="contsoi" size="20" maxlength="100" ></div>&nbsp; <br>
               <div class="form-group">ตึก/อาคาร &nbsp;&nbsp;<input type="text" class="form-control" id="contbuild" size="20" maxlength="100" ></div>&nbsp;
               <div class="form-group">ชั้น &nbsp;&nbsp;<input type="text" class="form-control" id="contfloor" size="20" maxlength="3" ></div>&nbsp; <br>
-              <div class="form-group">ตำบล &nbsp;&nbsp;<input type="text" class="form-control" id="contdistrict1" size="20" maxlength="100" ></div>&nbsp;
-              <div class="form-group">อำเภอ &nbsp;&nbsp;<input type="text" class="form-control" id="contdistrict2" size="20" maxlength="100" ></div>&nbsp;<br>
-              <div class="form-group">จังหวัด &nbsp;&nbsp;<input type="text" class="form-control" id="contprovince" size="20" maxlength="100" ></div>&nbsp;
-              <div class="form-group">รหัสไปรษณีย์ &nbsp;&nbsp;<input type="text" class="form-control" id="contcode" size="6" maxlength="5" ></div>
+              <div class="form-group">ตำบล &nbsp;&nbsp;<input type="text" class="form-control" id="contdistrict1" size="20" maxlength="100" required></div>&nbsp;
+              <div class="form-group">อำเภอ &nbsp;&nbsp;<input type="text" class="form-control" id="contdistrict2" size="20" maxlength="100" required></div>&nbsp;<br>
+              <div class="form-group">จังหวัด &nbsp;&nbsp;<input type="text" class="form-control" id="contprovince" size="20" maxlength="100" required></div>&nbsp;
+              <div class="form-group">รหัสไปรษณีย์ &nbsp;&nbsp;<input type="text" class="form-control" id="contcode" size="6" maxlength="5" required></div>
             </li>
           </div>
           <br>
@@ -520,7 +551,7 @@ function lastcal() {
     <br>
     <br>
     <div align="center">
-      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล"> &nbsp;
+      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" onclick="checkreq();"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
       <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>
