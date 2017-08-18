@@ -13,7 +13,7 @@ class approval
   private $SEMESTER_ID;
   private $USER_LEVEL;
 
-  function __construct()
+  function __construct($level)
   {
     $this->LOG = new Log();
     $deadline = new Deadline();
@@ -21,6 +21,7 @@ class approval
     $this->SEMESTER_ID = $data['id'];
     $this->SEMESTER = $data['semester'];
     $this->YEAR = $data['year'];
+    $this->USER_LEVEL = $level;
   }
 
   public function Check_Status($course_id)
@@ -60,7 +61,17 @@ class approval
           {
             $data[$data_type]['comment'] = array();
           }
-          $comment_data['name'] = $result[$i]['teacher_id'];
+          $teacher_name = $this->Get_Name($result[$i]['teacher_id']);
+          if($teacher_name != false)
+          {
+              $comment_data['name'] = $teacher_name;
+          }
+          else
+          {
+              $comment_data['name'] = '-';
+              $this->LOG->Write('Note found teacher name in teacher id '.$result[$i]['teacher_id']);
+          }
+
           $comment_data['text'] = $result[$i]['comment'];
           array_push($data[$data_type]['comment'],$comment_data);
         }
@@ -133,6 +144,27 @@ class approval
         return false;
       }
   }
+
+  //search teacher prefix and name
+  private function Get_Name($teacher_id)
+  {
+    //search teacher data
+    $this->DB = new Database();
+    $this->DB->Change_DB('person');
+    $sql = "SELECT p.`name` as prefix ,s.`fname`,s.`lname` FROM `staff` s,`prefix` p WHERE s.`code` = '".$teacher_id."' AND s.`prefix_code` = p.`code` ";
+    $result = $this->DB->Query($sql);
+    $this->DB->Close_connection();
+    if($result)
+    {
+      $full_name = $result[0]['prefix']." ".$result[0]['fname']." ".$result[0]['lname'];
+      return $full_name;
+    }
+    else
+    {
+      return false;
+    }
+  }
+  //get approval data to approval page
   public function Get_Approval_data($teacher_id)
   {
 
