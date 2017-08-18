@@ -1,6 +1,11 @@
 <?php
+session_start();
+require_once(__DIR__.'/../class/approval.php');
 require_once(__DIR__.'/../class/curl.php');
-$curl = new CURL(null);
+$a = new approval($_SESSION['level']);
+echo $a->Get_Approval_data('E160020');
+die;
+$curl = new CURL();
 $url = $curl->GET_SERVER_URL();
 
 $semester = '2';

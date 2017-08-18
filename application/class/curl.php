@@ -10,20 +10,19 @@ class CURL
   private $DIR_NAME;
   private $URL;
   private $LOG;
-  function __construct($path)
+  function __construct()
   {
     $this->PROTOCOL = isset($_SERVER['HTTPS']) ? "https:" : "http:";
   	$this->DIR_NAME = dirname(dirname((dirname($_SERVER['REQUEST_URI']))));
-  	// $this->URL    = $this->PROTOCOL."//".$_SERVER['HTTP_HOST'].$this->DIR_NAME."/".$path;
-    $url = $this->GET_SERVER_URL();
-    $this->URL = $url."/".$path;
+    $this->URL = $this->GET_SERVER_URL();
     $this->LOG = new Log();
   }
-  public function Request($data)
+  public function Request($data,$path)
   {
+    $url = $this->URL."/".$path;
     $ch = curl_init();
     // set url
-    curl_setopt($ch, CURLOPT_URL, $this->URL);
+    curl_setopt($ch, CURLOPT_URL, $url);
     //return the transfer as a string
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     //set post data

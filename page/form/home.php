@@ -1,9 +1,10 @@
 <?php
 require_once(__DIR__.'/../../application/class/curl.php');
 session_start();
-$curl = new CURL("application/information/index.php");
+$information_url = "application/information/index.php";
+$curl = new CURL();
 $data['level'] = $_SESSION['level'];
-$result = $curl->Request($data);
+$result = $curl->Request($data,$information_url);
 if($result == false)
 {
 	die("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาติดต่อผู้ดูแลระบบ");

@@ -11,21 +11,39 @@ if(isset($_GET['type']) && isset($_GET['info']))
        $SPECIAL_ID = $_GET['id']; //instructor id
        $FILE_NAME = $PATH_FILE.$FILE_TYPE."/special_instructor/".$SPECIAL_ID.".pdf";
      }
-     else {
+     else
+     {
        error();
      }
 
    }
-   else
+   else if($INFORMATION_TYPE == 'evaluate')
    {
      if(isset($_GET['course']))
      {
        $FILE_COURSE = $_GET['course'];
        $FILE_NAME = $PATH_FILE.$FILE_TYPE."/".$INFORMATION_TYPE.'/'.$FILE_COURSE."_".$INFORMATION_TYPE.".pdf";
      }
-     else {
+     else
+     {
        error();
      }
+   }
+   else if($INFORMATION_TYPE == 'syllabus')
+   {
+     if(isset($_GET['course']))
+     {
+       $FILE_COURSE = $_GET['course'];
+       $FILE_NAME = $PATH_FILE."/".$INFORMATION_TYPE.'/'.$FILE_COURSE.".pdf";
+     }
+     else
+     {
+       error();
+     }
+   }
+   else
+   {
+     error();
    }
    header("Content-type: application/pdf");
    header("Content-Disposition: inline;");
