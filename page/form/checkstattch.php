@@ -101,8 +101,14 @@ a[disabled="disabled"] {
 <div class="container">
   <?php if (isset($_POST['subject'])) {
    $data= json_decode($var, true);
+   function get_data($word){
+      $data= json_decode($var, true);
+      $return=$data['data']['$word'];
+
+      echo "string";
+   }
    ?>
-   <?php data_course('semester'); ?>
+
 
   <div class="panel-group" id="accordion0">
     <div class="panel panel-info">
