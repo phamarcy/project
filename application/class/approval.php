@@ -42,6 +42,7 @@ class approval
     if($result != false)
     {
       $all_status = 5;
+      $data['course'] = $course_id;
       $data['semester'] = $this->SEMESTER;
       $data['year'] = $this->YEAR;
       $data['evaluate'] = array();
@@ -249,9 +250,15 @@ class approval
   {
     $course_id = '462452';
     $url = $this->CURL->GET_SERVER_URL();
-    $view_url = "/application/pdf/view.php";
+    $view_url = $url."/application/pdf/view.php";
     $return_url['evaluate'] = $view_url."?course=".$course_id."&type=".$type."&info=evaluate";
     $return_url['syllabus'] = $view_url."?course=".$course_id."&info=syllabus";
+    return $return_url;
+  }
+
+  public function Close_connection()
+  {
+    $this->DB->Close_connection();
   }
 }
 

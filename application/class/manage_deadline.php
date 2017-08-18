@@ -2,7 +2,7 @@
 
 // this class is use for manage deadline data
 // adiluck chooprateep adiluckyo@gmail.com
-
+require_once(__DIR__.'/../config/configuration_variable.php');
 require_once('Database.php');
 //require_once('Log.php');
 Class Deadline
@@ -140,13 +140,21 @@ Class Deadline
   }
   public function Get_Current_Semester()
   {
-    $data['id'] = 31;
-    $data['semester'] = '1';
-    $data['year'] = '2560';
+    global $CONFIG_PATH;
+    $system_path = $CONFIG_PATH."/system/";
+    $current_semester_path = $system_path."current_semester.txt";
+    $file = fopen($current_semester_path,"r");
+    $file_data = fread($file,filesize($current_semester_path));
+    $file_data = explode("/",$file_data);
+
+
+    $data['semester'] = $file_data[0];
+    $data['year'] = $file_data[1];
+    $data['id'] = $this->Get_Semester_id($data['semester'],$data['year']);
     return $data;
   }
 
-  private function Close_connection()
+  public function Close_connection()
   {
     $this->DB->Close_connection();
   }
