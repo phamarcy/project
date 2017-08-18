@@ -53,14 +53,14 @@ session_start();
           else
           {
               $("#course_id").css("border-color","red");
-              show_warning('กรุณากรอกข้อมูลให้ครบถ้วน');
+              show_warning('<div class="glyphicon glyphicon-alert" style="color: red;"></div> กรุณากรอกข้อมูลให้ถูกต้อง');
           }
 
         }
         else
         {
             $("#course_id").css("border-color","red");
-          show_warning('กรุณากรอกข้อมูลให้ครบถ้วน');
+          show_warning('<div class="glyphicon glyphicon-alert" style="color: red;"></div> กรุณากรอกข้อมูลให้ถูกต้อง');
         }
       });
       function show_warning(text)
