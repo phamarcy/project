@@ -1,9 +1,9 @@
  <?php
-  session_start();
-  require_once(__DIR__."/../../application/class/approval.php");
-  if (isset($_POST['subject'])) {
-    $approve = new approval($_SESSION['level']);
-    $var=$approve->Check_Status('204411');
+session_start();
+require_once(__DIR__."/../../application/class/approval.php");
+if (isset($_POST['subject'])) {
+  $approve = new approval($_SESSION['level']);
+  $var=$approve->Check_Status('204411');
   }
  ?>
  <html>
@@ -105,8 +105,9 @@ a[disabled="disabled"] {
       $data= json_decode($var, true);
       $return=$data['data']['$word'];
 
-      echo "string";
+      echo $return;
    }
+   get_data('semeter');
    ?>
 
 
