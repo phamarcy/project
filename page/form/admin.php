@@ -92,17 +92,23 @@
             $(form).find("#loading").attr("src",'');
             $(form).find("#warning").html("");
             console.log(data);
-            var result = JSON.parse(data);
-            if (typeof result.success === 'undefined' || result.success === null ) {
-              $(form).find("#warning").css("color","green").html(result.error).fadeIn().delay(1500).fadeOut();
+            try {
+                var result = JSON.parse(data);
+                if (typeof result.success === 'undefined' || result.success === null ) {
+                  if (typeof result.error === 'undefined' || result.error === null ) {
+                    $(form).find("#warning").css("color","red").html("ไม่สามารถส่งข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ").fadeIn().delay(1500).fadeOut();
+                  }else {
+                    $(form).find("#warning").css("color","red").html(result.error).fadeIn().delay(1500).fadeOut();
+                  }
+                }
+                else {
+                  $("input").prop("disabled",true);
+                  $("select").prop("disabled",true);
+                $(form).find("#warning").css("color","green").html(result.success).fadeIn().delay(1500).fadeOut();
+                }
+            } catch (e) {
+              $(form).find("#warning").css("color","red").html("ไม่สามารถส่งข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ").fadeIn().delay(1500).fadeOut();
             }
-            else {
-
-              $("input").prop("disabled",true);
-              $("select").prop("disabled",true);
-            $(form).find("#warning").css("color","green").html(result.success).fadeIn().delay(1500).fadeOut();
-            }
-
         }).fail(function() {
           $(form).find("#warning").html("");
           alert("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่");
