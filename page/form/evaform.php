@@ -508,30 +508,31 @@ function senddata(data,file_data)
 {
 
   prompt("data", data);
-  // file_data.append("data",data);
-  // var URL = '../../application/pdf/course_evaluate.php';
-  // $.ajax({
-  //               url: URL, // point to server-side PHP script
-  //               dataType: 'text',  // what to expect back from the PHP script, if anything
-  //               cache: false,
-  //               contentType: false,
-  //               processData: false,
-  //               data: file_data,
-  //               type: 'post',
-  //               success: function (result) {
-  //                    alert(result);
-  //               },
-  //               failure: function (result) {
-  //                    alert(result);
-  //               },
-  //               error: function (xhr, status, p3, p4) {
-  //                    var err = "Error " + " " + status + " " + p3 + " " + p4;
-  //                    if (xhr.responseText && xhr.responseText[0] == "{")
-  //                         err = JSON.parse(xhr.responseText).Message;
-  //                    console.log(err);
-  //               }
-  //    });
+   file_data.append("DATA",data);
+   var URL = '../../application/test_data.php';
+   $.ajax({
+                 url: URL,
+                 dataType: 'text',
+                 cache: false,
+                 contentType: false,
+                 processData: false,
+                 data: file_data,
+                 type: 'post',
+                 success: function (result) {
+                      alert(result);
+                 },
+                 failure: function (result) {
+                      alert(result);
+                 },
+                 error: function (xhr, status, p3, p4) {
+                      var err = "Error " + " " + status + " " + p3 + " " + p4;
+                      if (xhr.responseText && xhr.responseText[0] == "{")
+                           err = JSON.parse(xhr.responseText).Message;
+                      console.log(err);
+                 }
+      });
 }
+
 function getfile()
 {
   var file_data = $('#syllabus').prop('files')[0];
