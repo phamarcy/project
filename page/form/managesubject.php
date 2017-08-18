@@ -38,6 +38,38 @@ session_start();
     }
 
     </style>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $("#submit").click(function(){
+        var course_id = $("#course_id").val();
+        if($.isNumeric($('#course_id').val()))
+        {
+          if(course_id.length == 6)
+          {
+              $("#course_id").css("border-color","rgb(204, 204, 204)");
+              $("#warning").css("color","green").html('บันทึกสำเร็จ').delay(1500).fadeOut();
+              $("#course_id").val('');
+          }
+          else
+          {
+              $("#course_id").css("border-color","red");
+              show_warning('กรุณากรอกข้อมูลให้ครบถ้วน');
+          }
+
+        }
+        else
+        {
+            $("#course_id").css("border-color","red");
+          show_warning('กรุณากรอกข้อมูลให้ครบถ้วน');
+        }
+      });
+      function show_warning(text)
+      {
+        $("#warning").css("color","red").html(text).fadeIn();
+      }
+    });
+
+    </script>
   </head>
   <body>
   <h3 class="page-header" style="margin-bottom: 0px;"><center><b>จัดการกระบวนวิชา</b></center></h3>
@@ -54,8 +86,9 @@ session_start();
             <div class="panel-body">
               <div class="form-inline">
               <form>
-                <input class="form-control" id="code" placeholder="e.g. 452111" style="width: 100px;">
+                <input class="form-control" id="course_id" placeholder="e.g. 452111" style="width: 100px;">
                 <button type="button" class="btn btn-outline btn-primary" id="submit"  name="submit">เพิ่ม</button>
+                <div id="warning"></div>
               </form>
               </div>
             </div>

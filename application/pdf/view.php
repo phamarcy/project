@@ -71,7 +71,7 @@ if( isset($_GET['info']))
        {
          $doc_url = $server_url."/files/syllabus/".$FILE_COURSE.".docx";
        }
-       $url = 'http://docs.google.com/gview?url='.$doc_url.'&embedded=true';
+       $url = 'http://docs.google.com/gview?url='.$doc_url;
        header( "Location: $url" );
      }
      else
