@@ -556,6 +556,8 @@ $(document).ready(function(){
   $("input[name='EVALUATE_TYPE']").change(function(){
     if($(this).val()=="SU")
     {
+      $('.atof').val("");
+      $('.stou').val("");
       $('.atof').prop('disabled',true);
       $('.atof').prop('required',false);
       $('.stou').prop('required',true);
@@ -563,6 +565,8 @@ $(document).ready(function(){
     }
     else if($(this).val()=="AF")
     {
+      $('.atof').val("");
+      $('.stou').val("");
       $('.atof').prop('disabled',false);
       $('.atof').prop('required',true);
       $('.stou').prop('disabled',true);
@@ -573,6 +577,8 @@ $(document).ready(function(){
     $("input[name='CALCULATE']").change(function(){
       if($(this).val()=="GROUP")
       {
+        $('.atof').val("");
+        $('.stou').val("");
         $('.atof').prop('disabled',true);
         $('.stou').prop('disabled',true);
         $('.atof').prop('required',false);
@@ -580,6 +586,8 @@ $(document).ready(function(){
       }
       else if ($(this).val()=="CRITERIA" && $("input[name='EVALUATE_TYPE']:checked").val()=="SU")
       {
+        $('.atof').val("");
+        $('.stou').val("");
         $('.atof').prop('disabled',true);
         $('.atof').prop('required',false);
         $('.stou').prop('required',true);
@@ -587,6 +595,8 @@ $(document).ready(function(){
       }
       else if ($(this).val()=="CRITERIA" && $("input[name='EVALUATE_TYPE']:checked").val()=="AF")
       {
+        $('.atof').val("");
+        $('.stou').val("");
         $('.atof').prop('disabled',false);
         $('.atof').prop('required',true);
         $('.stou').prop('disabled',true);
