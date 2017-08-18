@@ -386,10 +386,20 @@
 						<?php }
 						if($_SESSION['level'] >= 4)
 						{
+							if ($_SESSION['level']==6) { ?>
+								<li>
+									<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> อนุมัติกระบวนวิชา</a>
+								</li>
+						<?php
+					} else { ?>
+								<li>
+									<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> ประเมินกระบวนวิชา</a>
+								</li>
+							<?php
+						}
+						}
 						 ?>
-						<li>
-							<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> ประเมินกระบวนวิชา</a>
-						</li>
+
 						<?php
 							if($_SESSION['level']==6)
 							{ ?>
@@ -398,7 +408,9 @@
 								</li>
 								<?php
 							}
-						} ?>
+
+
+						?>
 						<li>
 							<a href="#" onclick="loadDoc('form/checkstattch.php')"><i class="fa fa-check fa-fw"></i> ตรวจสอบสถานะการอนุมัติ</a>
 						</li>

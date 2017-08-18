@@ -45,7 +45,12 @@ div[class^="col-"] {
       <div class="container">
         <div class="row">
             <center>
-              <h3 class="page-header">ประเมินกระบวนวิชา</h3>
+              <?php if ($_SESSION['level']==6): ?>
+                  <h3 class="page-header">อนุมัติกระบวนวิชา</h3>
+                <?php else: ?>
+                  <h3 class="page-header">ประเมินกระบวนวิชา</h3>
+              <?php endif; ?>
+
 
               <!--data-toggle="validator" role="form" ใส้ตัวนี้ในform -->
                   <form  data-toggle="validator" role="form">

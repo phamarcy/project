@@ -61,10 +61,9 @@ div[class^="col-"] {
                     <div class="form-group">
                       <div class="form-inline">
                         <label >เลือกไฟล์</label>
-                        <input type="file" class="form-control" name="fileName" data-required-error="กรุณาเลือกไฟล์" accept=".xls,.xlsx" onchange="validate_fileupload(this);" required>
+                        <input type="file" class="form-control" name="fileName" data-required-error="กรุณาเลือกไฟล์" accept=".xls,.xlsx"  required>
                         <button type="submit" name="button" class="btn btn-primary btn-outline" onclick="return valid_form();">อัปโหลด</button>
                       </div>
-                      <div class="help-block with-errors "  for="semester" style="font-size:12px;"></div>
                     </div>
 
                 </form>
@@ -74,8 +73,38 @@ div[class^="col-"] {
       </div>
     </div>
 </div>
-<script type="text/javascript" src="../dist/js/bootstrap_file_field.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('form').submit(function(event) { //Trigger on form submit
+        $('#name + .throw_error').empty(); //Clear the messages first
+        $('#success').empty();
 
+        //Validate fields if required using jQuery
+
+        var postForm = { //Fetch form data
+            'name'     : $('input[name=name]').val() //Store name fields value
+        };
+
+        $.ajax({ //Process the form using $.ajax()
+            type      : 'POST', //Method type
+            url       : '../../application/test_data.php', //Your form processing file URL
+            data      : postForm, //Forms name
+            dataType  : 'json',
+            success   : function(data) {
+                            if (!data.success) { //If fails
+                                if (data.errors.name) { //Returned if any error from process.php
+                                    $('.throw_error').fadeIn(1000).html(data.errors.name); //Throw relevant error
+                                }
+                            }
+                            else {
+                                    $('#success').fadeIn(1000).append('<p>' + data.posted + '</p>'); //If successful, than throw a success message
+                                }
+                            }
+        });
+        event.preventDefault(); //Prevent the default submit
+    });
+});
+</script>
 </body>
 
 </html>
