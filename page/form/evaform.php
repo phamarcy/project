@@ -498,7 +498,7 @@ function submitfunc(casesubmit) {
       }
     },
     'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,
-    'SUBMIT' : casesubmit
+    'SUBMIT_TYPE' : casesubmit
   };
 
   //alert(JSON.stringify(data));
@@ -507,7 +507,7 @@ function submitfunc(casesubmit) {
 function senddata(data,file_data)
 {
 
-  prompt("data", data);
+  //prompt("data", data);
    file_data.append("DATA",data);
    var URL = '../../application/test_data.php';
    $.ajax({
@@ -519,7 +519,7 @@ function senddata(data,file_data)
                  data: file_data,
                  type: 'post',
                  success: function (result) {
-                      alert(result);
+                      console.log(result);
                  },
                  failure: function (result) {
                       alert(result);
