@@ -621,6 +621,21 @@ $(document).ready(function(){
 
     });
 
+    $("#explain").hide();
+    $("input[name='CALCULATE']").change(function(){
+      if($(this).val()=="GROUP")
+      {
+          $("#EXPLAINATION").prop('required',true);
+          $("#explain").show();
+      }
+      else
+      {
+        $("#EXPLAINATION").prop('required',false);
+        $("#explain").hide();
+      }
+
+      });
+
   $('#addbtn').click(function() {
     var table = $(this).closest('table');
     if (table.find('input:text').length < 100) {
@@ -1304,6 +1319,7 @@ function confreset() {
               <br><b>วิธีการตัดเกรด</b><br>
               <div class="form-group"><div class="radio">
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม <br>
+              <div id="explain"> <textarea class="form-control" name="EXPLAINATION" id="EXPLAINATION" placeholder="โปรดระบุ" rows="4" cols="125"></textarea> <br></div>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE2" value="CRITERIA"> อิงเกณฑ์ &nbsp;&nbsp;ได้กำหนดเกณฑ์ดังต่อไปนี้
             </div></div>
           </div>
