@@ -62,7 +62,6 @@ div[class^="col-"] {
                       <div class="form-inline">
                         <label >เลือกไฟล์</label>
                         <input type="file" class="form-control" id="filexcel" name="fileexcel" data-required-error="กรุณาเลือกไฟล์" accept=".xls,.xlsx"  required>
-                        <input type="text" name="name" id="name" value="">
                         <button type="submit" id="btnSend" name="button" class="btn btn-primary btn-outline" >อัปโหลด</button>
                       </div>
                     </div>

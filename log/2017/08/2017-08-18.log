@@ -7,3 +7,76 @@
 03:09:38 pm | Note found teacher name in teacher id 000000
 03:09:38 pm | Note found teacher name in teacher id D1600020
 03:10:11 pm | Note found teacher name in teacher id D1600020
+06:13:56 pm | Connection to database failed: Unknown database 'pharmacy'
+08:32:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `year` = ''' at line 1
+08:32:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''')' at line 1
+08:32:42 pm | Error : insert new semester failed
+08:32:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:32:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:32:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:32:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:32:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:32:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:32:50 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `year` = ''' at line 1
+08:32:50 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''')' at line 1
+08:32:50 pm | Error : insert new semester failed
+08:32:50 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:32:50 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:32:50 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:32:50 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:32:50 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:32:50 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:32:57 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `year` = ''' at line 1
+08:32:57 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''')' at line 1
+08:32:57 pm | Error : insert new semester failed
+08:32:57 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:32:57 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:32:57 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:32:57 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:32:57 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:32:57 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:33:14 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `year` = ''' at line 1
+08:33:14 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''')' at line 1
+08:33:14 pm | Error : insert new semester failed
+08:33:14 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:33:14 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:33:14 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:33:14 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:33:14 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:33:14 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:33:46 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `year` = ''' at line 1
+08:33:46 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''')' at line 1
+08:33:46 pm | Error : insert new semester failed
+08:33:46 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:33:46 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:33:46 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:33:46 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:33:46 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:33:46 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:33:55 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `year` = ''' at line 1
+08:33:55 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''')' at line 1
+08:33:55 pm | Error : insert new semester failed
+08:33:55 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:33:55 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:33:55 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:33:55 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:33:55 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:33:55 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:34:40 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `year` = ''' at line 1
+08:34:40 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''')' at line 1
+08:34:40 pm | Error : insert new semester failed
+08:34:40 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:34:40 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:34:40 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:34:40 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:34:40 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:34:41 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:34:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `year` = ''' at line 1
+08:34:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''')' at line 1
+08:34:42 pm | Error : insert new semester failed
+08:34:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:34:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:34:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'evaluate'' at line 2
+08:34:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:34:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2
+08:34:42 pm | Query error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `data_type` = 'syllabus'' at line 2

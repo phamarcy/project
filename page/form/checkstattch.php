@@ -1,5 +1,10 @@
  <?php
   session_start();
+  require_once(__DIR__."/../../application/class/approval.php");
+  if (isset($_POST['subject'])) {
+    $approve = new approval($_SESSION['level']);
+    $var=$approve->Check_Status('204411');
+  }
  ?>
  <html>
  <header>
@@ -72,33 +77,39 @@ a[disabled="disabled"] {
         <h3 class="page-header">ตรวจสอบสถานะการอนุมัติกระบวนวิชา</h3>
       </center>
       <div class="form-inline">
+        <form class="" action="" method="post">
           <center>
-              <h style="font-size : 16px">วิชา
-  		     	<div class="form-group" >
-              <select class="form-control" name="">
-                <option value="">462533	HEALTH BEHAVIORS AND PHARMACEUTICAL CARE</option>
-                <option value="">461525	BASIC KNOWLEDGE OF THAI TRADITIONAL MEDICINEE</option>
-                <option value="">461532	DRUG SYNTHESIS</option>
-                <option value="">461575	DELIVERY SYSTEMS IN COSMETICS</option>
-                <option value="">463522	EVIDENCE-BASED DIETARY SUPPLEMENTS</option>
-                <option value="">463571	QUALITY CONTROL FOR FOOD AND COSMETICS</option>
-              </select>
-  		      	</div>
-
+              <h5 style="font-size : 16px">วิชา
+    		     	<div class="form-group" >
+                <select class="form-control" name="subject">
+                  <option value="462533">462533	HEALTH BEHAVIORS AND PHARMACEUTICAL CARE</option>
+                  <option value="461525">461525	BASIC KNOWLEDGE OF THAI TRADITIONAL MEDICINEE</option>
+                  <option value="461532">461532	DRUG SYNTHESIS</option>
+                  <option value="461575">461575	DELIVERY SYSTEMS IN COSMETICS</option>
+                  <option value="463522">463522	EVIDENCE-BASED DIETARY SUPPLEMENTS</option>
+                  <option value="463571">463571	QUALITY CONTROL FOR FOOD AND COSMETICS</option>
+                </select>
+    		      	</div>
               	&nbsp;<button type="submit" class="btn btn-success btn-outline"   >ค้นหา</button>
               	<div id="searchstatus" style="display:inline;"></div>
-                  </h>
+              </h5>
           </center>
+          </form>
           </div>
     </div>
 <br>
 <div class="container">
+  <?php if (isset($_POST['subject'])) {
+   $data= json_decode($var, true);
+   ?>
+   <?php data_course('semester'); ?>
+
   <div class="panel-group" id="accordion0">
     <div class="panel panel-info">
       <div class="panel-heading">
         <h5 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-          <i class="fa fa-search fa-fw"></i><b> รายชื่อกระบวนวิชา</b> ภาคการศึกษาที่ 1 ปีการศึกษา 2560</a>
+          <i class="fa fa-search fa-fw"></i><b> รายชื่อกระบวนวิชา</b> ภาคการศึกษาที่ <?php echo  $data['data']['semester']; ?> ปีการศึกษา <?php echo  $data['data']['year']; ?></a>
         </h5>
       </div>
       <div id="collapse1" class="panel-collapse collapse in">
@@ -195,348 +206,54 @@ a[disabled="disabled"] {
               </div>
             </div>
 
-            <div class="panel-group">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">
-                  <a data-toggle="collapse" href="#collapse5" disabled="disabled">
-                    <i class="fa fa-file-o fa-fw"></i><b> Course Syllabus </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
-                </h3>
-              </div>
-              <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
-              <div id="collapse5" class="panel-collapse collapse">
-                <div class="panel-body" style="font-size:14px;">
-                  <table class="table ">
-                    <thead>
-                      <?php if ($_SESSION['level'] > 4 ): ?>
-                          <th style="width:170px">คณะกรรมการ</th>
-                      <?php endif; ?>
-                      <th>คอมเม้นท์</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <?php if ($_SESSION['level'] > 4 ): ?>
-                            <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                        <?php endif; ?>
-                        <td>ควรเพิ่มกิจกรรมในส่วนของกระบวนวิชาสัมนา</td>
-                      </tr>
-                      <tr>
-                        <?php if ($_SESSION['level'] > 4 ): ?>
-                            <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                        <?php endif; ?>
-                        <td>จำนวนหน่วยกิตยังไม่ถูกต้อง ทั้งนี้เนื้อหาครบถ้วนสมบูรณ์แล้วสามารถให้อนุมัติได้ และขอให้แก้ไขให้เรียบร้อย</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <?php  } ?>
-            </div>
-          </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2 -->
-        <div class="panel-group" id="accordion2">
-        <div class="panel panel-warning">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              <a data-toggle="collapse" href="#collapse6">
-              <li><b><u>รหัสกระบวนวิชา</u></b> : 204111 <b>ตอนที่</b> 2 <b>ภาคปกติ</b></a></li>
-              <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <b id="statwt">รอการพิจารนา <i class="fa fa-clock-o fa-fw"></i></b>
-            </h3>
-          </div>
-          <div id="collapse6" class="panel-collapse collapse">
-            <div class="panel-body" style="font-size:14px;">
-
-              <div class="panel-group">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse7" disabled="disabled">
-                     <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statwt">รอการพิจารนา <i class="fa fa-clock-o fa-fw"></i></b></a>
-                  </h3>
-                </div>
-                <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
-                <div id="collapse7" class="panel-collapse collapse">
-                  <div class="panel-body" style="font-size:14px;">
-                    <table class="table ">
-                      <thead>
-                        <?php if ($_SESSION['level'] > 4 ): ?>
-                            <th style="width:170px">คณะกรรมการ</th>
-                        <?php endif; ?>
-                        <th>คอมเม้นท์</th>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <?php if ($_SESSION['level'] > 4 ): ?>
-                              <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                          <?php endif; ?>
-                          <td>	หัวข้อการบรรยายยังไม่ชัดเจน</td>
-                        </tr>
-                        <tr>
-                          <?php if ($_SESSION['level'] > 4 ): ?>
-                              <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                          <?php endif; ?>
-                          <td>ควรเลือกห้องเรียนใหม่ เนื่องจากจำนวนผู้ลงทะเบียนมีจำนวนมาก</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">
+                      <a data-toggle="collapse" href="#collapse5" disabled="disabled">
+                        <i class="fa fa-file-o fa-fw"></i><b> Course Syllabus </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
+                    </h3>
                   </div>
-                </div>
-                <?php  } ?>
-              </div>
-            </div>
-
-            <div class="panel-group">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">
-                  <a data-toggle="collapse" href="#collapse8" disabled="disabled">
-                  <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
-                </h3>
-              </div>
-              <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
-              <div id="collapse8" class="panel-collapse collapse">
-                <div class="panel-body" style="font-size:14px;">
-                  <table class="table ">
-                    <thead>
-                      <?php if ($_SESSION['level'] > 4 ): ?>
-                          <th style="width:170px">คณะกรรมการ</th>
-                      <?php endif; ?>
-                      <th>คอมเม้นท์</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <?php if ($_SESSION['level'] > 4 ): ?>
-                            <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                        <?php endif; ?>
-                        <td>เอกสารสบูรณ์ครบ</td>
-                      </tr>
-                      <tr>
-                        <?php if ($_SESSION['level'] > 4 ): ?>
-                            <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                        <?php endif; ?>
-                        <td>ยังไม่ได้เลือกกระบวนวิชา</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <?php  } ?>
-            </div>
-          </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3 -->
-      <div class="panel-group" id="accordion3">
-      <div class="panel panel-danger">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            <a data-toggle="collapse" href="#collapse9">
-            <li><b><u>รหัสกระบวนวิชา</u></b> : 204111 <b>ตอนที่</b> 3 <b>ภาคพิเศษ</b></a></li>
-            <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <b id="statn">ไม่ผ่านการอนุมัติ <i class="fa fa-times fa-fw"></i></b>
-          </h3>
-        </div>
-        <div id="collapse9" class="panel-collapse collapse">
-          <div class="panel-body" style="font-size:14px;">
-
-            <div class="panel-group">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">
-                  <a data-toggle="collapse" href="#collapse10" disabled="disabled">
-                   <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
-                </h3>
-              </div>
-              <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
-              <div id="collapse10" class="panel-collapse collapse">
-                <div class="panel-body" style="font-size:14px;">
-                  <table class="table ">
-                    <thead>
-                      <?php if ($_SESSION['level'] > 4 ): ?>
-                          <th style="width:170px">คณะกรรมการ</th>
-                      <?php endif; ?>
-                      <th>คอมเม้นท์</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <?php if ($_SESSION['level'] > 4 ): ?>
-                            <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                        <?php endif; ?>
-                        <td>จำนวนหน่วยกิตยังไม่ถูกต้อง ทั้งนี้เนื้อหาครบถ้วนสมบูรณ์แล้วสามารถให้อนุมัติได้ และขอให้แก้ไขให้เรียบร้อย</td>
-                      </tr>
-                      <tr>
-                        <?php if ($_SESSION['level'] > 4 ): ?>
-                            <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                        <?php endif; ?>
-                        <td>อาจารย์ผู้สอนมีจำนวนน้อยมาก</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <?php  } ?>
-            </div>
-          </div>
-
-          <div class="panel-group">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <a data-toggle="collapse" href="#collapse11" disabled="disabled">
-                <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statn">ไม่ผ่านการอนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
-              </h3>
-            </div>
-            <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
-            <div id="collapse11" class="panel-collapse collapse">
-                  <div class="panel-body" style="font-size:14px;">
-                    <table class="table ">
-                      <thead>
-                        <?php if ($_SESSION['level'] > 4 ): ?>
-                            <th style="width:170px">คณะกรรมการ</th>
-                        <?php endif; ?>
-                        <th>คอมเม้นท์</th>
-                      </thead>
-                      <tbody>
-                        <tr>
+                  <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+                  <div id="collapse5" class="panel-collapse collapse">
+                    <div class="panel-body" style="font-size:14px;">
+                      <table class="table ">
+                        <thead>
                           <?php if ($_SESSION['level'] > 4 ): ?>
-                              <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                              <th style="width:170px">คณะกรรมการ</th>
                           <?php endif; ?>
-                          <td>วันที่ที่จะให้อาจารย์พิเศษมาช่วยบรรยายตรงกับรายวิชา464301 เนื่องจากสถานที่ไม่เอื้ออำนวยขอความกรุณากลับไปตรวจสอบอีกครั้ง</td>
-                        </tr>
-                        <tr>
-                          <?php if ($_SESSION['level'] > 4 ): ?>
-                              <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                          <?php endif; ?>
-                          <td></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <button class="btn btn-outline btn-danger btn-lg" name="editeva" id="editeva" >แก้ไข</button>
+                          <th>คอมเม้นท์</th>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <?php if ($_SESSION['level'] > 4 ): ?>
+                                <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                            <?php endif; ?>
+                            <td>ควรเพิ่มกิจกรรมในส่วนของกระบวนวิชาสัมนา</td>
+                          </tr>
+                          <tr>
+                            <?php if ($_SESSION['level'] > 4 ): ?>
+                                <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                            <?php endif; ?>
+                            <td>จำนวนหน่วยกิตยังไม่ถูกต้อง ทั้งนี้เนื้อหาครบถ้วนสมบูรณ์แล้วสามารถให้อนุมัติได้ และขอให้แก้ไขให้เรียบร้อย</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
-            </div>
-            <?php  } ?>
-          </div>
-        </div>
-
-          </div>
-        </div>
-      </div>
-      </div>
-
-      <!-- 4 -->
-      <div class="panel-group" id="accordion4">
-      <div class="panel panel-warning">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            <a data-toggle="collapse" href="#collapse12">
-            <li><b><u>รหัสกระบวนวิชา</u></b> : 001101 <b>ตอนที่</b> 1 <b>ภาคปกติ</b></a></li>
-            <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <b id="statal">ภาควิชาเห็นชอบ รอคณะบดีอนุมัติ <i class="fa fa-user fa-fw"></i></b>
-          </h3>
-        </div>
-        <div id="collapse12" class="panel-collapse collapse">
-          <div class="panel-body" style="font-size:14px;">
-
-            <div class="panel-group">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">
-                  <a data-toggle="collapse" href="#collapse13" disabled="disabled">
-                   <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
-                </h3>
-              </div>
-              <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
-              <div id="collapse13" class="panel-collapse collapse">
-                <div class="panel-body" style="font-size:14px;">
-                  <table class="table ">
-                    <thead>
-                      <?php if ($_SESSION['level'] > 4 ): ?>
-                          <th style="width:170px">คณะกรรมการ</th>
-                      <?php endif; ?>
-                      <th>คอมเม้นท์</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <?php if ($_SESSION['level'] > 4 ): ?>
-                            <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                        <?php endif; ?>
-                        <td>เอกสารครบถ้วนสมบูรณ์</td>
-                      </tr>
-                      <tr>
-                        <?php if ($_SESSION['level'] > 4 ): ?>
-                            <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                        <?php endif; ?>
-                        <td>แก้ไขตรงสัดสว่นคะแนนร้อยละ อนุญาติให้ผ่านได้</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <?php  } ?>
                 </div>
               </div>
-              <?php  } ?>
-            </div>
-          </div>
-
-          <div class="panel-group">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <a data-toggle="collapse" href="#collapse14" disabled="disabled">
-                <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statal">ภาควิชาเห็นชอบ รอคณะบดีอนุมัติ <i class="fa fa-user fa-fw"></i></b></a>
-              </h3>
-            </div>
-            <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
-            <div id="collapse14" class="panel-collapse collapse">
-              <div class="panel-body" style="font-size:14px;">
-                <table class="table ">
-                  <thead>
-                    <?php if ($_SESSION['level'] > 4 ): ?>
-                        <th style="width:170px">คณะกรรมการ</th>
-                    <?php endif; ?>
-                    <th>คอมเม้นท์</th>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <?php if ($_SESSION['level'] > 4 ): ?>
-                          <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                      <?php endif; ?>
-                      <td>ยังไม่ผ่าน เพราะหลักสูตรเกินกรุณาตรวจสอบหลักสูตรอีกครั้ง</td>
-                    </tr>
-                    <tr>
-                      <?php if ($_SESSION['level'] > 4 ): ?>
-                          <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                      <?php endif; ?>
-                      <td>กระบวนวิชา464301 ยังไม่ผ่าน เพราะหลักสูตรเกินกรุณาตรวจสอบหลักสูตรอีกครั้ง</td>
-                    </tr>
-                  </tbody>
-                </table>
               </div>
             </div>
-            <?php  } ?>
           </div>
         </div>
-
-          </div>
-        </div>
-      </div>
-      </div>
-
-
-
         </div>
       </div>
     </div>
-
-
-
   </div>
+
+<?php } ?>
 </div>
 </div>
 </body>
