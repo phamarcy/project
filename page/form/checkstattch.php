@@ -4,6 +4,86 @@ require_once(__DIR__."/../../application/class/approval.php");
 if (isset($_POST['subject'])) {
   $approve = new approval($_SESSION['level']);
   $var=$approve->Check_Status('204411');
+  $data= json_decode($var, true);
+  // status
+   switch ($data['data']['status']) {
+     case '1':
+     $status= '<div class="panel panel-warning">';
+     $status_text='<b id="statfi">อยู่ในช่วงการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+       break;
+     case '2':
+     $status= '<div class="panel panel-warning">';
+     $status_text='<b id="statwt">รอการพิจารนา <i class="fa  fa-clock-o fa-fw"></i></b>';
+       break;
+     case '3':
+     $status= '<div class="panel panel-danger">';
+     $status_text='<b id="statn">ไม่ผ่านการอนุมัติ <i class="fa fa-times fa-fw"></i></b>';
+       break;
+     case '4':
+     $status= '<div class="panel panel-warning">';
+     $status_text='<b id="statal">ภาควิชาเห็นชอบ รอคณะบดีอนุมัติ <i class="fa fa-user fa-fw"></i></b>';
+       break;
+       case '5':
+     $status= '<div class="panel panel-success">';
+     $status_text='<b id="statn">อนุมัติ <i class="fa fa-check fa-fw"></i></b>';
+       break;
+   }
+   // evaludate
+   switch ($data['data']['evaluate']['status']) {
+     case '1':
+     $status_evaludate='<b id="statfi">อยู่ในช่วงการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+       break;
+     case '2':
+     $status_evaludate='<b id="statwt">รอการพิจารนา <i class="fa  fa-clock-o fa-fw"></i></b>';
+       break;
+     case '3':
+     $status_evaludate='<b id="statn">ไม่ผ่านการอนุมัติ <i class="fa fa-times fa-fw"></i></b>';
+       break;
+     case '4':
+     $status_evaludate='<b id="statal">ภาควิชาเห็นชอบ รอคณะบดีอนุมัติ <i class="fa fa-user fa-fw"></i></b>';
+       break;
+     case '5':
+     $status_evaludate='<b id="statn">อนุมัติ <i class="fa fa-check fa-fw"></i></b>';
+       break;
+
+   }
+   // special teacher
+   switch ($data['data']['special']['status']) {
+     case '1':
+     $status_special='<b id="statfi">อยู่ในช่วงการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+       break;
+     case '2':
+     $status_special='<b id="statwt">รอการพิจารนา <i class="fa  fa-clock-o fa-fw"></i></b>';
+       break;
+     case '3':
+     $status_special='<b id="statn">ไม่ผ่านการอนุมัติ <i class="fa fa-times fa-fw"></i></b>';
+       break;
+     case '4':
+     $status_special='<b id="statal">ภาควิชาเห็นชอบ รอคณะบดีอนุมัติ <i class="fa fa-user fa-fw"></i></b>';
+       break;
+     case '5':
+     $status_special='<b id="statn">อนุมัติ <i class="fa fa-check fa-fw"></i></b>';
+       break;
+   }
+   // course syllabus
+   switch ($data['data']['syllabus']['status']) {
+
+     case '1':
+     $status_syllabus='<b id="statfi">อยู่ในช่วงการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+       break;
+     case '2':
+     $status_syllabus='<b id="statwt">รอการพิจารนา <i class="fa  fa-clock-o fa-fw"></i></b>';
+       break;
+     case '3':
+     $status_syllabus='<b id="statn">ไม่ผ่านการอนุมัติ <i class="fa fa-times fa-fw"></i></b>';
+       break;
+     case '4':
+     $status_syllabus='<b id="statal">ภาควิชาเห็นชอบ รอคณะบดีอนุมัติ <i class="fa fa-user fa-fw"></i></b>';
+       break;
+     case '5':
+     $status_syllabus='<b id="statn">อนุมัติ <i class="fa fa-check fa-fw"></i></b>';
+       break;
+   }
   }
  ?>
  <html>
@@ -68,6 +148,9 @@ a[disabled="disabled"] {
 #statal {
   color : #da9001;
 }
+#statfi {
+  color : #da013e;
+}
 </style>
 </header>
 <body class="mybox">
@@ -99,14 +182,7 @@ a[disabled="disabled"] {
     </div>
 <br>
 <div class="container">
-  <?php if (isset($_POST['subject'])) {
-   $data= json_decode($var, true);
-/*print "<pre>";
-print_r($data);
-print "</pre>";exit();*/
-   ?>
-
-
+  <?php if (isset($_POST['subject'])) {?>
   <div class="panel-group" id="accordion0">
     <div class="panel panel-info">
       <div class="panel-heading">
@@ -119,12 +195,12 @@ print "</pre>";exit();*/
         <div class="panel-body" style="font-size:14px;">
           <!-- 1 -->
           <div class="panel-group" id="accordion1">
-          <div class="panel panel-success">
+          <?php echo $status ?>
             <div class="panel-heading">
               <h3 class="panel-title">
                 <a data-toggle="collapse" href="#collapse2" >
                 <li><b><u>รหัสกระบวนวิชา</u></b> : <?php echo $data['data']['course']; ?> <b>ตอนที่</b> 1 <b>ภาคปกติ</b></a></li>
-                <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b>
+                <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <?php echo $status_text ?>
               </h3>
             </div>
             <div id="collapse2" class="panel-collapse collapse">
@@ -135,36 +211,37 @@ print "</pre>";exit();*/
                   <div class="panel-heading">
                     <h3 class="panel-title">
                       <a data-toggle="collapse" href="#collapse3" disabled="disabled">
-                       <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
+                       <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <?php echo $status_evaludate; ?></a>
                     </h3>
                   </div>
-                  <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+                <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+                  <?php if (isset($data['data']['evaluate']['comment'])):?>
                     <div id="collapse3" class="panel-collapse collapse">
                       <div class="panel-body" style="font-size:14px;">
                         <table class="table ">
                           <thead>
                             <?php if ($_SESSION['level'] > 4 ): ?>
-                                <th style="width:170px">คณะกรรมการ</th>
+                                <th style="width:200px">คณะกรรมการ</th>
                             <?php endif; ?>
                             <th>คอมเม้นท์</th>
                           </thead>
                           <tbody>
-                            <tr>
-                              <?php if ($_SESSION['level'] > 4 ): ?>
-                                  <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                              <?php endif; ?>
-                              <td>เอกสารครบถ้วนสมบูรณ์</td>
-                            </tr>
-                            <tr>
-                              <?php if ($_SESSION['level'] > 4 ): ?>
-                                  <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                              <?php endif; ?>
-                              <td>แก้ไขคำผิดเล็กน้อย</td>
-                            </tr>
+                            <?php
+                            foreach ($data['data']['evaluate']['comment'] as $comment) { ?>
+                              <tr>
+                                <?php if ($_SESSION['level'] > 4 ): ?>
+                                    <td style="width:170px"><?php echo $comment['name'] ?></td>
+                                <?php endif; ?>
+                                <td><?php echo $comment['text'] ?></td>
+                              </tr>
+                            <?php
+                              }
+                               ?>
                           </tbody>
                         </table>
                       </div>
                     </div>
+                    <?php endif; ?>
                  <?php  } ?>
 
                 </div>
@@ -175,37 +252,38 @@ print "</pre>";exit();*/
                 <div class="panel-heading">
                   <h3 class="panel-title">
                     <a data-toggle="collapse" href="#collapse4" disabled="disabled">
-                    <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
+                    <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <?php echo $status_special; ?></a>
                   </h3>
                 </div>
                 <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
-                <div id="collapse4" class="panel-collapse collapse">
-                  <div class="panel-body" style="font-size:14px;">
-                    <table class="table ">
-                      <thead>
-                        <?php if ($_SESSION['level'] > 4 ): ?>
-                            <th style="width:170px">คณะกรรมการ</th>
-                        <?php endif; ?>
-                        <th>คอมเม้นท์</th>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <?php if ($_SESSION['level'] > 4 ): ?>
-                              <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                          <?php endif; ?>
-                          <td>เอกสารครบถ้วนสมบูรณ์</td>
-                        </tr>
-                        <tr>
-                          <?php if ($_SESSION['level'] > 4 ): ?>
-                              <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                          <?php endif; ?>
-                          <td>แก้ไขวันที่</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-               <?php  } ?>
+                  <?php if (isset($data['data']['special']['comment'])):?>
+                    <div id="collapse4" class="panel-collapse collapse">
+                      <div class="panel-body" style="font-size:14px;">
+                        <table class="table ">
+                          <thead>
+                            <?php if ($_SESSION['level'] > 4 ): ?>
+                                <th style="width:200px">คณะกรรมการ</th>
+                            <?php endif; ?>
+                            <th>คอมเม้นท์</th>
+                          </thead>
+                          <tbody>
+                            <?php
+                            foreach ($data['data']['special']['comment'] as $comment) { ?>
+                              <tr>
+                                <?php if ($_SESSION['level'] > 4 ): ?>
+                                    <td style="width:170px"><?php echo $comment['name'] ?></td>
+                                <?php endif; ?>
+                                <td><?php echo $comment['text'] ?></td>
+                              </tr>
+                            <?php
+                              }
+                               ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <?php endif; ?>
+                 <?php  } ?>
               </div>
             </div>
 
@@ -214,37 +292,38 @@ print "</pre>";exit();*/
                   <div class="panel-heading">
                     <h3 class="panel-title">
                       <a data-toggle="collapse" href="#collapse5" disabled="disabled">
-                        <i class="fa fa-file-o fa-fw"></i><b> Course Syllabus </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
+                        <i class="fa fa-file-o fa-fw"></i><b> Course Syllabus </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <?php echo $status_syllabus; ?></a>
                     </h3>
                   </div>
                   <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
-                  <div id="collapse5" class="panel-collapse collapse">
-                    <div class="panel-body" style="font-size:14px;">
-                      <table class="table ">
-                        <thead>
-                          <?php if ($_SESSION['level'] > 4 ): ?>
-                              <th style="width:170px">คณะกรรมการ</th>
-                          <?php endif; ?>
-                          <th>คอมเม้นท์</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <?php if ($_SESSION['level'] > 4 ): ?>
-                                <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                            <?php endif; ?>
-                            <td>ควรเพิ่มกิจกรรมในส่วนของกระบวนวิชาสัมนา</td>
-                          </tr>
-                          <tr>
-                            <?php if ($_SESSION['level'] > 4 ): ?>
-                                <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                            <?php endif; ?>
-                            <td>จำนวนหน่วยกิตยังไม่ถูกต้อง ทั้งนี้เนื้อหาครบถ้วนสมบูรณ์แล้วสามารถให้อนุมัติได้ และขอให้แก้ไขให้เรียบร้อย</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <?php  } ?>
+                    <?php if (isset($data['data']['syllabus']['comment'])):?>
+                      <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body" style="font-size:14px;">
+                          <table class="table ">
+                            <thead>
+                              <?php if ($_SESSION['level'] > 4 ): ?>
+                                  <th style="width:200px">คณะกรรมการ</th>
+                              <?php endif; ?>
+                              <th>คอมเม้นท์</th>
+                            </thead>
+                            <tbody>
+                              <?php
+                              foreach ($data['data']['syllabus']['comment'] as $comment) { ?>
+                                <tr>
+                                  <?php if ($_SESSION['level'] > 4 ): ?>
+                                      <td style="width:170px"><?php echo $comment['name'] ?></td>
+                                  <?php endif; ?>
+                                  <td><?php echo $comment['text'] ?></td>
+                                </tr>
+                              <?php
+                                }
+                                 ?>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <?php endif; ?>
+                   <?php  } ?>
                 </div>
               </div>
               </div>
