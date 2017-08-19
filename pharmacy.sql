@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2017 at 03:27 PM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.6.15
+-- Generation Time: Aug 19, 2017 at 11:21 AM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -298,8 +298,70 @@ CREATE TABLE `course_hire` (
 CREATE TABLE `course_name` (
   `id` int(11) NOT NULL,
   `course_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
-  `course_name` varchar(256) COLLATE utf8_unicode_ci NOT NULL
+  `course_name_en` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `course_name_th` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `updated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `course_name`
+--
+
+INSERT INTO `course_name` (`id`, `course_id`, `course_name_en`, `course_name_th`, `updated_date`) VALUES
+(3, '460100', 'LEARNING THROUGH ACTIVITIES 1   ', 'การเรียนรู้ผ่านกิจกรรม  1', '2017-08-19 07:21:00'),
+(4, '460201', 'LEARNING THROUGH ACTIVITIES 2', 'การเรียนรู้ผ่านกิจกรรม  2', '2017-08-19 07:45:26'),
+(5, '460202', 'LEARNING THROUGH ACTIVITIES 3', 'การเรียนรู้ผ่านกิจกรรม  3', '2017-08-19 07:45:26'),
+(6, '202141', 'BIOLOGY FOR PHARMACY STUDENTS            ', 'ชีววิทยาสำหรับนักศึกษาเภสัชศาสตร์', '2017-08-19 07:45:26'),
+(7, '202142', 'BIOLOGY LABORATORY FOR PHARMACY STUDENTS', 'ปฏิบัติการชีววิทยาสำหรับนักศึกษาเภสัชศาสตร์', '2017-08-19 07:45:26'),
+(8, '203151', 'GENERAL CHEMISTRY FOR THE HEALTH SCIENCES', 'เคมีทั่วไปสำหรับวิทยาศาสตร์สุขภาพ ', '2017-08-19 07:45:26'),
+(9, '203157', 'GENERAL CHEMISTRY LABORATORY FOR THE HEALTH SCIENCES', 'ปฏิบัติการเคมีทั่วไปสำหรับวิทยาศาสตร์สุขภาพ', '2017-08-19 07:45:26'),
+(10, '203203', 'ORGANIC CHEMISTRY 1 ', 'เคมีอินทรีย์ 1', '2017-08-19 07:45:26'),
+(11, '203204', 'ORGANIC CHEMISTRY 2', 'เคมีอินทรีย์ 2', '2017-08-19 07:45:26'),
+(12, '203207', 'ORGANIC CHEMISTRY LABORATORY 1  ', 'ปฏิบัติการเคมีอินทรีย์ 1', '2017-08-19 07:45:26'),
+(13, '203208', 'ORGANIC CHEMISTRY LABORATORY 2', 'ปฏิบัติการเคมีอินทรีย์ 2', '2017-08-19 07:45:26'),
+(14, '203226', 'PHYSICAL CHEMISTRY ', 'เคมีฟิสิกัล', '2017-08-19 07:45:26'),
+(15, '206107', 'MATHEMATICS FOR PHARMACY STUDENTS', 'คณิตศาสตร์สำหรับนักศึกษาเภสัชศาสตร์   ', '2017-08-19 07:45:26'),
+(16, '207137', 'PHYSICS FOR  PHARMACY STUDENTS', 'ฟิสิกส์สำหรับนักศึกษาเภสัชศาสตร์', '2017-08-19 07:45:26'),
+(17, '301241', 'ANATOMY FOR PHARMACY STUDENTS', 'กายวิภาคศาสตร์สำหรับนักศึกษาเภสัชศาสตร์', '2017-08-19 07:45:26'),
+(18, '303242', 'BIOCHEMISTRY FOR PHARMACY STUDENTS  ', 'ชีวเคมีสำหรับนักศึกษาเภสัชศาสตร์', '2017-08-19 07:45:26'),
+(19, '311241', 'MICROBIOLOGY FOR PHARMACY STUDENTS  ', 'จุลชีววิทยาสำหรับนักศึกษาเภสัชศาสตร์', '2017-08-19 07:45:26'),
+(20, '317242', 'PARASITOLOGY FOR PHARMACY STUDENTS', 'ปรสิตวิทยาสำหรับนักศึกษาเภสัชศาสตร์', '2017-08-19 07:45:26'),
+(21, '320342', 'PHARMACOLOGY FOR PHARMACY STUDENTS 1', 'เภสัชวิทยาสำหรับนักศึกษาเภสัช 1', '2017-08-19 07:45:26'),
+(22, '320343', 'PHARMACOLOGY FOR PHARMACY STUDENTS 2', 'เภสัชวิทยาสำหรับนักศึกษาเภสัช 2', '2017-08-19 07:45:26'),
+(23, '321242', 'PHYSIOLOGY FOR PHARMACY STUDENTS ', 'สรีรวิทยาสำหรับนักศึกษาเภสัชศาสตร์', '2017-08-19 07:45:26'),
+(24, '462151', 'PHARMACY ORIENTATION', 'นิเทศเภสัชศาสตร์', '2017-08-19 07:45:26'),
+(25, '463201', 'PHARMACEUTICAL BOTANY', 'เภสัชพฤกษศาสตร์', '2017-08-19 07:45:26'),
+(26, '463251', 'PHARMACEUTICAL DOSAGE FORM 1', 'เภสัชภัณฑ์ 1', '2017-08-19 07:45:26'),
+(27, '463252', 'PHARMACEUTICAL DOSAGE FORM 2', 'เภสัชภัณฑ์  2', '2017-08-19 07:45:26'),
+(28, '463311', 'PHARMACEUTICAL BIOTECHNOLOGY 1', 'เทคโนโลยีชีวภาพทางเภสัชศาสตร์ 1', '2017-08-19 07:45:26'),
+(29, '463331', 'ORGANIC MEDICINAL CHEMISTRY 1', 'อินทรีย์เคมีทางยา 1', '2017-08-19 07:45:26'),
+(30, '463332', 'ORGANIC MEDICINAL CHEMISTRY 2', 'อินทรีย์เคมีทางยา 2', '2017-08-19 07:45:26'),
+(31, '463341', 'PHARMACEUTICAL QUALITY ASSURANCE  1 ', 'เภสัชประกันคุณภาพ 1', '2017-08-19 07:45:26'),
+(32, '463342', 'PHARMACEUTICAL QUALITY ASSURANCE 2 ', 'เภสัชประกันคุณภาพ 2', '2017-08-19 07:45:26'),
+(33, '463353', 'PHARMACEUTICAL DOSAGE FORM  3', 'เภสัชภัณฑ์ 3', '2017-08-19 07:45:26'),
+(34, '463354', 'PHARMACEUTICAL DOSAGE FORM 4', 'เภสัชภัณฑ์ 4', '2017-08-19 07:45:26'),
+(35, '463402', 'DRUGS FROM NATURAL ORIGIN', 'ยาจากธรรมชาติ', '2017-08-19 07:45:26'),
+(36, '463433', 'ORGANIC MEDICINAL CHEMISTRY  3', 'อินทรีย์เคมีทางยา 3', '2017-08-19 07:45:26'),
+(37, '463455', 'PHARMACEUTICAL DOSAGE FORM  5', 'เภสัชภัณฑ์ 5', '2017-08-19 07:45:26'),
+(38, '464301', 'FUNDAMENTAL OF PHARMACOKINETICS ', 'หลักการพื้นฐานทางเภสัชจลนศาสตร์', '2017-08-19 07:45:26'),
+(39, '464302', 'TOXICOLOGY     ', 'พิษวิทยา', '2017-08-19 07:45:26'),
+(40, '464311', 'DISEASES AND  PHARMACOTHERAPY 1', 'โรคและเภสัชบำบัด 1', '2017-08-19 07:45:26'),
+(41, '464312', 'DISEASES AND  PHARMACOTHERAPY 2    ', 'โรคและเภสัชบำบัด 2 ', '2017-08-19 07:45:26'),
+(42, '464341', 'HEALTH AND PHARMACEUTICAL INFORMATION', 'สารสนเทศทางสุขภาพและเภสัชกรรม', '2017-08-19 07:45:26'),
+(43, '464391', 'PHARMACY JOB TRAINING IN COMMUNITY', 'การฝึกปฏิบัติงานวิชาชีพเภสัชศาสตร์ในชุมชน ', '2017-08-19 07:45:26'),
+(44, '464401', 'PRINCIPLE OF PHARMACEUTICAL CARE ', 'หลักการทางบริบาลเภสัชกรรม', '2017-08-19 07:51:49'),
+(45, '464402', 'INTEGRATION IN PHARMACY', 'บูรณาการทางเภสัชศาสตร์', '2017-08-19 07:51:49'),
+(46, '464403', 'PATIENT INTERVIEW AND DRUG DISPENSING', 'การสัมภาษณ์ผู้ป่วยและการจ่ายยา', '2017-08-19 07:51:49'),
+(47, '464413', 'DISEASES AND  PHARMACOTHERAPY 3', 'โรคและเภสัชบำบัด 3', '2017-08-19 07:51:49'),
+(48, '464441', 'PHARMACOEPIDEMIOLOGY 1', 'เภสัชระบาดวิทยา 1 ', '2017-08-19 07:51:49'),
+(49, '464442', 'PHARMACOECONOMICS 1', 'เภสัชเศรษฐศาสตร์ 1 ', '2017-08-19 07:51:49'),
+(50, '464443', 'PHARMACY JURISPRUDENCE AND ETHICS', 'นิติเภสัชกรรมและจรรยาบรรณวิชาชีพเภสัชกรรม', '2017-08-19 07:51:49'),
+(51, '464445', 'PHARMACY PUBLIC HEALTH', 'เภสัชสาธารณสุขศาสตร์', '2017-08-19 07:51:49'),
+(52, '464446', 'PHARMACY MANAGEMENT AND ADMINISTRATION ', 'การบริหารและการจัดการทางเภสัชกรรม', '2017-08-19 07:51:49'),
+(53, '464481', 'SEMINAR IN PHARMACY ', 'สัมมนาเภสัชกรรม', '2017-08-19 07:51:49'),
+(54, '464492', 'PHARMACY JOB TRAINING IN DRUGSTORE AND HOSPITAL      ', 'การฝึกปฏิบัติงานวิชาชีพเภสัชศาสตร์ในร้านยาและโรงพยาบาล', '2017-08-19 07:51:49'),
+(55, '464502', 'NEW DRUGS            ', 'ยาใหม่  ', '2017-08-19 07:51:49'),
+(56, '464582', 'SEMINAR IN PHARMACY PROFESSION', 'สัมมนาวิชาชีพเภสัชศาสตร์   ', '2017-08-19 07:51:49');
 
 -- --------------------------------------------------------
 
@@ -335,7 +397,7 @@ CREATE TABLE `deadline` (
 --
 
 INSERT INTO `deadline` (`deadline_id`, `semester_id`, `deadline_type`, `open_date`, `last_date`, `updated_date`) VALUES
-(1, 31, 1, '2017-08-16', '2017-08-19', '2017-08-17 08:12:06'),
+(1, 31, 1, '2017-08-09', '2017-08-16', '2017-08-18 14:09:38'),
 (2, 31, 3, '2017-08-16', '2017-08-22', '2017-08-17 08:19:24'),
 (4, 31, 2, '2017-08-17', '2017-08-25', '2017-08-17 08:18:56');
 
@@ -661,7 +723,7 @@ ALTER TABLE `course_hire`
 -- AUTO_INCREMENT for table `course_name`
 --
 ALTER TABLE `course_name`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT for table `course_responsible`
 --
@@ -671,7 +733,7 @@ ALTER TABLE `course_responsible`
 -- AUTO_INCREMENT for table `deadline`
 --
 ALTER TABLE `deadline`
-  MODIFY `deadline_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `deadline_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `department`
 --
