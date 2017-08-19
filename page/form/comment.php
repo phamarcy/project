@@ -66,7 +66,6 @@ div[class^="col-"] {
                                   <option value="3">3</option>
                                </select>
                             </div>
-                              <div class="help-block with-errors "  for="semester" style="font-size:12px;"></div>
                           </div>
                       </div>
                       <div class="col-md-6 ">
@@ -76,7 +75,6 @@ div[class^="col-"] {
                             <input type="text" class="form-control numonly" id="year" style="width: 150px;" placeholder="e.g. 2560"   maxlength="4" pattern=".{4,4}" required data-required-error="กรุณากรอกปีการศึกษา" data-pattern-error="กรุณากรอกปีการศึกษาให้ถูกต้อง">
                             <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
                           </div>
-                          <div class="help-block with-errors" for="year" style="font-size:12px;"></div>
                         </div>
                       </div>
                      </div>
@@ -140,8 +138,62 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">เห็นชอบ</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่เห็นชอบ</button></td>
+                                                          <td><a type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal11">เห็นชอบ</a></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal12">ไม่เห็นชอบ</button></td>
+                                                          <div id="myModal11" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+                                                              <!-- Modal content-->
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <div class="row">
+                                                                    <div class="col-md-12">
+                                                                      <form>
+                                                                        <div class="form-group">
+                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                        </div>
+                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
+                                                                      </form>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                </div>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
+                                                          <div id="myModal12" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+                                                              <!-- Modal content-->
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <div class="row">
+                                                                    <div class="col-md-12">
+                                                                      <form>
+                                                                        <div class="form-group">
+                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                        </div>
+                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
+                                                                      </form>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                </div>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -151,36 +203,6 @@ div[class^="col-"] {
                                                                   <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
-                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal">เพิ่มคอมเม้นท์</button>
-                                                                  <!-- Modal -->
-                                                                    <div id="myModal" class="modal fade" role="dialog">
-                                                                      <div class="modal-dialog">
-
-                                                                        <!-- Modal content-->
-                                                                        <div class="modal-content">
-                                                                          <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
-                                                                          </div>
-                                                                          <div class="modal-body">
-                                                                            <div class="row">
-                                                                              <div class="col-md-12">
-                                                                                <form>
-                                                                                  <div class="form-group">
-                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                                  </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
-                                                                                </form>
-                                                                              </div>
-                                                                            </div>
-                                                                          </div>
-                                                                          <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                          </div>
-                                                                        </div>
-
-                                                                      </div>
-                                                                    </div>
                                                                   <table class="table ">
                                                                     <thead>
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
@@ -222,8 +244,62 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo2" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">เห็นชอบ</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่เห็นชอบ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal21">เห็นชอบ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal22">ไม่เห็นชอบ</button></td>
+                                                          <div id="myModal21" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+                                                              <!-- Modal content-->
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <div class="row">
+                                                                    <div class="col-md-12">
+                                                                      <form>
+                                                                        <div class="form-group">
+                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                        </div>
+                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
+                                                                      </form>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                </div>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
+                                                          <div id="myModal22" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+                                                              <!-- Modal content-->
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <div class="row">
+                                                                    <div class="col-md-12">
+                                                                      <form>
+                                                                        <div class="form-group">
+                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                        </div>
+                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
+                                                                      </form>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                </div>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12" class="hiddenRow">
@@ -233,36 +309,7 @@ div[class^="col-"] {
                                                                   <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
-                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal2">เพิ่มคอมเม้นท์</button>
-                                                                  <!-- Modal -->
-                                                                    <div id="myModal2" class="modal fade" role="dialog">
-                                                                      <div class="modal-dialog">
 
-                                                                        <!-- Modal content-->
-                                                                        <div class="modal-content">
-                                                                          <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
-                                                                          </div>
-                                                                          <div class="modal-body">
-                                                                            <div class="row">
-                                                                              <div class="col-md-12">
-                                                                                <form>
-                                                                                  <div class="form-group">
-                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                                  </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
-                                                                                </form>
-                                                                              </div>
-                                                                            </div>
-                                                                          </div>
-                                                                          <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                          </div>
-                                                                        </div>
-
-                                                                      </div>
-                                                                    </div>
                                                                   <table class="table ">
                                                                     <thead>
                                                                       <th style="width:170px">คณะกรรมการ</th>
@@ -298,8 +345,62 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo3" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">เห็นชอบ</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ไม่เห็นชอบ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal31">เห็นชอบ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal32">ไม่เห็นชอบ</button></td>
+                                                          <div id="myModal31" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+                                                              <!-- Modal content-->
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <div class="row">
+                                                                    <div class="col-md-12">
+                                                                      <form>
+                                                                        <div class="form-group">
+                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                        </div>
+                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
+                                                                      </form>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                </div>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
+                                                          <div id="myModal32" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+                                                              <!-- Modal content-->
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <div class="row">
+                                                                    <div class="col-md-12">
+                                                                      <form>
+                                                                        <div class="form-group">
+                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                        </div>
+                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
+                                                                      </form>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                </div>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
                                                       </tr>
                                                       <tr>
                                                           <td colspan="12" class="hiddenRow">
@@ -309,7 +410,6 @@ div[class^="col-"] {
                                                                   <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
-                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal3">เพิ่มคอมเม้นท์</button>
                                                                   <!-- Modal -->
                                                                     <div id="myModal3" class="modal fade" role="dialog">
                                                                       <div class="modal-dialog">
@@ -327,7 +427,7 @@ div[class^="col-"] {
                                                                                   <div class="form-group">
                                                                                     <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
                                                                                   </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
                                                                                 </form>
                                                                               </div>
                                                                             </div>
@@ -405,7 +505,35 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo21" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกไม่เห็นชอบ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal41">ยกเลิกไม่เห็นชอบ</button></td>
+                                                          <div id="myModal41" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+                                                              <!-- Modal content-->
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <div class="row">
+                                                                    <div class="col-md-12">
+                                                                      <form>
+                                                                        <div class="form-group">
+                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                        </div>
+                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
+                                                                      </form>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                </div>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
+
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -415,7 +543,6 @@ div[class^="col-"] {
                                                                   <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
-                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal4">เพิ่มคอมเม้นท์</button>
                                                                   <!-- Modal -->
                                                                     <div id="myModal4" class="modal fade" role="dialog">
                                                                       <div class="modal-dialog">
@@ -433,7 +560,7 @@ div[class^="col-"] {
                                                                                   <div class="form-group">
                                                                                     <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
                                                                                   </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
                                                                                 </form>
                                                                               </div>
                                                                             </div>
@@ -480,7 +607,34 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo22" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกไม่เห็นชอบ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal51">ยกเลิกไม่เห็นชอบ</button></td>
+                                                          <div id="myModal51" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+                                                              <!-- Modal content-->
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <div class="row">
+                                                                    <div class="col-md-12">
+                                                                      <form>
+                                                                        <div class="form-group">
+                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                        </div>
+                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
+                                                                      </form>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                </div>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -490,7 +644,6 @@ div[class^="col-"] {
                                                                   <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
-                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal5">เพิ่มคอมเม้นท์</button>
                                                                   <!-- Modal -->
                                                                     <div id="myModal5" class="modal fade" role="dialog">
                                                                       <div class="modal-dialog">
@@ -508,7 +661,7 @@ div[class^="col-"] {
                                                                                   <div class="form-group">
                                                                                     <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
                                                                                   </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
                                                                                 </form>
                                                                               </div>
                                                                             </div>
@@ -555,7 +708,34 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo23" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger">ยกเลิกไม่เห็นชอบ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal61">ยกเลิกไม่เห็นชอบ</button></td>
+                                                          <div id="myModal61" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+                                                              <!-- Modal content-->
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <div class="row">
+                                                                    <div class="col-md-12">
+                                                                      <form>
+                                                                        <div class="form-group">
+                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                        </div>
+                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
+                                                                      </form>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                </div>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -565,7 +745,6 @@ div[class^="col-"] {
                                                                   <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
-                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal6">เพิ่มคอมเม้นท์</button>
                                                                   <!-- Modal -->
                                                                     <div id="myModal6" class="modal fade" role="dialog">
                                                                       <div class="modal-dialog">
@@ -583,7 +762,7 @@ div[class^="col-"] {
                                                                                   <div class="form-group">
                                                                                     <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
                                                                                   </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
                                                                                 </form>
                                                                               </div>
                                                                             </div>
@@ -660,7 +839,34 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo31" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">เห็นชอบ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal71">เห็นชอบ</button></td>
+                                                          <div id="myModal71" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+                                                              <!-- Modal content-->
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <div class="row">
+                                                                    <div class="col-md-12">
+                                                                      <form>
+                                                                        <div class="form-group">
+                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                        </div>
+                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
+                                                                      </form>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                </div>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -670,7 +876,6 @@ div[class^="col-"] {
                                                                   <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
-                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal7">เพิ่มคอมเม้นท์</button>
                                                                   <!-- Modal -->
                                                                     <div id="myModal7" class="modal fade" role="dialog">
                                                                       <div class="modal-dialog">
@@ -688,7 +893,7 @@ div[class^="col-"] {
                                                                                   <div class="form-group">
                                                                                     <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
                                                                                   </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
                                                                                 </form>
                                                                               </div>
                                                                             </div>
@@ -737,7 +942,34 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo32" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">เห็นชอบ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal81">เห็นชอบ</button></td>
+                                                          <div id="myModal81" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+                                                              <!-- Modal content-->
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <div class="row">
+                                                                    <div class="col-md-12">
+                                                                      <form>
+                                                                        <div class="form-group">
+                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                        </div>
+                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
+                                                                      </form>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                </div>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -747,7 +979,6 @@ div[class^="col-"] {
                                                                   <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
-                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal8">เพิ่มคอมเม้นท์</button>
                                                                   <!-- Modal -->
                                                                     <div id="myModal8" class="modal fade" role="dialog">
                                                                       <div class="modal-dialog">
@@ -765,7 +996,7 @@ div[class^="col-"] {
                                                                                   <div class="form-group">
                                                                                     <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
                                                                                   </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
                                                                                 </form>
                                                                               </div>
                                                                             </div>
@@ -813,7 +1044,34 @@ div[class^="col-"] {
                                                             <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo33" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success">เห็นชอบ</button></td>
+                                                          <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal91">เห็นชอบ</button></td>
+                                                          <div id="myModal91" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+                                                              <!-- Modal content-->
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                  <div class="row">
+                                                                    <div class="col-md-12">
+                                                                      <form>
+                                                                        <div class="form-group">
+                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
+                                                                        </div>
+                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
+                                                                      </form>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
+                                                                </div>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
                                                       </tr>
                                                       <tr class="hiddenRow">
                                                           <td colspan="12">
@@ -823,7 +1081,6 @@ div[class^="col-"] {
                                                                   <b>คอมเม้นท์คณะกรรมการ</b>
                                                                 </div>
                                                                 <div class="panel-body">
-                                                                  <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#myModal9">เพิ่มคอมเม้นท์</button>
                                                                   <!-- Modal -->
                                                                     <div id="myModal9" class="modal fade" role="dialog">
                                                                       <div class="modal-dialog">
@@ -841,7 +1098,7 @@ div[class^="col-"] {
                                                                                   <div class="form-group">
                                                                                     <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
                                                                                   </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ส่งคอมเม้นท์</button>
+                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
                                                                                 </form>
                                                                               </div>
                                                                             </div>
