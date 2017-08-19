@@ -59,6 +59,9 @@
   </style>
 
 <script id="contentScript">
+window.countmeabtn = 0;
+window.countsa1btn = 0;
+window.countsa2btn = 0;
 
 function lecloop() {
   var lec = document.getElementById("leclist");
@@ -639,7 +642,108 @@ $(document).ready(function(){
 
       });
 
+  $('#calmea').click(function() {
+    if($("#MEASURE_MIDLEC").val()!=null && $("#MEASURE_MIDLEC").val()!="")
+    {
+      var templec1 = parseFloat($('#MEASURE_MIDLEC').val());
+    }
+    else {
+      var templec1 = parseFloat('0');
+    }
+
+    if($("#MEASURE_FINLEC").val()!=null && $("#MEASURE_FINLEC").val()!="")
+    {
+      var templec2 = parseFloat($('#MEASURE_FINLEC').val());
+    }
+    else {
+      var templec2 = parseFloat('0');
+    }
+
+    if($("#MEASURE_MIDLAB").val()!=null && $("#MEASURE_MIDLAB").val()!="")
+    {
+      var templab1 = parseFloat($('#MEASURE_MIDLAB').val());
+    }
+    else {
+      var templab1 = parseFloat('0');
+    }
+
+    if($("#MEASURE_FINLAB").val()!=null && $("#MEASURE_FINLAB").val()!="")
+    {
+      var templab2 = parseFloat($('#MEASURE_FINLAB').val());
+    }
+    else {
+      var templab2 = parseFloat('0');
+    }
+
+    var totallec = parseFloat($('#MEASURE_TOTALLEC').val());
+    var totallab = parseFloat($('#MEASURE_TOTALLAB').val());
+    var callec = templec1 + templec2;
+    var callab = templab1 + templab2;
+
+    for (var countmea = 1; countmea <= window.countmeabtn; countmea++) {
+      if($("input[name=MEASURE_OTHERLEC" + countmea + "]").val()!=null && $("input[name=MEASURE_OTHERLEC" + countmea + "]").val()!="")
+      {
+        callec = callec + parseFloat($("input[name=MEASURE_OTHERLEC" + countmea + "]").val());
+      }
+
+      if($("input[name=MEASURE_OTHERLAB" + countmea + "]").val()!=null && $("input[name=MEASURE_OTHERLAB" + countmea + "]").val()!=""){
+        callab = callab + parseFloat($("input[name=MEASURE_OTHERLAB" + countmea + "]").val());
+      }
+    }
+
+    var summea = callec + callab;
+    if(summea!=100)
+    {
+      alert('กรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง\nคะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100');
+    }
+    else {
+      $('#MEASURE_TOTALLEC').val(callec);
+      $('#MEASURE_TOTALLAB').val(callab);
+    }
+  });
+
+  $('#calsa1').click(function() {
+    if(window.countsa1btn==0)
+    {
+      var blanksa1 = parseFloat('0');
+      $("#SAMENA_TOTAL").val(blanksa1);
+    }
+    else {
+      var totallab = parseFloat($('#SAMENA_TOTAL').val());
+      var callsa1 = 0;
+
+      for (var countsa1 = 0; countsa1 <= window.countsa1btn; countsa1++) {
+        if($("input[name=SAMENA_SCORE" + countsa1 + "]").val()!=null && $("input[name=SAMENA_SCORE" + countsa1 + "]").val()!=""){
+          callsa1 = callsa1 + parseFloat($("input[name=SAMENA_SCORE" + countsa1 + "]").val());
+        }
+      }
+
+      $('#SAMENA_TOTAL').val(callsa1);
+    }
+  });
+
+  $('#calsa2').click(function() {
+    if(window.countsa2btn==0)
+    {
+      var blanksa2 = parseFloat('0');
+      $("#TRAIN_TOTAL").val(blanksa2);
+    }
+    else {
+      var totallab = parseFloat($('#TRAIN_TOTAL').val());
+      var callsa2 = 0;
+
+      for (var countsa2 = 0; countsa2 <= window.countsa1btn; countsa2++) {
+        if($("input[name=TRAIN_SCORE" + countsa2 + "]").val()!=null && $("input[name=TRAIN_SCORE" + countsa2 + "]").val()!=""){
+          callsa2 = callsa2 + parseFloat($("input[name=TRAIN_SCORE" + countsa2 + "]").val());
+        }
+      }
+
+      $('#TRAIN_TOTAL').val(callsa2);
+    }
+  });
+
   $('#addbtn').click(function() {
+    window.countmeabtn = window.countmeabtn + 1;
     var table = $(this).closest('table');
     if (table.find('input:text').length < 100) {
       $('#delbtn').removeAttr("disabled");
@@ -650,8 +754,8 @@ $(document).ready(function(){
       });
       table.append('<tr class="warning" name="addtr" id="row' + (rowCount - 4) + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + (rowCount - 4) + '" id="delbtn' + (rowCount - 4) +
         '" value="ลบ" onclick="deleteRow(' + (rowCount - 4) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="MEASURE_OTHERCOMMENT' + (rowCount - 4) + '" id="MEASURE_OTHERCOMMENT' + (rowCount - 4) +
-        '" size="50"></div></td><td><input type="text" class="form-control numonly" name="MEASURE_OTHERLEC' + (rowCount - 4) + '" id="MEASURE_OTHERLEC' + (rowCount - 4) +
-        '" size="2"></td><td><input type="text" class="form-control numonly" name="MEASURE_OTHERLAB' + (rowCount - 4) + '" id="MEASURE_OTHERLAB' + (rowCount - 4) + '" size="2"></td></tr>');
+        '" size="50"></div></td><td><input type="text" class="form-control" name="MEASURE_OTHERLEC' + (rowCount - 4) + '" id="MEASURE_OTHERLEC' + (rowCount - 4) +
+        '" size="2"></td><td><input type="text" class="form-control" name="MEASURE_OTHERLAB' + (rowCount - 4) + '" id="MEASURE_OTHERLAB' + (rowCount - 4) + '" size="2"></td></tr>');
       $.each(x, function(i, val) {
         table.append(val);
       });
@@ -659,6 +763,7 @@ $(document).ready(function(){
   });
 
   $('#addbtnsa').click(function() {
+    window.countsa1btn = window.countsa1btn + 1;
     var table = $(this).closest('table');
     if (table.find('input:text').length < 100) {
       $('#delbtnsa').removeAttr("disabled");
@@ -677,6 +782,7 @@ $(document).ready(function(){
   });
 
   $('#addbtnsa2').click(function() {
+    window.countsa2btn = window.countsa2btn + 1;
     var table = $(this).closest('table');
     if (table.find('input:text').length < 100) {
       $('#delbtnsa2').removeAttr("disabled");
@@ -1239,13 +1345,13 @@ function confreset() {
               </tr>
               <tr>
                 <td colspan="2">1. สอบกลางภาคการศึกษา</td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC" id="MEASURE_MIDLEC" size="2" required></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB" id="MEASURE_MIDLAB" size="2" required></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC" id="MEASURE_MIDLEC" size="2"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB" id="MEASURE_MIDLAB" size="2"></div></td>
               </tr>
               <tr>
                 <td colspan="2">2. สอบไล่ </td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="2" required></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="2" required></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="2"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="2"></div></td>
               </tr>
               <tr name="addtr">
 
@@ -1253,9 +1359,9 @@ function confreset() {
 
               </tr>
               <tr>
-                <td colspan="2" style="text-align: center;"><b>รวมคะแนน</b></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="2" required></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="2" required></div></td>
+                <td colspan="2" align="right"><input type="button" class="btn btn-outline btn-warning" name="calmea" id="calmea" value="รวมคะแนน"></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="2"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="2"></div></td>
               </tr>
             </table>
             </div>
@@ -1280,7 +1386,7 @@ function confreset() {
                       <td align="center" colspan="2"><input type="button" class="btn btn-outline btn-success" name="addbtnsa" id="addbtnsa" value="เพิ่ม"></td>
                     </tr>
                     <tr>
-                      <td align="right"><b>รวมคะแนน</b></td>
+                      <td align="right"><input type="button" class="btn btn-outline btn-warning" name="calsa1" id="calsa1" value="รวมคะแนน" ></td>
                       <td><input type="text" class="form-control numonly" name="SAMENA_TOTAL" id="SAMENA_TOTAL" size="2"  ></td>
                     </tr>
                   </tbody>
@@ -1301,7 +1407,7 @@ function confreset() {
                       <td align="center" colspan="2"><input type="button" class="btn btn-outline btn-success" name="addbtnsa2" id="addbtnsa2" value="เพิ่ม"></td>
                     </tr>
                     <tr>
-                      <td align="right"><b>รวมคะแนน</b></td>
+                      <td align="right"><input type="button" class="btn btn-outline btn-warning" name="calsa2" id="calsa2" value="รวมคะแนน" ></td>
                       <td><input type="text" class="form-control numonly" name="TRAIN_TOTAL" id="TRAIN_TOTAL" size="2" ></td>
                     </tr>
                   </tbody>
