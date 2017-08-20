@@ -178,6 +178,7 @@
       {
         $('#numnight').val("");
         $('#pernight').val("");
+        $('#numnight').prop('required',true);
         $('#numnight').keyup(function(){
             var textone;
             var texttwo;
@@ -186,10 +187,11 @@
             $('#pernight').val(result.toFixed(2));
         });
       }
-      else
+      else if($(this).val()=="way2")
       {
         $('#numnight').val("");
         $('#pernight').val("");
+        $('#numnight').prop('required',true);
         $('#numnight').keyup(function(){
             var textone;
             var texttwo;
@@ -198,6 +200,10 @@
             $('#pernight').val(result.toFixed(2));
         });
       }
+      else {
+        $('#numnight').prop('required',false);
+      }
+
       });
 
       // callist
@@ -436,7 +442,7 @@ function lastcal() {
               </div>
 
               <div class="form-inline">
-                <li><div class="form-group">จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="number" class="form-control numonly" name="" id="hour" size="3" data-minlength="1" min="0" max="100" required > &nbsp;ของทั้งกระบวนวิชา</div></li>
+                <li><div class="form-group">จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control numonly" name="" id="hour" size="3" maxlength="10" required > &nbsp;ของทั้งกระบวนวิชา</div></li>
               </div>
               <div class="form-inline">
                 <div class="form-group"><li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70" required ></textarea></li></div>
@@ -497,10 +503,11 @@ function lastcal() {
           <div class="form-inline">
             <li>ค่าที่พัก</li>
             <div class="form-group"><div class="radio">
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" required>&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way3" required>&nbsp;&nbsp; ไม่เบิกค่าที่พัก&nbsp;&nbsp;<br>
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน 800 บาท/คน/คืน &nbsp;&nbsp;
             </div></div>
-            <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999" required  >&nbsp;&nbsp;คืน
+            <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999"  >&nbsp;&nbsp;คืน
             &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" min="0" max="99999" READONLY  >&nbsp;&nbsp;บาท
           </div>
           </div>
