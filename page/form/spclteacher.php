@@ -202,6 +202,8 @@
       }
       else {
         $('#numnight').prop('required',false);
+        $('#numnight').val("");
+        $('#pernight').val("");
       }
 
       });
