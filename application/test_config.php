@@ -3,6 +3,7 @@
 require_once(__DIR__."/class/Log.php");
 require_once(__DIR__."/class/Database.php");
 require_once(__DIR__."/class/person.php");
+require_once(__DIR__."/class/course.php");
 // $log = new Log();
 // $log->Write("test");
 // $db = new Database();
@@ -10,5 +11,5 @@ require_once(__DIR__."/class/person.php");
 // var_dump($data);
 // $db->Close_connection();
 
-$p = new Person();
-echo json_encode($p->Get_All_Teacher());
+$p = new Course();
+echo json_encode($p->Get_All_Course());
