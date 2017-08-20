@@ -3,6 +3,7 @@ require_once(__DIR__."/Database.php");
 require_once(__DIR__."/manage_deadline.php");
 require_once(__DIR__.'/curl.php');
 require_once(__DIR__."/course.php");
+require_once(__DIR__."/person.php");
 /**
  *
  */
@@ -16,6 +17,7 @@ class approval
   private $USER_LEVEL;
   private $CURL;
   private $COURSE;
+  private $PERSON;
 
   function __construct($level)
   {
@@ -29,6 +31,7 @@ class approval
     $this->CURL = new CURL();
     $this->COURSE = new Course();
     $this->DB = new Database();
+    $this->PERSON = new Person();
   }
 
   public function Check_Status($course_id)
@@ -68,8 +71,8 @@ class approval
           {
             $data[$data_type]['comment'] = array();
           }
-          $teacher_name = $this->Get_Teacher_Name($result[$i]['teacher_id']);
-          if($teacher_name != false)
+          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          if($teacher_name != false && $this->USER_LEVEL != 1)
           {
               $comment_data['name'] = $teacher_name;
           }
@@ -149,24 +152,6 @@ class approval
       }
   }
 
-  //search teacher prefix and name
-  private function Get_Teacher_Name($teacher_id)
-  {
-    //search teacher data
-    $this->DB->Change_DB('person');
-    $sql = "SELECT p.`name` as prefix ,s.`fname`,s.`lname` FROM `staff` s,`prefix` p WHERE s.`code` = '".$teacher_id."' AND s.`prefix_code` = p.`code` ";
-    $result = $this->DB->Query($sql);
-    $this->DB->Change_DB('pharmacy');
-    if($result)
-    {
-      $full_name = $result[0]['prefix']." ".$result[0]['fname']." ".$result[0]['lname'];
-      return $full_name;
-    }
-    else
-    {
-      return false;
-    }
-  }
   //get approval data to approval page
   public function Get_Approval_data($teacher_id)
   {
@@ -194,7 +179,7 @@ class approval
         {
           for($j=0;$j<count($result_comment);$j++)
           {
-            $comment['name'] = $this->Get_Teacher_Name($result_comment[$j]['teacher_id']);
+            $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$j]['teacher_id']);
             $comment['text'] = $result_comment[$j]['comment'];
             array_push($course['comment'],$comment);
           }
