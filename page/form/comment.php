@@ -130,13 +130,13 @@ div[class^="col-"] {
                                                           <td>202141</td>
                                                           <td>BIOLOGY FOR PHARMACY STUDENTS</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">comment</button></td>
                                                           <td><a type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal11">เห็นชอบ</a></td>
@@ -236,13 +236,13 @@ div[class^="col-"] {
                                                           <td>203151</td>
                                                           <td>GENERAL CHEMISTRY FOR THE HEALTH SCIENCES</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo2" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal21">เห็นชอบ</button></td>
@@ -337,13 +337,13 @@ div[class^="col-"] {
                                                           <td>463592</td>
                                                           <td>RESEARCH AND DEVELOPMENT OF NEW DRUGS</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo3" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal31">เห็นชอบ</button></td>
@@ -497,13 +497,13 @@ div[class^="col-"] {
                                                           <td>463311</td>
                                                           <td>PHARMACEUTICAL BIOTECHNOLOGY 1</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo21" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal41">ยกเลิกไม่เห็นชอบ</button></td>
@@ -599,13 +599,13 @@ div[class^="col-"] {
                                                           <td>463331</td>
                                                           <td>ORGANIC MEDICINAL CHEMISTRY 1</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo22" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal51">ยกเลิกไม่เห็นชอบ</button></td>
@@ -700,13 +700,13 @@ div[class^="col-"] {
                                                           <td>464301</td>
                                                           <td>FUNDAMENTAL OF PHARMACOKINETICS</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo23" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal61">ยกเลิกไม่เห็นชอบ</button></td>
@@ -831,13 +831,13 @@ div[class^="col-"] {
                                                           <td>463332</td>
                                                           <td>ORGANIC MEDICINAL CHEMISTRY 2</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo31" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal71">เห็นชอบ</button></td>
@@ -934,13 +934,13 @@ div[class^="col-"] {
                                                           <td>463342</td>
                                                           <td>PHARMACEUTICAL QUALITY ASSURANCE 2</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo32" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal81">เห็นชอบ</button></td>
@@ -1036,13 +1036,13 @@ div[class^="col-"] {
                                                           <td>464445</td>
                                                           <td>PHARMACY PUBLIC HEALTH</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo33" class="accordion-toggle">comment</button></td>
                                                           <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal91">เห็นชอบ</button></td>
