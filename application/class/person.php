@@ -53,7 +53,7 @@ class Person
   {
     //search teacher data
     $this->DB->Change_DB('person');
-    $sql = "SELECT p.`name` as prefix ,s.`fname`,s.`lname` FROM `staff` s,`prefix` p WHERE s.`code` = '".$teacher_id."' AND s.`prefix_code` = p.`code` ";
+    $sql = "SELECT p.`code` as code,p.`name` as prefix ,s.`fname`,s.`lname` FROM `staff` s,`prefix` p WHERE s.`code` = '".$teacher_id."' AND s.`prefix_code` = p.`code` ";
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB('pharmacy');
     if($result)
