@@ -371,17 +371,7 @@ function lastcal() {
           <br>
           <div class="form-inline">
             <li>สถานที่ทำงาน &nbsp;&nbsp;<br />
-              <div class="form-group">บ้านเลขที &nbsp;&nbsp;<input type="text" class="form-control" id="wknumber" size="5" maxlength="15" required ></div>&nbsp;
-              <div class="form-group">ชื่อหมู่บ้าน &nbsp;&nbsp;<input type="text" class="form-control" id="wksubad" size="20" maxlength="100" required></div>&nbsp;
-              <div class="form-group">หมู่ที่ &nbsp;&nbsp;<input type="text" class="form-control" id="wksubadnum" size="5" maxlength="3" required></div>&nbsp; <br>
-              <div class="form-group">ถนน &nbsp;&nbsp;<input type="text" class="form-control" id="wkroad" size="20" maxlength="100" required></div>&nbsp;
-              <div class="form-group">ซอย &nbsp;&nbsp;<input type="text" class="form-control" id="wksoi" size="20" maxlength="100" ></div>&nbsp; <br>
-              <div class="form-group">ตึก/อาคาร &nbsp;&nbsp;<input type="text" class="form-control" id="wkbuild" size="20" maxlength="100" ></div>&nbsp;
-              <div class="form-group">ชั้น &nbsp;&nbsp;<input type="text" class="form-control" id="wkfloor" size="20" maxlength="3" ></div>&nbsp; <br>
-              <div class="form-group">ตำบล &nbsp;&nbsp;<input type="text" class="form-control" id="wkdistrict1" size="20" maxlength="100" required></div>&nbsp;
-              <div class="form-group">อำเภอ &nbsp;&nbsp;<input type="text" class="form-control" id="wkdistrict2" size="20" maxlength="100" requiredv></div>&nbsp;<br>
-              <div class="form-group">จังหวัด &nbsp;&nbsp;<input type="text" class="form-control" id="wkprovince" size="20" maxlength="100" required></div>&nbsp;
-              <div class="form-group">รหัสไปรษณีย์ &nbsp;&nbsp;<input type="text" class="form-control" id="wkcode" size="6" maxlength="5" required></div>
+              <div class="form-group"><textarea class="form-control" name="workplace" id="workplace" rows="3" cols="60"></textarea></div>
             </li>
           </div>
           <br>
