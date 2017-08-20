@@ -1,3 +1,10 @@
+<?php
+session_start();
+require_once(__DIR__."/../../application/class/course.php");
+require_once(__DIR__."/../../application/class/person.php");
+$course = new Course();
+$person = new Person();
+?>
 <html>
 <header>
     <meta charset="utf-8">
@@ -60,28 +67,20 @@ div[class^="col-"] {
                                     <div class="col-md-4">
                                       <div class="form-group">
                                         <label style="font-size:16px;">รายชื่ออาจารย์</label>
-                                        <select class="form-control" name="">
-                                          <option value="">รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</option>
-                                          <option value="">รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</option>
-                                          <option value="">ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</option>
-                                          <option value="">ผศ.ดร. ภญ.รัตนาภรณ์   อาวิพันธ์</option>
-                                          <option value="">รศ.ดร. ภญ.หทัยกาญจน์   เชาวนพูนผล</option>
-                                          <option value="">ผศ.ดร. ภก.สกนธ์   สุภากุล</option>
-                                          <option value="">ผศ.ดร. ภญ.อำไพ   พฤติวรพงศ์กุล</option>
-                                          <option value="">อ.ดร. ภก.สมจริง   รุ่งแจ้ง</option>
+                                        <select class="form-control" name="teacher">
+                                          <?php foreach ($person->Get_All_Teacher() as $value_teacher): ?>
+                                                  <option value="<?php echo $value_teacher['id'] ?>"><?php echo $value_teacher['prefix']." ".$value_teacher['name'] ?></option>
+                                          <?php endforeach; ?>
                                         </select>
                                       </div>
                                     </div>
                                     <div class="col-md-8">
                                       <div class="form-group">
                                         <label style="font-size:16px;">วิชา</label>
-                                        <select class="form-control" name="">
-                                          <option value="">462533	HEALTH BEHAVIORS AND PHARMACEUTICAL CARE</option>
-                                          <option value="">461525	BASIC KNOWLEDGE OF THAI TRADITIONAL MEDICINEE</option>
-                                          <option value="">461532	DRUG SYNTHESIS</option>
-                                          <option value="">461575	DELIVERY SYSTEMS IN COSMETICS</option>
-                                          <option value="">463522	EVIDENCE-BASED DIETARY SUPPLEMENTS</option>
-                                          <option value="">463571	QUALITY CONTROL FOR FOOD AND COSMETICS</option>
+                                        <select class="form-control" name="course">
+                                          <?php foreach ($course->Get_All_Course() as $value_course): ?>
+                                            <option value="<?php echo $value_course['id'] ?>"><?php echo $value_course['id']." ".$value_course['name']['en']; ?></option>
+                                          <?php endforeach; ?>
                                         </select>
                                       </div>
                                     </div>

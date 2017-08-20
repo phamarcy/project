@@ -99,14 +99,6 @@ $p = new Person();
               <?php foreach ($p->Get_All_Teacher() as $value): ?>
                       <option value="<?php echo $value['id'] ?>"><?php echo $value['prefix']." ".$value['name'] ?></option>
               <?php endforeach; ?>
-
-                    <option value="">รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</option>
-                    <option value="">ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</option>
-                    <option value="">ผศ.ดร. ภญ.รัตนาภรณ์   อาวิพันธ์</option>
-                    <option value="">รศ.ดร. ภญ.หทัยกาญจน์   เชาวนพูนผล</option>
-                    <option value="">ผศ.ดร. ภก.สกนธ์   สุภากุล</option>
-                    <option value="">ผศ.ดร. ภญ.อำไพ   พฤติวรพงศ์กุล</option>
-                    <option value="">อ.ดร. ภก.สมจริง   รุ่งแจ้ง</option>
                   </select>
                 </div>
                 <input type="submit" class="btn btn-outline btn-warning" id="ค้นหา" value="มอบอำนาจ">

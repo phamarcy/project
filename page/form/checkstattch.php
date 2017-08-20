@@ -76,7 +76,6 @@ a[disabled="disabled"] {
      <div class="form-inline">
          <center>
              <h style="font-size : 16px">วิชา
-
            <div class="form-group" >
              <select class="form-control" name="">
                <?php foreach ($p->Get_All_Course() as $value): ?>
