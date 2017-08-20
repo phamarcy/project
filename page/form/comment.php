@@ -130,7 +130,7 @@ div[class^="col-"] {
                                                           <td>202141</td>
                                                           <td>BIOLOGY FOR PHARMACY STUDENTS</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&info=syllabus" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
                                                             <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
@@ -236,7 +236,7 @@ div[class^="col-"] {
                                                           <td>203151</td>
                                                           <td>GENERAL CHEMISTRY FOR THE HEALTH SCIENCES</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&info=syllabus" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
                                                             <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
@@ -337,7 +337,7 @@ div[class^="col-"] {
                                                           <td>463592</td>
                                                           <td>RESEARCH AND DEVELOPMENT OF NEW DRUGS</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&info=syllabus" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
                                                             <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
@@ -497,7 +497,7 @@ div[class^="col-"] {
                                                           <td>463311</td>
                                                           <td>PHARMACEUTICAL BIOTECHNOLOGY 1</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&info=syllabus" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
                                                             <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
@@ -599,7 +599,7 @@ div[class^="col-"] {
                                                           <td>463331</td>
                                                           <td>ORGANIC MEDICINAL CHEMISTRY 1</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&info=syllabus" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
                                                             <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
@@ -700,7 +700,7 @@ div[class^="col-"] {
                                                           <td>464301</td>
                                                           <td>FUNDAMENTAL OF PHARMACOKINETICS</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&info=syllabus" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
                                                             <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
@@ -831,7 +831,7 @@ div[class^="col-"] {
                                                           <td>463332</td>
                                                           <td>ORGANIC MEDICINAL CHEMISTRY 2</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&info=syllabus" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
                                                             <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
@@ -934,7 +934,7 @@ div[class^="col-"] {
                                                           <td>463342</td>
                                                           <td>PHARMACEUTICAL QUALITY ASSURANCE 2</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&info=syllabus" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
                                                             <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
@@ -1036,7 +1036,7 @@ div[class^="col-"] {
                                                           <td>464445</td>
                                                           <td>PHARMACY PUBLIC HEALTH</td>
                                                           <td  style="text-align:center;">
-                                                            <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
+                                                            <a href="../../application/pdf/view.php?course=462452&info=syllabus" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                                           </td>
                                                           <td  style="text-align:center;">
                                                             <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
