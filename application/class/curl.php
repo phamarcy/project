@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__."/../config/configuration_variable.php");
-require_once(__DIR__."/Log.php");
+require_once(__DIR__."/log.php");
 /**
  *
  */

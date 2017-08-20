@@ -3,7 +3,7 @@
 // this class is use for manage deadline data
 // adiluck chooprateep adiluckyo@gmail.com
 require_once(__DIR__.'/../config/configuration_variable.php');
-require_once('Database.php');
+require_once(__DIR__.'/database.php');
 //require_once('Log.php');
 Class Deadline
 {

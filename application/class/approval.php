@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__."/Database.php");
+require_once(__DIR__."/database.php");
 require_once(__DIR__."/manage_deadline.php");
 require_once(__DIR__.'/curl.php');
 require_once(__DIR__."/course.php");
