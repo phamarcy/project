@@ -1,3 +1,9 @@
+<?php
+session_start();
+require_once(__DIR__."/../../application/class/person.php");
+$p = new Person();
+
+ ?>
 <html>
 <header>
  <meta charset="utf-8">
@@ -91,7 +97,10 @@
               <form class="" action="" method="post">
                 <div class="form-group">
                   <select class="form-control" name="">
-                    <option value="">รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</option>
+              <?php foreach ($p->Get_All_Teacher() as $value): ?>
+                      <option value="<?php echo $value['id'] ?>"><?php echo $value['prefix']." ".$value['name'] ?></option>
+              <?php endforeach; ?>
+
                     <option value="">รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</option>
                     <option value="">ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</option>
                     <option value="">ผศ.ดร. ภญ.รัตนาภรณ์   อาวิพันธ์</option>
