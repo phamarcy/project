@@ -2,7 +2,6 @@
 session_start();
 require_once(__DIR__."/../../application/class/person.php");
 $p = new Person();
-
  ?>
 <html>
 <header>

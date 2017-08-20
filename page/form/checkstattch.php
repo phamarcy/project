@@ -1,5 +1,7 @@
 <?php
  session_start();
+ require_once(__DIR__."/../../application/class/course.php");
+ $p = new Course();
 ?>
 <html>
 <header>
@@ -74,14 +76,12 @@ a[disabled="disabled"] {
      <div class="form-inline">
          <center>
              <h style="font-size : 16px">วิชา
+
            <div class="form-group" >
              <select class="form-control" name="">
-               <option value="">462533	HEALTH BEHAVIORS AND PHARMACEUTICAL CARE</option>
-               <option value="">461525	BASIC KNOWLEDGE OF THAI TRADITIONAL MEDICINEE</option>
-               <option value="">461532	DRUG SYNTHESIS</option>
-               <option value="">461575	DELIVERY SYSTEMS IN COSMETICS</option>
-               <option value="">463522	EVIDENCE-BASED DIETARY SUPPLEMENTS</option>
-               <option value="">463571	QUALITY CONTROL FOR FOOD AND COSMETICS</option>
+               <?php foreach ($p->Get_All_Course() as $value): ?>
+                 <option value="<?php echo $value['id'] ?>"><?php echo $value['id']." ".$value['name']['en']; ?></option>
+               <?php endforeach; ?>
              </select>
              </div>
 
