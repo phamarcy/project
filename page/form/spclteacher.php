@@ -42,7 +42,7 @@
 
  <style>
  input[type=text],input[type=date],input[type=time]{
-   height: 25px;
+   height: 30px;
  }
 
  input[type=number]{
