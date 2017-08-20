@@ -25,7 +25,7 @@ class Person
 
   public function Get_All_Teacher()
   {
-    $sql = "SELECT p.`name` as prefix,s.`fname`,s.`lname`
+    $sql = "SELECT s.`code` as code,p.`name` as prefix,s.`fname`,s.`lname`
     FROM `staff` s,`prefix` p,`position` po
     WHERE s.`position_code` = po.`code` and s.`prefix_code` = p.`code` AND s.`position_code` = '100000'";
 
@@ -35,6 +35,7 @@ class Person
       $teacher = array();
       for($i=0;$i<count($result);$i++)
       {
+        $name['id'] = $result[$i]['code'];
         $name['prefix'] = $result[$i]['prefix'];
         $name['name'] = $result[$i]['fname'].' '.$result[$i]['lname'];
         array_push($teacher,$name);
@@ -53,7 +54,7 @@ class Person
   {
     //search teacher data
     $this->DB->Change_DB('person');
-    $sql = "SELECT p.`code` as code,p.`name` as prefix ,s.`fname`,s.`lname` FROM `staff` s,`prefix` p WHERE s.`code` = '".$teacher_id."' AND s.`prefix_code` = p.`code` ";
+    $sql = "SELECT p.`name` as prefix ,s.`fname`,s.`lname` FROM `staff` s,`prefix` p WHERE s.`code` = '".$teacher_id."' AND s.`prefix_code` = p.`code` ";
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB('pharmacy');
     if($result)
