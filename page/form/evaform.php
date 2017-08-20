@@ -72,6 +72,8 @@ function lecloop() {
       document.getElementById('ctlec' + i).classList.add('hide');
       document.getElementById("TEACHERLEC_F" + i).style.display = "none";
       document.getElementById("TEACHERLEC_L" + i).style.display = "none";
+      document.getElementById("TEACHERLEC_F" + i).value = "";
+      document.getElementById("TEACHERLEC_L" + i).value = "";
     }
   } else {
     //document.getElementById("test1").innerHTML = lec.value;
@@ -80,6 +82,11 @@ function lecloop() {
       document.getElementById('ctlec' + i).classList.add('hide');
       document.getElementById('TEACHERLEC_F' + i).style.display = "none";
       document.getElementById("TEACHERLEC_L" + i).style.display = "none";
+      if(i>lec.value)
+      {
+        document.getElementById("TEACHERLEC_F" + i).value = "";
+        document.getElementById("TEACHERLEC_L" + i).value = "";
+      }
     }
 
     for (i = 1; i <= lec.value; i++) {
@@ -100,6 +107,8 @@ function labloop() {
       document.getElementById('ctlab' + i).classList.add('hide');
       document.getElementById("TEACHERLAB_F" + i).style.display = "none";
       document.getElementById('TEACHERLAB_L' + i).style.display = "none";
+      document.getElementById("TEACHERLAB_F" + i).value = "";
+      document.getElementById("TEACHERLAB_L" + i).value = "";
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
@@ -108,6 +117,11 @@ function labloop() {
       document.getElementById('ctlab' + i).classList.add('hide');
       document.getElementById('TEACHERLAB_F' + i).style.display = "none";
       document.getElementById('TEACHERLAB_L' + i).style.display = "none";
+      if(i>lab.value)
+      {
+        document.getElementById("TEACHERLAB_F" + i).value = "";
+        document.getElementById("TEACHERLAB_L" + i).value = "";
+      }
 
     }
 
@@ -130,6 +144,8 @@ function midexam_hour_lec() {
       document.getElementById('mehlec' + i).classList.add('hide');
       document.getElementById("MIDEXCOM_LECF" + i).style.display = "none";
       document.getElementById('MIDEXCOM_LECL' + i).style.display = "none";
+      document.getElementById("MIDEXCOM_LECF" + i).value = "";
+      document.getElementById("MIDEXCOM_LECL" + i).value = "";
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
@@ -138,7 +154,11 @@ function midexam_hour_lec() {
       document.getElementById('mehlec' + i).classList.add('hide');
       document.getElementById('MIDEXCOM_LECF' + i).style.display = "none";
       document.getElementById('MIDEXCOM_LECL' + i).style.display = "none";
-
+      if(i>lec.value)
+      {
+        document.getElementById("MIDEXCOM_LECF" + i).value = "";
+        document.getElementById("MIDEXCOM_LECL" + i).value = "";
+      }
     }
 
     for (i = 1; i <= lec.value; i++) {
@@ -160,6 +180,8 @@ function midexam_hour_lab() {
       document.getElementById('ehlab' + i).classList.add('hide');
       document.getElementById("MIDEXCOM_LABF" + i).style.display = "none";
       document.getElementById('MIDEXCOM_LABL' + i).style.display = "none";
+      document.getElementById("MIDEXCOM_LABF" + i).value = "";
+      document.getElementById("MIDEXCOM_LABL" + i).value = "";
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
@@ -168,7 +190,11 @@ function midexam_hour_lab() {
       document.getElementById('ehlab' + i).classList.add('hide');
       document.getElementById('MIDEXCOM_LABF' + i).style.display = "none";
       document.getElementById('MIDEXCOM_LABL' + i).style.display = "none";
-
+      if(i>lab.value)
+      {
+        document.getElementById("MIDEXCOM_LABF" + i).value = "";
+        document.getElementById("MIDEXCOM_LABL" + i).value = "";
+      }
     }
 
     for (i = 1; i <= lab.value; i++) {
@@ -190,6 +216,8 @@ function finexam_hour_lec() {
       document.getElementById('fmehlec' + i).classList.add('hide');
       document.getElementById("FINEXCOM_LECF" + i).style.display = "none";
       document.getElementById('FINEXCOM_LECL' + i).style.display = "none";
+      document.getElementById("FINEXCOM_LECF" + i).value = "";
+      document.getElementById("FINEXCOM_LECL" + i).value = "";
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
@@ -198,6 +226,11 @@ function finexam_hour_lec() {
       document.getElementById('fmehlec' + i).classList.add('hide');
       document.getElementById('FINEXCOM_LECF' + i).style.display = "none";
       document.getElementById('FINEXCOM_LECL' + i).style.display = "none";
+      if(i>lec.value)
+      {
+        document.getElementById("FINEXCOM_LECF" + i).value = "";
+        document.getElementById("FINEXCOM_LECL" + i).value = "";
+      }
 
     }
 
@@ -220,6 +253,8 @@ function finexam_hour_lab() {
       document.getElementById('fehlab' + i).classList.add('hide');
       document.getElementById("FINEXCOM_LABF" + i).style.display = "none";
       document.getElementById('FINEXCOM_LABL' + i).style.display = "none";
+      document.getElementById("FINEXCOM_LABF" + i).value = "";
+      document.getElementById("FINEXCOM_LABL" + i).value = "";
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
@@ -228,6 +263,11 @@ function finexam_hour_lab() {
       document.getElementById('fehlab' + i).classList.add('hide');
       document.getElementById('FINEXCOM_LABF' + i).style.display = "none";
       document.getElementById('FINEXCOM_LABL' + i).style.display = "none";
+      if(i>lab.value)
+      {
+        document.getElementById("FINEXCOM_LABF" + i).value = "";
+        document.getElementById("FINEXCOM_LABL" + i).value = "";
+      }
 
     }
 
