@@ -8,7 +8,6 @@ if( isset($_GET['info']))
     $PATH_FILE = "../../files/";
    if($INFORMATION_TYPE == 'special')
    {
-     header("Content-type: application/pdf");
      if(isset($_GET['type']))
      {
        $FILE_TYPE = $_GET['type']; //draft, complete
@@ -16,7 +15,7 @@ if( isset($_GET['info']))
        {
          $SPECIAL_ID = $_GET['id']; //instructor id
          $FILE_NAME = $PATH_FILE.$FILE_TYPE."/special_instructor/".$SPECIAL_ID.".pdf";
-        header("Content-type: application/pdf");
+         header("Content-type: application/pdf");
          header("Content-Disposition: inline;");
          readfile($FILE_NAME);
        }
@@ -32,7 +31,6 @@ if( isset($_GET['info']))
    }
    else if($INFORMATION_TYPE == 'evaluate')
    {
-     header("Content-type: application/pdf");
      if(isset($_GET['type']))
      {
        $FILE_TYPE = $_GET['type']; //draft, complete
