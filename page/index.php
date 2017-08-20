@@ -349,10 +349,10 @@
 
 						<?php if($_SESSION['level'] == 2) { ?>
 							<li>
-								<a href="#" onclick="loadDoc('form/setsubject.php')"><i class="fa fa-user-md fa-fw"></i> กำหนดกระบวนวิชา</a>
+								<a href="#" onclick="loadDoc('form/managesubject.php')"><i class="fa fa-user-md fa-fw"></i> จัดการกระบวนวิชา</a>
 							</li>
 							<li>
-								<a href="#" onclick="loadDoc('form/managesubject.php')"><i class="fa fa-user-md fa-fw"></i> จัดการกระบวนวิชา</a>
+								<a href="#" onclick="loadDoc('form/setsubject.php')"><i class="fa fa-user-md fa-fw"></i> กำหนดกระบวนวิชา</a>
 							</li>
 						<?php }if($_SESSION['level'] == 3){?>
 							<li>
