@@ -38,7 +38,7 @@ div[class^="col-"] {
       <div class="container">
         <div class="row">
           <center>
-            <h3 class="page-header">กำหนดกระบวนวิชาให้กับอาจารย์</h3>
+            <h3 class="page-header">กำหนดกระบวนวิชา</h3>
 
           </center>
         </div>

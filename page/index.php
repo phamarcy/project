@@ -349,7 +349,7 @@
 
 						<?php if($_SESSION['level'] == 2) { ?>
 							<li>
-								<a href="#" onclick="loadDoc('form/setsubject.php')"><i class="fa fa-user-md fa-fw"></i> กำหนดวิชาให้อาจารย์</a>
+								<a href="#" onclick="loadDoc('form/setsubject.php')"><i class="fa fa-user-md fa-fw"></i> กำหนดกระบวนวิชา</a>
 							</li>
 							<li>
 								<a href="#" onclick="loadDoc('form/managesubject.php')"><i class="fa fa-user-md fa-fw"></i> จัดการกระบวนวิชา</a>
