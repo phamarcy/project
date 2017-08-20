@@ -44,7 +44,7 @@ class Person
     }
     else
     {
-      $this->LOG->Write("Search Teacher failed");
+      $this->LOG->Write("Error person : Search Teacher failed");
       return false;
     }
   }
