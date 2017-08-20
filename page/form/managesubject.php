@@ -47,7 +47,7 @@ session_start();
           if(course_id.length == 6)
           {
               $("#course_id").css("border-color","rgb(204, 204, 204)");
-              $("#warning").css("color","green").html('บันทึกสำเร็จ').delay(1500).fadeOut();
+              $("#warning").css("color","green").html('บันทึกกระบวนวิชา 462533	HEALTH BEHAVIORS AND PHARMACEUTICAL CARE สำเร็จ').delay(1500).fadeOut();
               $("#course_id").val('');
           }
           else
