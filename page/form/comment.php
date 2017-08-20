@@ -1,1151 +1,546 @@
 <?php
-session_start();
- ?>
+ session_start();
+?>
 <html>
 <header>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="">
+ <meta name="author" content="">
 
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript" src="../js/function.js"></script>
+ <!-- Bootstrap Core CSS -->
+ <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+ <!-- MetisMenu CSS -->
+ <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+ <!-- Custom CSS -->
+ <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+ <!-- Morris Charts CSS -->
+ <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+ <!-- Custom Fonts -->
+ <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
 
-    <!--ใช้ตัวนี้-->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+ <script src="../vendor/jquery/jquery.min.js"></script>
 
+ <!-- Bootstrap Core JavaScript -->
+ <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<style >
-/*div[class="row"] {
-  border: 1px dotted rgba(0, 0, 0, 0.5);
+ <!-- Metis Menu Plugin JavaScript -->
+ <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+ <!-- Custom Theme JavaScript -->
+ <script src="../dist/js/sb-admin-2.js"></script>
+
+ <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+<style>
+
+a[disabled="disabled"] {
+ <?php if ($_SESSION['level'] == 2 or $_SESSION['level'] == 3) { ?>
+   pointer-events: none;
+ <?php  } ?>
+}
+#statcf {
+ color : #0e9d14;
 }
 
-div[class^="col-"] {
-  background-color: rgba(255, 0, 0, 0.2);
-}*/
+#statn {
+ color : #ec2c2c;
+}
 
+#statwt {
+ color : #acb500;
+}
+
+#statal {
+ color : #da9001;
+}
 </style>
-
 </header>
-
-
 <body class="mybox">
-    <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
-      <div class="container">
-        <div class="row">
-            <center>
-              <?php if ($_SESSION['level']==6): ?>
-                  <h3 class="page-header">อนุมัติกระบวนวิชา</h3>
-                <?php else: ?>
-                  <h3 class="page-header">ประเมินกระบวนวิชา</h3>
-              <?php endif; ?>
+ <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
+   <div class="row">
+     <center>
+       <h3 class="page-header">ตรวจสอบสถานะการอนุมัติกระบวนวิชา</h3>
+     </center>
+     <div class="form-inline">
+         <center>
+             <h style="font-size : 16px">วิชา
+           <div class="form-group" >
+             <select class="form-control" name="">
+               <option value="">462533	HEALTH BEHAVIORS AND PHARMACEUTICAL CARE</option>
+               <option value="">461525	BASIC KNOWLEDGE OF THAI TRADITIONAL MEDICINEE</option>
+               <option value="">461532	DRUG SYNTHESIS</option>
+               <option value="">461575	DELIVERY SYSTEMS IN COSMETICS</option>
+               <option value="">463522	EVIDENCE-BASED DIETARY SUPPLEMENTS</option>
+               <option value="">463571	QUALITY CONTROL FOR FOOD AND COSMETICS</option>
+             </select>
+             </div>
 
+               &nbsp;<button type="submit" class="btn btn-success btn-outline"   >ค้นหา</button>
+               <div id="searchstatus" style="display:inline;"></div>
+                 </h>
+         </center>
+         </div>
+   </div>
+<br>
+<div class="container">
+ <div class="panel-group" id="accordion0">
+   <div class="panel panel-info">
+     <div class="panel-heading">
+       <h5 class="panel-title">
+         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+         <i class="fa fa-search fa-fw"></i><b> รายชื่อกระบวนวิชา</b> ภาคการศึกษาที่ 1 ปีการศึกษา 2560</a>
+       </h5>
+     </div>
+     <div id="collapse1" class="panel-collapse collapse in">
+       <div class="panel-body" style="font-size:14px;">
+         <!-- 1 -->
+         <div class="panel-group" id="accordion1">
+         <div class="panel panel-success">
+           <div class="panel-heading">
+             <h3 class="panel-title">
+               <a data-toggle="collapse" href="#collapse2" >
+               <li><b><u>รหัสกระบวนวิชา</u></b> : 204111 <b>ตอนที่</b> 1 <b>ภาคปกติ</b></a></li>
+               <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b>
+             </h3>
+           </div>
+           <div id="collapse2" class="panel-collapse collapse">
+             <div class="panel-body" style="font-size:14px;">
 
-              <!--data-toggle="validator" role="form" ใส้ตัวนี้ในform -->
-                  <form  data-toggle="validator" role="form">
-                    <div   class="form-group " style="font-size:16px;">
-                      <div class="col-md-5 ">
-                        <div class="form-group pull-right">
-                            <div class="form-inline">
-                              <label id="semester" class="control-label">ภาคการศึกษา</label>
-                               <select class="form-control required" id="semester" style="width: 70px;" id="select" required  data-required-error="กรุณาเลือกภาคการศึกษา">
-                                  <option value="">--</option>
-                                  <option value="1">1</option>
-                                  <option value="2">2</option>
-                                  <option value="3">3</option>
-                               </select>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-md-6 ">
-                        <div class="form-group pull-left">
-                          <div class="form-inline ">
-                            <label for="inputyear" class="control-label">ปีการศึกษา</label>
-                            <input type="text" class="form-control numonly" id="year" style="width: 150px;" placeholder="e.g. 2560"   maxlength="4" pattern=".{4,4}" required data-required-error="กรุณากรอกปีการศึกษา" data-pattern-error="กรุณากรอกปีการศึกษาให้ถูกต้อง">
-                            <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
-                          </div>
-                        </div>
-                      </div>
+               <div class="panel-group">
+               <div class="panel panel-default">
+                 <div class="panel-heading">
+                   <h3 class="panel-title">
+                     <a data-toggle="collapse" href="#collapse3" disabled="disabled">
+                      <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
+                   </h3>
+                 </div>
+                 <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+                   <div id="collapse3" class="panel-collapse collapse">
+                     <div class="panel-body" style="font-size:14px;">
+                       <table class="table ">
+                         <thead>
+                           <?php if ($_SESSION['level'] > 4 ): ?>
+                               <th style="width:170px">คณะกรรมการ</th>
+                           <?php endif; ?>
+                           <th>คอมเม้นท์</th>
+                         </thead>
+                         <tbody>
+                           <tr>
+                             <?php if ($_SESSION['level'] > 4 ): ?>
+                                 <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                             <?php endif; ?>
+                             <td>เอกสารครบถ้วนสมบูรณ์</td>
+                           </tr>
+                           <tr>
+                             <?php if ($_SESSION['level'] > 4 ): ?>
+                                 <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                             <?php endif; ?>
+                             <td>แก้ไขคำผิดเล็กน้อย</td>
+                           </tr>
+                         </tbody>
+                       </table>
                      </div>
-                  </form>
-              </center>
-        </div>
-      <br>
+                   </div>
+                <?php  } ?>
 
-      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                              <b>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</b>
-                          </h5>
-                        </div>
-                        <!-- .panel-heading -->
-                        <div class="panel-body">
-                          <h5><b>หมายเหตุ</b></h5>
-                            <ol style="font-size:16px;">
-                                <li>Course Syllabus (Course)</li>
-                                <li>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา (Evaluate)</li>
-                                <li>แบบขออนุมัติอาจารย์พิเศษ (Instructor)</li>
-                                <p class="text-info">* คำย่อภาษาอังกฤษใช้เป็นตัวย่อในตาราง</p>
-                            </ol>
-                            <div class="panel-group" id="accordion">
-                                <div class="panel panel-warning">
-                                  <div class="panel-heading">
-                                      <div class="panel-title">
-                                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">รอการประเมิน</a>
-                                      </div >
-                                  </div>
+               </div>
+             </div>
 
-                                    <div id="collapseOne" class="panel-collapse collapse in">
-                                        <div class="panel-body">
-                                          <div class="table-responsive">
-                                              <table class="table " style="font-size:14px;">
-                                                  <thead>
-                                                      <tr >
-                                                          <th>ลำดับ</th>
-                                                          <th>รหัสวิชา</th>
-                                                          <th>ชื่อวิชา</th>
-                                                          <th  style="text-align:center;">Course</th>
-                                                          <th  style="text-align:center;">Evaluate</th>
-                                                          <th  style="text-align:center;">Instructor</th>
-                                                          <th></th>
-                                                          <th></th>
-                                                          <th></th>
-                                                      </tr>
-                                                  </thead>
-                                                  <tbody>
-                                                      <tr >
-                                                          <td>1</td>
-                                                          <td>202141</td>
-                                                          <td>BIOLOGY FOR PHARMACY STUDENTS</td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">comment</button></td>
-                                                          <td><a type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal11">เห็นชอบ</a></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal12">ไม่เห็นชอบ</button></td>
-                                                          <div id="myModal11" class="modal fade" role="dialog">
-                                                            <div class="modal-dialog">
-                                                              <!-- Modal content-->
-                                                              <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                  <div class="row">
-                                                                    <div class="col-md-12">
-                                                                      <form>
-                                                                        <div class="form-group">
-                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                        </div>
-                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                      </form>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                </div>
-                                                              </div>
+             <div class="panel-group">
+             <div class="panel panel-default">
+               <div class="panel-heading">
+                 <h3 class="panel-title">
+                   <a data-toggle="collapse" href="#collapse4" disabled="disabled">
+                   <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
+                 </h3>
+               </div>
+               <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+               <div id="collapse4" class="panel-collapse collapse">
+                 <div class="panel-body" style="font-size:14px;">
+                   <table class="table ">
+                     <thead>
+                       <?php if ($_SESSION['level'] > 4 ): ?>
+                           <th style="width:170px">คณะกรรมการ</th>
+                       <?php endif; ?>
+                       <th>คอมเม้นท์</th>
+                     </thead>
+                     <tbody>
+                       <tr>
+                         <?php if ($_SESSION['level'] > 4 ): ?>
+                             <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                         <?php endif; ?>
+                         <td>เอกสารครบถ้วนสมบูรณ์</td>
+                       </tr>
+                       <tr>
+                         <?php if ($_SESSION['level'] > 4 ): ?>
+                             <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                         <?php endif; ?>
+                         <td>แก้ไขวันที่</td>
+                       </tr>
+                     </tbody>
+                   </table>
+                 </div>
+               </div>
+              <?php  } ?>
+             </div>
+           </div>
 
-                                                            </div>
-                                                          </div>
-                                                          <div id="myModal12" class="modal fade" role="dialog">
-                                                            <div class="modal-dialog">
-                                                              <!-- Modal content-->
-                                                              <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                  <div class="row">
-                                                                    <div class="col-md-12">
-                                                                      <form>
-                                                                        <div class="form-group">
-                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                        </div>
-                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                      </form>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                </div>
-                                                              </div>
+           <div class="panel-group">
+           <div class="panel panel-default">
+             <div class="panel-heading">
+               <h3 class="panel-title">
+                 <a data-toggle="collapse" href="#collapse5" disabled="disabled">
+                   <i class="fa fa-file-o fa-fw"></i><b> Course Syllabus </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
+               </h3>
+             </div>
+             <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+             <div id="collapse5" class="panel-collapse collapse">
+               <div class="panel-body" style="font-size:14px;">
+                 <table class="table ">
+                   <thead>
+                     <?php if ($_SESSION['level'] > 4 ): ?>
+                         <th style="width:170px">คณะกรรมการ</th>
+                     <?php endif; ?>
+                     <th>คอมเม้นท์</th>
+                   </thead>
+                   <tbody>
+                     <tr>
+                       <?php if ($_SESSION['level'] > 4 ): ?>
+                           <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                       <?php endif; ?>
+                       <td>ควรเพิ่มกิจกรรมในส่วนของกระบวนวิชาสัมนา</td>
+                     </tr>
+                     <tr>
+                       <?php if ($_SESSION['level'] > 4 ): ?>
+                           <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                       <?php endif; ?>
+                       <td>จำนวนหน่วยกิตยังไม่ถูกต้อง ทั้งนี้เนื้อหาครบถ้วนสมบูรณ์แล้วสามารถให้อนุมัติได้ และขอให้แก้ไขให้เรียบร้อย</td>
+                     </tr>
+                   </tbody>
+                 </table>
+               </div>
+             </div>
+             <?php  } ?>
+           </div>
+         </div>
 
-                                                            </div>
-                                                          </div>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo1">
-                                                              <div class="panel panel-success">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                  <table class="table ">
-                                                                    <thead>
-                                                                      <?php if ($_SESSION['level'] > 4 ): ?>
-                                                                          <th style="width:170px">คณะกรรมการ</th>
-                                                                      <?php endif; ?>
-                                                                      <th>คอมเม้นท์</th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                      <tr>
-                                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                                            <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                                        <?php endif; ?>
-                                                                        <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                                            <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                                        <?php endif; ?>
-                                                                        <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
-                                                                      </tr>
-                                                                    </tbody>
-                                                                  </table>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-                                                      <tr >
-                                                          <td>2</td>
-                                                          <td>203151</td>
-                                                          <td>GENERAL CHEMISTRY FOR THE HEALTH SCIENCES</td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo2" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal21">เห็นชอบ</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal22">ไม่เห็นชอบ</button></td>
-                                                          <div id="myModal21" class="modal fade" role="dialog">
-                                                            <div class="modal-dialog">
-                                                              <!-- Modal content-->
-                                                              <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                  <div class="row">
-                                                                    <div class="col-md-12">
-                                                                      <form>
-                                                                        <div class="form-group">
-                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                        </div>
-                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                      </form>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                </div>
-                                                              </div>
+             </div>
+           </div>
+         </div>
+       </div>
 
-                                                            </div>
-                                                          </div>
-                                                          <div id="myModal22" class="modal fade" role="dialog">
-                                                            <div class="modal-dialog">
-                                                              <!-- Modal content-->
-                                                              <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                  <div class="row">
-                                                                    <div class="col-md-12">
-                                                                      <form>
-                                                                        <div class="form-group">
-                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                        </div>
-                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                      </form>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                </div>
-                                                              </div>
+       <!-- 2 -->
+       <div class="panel-group" id="accordion2">
+       <div class="panel panel-warning">
+         <div class="panel-heading">
+           <h3 class="panel-title">
+             <a data-toggle="collapse" href="#collapse6">
+             <li><b><u>รหัสกระบวนวิชา</u></b> : 204111 <b>ตอนที่</b> 2 <b>ภาคปกติ</b></a></li>
+             <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <b id="statwt">รอการพิจารนา <i class="fa fa-clock-o fa-fw"></i></b>
+           </h3>
+         </div>
+         <div id="collapse6" class="panel-collapse collapse">
+           <div class="panel-body" style="font-size:14px;">
 
-                                                            </div>
-                                                          </div>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12" class="hiddenRow">
-                                                            <div class="accordian-body collapse" id="demo2">
-                                                              <div class="panel panel-success">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
-                                                                </div>
-                                                                <div class="panel-body">
+             <div class="panel-group">
+             <div class="panel panel-default">
+               <div class="panel-heading">
+                 <h3 class="panel-title">
+                   <a data-toggle="collapse" href="#collapse7" disabled="disabled">
+                    <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statwt">รอการพิจารนา <i class="fa fa-clock-o fa-fw"></i></b></a>
+                 </h3>
+               </div>
+               <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+               <div id="collapse7" class="panel-collapse collapse">
+                 <div class="panel-body" style="font-size:14px;">
+                   <table class="table ">
+                     <thead>
+                       <?php if ($_SESSION['level'] > 4 ): ?>
+                           <th style="width:170px">คณะกรรมการ</th>
+                       <?php endif; ?>
+                       <th>คอมเม้นท์</th>
+                     </thead>
+                     <tbody>
+                       <tr>
+                         <?php if ($_SESSION['level'] > 4 ): ?>
+                             <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                         <?php endif; ?>
+                         <td>	หัวข้อการบรรยายยังไม่ชัดเจน</td>
+                       </tr>
+                       <tr>
+                         <?php if ($_SESSION['level'] > 4 ): ?>
+                             <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                         <?php endif; ?>
+                         <td>ควรเลือกห้องเรียนใหม่ เนื่องจากจำนวนผู้ลงทะเบียนมีจำนวนมาก</td>
+                       </tr>
+                     </tbody>
+                   </table>
+                 </div>
+               </div>
+               <?php  } ?>
+             </div>
+           </div>
 
-                                                                  <table class="table ">
-                                                                    <thead>
-                                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                                      <th>คอมเม้นท์</th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.จาริณี ธรรมฉันธะ</td>
-                                                                        <td>ควรเพิ่มกิรกรรมในส่วนของกระบวนวิชาสัมนา</td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="width:170px">ดร.ชญานุช เตชะปัญญารักษ์</td>
-                                                                        <td>จำนวนหน่วยกิตยังไม่ถูกต้อง ทั้งนี้เนื้อหาครบถ้วนสมบูรณ์แล้วสามารถให้อนุมัติได้ และขอให้แก้ไขให้เรียบร้อย</td>
-                                                                      </tr>
-                                                                    </tbody>
-                                                                  </table>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-                                                      <tr >
-                                                          <td>3</td>
-                                                          <td>463592</td>
-                                                          <td>RESEARCH AND DEVELOPMENT OF NEW DRUGS</td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo3" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal31">เห็นชอบ</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal32">ไม่เห็นชอบ</button></td>
-                                                          <div id="myModal31" class="modal fade" role="dialog">
-                                                            <div class="modal-dialog">
-                                                              <!-- Modal content-->
-                                                              <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                  <div class="row">
-                                                                    <div class="col-md-12">
-                                                                      <form>
-                                                                        <div class="form-group">
-                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                        </div>
-                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                      </form>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                </div>
-                                                              </div>
+           <div class="panel-group">
+           <div class="panel panel-default">
+             <div class="panel-heading">
+               <h3 class="panel-title">
+                 <a data-toggle="collapse" href="#collapse8" disabled="disabled">
+                 <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
+               </h3>
+             </div>
+             <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+             <div id="collapse8" class="panel-collapse collapse">
+               <div class="panel-body" style="font-size:14px;">
+                 <table class="table ">
+                   <thead>
+                     <?php if ($_SESSION['level'] > 4 ): ?>
+                         <th style="width:170px">คณะกรรมการ</th>
+                     <?php endif; ?>
+                     <th>คอมเม้นท์</th>
+                   </thead>
+                   <tbody>
+                     <tr>
+                       <?php if ($_SESSION['level'] > 4 ): ?>
+                           <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                       <?php endif; ?>
+                       <td>เอกสารสบูรณ์ครบ</td>
+                     </tr>
+                     <tr>
+                       <?php if ($_SESSION['level'] > 4 ): ?>
+                           <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                       <?php endif; ?>
+                       <td>ยังไม่ได้เลือกกระบวนวิชา</td>
+                     </tr>
+                   </tbody>
+                 </table>
+               </div>
+             </div>
+             <?php  } ?>
+           </div>
+         </div>
 
-                                                            </div>
-                                                          </div>
-                                                          <div id="myModal32" class="modal fade" role="dialog">
-                                                            <div class="modal-dialog">
-                                                              <!-- Modal content-->
-                                                              <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                  <div class="row">
-                                                                    <div class="col-md-12">
-                                                                      <form>
-                                                                        <div class="form-group">
-                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                        </div>
-                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                      </form>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                </div>
-                                                              </div>
+           </div>
+         </div>
+       </div>
+     </div>
 
-                                                            </div>
-                                                          </div>
-                                                      </tr>
-                                                      <tr>
-                                                          <td colspan="12" class="hiddenRow">
-                                                            <div class="accordian-body collapse" id="demo3">
-                                                              <div class="panel panel-success">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                  <!-- Modal -->
-                                                                    <div id="myModal3" class="modal fade" role="dialog">
-                                                                      <div class="modal-dialog">
+     <!-- 3 -->
+     <div class="panel-group" id="accordion3">
+     <div class="panel panel-danger">
+       <div class="panel-heading">
+         <h3 class="panel-title">
+           <a data-toggle="collapse" href="#collapse9">
+           <li><b><u>รหัสกระบวนวิชา</u></b> : 204111 <b>ตอนที่</b> 3 <b>ภาคพิเศษ</b></a></li>
+           <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <b id="statn">ไม่ผ่านการอนุมัติ <i class="fa fa-times fa-fw"></i></b>
+         </h3>
+       </div>
+       <div id="collapse9" class="panel-collapse collapse">
+         <div class="panel-body" style="font-size:14px;">
 
-                                                                        <!-- Modal content-->
-                                                                        <div class="modal-content">
-                                                                          <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
-                                                                          </div>
-                                                                          <div class="modal-body">
-                                                                            <div class="row">
-                                                                              <div class="col-md-12">
-                                                                                <form>
-                                                                                  <div class="form-group">
-                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                                  </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                                </form>
-                                                                              </div>
-                                                                            </div>
-                                                                          </div>
-                                                                          <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                          </div>
-                                                                        </div>
+           <div class="panel-group">
+           <div class="panel panel-default">
+             <div class="panel-heading">
+               <h3 class="panel-title">
+                 <a data-toggle="collapse" href="#collapse10" disabled="disabled">
+                  <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
+               </h3>
+             </div>
+             <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+             <div id="collapse10" class="panel-collapse collapse">
+               <div class="panel-body" style="font-size:14px;">
+                 <table class="table ">
+                   <thead>
+                     <?php if ($_SESSION['level'] > 4 ): ?>
+                         <th style="width:170px">คณะกรรมการ</th>
+                     <?php endif; ?>
+                     <th>คอมเม้นท์</th>
+                   </thead>
+                   <tbody>
+                     <tr>
+                       <?php if ($_SESSION['level'] > 4 ): ?>
+                           <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                       <?php endif; ?>
+                       <td>จำนวนหน่วยกิตยังไม่ถูกต้อง ทั้งนี้เนื้อหาครบถ้วนสมบูรณ์แล้วสามารถให้อนุมัติได้ และขอให้แก้ไขให้เรียบร้อย</td>
+                     </tr>
+                     <tr>
+                       <?php if ($_SESSION['level'] > 4 ): ?>
+                           <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                       <?php endif; ?>
+                       <td>อาจารย์ผู้สอนมีจำนวนน้อยมาก</td>
+                     </tr>
+                   </tbody>
+                 </table>
+               </div>
+             </div>
+             <?php  } ?>
+           </div>
+         </div>
 
-                                                                      </div>
-                                                                    </div>
-                                                                  <table class="table ">
-                                                                    <thead>
-                                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                                      <th>คอมเม้นท์</th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
-                                                                        <td>หัวข้อการบรรยายยังไม่ชัดเจน</td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
-                                                                        <td>ควรเลือกห้องเรียนใหม่ เนื่องจากจำนวนผู้ลงทะเบียนมีจำนวนมาก</td>
-                                                                      </tr>
-                                                                    </tbody>
-                                                                  </table>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-                                                  </tbody>
-                                              </table>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </div>
+         <div class="panel-group">
+         <div class="panel panel-default">
+           <div class="panel-heading">
+             <h3 class="panel-title">
+               <a data-toggle="collapse" href="#collapse11" disabled="disabled">
+               <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statn">ไม่ผ่านการอนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
+             </h3>
+           </div>
+           <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+           <div id="collapse11" class="panel-collapse collapse">
+                 <div class="panel-body" style="font-size:14px;">
+                   <table class="table ">
+                     <thead>
+                       <?php if ($_SESSION['level'] > 4 ): ?>
+                           <th style="width:170px">คณะกรรมการ</th>
+                       <?php endif; ?>
+                       <th>คอมเม้นท์</th>
+                     </thead>
+                     <tbody>
+                       <tr>
+                         <?php if ($_SESSION['level'] > 4 ): ?>
+                             <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                         <?php endif; ?>
+                         <td>วันที่ที่จะให้อาจารย์พิเศษมาช่วยบรรยายตรงกับรายวิชา464301 เนื่องจากสถานที่ไม่เอื้ออำนวยขอความกรุณากลับไปตรวจสอบอีกครั้ง</td>
+                       </tr>
+                       <tr>
+                         <?php if ($_SESSION['level'] > 4 ): ?>
+                             <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                         <?php endif; ?>
+                         <td></td>
+                       </tr>
+                     </tbody>
+                   </table>
+                   <button class="btn btn-outline btn-danger btn-lg" name="editeva" id="editeva" >แก้ไข</button>
+                 </div>
+           </div>
+           <?php  } ?>
+         </div>
+       </div>
 
-                                <div class="panel panel-success">
-                                    <div class="panel-heading">
-                                        <div class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">ผ่านการประเมิน</a>
-                                        </div>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                          <div class="table-responsive">
-                                              <table class="table " style="font-size:14px;">
-                                                  <thead>
-                                                      <tr>
-                                                        <th>ลำดับ</th>
-                                                        <th>รหัสวิชา</th>
-                                                        <th>ชื่อวิชา</th>
-                                                        <th  style="text-align:center;">Course</th>
-                                                        <th  style="text-align:center;">Evaluate</th>
-                                                        <th  style="text-align:center;">Special</th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
-                                                      </tr>
-                                                  </thead>
-                                                  <tbody>
-                                                      <tr >
-                                                          <td>1</td>
-                                                          <td>463311</td>
-                                                          <td>PHARMACEUTICAL BIOTECHNOLOGY 1</td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo21" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal41">ยกเลิกไม่เห็นชอบ</button></td>
-                                                          <div id="myModal41" class="modal fade" role="dialog">
-                                                            <div class="modal-dialog">
-                                                              <!-- Modal content-->
-                                                              <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                  <div class="row">
-                                                                    <div class="col-md-12">
-                                                                      <form>
-                                                                        <div class="form-group">
-                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                        </div>
-                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                      </form>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                </div>
-                                                              </div>
+         </div>
+       </div>
+     </div>
+     </div>
 
-                                                            </div>
-                                                          </div>
+     <!-- 4 -->
+     <div class="panel-group" id="accordion4">
+     <div class="panel panel-warning">
+       <div class="panel-heading">
+         <h3 class="panel-title">
+           <a data-toggle="collapse" href="#collapse12">
+           <li><b><u>รหัสกระบวนวิชา</u></b> : 001101 <b>ตอนที่</b> 1 <b>ภาคปกติ</b></a></li>
+           <br>&nbsp;&nbsp;&nbsp; สถานะการอนุมัติ : <b id="statal">ภาควิชาเห็นชอบ รอคณะบดีอนุมัติ <i class="fa fa-user fa-fw"></i></b>
+         </h3>
+       </div>
+       <div id="collapse12" class="panel-collapse collapse">
+         <div class="panel-body" style="font-size:14px;">
 
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo21">
-                                                              <div class="panel panel-success">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                  <!-- Modal -->
-                                                                    <div id="myModal4" class="modal fade" role="dialog">
-                                                                      <div class="modal-dialog">
+           <div class="panel-group">
+           <div class="panel panel-default">
+             <div class="panel-heading">
+               <h3 class="panel-title">
+                 <a data-toggle="collapse" href="#collapse13" disabled="disabled">
+                  <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
+               </h3>
+             </div>
+             <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+             <div id="collapse13" class="panel-collapse collapse">
+               <div class="panel-body" style="font-size:14px;">
+                 <table class="table ">
+                   <thead>
+                     <?php if ($_SESSION['level'] > 4 ): ?>
+                         <th style="width:170px">คณะกรรมการ</th>
+                     <?php endif; ?>
+                     <th>คอมเม้นท์</th>
+                   </thead>
+                   <tbody>
+                     <tr>
+                       <?php if ($_SESSION['level'] > 4 ): ?>
+                           <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                       <?php endif; ?>
+                       <td>เอกสารครบถ้วนสมบูรณ์</td>
+                     </tr>
+                     <tr>
+                       <?php if ($_SESSION['level'] > 4 ): ?>
+                           <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                       <?php endif; ?>
+                       <td>แก้ไขตรงสัดสว่นคะแนนร้อยละ อนุญาติให้ผ่านได้</td>
+                     </tr>
+                   </tbody>
+                 </table>
+               </div>
+             </div>
+             <?php  } ?>
+           </div>
+         </div>
 
-                                                                        <!-- Modal content-->
-                                                                        <div class="modal-content">
-                                                                          <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
-                                                                          </div>
-                                                                          <div class="modal-body">
-                                                                            <div class="row">
-                                                                              <div class="col-md-12">
-                                                                                <form>
-                                                                                  <div class="form-group">
-                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                                  </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                                </form>
-                                                                              </div>
-                                                                            </div>
-                                                                          </div>
-                                                                          <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                          </div>
-                                                                        </div>
+         <div class="panel-group">
+         <div class="panel panel-default">
+           <div class="panel-heading">
+             <h3 class="panel-title">
+               <a data-toggle="collapse" href="#collapse14" disabled="disabled">
+               <i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statal">ภาควิชาเห็นชอบ รอคณะบดีอนุมัติ <i class="fa fa-user fa-fw"></i></b></a>
+             </h3>
+           </div>
+           <?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+           <div id="collapse14" class="panel-collapse collapse">
+             <div class="panel-body" style="font-size:14px;">
+               <table class="table ">
+                 <thead>
+                   <?php if ($_SESSION['level'] > 4 ): ?>
+                       <th style="width:170px">คณะกรรมการ</th>
+                   <?php endif; ?>
+                   <th>คอมเม้นท์</th>
+                 </thead>
+                 <tbody>
+                   <tr>
+                     <?php if ($_SESSION['level'] > 4 ): ?>
+                         <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                     <?php endif; ?>
+                     <td>ยังไม่ผ่าน เพราะหลักสูตรเกินกรุณาตรวจสอบหลักสูตรอีกครั้ง</td>
+                   </tr>
+                   <tr>
+                     <?php if ($_SESSION['level'] > 4 ): ?>
+                         <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                     <?php endif; ?>
+                     <td>กระบวนวิชา464301 ยังไม่ผ่าน เพราะหลักสูตรเกินกรุณาตรวจสอบหลักสูตรอีกครั้ง</td>
+                   </tr>
+                 </tbody>
+               </table>
+             </div>
+           </div>
+           <?php  } ?>
+         </div>
+       </div>
 
-                                                                      </div>
-                                                                    </div>
-                                                                  <table class="table ">
-                                                                    <thead>
-                                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                                      <th>คอมเม้นท์</th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
-                                                                        <td>เอกสารครบถ้วนสมบูรณ์</td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
-                                                                        <td>แก้ไขตรงสัดสว่นคะแนนร้อยละ</td>
-                                                                      </tr>
-                                                                    </tbody>
-                                                                  </table>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-                                                      <tr>
-                                                          <td>2</td>
-                                                          <td>463331</td>
-                                                          <td>ORGANIC MEDICINAL CHEMISTRY 1</td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo22" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal51">ยกเลิกไม่เห็นชอบ</button></td>
-                                                          <div id="myModal51" class="modal fade" role="dialog">
-                                                            <div class="modal-dialog">
-                                                              <!-- Modal content-->
-                                                              <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                  <div class="row">
-                                                                    <div class="col-md-12">
-                                                                      <form>
-                                                                        <div class="form-group">
-                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                        </div>
-                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                      </form>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                </div>
-                                                              </div>
+         </div>
+       </div>
+     </div>
+     </div>
 
-                                                            </div>
-                                                          </div>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo22">
-                                                              <div class="panel panel-success">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                  <!-- Modal -->
-                                                                    <div id="myModal5" class="modal fade" role="dialog">
-                                                                      <div class="modal-dialog">
 
-                                                                        <!-- Modal content-->
-                                                                        <div class="modal-content">
-                                                                          <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
-                                                                          </div>
-                                                                          <div class="modal-body">
-                                                                            <div class="row">
-                                                                              <div class="col-md-12">
-                                                                                <form>
-                                                                                  <div class="form-group">
-                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                                  </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                                </form>
-                                                                              </div>
-                                                                            </div>
-                                                                          </div>
-                                                                          <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                          </div>
-                                                                        </div>
 
-                                                                      </div>
-                                                                    </div>
-                                                                  <table class="table ">
-                                                                    <thead>
-                                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                                      <th>คอมเม้นท์</th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
-                                                                        <td>แก้ไขคำผิดส่วนของรายละเอียดวิชา</td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
-                                                                        <td>เอกสารครบถ้วนดี</td>
-                                                                      </tr>
-                                                                    </tbody>
-                                                                  </table>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-                                                      <tr  >
-                                                          <td>3</td>
-                                                          <td>464301</td>
-                                                          <td>FUNDAMENTAL OF PHARMACOKINETICS</td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo23" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" data-toggle="modal" data-target="#myModal61">ยกเลิกไม่เห็นชอบ</button></td>
-                                                          <div id="myModal61" class="modal fade" role="dialog">
-                                                            <div class="modal-dialog">
-                                                              <!-- Modal content-->
-                                                              <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                  <div class="row">
-                                                                    <div class="col-md-12">
-                                                                      <form>
-                                                                        <div class="form-group">
-                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                        </div>
-                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                      </form>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                </div>
-                                                              </div>
+       </div>
+     </div>
+   </div>
 
-                                                            </div>
-                                                          </div>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo23">
-                                                              <div class="panel panel-success">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                  <!-- Modal -->
-                                                                    <div id="myModal6" class="modal fade" role="dialog">
-                                                                      <div class="modal-dialog">
 
-                                                                        <!-- Modal content-->
-                                                                        <div class="modal-content">
-                                                                          <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
-                                                                          </div>
-                                                                          <div class="modal-body">
-                                                                            <div class="row">
-                                                                              <div class="col-md-12">
-                                                                                <form>
-                                                                                  <div class="form-group">
-                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                                  </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                                </form>
-                                                                              </div>
-                                                                            </div>
-                                                                          </div>
-                                                                          <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                          </div>
-                                                                        </div>
 
-                                                                      </div>
-                                                                    </div>
-                                                                  <table class="table ">
-                                                                    <thead>
-                                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                                      <th>คอมเม้นท์</th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
-                                                                        <td>กระบวนวิชา464301 ยังไม่ผ่าน เพราะหลักสูตรเกินกรุณาตรวจสอบหลักสูตรอีกครั้ง</td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
-                                                                        <td>วันที่ที่จะให้อาจารย์พิเศษมาช่วยบรรยายตรงกับรายวิชา464301 เนื่องจากสถานที่ไม่เอื้ออำนวยขอความกรุณากลับไปตรวจสอบอีกครั้ง</td>
-                                                                      </tr>
-                                                                    </tbody>
-                                                                  </table>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-                                                  </tbody>
-                                              </table>
-                                          </div>
-                                    </div>
-                                </div>
-                              </div>
-                                <div class="panel panel-danger">
-                                    <div class="panel-heading">
-                                        <div class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">ไม่ผ่านการประเมิน</a>
-                                        </div>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                          <div class="table-responsive">
-                                              <table class="table  " style="font-size:14px;">
-                                                  <thead>
-                                                      <tr>
-                                                        <th>ลำดับ</th>
-                                                        <th>รหัสวิชา</th>
-                                                        <th>ชื่อวิชา</th>
-                                                        <th  style="text-align:center;">Course</th>
-                                                        <th  style="text-align:center;">Evaluate</th>
-                                                        <th  style="text-align:center;">Special</th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
-                                                      </tr>
-                                                  </thead>
-                                                  <tbody>
-                                                      <tr >
-                                                          <td>1</td>
-                                                          <td>463332</td>
-                                                          <td>ORGANIC MEDICINAL CHEMISTRY 2</td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo31" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal71">เห็นชอบ</button></td>
-                                                          <div id="myModal71" class="modal fade" role="dialog">
-                                                            <div class="modal-dialog">
-                                                              <!-- Modal content-->
-                                                              <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                  <div class="row">
-                                                                    <div class="col-md-12">
-                                                                      <form>
-                                                                        <div class="form-group">
-                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                        </div>
-                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                      </form>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                </div>
-                                                              </div>
-
-                                                            </div>
-                                                          </div>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo31">
-                                                              <div class="panel panel-success">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                  <!-- Modal -->
-                                                                    <div id="myModal7" class="modal fade" role="dialog">
-                                                                      <div class="modal-dialog">
-
-                                                                        <!-- Modal content-->
-                                                                        <div class="modal-content">
-                                                                          <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
-                                                                          </div>
-                                                                          <div class="modal-body">
-                                                                            <div class="row">
-                                                                              <div class="col-md-12">
-                                                                                <form>
-                                                                                  <div class="form-group">
-                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                                  </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                                </form>
-                                                                              </div>
-                                                                            </div>
-                                                                          </div>
-                                                                          <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                          </div>
-                                                                        </div>
-
-                                                                      </div>
-                                                                    </div>
-                                                                  <table class="table ">
-                                                                    <thead>
-                                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                                      <th>คอมเม้นท์</th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
-                                                                        <td>กระบวนวิชา463332 ยังขาดรายชื่ออาจารย์ผู้ปฏิบัติการ</td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
-                                                                        <td>การวัดผลการศึกษานั้นยังไม่ชัดเจน</td>
-                                                                      </tr>
-                                                                    </tbody>
-                                                                  </table>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-
-                                                      <tr >
-
-                                                          <td>2</td>
-                                                          <td>463342</td>
-                                                          <td>PHARMACEUTICAL QUALITY ASSURANCE 2</td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo32" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal81">เห็นชอบ</button></td>
-                                                          <div id="myModal81" class="modal fade" role="dialog">
-                                                            <div class="modal-dialog">
-                                                              <!-- Modal content-->
-                                                              <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                  <div class="row">
-                                                                    <div class="col-md-12">
-                                                                      <form>
-                                                                        <div class="form-group">
-                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                        </div>
-                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                      </form>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                </div>
-                                                              </div>
-
-                                                            </div>
-                                                          </div>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo32">
-                                                              <div class="panel panel-success">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                  <!-- Modal -->
-                                                                    <div id="myModal8" class="modal fade" role="dialog">
-                                                                      <div class="modal-dialog">
-
-                                                                        <!-- Modal content-->
-                                                                        <div class="modal-content">
-                                                                          <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
-                                                                          </div>
-                                                                          <div class="modal-body">
-                                                                            <div class="row">
-                                                                              <div class="col-md-12">
-                                                                                <form>
-                                                                                  <div class="form-group">
-                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                                  </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                                </form>
-                                                                              </div>
-                                                                            </div>
-                                                                          </div>
-                                                                          <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                          </div>
-                                                                        </div>
-
-                                                                      </div>
-                                                                    </div>
-                                                                  <table class="table ">
-                                                                    <thead>
-                                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                                      <th>คอมเม้นท์</th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
-                                                                        <td>เกณฑ์คะแนนยังค่อยข้างสูง</td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
-                                                                        <td>เอกสารครบถ้วน แนะปรับคะแนนกิจกรรมเพิ่มขึ้น</td>
-                                                                      </tr>
-                                                                    </tbody>
-                                                                  </table>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-
-                                                      <tr>
-                                                          <td>3</td>
-                                                          <td>464445</td>
-                                                          <td>PHARMACY PUBLIC HEALTH</td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/complete/204111_evaluate.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td  style="text-align:center;">
-                                                            <a href="../../files/special_instructor/0000001.pdf" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
-                                                          </td>
-                                                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#demo33" class="accordion-toggle">comment</button></td>
-                                                          <td><button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#myModal91">เห็นชอบ</button></td>
-                                                          <div id="myModal91" class="modal fade" role="dialog">
-                                                            <div class="modal-dialog">
-                                                              <!-- Modal content-->
-                                                              <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                  <h5 class="modal-title"><b>คอมเม้นท์</b></h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                  <div class="row">
-                                                                    <div class="col-md-12">
-                                                                      <form>
-                                                                        <div class="form-group">
-                                                                          <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                        </div>
-                                                                        <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                      </form>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                </div>
-                                                              </div>
-
-                                                            </div>
-                                                          </div>
-                                                      </tr>
-                                                      <tr class="hiddenRow">
-                                                          <td colspan="12">
-                                                            <div class="accordian-body collapse" id="demo33">
-                                                              <div class="panel panel-success">
-                                                                <div class="panel-heading">
-                                                                  <b>คอมเม้นท์คณะกรรมการ</b>
-                                                                </div>
-                                                                <div class="panel-body">
-                                                                  <!-- Modal -->
-                                                                    <div id="myModal9" class="modal fade" role="dialog">
-                                                                      <div class="modal-dialog">
-
-                                                                        <!-- Modal content-->
-                                                                        <div class="modal-content">
-                                                                          <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                            <h5 class="modal-title">คอมเม้นท์</h5>
-                                                                          </div>
-                                                                          <div class="modal-body">
-                                                                            <div class="row">
-                                                                              <div class="col-md-12">
-                                                                                <form>
-                                                                                  <div class="form-group">
-                                                                                    <textarea name="comment" rows="8" cols="70" class="form-control"></textarea>
-                                                                                  </div>
-                                                                                  <button class="btn btn-outline btn-primary"  type="submit" name="button">ยืนยัน</button>
-                                                                                </form>
-                                                                              </div>
-                                                                            </div>
-                                                                          </div>
-                                                                          <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-danger btn-outline" data-dismiss="modal">ปิด</button>
-                                                                          </div>
-                                                                        </div>
-
-                                                                      </div>
-                                                                    </div>
-                                                                  <table class="table ">
-                                                                    <thead>
-                                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                                      <th>คอมเม้นท์</th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ขุ้น ธรรมฉันธะ</td>
-                                                                        <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="width:170px">อ.ดุษฎี องค์เทียมสัคค์</td>
-                                                                        <td>อาจารย์ผู้สอนมีจำนวนน้อยมาก</td>
-                                                                      </tr>
-                                                                    </tbody>
-                                                                  </table>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </td>
-                                                      </tr>
-
-                                                  </tbody>
-                                              </table>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .panel-body -->
-                    </div>
-                  </div>
-                </div>
-    </div>
-
+ </div>
+</div>
+</div>
 </body>
-
+<script type="text/javascript">
+ $('select').select2();
+</script>
 </html>
