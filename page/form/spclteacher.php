@@ -393,7 +393,7 @@ function lastcal() {
           <br>
           <div class="form-inline">
             <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control numonly" id="tel" size="20" maxlength="10" required ></div>
-              &nbsp;ต่อ&nbsp;<input type="text" class="form-control numonly" id="subtel" size="2" maxlength="2"></li>
+              &nbsp;ต่อ&nbsp;<input type="text" class="form-control numonly" id="subtel" size="2" maxlength="5"></li>
         </div>
 
         <div class="form-inline">
