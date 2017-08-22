@@ -131,6 +131,7 @@ class Course
           else
           {
             $temp['status'] = 0;
+            unset($temp['url']);
           }
         }
 
