@@ -136,7 +136,7 @@ class Course
 
         array_push($data,$temp);
       }
-      return $temp;
+      return $data;
     }
     else
     {
