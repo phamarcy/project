@@ -73,6 +73,7 @@ class Course
             $files = explode("_",$file_name[$i]);
             $temp['semester'] = $files[2];
             $temp['year'] = $files[3];
+            $temp['year'] = str_replace(".txt","",$temp['year']);
             array_push($data,$temp);
         }
         return $data;
