@@ -98,5 +98,14 @@ class Course
     }
     return $data;
   }
+
+  public function Get_Grade($teacher_id)
+  {
+    $data[0]['course_id'] = '204111';
+    $data[0]['course_name'] = 'course name';
+    $data[0]['status'] = 1;
+    $data[0]['url'] = 'url';
+    return $data;
+  }
 }
  ?>
