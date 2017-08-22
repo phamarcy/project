@@ -1,5 +1,14 @@
 <?php
 session_start();
+require_once(__DIR__."/../../application/class/manage_deadline.php");
+require_once(__DIR__."/../../application/class/course.php");
+$deadline = new Deadline;
+$grade = new Course;
+$semeter= $deadline->Get_Current_Semester();
+$showgrade=$grade->Get_Grade($_SESSION['id']);
+var_dump($showgrade);
+$grade->Close_connection();
+
  ?>
 <html>
 <header>
@@ -23,16 +32,45 @@ session_start();
     <script type="text/javascript" src="../js/function.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 
-<style >
-/*div[class="row"] {
-  border: 1px dotted rgba(0, 0, 0, 0.5);
-}
+    <style>
 
-div[class^="col-"] {
-  background-color: rgba(255, 0, 0, 0.2);
-}*/
+    a[disabled="disabled"] {
+     <?php if ($_SESSION['level'] == 2 or $_SESSION['level'] == 3) { ?>
+       pointer-events: none;
+     <?php  } ?>
+    }
+    #statcf {
+     color : #0e9d14;
+    }
 
-</style>
+    #statn {
+     color : #ec2c2c;
+    }
+
+    #statwt {
+     color : #acb500;
+    }
+
+    #statal {
+     color : #da9001;
+    }
+    .fileUpload {
+      position: relative;
+      overflow: hidden;
+      margin-top: -3px;
+    }
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    </style>
 
 </header>
 
@@ -42,33 +80,62 @@ div[class^="col-"] {
       <div class="container">
         <div class="row">
             <center>
-              <h3 class="page-header">อัปโหลดไฟล์การตัดเกรด และรายละเอียดคะแนนแต่ละส่วน</h3>
+              <h3 class="page-header">อัพโหลดไฟล์เกรด</h3>
             </center>
         </div>
       <br>
       <div class="panel panel-default">
           <div class="panel-heading">
             <h5 class="panel-title">
-                <b>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</b>
+                <b>ภาคการศึกษาที่ <?php echo $semeter["semester"]; ?> ปีการศึกษา <?php echo $semeter["year"]; ?></b>
             </h5>
           </div>
           <!-- .panel-heading -->
           <div class="panel-body">
-            <center>
-              <p class="text-danger">*หมายเหตุ ไฟล์ที่ต้องการอัปโหลดต้องเป็นไฟล์ Excel ที่มีนามสกุล .xls หรือ .xlsx </p>
+              <div class="alert alert-warning pull-left">
+                  *หมายเหตุ ไฟล์ที่ต้องการอัปโหลดต้องเป็นไฟล์ Excel ที่มีนามสกุล .xls หรือ .xlsx เท่านั้น
+              </div>
 
-                <form id="data" role="form" data-toggle="validator">
-                    <div class="form-group">
-                      <div class="form-inline">
-                        <label >เลือกไฟล์</label>
-                        <input type="file" class="form-control" id="filexcel" name="fileexcel" data-required-error="กรุณาเลือกไฟล์" accept=".xls,.xlsx"  required>
-                        <button type="submit" id="btnSend" name="button" class="btn btn-primary btn-outline" >อัปโหลด</button>
-                      </div>
-                    </div>
-
-                </form>
-
-            </center>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>รหัสวิชา</th>
+                    <th>วิชา</th>
+                    <th>ไฟล์</th>
+                    <th>สถานะ</th>
+                    <th>อัปโหลด</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($showgrade as $value):
+                    switch ($value['status']) {
+                      case 0:
+                      $status='<b id="statn">ยังไม่ได้อัปโหลด</b>';
+                        break;
+                      case 1:
+                      $status='<b id="statcf">อัปโหลดแล้ว</b>';
+                        break;
+                    }
+                  ?>
+                          <tr>
+                            <td><?php echo $value["course_id"]; ?></td>
+                            <td><?php echo $value['course_name']; ?></td>
+                            <td>
+                            <?php if (isset($value['url'])): ?>
+                                <a href="<?php echo $value['url']; ?>" target="_blank"><i type="button" class="fa fa-file-excel-o fa-2x" ></i></a>
+                            <?php endif; ?>
+                            </td>
+                            <td><?php echo $status ?></td>
+                            <td>
+                              <div class="fileUpload btn btn-primary">
+                                <span>Upload</span>
+                                <input type="file" class="upload" />
+                              </div>
+                            </td>
+                          </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
           </div>
       </div>
     </div>
