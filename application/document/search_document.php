@@ -4,6 +4,7 @@ $course = new Course();
 
 if(isset($_POST['id']) && isset($_POST['type']))
 {
+  $id = $_POST['id'];
   if($_POST['type'] == 1)
   {
     $type = 'evaluate';
@@ -22,7 +23,11 @@ if(isset($_POST['id']) && isset($_POST['type']))
     $year = $_POST['year'];
     $data = $course->Get_Document($type,$id,$semester,$year);
   }
-  $data = $course->Search_Document($type,$id);
+  else
+  {
+    $data = $course->Search_Document($type,$id);
+  }
+
   echo json_encode($data);
 }
 
