@@ -83,9 +83,19 @@ class Course
     }
   }
 
-  public function Get_Document($type,$id)
+  public function Get_Document($type,$id,$semester,$year)
   {
-
+    $file_name = $id."_".$type."_".$semester."_".$year.".txt";
+    $doc_path = realpath($this->FILE_PATH."/temp/".$id."/".$type);
+    $file_path = $doc_path."/".$file_name;
+    if (file_exists($file_path))
+    {
+      $data = file_get_contents($file_path);
+    } else
+    {
+      $data = false;
+    }
+    return $data;
   }
 }
  ?>
