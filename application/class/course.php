@@ -18,7 +18,7 @@ class Course
   public function Get_Course_Name($course_id)
   {
 
-    $sql="SELECT `course_name_en` FROM `course_name` WHERE `course_id` ='".$course_id."'";
+    $sql="SELECT `course_name_en` FROM `course` WHERE `course_id` ='".$course_id."'";
 
     $result = $this->DB->Query($sql);
     if($result)
@@ -35,7 +35,7 @@ class Course
 
   public function Get_All_Course()
   {
-    $sql = "SELECT `course_id`as id,`course_name_en` as name_en,`course_name_th`as name_th FROM `course_name`";
+    $sql = "SELECT `course_id`as id,`course_name_en` as name_en,`course_name_th`as name_th FROM `course`";
     $result = $this->DB->Query($sql);
     if($result)
     {
