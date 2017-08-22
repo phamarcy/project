@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__."/database.php");
+require_once(__DIR__."/manage_deadline.php");
 /**
  *
  */
@@ -16,6 +17,7 @@ class Course
     $this->FILE_PATH = $FILE_PATH;
     $this->LOG = new Log();
     $this->DB = new Database();
+    $this->DEADLINE = new Deadline();
   }
 
   //search teacher prefix and name
@@ -101,11 +103,52 @@ class Course
 
   public function Get_Grade($teacher_id)
   {
-    $data[0]['course_id'] = '204111';
-    $data[0]['course_name'] = 'course name';
-    $data[0]['status'] = 1;
-    $data[0]['url'] = 'url';
-    return $data;
+    $curr_semester = $this->DEADLINE->Get_Current_Semester();
+    $sql = "SELECT c.`course_id`,`course_name_en` as name FROM `course_responsible` cr,`course` c
+    WHERE cr.`teacher_id` = '".$teacher_id."' AND c.`course_id` = cr.`course_id` AND cr.`semester_id` = ".$curr_semester['id'];
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $data = array();
+      for($i=0;$i<count($result);$i++)
+      {
+        $temp['course_id'] = $result[$i]['course_id'];
+        $temp['course_name'] = $result[$i]['name'];
+        $grade_file = $this->FILE_PATH."/grade/".$temp['course_id']."_grade.xls";
+        if (file_exists($grade_file))
+        {
+            $temp['status'] = 1;
+            $temp['url'] = realpath($grade_file);
+        }
+        else
+        {
+          $grade_file = $this->FILE_PATH."/grade/".$temp['course_id']."_grade.xlsx";
+          if (file_exists($grade_file))
+          {
+              $temp['status'] = 1;
+              $temp['url'] = realpath($grade_file);
+          }
+          else
+          {
+            $temp['status'] = 0;
+          }
+        }
+
+        array_push($data,$temp);
+      }
+      return $temp;
+    }
+    else
+    {
+      return false;
+    }
+
   }
+
+  public function Close_connection()
+  {
+    $this->DB->Close_connection();
+  }
+
 }
  ?>
