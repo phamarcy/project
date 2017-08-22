@@ -29,6 +29,7 @@ class Authentication
       }
       else
       {
+        $user['id'] = $result[0]['code'];
         $user['level'] = $level;
         $user['fname'] = $result[0]['fname'];
         $user['lname'] = $result[0]['lname'];

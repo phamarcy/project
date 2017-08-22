@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']))
+	if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
 	{
 	    header('Location: login.php');
 	}else if($_SESSION['level'] == 7)
