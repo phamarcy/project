@@ -114,19 +114,19 @@ class Course
       {
         $temp['course_id'] = $result[$i]['course_id'];
         $temp['course_name'] = $result[$i]['name'];
-        $grade_file = $this->FILE_PATH."/grade/".$temp['course_id']."_grade.xls";
-        if (file_exists($grade_file))
+        $grade_file = $this->FILE_PATH."/grade/".$temp['course_id']."_grade_".$curr_semester['semester']."_".$curr_semester['year'].".xls";
+        if (file_exists(realpath($grade_file)))
         {
             $temp['status'] = 1;
-            $temp['url'] = realpath($grade_file);
+            $temp['url'] = "/grade/".$temp['course_id']."_grade_".$curr_semester['semester']."_".$curr_semester['year'].".xls";
         }
         else
         {
-          $grade_file = $this->FILE_PATH."/grade/".$temp['course_id']."_grade.xlsx";
-          if (file_exists($grade_file))
+          $grade_file = $this->FILE_PATH."/grade/".$temp['course_id']."_grade_".$curr_semester['semester']."_".$curr_semester['year'].".xlsx";
+          if (file_exists(realpath($grade_file)))
           {
               $temp['status'] = 1;
-              $temp['url'] = realpath($grade_file);
+              $temp['url'] = "/grade/".$temp['course_id']."_grade_".$curr_semester['semester']."_".$curr_semester['year'].".xlsx";
           }
           else
           {
