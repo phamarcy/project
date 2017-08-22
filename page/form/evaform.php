@@ -139,7 +139,7 @@ function midexam_hour_lec() {
   var lec = document.getElementById("mexholec");
   var i;
   if (lec.value == 0) {
-    for (i = 1; i <= 5; i++) {
+    for (i = 1; i <= 10; i++) {
       document.getElementById("mehle" + i).style.display = "none";
       document.getElementById('mehlec' + i).classList.add('hide');
       document.getElementById("MIDEXCOM_LECF" + i).style.display = "none";
@@ -149,7 +149,7 @@ function midexam_hour_lec() {
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
-    for (i = 1; i <= 5; i++) {
+    for (i = 1; i <= 10; i++) {
       document.getElementById("mehle" + i).style.display = "none";
       document.getElementById('mehlec' + i).classList.add('hide');
       document.getElementById('MIDEXCOM_LECF' + i).style.display = "none";
@@ -175,7 +175,7 @@ function midexam_hour_lab() {
   var lab = document.getElementById("mexholac");
   var i;
   if (lab.value == 0) {
-    for (i = 1; i <= 5; i++) {
+    for (i = 1; i <= 10; i++) {
       document.getElementById("ehla" + i).style.display = "none";
       document.getElementById('ehlab' + i).classList.add('hide');
       document.getElementById("MIDEXCOM_LABF" + i).style.display = "none";
@@ -185,7 +185,7 @@ function midexam_hour_lab() {
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
-    for (i = 1; i <= 5; i++) {
+    for (i = 1; i <= 10; i++) {
       document.getElementById("ehla" + i).style.display = "none";
       document.getElementById('ehlab' + i).classList.add('hide');
       document.getElementById('MIDEXCOM_LABF' + i).style.display = "none";
@@ -207,11 +207,83 @@ function midexam_hour_lab() {
   }
 }
 
+function midexam_hour_lec_sec() {
+  var lec = document.getElementById("mexholec_sec");
+  var i;
+  if (lec.value == 0) {
+    for (i = 1; i <= 10; i++) {
+      document.getElementById("mehle" + i +"_sec").style.display = "none";
+      document.getElementById('mehlec' + i +"_sec").classList.add('hide');
+      document.getElementById("MIDEXCOM_LECF" + i +"_sec").style.display = "none";
+      document.getElementById('MIDEXCOM_LECL' + i +"_sec").style.display = "none";
+      document.getElementById("MIDEXCOM_LECF" + i +"_sec").value = "";
+      document.getElementById("MIDEXCOM_LECL" + i +"_sec").value = "";
+    }
+  } else {
+    //document.getElementById("test1").innerHTML = lab.value;
+    for (i = 1; i <= 10; i++) {
+      document.getElementById("mehle" + i +"_sec").style.display = "none";
+      document.getElementById('mehlec' + i +"_sec").classList.add('hide');
+      document.getElementById('MIDEXCOM_LECF' + i +"_sec").style.display = "none";
+      document.getElementById('MIDEXCOM_LECL' + i +"_sec").style.display = "none";
+      if(i>lec.value)
+      {
+        document.getElementById("MIDEXCOM_LECF" + i +"_sec").value = "";
+        document.getElementById("MIDEXCOM_LECL" + i +"_sec").value = "";
+      }
+    }
+
+    for (i = 1; i <= lec.value; i++) {
+      document.getElementById("mehle" + i +"_sec").style.display = "";
+      document.getElementById('mehlec' + i +"_sec").classList.remove('hide');
+      document.getElementById('MIDEXCOM_LECF' + i +"_sec").style.display = "";
+      document.getElementById('MIDEXCOM_LECL' + i +"_sec").style.display = "";
+
+    }
+  }
+}
+
+function midexam_hour_lab_sec() {
+  var lab = document.getElementById("mexholac_sec");
+  var i;
+  if (lab.value == 0) {
+    for (i = 1; i <= 10; i++) {
+      document.getElementById("ehla" + i +"_sec").style.display = "none";
+      document.getElementById('ehlab' + i +"_sec").classList.add('hide');
+      document.getElementById("MIDEXCOM_LABF" + i +"_sec").style.display = "none";
+      document.getElementById('MIDEXCOM_LABL' + i +"_sec").style.display = "none";
+      document.getElementById("MIDEXCOM_LABF" + i +"_sec").value = "";
+      document.getElementById("MIDEXCOM_LABL" + i +"_sec").value = "";
+    }
+  } else {
+    //document.getElementById("test1").innerHTML = lab.value;
+    for (i = 1; i <= 10; i++) {
+      document.getElementById("ehla" + i +"_sec").style.display = "none";
+      document.getElementById('ehlab' + i +"_sec").classList.add('hide');
+      document.getElementById('MIDEXCOM_LABF' + i +"_sec").style.display = "none";
+      document.getElementById('MIDEXCOM_LABL' + i +"_sec").style.display = "none";
+      if(i>lab.value)
+      {
+        document.getElementById("MIDEXCOM_LABF" + i +"_sec").value = "";
+        document.getElementById("MIDEXCOM_LABL" + i +"_sec").value = "";
+      }
+    }
+
+    for (i = 1; i <= lab.value; i++) {
+      document.getElementById("ehla" + i +"_sec").style.display = "";
+      document.getElementById('ehlab' + i +"_sec").classList.remove('hide');
+      document.getElementById('MIDEXCOM_LABF' + i +"_sec").style.display = "";
+      document.getElementById('MIDEXCOM_LABL' + i +"_sec").style.display = "";
+
+    }
+  }
+}
+
 function finexam_hour_lec() {
   var lec = document.getElementById("fexholec");
   var i;
   if (lec.value == 0) {
-    for (i = 1; i <= 5; i++) {
+    for (i = 1; i <= 10; i++) {
       document.getElementById("fmehle" + i).style.display = "none";
       document.getElementById('fmehlec' + i).classList.add('hide');
       document.getElementById("FINEXCOM_LECF" + i).style.display = "none";
@@ -221,7 +293,7 @@ function finexam_hour_lec() {
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
-    for (i = 1; i <= 5; i++) {
+    for (i = 1; i <= 10; i++) {
       document.getElementById("fmehle" + i).style.display = "none";
       document.getElementById('fmehlec' + i).classList.add('hide');
       document.getElementById('FINEXCOM_LECF' + i).style.display = "none";
@@ -248,7 +320,7 @@ function finexam_hour_lab() {
   var lab = document.getElementById("fexholac");
   var i;
   if (lab.value == 0) {
-    for (i = 1; i <= 5; i++) {
+    for (i = 1; i <= 10; i++) {
       document.getElementById("fehla" + i).style.display = "none";
       document.getElementById('fehlab' + i).classList.add('hide');
       document.getElementById("FINEXCOM_LABF" + i).style.display = "none";
@@ -258,7 +330,7 @@ function finexam_hour_lab() {
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
-    for (i = 1; i <= 5; i++) {
+    for (i = 1; i <= 10; i++) {
       document.getElementById("fehla" + i).style.display = "none";
       document.getElementById('fehlab' + i).classList.add('hide');
       document.getElementById('FINEXCOM_LABF' + i).style.display = "none";
@@ -279,6 +351,58 @@ function finexam_hour_lab() {
 
     }
   }
+}
+
+function checksubject(type){
+  var file_data = new FormData;
+  var id = document.getElementById('id').value;
+  JSON.stringify(id);
+  JSON.stringify(type);
+  file_data.append("id",id);
+  file_data.append("type",type);
+  var URL = '../../application/document/search_document.php';
+  $.ajax({
+                url: URL,
+                dataType: 'text',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: file_data,
+                type: 'post',
+                success: function (result) {
+                  if(result==true)
+                  {
+                     document.getElementById('formdrpd').style.display = "";
+                     var temp = $.parseJSON(result);
+                     console.log(temp[0]);
+                     var selectsm = document.getElementById('semester');
+                     var selecty = document.getElementById('year');
+                     for (var i = 0; i < temp.length; i++) {
+                        var opt = document.createElement('option');
+                        opt.value = temp[i].semester;
+                        opt.innerHTML = temp[i].semester;
+                        selectsm.appendChild(opt);
+
+                        var opt2 = document.createElement('option');
+                        opt2.value = temp[i].year;
+                        opt2.innerHTML = temp[i].year;
+                        selecty.appendChild(opt2);
+                     }
+                  }
+                  else {
+
+                  }
+                },
+                failure: function (result) {
+                     alert(result);
+                },
+                error: function (xhr, status, p3, p4) {
+                     var err = "Error " + " " + status + " " + p3 + " " + p4;
+                     if (xhr.responseText && xhr.responseText[0] == "{")
+                          err = JSON.parse(xhr.responseText).Message;
+                     console.log(err);
+                }
+     });
 }
 
 function submitfunc(casesubmit) {
@@ -608,7 +732,20 @@ $(document).ready(function(){
     }
     else if($(this).val()=="AF")
     {
-      $('.atof').val("");
+      $('#CALCULATE_A_MIN').val("80.0");
+      $('#CALCULATE_Bp_MIN').val("75.0");
+      $('#CALCULATE_B_MIN').val("70.0");
+      $('#CALCULATE_Cp_MIN').val("65.0");
+      $('#CALCULATE_C_MIN').val("60.0");
+      $('#CALCULATE_Dp_MIN').val("55.0");
+      $('#CALCULATE_D_MIN').val("50.0");
+      $('#CALCULATE_F_MAX').val("49.9");
+      $('#CALCULATE_Bp_MAX').val("79.9");
+      $('#CALCULATE_B_MAX').val("74.9");
+      $('#CALCULATE_Cp_MAX').val("69.9");
+      $('#CALCULATE_C_MAX').val("64.9");
+      $('#CALCULATE_Dp_MAX').val("59.9");
+      $('#CALCULATE_D_MAX').val("54.9");
       $('.stou').val("");
       $('.atof').prop('disabled',false);
       $('.atof').prop('required',true);
@@ -634,8 +771,20 @@ $(document).ready(function(){
       }
       else if ($(this).val()=="CRITERIA")
       {
-        $('.atof').val("");
-        $('.stou').val("");
+        $('#CALCULATE_A_MIN').val("80.0");
+        $('#CALCULATE_Bp_MIN').val("75.0");
+        $('#CALCULATE_B_MIN').val("70.0");
+        $('#CALCULATE_Cp_MIN').val("65.0");
+        $('#CALCULATE_C_MIN').val("60.0");
+        $('#CALCULATE_Dp_MIN').val("55.0");
+        $('#CALCULATE_D_MIN').val("50.0");
+        $('#CALCULATE_F_MAX').val("49.9");
+        $('#CALCULATE_Bp_MAX').val("79.9");
+        $('#CALCULATE_B_MAX').val("74.9");
+        $('#CALCULATE_Cp_MAX').val("69.9");
+        $('#CALCULATE_C_MAX').val("64.9");
+        $('#CALCULATE_Dp_MAX').val("59.9");
+        $('#CALCULATE_D_MAX').val("54.9");
         $('.atof').prop('disabled',true);
         $('.atof').prop('required',false);
         $('.stou').prop('required',true);
@@ -667,69 +816,108 @@ $(document).ready(function(){
 
     });
 
-    $("#explain").hide();
+    $("#EXPLAINATION").prop('disabled',true);
     $("input[name='CALCULATE']").change(function(){
       if($(this).val()=="GROUP")
       {
           $("#EXPLAINATION").prop('required',true);
+          $("#EXPLAINATION").prop('disabled',false);
           $("#explain").show();
       }
       else
       {
         $("#EXPLAINATION").prop('required',false);
+        $("#EXPLAINATION").prop('disabled',true);
         $("#explain").hide();
       }
 
       });
 
   $('#calmea').click(function() {
-    if($("#MEASURE_MIDLEC").val()!=null && $("#MEASURE_MIDLEC").val()!="")
+    if($("#MEASURE_MIDLEC1").val()!=null && $("#MEASURE_MIDLEC1").val()!="")
     {
-      var templec1 = parseFloat($('#MEASURE_MIDLEC').val());
+      var templec1 = parseFloat($('#MEASURE_MIDLEC1').val());
     }
     else {
       var templec1 = parseFloat('0');
     }
 
-    if($("#MEASURE_FINLEC").val()!=null && $("#MEASURE_FINLEC").val()!="")
+    if($("#MEASURE_MIDLEC2").val()!=null && $("#MEASURE_MIDLEC2").val()!="")
     {
-      var templec2 = parseFloat($('#MEASURE_FINLEC').val());
+      var templec2 = parseFloat($('#MEASURE_MIDLEC2').val());
     }
     else {
       var templec2 = parseFloat('0');
     }
 
-    if($("#MEASURE_MIDLAB").val()!=null && $("#MEASURE_MIDLAB").val()!="")
+    if($("#MEASURE_MIDLAB1").val()!=null && $("#MEASURE_MIDLAB1").val()!="")
     {
-      var templab1 = parseFloat($('#MEASURE_MIDLAB').val());
+      var templab1 = parseFloat($('#MEASURE_MIDLAB1').val());
     }
     else {
       var templab1 = parseFloat('0');
     }
 
-    if($("#MEASURE_FINLAB").val()!=null && $("#MEASURE_FINLAB").val()!="")
+    if($("#MEASURE_MIDLAB2").val()!=null && $("#MEASURE_MIDLAB2").val()!="")
     {
-      var templab2 = parseFloat($('#MEASURE_FINLAB').val());
+      var templab2 = parseFloat($('#MEASURE_MIDLAB2').val());
     }
     else {
       var templab2 = parseFloat('0');
     }
 
+    if($("#MEASURE_FINLEC").val()!=null && $("#MEASURE_FINLEC").val()!="")
+    {
+      var tempfinlec = parseFloat($('#MEASURE_FINLEC').val());
+    }
+    else {
+      var tempfinlec = parseFloat('0');
+    }
+
+    if($("#MEASURE_FINLAB").val()!=null && $("#MEASURE_FINLAB").val()!="")
+    {
+      var tempfinlab = parseFloat($('#MEASURE_FINLAB').val());
+    }
+    else {
+      var tempfinlab = parseFloat('0');
+    }
+
+    if($("#MEASURE_WORKLEC").val()!=null && $("#MEASURE_WORKLEC").val()!="")
+    {
+      var worklec = parseFloat($('#MEASURE_WORKLEC').val());
+    }
+    else {
+      var worklec = parseFloat('0');
+    }
+
+    if($("#MEASURE_WORKLAB").val()!=null && $("#MEASURE_WORKLAB").val()!="")
+    {
+      var worklab = parseFloat($('#MEASURE_WORKLAB').val());
+    }
+    else {
+      var worklab = parseFloat('0');
+    }
+
+    if($("#MEASURE_OTHLEC").val()!=null && $("#MEASURE_OTHLEC").val()!="")
+    {
+      var othlec = parseFloat($('#MEASURE_OTHLEC').val());
+    }
+    else {
+      var othlec = parseFloat('0');
+    }
+
+    if($("#MEASURE_OTHLAB").val()!=null && $("#MEASURE_OTHLAB").val()!="")
+    {
+      var othlab = parseFloat($('#MEASURE_OTHLAB').val());
+    }
+    else {
+      var othlab = parseFloat('0');
+    }
+
     var totallec = parseFloat($('#MEASURE_TOTALLEC').val());
     var totallab = parseFloat($('#MEASURE_TOTALLAB').val());
-    var callec = templec1 + templec2;
-    var callab = templab1 + templab2;
-
-    for (var countmea = 1; countmea <= window.countmeabtn; countmea++) {
-      if($("input[name=MEASURE_OTHERLEC" + countmea + "]").val()!=null && $("input[name=MEASURE_OTHERLEC" + countmea + "]").val()!="")
-      {
-        callec = callec + parseFloat($("input[name=MEASURE_OTHERLEC" + countmea + "]").val());
-      }
-
-      if($("input[name=MEASURE_OTHERLAB" + countmea + "]").val()!=null && $("input[name=MEASURE_OTHERLAB" + countmea + "]").val()!=""){
-        callab = callab + parseFloat($("input[name=MEASURE_OTHERLAB" + countmea + "]").val());
-      }
-    }
+    var callec = templec1 + templec2 + tempfinlec + worklec + othlec;
+    var callab = templab1 + templab2 + tempfinlab + worklab + othlab;
 
     var summea = callec + callab;
     if(summea!=100)
@@ -742,103 +930,6 @@ $(document).ready(function(){
     }
   });
 
-  $('#calsa1').click(function() {
-    if(window.countsa1btn==0)
-    {
-      var blanksa1 = parseFloat('0');
-      $("#SAMENA_TOTAL").val(blanksa1);
-    }
-    else {
-      var totallab = parseFloat($('#SAMENA_TOTAL').val());
-      var callsa1 = 0;
-
-      for (var countsa1 = 0; countsa1 <= window.countsa1btn; countsa1++) {
-        if($("input[name=SAMENA_SCORE" + countsa1 + "]").val()!=null && $("input[name=SAMENA_SCORE" + countsa1 + "]").val()!=""){
-          callsa1 = callsa1 + parseFloat($("input[name=SAMENA_SCORE" + countsa1 + "]").val());
-        }
-      }
-
-      $('#SAMENA_TOTAL').val(callsa1);
-    }
-  });
-
-  $('#calsa2').click(function() {
-    if(window.countsa2btn==0)
-    {
-      var blanksa2 = parseFloat('0');
-      $("#TRAIN_TOTAL").val(blanksa2);
-    }
-    else {
-      var totallab = parseFloat($('#TRAIN_TOTAL').val());
-      var callsa2 = 0;
-
-      for (var countsa2 = 0; countsa2 <= window.countsa1btn; countsa2++) {
-        if($("input[name=TRAIN_SCORE" + countsa2 + "]").val()!=null && $("input[name=TRAIN_SCORE" + countsa2 + "]").val()!=""){
-          callsa2 = callsa2 + parseFloat($("input[name=TRAIN_SCORE" + countsa2 + "]").val());
-        }
-      }
-
-      $('#TRAIN_TOTAL').val(callsa2);
-    }
-  });
-
-  $('#addbtn').click(function() {
-    window.countmeabtn = window.countmeabtn + 1;
-    var table = $(this).closest('table');
-    if (table.find('input:text').length < 100) {
-      $('#delbtn').removeAttr("disabled");
-      var x = $("tr[name=addtr]:last").closest('tr').nextAll('tr');
-      var rowCount = $('#meastable tr').length;
-      $.each(x, function(i, val) {
-        val.remove();
-      });
-      table.append('<tr class="warning" name="addtr" id="row' + (rowCount - 4) + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + (rowCount - 4) + '" id="delbtn' + (rowCount - 4) +
-        '" value="ลบ" onclick="deleteRow(' + (rowCount - 4) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="MEASURE_OTHERCOMMENT' + (rowCount - 4) + '" id="MEASURE_OTHERCOMMENT' + (rowCount - 4) +
-        '" size="50"></div></td><td><input type="text" class="form-control" name="MEASURE_OTHERLEC' + (rowCount - 4) + '" id="MEASURE_OTHERLEC' + (rowCount - 4) +
-        '" size="2"></td><td><input type="text" class="form-control" name="MEASURE_OTHERLAB' + (rowCount - 4) + '" id="MEASURE_OTHERLAB' + (rowCount - 4) + '" size="2"></td></tr>');
-      $.each(x, function(i, val) {
-        table.append(val);
-      });
-    }
-  });
-
-  $('#addbtnsa').click(function() {
-    window.countsa1btn = window.countsa1btn + 1;
-    var table = $(this).closest('table');
-    if (table.find('input:text').length < 100) {
-      $('#delbtnsa').removeAttr("disabled");
-      var x = $("tr[name=addtr2]:last").closest('tr').nextAll('tr');
-      var rowCount = $('#samenatable tr').length;
-      $.each(x, function(i, val) {
-        val.remove();
-      });
-      table.append('<tr class="warning" name="addtr2" id="row' + (rowCount - 4) + '"><td><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtnsa' + (rowCount - 4) + '" id="delbtnsa' + (rowCount - 4) +
-        '" value="ลบ" onclick="deleteRow(' + (rowCount - 4) + ')">&nbsp;&nbsp;<input type="text" class="form-control numonly" name="SAMEMA_NAME' + (rowCount - 4) + '" id="SAMEMA_NAME' + (rowCount - 4) +
-        '" size="30"></div></td><td><input type="text" class="form-control numonly" name="SAMENA_SCORE' + (rowCount - 4) + '" id="SAMENA_SCORE' + (rowCount - 4) + '" size="2"></td></tr>');
-      $.each(x, function(i, val) {
-        table.append(val);
-      });
-    }
-  });
-
-  $('#addbtnsa2').click(function() {
-    window.countsa2btn = window.countsa2btn + 1;
-    var table = $(this).closest('table');
-    if (table.find('input:text').length < 100) {
-      $('#delbtnsa2').removeAttr("disabled");
-      var x = $("tr[name=addtr3]:last").closest('tr').nextAll('tr');
-      var rowCount = $('#samenatable2 tr').length;
-      $.each(x, function(i, val) {
-        val.remove();
-      });
-      table.append('<tr class="warning" name="addtr3" id="row2' + (rowCount - 4) + '"><td><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtnsa2' + (rowCount - 4) + '" id="delbtnsa2' + (rowCount - 4) +
-        '" value="ลบ" onclick="deleteRow2(' + (rowCount - 4) + ')">&nbsp;&nbsp;<input type="text" class="form-control numonly" name="TRAIN_NAME' + (rowCount - 4) + '" id="TRAIN_NAME' + (rowCount - 4) +
-        '" size="30"></td><td><input type="text" class="form-control numonly" name="TRAIN_SCORE' + (rowCount - 4) + '" id="TRAIN_SCORE' + (rowCount - 4) + '" size="2"></td></tr>');
-      $.each(x, function(i, val) {
-        table.append(val);
-      });
-    }
-  });
 });
 
 function deleteRow(r) {
@@ -905,29 +996,31 @@ function confreset() {
   <center>
     <h3 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์</h3>
 
-    <form data-toggle="validator" role="form">
-      <div class="form-inline" style="font-size:16px;">
+    <form  data-toggle="validator" role="form">
+      <div id="formchecksj" class="form-inline" style="font-size:16px;">
                 <div class="form-group ">
                   รหัสกระบวนวิชา
-                   <input type="text" class="form-control numonly" id="inputsubject" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required >
+                   <input type="text" class="form-control numonly" id="id" name="id" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required >
                 </div>
-               <div class="form-group ">
-                  ภาคการศึกษา
-                   <select class="form-control required" id="semester" style="width: 70px;" id="select" required >
-                      <option value="">--</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                   </select>
-                  </div>
-               <div class="form-group ">
-                 ปีการศึกษา
-                 <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4"  pattern=".{4,4}" required >
-               </div>
-               <button type="submit" class="btn btn-outline btn-primary" onclick="checktran();">ค้นหา</button>
-
+                <input type="hidden" name="type" value="1">
+               <button type="button" class="btn btn-outline btn-primary" onclick="checksubject(1);">ค้นหา</button>
        </div>
     </form>
+
+  <form id="formdrpd" data-toggle="validator" role="form" style="display: none;">
+    <div class="form-inline">
+      <div class="form-group " style="font-size:16px;">
+         ภาคการศึกษา
+        <select class="form-control required" id="semester" style="width: 70px;" required >
+        </select>
+       </div>
+       <div class="form-group " style="font-size:16px;">
+         ปีการศึกษา
+         <select class="form-control required" id="year" style="width: 90px;" required >
+         </select>
+       </div>
+     </div>
+       </form>
 
 
   </center>
@@ -946,20 +1039,22 @@ function confreset() {
             &nbsp;ตอนที่ &nbsp;<input style="width: 70px;"type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="2" required pattern=".{1,2}" >
           </div>
           <div class="form-group"><div class="radio">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE1" value="NORMAL" required>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE1" value="NORMAL" checked>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" name="NORORSPE" id="NORORSPE2" value="SPECIAL">&nbsp;<b>ภาคพิเศษ</b>
           </div></div>
           <br>
-          <div class="row">
-            <div class="col-md-5 form-group">จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="ENROLL" id="ENROLL" size="2" maxlength="3" pattern=".{1,3}" required> &nbsp; คน </div>
-            <div class="col-md-5 form-group">จำนวนหน่วยกิตทั้งหมด &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="TOTAL" id="TOTAL" size="2" maxlength="3" required pattern=".{1,3}" >&nbsp; หน่วยกิต</div>
+          <div class="form-group">
+          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   maxlength="50" required >
+          </div>
+          <br>
+          <div class="form-group">
+          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   maxlength="50" required >
           </div>
           <div class="row">
+            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="ENROLL" id="ENROLL" size="2" maxlength="3" pattern=".{1,3}" required> &nbsp; คน </div>
+            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="5" maxlength="10" required pattern=".{8,10}" >&nbsp; หน่วยกิต</div>
+          </div>
 
-            <div class="col-md-5 form-group">จำนวนชั่วโมงบรรยาย (Lecture) &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="LEC" id="LEC" size="2" maxlength="3" required pattern=".{1,3}"  >&nbsp; ชั่วโมง/สัปดาห์</div>
-            <div class="col-md-5 form-group">จำนวนชั่วโมงปฏิบัติการ (Lab) &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="LAB" id="LAB" size="2" maxlength="3" required pattern=".{1,3}"  > &nbsp; ชั่วโมง/สัปดาห์</div>
-            <div class="col-md-5 form-group">จำนวนชั่วโมงเรียนรู้ด้วยตัวเอง (Self-Learning)&nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="SELF" id="SELF" size="2" maxlength="3" required pattern=".{1,3}" >&nbsp; ชั่วโมง/สัปดาห์</div>
-          </div>
         </div>
       </li>
       <br>
@@ -968,8 +1063,8 @@ function confreset() {
           <b>ลักษณะการเรียนการสอน&nbsp;&nbsp;</b><br>
           <div class="form-group"><div class="radio">
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING1" value="LEC" required> บรรยาย &nbsp;<br>
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING2" value="LECLAB"> บรรยายและงานปฏิบัติการทดลอง&nbsp;<br>
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING3" value="SPE"> กระบวนวิชาปัญหาพิเศษ&nbsp;<br>
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING2" value="LECLAB"> บรรยายและปฏิบัติการ&nbsp;<br>
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING3" value="SPE"> โครงงานทางเภสัชกรรม&nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING4" value="TRA"> ฝึกงาน &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING5" value="SEM"> สัมมนา &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING6" value="LAB"> ปฏิบัติการ &nbsp;<br>
@@ -984,397 +1079,44 @@ function confreset() {
       <br>
       <li style="font-size: 14px">
         <div class="form-inline">
-
-          <div id="text"><b>รายชื่ออาจารย์ผู้สอนบรรยาย</b> &nbsp; จำนวน &nbsp;
-            <select style="height: 28px;" style="height: 28px;" name="leclist" id="leclist" class="form-control" onchange="lecloop()">
-  <option value="0" selected>0</option>
-  <?php
-    for($i=1;$i<=11;$i++)
-    {
-      echo '<option value="'.$i.'">'.$i.'</option>';
-    }
-    ?>
-
-
- </select> &nbsp;คน
-
+          <div id="text"><b>อาจารย์ผู้รับผิดชอบกระบวนวิชา</b>
           </div>
         </div>
 
-
-
-        <div class="form-inline hide" id="ctlec1">
-          <label id="li1" style="display:none;">1. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F1" placeholder="ชื่อ" size="20" >
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L1" id="TEACHERLEC_L1" placeholder="นามสกุล" size="20" >
+        <div class="form-inline" id="ctlec1">
+          <label id="li1">1. &nbsp;</label>
+          <input type="text" class="form-control charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F1" placeholder="ชื่อ" size="20" >
+          <input type="text" class="form-control charonly" name="TEACHERLEC_L1" id="TEACHERLEC_L1" placeholder="นามสกุล" size="20" >
         </div>
 
-        <div class="form-inline hide" id="ctlec2">
-          <label id="li2" style="display:none;">2. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F2" id="TEACHERLEC_F2" placeholder="ชื่อ" size="20" >
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L2" id="TEACHERLEC_L2" placeholder="นามสกุล" size="20" >
+        <div class="form-inline" id="ctlec2">
+          <label id="li2">2. &nbsp;</label>
+          <input type="text" class="form-control charonly" name="TEACHERLEC_F2" id="TEACHERLEC_F2" placeholder="ชื่อ" size="20" >
+          <input type="text" class="form-control charonly" name="TEACHERLEC_L2" id="TEACHERLEC_L2" placeholder="นามสกุล" size="20" >
         </div>
 
-        <div class="form-inline hide" id="ctlec3">
-          <label id="li3" style="display:none;">3. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F3" id="TEACHERLEC_F3" placeholder="ชื่อ" size="20" >
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L3" id="TEACHERLEC_L3" placeholder="นามสกุล" size="20" >
+        <div class="form-inline" id="ctlec3">
+          <label id="li3">3. &nbsp;</label>
+          <input type="text" class="form-control charonly" name="TEACHERLEC_F3" id="TEACHERLEC_F3" placeholder="ชื่อ" size="20" >
+          <input type="text" class="form-control charonly" name="TEACHERLEC_L3" id="TEACHERLEC_L3" placeholder="นามสกุล" size="20" >
         </div>
-        <div class="form-inline hide" id="ctlec4">
-          <label id="li4" style="display:none;">4. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F4" id="TEACHERLEC_F4" placeholder="ชื่อ" size="20" >
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L4" id="TEACHERLEC_L4" placeholder="นามสกุล" size="20" >
+        <div class="form-inline" id="ctlec4">
+          <label id="li4">4. &nbsp;</label>
+          <input type="text" class="form-control charonly" name="TEACHERLEC_F4" id="TEACHERLEC_F4" placeholder="ชื่อ" size="20" >
+          <input type="text" class="form-control charonly" name="TEACHERLEC_L4" id="TEACHERLEC_L4" placeholder="นามสกุล" size="20" >
         </div>
-        <div class="form-inline hide" id="ctlec5">
-          <label id="li5" style="display:none;">5. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F5" id="TEACHERLEC_F5" placeholder="ชื่อ" size="20" >
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L5" id="TEACHERLEC_L5" placeholder="นามสกุล" size="20" >
+        <div class="form-inline" id="ctlec5">
+          <label id="li5">5. &nbsp;</label>
+          <input type="text" class="form-control charonly" name="TEACHERLEC_F5" id="TEACHERLEC_F5" placeholder="ชื่อ" size="20" >
+          <input type="text" class="form-control charonly" name="TEACHERLEC_L5" id="TEACHERLEC_L5" placeholder="นามสกุล" size="20" >
         </div>
-        <div class="form-inline hide" id="ctlec6">
-          <label id="li6" style="display:none;">6. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F6" id="TEACHERLEC_F6" placeholder="ชื่อ" size="20" >
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L6" id="TEACHERLEC_L6" placeholder="นามสกุล" size="20" >
-        </div>
-        <div class="form-inline hide" id="ctlec7">
-          <label id="li7" style="display:none;">7. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F7" id="TEACHERLEC_F7" placeholder="ชื่อ" size="20" >
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L7" id="TEACHERLEC_L7" placeholder="นามสกุล" size="20" >
-        </div>
-        <div class="form-inline hide" id="ctlec8">
-          <label id="li8" style="display:none;">8. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F8" id="TEACHERLEC_F8" placeholder="ชื่อ" size="20" >
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L8" id="TEACHERLEC_L8" placeholder="นามสกุล" size="20" >
-        </div>
-        <div class="form-inline hide" id="ctlec9">
-          <label id="li9" style="display:none;">9. &nbsp;</label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F9" id="TEACHERLEC_F9" placeholder="ชื่อ" size="20" >
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L9" id="TEACHERLEC_L9" placeholder="นามสกุล" size="20" >
-        </div>
-        <div class="form-inline hide" id="ctlec10">
-          <label id="li10" style="display:none;">10.&nbsp; </label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F10" id="TEACHERLEC_F10" placeholder="ชื่อ" size="20" >
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L10" id="TEACHERLEC_L10" placeholder="นามสกุล" size="20" >
-        </div>
-        <div class="form-inline hide" id="ctlec11">
-          <label id="li11" style="display:none;">11.&nbsp; </label>
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_F11" id="TEACHERLEC_F11" placeholder="ชื่อ" size="20" >
-          <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLEC_L11" id="TEACHERLEC_L11" placeholder="นามสกุล" size="20" >
-        </div>
-
-
-
-
-        <div style="font-size: 14px">
-          <div class="form-inline">
-
-            <div id="text"><b>รายชื่ออาจารย์ผู้สอนปฏิบัติการ</b> &nbsp; จำนวน &nbsp;
-              <select style="height: 28px;" name="lablist" id="lablist" class="form-control" onchange="labloop()">
-  <option value="0" selected>0</option>
-  <?php
-    for($i=1;$i<=11;$i++)
-    {
-      echo '<option value="'.$i.'">'.$i.'</option>';
-    }
-    ?>
-
- </select> &nbsp;คน
-
-            </div>
-          </div>
-
-          <div class="form-inline hide" id="ctlab1">
-            <label id="la1" style="display:none;">1. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F1" id="TEACHERLAB_F1" placeholder="ชื่อ" size="20" >
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L1" id="TEACHERLAB_L1" placeholder="นามสกุล" size="20" >
-          </div>
-
-
-          <div class="form-inline hide" id="ctlab2">
-            <label id="la2" style="display:none;">2. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F2" id="TEACHERLAB_F2" placeholder="ชื่อ" size="20" >
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L2" id="TEACHERLAB_L2" placeholder="นามสกุล" size="20" >
-          </div>
-
-
-          <div class="form-inline hide" id="ctlab3">
-            <label id="la3" style="display:none;">3. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F3" id="TEACHERLAB_F3" placeholder="ชื่อ" size="20" >
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L3" id="TEACHERLAB_L3" placeholder="นามสกุล" size="20" >
-          </div>
-
-          <div class="form-inline hide" id="ctlab4">
-            <label id="la4" style="display:none;">4. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F4" id="TEACHERLAB_F4" placeholder="ชื่อ" size="20" >
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L4" id="TEACHERLAB_L4" placeholder="นามสกุล" size="20" >
-          </div>
-
-          <div class="form-inline hide" id="ctlab5">
-            <label id="la5" style="display:none;">5. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F5" id="TEACHERLAB_F5" placeholder="ชื่อ" size="20" >
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L5" id="TEACHERLAB_L5" placeholder="นามสกุล" size="20" >
-          </div>
-
-          <div class="form-inline hide" id="ctlab6">
-            <label id="la6" style="display:none;">6. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F6" id="TEACHERLAB_F6" placeholder="ชื่อ" size="20" >
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L6" id="TEACHERLAB_L6" placeholder="นามสกุล" size="20" >
-          </div>
-
-          <div class="form-inline hide" id="ctlab7">
-            <label id="la7" style="display:none;">7. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F7" id="TEACHERLAB_F7" placeholder="ชื่อ" size="20" >
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L7" id="TEACHERLAB_L7" placeholder="นามสกุล" size="20" >
-          </div>
-
-          <div class="form-inline hide" id="ctlab8">
-            <label id="la8" style="display:none;">8. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F8" id="TEACHERLAB_F8" placeholder="ชื่อ" size="20" >
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L8" id="TEACHERLAB_L8" placeholder="นามสกุล" size="20" >
-          </div>
-
-          <div class="form-inline hide" id="ctlab9">
-            <label id="la9" style="display:none;">9. &nbsp;</label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F9" id="TEACHERLAB_F9" placeholder="ชื่อ" size="20" >
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L9" id="TEACHERLAB_L9" placeholder="นามสกุล" size="20" >
-          </div>
-
-          <div class="form-inline hide" id="ctlab10">
-            <label id="la10" style="display:none;">10.&nbsp; </label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F10" id="TEACHERLAB_F10" placeholder="ชื่อ" size="20" >
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L10" id="TEACHERLAB_L10" placeholder="นามสกุล" size="20" >
-          </div>
-
-          <div class="form-inline hide" id="ctlab11">
-            <label id="la11" style="display:none;">11.&nbsp; </label>
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_F11" id="TEACHERLAB_F11" placeholder="ชื่อ" size="20" >
-            <input type="text" style="display:none;" class="form-control charonly" name="TEACHERLAB_L11" id="TEACHERLAB_L11" placeholder="นามสกุล" size="20" >
-          </div>
-
       </li>
 
-      <br>
-      <li style="font-size: 14px">
-        <div class="form-inline"><b> การสอบ โปรดระบุให้ชัดเจน และครบถ้วน เพื่อใช้เป็นข้อมูลการจัดตารางสอบ </b>(กรุณาระบุชื่ออาจารย์ที่ร่วมสอนในกระบวนวิชา และจำนวนกรรมการคุมสอบอาจระบุอย่างน้อย 3 คน) </div>
-
-        <ul>
-          <br>
-          <li style="font-size: 14px">
-
-            <b>สอบกลางภาคฯ</b>
-            <ul>
-              <div class="form-inline">
-                <li style="font-size: 14px">
-                  <div class="form-group">
-                  จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" style="width: 70px" class="form-control numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
-                </div>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                  <select style="height: 28px;" name="mexholec" id="mexholec" class="form-control numonly" onchange="midexam_hour_lec()">
-      <option value="0" selected>0</option>
-      <?php
-        for($i=1;$i<=5;$i++)
-        {
-          echo '<option value="'.$i.'">'.$i.'</option>';
-        }
-        ?>
-
-    </select> &nbsp; คน (แยกห้องกันคุม)
-
-
-                  <div class="form-inline hide" id="mehlec1">
-                    <label id="mehle1" style="display:none;">1.&nbsp; </label>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF1" id="MIDEXCOM_LECF1" placeholder="ชื่อ" size="20" >
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL1" id="MIDEXCOM_LECL1" placeholder="นามสกุล" size="20" >
-                  </div>
-
-                  <div class="form-inline hide" id="mehlec2">
-                    <label id="mehle2" style="display:none;">2.&nbsp; </label>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF2" id="MIDEXCOM_LECF2" placeholder="ชื่อ" size="20" >
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL2" id="MIDEXCOM_LECL2" placeholder="นามสกุล" size="20" >
-                  </div>
-
-                  <div class="form-inline hide" id="mehlec3">
-                    <label id="mehle3" style="display:none;">3.&nbsp; </label>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF3" id="MIDEXCOM_LECF3" placeholder="ชื่อ" size="20" >
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL3" id="MIDEXCOM_LECL3" placeholder="นามสกุล" size="20" >
-                  </div>
-
-                  <div class="form-inline hide" id="mehlec4">
-                    <label id="mehle4" style="display:none;">4.&nbsp; </label>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF4" id="MIDEXCOM_LECF4" placeholder="ชื่อ" size="20" >
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL4" id="MIDEXCOM_LECL4" placeholder="นามสกุล" size="20" >
-                  </div>
-
-                  <div class="form-inline hide" id="mehlec5">
-                    <label id="mehle5" style="display:none;">5.&nbsp; </label>
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF5" id="MIDEXCOM_LECF5" placeholder="ชื่อ" size="20" >
-                    <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL5" id="MIDEXCOM_LECL5" placeholder="นามสกุล" size="20" >
-                  </div>
-
-
-                  <div class="form-inline">
-                    <li style="font-size: 14px">
-                      <div class="form-group">
-                      จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" >&nbsp; ชั่วโมง
-                    </div>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                      <select style="height: 28px;" name="mexholac" id="mexholac" class="form-control numonly" onchange="midexam_hour_lab()">
-      <option value="0" selected>0</option>
-      <?php
-        for($i=1;$i<=5;$i++)
-        {
-          echo '<option value="'.$i.'">'.$i.'</option>';
-        }
-        ?>
-
-     </select> &nbsp; คน
-
-
-                      <div class="form-inline hide" id="ehlab1">
-                        <label id="ehla1" style="display:none;">1.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF1" id="MIDEXCOM_LABF1" placeholder="ชื่อ" size="20">
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL1" id="MIDEXCOM_LABL1" placeholder="นามสกุล" size="20">
-                      </div>
-
-                      <div class="form-inline hide" id="ehlab2">
-                        <label id="ehla2" style="display:none;">2.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF2" id="MIDEXCOM_LABF2" placeholder="ชื่อ" size="20">
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL2" id="MIDEXCOM_LABL2" placeholder="นามสกุล" size="20">
-                      </div>
-
-                      <div class="form-inline hide" id="ehlab3">
-                        <label id="ehla3" style="display:none;">3.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF3" id="MIDEXCOM_LABF3" placeholder="ชื่อ" size="20">
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL3" id="MIDEXCOM_LABL3" placeholder="นามสกุล" size="20">
-                      </div>
-
-                      <div class="form-inline hide" id="ehlab4">
-                        <label id="ehla4" style="display:none;">4.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF4" id="MIDEXCOM_LABF4" placeholder="ชื่อ" size="20">
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL4" id="MIDEXCOM_LABL4" placeholder="นามสกุล" size="20">
-                      </div>
-
-                      <div class="form-inline hide" id="ehlab5">
-                        <label id="ehla5" style="display:none;">5.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF5" id="MIDEXCOM_LABF5" placeholder="ชื่อ" size="20">
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL5" id="MIDEXCOM_LABL5" placeholder="นามสกุล" size="20">
-                      </div>
-                    </li>
-                  </div>
-            </ul>
-            </li>
-
-
-            <!--0000000000000000000000000SPLIT000000000000000-->
-
-            <li style="font-size: 14px">
-              <b>สอบไล่</b>
-              <ul>
-                <div class="form-inline">
-                  <li style="font-size: 14px">
-                    <div class="form-group">
-                    จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input  style="width: 70px"type="text" class="form-control numonly" name="FINEXAM_HOUR_LEC" id="FINEXAM_HOUR_LEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
-                    </div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                    <select style="height: 28px;" name="fexholec" id="fexholec" class="form-control numonly" onchange="finexam_hour_lec()">
-      <option value="0" selected>0</option>
-      <?php
-        for($i=1;$i<=5;$i++)
-        {
-          echo '<option value="'.$i.'">'.$i.'</option>';
-        }
-        ?>
-
-    </select> &nbsp; คน (แยกห้องกันคุม) </div>
-
-
-                    <div class="form-inline hide" id="fmehlec1">
-                      <label id="fmehle1" style="display:none;">1.&nbsp; </label>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF1" id="FINEXCOM_LECF1" placeholder="ชื่อ" size="20" >
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL1" id="FINEXCOM_LECL1" placeholder="นามสกุล" size="20" >
-                    </div>
-
-                    <div class="form-inline hide" id="fmehlec2">
-                      <label id="fmehle2" style="display:none;">2.&nbsp; </label>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF2" id="FINEXCOM_LECF2" placeholder="ชื่อ" size="20" >
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL2" id="FINEXCOM_LECL2" placeholder="นามสกุล" size="20" >
-                    </div>
-
-                    <div class="form-inline hide" id="fmehlec3">
-                      <label id="fmehle3" style="display:none;">3.&nbsp; </label>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF3" id="FINEXCOM_LECF3" placeholder="ชื่อ" size="20" >
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL3" id="FINEXCOM_LECL3" placeholder="นามสกุล" size="20" >
-                    </div>
-
-                    <div class="form-inline hide" id="fmehlec4">
-                      <label id="fmehle4" style="display:none;">4.&nbsp; </label>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF4" id="FINEXCOM_LECF4" placeholder="ชื่อ" size="20" >
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL4" id="FINEXCOM_LECL4" placeholder="นามสกุล" size="20" >
-                    </div>
-
-                    <div class="form-inline hide" id="fmehlec5">
-                      <label id="fmehle5" style="display:none;">5.&nbsp; </label>
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF5" id="FINEXCOM_LECF5" placeholder="ชื่อ" size="20" >
-                      <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL5" id="FINEXCOM_LECL5" placeholder="นามสกุล" size="20" >
-                    </div>
-
-
-                    <div class="form-inline">
-                      <li style="font-size: 14px">
-                        <div class="form-group">
-                        จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="FINEXAM_HOUR_LAB" id="FINEXAM_HOUR_LAB" size="2" maxlength="3" >&nbsp; ชั่วโมง
-                      </div>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                        <select style="height: 28px;" name="fexholac" id="fexholac" class="form-control numonly" onchange="finexam_hour_lab()">
-      <option value="0" selected>0</option>
-      <?php
-        for($i=1;$i<=5;$i++)
-        {
-          echo '<option value="'.$i.'">'.$i.'</option>';
-        }
-        ?>
-
-     </select> &nbsp; คน
-
-
-                        <div class="form-inline hide" id="fehlab1">
-                          <label id="fehla1" style="display:none;">1.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF1" id="FINEXCOM_LABF1" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL1" id="FINEXCOM_LABL1" placeholder="นามสกุล" size="20" >
-                        </div>
-
-                        <div class="form-inline hide" id="fehlab2">
-                          <label id="fehla2" style="display:none;">2.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF2" id="FINEXCOM_LABF2" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL2" id="FINEXCOM_LABL2" placeholder="นามสกุล" size="20" >
-                        </div>
-
-                        <div class="form-inline hide" id="fehlab3">
-                          <label id="fehla3" style="display:none;">3.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF3" id="FINEXCOM_LABF3" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL3" id="FINEXCOM_LABL3" placeholder="นามสกุล" size="20" >
-                        </div>
-
-                        <div class="form-inline hide" id="fehlab4">
-                          <label id="fehla4" style="display:none;">4.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF4" id="FINEXCOM_LABF4" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL4" id="FINEXCOM_LABL4" placeholder="นามสกุล" size="20" >
-                        </div>
-
-                        <div class="form-inline hide" id="fehlab5">
-                          <label id="fehla5" style="display:none;">5.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF5" id="FINEXCOM_LABF5" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL5" id="FINEXCOM_LABL5" placeholder="นามสกุล" size="20" >
-                        </div>
-                      </li>
-                    </div>
-              </ul>
-              </li>
-        </ul>
 
         <br>
 
           <li style="font-size: 14px;">
-            <b>การวัดผลการศึกษา</b> (สัดส่วนการให้คะแนนโปรดระบุเป็นร้อยละ)<br><br>
+            <b>การวัดผลการศึกษา</b> (สัดส่วนการให้คะแนนโปรดระบุเป็นร้อยละ)<br>
             <div class="row">
             <div class="col-md-10">
             <table id="meastable" class="table table-bordered table-hover" style="font-size: 14px;">
@@ -1384,19 +1126,30 @@ function confreset() {
                 <th style="text-align: center;">ภาคปฏิบัติ </th>
               </tr>
               <tr>
-                <td colspan="2">1. สอบกลางภาคการศึกษา</td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC" id="MEASURE_MIDLEC" size="2"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB" id="MEASURE_MIDLAB" size="2"></div></td>
+                <td colspan="2">1. สอบกลางภาคฯครั้งที่ 1</td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC1" id="MEASURE_MIDLEC1" size="2"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB1" id="MEASURE_MIDLAB1" size="2"></div></td>
               </tr>
               <tr>
-                <td colspan="2">2. สอบไล่ </td>
+                <td colspan="2">2. สอบกลางภาคฯครั้งที่ 2</td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC2" id="MEASURE_MIDLEC2" size="2"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB2" id="MEASURE_MIDLAB2" size="2"></div></td>
+              </tr>
+              <tr>
+                <td colspan="2">3. สอบไล่ </td>
                 <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="2"></div></td>
                 <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="2"></div></td>
               </tr>
+              <tr>
+                <td colspan="2">4. งานมอบหมาย </td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_WORKLEC" id="MEASURE_WORKLEC" size="2"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_WORKLAB" id="MEASURE_WORKLAB" size="2"></div></td>
+              </tr>
               <tr name="addtr">
 
-                <td colspan="4">3. อื่นๆ โปรดระบุ &nbsp;&nbsp;<input type="button" class="btn btn-outline btn-success" name="addbtn" id="addbtn" value="เพิ่ม"> </td>
-
+                <td colspan="2"><div class="form-group form-inline">5. อื่นๆ โปรดระบุ &nbsp;&nbsp;<input type="text" class="form-control" name="OTHER_MEA" id="OTHER_MEA" size="30"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_OTHLEC" id="MEASURE_OTHLEC" size="2"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_OTHLAB" id="MEASURE_OTHLAB" size="2"></div></td>
               </tr>
               <tr>
                 <td colspan="2" align="right"><input type="button" class="btn btn-outline btn-warning" name="calmea" id="calmea" value="รวมคะแนน"></td>
@@ -1406,65 +1159,529 @@ function confreset() {
             </table>
             </div>
           </div>
+          </li>
+
+          <li style="font-size: 14px">
+            <div class="form-inline"><b> การสอบ โปรดระบุให้ชัดเจน และครบถ้วน เพื่อใช้เป็นข้อมูลการจัดตารางสอบ </b>(กรุณาระบุชื่ออาจารย์ที่ร่วมสอนในกระบวนวิชา และจำนวนกรรมการคุมสอบอาจระบุอย่างน้อย 3 คน) </div>
+
+            <ul>
+              <br>
+              <li style="font-size: 14px">
+
+                <b>สอบกลางภาคฯครั้งที่ 1</b>
+                <ul>
+                  <div class="form-inline">
+                    <li style="font-size: 14px">
+                      <div class="form-group">
+                      จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" style="width: 70px" class="form-control numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
+                    </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
+                      <select style="height: 28px;" name="mexholec" id="mexholec" class="form-control numonly" onchange="midexam_hour_lec()">
+          <option value="0" selected>0</option>
+          <?php
+            for($i=1;$i<=10;$i++)
+            {
+              echo '<option value="'.$i.'">'.$i.'</option>';
+            }
+            ?>
+
+        </select> &nbsp; คน
+
+
+                      <div class="form-inline hide" id="mehlec1">
+                        <label id="mehle1" style="display:none;">1.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF1" id="MIDEXCOM_LECF1" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL1" id="MIDEXCOM_LECL1" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec2">
+                        <label id="mehle2" style="display:none;">2.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF2" id="MIDEXCOM_LECF2" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL2" id="MIDEXCOM_LECL2" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec3">
+                        <label id="mehle3" style="display:none;">3.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF3" id="MIDEXCOM_LECF3" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL3" id="MIDEXCOM_LECL3" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec4">
+                        <label id="mehle4" style="display:none;">4.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF4" id="MIDEXCOM_LECF4" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL4" id="MIDEXCOM_LECL4" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec5">
+                        <label id="mehle5" style="display:none;">5.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF5" id="MIDEXCOM_LECF5" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL5" id="MIDEXCOM_LECL5" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec6">
+                        <label id="mehle6" style="display:none;">1.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF6" id="MIDEXCOM_LECF6" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL6" id="MIDEXCOM_LECL6" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec7">
+                        <label id="mehle7" style="display:none;">7.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF7" id="MIDEXCOM_LECF7" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL7" id="MIDEXCOM_LECL7" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec8">
+                        <label id="mehle8" style="display:none;">8.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF8" id="MIDEXCOM_LECF8" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL8" id="MIDEXCOM_LECL8" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec9">
+                        <label id="mehle9" style="display:none;">9.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF9" id="MIDEXCOM_LECF9" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL9" id="MIDEXCOM_LECL9" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec10">
+                        <label id="mehle10" style="display:none;">10.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF10" id="MIDEXCOM_LECF10" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL10" id="MIDEXCOM_LECL10" placeholder="นามสกุล" size="20" >
+                      </div>
+
+
+                      <div class="form-inline">
+                        <li style="font-size: 14px">
+                          <div class="form-group">
+                          จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" >&nbsp; ชั่วโมง
+                        </div>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
+                          <select style="height: 28px;" name="mexholac" id="mexholac" class="form-control numonly" onchange="midexam_hour_lab()">
+          <option value="0" selected>0</option>
+          <?php
+            for($i=1;$i<=10;$i++)
+            {
+              echo '<option value="'.$i.'">'.$i.'</option>';
+            }
+            ?>
+
+         </select> &nbsp; คน
+
+
+                          <div class="form-inline hide" id="ehlab1">
+                            <label id="ehla1" style="display:none;">1.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF1" id="MIDEXCOM_LABF1" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL1" id="MIDEXCOM_LABL1" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab2">
+                            <label id="ehla2" style="display:none;">2.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF2" id="MIDEXCOM_LABF2" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL2" id="MIDEXCOM_LABL2" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab3">
+                            <label id="ehla3" style="display:none;">3.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF3" id="MIDEXCOM_LABF3" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL3" id="MIDEXCOM_LABL3" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab4">
+                            <label id="ehla4" style="display:none;">4.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF4" id="MIDEXCOM_LABF4" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL4" id="MIDEXCOM_LABL4" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab5">
+                            <label id="ehla5" style="display:none;">5.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF5" id="MIDEXCOM_LABF5" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL5" id="MIDEXCOM_LABL5" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab6">
+                            <label id="ehla6" style="display:none;">6.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF6" id="MIDEXCOM_LABF6" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL6" id="MIDEXCOM_LABL6" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab7">
+                            <label id="ehla7" style="display:none;">7.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF7" id="MIDEXCOM_LABF7" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL7" id="MIDEXCOM_LABL7" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab8">
+                            <label id="ehla8" style="display:none;">8.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF8" id="MIDEXCOM_LABF8" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL8" id="MIDEXCOM_LABL8" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab9">
+                            <label id="ehla9" style="display:none;">9.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF9" id="MIDEXCOM_LABF9" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL9" id="MIDEXCOM_LABL9" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab10">
+                            <label id="ehla10" style="display:none;">10.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF10" id="MIDEXCOM_LABF10" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL10" id="MIDEXCOM_LABL10" placeholder="นามสกุล" size="20">
+                          </div>
+                        </li>
+                      </div>
+                </ul>
+                </li>
+              </li>
+
+              <li style="font-size: 14px">
+
+                <b>สอบกลางภาคฯครั้งที่ 2</b>
+                <ul>
+                  <div class="form-inline">
+                    <li style="font-size: 14px">
+                      <div class="form-group">
+                      จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" style="width: 70px" class="form-control numonly" name="MIDEXAM_HOUR_LEC_SEC" id="MIDEXAM_HOUR_LEC_SEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
+                    </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
+                      <select style="height: 28px;" name="mexholec_sec" id="mexholec_sec" class="form-control numonly" onchange="midexam_hour_lec_sec()">
+          <option value="0" selected>0</option>
+          <?php
+            for($i=1;$i<=10;$i++)
+            {
+              echo '<option value="'.$i.'">'.$i.'</option>';
+            }
+            ?>
+
+        </select> &nbsp; คน
+
+
+                      <div class="form-inline hide" id="mehlec1_sec">
+                        <label id="mehle1_sec" style="display:none;">1.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF1_sec" id="MIDEXCOM_LECF1_sec" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL1_sec" id="MIDEXCOM_LECL1_sec" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec2_sec">
+                        <label id="mehle2_sec" style="display:none;">2.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF2_sec" id="MIDEXCOM_LECF2_sec" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL2_sec" id="MIDEXCOM_LECL2_sec" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec3_sec">
+                        <label id="mehle3_sec" style="display:none;">3.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF3_sec" id="MIDEXCOM_LECF3_sec" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL3_sec" id="MIDEXCOM_LECL3_sec" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec4_sec">
+                        <label id="mehle4_sec" style="display:none;">4.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF4_sec" id="MIDEXCOM_LECF4_sec" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL4_sec" id="MIDEXCOM_LECL4_sec" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec5_sec">
+                        <label id="mehle5_sec" style="display:none;">5.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF5_sec" id="MIDEXCOM_LECF5_sec" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL5_sec" id="MIDEXCOM_LECL5_sec" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec6_sec">
+                        <label id="mehle6_sec" style="display:none;">1.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF6_sec" id="MIDEXCOM_LECF6_sec" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL6_sec" id="MIDEXCOM_LECL6_sec" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec7_sec">
+                        <label id="mehle7_sec" style="display:none;">7.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF7_sec" id="MIDEXCOM_LECF7_sec" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL7_sec" id="MIDEXCOM_LECL7_sec" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec8_sec">
+                        <label id="mehle8_sec" style="display:none;">8.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF8_sec" id="MIDEXCOM_LECF8_sec" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL8_sec" id="MIDEXCOM_LECL8_sec" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec9_sec">
+                        <label id="mehle9_sec" style="display:none;">9.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF9_sec" id="MIDEXCOM_LECF9_sec" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL9_sec" id="MIDEXCOM_LECL9_sec" placeholder="นามสกุล" size="20" >
+                      </div>
+
+                      <div class="form-inline hide" id="mehlec10_sec">
+                        <label id="mehle10_sec" style="display:none;">10.&nbsp; </label>
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF10_sec" id="MIDEXCOM_LECF10_sec" placeholder="ชื่อ" size="20" >
+                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL10_sec" id="MIDEXCOM_LECL10_sec" placeholder="นามสกุล" size="20" >
+                      </div>
+
+
+                      <div class="form-inline">
+                        <li style="font-size: 14px">
+                          <div class="form-group">
+                          จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB_SEC" id="MIDEXAM_HOUR_LAB_SEC" size="2" >&nbsp; ชั่วโมง
+                        </div>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
+                          <select style="height: 28px;" name="mexholac_sec" id="mexholac_sec" class="form-control numonly" onchange="midexam_hour_lab_sec()">
+          <option value="0" selected>0</option>
+          <?php
+            for($i=1;$i<=10;$i++)
+            {
+              echo '<option value="'.$i.'">'.$i.'</option>';
+            }
+            ?>
+
+         </select> &nbsp; คน
+
+
+                          <div class="form-inline hide" id="ehlab1_sec">
+                            <label id="ehla1_sec" style="display:none;">1.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF1_sec" id="MIDEXCOM_LABF1_sec" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL1_sec" id="MIDEXCOM_LABL1_sec" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab2_sec">
+                            <label id="ehla2_sec" style="display:none;">2.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF2_sec" id="MIDEXCOM_LABF2_sec" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL2_sec" id="MIDEXCOM_LABL2_sec" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab3_sec">
+                            <label id="ehla3_sec" style="display:none;">3.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF3_sec" id="MIDEXCOM_LABF3_sec" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL3_sec" id="MIDEXCOM_LABL3_sec" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab4_sec">
+                            <label id="ehla4_sec" style="display:none;">4.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF4_sec" id="MIDEXCOM_LABF4_sec" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL4_sec" id="MIDEXCOM_LABL4_sec" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab5_sec">
+                            <label id="ehla5_sec" style="display:none;">5.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF5_sec" id="MIDEXCOM_LABF5_sec" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL5_sec" id="MIDEXCOM_LABL5_sec" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab6_sec">
+                            <label id="ehla6_sec" style="display:none;">6.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF6_sec" id="MIDEXCOM_LABF6_sec" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL6_sec" id="MIDEXCOM_LABL6_sec" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab7_sec">
+                            <label id="ehla7_sec" style="display:none;">7.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF7_sec" id="MIDEXCOM_LABF7_sec" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL7_sec" id="MIDEXCOM_LABL7_sec" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab8_sec">
+                            <label id="ehla8_sec" style="display:none;">8.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF8_sec" id="MIDEXCOM_LABF8_sec" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL8_sec" id="MIDEXCOM_LABL8_sec" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab9_sec">
+                            <label id="ehla9_sec" style="display:none;">9.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF9_sec" id="MIDEXCOM_LABF9_sec" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL9_sec" id="MIDEXCOM_LABL9_sec" placeholder="นามสกุล" size="20">
+                          </div>
+
+                          <div class="form-inline hide" id="ehlab10_sec">
+                            <label id="ehla10_sec" style="display:none;">10.&nbsp; </label>
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF10_sec" id="MIDEXCOM_LABF10_sec" placeholder="ชื่อ" size="20">
+                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL10_sec" id="MIDEXCOM_LABL10_sec" placeholder="นามสกุล" size="20">
+                          </div>
+                        </li>
+                      </div>
+                </ul>
+                </li>
+              </li>
+
+
+                <!--0000000000000000000000000SPLIT000000000000000-->
+
+                <li style="font-size: 14px">
+                  <b>สอบไล่</b>
+                  <ul>
+                    <div class="form-inline">
+                      <li style="font-size: 14px">
+                        <div class="form-group">
+                        จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input  style="width: 70px"type="text" class="form-control numonly" name="FINEXAM_HOUR_LEC" id="FINEXAM_HOUR_LEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
+                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
+                        <select style="height: 28px;" name="fexholec" id="fexholec" class="form-control numonly" onchange="finexam_hour_lec()">
+          <option value="0" selected>0</option>
+          <?php
+            for($i=1;$i<=10;$i++)
+            {
+              echo '<option value="'.$i.'">'.$i.'</option>';
+            }
+            ?>
+
+        </select> &nbsp; คน </div>
+
+
+                        <div class="form-inline hide" id="fmehlec1">
+                          <label id="fmehle1" style="display:none;">1.&nbsp; </label>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF1" id="FINEXCOM_LECF1" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL1" id="FINEXCOM_LECL1" placeholder="นามสกุล" size="20" >
+                        </div>
+
+                        <div class="form-inline hide" id="fmehlec2">
+                          <label id="fmehle2" style="display:none;">2.&nbsp; </label>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF2" id="FINEXCOM_LECF2" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL2" id="FINEXCOM_LECL2" placeholder="นามสกุล" size="20" >
+                        </div>
+
+                        <div class="form-inline hide" id="fmehlec3">
+                          <label id="fmehle3" style="display:none;">3.&nbsp; </label>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF3" id="FINEXCOM_LECF3" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL3" id="FINEXCOM_LECL3" placeholder="นามสกุล" size="20" >
+                        </div>
+
+                        <div class="form-inline hide" id="fmehlec4">
+                          <label id="fmehle4" style="display:none;">4.&nbsp; </label>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF4" id="FINEXCOM_LECF4" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL4" id="FINEXCOM_LECL4" placeholder="นามสกุล" size="20" >
+                        </div>
+
+                        <div class="form-inline hide" id="fmehlec5">
+                          <label id="fmehle5" style="display:none;">5.&nbsp; </label>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF5" id="FINEXCOM_LECF5" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL5" id="FINEXCOM_LECL5" placeholder="นามสกุล" size="20" >
+                        </div>
+
+                        <div class="form-inline hide" id="fmehlec6">
+                          <label id="fmehle6" style="display:none;">6.&nbsp; </label>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF6" id="FINEXCOM_LECF6" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL6" id="FINEXCOM_LECL6" placeholder="นามสกุล" size="20" >
+                        </div>
+
+                        <div class="form-inline hide" id="fmehlec7">
+                          <label id="fmehle7" style="display:none;">7.&nbsp; </label>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF7" id="FINEXCOM_LECF7" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL7" id="FINEXCOM_LECL7" placeholder="นามสกุล" size="20" >
+                        </div>
+
+                        <div class="form-inline hide" id="fmehlec8">
+                          <label id="fmehle8" style="display:none;">8.&nbsp; </label>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF8" id="FINEXCOM_LECF8" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL8" id="FINEXCOM_LECL8" placeholder="นามสกุล" size="20" >
+                        </div>
+
+                        <div class="form-inline hide" id="fmehlec9">
+                          <label id="fmehle9" style="display:none;">9.&nbsp; </label>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF9" id="FINEXCOM_LECF9" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL9" id="FINEXCOM_LECL9" placeholder="นามสกุล" size="20" >
+                        </div>
+
+                        <div class="form-inline hide" id="fmehlec10">
+                          <label id="fmehle10" style="display:none;">10.&nbsp; </label>
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF10" id="FINEXCOM_LECF10" placeholder="ชื่อ" size="20" >
+                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL10" id="FINEXCOM_LECL10" placeholder="นามสกุล" size="20" >
+                        </div>
+
+
+
+                        <div class="form-inline">
+                          <li style="font-size: 14px">
+                            <div class="form-group">
+                            จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="FINEXAM_HOUR_LAB" id="FINEXAM_HOUR_LAB" size="2" maxlength="3" >&nbsp; ชั่วโมง
+                          </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
+                            <select style="height: 28px;" name="fexholac" id="fexholac" class="form-control numonly" onchange="finexam_hour_lab()">
+          <option value="0" selected>0</option>
+          <?php
+            for($i=1;$i<=10;$i++)
+            {
+              echo '<option value="'.$i.'">'.$i.'</option>';
+            }
+            ?>
+
+         </select> &nbsp; คน
+
+
+                            <div class="form-inline hide" id="fehlab1">
+                              <label id="fehla1" style="display:none;">1.&nbsp; </label>
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF1" id="FINEXCOM_LABF1" placeholder="ชื่อ" size="20" >
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL1" id="FINEXCOM_LABL1" placeholder="นามสกุล" size="20" >
+                            </div>
+
+                            <div class="form-inline hide" id="fehlab2">
+                              <label id="fehla2" style="display:none;">2.&nbsp; </label>
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF2" id="FINEXCOM_LABF2" placeholder="ชื่อ" size="20" >
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL2" id="FINEXCOM_LABL2" placeholder="นามสกุล" size="20" >
+                            </div>
+
+                            <div class="form-inline hide" id="fehlab3">
+                              <label id="fehla3" style="display:none;">3.&nbsp; </label>
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF3" id="FINEXCOM_LABF3" placeholder="ชื่อ" size="20" >
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL3" id="FINEXCOM_LABL3" placeholder="นามสกุล" size="20" >
+                            </div>
+
+                            <div class="form-inline hide" id="fehlab4">
+                              <label id="fehla4" style="display:none;">4.&nbsp; </label>
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF4" id="FINEXCOM_LABF4" placeholder="ชื่อ" size="20" >
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL4" id="FINEXCOM_LABL4" placeholder="นามสกุล" size="20" >
+                            </div>
+
+                            <div class="form-inline hide" id="fehlab5">
+                              <label id="fehla5" style="display:none;">5.&nbsp; </label>
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF5" id="FINEXCOM_LABF5" placeholder="ชื่อ" size="20" >
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL5" id="FINEXCOM_LABL5" placeholder="นามสกุล" size="20" >
+                            </div>
+
+                            <div class="form-inline hide" id="fehlab6">
+                              <label id="fehla6" style="display:none;">6.&nbsp; </label>
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF6" id="FINEXCOM_LABF6" placeholder="ชื่อ" size="20" >
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL6" id="FINEXCOM_LABL6" placeholder="นามสกุล" size="20" >
+                            </div>
+
+                            <div class="form-inline hide" id="fehlab7">
+                              <label id="fehla7" style="display:none;">7.&nbsp; </label>
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF7" id="FINEXCOM_LABF7" placeholder="ชื่อ" size="20" >
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL7" id="FINEXCOM_LABL7" placeholder="นามสกุล" size="20" >
+                            </div>
+
+                            <div class="form-inline hide" id="fehlab8">
+                              <label id="fehla8" style="display:none;">8.&nbsp; </label>
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF8" id="FINEXCOM_LABF8" placeholder="ชื่อ" size="20" >
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL8" id="FINEXCOM_LABL8" placeholder="นามสกุล" size="20" >
+                            </div>
+
+                            <div class="form-inline hide" id="fehlab9">
+                              <label id="fehla9" style="display:none;">9.&nbsp; </label>
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF9" id="FINEXCOM_LABF9" placeholder="ชื่อ" size="20" >
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL9" id="FINEXCOM_LABL9" placeholder="นามสกุล" size="20" >
+                            </div>
+
+                            <div class="form-inline hide" id="fehlab10">
+                              <label id="fehla10" style="display:none;">10.&nbsp; </label>
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF10" id="FINEXCOM_LABF10" placeholder="ชื่อ" size="20" >
+                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL10" id="FINEXCOM_LABL10" placeholder="นามสกุล" size="20" >
+                            </div>
+                          </li>
+                        </div>
+                  </ul>
+                  </li>
+          </li>
+          </ul>
           <div class="form-inline">
-            ข้อเสนอแนะอื่นๆ
+            หมายเหตุ
             <br> <textarea class="form-control" id="suggestion" rows="4" cols="125"></textarea>
           </div>
-          <br>
-            <div class="row">
-              <div class="col-md-5">
-                <table id="samenatable" class="table table-bordered table-hover" width="100%" style="font-size: 14px;">
-                  <tbody>
-                    <tr class="success">
-                      <th colspan="2" style="text-align: center;">กระบวนวิชาสัมมนา</th>
-                    </tr>
-                    <tr>
-                      <td width="65%" align="center">กิจกรรม</td>
-                      <td align="center">&nbsp;สัดส่วนการให้คะแนน&nbsp;</td>
-                    </tr>
-                    <tr name="addtr2">
-                      <td align="center" colspan="2"><input type="button" class="btn btn-outline btn-success" name="addbtnsa" id="addbtnsa" value="เพิ่ม"></td>
-                    </tr>
-                    <tr>
-                      <td align="right"><input type="button" class="btn btn-outline btn-warning" name="calsa1" id="calsa1" value="รวมคะแนน" ></td>
-                      <td><input type="text" class="form-control numonly" name="SAMENA_TOTAL" id="SAMENA_TOTAL" size="2"  ></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="col-md-5">
-                <table id="samenatable2" class="table table-bordered table-hover" width="100%" style="font-size: 14px;">
-                  <tbody>
-                    <tr class="success">
-                      <th colspan="2" style="text-align: center;">ฝึกปฏิบัติ/ปัญหาพิเศษ</th>
-                    </tr>
-                    <tr>
-                      <td width="65%" align="center">กิจกรรม</td>
-                      <td align="center">&nbsp;สัดส่วนการให้คะแนน&nbsp;</td>
-                    </tr>
-                    <tr name="addtr3">
-                      <td align="center" colspan="2"><input type="button" class="btn btn-outline btn-success" name="addbtnsa2" id="addbtnsa2" value="เพิ่ม"></td>
-                    </tr>
-                    <tr>
-                      <td align="right"><input type="button" class="btn btn-outline btn-warning" name="calsa2" id="calsa2" value="รวมคะแนน" ></td>
-                      <td><input type="text" class="form-control numonly" name="TRAIN_TOTAL" id="TRAIN_TOTAL" size="2" ></td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
-          </div>
-          </li>
+        </li>
 
           <br>
           <li style="font-size: 14px;">
             <b>วิธีการตัดเกรด</b>
             <br>
             <div class="form-inline">
-              <div class="form-group"><div class="radio">
-              <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม <br>
-              <div id="explain"> <textarea class="form-control" name="EXPLAINATION" id="EXPLAINATION" placeholder="โปรดระบุ" rows="4" cols="125"></textarea> <br></div>
-              <input type="radio" name="CALCULATE" id="CALCULATE_TYPE2" value="CRITERIA"> อิงเกณฑ์ &nbsp;&nbsp;ได้กำหนดเกณฑ์ดังต่อไปนี้
+              <div class="form-group form-inline"><div class="radio">
+              <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม &nbsp;
+              <input type="text" class="form-control" name="EXPLAINATION" id="EXPLAINATION" placeholder="โปรดระบุ">
+              <br><input type="radio" name="CALCULATE" id="CALCULATE_TYPE2" value="CRITERIA" checked> อิงเกณฑ์ &nbsp;&nbsp;ได้กำหนดเกณฑ์ดังต่อไปนี้
             </div></div>
               <br><b class="opacity01">การประเมินผล</b><br>
               <div class="form-group opacity01"><div class="radio">
@@ -1491,62 +1708,62 @@ function confreset() {
               </tr>
               <tr align="center">
                 <td>A</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_A_MIN" id="CALCULATE_A_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_A_MIN" id="CALCULATE_A_MIN" maxlength="5" value="80.0"></td>
                 <td>ถึง</td>
                 <td><input type="text" class="form-control numonly" name="CALCULATE_A_MAX" id="CALCULATE_A_MAX" placeholder="100" disabled></td>
                 <td></td>
                 <td>D+</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" maxlength="5" value="55.0"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Dp_MAX" id="CALCULATE_Dp_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Dp_MAX" id="CALCULATE_Dp_MAX" maxlength="5" value="59.9"></td>
                 <td></td>
               </tr>
               <tr align="center">
                 <td>B+</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Bp_MIN" id="CALCULATE_Bp_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Bp_MIN" id="CALCULATE_Bp_MIN" maxlength="5" value="75.0"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Bp_MAX" id="CALCULATE_Bp_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Bp_MAX" id="CALCULATE_Bp_MAX" maxlength="5" value="79.9"></td>
                 <td></td>
                 <td>D</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_D_MIN" id="CALCULATE_D_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_D_MIN" id="CALCULATE_D_MIN" maxlength="5" value="50.0"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_D_MAX" id="CALCULATE_D_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_D_MAX" id="CALCULATE_D_MAX" maxlength="5" value="54.9"></td>
                 <td></td>
               </tr>
               <tr align="center">
                 <td>B</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_B_MIN" id="CALCULATE_B_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_B_MIN" id="CALCULATE_B_MIN" maxlength="5" value="70.0"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_B_MAX" id="CALCULATE_B_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_B_MAX" id="CALCULATE_B_MAX" maxlength="5" value="74.9"></td>
                 <td></td>
                 <td>F</td>
                 <td><input type="text" class="form-control numonly" name="CALCULATE_F_MIN" id="CALCULATE_F_MIN" placeholder="0" disabled></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" maxlength="5" value="49.9"></td>
                 <td></td>
               </tr>
               <tr align="center">
                 <td>C+</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Cp_MIN" id="CALCULATE_Cp_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Cp_MIN" id="CALCULATE_Cp_MIN" maxlength="5" value="65.0"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Cp_MAX" id="CALCULATE_Cp_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Cp_MAX" id="CALCULATE_Cp_MAX" maxlength="5" value="69.9"></td>
                 <td></td>
                 <td>S</td>
-                <td><input type="text" class="form-control numonly stou" name="CALCULATE_S_MIN" id="CALCULATE_S_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly stou" name="CALCULATE_S_MIN" id="CALCULATE_S_MIN" maxlength="5" value=""></td>
                 <td>ถึง</td>
                 <td><input type="text" class="form-control numonly" name="CALCULATE_S_MAX" id="CALCULATE_S_MIN" placeholder="100" disabled></td>
                 <td></td>
               </tr>
               <tr align="center">
                 <td>C</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_C_MIN" id="CALCULATE_C_MIN" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_C_MIN" id="CALCULATE_C_MIN" maxlength="5" value="60.0"></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_C_MAX" id="CALCULATE_C_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly atof" name="CALCULATE_C_MAX" id="CALCULATE_C_MAX" maxlength="5" value="64.9"></td>
                 <td></td>
                 <td>U</td>
                 <td><input type="text" class="form-control numonly" name="CALCULATE_U_MAX" id="CALCULATE_U_MIN" placeholder="0" disabled></td>
                 <td>ถึง</td>
-                <td><input type="text" class="form-control numonly stou" name="CALCULATE_U_MAX" id="CALCULATE_U_MAX" placeholder="คะแนน"></td>
+                <td><input type="text" class="form-control numonly stou" name="CALCULATE_U_MAX" id="CALCULATE_U_MAX" maxlength="5" value=""></td>
                 <td></td>
               </tr>
             </table>
