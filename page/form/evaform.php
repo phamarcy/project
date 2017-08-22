@@ -353,56 +353,123 @@ function finexam_hour_lab() {
   }
 }
 
-function checksubject(type){
-  var file_data = new FormData;
-  var id = document.getElementById('id').value;
-  JSON.stringify(id);
-  JSON.stringify(type);
-  file_data.append("id",id);
-  file_data.append("type",type);
-  var URL = '../../application/document/search_document.php';
-  $.ajax({
-                url: URL,
-                dataType: 'text',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: file_data,
-                type: 'post',
-                success: function (result) {
-                  if(result==true)
-                  {
-                     document.getElementById('formdrpd').style.display = "";
-                     var temp = $.parseJSON(result);
-                     console.log(temp[0]);
-                     var selectsm = document.getElementById('semester');
-                     var selecty = document.getElementById('year');
-                     for (var i = 0; i < temp.length; i++) {
-                        var opt = document.createElement('option');
-                        opt.value = temp[i].semester;
-                        opt.innerHTML = temp[i].semester;
-                        selectsm.appendChild(opt);
+function checksubject(btntype,type){
 
-                        var opt2 = document.createElement('option');
-                        opt2.value = temp[i].year;
-                        opt2.innerHTML = temp[i].year;
-                        selecty.appendChild(opt2);
-                     }
-                  }
-                  else {
+  if(btntype==1)
+  {
+    var file_data = new FormData;
+    var id = document.getElementById('id').value;
+    JSON.stringify(id);
+    JSON.stringify(type);
+    file_data.append("id",id);
+    file_data.append("type",type);
+    var URL = '../../application/document/search_document.php';
+    $.ajax({
+                  url: URL,
+                  dataType: 'text',
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: file_data,
+                  type: 'post',
+                  success: function (result) {
+                    if(result!='false')
+                    {
+                       document.getElementById('formdrpd').style.display = "";
+                       var temp = $.parseJSON(result);
+                       console.log(temp[0]);
+                       var selectsm = document.getElementById('semester');
+                       var selecty = document.getElementById('year');
+                       for (var i = 0; i < temp.length; i++) {
+                          var opt = document.createElement('option');
+                          opt.value = temp[i].semester;
+                          opt.innerHTML = temp[i].semester;
+                          selectsm.appendChild(opt);
 
+                          var opt2 = document.createElement('option');
+                          opt2.value = temp[i].year;
+                          opt2.innerHTML = temp[i].year;
+                          selecty.appendChild(opt2);
+                       }
+                    }
+                    else {
+                      alert('ไม่พบกระบวนวิชาที่ค้นหา\nกรุณากรอกข้อใหม่');
+                      document.getElementById('id').value = "";
+                    }
+                  },
+                  failure: function (result) {
+                       alert(result);
+                  },
+                  error: function (xhr, status, p3, p4) {
+                       var err = "Error " + " " + status + " " + p3 + " " + p4;
+                       if (xhr.responseText && xhr.responseText[0] == "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                       console.log(err);
                   }
-                },
-                failure: function (result) {
-                     alert(result);
-                },
-                error: function (xhr, status, p3, p4) {
-                     var err = "Error " + " " + status + " " + p3 + " " + p4;
-                     if (xhr.responseText && xhr.responseText[0] == "{")
-                          err = JSON.parse(xhr.responseText).Message;
-                     console.log(err);
-                }
-     });
+       });
+  }
+  else if (btntype==2) {
+    var file_data = new FormData;
+    var id = document.getElementById('id').value;
+    var semester = document.getElementById('semester').value;
+    var year = document.getElementById('year').value;
+    JSON.stringify(id);
+    JSON.stringify(semester);
+    JSON.stringify(year);
+    JSON.stringify(type);
+    file_data.append("id",id);
+    file_data.append("semester",semester);
+    file_data.append("year",year);
+    file_data.append("type",type);
+    console.log(file_data);
+    var URL = '../../application/test_data.php';
+    $.ajax({
+                  url: URL,
+                  dataType: 'text',
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: file_data,
+                  type: 'post',
+                  success: function (result) {
+                      console.log(result);
+
+                    /*if(result!='false')
+                    { console.log(result);
+                       /*document.getElementById('formdrpd').style.display = "";
+                       var temp = $.parseJSON(result);
+                       console.log(temp[0]);
+                       var selectsm = document.getElementById('semester');
+                       var selecty = document.getElementById('year');
+                       for (var i = 0; i < temp.length; i++) {
+                          var opt = document.createElement('option');
+                          opt.value = temp[i].semester;
+                          opt.innerHTML = temp[i].semester;
+                          selectsm.appendChild(opt);
+
+                          var opt2 = document.createElement('option');
+                          opt2.value = temp[i].year;
+                          opt2.innerHTML = temp[i].year;
+                          selecty.appendChild(opt2);
+                       }
+                    }
+                    else {
+                      alert('ไม่พบกระบวนวิชาที่ค้นหา\nกรุณากรอกข้อใหม่');
+                      document.getElementById('id').value = "";
+                    }*/
+                  },
+                  failure: function (result) {
+                       alert(result);
+                  },
+                  error: function (xhr, status, p3, p4) {
+                       var err = "Error " + " " + status + " " + p3 + " " + p4;
+                       if (xhr.responseText && xhr.responseText[0] == "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                       console.log(err);
+                  }
+       });
+  }
+
 }
 
 function submitfunc(casesubmit) {
@@ -449,29 +516,26 @@ function submitfunc(casesubmit) {
 
   //Loop for pack TEACHER
   var teacher_lec = {};
-  var teacher_lab = {};
   var tlec = [];
-  var tlab = [];
 
-  for(var i=1;i<=document.getElementById("leclist").value;i++)
+  for(var i=1;i<=5;i++)
   {
     tlec[i-1] = document.getElementById("TEACHERLEC_F"+i).value+" "+document.getElementById("TEACHERLEC_L"+i).value;
   }
-  for(var i=1;i<=document.getElementById("lablist").value;i++)
-  {
-    tlab[i-1] = document.getElementById("TEACHERLAB_F"+i).value+" "+document.getElementById("TEACHERLAB_L"+i).value;
-  }
 
   teacher_lec = tlec;
-  teacher_lab = tlab;
 
   //Loop for COMMITTEE
   var commidlec = {};
   var commidlab = {};
+  var commidlec_sec = {};
+  var commidlab_sec = {};
   var comfinlec = {};
   var comfinlab = {};
   var cmle = [];
   var cmla = [];
+  var cmle_sec = [];
+  var cmla_sec = [];
   var cfle = [];
   var cfla = [];
 
@@ -482,6 +546,14 @@ function submitfunc(casesubmit) {
   for(var i=1;i<=document.getElementById("mexholac").value;i++)
   {
     cmla[i-1] = document.getElementById("MIDEXCOM_LABF"+i).value+" "+document.getElementById("MIDEXCOM_LABL"+i).value;
+  }
+  for(var i=1;i<=document.getElementById("mexholec_sec").value;i++)
+  {
+    cmle_sec[i-1] = document.getElementById("MIDEXCOM_LECF"+i+"_sec").value+" "+document.getElementById("MIDEXCOM_LECL"+i+"_sec").value;
+  }
+  for(var i=1;i<=document.getElementById("mexholac_sec").value;i++)
+  {
+    cmla_sec[i-1] = document.getElementById("MIDEXCOM_LABF"+i+"_sec").value+" "+document.getElementById("MIDEXCOM_LABL"+i+"_sec").value;
   }
   for(var i=1;i<=document.getElementById("fexholec").value;i++)
   {
@@ -494,97 +566,27 @@ function submitfunc(casesubmit) {
 
   commidlec = cmle;
   commidlab = cmla;
+  commidlec_sec = cmle_sec;
+  commidlab_sec = cmla_sec;
   comfinlec = cfle;
   comfinlab = cfla;
 
-  //Loop for SAMENA with TRAIN
-  var carts2 = [];
-  var carts3 = {};
-  var cartt2 = [];
-  var cartt3 = {};
-  var countsa = $('#samenatable tr').length;
-  var countsa2 = countsa-4;
-  var counttr = $('#samenatable2 tr').length;
-  var counttr2 = counttr-4;
 
-  if(countsa2>0)
-  {
-    for(var i=0;i<countsa2;i++)
-    {
-      if(document.getElementById("SAMEMA_NAME"+i) == null)
-      {
-        continue;
-      }
-      else {
-        var carts = {
-          'NAME' : document.getElementById("SAMEMA_NAME"+i).value,
-          'SCORE' : document.getElementById("SAMENA_SCORE"+i).value
-        };
-        carts2.push(carts);
-      }
-
-    }
-    carts3 = carts2;
-
-    /*for(var i=0;i<countsa2;i++)
-    {
-      sn[i] = document.getElementById("SAMEMA_NAME"+i).value;
-      ss[i] = document.getElementById("SAMENA_SCORE"+i).value;
-    }
-
-    samina_name = sn;
-    samina_score = ss;*/
-  }
-
-  if(counttr2>0)
-  {
-    for(var i=0;i<counttr2;i++)
-    {
-      if(document.getElementById("TRAIN_NAME"+i) == null)
-      {
-        continue;
-      }
-      else {
-        var cartt = {
-          'NAME' : document.getElementById("TRAIN_NAME"+i).value,
-          'SCORE' : document.getElementById("TRAIN_SCORE"+i).value
-        };
-        cartt2.push(cartt);
-
-      }
-
-    }
-    cartt3 = cartt2;
-
-    /*for(var i=0;i<counttr2;i++)
-    {
-      tn[i] =  document.getElementById("TRAIN_NAME"+i).value;
-      ts[i] = document.getElementById("TRAIN_SCORE"+i).value;
-    }
-
-    train_name = tn;
-    train_score = ts;*/
-  }
 
   var data = {
     'COURSE_ID': document.getElementById("COURSE_ID").value,
     'SECTION' : document.getElementById("SECTION").value,
     'NORORSPE' : document.querySelector("input[name='NORORSPE']:checked").value,
+    'NAMETH' : document.getElementById("NAME_TH_COURSE").value,
+    'NAMEENG' : document.getElementById("NAME_ENG_COURSE").value,
     'STUDENT' : document.getElementById("ENROLL").value,
     'CREDIT' : {
-      'TOTAL' : document.getElementById("TOTAL").value,
-      'LEC' : document.getElementById("LEC").value,
-      'LAB' : document.getElementById("LAB").value,
-      'SELF' : document.getElementById("SELF").value
+      'TOTAL' : document.getElementById("TOTAL").value
     },
     'TYPE_TEACHING' : document.querySelector("input[name='TYPE_TEACHING']:checked").value,
-    'TEACHER' : {
-      'LEC' : teacher_lec,
-      'LAB' : teacher_lab
-    },
-    'MIDEXAM_HOUR_LEC' : document.getElementById("MIDEXAM_HOUR_LEC").value,
+    'TEACHER' : teacher_lec,
     'EXAM': {
-      'MID' : {
+      'MID1' : {
         'HOUR' : {
           'LEC' : document.getElementById("MIDEXAM_HOUR_LEC").value,
           'LAB' : document.getElementById("MIDEXAM_HOUR_LAB").value
@@ -592,6 +594,16 @@ function submitfunc(casesubmit) {
         'COMMITTEE' : {
           'LEC' : commidlec,
           'LAB' : commidlab
+        }
+      },
+      'MID2' : {
+        'HOUR' : {
+          'LEC' : document.getElementById("MIDEXAM_HOUR_LEC_SEC").value,
+          'LAB' : document.getElementById("MIDEXAM_HOUR_LAB_SEC").value
+        },
+        'COMMITTEE' : {
+          'LEC' : commidlec_sec,
+          'LAB' : commidlab_sec
         }
       },
       'FINAL' : {
@@ -603,29 +615,39 @@ function submitfunc(casesubmit) {
           'LEC' : comfinlec,
           'LAB' : comfinlab
         }
-      }
+      },
+      'SUGGESTION' : document.getElementById("suggestion").value
     },
     'MEASURE' : {
-      'MID' : {
-        'LEC' : document.getElementById("MEASURE_MIDLEC").value,
-        'LAB' : document.getElementById("MEASURE_MIDLAB").value
+      'MID1' : {
+        'LEC' : document.getElementById("MEASURE_MIDLEC1").value,
+        'LAB' : document.getElementById("MEASURE_MIDLAB1").value
+      },
+      'MID2' : {
+        'LEC' : document.getElementById("MEASURE_MIDLEC2").value,
+        'LAB' : document.getElementById("MEASURE_MIDLAB2").value
       },
       'FINAL' : {
         'LEC' : document.getElementById("MEASURE_FINLEC").value,
         'LAB' : document.getElementById("MEASURE_FINLAB").value
       },
+      'WORK' : {
+        'LEC' : document.getElementById("MEASURE_WORKLEC").value,
+        'LAB' : document.getElementById("MEASURE_WORKLAB").value
+      },
+      'OTHER' : {
+        'LEC' : document.getElementById("MEASURE_OTHLEC").value,
+        'LAB' : document.getElementById("MEASURE_OTHLAB").value
+      },
       'TOTAL' : {
         'LEC' : document.getElementById("MEASURE_TOTALLEC").value,
         'LAB' : document.getElementById("MEASURE_TOTALLAB").value
-      },
-      'OTHER' : cart3,
-      'COMMENT' : document.getElementById("suggestion").value
+      }
     },
-    'SEMINAR' : carts3,
-    'TRAIN' : cartt3,
     'EVALUATE' : document.querySelector("input[name='EVALUATE_TYPE']:checked").value,
     'CALCULATE' : {
       'TYPE' : document.querySelector("input[name='CALCULATE']:checked").value,
+      'EXPLAINATION' : document.getElementById("EXPLAINATION").value,
       'A' : {
         'MIN' : document.getElementById("CALCULATE_A_MIN").value
       },
@@ -661,7 +683,8 @@ function submitfunc(casesubmit) {
       },
       'U' : {
         'MAX' : document.getElementById("CALCULATE_U_MAX").value
-      }
+      },
+      'OTHERGRADE' : document.getElementById("CALOTHER").value
     },
     'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,
     'SUBMIT_TYPE' : casesubmit
@@ -1003,11 +1026,10 @@ function confreset() {
                    <input type="text" class="form-control numonly" id="id" name="id" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required >
                 </div>
                 <input type="hidden" name="type" value="1">
-               <button type="button" class="btn btn-outline btn-primary" onclick="checksubject(1);">ค้นหา</button>
+               <button type="button" class="btn btn-outline btn-primary" onclick="checksubject(1,1);">ค้นหา</button>
        </div>
-    </form>
 
-  <form id="formdrpd" data-toggle="validator" role="form" style="display: none;">
+  <div id="formdrpd" style="display: none;">
     <div class="form-inline">
       <div class="form-group " style="font-size:16px;">
          ภาคการศึกษา
@@ -1019,7 +1041,9 @@ function confreset() {
          <select class="form-control required" id="year" style="width: 90px;" required >
          </select>
        </div>
+       <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,1);">
      </div>
+   </div>
        </form>
 
 
@@ -1801,7 +1825,7 @@ function confreset() {
     </ol>
     <br><br>
     <div align="center">
-      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq('1')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq('1')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2')"> &nbsp;
       <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>
