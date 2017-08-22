@@ -1,14 +1,4 @@
-<?php
-if(isset($_POST['level']))
-{
-    session_start();
-    $_SESSION['level'] = $_POST['level'];
-    header('Location: index.php');
-}
-?>
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -50,10 +40,10 @@ if(isset($_POST['level']))
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="post">
+                        <form role="form" method="post" action="authen.php">
                             <fieldset>
-                                <!-- <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Username" name="username" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
@@ -62,7 +52,7 @@ if(isset($_POST['level']))
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
-                                </div> -->
+                                </div>
                                   <div class="form-group">
                                     <label>ระดับ</label>
                                         <select name="level" class="form-control">

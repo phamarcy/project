@@ -1,13 +1,12 @@
 <?php
 	session_start();
-	if(!isset($_SESSION['level']))
+	if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']))
 	{
 	    header('Location: login.php');
 	}else if($_SESSION['level'] == 7)
 	{
 		header('Location: form/admin.php');
 	}
-	$_SESSION["indexteacher"] = true;
  ?>
 
 <html>
@@ -216,7 +215,7 @@
 			<!-- /.navbar-header -->
 
 			<ul class="nav navbar-top-links navbar-right">
-				<b>ยินดีต้อนรับ | <font color="#51cc62"> คุณ คำแก้ว มาลูน </font></b>
+				<b>ยินดีต้อนรับ | <font color="#51cc62"> คุณ <?php echo $_SESSION['fname'].' ',$_SESSION['lname']; ?></font></b>
 				<!-- /.dropdown -->
 				<li class="dropdown" id="icon-dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
