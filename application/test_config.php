@@ -12,4 +12,4 @@ require_once(__DIR__."/class/course.php");
 // $db->Close_connection();
 
 $p = new Course();
-echo json_encode($p->Get_All_Course());
+echo json_encode($p->Search_Document('evaluate','204111'));

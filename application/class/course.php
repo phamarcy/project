@@ -7,9 +7,13 @@ class Course
 {
   private $LOG;
   private $DB;
+  private $FILE_PATH;
+
 
   function __construct()
   {
+    global $FILE_PATH;
+    $this->FILE_PATH = $FILE_PATH;
     $this->LOG = new Log();
     $this->DB = new Database();
   }
@@ -54,6 +58,34 @@ class Course
       $this->LOG->Write("Error course : search all course failed");
       return false;
     }
+  }
+
+  public function Search_Document($type,$id)
+  {
+
+    $doc_path = realpath($this->FILE_PATH."/temp/".$id."/".$type);
+    $data = array();
+    if(is_dir($doc_path))
+    {
+        $file_name = scandir($doc_path);
+        for($i=2;$i<count($file_name);$i++)
+        {
+            $files = explode("_",$file_name[$i]);
+            $temp['semester'] = $files[2];
+            $temp['year'] = $files[3];
+            array_push($data,$temp);
+        }
+        return $data;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
+  public function Get_Document($type,$id)
+  {
+
   }
 }
  ?>

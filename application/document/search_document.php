@@ -1,10 +1,28 @@
 <?php
-if(isset($_POST['id']))
+require_once(__DIR__.'/../class/course.php');
+$course = new Course();
+
+if(isset($_POST['id']) && isset($_POST['type']))
 {
-  $data[0]['semester'] = '1';
-  $data[0]['year'] = '2560';
-  $data[1]['semester'] = '2';
-  $data[1]['year'] = '2559';
+  if($_POST['type'] == 1)
+  {
+    $type = 'evaluate';
+  }
+  else if($_POST['type'] == 2)
+  {
+    $type = 'special';
+  }
+  else
+  {
+    die("Invalid type");
+  }
+  if(isset($_POST['semester']) && isset($_POST['year']))
+  {
+    $semester = $_POST['semester'];
+    $year = $_POST['year'];
+    $data = $course->Get_Document($type,$id,$semester,$year);
+  }
+  $data = $course->Search_Document($type,$id);
   echo json_encode($data);
 }
 
