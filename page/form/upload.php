@@ -6,9 +6,7 @@ $deadline = new Deadline;
 $grade = new Course;
 $semeter= $deadline->Get_Current_Semester();
 $showgrade=$grade->Get_Grade($_SESSION['id']);
-var_dump($showgrade);
 $grade->Close_connection();
-
  ?>
 <html>
 <header>
@@ -122,7 +120,7 @@ $grade->Close_connection();
                             <td><?php echo $value['course_name']; ?></td>
                             <td>
                             <?php if (isset($value['url'])): ?>
-                                <a href="<?php echo $value['url']; ?>" target="_blank"><i type="button" class="fa fa-file-excel-o fa-2x" ></i></a>
+                                <a href="../../application/<?php echo $value['url']; ?>" target="_blank"><i type="button" class="fa fa-file-excel-o fa-2x" ></i></a>
                             <?php endif; ?>
                             </td>
                             <td><?php echo $status ?></td>

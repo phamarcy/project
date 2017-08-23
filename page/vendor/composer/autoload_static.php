@@ -25,7 +25,9 @@ class ComposerStaticInit9874848e853fc07a46809c5723fcf25c
         ),
         'P' => 
         array (
+            'Psr\\SimpleCache\\' => 16,
             'Psr\\Http\\Message\\' => 17,
+            'PhpOffice\\PhpSpreadsheet\\' => 25,
         ),
         'H' => 
         array (
@@ -58,9 +60,17 @@ class ComposerStaticInit9874848e853fc07a46809c5723fcf25c
         array (
             0 => __DIR__ . '/..' . '/symfony/options-resolver',
         ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'PhpOffice\\PhpSpreadsheet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
         ),
         'Http\\Promise\\' => 
         array (
