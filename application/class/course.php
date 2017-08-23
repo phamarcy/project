@@ -70,8 +70,6 @@ class Course
     $data['info'] = $this->Get_Course_Info($id);
     if(is_dir($doc_path))
     {
-
-      $data['old'] = array();
         $file_name = scandir($doc_path);
         for($i=2;$i<count($file_name);$i++)
         {
