@@ -106,7 +106,7 @@ $grade->Close_connection();
                   </tr>
                 </thead>
                 <tbody>
-                  <?php if (is_array($values) || is_object($values)): ?>
+                  <?php if (is_array($showgrade) || is_object($showgrade)): ?>
 
                         <?php foreach ($showgrade as $value):
                           switch ($value['status']) {
