@@ -1,13 +1,19 @@
 <?php
 require_once(__DIR__.'/../../application/class/curl.php');
 require_once(__DIR__.'/../../application/class/manage_deadline.php');
+require_once(__DIR__."/../../application/class/approval.php");
 session_start();
 $information_url = "application/information/index.php";
 $curl = new CURL();
 $deadline = new Deadline;
+$approve = new approval($_SESSION['level']);
+
 $data['level'] = $_SESSION['level'];
 $result = $curl->Request($data,$information_url);
 $semeter= $deadline->Get_Current_Semester();
+
+$var=$approve->Get_Approval_data($_SESSION['id']);
+$data= json_decode($var, true);
 
 if($result == false)
 {
@@ -107,9 +113,9 @@ else
 	          </h5>
 					</div>
 					<!-- .panel-heading -->
-					<div class="panel-body" style="font-size:14px">
+					<div class="panel-body" style="font-size:15px">
 						<div class="glyphicon glyphicon-alert" style="color: red;"></div><b style="color: red;"> วันสุดท้ายสำหรับกรอกข้อมูลกระบวนวิชา <?php echo $deadline['edit']['day'].' '.$deadline['edit']['month'].' '.$deadline['edit']['year']; ?> </b>
-						<br>
+
 		<?php	}
 					if($_SESSION['level'] == 4 || $_SESSION['level'] == 5) {  ?>
 						<div class="glyphicon glyphicon-alert" style="color: red;"></div><b style="color: red;"> วันสุดท้ายสำหรับประเมินกระบวนวิชา <?php echo $deadline['con']['day'].' '.$deadline['con']['month'].' '.$deadline['con']['year']; ?> </b>
