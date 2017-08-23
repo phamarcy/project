@@ -1,7 +1,3 @@
-<html>
-<head>
-</head>
-<body>
 <?php
 require_once(__DIR__.'/../config/configuration_variable.php');
 require_once(__DIR__.'/../class/manage_deadline.php');
@@ -56,7 +52,7 @@ function Write_temp_data($temp_data)
 	$data = json_decode($temp_data,true);
 	$path = Create_Folder($data['COURSE_ID'],'evaluate');
 	$temp_file = fopen($path."/".$data['COURSE_ID']."_evaluate_".$semester['semester']."_".$semester['year'].".txt", "w");
-	fwrite($temp_file, utf8_encode($temp_data));
+	fwrite($temp_file, $temp_data);
 	fclose($temp_file);
 
 }
@@ -577,5 +573,3 @@ echo $THAI_WEEK[date("w")] ,"ที่",date(" j "), $THAI_MONTH[date(" m ")-1] 
 $pdf->Output("../../files/".$DATA['COURSE_ID']."_evaluate.pdf","F");
 ?>
 PDF Created Click <a href=<?php echo '"../../files/'.$DATA['COURSE_ID'].'_evaluate.pdf"'?>>here</a> to Download
-</body>
-</html>
