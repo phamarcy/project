@@ -97,12 +97,29 @@ $pdf->Cell(0,10,iconv( 'UTF-8','TIS-620','ภาคการศึกษาท�
 
 $pdf->SetX(20);
 $pdf->SetFont('angsab','',14);
-
+if($DATA['NORORSPE'] == "NORMAL")
+{
+	$nor_section = $DATA['SECTION'];
+	$nor_credit = $DATA['CREDIT']['TOTAL'];
+	$nor_student = $DATA['STUDENT'];
+	$spe_sction = '-';
+	$spe_credit = '-';
+	$spe_student = '-';
+}
+else if($DATA['NORORSPE'] == "SPECIAL")
+{
+	$spe_sction = $DATA['SECTION'];
+	$spe_credit = $DATA['CREDIT']['TOTAL'];
+	$spe_student = $DATA['STUDENT'];
+	$nor_section = '-';
+	$nor_credit = '-';
+	$nor_student = '-';
+}
 // Topic 1
 $pdf->Cell(26,7,iconv( 'UTF-8','TIS-620','1. รหัสกระบวนวิชา'),0,0,"L");
 
 $pdf->SetFont('angsa','',14);
-$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','   '.$DATA['COURSE_ID'].'   ตอนที่   '.$DATA['SECTION'].'   จำนวนหน่วยกิจ   '.$DATA['CREDIT']['TOTAL'].'( '.$DATA['CREDIT']['LEC'].'-'.$DATA['CREDIT']['LAB'] .'-'.$DATA['CREDIT']['SELF'].'  )   จำนวนนักศึกษาลงทะเบียนเรียน   '.$DATA['STUDENT'].'   คน'),0,1,"L");
+$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','   '.$DATA['COURSE_ID'].'   ตอนที่   '.$nor_section.'   จำนวนหน่วยกิจ   '.$nor_credit.'   จำนวนนักศึกษาลงทะเบียนเรียน   '.$nor_student.'   คน'),0,1,"L");
 
 $pdf->SetFont('angsab','',14);
 $pdf->SetX(30);
@@ -110,7 +127,7 @@ $pdf->SetX(30);
 $pdf->Cell(15,7,iconv( 'UTF-8','TIS-620','ภาคพิเศษ'),0,0,"L");
 
 $pdf->SetFont('angsa','',14);
-$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','ตอนที่   '.$DATA['SPE']['SECTION'].'   จำนวนหน่วยกิจ '.$DATA['SPE']['CREDIT']['TOTAL'].'( '.$DATA['SPE']['CREDIT']['LEC'].'-'.$DATA['SPE']['CREDIT']['LAB'] .'-'.$DATA['SPE']['CREDIT']['SELF'].'  )   จำนวนนักศึกษาลงทะเบียนเรียน   '.$DATA['SPE']['STUDENT'].'   คน'),0,1,"L");
+$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','ตอนที่   '.$spe_sction.'   จำนวนหน่วยกิจ '.$spe_credit.' จำนวนนักศึกษาลงทะเบียนเรียน   '.$spe_student.'   คน'),0,1,"L");
 
 $pdf->SetX(20);
 // $pdf->Ln();
@@ -161,7 +178,7 @@ $pdf->SetX(60);
 $pdf->Cell(20, 7, iconv( 'UTF-8','TIS-620',$CHECKBOX['TRA'].' ฝึกงาน'), 0);
 $pdf->Cell(20, 7, iconv( 'UTF-8','TIS-620',$CHECKBOX['SEM'].' สัมนา'), 0);
 $pdf->Cell(30, 7, iconv( 'UTF-8','TIS-620',$CHECKBOX['LAB'].' ปฏิบัติการ'), 0);
-$pdf->Cell(10, 7, iconv( 'UTF-8','TIS-620',$CHECKBOX['OTH'].' อื่นๆ'), 0);
+$pdf->Cell(10, 7, iconv( 'UTF-8','TIS-620',$CHECKBOX['OTH'].' อื่นๆ '.$DATA['TYPE_TEACHING_NAME'], 0);
 $pdf->Ln();
 
 $pdf->SetX(20);
@@ -206,16 +223,16 @@ $pdf->Ln();
 $pdf->SetFont('angsa','',14);
 $pdf->SetX(25);
 $pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','1. สอบกลางภาคฯ ครั้งที่ 1'),0);
-$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID']['LEC'] ),0,0,"C");
-$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID']['LAB'] ),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID1']['LEC'] ),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID1']['LAB'] ),0,0,"C");
 $SUMSCORE['LEC'] += floatval($DATA['MEASURE']['MID']['LEC']);
 $SUMSCORE['LAB'] += floatval($DATA['MEASURE']['MID']['LAB']);
 $pdf->Ln();
 
 $pdf->SetX(25);
 $pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','2. สอบกลางภาคฯ ครั้งที่ 2'),0);
-$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID']['LEC'] ),0,0,"C");
-$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID']['LAB'] ),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID2']['LEC'] ),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID2']['LAB'] ),0,0,"C");
 $SUMSCORE['LEC'] += floatval($DATA['MEASURE']['MID']['LEC']);
 $SUMSCORE['LAB'] += floatval($DATA['MEASURE']['MID']['LAB']);
 $pdf->Ln();
@@ -229,16 +246,16 @@ $SUMSCORE['LAB'] += floatval($DATA['MEASURE']['FINAL']['LAB']);
 $pdf->Ln();
 
 $pdf->SetX(25);
-$pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','4. งานมอบหมาย'),0);
-$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][0]['LEC']),0,0,"C");
-$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][0]['LAB']),0,0,"C");
+$pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','4. งานมอบหมาย ',0);
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['WORK']['LEC']),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['WORK']['LAB']),0,0,"C");
 $pdf->Ln();
 
 
 $pdf->SetX(25);
-$pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','5. อื่นๆ {ชื่อ}'),0);
-$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][0]['LEC']),0,0,"C");
-$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][0]['LAB']),0,0,"C");
+$pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','5. อื่นๆ '.$DATA['MEASURE']['OTHER']['OTH']),0);
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER']['LEC']),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER']['LAB']),0,0,"C");
 $pdf->Ln();
 
 // for($i=0;$i<count($DATA['MEASURE']['OTHER']);$i++)
@@ -256,13 +273,13 @@ $pdf->SetX(40);
 $pdf->SetFont('angsab','',14);
 $pdf->Cell(80,7,iconv( 'UTF-8','TIS-620','รวมคะแนน'),0);
 $pdf->SetFont('angsa','',14);
-$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620','100.0'/*number_format($SUMSCORE['LEC'], 1, '.', '')*/),0,0,"C");
-$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620','100.0' /*number_format($SUMSCORE['LAB'], 1, '.', '')*/),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['TOTAL']['LEC']),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['TOTAL']['LAB']),0,0,"C");
 $pdf->Ln();
 
 $pdf->SetX(30);
 $pdf->SetFont('angsa','',14);
-$pdf->Write( 7 , iconv( 'UTF-8','TIS-620' , $DATA['MEASURE']['COMMENT'] ) );
+$pdf->Write( 7 , iconv( 'UTF-8','TIS-620' , $DATA['EXAM']['SUGGESTION'] ) );
 $pdf->Ln();
 $pdf->Ln();
 
@@ -283,12 +300,12 @@ $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','จำนวน ชม.สอบ       
 
 $pdf->SetX(40);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','- ปฏิบัติการ'))+2,7,iconv( 'UTF-8','TIS-620','- บรรยาย '),0,0,"L");
-$pdf->Cell(15,7,$DATA['EXAM']['MID']['HOUR']['LEC'],0 ,0,"C");
+$pdf->Cell(15,7,$DATA['EXAM']['MID1']['HOUR']['LEC'],0 ,0,"C");
 $j=0;
 $pdf->SetX(80);
 for($i=1;$i<=10;$i++)
 {
-	$pdf->Cell(60,7,$i < count($DATA['EXAM']['MID']['COMMITTEE']['LEC']) +1  ? iconv( 'UTF-8','TIS-620',$i.') '.$DATA['EXAM']['MID']['COMMITTEE']['LEC'][$i-1]) : $i.")",0);
+	$pdf->Cell(60,7,$i < count($DATA['EXAM']['MID1']['COMMITTEE']['LEC']) +1  ? iconv( 'UTF-8','TIS-620',$i.') '.$DATA['EXAM']['MID1']['COMMITTEE']['LEC'][$i-1]) : $i.")",0);
 	$j++;
 	if($j >=2)
 	{
@@ -300,12 +317,12 @@ for($i=1;$i<=10;$i++)
 
 $pdf->SetX(40);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','- ปฏิบัติการ'))+2,7,iconv( 'UTF-8','TIS-620','- ปฏิบัติการ '),0,0,"L");
-$pdf->Cell(15,7,$DATA['EXAM']['MID']['HOUR']['LAB'],0,0,"C");
+$pdf->Cell(15,7,$DATA['EXAM']['MID1']['HOUR']['LAB'],0,0,"C");
 $j=0;
 $pdf->SetX(80);
 for($i=1;$i<=10;$i++)
 {
-	$pdf->Cell(60,7,$i < count($DATA['EXAM']['MID']['COMMITTEE']['LAB']) +1  ? iconv( 'UTF-8','TIS-620',$i.') '.$DATA['EXAM']['MID']['COMMITTEE']['LAB'][$i-1]) : $i.")",0);
+	$pdf->Cell(60,7,$i < count($DATA['EXAM']['MID1']['COMMITTEE']['LAB']) +1  ? iconv( 'UTF-8','TIS-620',$i.') '.$DATA['EXAM']['MID1']['COMMITTEE']['LAB'][$i-1]) : $i.")",0);
 	$j++;
 	if($j >=2)
 	{
@@ -322,12 +339,12 @@ $pdf->SetX(55);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','จำนวน ชม.สอบ                                            กรรมการคุมสอบ'),0,1,"L");
 $pdf->SetX(40);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','- ปฏิบัติการ'))+2,7,iconv( 'UTF-8','TIS-620','- บรรยาย '),0,0,"L");
-$pdf->Cell(15,7,$DATA['EXAM']['MID']['HOUR']['LEC'],0 ,0,"C");
+$pdf->Cell(15,7,$DATA['EXAM']['MID2']['HOUR']['LEC'],0 ,0,"C");
 $j=0;
 $pdf->SetX(80);
 for($i=1;$i<=10;$i++)
 {
-	$pdf->Cell(60,7,$i < count($DATA['EXAM']['MID']['COMMITTEE']['LEC']) +1  ? iconv( 'UTF-8','TIS-620',$i.') '.$DATA['EXAM']['MID']['COMMITTEE']['LEC'][$i-1]) : $i.")",0);
+	$pdf->Cell(60,7,$i < count($DATA['EXAM']['MID2']['COMMITTEE']['LEC']) +1  ? iconv( 'UTF-8','TIS-620',$i.') '.$DATA['EXAM']['MID2']['COMMITTEE']['LEC'][$i-1]) : $i.")",0);
 	$j++;
 	if($j >=2)
 	{
@@ -339,12 +356,12 @@ for($i=1;$i<=10;$i++)
 
 $pdf->SetX(40);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','- ปฏิบัติการ'))+2,7,iconv( 'UTF-8','TIS-620','- ปฏิบัติการ '),0,0,"L");
-$pdf->Cell(15,7,$DATA['EXAM']['MID']['HOUR']['LAB'],0,0,"C");
+$pdf->Cell(15,7,$DATA['EXAM']['MID2']['HOUR']['LAB'],0,0,"C");
 $j=0;
 $pdf->SetX(80);
 for($i=1;$i<=10;$i++)
 {
-	$pdf->Cell(60,7,$i < count($DATA['EXAM']['MID']['COMMITTEE']['LAB']) +1  ? iconv( 'UTF-8','TIS-620',$i.') '.$DATA['EXAM']['MID']['COMMITTEE']['LAB'][$i-1]) : $i.")",0);
+	$pdf->Cell(60,7,$i < count($DATA['EXAM']['MID2']['COMMITTEE']['LAB']) +1  ? iconv( 'UTF-8','TIS-620',$i.') '.$DATA['EXAM']['MID2']['COMMITTEE']['LAB'][$i-1]) : $i.")",0);
 	$j++;
 	if($j >=2)
 	{
@@ -565,7 +582,7 @@ $pdf->Cell(20,7,iconv('UTF-8','TIS-620','คะแนนลงมา '),0,0,'C')
 $pdf->Ln();
 $pdf->Cell(20,7,iconv('UTF-8','TIS-620','อื่นๆ '),0,1);
 $pdf->SetX(25);
-$pdf->Write( 7 , iconv( 'UTF-8','TIS-620' , 'ข้อเสนอแนะต่างๆ ' ) );
+$pdf->Write( 7 , iconv( 'UTF-8','TIS-620' ,$DATA['CALCULATE']['OTHERGRADE']) );
 $pdf->Ln();
 $pdf->Ln();
 // Topic 7
