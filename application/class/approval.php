@@ -33,81 +33,49 @@ class approval
     $this->DB = new Database();
     $this->PERSON = new Person();
   }
-
-  public function Check_Status($course_id)
+//check status in homt page
+  public function Check_Status($user_id)
   {
     $DATA= array();
-    $sql = "SELECT `teacher_id`,`data_type`,`course_id`,`status`,`level_approve`,`comment`
-    FROM `approval_course` a,`semester` s
-    WHERE a.`semester_id` = s.`semester_id` and s.`semester_num` = 1 and s.`year` = '2560' and `course_id`='".$course_id."'";
-    $result = $this->DB->Query($sql);
-
-    if($result != false)
+    if($this->USER_LEVEL == 1)
     {
-      $all_status = 5;
-      $data['course'] = $course_id;
-      $data['semester'] = $this->SEMESTER;
-      $data['year'] = $this->YEAR;
-      $data['evaluate'] = array();
-      $data['special'] = array();
-      for($i=0;$i<count($result);$i++)
+
+      $sql = "SELECT `course_id` FROM `course_responsible`
+      WHERE `teacher_id` = '".$user_id."' AND `semester_id` = '".$this->SEMESTER_ID."'";
+      $result = $this->DB->Query($sql);
+      if($result)
       {
-        $data_type = $result[$i]['data_type'];
-        if(array_key_exists($data_type,$data))
+        for($i=0;$i<count($result);$i++)
         {
-
-          //apend document status to sending data
-          $status = $this->Get_Doc_Status($course_id,$data_type);
-
-          if($status < $all_status)
-          {
-            $all_status = $status;
-          }
-
-          $data[$data_type]['status'] = $status;
-          //append comment to sending data
-          if(!array_key_exists('comment',$data[$data_type]))
-          {
-            $data[$data_type]['comment'] = array();
-          }
-          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
-          if($teacher_name != false && $this->USER_LEVEL != 1)
-          {
-              $comment_data['name'] = $teacher_name;
-          }
-          else
-          {
-              $comment_data['name'] = '-';
-              $this->LOG->Write('Note found teacher name in teacher id '.$result[$i]['teacher_id']);
-          }
-
-          $comment_data['text'] = $result[$i]['comment'];
-          array_push($data[$data_type]['comment'],$comment_data);
+            $course['id'] = $result[$i]['course_id'];
+            $course['name'] = $this->COURSE->Get_Course_Name($course['id']);
+            $course['evaluate']['status'] = $this->Get_Doc_Status($course['id'],'evaluate');
+            $sql = "SELECT `comment` FROM `approval_course` WHERE `course_id` ='".$course['id']."'
+            AND `semester_id` =".$this->SEMESTER_ID;
+            $comment_temp = $this->DB->Query($sql);
+            if($comment_temp)
+            {
+              $course['evaluate']['comment'] = array();
+              for($j=0;$j<count($comment_temp);$j++)
+              {
+                array_push($course['evaluate']['comment'],$comment_temp[$j]['comment']);
+              }
+            }
+            array_push($DATA,$course);
         }
-        if(count($data['evaluate']) == 0)
-        {
-            $data['evaluate']['status'] = 1;
-            $all_status = 1;
-        }
-        if(count($data['special']) == 0)
-        {
-            $data['special']['status'] = 1;
-            $all_status = 1;
-        }
+        return json_encode($DATA);
       }
-      $data['status'] = $all_status;
-      $DATA['data'] = $data;
-      return json_encode($DATA);
+      else if($result == null)
+      {
+        return null;
+      }
+      else
+      {
+        $error['error'] = "Error, Please Contact Admin";
+        return json_encode($error);
+      }
     }
-    else if($result == null)
-    {
-      return null;
-    }
-    else
-    {
-      $error['error'] = "Error, Please Contact Admin";
-      return json_encode($error);
-    }
+
   }
   //type = evaluate,syllabus,special
   private function Get_Doc_Status($course_id,$type)
