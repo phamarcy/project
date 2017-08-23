@@ -1,3 +1,9 @@
+<?php
+require_once('../../application/class/person.php');
+$prefixobj = new Person();
+$prefix = $prefixobj->Get_All_Prefix();
+ ?>
+
 <html>
 <header>
  <meta charset="utf-8">
@@ -419,14 +425,9 @@ function lastcal() {
     <div id="formdrpd" style="display: none;">
       <div class="form-inline">
         <div class="form-group " style="font-size:16px;">
-           ภาคการศึกษา
+           ชื่อ-นามสกุลของอาจารย์พิเศษ
           <select class="form-control required" id="semester" style="width: 70px;" required >
           </select>
-         </div>
-         <div class="form-group " style="font-size:16px;">
-           ปีการศึกษา
-           <select class="form-control required" id="year" style="width: 90px;" required >
-           </select>
          </div>
          <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,2);">
        </div>
@@ -458,7 +459,16 @@ function lastcal() {
         <div class="row">
           <ul>
           <div class="form-inline">
-            <li>คำนำหน้า &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="pre" size="6" required ></div>&nbsp;&nbsp;&nbsp;&nbsp;
+            <li>คำนำหน้า &nbsp;&nbsp;<div class="form-group">
+              <select class="form-control" name="pre" id="pre" required>
+                <?php
+                    for($i=0;$i<count($prefix);$i++)
+                    {
+                      echo '<option value="'.$prefix[$i]["prefix"].'">'.$prefix[$i]["prefix"].'</option>';
+                    }
+                 ?>
+              </select>
+              </div>&nbsp;&nbsp;&nbsp;&nbsp;
               ชื่อ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="fname" size="20" required ></div>&nbsp;&nbsp;&nbsp;&nbsp;
             นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="lname" size="20" required ></div></li>
           </div>
@@ -468,28 +478,13 @@ function lastcal() {
           </div>
 
           <div class="form-inline">
-            <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control " id="qualification" size="35" required ></div></li>
+            <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<br>
+              <div class="form-group"><textarea class="form-control" name="qualification" id="qualification" rows="3" cols="60" required></textarea></div></li>
           </div>
           <br>
           <div class="form-inline">
-            <li>สถานที่ทำงาน &nbsp;&nbsp;<br />
+            <li>สถานที่ทำงาน / สถานที่ติดต่อ &nbsp;&nbsp;<br />
               <div class="form-group"><textarea class="form-control" name="workplace" id="workplace" rows="3" cols="60"></textarea></div>
-            </li>
-          </div>
-          <br>
-          <div class="form-inline">
-            <li>สถานที่ติดต่อ <br>
-              <div class="form-group">บ้านเลขที &nbsp;&nbsp;<input type="text" class="form-control" id="contnumber" size="5" maxlength="15" required></div>&nbsp;
-              <div class="form-group">ชื่อหมู่บ้าน &nbsp;&nbsp;<input type="text" class="form-control" id="contsubad" size="20" maxlength="100" required></div>&nbsp;
-              <div class="form-group">หมู่ที่ &nbsp;&nbsp;<input type="text" class="form-control" id="contsubadnum" size="5" maxlength="3" required></div>&nbsp; <br>
-              <div class="form-group">ถนน &nbsp;&nbsp;<input type="text" class="form-control" id="controad" size="20" maxlength="100" required></div>&nbsp;
-              <div class="form-group">ซอย &nbsp;&nbsp;<input type="text" class="form-control" id="contsoi" size="20" maxlength="100" ></div>&nbsp; <br>
-              <div class="form-group">ตึก/อาคาร &nbsp;&nbsp;<input type="text" class="form-control" id="contbuild" size="20" maxlength="100" ></div>&nbsp;
-              <div class="form-group">ชั้น &nbsp;&nbsp;<input type="text" class="form-control" id="contfloor" size="20" maxlength="3" ></div>&nbsp; <br>
-              <div class="form-group">ตำบล &nbsp;&nbsp;<input type="text" class="form-control" id="contdistrict1" size="20" maxlength="100" required></div>&nbsp;
-              <div class="form-group">อำเภอ &nbsp;&nbsp;<input type="text" class="form-control" id="contdistrict2" size="20" maxlength="100" required></div>&nbsp;<br>
-              <div class="form-group">จังหวัด &nbsp;&nbsp;<input type="text" class="form-control" id="contprovince" size="20" maxlength="100" required></div>&nbsp;
-              <div class="form-group">รหัสไปรษณีย์ &nbsp;&nbsp;<input type="text" class="form-control" id="contcode" size="6" maxlength="5" required></div>
             </li>
           </div>
           <br>
@@ -497,9 +492,23 @@ function lastcal() {
             <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control numonly" id="tel" size="20" maxlength="10" required ></div>
               &nbsp;ต่อ&nbsp;<input type="text" class="form-control numonly" id="subtel" size="2" maxlength="5"></li>
         </div>
+        <div class="form-inline">
+          <li>โทรศัพท์มือถือ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control numonly" id="mobile" size="20" maxlength="10" required ></div>
+            </li>
+      </div>
 
         <div class="form-inline">
           <li>E-mail &nbsp;&nbsp;<div class="form-group"><input style="height: 25px;" type="email" class="form-control" id="qualification" size="45" required ></div></li>
+        </div>
+        <div class="form-inline">
+          <li>ประวัติการเชิญมาสอน <br>
+              <div class="form-group">
+                <div class="radio">
+                <input type="radio" name="topic" id="topic" value="yet" required> &nbsp;เคยเชิญมาสอน
+                &nbsp;<input type="radio" name="topic" id="topic" value="already"> &nbsp;ไม่เคยเชิญมาสอน
+              </div>
+            </div>
+            </li>
         </div>
       </ul>
     </div>
@@ -520,26 +529,10 @@ function lastcal() {
                   <div class="form-group"><div class="radio">
                     <input type="radio" name="type_course" id="type_course" value="require" required> &nbsp;บังคับ
                     &nbsp;<input type="radio" name="type_course" id="type_course" value="choose"> &nbsp;เลือก
-                    &nbsp;<input type="radio" name="type_course" id="type_course" value="new"> &nbsp;เปิดใหม่
-                    &nbsp;<input type="radio" name="type_course" id="type_course" value="old"> &nbsp;เปิดอยู่แล้ว
                   </div></div>
                 </li>
               </div>
-              <div class="form-inline">
-                <li>หัวข้อที่เชิญมาสอน <br>
-                    <div class="form-group">
-                      <div class="radio">
-                      <input type="radio" name="topic" id="topic" value="yet" required> &nbsp;อาจารย์พิเศษยังไม่เคยสอน
-                      &nbsp;<input type="radio" name="topic" id="topic" value="already"> &nbsp;อาจารย์พิเศษเคยสอนมาแล้ว
-                    </div>
-                  </div>
-                  </li>
-                </li>
-              </div>
-
-              <div class="form-inline">
-                <li><div class="form-group">จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control numonly" name="" id="hour" size="3" maxlength="10" required > &nbsp;ของทั้งกระบวนวิชา</div></li>
-              </div>
+              </li>
               <div class="form-inline">
                 <div class="form-group"><li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70" required ></textarea></li></div>
               </div>
@@ -558,16 +551,20 @@ function lastcal() {
                   </table>
                 </div>
                 </li>
+                <div class="form-inline">
+                  <div class="form-group"><li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control numonly" name="" id="hour" size="3" maxlength="10" required > &nbsp;ของทั้งกระบวนวิชา</li></div>
+                </div>
             </ul>
           </div>
       </li>
+      <br>
       <li  style="font-size: 14px;;">
         <b>ค่าใช้จ่าย </b>
         <ul>
           <div class="form-inline">
             <li>อาจารย์พิเศษเป็น &nbsp;</li>
             <div class="radio">
-              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="pro" required>&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control " name="GOV_LEVEL" id="GOV_LEVEL"/></div>
+              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="pro" checked>&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control " name="GOV_LEVEL" id="GOV_LEVEL"/></div>
               <br>
               <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ &nbsp;<input type="text" class="form-control " name="NORM_LEVEL" id="NORM_LEVEL"/></div>
             </div>
@@ -576,10 +573,10 @@ function lastcal() {
             <li>ค่าสอนพิเศษ</li>
             <div class="radio">
               <div class="form-group">
-                <input type="radio"  name="costspec" id="costspec" value="choice1" required>&nbsp;ปริญญาตรีบรรยาย 400/ชม.&nbsp;&nbsp;
+                <input type="radio"  name="costspec" id="costspec" value="choice1" required>&nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control numonly" name="choice1num" id="choice1num" value="400" size="5"> ต่อชม.&nbsp;
               จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice1hour" size="5" data-minlength="1" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999" READONLY>&nbsp;&nbsp;บาท
               </div><br>
-              <div class="form-group"><input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ 200/ชม.&nbsp;&nbsp;
+              <div class="form-group"><input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ <input type="text" class="form-control numonly" name="choice2num" id="choice2num" value="200" size="5"> ต่อชม.&nbsp;
               จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" id="choice2hour" size="5" data-minlength="1" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2cost" size="5" data-minlength="5" min="0" max="99999" READONLY>&nbsp;&nbsp;บาท
               </div>
             </div>
@@ -592,7 +589,9 @@ function lastcal() {
               <div class="form-group"><label><input type="checkbox" name="transtaxi" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="2" min="0" max="99999" >&nbsp;&nbsp;บาท</label></div>
               <br>
               <div class="form-group"><label><input type="checkbox" name="transselfcar" id="transselfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;
-                <input type="text" class="form-control numonly" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="1" min="0" max="9999"> &nbsp;กิโลเมตร  กิโลเมตรละ 5 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
+                <input type="text" class="form-control numonly" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="1" min="0" max="9999"> &nbsp;กิโลเมตร  กิโลเมตรละ
+                <input type="text" class="form-control numonly" name="selfunit" id="selfunit" size="4">
+                 บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
                 <input type="text" class="form-control numonly" name="selfcost" id="selfcost" size="5" data-minlength="2" min="0" max="99999" READONLY >&nbsp;&nbsp;บาท</label></div>
               </div>
           </div>
@@ -600,8 +599,8 @@ function lastcal() {
             <li>ค่าที่พัก</li>
             <div class="form-group"><div class="radio">
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way3" required>&nbsp;&nbsp; ไม่เบิกค่าที่พัก&nbsp;&nbsp;<br>
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน&nbsp;&nbsp;<br>
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน 800 บาท/คน/คืน &nbsp;&nbsp;
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน <input type="text" class="form-control numonly" name="way1unit" id="way1unit" size="4" value="1500"> บาท/คน/คืน&nbsp;&nbsp;<br>
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน <input type="text" class="form-control numonly" name="way2unit" id="way2unit" size="4" value="800"> บาท/คน/คืน &nbsp;&nbsp;
             </div></div>
             <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="number" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999"  >&nbsp;&nbsp;คืน
             &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" min="0" max="99999" READONLY  >&nbsp;&nbsp;บาท
