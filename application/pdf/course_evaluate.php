@@ -6,13 +6,14 @@ require('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
 $deadline = new Deadline();
 $semester = $deadline->Get_Current_Semester();
+$file_path = '';
 if(isset($_POST['DATA']))
 {
 	$data = $_POST['DATA'];
 	$DATA = json_decode($data,true);
-	if(isset($_FILES['syllabus']))
+	if(isset($_FILES['file']))
 	{
-  	$file = $_FILES['syllabus'];
+  	$file = $_FILES['file'];
 		Upload($file,$DATA['COURSE_ID']);
 	}
 	Write_temp_data($data);
@@ -22,6 +23,10 @@ if(isset($_POST['DATA']))
 		echo "save_success";
 		die;
 			// Write_temp_data($data);
+	}
+	else if($DATA['SUBMIT_TYPE'] == '1')
+	{
+		$file_path = $FILE_PATH."/draft/evaluate";
 	}
 	//var_dump($DATA);
 }
@@ -37,13 +42,9 @@ function Upload($file,$course_id)
 	$filename = $file['name'];
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
 	$uploadfile = $path."/".$course_id.'.'.$ext;
-	if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
+	if (!move_uploaded_file($file['tmp_name'], $uploadfile))
 	{
-    echo "File is valid, and was successfully uploaded.\n";
-	}
-	else
-	{
-	    echo "Possible file upload attack!\n";
+    die("Cannot upload course syllabus file");
 	}
 }
 function Write_temp_data($temp_data)
@@ -638,7 +639,7 @@ $pdf->Ln();
 $pdf->SetX(35);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','(หัวหน้าภาควิชา)'),0,1);
 
-echo $THAI_WEEK[date("w")] ,"ที่",date(" j "), $THAI_MONTH[date(" m ")-1] , " พ.ศ. ",date(" Y ")+543,"<br>";
-$pdf->Output("../../files/".$DATA['COURSE_ID']."_evaluate.pdf","F");
+// echo $THAI_WEEK[date("w")] ,"ที่",date(" j "), $THAI_MONTH[date(" m ")-1] , " พ.ศ. ",date(" Y ")+543,"<br>";
+$pdf->Output($file_path."/".$DATA['COURSE_ID']."_evaluate.pdf","F");
 ?>
-PDF Created Click <a href=<?php echo '"../../files/'.$DATA['COURSE_ID'].'_evaluate.pdf"'?>>here</a> to Download
+save_success
