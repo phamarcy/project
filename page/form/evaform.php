@@ -457,6 +457,13 @@ function finexam_hour_lab() {
   }
 }
 
+function getinfo(temp) {
+  document.getElementById('COURSE_ID').value = temp['info'].course_id;
+  document.getElementById('NAME_ENG_COURSE').value = temp['info'].course_name_en;
+  document.getElementById('NAME_TH_COURSE').value = temp['info'].course_name_th;
+  document.getElementById('TOTAL').value = temp['info'].credit + "(" + temp['info'].hr_lec + "-" + temp['info'].hr_lab + "-" + temp['info'].hr_self + ")";
+}
+
 function checksubject(btntype,type){
 
   if(btntype==1)
@@ -477,29 +484,28 @@ function checksubject(btntype,type){
                   data: file_data,
                   type: 'post',
                   success: function (result) {
-                    if(result!='false')
-                    {
-                       document.getElementById('formdrpd').style.display = "";
+
                        var temp = $.parseJSON(result);
                        console.log(temp);
-                       //var selectsm = document.getElementById('semester');
-                      // var selecty = document.getElementById('year');
-                       for (var i = 0; i < Object.keys(temp).length; i++) {
-                          var opt = document.createElement('option');
-                          opt.value = temp[i].semester;
-                          opt.innerHTML = temp[i].semester;
-                          document.getElementById('semester').appendChild(opt);
+                       if(temp['info']!=false)
+                       {
+                         document.getElementById('formdrpd').style.display = "";
+                         //Object.keys(temp).length;
+                            var opt = document.createElement('option');
+                            opt.value = temp[0].semester;
+                            opt.innerHTML = temp[0].semester;
+                            document.getElementById('semester').appendChild(opt);
 
-                          var opt2 = document.createElement('option');
-                          opt2.value = temp[i].year;
-                          opt2.innerHTML = temp[i].year;
-                          document.getElementById('year').appendChild(opt2);
+                            var opt2 = document.createElement('option');
+                            opt2.value = temp[0].year;
+                            opt2.innerHTML = temp[0].year;
+                            document.getElementById('year').appendChild(opt2);
+                            getinfo(temp);
                        }
-                    }
-                    else {
-                      alert('ไม่พบกระบวนวิชาที่ค้นหา\nกรุณากรอกข้อใหม่');
-                      document.getElementById('id').value = "";
-                    }
+                        else {
+                          alert('ไม่พบกระบวนวิชาที่ค้นหา\nกรุณากรอกข้อมูลใหม่');
+                          document.getElementById('id').value = "";
+                        }
                   },
                   failure: function (result) {
                        alert(result);
@@ -525,7 +531,6 @@ function checksubject(btntype,type){
     file_data.append("semester",semester);
     file_data.append("year",year);
     file_data.append("type",type);
-    console.log(file_data);
     var URL = '../../application/test_data.php';
     $.ajax({
                   url: URL,
@@ -603,19 +608,6 @@ function submitfunc(casesubmit) {
     }
     cart3 = cart2;
   }
-  /*if(count2>0)
-  {
-    for(var i=1;i<=count2;i++)
-    {
-      cart[i-1] =  document.getElementById("MEASURE_OTHERCOMMENT"+i).value;
-      cart2[i-1] = document.getElementById("MEASURE_OTHERLEC"+i).value;
-      cart3[i-1] = document.getElementById("MEASURE_OTHERLAB"+i).value;
-    }
-
-    comment = cart;
-    lec = cart2;
-    lab = cart3;
-  }*/
 
 
   //Loop for pack TEACHER
@@ -795,7 +787,15 @@ function submitfunc(casesubmit) {
   };
 
   //alert(JSON.stringify(data));
-  senddata(JSON.stringify(data),getfile());
+  if(casesubmit=='1')
+  {
+    senddata(JSON.stringify(data),getfile());
+  }
+  else if(casesubmit=='2')
+  {
+    console.log(JSON.stringify(data));
+  }
+
 }
 function senddata(data,file_data)
 {
