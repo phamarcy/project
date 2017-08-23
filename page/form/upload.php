@@ -123,7 +123,7 @@ $grade->Close_connection();
                             <td><?php echo $value['course_name']; ?></td>
                             <td>
                             <?php if (isset($value['url'])): ?>
-                                <a href="../../application/<?php echo $value['url']; ?>" target="_blank"><i type="button" class="fa fa-file-excel-o fa-2x" ></i></a>
+                                <a href="../../files/<?php echo $value['url']; ?>" target="_blank"><i type="button" class="fa fa-file-excel-o fa-2x" ></i></a>
                             <?php endif; ?>
                             </td>
                             <td><?php echo $status ?></td>

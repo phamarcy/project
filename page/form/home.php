@@ -83,11 +83,10 @@ else
 	                                <div class="panel panel-warning">
 	                                  <div class="panel-heading">
 	                                      <div class="panel-title">
-	                                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">รอการประเมิน</a>
+	                                          รอการประเมิน
 	                                      </div >
 	                                  </div>
 
-	                                    <div id="collapseOne" class="panel-collapse collapse in">
 	                                        <div class="panel-body">
 	                                          <div class="table-responsive">
 	                                              <table class="table " style="font-size:14px;">
@@ -445,7 +444,7 @@ else
 	                                              </table>
 	                                          </div>
 	                                        </div>
-	                                    </div>
+
 	                                </div>
 
 	                                <div class="panel panel-success">
