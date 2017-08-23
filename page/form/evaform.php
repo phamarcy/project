@@ -458,10 +458,109 @@ function finexam_hour_lab() {
 }
 
 function getinfo(temp) {
-  document.getElementById('COURSE_ID').value = temp['info'].course_id;
-  document.getElementById('NAME_ENG_COURSE').value = temp['info'].course_name_en;
-  document.getElementById('NAME_TH_COURSE').value = temp['info'].course_name_th;
-  document.getElementById('TOTAL').value = temp['info'].credit + "(" + temp['info'].hr_lec + "-" + temp['info'].hr_lab + "-" + temp['info'].hr_self + ")";
+  // part1
+  document.getElementById('COURSE_ID').value = temp['COURSE_ID'];
+  document.getElementById('SECTION').value = temp['SECTION'];
+  var choice1 = temp['NORORSPE'];
+  $('input[name="NORORSPE"][value=' + choice1 + ']').prop('checked', true);
+  document.getElementById('NAME_ENG_COURSE').value = temp['NAMEENG'];
+  document.getElementById('NAME_TH_COURSE').value = temp['NAMETH'];
+  document.getElementById('ENROLL').value = temp['STUDENT'];
+  document.getElementById('TOTAL').value = temp['CREDIT']['TOTAL'];
+
+  //part2
+  var choice2 = temp['TYPE_TEACHING'];
+  $('input[name="TYPE_TEACHING"][value=' + choice2 + ']').prop('checked', true);
+
+  //part3
+  for(var i=0;i<=4;i++)
+  {
+    document.getElementById('TEACHERLEC_F'+(i+1)).value = temp['TEACHER'][i];
+  }
+
+  //part4
+  document.getElementById('MEASURE_MIDLEC1').value = temp['MEASURE']['MID1']['LEC'];
+  document.getElementById('MEASURE_MIDLAB1').value = temp['MEASURE']['MID1']['LAB'];
+  document.getElementById('MEASURE_MIDLEC2').value = temp['MEASURE']['MID2']['LEC'];
+  document.getElementById('MEASURE_MIDLAB2').value = temp['MEASURE']['MID2']['LAB'];
+  document.getElementById('MEASURE_FINLEC').value = temp['MEASURE']['FINAL']['LEC'];
+  document.getElementById('MEASURE_FINLAB').value = temp['MEASURE']['FINAL']['LAB'];
+  document.getElementById('MEASURE_WORKLEC').value = temp['MEASURE']['WORK']['LEC'];
+  document.getElementById('MEASURE_WORKLAB').value = temp['MEASURE']['WORK']['LAB'];
+  document.getElementById('OTHER_MEA').value = temp['MEASURE']['OTHER']['OTH'];
+  document.getElementById('MEASURE_OTHLEC').value = temp['MEASURE']['OTHER']['LEC'];
+  document.getElementById('MEASURE_OTHLAB').value = temp['MEASURE']['OTHER']['LAB'];
+  document.getElementById('MEASURE_TOTALLEC').value = temp['MEASURE']['TOTAL']['LEC'];
+  document.getElementById('MEASURE_TOTALLAB').value = temp['MEASURE']['TOTAL']['LAB'];
+
+  //part5
+  /*document.getElementById('MIDEXAM_HOUR_LEC').value = temp['EXAM']['MID1']['HOUR']['LEC'];
+  document.getElementById('MIDEXAM_HOUR_LAB').value = temp['EXAM']['MID1']['HOUR']['LAB'];
+  document.getElementById('MIDEXAM_HOUR_LEC_SEC').value = temp['EXAM']['MID2']['HOUR']['LEC'];
+  document.getElementById('MIDEXAM_HOUR_LAB_SEC').value = temp['EXAM']['MID2']['HOUR']['LAB'];
+  document.getElementById('FINEXAM_HOUR_LEC').value = temp['EXAM']['FINAL']['HOUR']['LEC'];
+  document.getElementById('FINEXAM_HOUR_LAB').value = temp['EXAM']['FINAL']['HOUR']['LAB'];
+  document.getElementById('mexholec').value = temp['EXAM']['MID1']['NUMBER']['LEC'];
+  document.getElementById('mexholac').value = temp['EXAM']['MID1']['NUMBER']['LAB'];
+  document.getElementById('mexholec_sec').value = temp['EXAM']['MID2']['NUMBER']['LEC'];
+  document.getElementById('mexholac_sec').value = temp['EXAM']['MID2']['NUMBER']['LAB'];
+  document.getElementById('fexholec').value = temp['EXAM']['FINAL']['NUMBER']['LEC'];
+  document.getElementById('fexholac').value = temp['EXAM']['FINAL']['NUMBER']['LAB'];
+  document.getElementById('suggestion').value = temp['EXAM']['SUGGESTION'];
+
+  for(var i=0;i<temp['EXAM']['MID1']['NUMBER']['LEC'];i++)
+  {
+    document.getElementById('MIDEXCOM_LECF'+i).value = temp['EXAM']['MID1']['COMMITTEE']['LEC'][i];
+  }
+  for(var i=0;i<temp['EXAM']['MID1']['NUMBER']['LAB'];i++)
+  {
+    document.getElementById('MIDEXCOM_LABF'+i).value = temp['EXAM']['MID1']['COMMITTEE']['LAB'][i];
+  }
+  for(var i=0;i<temp['EXAM']['MID2']['NUMBER']['LEC'];i++)
+  {
+    document.getElementById('MIDEXCOM_LECF'+i+'_sec').value = temp['EXAM']['MID2']['COMMITTEE']['LEC'][i];
+  }
+  for(var i=0;i<temp['EXAM']['MID2']['NUMBER']['LAB'];i++)
+  {
+    document.getElementById('MIDEXCOM_LABF'+i+'_sec').value = temp['EXAM']['MID2']['COMMITTEE']['LAB'][i];
+  }
+  for(var i=0;i<temp['EXAM']['FINAL']['NUMBER']['LEC'];i++)
+  {
+    document.getElementById('FINEXCOM_LECF'+i).value = temp['EXAM']['FINAL']['COMMITTEE']['LEC'][i];
+  }
+  for(var i=0;i<temp['EXAM']['FINAL']['NUMBER']['LAB'];i++)
+  {
+    document.getElementById('FINEXCOM_LABF'+i).value = temp['EXAM']['FINAL']['COMMITTEE']['LAB'][i];
+  }*/
+
+  //part6
+  var choice3 = temp['CALCULATE']['TYPE'];
+  $('input[name="CALCULATE"][value=' + choice3 + ']').prop('checked', true);
+  document.getElementById('EXPLAINATION').value = temp['CALCULATE']['EXPLAINATION'];
+  var choice4 = temp['EVALUATE'];
+  $('input[name="EVALUATE_TYPE"][value=' + choice4 + ']').prop('checked', true);
+  document.getElementById("CALCULATE_A_MIN").value = temp['CALCULATE']['A']['MIN'];
+  document.getElementById("CALCULATE_Bp_MIN").value = temp['CALCULATE']['B+']['MIN'];
+  document.getElementById("CALCULATE_Bp_MAX").value = temp['CALCULATE']['B+']['MAX'];
+  document.getElementById("CALCULATE_B_MIN").value = temp['CALCULATE']['B']['MIN'];
+  document.getElementById("CALCULATE_B_MAX").value = temp['CALCULATE']['B']['MAX'];
+  document.getElementById("CALCULATE_Cp_MIN").value = temp['CALCULATE']['C+']['MIN'];
+  document.getElementById("CALCULATE_Cp_MAX").value = temp['CALCULATE']['C+']['MAX'];
+  document.getElementById("CALCULATE_C_MIN").value = temp['CALCULATE']['C']['MIN'];
+  document.getElementById("CALCULATE_C_MAX").value = temp['CALCULATE']['C']['MAX'];
+  document.getElementById("CALCULATE_Dp_MIN").value = temp['CALCULATE']['D+']['MIN'];
+  document.getElementById("CALCULATE_Dp_MAX").value = temp['CALCULATE']['D+']['MAX'];
+  document.getElementById("CALCULATE_D_MIN").value = temp['CALCULATE']['D']['MIN'];
+  document.getElementById("CALCULATE_D_MAX").value = temp['CALCULATE']['D']['MAX'];
+  document.getElementById("CALCULATE_F_MAX").value = temp['CALCULATE']['F']['MAX'];
+  document.getElementById("CALCULATE_S_MIN").value = temp['CALCULATE']['S']['MIN'];
+  document.getElementById("CALCULATE_U_MAX").value = temp['CALCULATE']['U']['MAX'];
+  document.getElementById("CALOTHER").value = temp['CALCULATE']['OTHERGRADE'];
+
+  //part7
+  var choice5 = temp['ABSENT'];
+  $('input[name="ABSENT"][value=' + choice5 + ']').prop('checked', true);
+
 }
 
 function checksubject(btntype,type){
@@ -500,7 +599,7 @@ function checksubject(btntype,type){
                             opt2.value = temp[0].year;
                             opt2.innerHTML = temp[0].year;
                             document.getElementById('year').appendChild(opt2);
-                            getinfo(temp);
+
                        }
                         else {
                           alert('ไม่พบกระบวนวิชาที่ค้นหา\nกรุณากรอกข้อมูลใหม่');
@@ -541,31 +640,15 @@ function checksubject(btntype,type){
                   data: file_data,
                   type: 'post',
                   success: function (result) {
-                      console.log(result);
-
-                    /*if(result!='false')
-                    { console.log(result);
-                       /*document.getElementById('formdrpd').style.display = "";
-                       var temp = $.parseJSON(result);
-                       console.log(temp[0]);
-                       var selectsm = document.getElementById('semester');
-                       var selecty = document.getElementById('year');
-                       for (var i = 0; i < temp.length; i++) {
-                          var opt = document.createElement('option');
-                          opt.value = temp[i].semester;
-                          opt.innerHTML = temp[i].semester;
-                          selectsm.appendChild(opt);
-
-                          var opt2 = document.createElement('option');
-                          opt2.value = temp[i].year;
-                          opt2.innerHTML = temp[i].year;
-                          selecty.appendChild(opt2);
-                       }
+                    var temp = $.parseJSON(result);
+                    console.log(temp);
+                    if(temp!=null)
+                    {
+                      getinfo(temp);
                     }
                     else {
-                      alert('ไม่พบกระบวนวิชาที่ค้นหา\nกรุณากรอกข้อใหม่');
-                      document.getElementById('id').value = "";
-                    }*/
+                      alert('error');
+                    }
                   },
                   failure: function (result) {
                        alert(result);
@@ -687,6 +770,10 @@ function submitfunc(casesubmit) {
           'LEC' : document.getElementById("MIDEXAM_HOUR_LEC").value,
           'LAB' : document.getElementById("MIDEXAM_HOUR_LAB").value
         },
+        'NUMBER' : {
+          'LEC' : document.getElementById("mexholec").value,
+          'LAB' : document.getElementById("mexholac").value
+        },
         'COMMITTEE' : {
           'LEC' : commidlec,
           'LAB' : commidlab
@@ -697,6 +784,10 @@ function submitfunc(casesubmit) {
           'LEC' : document.getElementById("MIDEXAM_HOUR_LEC_SEC").value,
           'LAB' : document.getElementById("MIDEXAM_HOUR_LAB_SEC").value
         },
+        'NUMBER' : {
+          'LEC' : document.getElementById("mexholec_sec").value,
+          'LAB' : document.getElementById("mexholac_sec").value
+        },
         'COMMITTEE' : {
           'LEC' : commidlec_sec,
           'LAB' : commidlab_sec
@@ -706,6 +797,10 @@ function submitfunc(casesubmit) {
         'HOUR' : {
           'LEC' : document.getElementById("FINEXAM_HOUR_LEC").value,
           'LAB' : document.getElementById("FINEXAM_HOUR_LAB").value
+        },
+        'NUMBER' : {
+          'LEC' : document.getElementById("fexholec").value,
+          'LAB' : document.getElementById("fexholac").value
         },
         'COMMITTEE' : {
           'LEC' : comfinlec,
@@ -733,7 +828,8 @@ function submitfunc(casesubmit) {
       },
       'OTHER' : {
         'LEC' : document.getElementById("MEASURE_OTHLEC").value,
-        'LAB' : document.getElementById("MEASURE_OTHLAB").value
+        'LAB' : document.getElementById("MEASURE_OTHLAB").value,
+        'OTH' : document.getElementById("OTHER_MEA").value
       },
       'TOTAL' : {
         'LEC' : document.getElementById("MEASURE_TOTALLEC").value,
@@ -775,7 +871,7 @@ function submitfunc(casesubmit) {
         'MAX' : document.getElementById("CALCULATE_F_MAX").value
       },
       'S' : {
-        'MIN' : document.getElementById("CALCULATE_B_MIN").value
+        'MIN' : document.getElementById("CALCULATE_S_MIN").value
       },
       'U' : {
         'MAX' : document.getElementById("CALCULATE_U_MAX").value
@@ -793,7 +889,8 @@ function submitfunc(casesubmit) {
   }
   else if(casesubmit=='2')
   {
-    console.log(JSON.stringify(data));
+    senddata(JSON.stringify(data),getfile());
+    //console.log(JSON.stringify(data));
   }
 
 }
@@ -802,7 +899,7 @@ function senddata(data,file_data)
 
   //prompt("data", data);
    file_data.append("DATA",data);
-   var URL = '../../application/course_evaluate.php';
+   var URL = '../../application/pdf/course_evaluate.php';
    $.ajax({
                  url: URL,
                  dataType: 'text',
@@ -1179,8 +1276,9 @@ function confreset() {
           ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   maxlength="50" required >
           </div>
           <div class="row">
+            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="5" maxlength="10" required pattern=".{8,10}" >&nbsp; หน่วยกิต
             <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="ENROLL" id="ENROLL" size="2" maxlength="3" pattern=".{1,3}" required> &nbsp; คน </div>
-            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="5" maxlength="10" required pattern=".{8,10}" >&nbsp; หน่วยกิต</div>
+            </div>
           </div>
 
         </div>
