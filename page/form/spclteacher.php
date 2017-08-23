@@ -63,6 +63,105 @@
    });
  });
 
+ function checksubject(btntype,type){
+   if(btntype==1)
+   {
+     var file_data = new FormData;
+     var id = document.getElementById('id').value;
+     JSON.stringify(id);
+     JSON.stringify(type);
+     file_data.append("id",id);
+     file_data.append("type",type);
+     var URL = '../../application/document/search_document.php';
+     $.ajax({
+                   url: URL,
+                   dataType: 'text',
+                   cache: false,
+                   contentType: false,
+                   processData: false,
+                   data: file_data,
+                   type: 'post',
+                   success: function (result) {
+
+                        var temp = $.parseJSON(result);
+                        console.log(temp);
+                        if(temp['info']!=false)
+                        {
+                          document.getElementById('formdrpd').style.display = "";
+                          //Object.keys(temp).length;
+                             var opt = document.createElement('option');
+                             opt.value = temp[0].semester;
+                             opt.innerHTML = temp[0].semester;
+                             document.getElementById('semester').appendChild(opt);
+
+                             var opt2 = document.createElement('option');
+                             opt2.value = temp[0].year;
+                             opt2.innerHTML = temp[0].year;
+                             document.getElementById('year').appendChild(opt2);
+
+                        }
+                         else {
+                           alert('ไม่พบกระบวนวิชาที่ค้นหา\nกรุณากรอกข้อมูลใหม่');
+                           document.getElementById('id').value = "";
+                         }
+                   },
+                   failure: function (result) {
+                        alert(result);
+                   },
+                   error: function (xhr, status, p3, p4) {
+                        var err = "Error " + " " + status + " " + p3 + " " + p4;
+                        if (xhr.responseText && xhr.responseText[0] == "{")
+                             err = JSON.parse(xhr.responseText).Message;
+                        console.log(err);
+                   }
+        });
+   }
+   else if (btntype==2) {
+     var file_data = new FormData;
+     var id = document.getElementById('id').value;
+     var semester = document.getElementById('semester').value;
+     var year = document.getElementById('year').value;
+     JSON.stringify(id);
+     JSON.stringify(semester);
+     JSON.stringify(year);
+     JSON.stringify(type);
+     file_data.append("id",id);
+     file_data.append("semester",semester);
+     file_data.append("year",year);
+     file_data.append("type",type);
+     var URL = '../../application/document/search_document.php';
+     $.ajax({
+                   url: URL,
+                   dataType: 'text',
+                   cache: false,
+                   contentType: false,
+                   processData: false,
+                   data: file_data,
+                   type: 'post',
+                   success: function (result) {
+                     var temp = $.parseJSON(result);
+                     console.log(temp);
+                     if(temp!=null)
+                     {
+                       getinfo(temp);
+                     }
+                     else {
+                       alert('error');
+                     }
+                   },
+                   failure: function (result) {
+                        alert(result);
+                   },
+                   error: function (xhr, status, p3, p4) {
+                        var err = "Error " + " " + status + " " + p3 + " " + p4;
+                        if (xhr.responseText && xhr.responseText[0] == "{")
+                             err = JSON.parse(xhr.responseText).Message;
+                        console.log(err);
+                   }
+        });
+   }
+ }
+
  $(document).ready(function(){
 
    // manage required form
@@ -307,37 +406,32 @@ function lastcal() {
   <div class="row">
     <center>
       <h3 class="page-header">แบบขออนุมัติเชิญอาจารย์พิเศษ คณะเภสัชศาสตร์</h3>
-      <form data-toggle="validator" role="form">
-        <div class="form-inline" style="font-size:16px;">
-                  <div class="form-group">
-                    ชื่อ
-                     <input type="text" class="form-control charonly" id="inputfname" size="10" placeholder="e.g. สมชาย" maxlength="70"  required >
-                  </div>
-                  <div class="form-group">
-                    นามสกุล
-                     <input type="text" class="form-control charonly" id="inputlname" size="10" placeholder="e.g. ชื่นเสมอ" maxlength="70"  required >
-                  </div>
-                  <div class="form-group">
+      <form  data-toggle="validator" role="form">
+        <div id="formchecksj" class="form-inline" style="font-size:16px;">
+                  <div class="form-group ">
                     รหัสกระบวนวิชา
-                     <input type="text" class="form-control numonly" id="inputsubject" size="7" placeholder="e.g. 204111" maxlength="6"  required >
+                     <input type="text" class="form-control numonly" id="id" name="id" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required >
                   </div>
-                 <div class="form-group">
-                    ภาคการศึกษา
-                     <select class="form-control required" id="semester" style="width: 70px;" id="select" required >
-                        <option value="">--</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                     </select>
-                 </div>
-                 <div class="form-group">
-                   ปีการศึกษา
-                   <input type="text" class="form-control numonly" id="inputyear" size="7" placeholder="e.g. 2560" maxlength="4" required >
-                 </div>
-                <button type="submit" class="btn btn-outline btn-primary" onclick="checktran();">ค้นหา</button>
+                  <input type="hidden" name="type" value="1">
+                 <button type="button" class="btn btn-outline btn-primary" onclick="checksubject(1,2);">ค้นหา</button>
          </div>
+
+    <div id="formdrpd" style="display: none;">
+      <div class="form-inline">
+        <div class="form-group " style="font-size:16px;">
+           ภาคการศึกษา
+          <select class="form-control required" id="semester" style="width: 70px;" required >
+          </select>
          </div>
-      </form>
+         <div class="form-group " style="font-size:16px;">
+           ปีการศึกษา
+           <select class="form-control required" id="year" style="width: 90px;" required >
+           </select>
+         </div>
+         <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,2);">
+       </div>
+     </div>
+         </form>
       </center>
 
       <div class="panel panel-default"> <br>

@@ -1348,7 +1348,7 @@ function confreset() {
           <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID" id="COURSE_ID"   maxlength="6" required pattern=".{6,6}" >
           </div>
           <div class="form-group">
-            &nbsp;ตอนที่ &nbsp;<input style="width: 70px;"type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="2" required pattern=".{1,2}" >
+            &nbsp;จำนวนตอนที่ (ทั้งหมด) &nbsp;<input style="width: 70px;"type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="2" required pattern=".{1,2}" >
           </div>
           <div class="form-group"><div class="radio">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE1" value="NORMAL" checked>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
