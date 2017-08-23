@@ -106,8 +106,9 @@ $grade->Close_connection();
                   </tr>
                 </thead>
                 <tbody>
-                  <?php if (isset($showgrade)): ?>
+
                         <?php foreach ($showgrade as $value):
+                        if (isset($value)):
                           switch ($value['status']) {
                             case 0:
                             $status='<b id="statn">ยังไม่ได้อัปโหลด</b>';
@@ -116,6 +117,7 @@ $grade->Close_connection();
                             $status='<b id="statcf">อัปโหลดแล้ว</b>';
                               break;
                           }
+                        endif;
                         ?>
                           <tr>
                             <td><?php echo $value["course_id"]; ?></td>
@@ -134,7 +136,7 @@ $grade->Close_connection();
                             </td>
                           </tr>
                   <?php endforeach; ?>
-                <?php endif; ?>
+
                 </tbody>
               </table>
           </div>
