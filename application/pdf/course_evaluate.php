@@ -4,6 +4,12 @@
 <body>
 <?php
 require_once(__DIR__.'/../config/configuration_variable.php');
+require_once(__DIR__.'/../class/manage_deadline.php');
+require_once('example_data.php');
+require('fpdf17/fpdf.php');
+require_once(__DIR__.'/../lib/thai_date.php');
+$deadline = new Deadline();
+$semester = $deadline->Get_Current_Semester();
 if(isset($_POST['data']))
 {
 	$data = $_POST['data'];
@@ -25,7 +31,7 @@ if(isset($_POST['data']))
 else
 {
 	$return['error'] = 'No data';
-	return json_encode($return);
+	echo json_encode($return);
 }
 function Upload($file,$course_id)
 {
@@ -45,9 +51,10 @@ function Upload($file,$course_id)
 }
 function Write_temp_data($temp_data)
 {
+	global $semester;
 	$data = json_decode($temp_data,true);
 	$path = Create_Folder($data['COURSE_ID'],'evaluate');
-	$temp_file = fopen($path."/".$data['COURSE_ID']."_evaluate_".$data['SEMESTER']."_".$data['YEAR']."txt", "w");
+	$temp_file = fopen($path."/".$data['COURSE_ID']."_evaluate_".$semester['semester']."_".$semester['year']."txt", "w");
 	fwrite($temp_data, $txt);
 	fclose($temp_file);
 
@@ -71,10 +78,9 @@ function Create_Folder($course_id,$type)
 	}
 	return $type_path;
 }
+
 //start generate pdf
-require_once('example_data.php');
-require('fpdf17/fpdf.php');
-require_once(__DIR__.'/../lib/thai_date.php');
+
 define('FPDF_FONTPATH','font/');
 
 $pdf=new FPDF();
