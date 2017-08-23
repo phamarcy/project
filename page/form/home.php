@@ -14,7 +14,10 @@ $semeter= $deadline->Get_Current_Semester();
 
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
-
+/*echo "<pre>";
+print_r($data_course);exit;
+echo "</pre>";
+*/
 if($result == false)
 {
 	die("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาติดต่อผู้ดูแลระบบ");
@@ -74,7 +77,9 @@ else
 				}
 				?>
 			}
-
+			#statc {
+				color: #0d4b9d;
+			}
 			#statcf {
 				color: #0e9d14;
 			}
@@ -109,27 +114,62 @@ else
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h5 class="panel-title">
-	              <b>รายชื่อวิชาที่รับผิดชอบ</b>
+								<?php
+								if ($_SESSION['level']==1) {
+									echo "<b>รายชื่อวิชาที่รับผิดชอบ</b>";
+								}else {
+									echo "<b>รายชื่อวิชา</b>";
+								}
+								?>
+
+
 	          </h5>
 						</div>
 						<!-- .panel-heading -->
-						<div class="panel-body" style="font-size:15px">
-							<div class="glyphicon glyphicon-alert" style="color: red;"></div><b style="color: red;"> วันสุดท้ายสำหรับกรอกข้อมูลกระบวนวิชา <?php echo $deadline['edit']['day'].' '.$deadline['edit']['month'].' '.$deadline['edit']['year']; ?> </b>
+						<div class="panel-body" >
+							<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;" ></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกข้อมูลกระบวนวิชา <?php echo $deadline['edit']['day'].' '.$deadline['edit']['month'].' '.$deadline['edit']['year']."<br>"; ?> </b>
 
-							<?php	}
+							<?php
 					if($_SESSION['level'] == 4 || $_SESSION['level'] == 5) {  ?>
-								<div class="glyphicon glyphicon-alert" style="color: red;"></div><b style="color: red;"> วันสุดท้ายสำหรับประเมินกระบวนวิชา <?php echo $deadline['con']['day'].' '.$deadline['con']['month'].' '.$deadline['con']['year']; ?> </b>
+								<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับประเมินกระบวนวิชา <?php echo $deadline['con']['day'].' '.$deadline['con']['month'].' '.$deadline['con']['year']."<br>"; ?> </b>
 								<?php }
 						else if($_SESSION['level'] == 6)
 						{ ?>
-								<div class="glyphicon glyphicon-alert" style="color: red;"></div><b style="color: red;"> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline['approve']['day'].' '.$deadline['approve']['month'].' '.$deadline['approve']['year']; ?> </b>
+								<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline['approve']['day'].' '.$deadline['approve']['month'].' '.$deadline['approve']['year']."<br>"; ?> </b>
 								<?php	} ?>
 									<br>
 
-									<?php if (is_array($data_course) || is_object($data_course)): ?>
-									<?php foreach ($data_course as $value_course): ?>
-										<?php echo "<pre>"; var_export($value_course);echo "</pre>"; ?>
-									<div class="panel-group" id="accordion1">
+									<?php if (is_array($data_course) || is_object($data_course)){ ?>
+
+									<?php foreach ($data_course as $key => $value_course):
+									?>
+
+									<?php
+										switch ($value_course['evaluate']['status']) {
+											 case '1':
+											 $status_text='<b id="statfi">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+												 break;
+											 case '2':
+											 $status_text='<b id="statwt">รอการพิจารนา <i class="fa  fa-clock-o fa-fw"></i></b>';
+												 break;
+											 case '3':
+											 $status_text='<b id="statn">มีการแก้ไขจากภาควิชา <i class="fa fa-pencil-square fa-fw"></i></b>';
+												 break;
+											 case '4':
+											 $status_text='<b id="statal">ภาควิชาเห็นชอบ รอคณะกรรมเห็นชอบ <i class="fa fa-user fa-fw"></i></b>';
+												 break;
+											 case '5':
+											 $status_text='<b id="statn">มีการแก้ไขเพิ่มเติมจากคณะ <i class="fa fa-user-plus fa-fw"></i></b>';
+												 break;
+											 case '6':
+											 $status_text='<b id="statcf">คณะกรรมการเห็นชอบ <i class="fa fa-check fa-fw"></i></b>';
+												 break;
+
+										 }
+
+
+									/*echo "<pre>"; var_export($value_course);echo "</pre>";*/ ?>
+									<div class="panel-group" id="accordione1">
 										<div class="panel panel-success">
 											<div class="panel-heading">
 												<h3 class="panel-title">
@@ -143,33 +183,29 @@ else
 													<div class="panel panel-default">
 														<div class="panel-heading">
 															<h3 class="panel-title">
-														<a data-toggle="collapse" href="#collapse3" disabled="disabled">
-														 <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและกระบวนวิชา  </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
+														<a data-toggle="collapse" href="#collapse<?php echo $key ?>" disabled="disabled">
+														 <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและกระบวนวิชา  </b><i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
 													</h3>
 														</div>
 														<?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
-														<div id="collapse3" class="panel-collapse collapse">
+														<div id="collapse<?php echo $key ?>" class="panel-collapse collapse">
 															<div class="panel-body" style="font-size:14px;">
 																<table class="table ">
 																	<thead>
-																		<?php if ($_SESSION['level'] > 4 ): ?>
+																		<?php if ($_SESSION['level'] == 2 or $_SESSION['level'] == 3 or $_SESSION['level'] == 6): ?>
 																		<th style="width:170px">คณะกรรมการ</th>
 																		<?php endif; ?>
 																		<th>ข้อเสนอแนะ</th>
 																	</thead>
 																	<tbody>
-																		<tr>
-																			<?php if ($_SESSION['level'] > 4 ): ?>
-																			<td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-																			<?php endif; ?>
-																			<td>เอกสารครบถ้วนสมบูรณ์</td>
-																		</tr>
-																		<tr>
-																			<?php if ($_SESSION['level'] > 4 ): ?>
-																			<td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-																			<?php endif; ?>
-																			<td>แก้ไขคำผิดเล็กน้อย</td>
-																		</tr>
+																		<?php foreach ($value_course['evaluate']['comment'] as $comment): ?>
+																			<tr>
+																				<?php if ($_SESSION['level'] > 4 ): ?>
+																				<td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+																				<?php endif; ?>
+																				<td><?php echo $comment ?></td>
+																			</tr>
+																		<?php endforeach; ?>
 																	</tbody>
 																</table>
 															</div>
@@ -183,18 +219,18 @@ else
 													<div class="panel panel-default">
 														<div class="panel-heading">
 															<h3 class="panel-title">
-													<a data-toggle="collapse" href="#collapse4" disabled="disabled">
+													<a data-toggle="collapse" href="#collapse<?php echo $key ?><?php echo $key ?>" disabled="disabled">
 													<i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></b></a>
 												</h3>
 														</div>
 														<?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
-														<div id="collapse4" class="panel-collapse collapse">
+														<div id="collapse<?php echo $key ?><?php echo $key ?>" class="panel-collapse collapse">
 															<div class="panel-body" style="font-size:14px;">
 																<div class="panel-group" id="accordion">
 																	<div class="panel panel-default">
 																		<div class="panel-heading">
 																			<h4 class="panel-title">
-																								<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">อ.พสุธา โกมลมาลย์ &nbsp;<i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></a></b>
+																								<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">อ.พสุธา โกมลมาลย์ &nbsp;<i class="fa fa-long-arrow-right fa-fw"></i><b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></a></b>
 																						</h4>
 																		</div>
 																		<div id="collapseOne" class="panel-collapse collapse">
@@ -235,10 +271,11 @@ else
 										</div>
 									</div>
 									<?php endforeach; ?>
-									<?php endif; ?>
+								<?php } ?>
 
 						</div>
 					</div>
+					<?php } ?>
 			</div>
 		</div>
 
