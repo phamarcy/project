@@ -56,7 +56,7 @@ function Write_temp_data($temp_data)
 	$data = json_decode($temp_data,true);
 	$path = Create_Folder($data['COURSE_ID'],'evaluate');
 	$temp_file = fopen($path."/".$data['COURSE_ID']."_evaluate_".$semester['semester']."_".$semester['year'].".txt", "w");
-	fwrite($temp_file, $temp_data);
+	fwrite($temp_file, utf8_encode($temp_data));
 	fclose($temp_file);
 
 }

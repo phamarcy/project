@@ -50,7 +50,6 @@ class approval
       $data['year'] = $this->YEAR;
       $data['evaluate'] = array();
       $data['special'] = array();
-      $data['syllabus'] = array();
       for($i=0;$i<count($result);$i++)
       {
         $data_type = $result[$i]['data_type'];
@@ -93,11 +92,6 @@ class approval
         if(count($data['special']) == 0)
         {
             $data['special']['status'] = 1;
-            $all_status = 1;
-        }
-        if(count($data['syllabus']) == 0)
-        {
-            $data['syllabus']['status'] = 1;
             $all_status = 1;
         }
       }
@@ -171,7 +165,6 @@ class approval
         $course['name'] = $this->COURSE->Get_Course_Name($course['id']);
         $url = $this->Get_Doc_Url($course['id'],'draft');
         $course['evaluate'] = $url['evaluate'];
-        $course['syllabus'] = $url['syllabus'];
         $course['comment'] = array();
         $sql = "SELECT `teacher_id`,`comment` FROM `approval_course` WHERE `course_id` = '".$course['id']."'";
         $result_comment = $this->DB->Query($sql);
@@ -219,11 +212,6 @@ class approval
   private function Get_Course_Status($course_id)
   {
     $status = 4;
-    $syllabus_status =  $this->Get_Doc_Status($course_id,'syllabus');
-    if($syllabus_status < $status)
-    {
-      $status = $syllabus_status;
-    }
     $evaluate_status = $this->Get_Doc_Status($course_id,'evaluate');
     if($evaluate_status < $status)
     {
