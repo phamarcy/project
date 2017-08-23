@@ -481,19 +481,19 @@ function checksubject(btntype,type){
                     {
                        document.getElementById('formdrpd').style.display = "";
                        var temp = $.parseJSON(result);
-                       console.log(temp[0]);
-                       var selectsm = document.getElementById('semester');
-                       var selecty = document.getElementById('year');
-                       for (var i = 0; i < temp.length; i++) {
+                       console.log(temp);
+                       //var selectsm = document.getElementById('semester');
+                      // var selecty = document.getElementById('year');
+                       for (var i = 0; i < Object.keys(temp).length; i++) {
                           var opt = document.createElement('option');
                           opt.value = temp[i].semester;
                           opt.innerHTML = temp[i].semester;
-                          selectsm.appendChild(opt);
+                          document.getElementById('semester').appendChild(opt);
 
                           var opt2 = document.createElement('option');
                           opt2.value = temp[i].year;
                           opt2.innerHTML = temp[i].year;
-                          selecty.appendChild(opt2);
+                          document.getElementById('year').appendChild(opt2);
                        }
                     }
                     else {
