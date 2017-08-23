@@ -90,7 +90,7 @@ class Course
     $file_path = $doc_path."/".$file_name;
     if (file_exists($file_path))
     {
-      $data = file_get_contents($file_path);
+      $data = utf8_encode(file_get_contents($file_path));
     } else
     {
       $data = false;
