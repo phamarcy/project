@@ -531,7 +531,7 @@ function checksubject(btntype,type){
     file_data.append("semester",semester);
     file_data.append("year",year);
     file_data.append("type",type);
-    var URL = '../../application/test_data.php';
+    var URL = '../../application/document/search_document.php';
     $.ajax({
                   url: URL,
                   dataType: 'text',
