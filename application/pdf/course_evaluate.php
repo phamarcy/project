@@ -6,13 +6,19 @@
 
 if(isset($_POST['data']))
 {
-	// Write_temp_data($_POST['data']);
-	die($_POST['data']);
 	$data = $_POST['data'];
 	$DATA = json_decode($data,true);
+	if(isset($_FILES['syllabus']))
+	{
+  	$file = $_FILES['syllabus'];
+		Upload($file,$DATA['COURSE_ID']);
+	}
+	Write_temp_data($data);
+
 	if($DATA['type'] == '1')
 	{
-			Write_temp_data($data);
+		die;
+			// Write_temp_data($data);
 	}
 	//var_dump($DATA);
 }
@@ -21,21 +27,49 @@ else
 	$return['error'] = 'No data';
 	return json_encode($return);
 }
+function Upload($file,$course_id)
+{
+	$path = Create_Folder($course_id,'syllabus');
+	$uploadfile = $path."/".basename($file['name']);
+	if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
+	{
+    echo "File is valid, and was successfully uploaded.\n";
+	}
+	else
+	{
+	    echo "Possible file upload attack!\n";
+	}
+}
 function Write_temp_data($temp_data)
 {
 	$data = json_decode($temp_data,true);
-	$TEMP_PATH = __DIR__.'/../../files/temp_data';
-	if(!file_exists($TEMP_PATH))
-	{
-		mkdir($TEMP_PATH);
-	}
-	$temp_file = fopen($TEMP_PATH."/".$data['COURSE_ID']."_".$data['SEMESTER']."_".$data['YEAR']."txt", "w");
+	$path = Create_Folder($data['COURSE_ID'],'evaluate');
+	$temp_file = fopen($path."/".$data['COURSE_ID']."_evaluate_".$data['SEMESTER']."_".$data['YEAR']."txt", "w");
 	fwrite($temp_data, $txt);
 	fclose($temp_file);
 
 }
+function Create_Folder($course_id,$type)
+{
+	$temp_path = __DIR__.'/../../files/temp';
+	if(!file_exists($temp_path))
+	{
+		mkdir($temp_path);
+	}
+	$course_path = $temp_path."/".$course_id;
+	if(!file_exists($course_path))
+	{
+		mkdir($course_path);
+	}
+	$type_path = $course_path."/".$type;
+	if(!file_exists($type_path))
+	{
+		mkdir($type_path);
+	}
+	return $type_path;
+}
 //start generate pdf
-//require_once('example_data.php');
+require_once('example_data.php');
 require('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
 define('FPDF_FONTPATH','font/');
@@ -262,19 +296,28 @@ $SUMSCORE['LAB'] += floatval($DATA['MEASURE']['FINAL']['LAB']);
 $pdf->Ln();
 
 $pdf->SetX(25);
-$pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','3. อื่นๆ โปรดระบุ'),0);
+$pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','4. งานมอบหมาย'),0);
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][0]['LEC']),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][0]['LAB']),0,0,"C");
 $pdf->Ln();
 
-for($i=0;$i<count($DATA['MEASURE']['OTHER']);$i++)
-{
-	$pdf->SetX(35);
-	$pdf->Cell(85,7,iconv( 'UTF-8','TIS-620','- '.$DATA['MEASURE']['OTHER'][$i]['NAME']),0,0);
-	$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][$i]['LEC']),0,0,"C");
-	$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][$i]['LAB']),0,0,"C");
-	$SUMSCORE['LEC'] += floatval($DATA['MEASURE']['OTHER'][$i]['LEC']);
-	$SUMSCORE['LAB'] += floatval($DATA['MEASURE']['OTHER'][$i]['LAB']);
-	$pdf->Ln();
-}
+
+$pdf->SetX(25);
+$pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','5. อื่นๆ {ชื่อ}'),0);
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][0]['LEC']),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][0]['LAB']),0,0,"C");
+$pdf->Ln();
+
+// for($i=0;$i<count($DATA['MEASURE']['OTHER']);$i++)
+// {
+// 	$pdf->SetX(35);
+// 	$pdf->Cell(85,7,iconv( 'UTF-8','TIS-620','- '.$DATA['MEASURE']['OTHER'][$i]['NAME']),0,0);
+// 	$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][$i]['LEC']),0,0,"C");
+// 	$pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['OTHER'][$i]['LAB']),0,0,"C");
+// 	$SUMSCORE['LEC'] += floatval($DATA['MEASURE']['OTHER'][$i]['LEC']);
+// 	$SUMSCORE['LAB'] += floatval($DATA['MEASURE']['OTHER'][$i]['LAB']);
+// 	$pdf->Ln();
+// }
 
 $pdf->SetX(40);
 $pdf->SetFont('angsab','',14);
@@ -292,70 +335,70 @@ $pdf->Ln();
 
 
 
-$pdf->AddPage();
-$pdf->SetMargins(20,10,10,0);
-$pdf->SetFont('angsab','',14);
-$pdf->Cell(30,7,'','LT',0);
-$pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','กระบวนวิชาสัมนา'),'T','C',0);
-$pdf->Cell(30,7,'','RT',0);
-$pdf->Cell(30,7,'','LT',0);
-$pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','ฝึกปฏิบัติ/ปัญหาพิเศษ'),'T','C',0);
-$pdf->Cell(30,7,'','RT',0);
-$pdf->Ln();
+ $pdf->AddPage();
+// $pdf->SetMargins(20,10,10,0);
+// $pdf->SetFont('angsab','',14);
+// $pdf->Cell(30,7,'','LT',0);
+// $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','กระบวนวิชาสัมนา'),'T','C',0);
+// $pdf->Cell(30,7,'','RT',0);
+// $pdf->Cell(30,7,'','LT',0);
+// $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','ฝึกปฏิบัติ/ปัญหาพิเศษ'),'T','C',0);
+// $pdf->Cell(30,7,'','RT',0);
+// $pdf->Ln();
 
-$pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','กิจกรรม'),'LT','C',0);
-$pdf->Cell(30,7,'','RT',0);
-$pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','สัดส่วนการให้คะแนน'),'T',0);
-$pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','กิจกรรม'),'LT','C',0);
-$pdf->Cell(30,7,'','RT',0);
-$pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','สัดส่วนการให้คะแนน'),'TR',0);
-$pdf->Ln();
+// $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','กิจกรรม'),'LT','C',0);
+// $pdf->Cell(30,7,'','RT',0);
+// $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','สัดส่วนการให้คะแนน'),'T',0);
+// $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','กิจกรรม'),'LT','C',0);
+// $pdf->Cell(30,7,'','RT',0);
+// $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','สัดส่วนการให้คะแนน'),'TR',0);
+// $pdf->Ln();
 
-$count_seminar = count($DATA['SEMINAR']);
-$count_training = count($DATA['TRAIN']);
-$max = 4;
-if($count_seminar >= $count_training)
-{
-	$max = $count_seminar;
-}
-else
-{
-	$max = $count_training;
-}
-$SUMSCORE['SEMINAR'] = 0;
-$SUMSCORE['TRAIN'] = 0;
-//calculate score
-for($i=0;$i<$count_seminar;$i++)
-{
-	$SUMSCORE['SEMINAR'] += $DATA['SEMINAR'][$i]['SCORE'];
-}
-for($i=0;$i<$count_training;$i++)
-{
-	$SUMSCORE['TRAIN'] += $DATA['TRAIN'][$i]['SCORE'];
-}
+// $count_seminar = count($DATA['SEMINAR']);
+// $count_training = count($DATA['TRAIN']);
+// $max = 4;
+// if($count_seminar >= $count_training)
+// {
+// 	$max = $count_seminar;
+// }
+// else
+// {
+// 	$max = $count_training;
+// }
+// $SUMSCORE['SEMINAR'] = 0;
+// $SUMSCORE['TRAIN'] = 0;
+// //calculate score
+// for($i=0;$i<$count_seminar;$i++)
+// {
+// 	$SUMSCORE['SEMINAR'] += $DATA['SEMINAR'][$i]['SCORE'];
+// }
+// for($i=0;$i<$count_training;$i++)
+// {
+// 	$SUMSCORE['TRAIN'] += $DATA['TRAIN'][$i]['SCORE'];
+// }
 
-$pdf->SetFont('angsa','',14);
-for($i=0;$i<$max;$i++)
-{
-	$pdf->Cell(60,7,iconv( 'UTF-8','TIS-620',$i < $count_seminar ? $DATA['SEMINAR'][$i]['NAME'] : ''),'LTR',0); #ชื่อวิชาสัมมนา
-	$pdf->Cell(30,7,iconv( 'UTF-8','TIS-620',$i < $count_seminar ? $DATA['SEMINAR'][$i]['SCORE'] :''),'T',0,"C"); #คะแนนวิชาสัมมนา
-	$pdf->Cell(60,7,iconv( 'UTF-8','TIS-620',$i < $count_training ? $DATA['TRAIN'][$i]['NAME'] :''),'LTR',0); #ชื่อปฏิบัติ
- 	$pdf->Cell(30,7,iconv( 'UTF-8','TIS-620',$i < $count_training ? $DATA['TRAIN'][$i]['SCORE']  :''),'TR',0,"C"); #คะแนนปฏิบัติ
-	$pdf->Ln();
-}
+// $pdf->SetFont('angsa','',14);
+// for($i=0;$i<$max;$i++)
+// {
+// 	$pdf->Cell(60,7,iconv( 'UTF-8','TIS-620',$i < $count_seminar ? $DATA['SEMINAR'][$i]['NAME'] : ''),'LTR',0); #ชื่อวิชาสัมมนา
+// 	$pdf->Cell(30,7,iconv( 'UTF-8','TIS-620',$i < $count_seminar ? $DATA['SEMINAR'][$i]['SCORE'] :''),'T',0,"C"); #คะแนนวิชาสัมมนา
+// 	$pdf->Cell(60,7,iconv( 'UTF-8','TIS-620',$i < $count_training ? $DATA['TRAIN'][$i]['NAME'] :''),'LTR',0); #ชื่อปฏิบัติ
+//  	$pdf->Cell(30,7,iconv( 'UTF-8','TIS-620',$i < $count_training ? $DATA['TRAIN'][$i]['SCORE']  :''),'TR',0,"C"); #คะแนนปฏิบัติ
+// 	$pdf->Ln();
+// }
 
-$pdf->SetFont('angsab','',14);
-$pdf->Cell(30,7,'','LT',0);
-$pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','รวมคะแนน'),'RT','R',0);
-$pdf->Cell(30,7,number_format($SUMSCORE['SEMINAR'], 1, '.', ''),'T',0,"C");
-$pdf->Cell(30,7,'','LT',0);
-$pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','รวมคะแนน'),'RT','R',0);
-$pdf->Cell(30,7,number_format($SUMSCORE['TRAIN'], 1, '.', ''),'RT',0,"C");
-$pdf->Ln();
+// $pdf->SetFont('angsab','',14);
+// $pdf->Cell(30,7,'','LT',0);
+// $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','รวมคะแนน'),'RT','R',0);
+// $pdf->Cell(30,7,number_format($SUMSCORE['SEMINAR'], 1, '.', ''),'T',0,"C");
+// $pdf->Cell(30,7,'','LT',0);
+// $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','รวมคะแนน'),'RT','R',0);
+// $pdf->Cell(30,7,number_format($SUMSCORE['TRAIN'], 1, '.', ''),'RT',0,"C");
+// $pdf->Ln();
 
-$pdf->Cell(180,7,'','T',0);
+// $pdf->Cell(180,7,'','T',0);
 
-$pdf->Ln();
+// $pdf->Ln();
 // Topic 6
 $EVA_AF = $EVA_SU = '[   ]';
 if($DATA['EVALUATE'] == 'SU')
@@ -499,6 +542,9 @@ $pdf->Ln();
 $pdf->SetX(35);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','(ผู้รับผิดชอบกระบวนวิชา)'),0,1);
 
+
+
+///check if docment is approved
 $pdf->Ln();
 $pdf->SetFont('angsab','',14);
 $pdf->SetX(20);
