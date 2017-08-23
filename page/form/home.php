@@ -15,6 +15,7 @@ $semeter= $deadline->Get_Current_Semester();
 $var=$approve->Get_Approval_data($_SESSION['id']);
 $data= json_decode($var, true);
 
+var_dump($data);
 if($result == false)
 {
 	die("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาติดต่อผู้ดูแลระบบ");
@@ -129,7 +130,7 @@ else
 							<div class="panel panel-success">
 								<div class="panel-heading">
 									<h3 class="panel-title">
-									<a data-toggle="collapse" href="#collapse2" >
+
 									<li><b><u>รหัสกระบวนวิชา</u></b> : 204111 </li>
 								</h3>
 								</div>
