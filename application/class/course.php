@@ -67,8 +67,11 @@ class Course
 
     $doc_path = realpath($this->FILE_PATH."/temp/".$id."/".$type);
     $data = array();
+    $data['info'] = $this->Get_Course_Info($id);
     if(is_dir($doc_path))
     {
+
+      $data['old'] = array();
         $file_name = scandir($doc_path);
         for($i=2;$i<count($file_name);$i++)
         {
@@ -78,12 +81,8 @@ class Course
             $temp['year'] = str_replace(".txt","",$temp['year']);
             array_push($data,$temp);
         }
-        return $data;
     }
-    else
-    {
-      return false;
-    }
+      return $data;
   }
 
   public function Get_Document($type,$id,$semester,$year)
@@ -145,7 +144,22 @@ class Course
     }
 
   }
+  private function Get_Course_Info($course_id)
+  {
+    $sql = "SELECT `course_id`,`course_name_en`,`course_name_th`,`credit`,`hr_lec`,`hr_lab`,`hr_self`
+    FROM `course` WHERE `course_id` ='".$course_id."'";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $return = $result[0];
+      return $return;
+    }
+    else
+    {
+      return false;
+    }
 
+  }
   public function Close_connection()
   {
     $this->DB->Close_connection();

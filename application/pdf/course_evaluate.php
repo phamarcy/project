@@ -3,7 +3,7 @@
 </head>
 <body>
 <?php
-
+require_once(__DIR__.'/../config/configuration_variable.php');
 if(isset($_POST['data']))
 {
 	$data = $_POST['data'];
@@ -29,8 +29,11 @@ else
 }
 function Upload($file,$course_id)
 {
-	$path = Create_Folder($course_id,'syllabus');
-	$uploadfile = $path."/".basename($file['name']);
+	global $FILE_PATH;
+	$path = $FILE_PATH."syllabus";
+	$filename = $file['name'];
+	$ext = pathinfo($filename, PATHINFO_EXTENSION);
+	$uploadfile = $path."/".$course_id.'.'.$ext;
 	if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
 	{
     echo "File is valid, and was successfully uploaded.\n";
