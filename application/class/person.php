@@ -68,6 +68,30 @@ class Person
     }
   }
 
+  public function Get_All_Prefix()
+  {
+    $this->DB->Change_DB('person');
+    $sql = "SELECT `code`,`name` FROM `prefix`";
+    $result = $this->DB->Query($sql);
+    $this->DB->Change_DB('pharmacy');
+    if($result)
+    {
+      $prefix = array();
+      for($i=0;$i<count($result);$i++)
+      {
+        $temp['id'] = $result[$i]['code'];
+        $temp['prefix'] = $result[$i]['name'];
+        array_push($prefix,$temp);
+      }
+      return $prefix;
+    }
+    else
+    {
+      return false;
+    }
+
+  }
+
 
 }
 
