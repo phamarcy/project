@@ -63,6 +63,139 @@ window.countmeabtn = 0;
 window.countsa1btn = 0;
 window.countsa2btn = 0;
 
+// searchname
+function searchname(no,type) {
+
+  if(type=='subject')
+  {
+      var name_s = $("#TEACHERLEC_F"+no).val();
+      $("#dtl"+no).html('');
+      if(name_s.length > 3)
+      {
+        $.post("search_name.php", { name: name_s}, function(data) {
+              data = JSON.parse( data );
+              for(var i=0;i<data.length;i++)
+              {
+                  $("#dtl"+no).append('<option value="'+data[i]+'"></option>');
+              }
+
+            })
+            .fail(function() {
+                alert("error");
+            });
+      }
+  }
+  else if (type==511) {
+    var name_s = $("#MIDEXCOM_LECF"+no).val();
+    $("#dtmeh"+no).html('');
+    if(name_s.length > 3)
+    {
+      $.post("search_name.php", { name: name_s}, function(data) {
+            data = JSON.parse( data );
+            for(var i=0;i<data.length;i++)
+            {
+                $("#dtmeh"+no).append('<option value="'+data[i]+'"></option>');
+            }
+
+          })
+          .fail(function() {
+              alert("error");
+          });
+    }
+  }
+  else if (type==512) {
+    var name_s = $("#MIDEXCOM_LABF"+no).val();
+    $("#dtehlab"+no).html('');
+    if(name_s.length > 3)
+    {
+      $.post("search_name.php", { name: name_s}, function(data) {
+            data = JSON.parse( data );
+            for(var i=0;i<data.length;i++)
+            {
+                $("#dtehlab"+no).append('<option value="'+data[i]+'"></option>');
+            }
+
+          })
+          .fail(function() {
+              alert("error");
+          });
+    }
+  }
+  else if (type==521) {
+    var name_s = $("#MIDEXCOM_LECF"+no+"_sec").val();
+    $("#dtmehle"+no+"_sec").html('');
+    if(name_s.length > 3)
+    {
+      $.post("search_name.php", { name: name_s}, function(data) {
+            data = JSON.parse( data );
+            for(var i=0;i<data.length;i++)
+            {
+                $("#dtmehle"+no+"_sec").append('<option value="'+data[i]+'"></option>');
+            }
+
+          })
+          .fail(function() {
+              alert("error");
+          });
+    }
+  }
+  else if (type==522) {
+    var name_s = $("#MIDEXCOM_LABF"+no+"_sec").val();
+    $("#dtehla"+no+"_sec").html('');
+    if(name_s.length > 3)
+    {
+      $.post("search_name.php", { name: name_s}, function(data) {
+            data = JSON.parse( data );
+            for(var i=0;i<data.length;i++)
+            {
+                $("#dtehla"+no+"_sec").append('<option value="'+data[i]+'"></option>');
+            }
+
+          })
+          .fail(function() {
+              alert("error");
+          });
+    }
+  }
+  else if (type==531) {
+    var name_s = $("#FINEXCOM_LECF"+no).val();
+    $("#dtfmehle"+no).html('');
+    if(name_s.length > 3)
+    {
+      $.post("search_name.php", { name: name_s}, function(data) {
+            data = JSON.parse( data );
+            for(var i=0;i<data.length;i++)
+            {
+                $("#dtfmehle"+no).append('<option value="'+data[i]+'"></option>');
+            }
+
+          })
+          .fail(function() {
+              alert("error");
+          });
+    }
+  }
+  else if (type==532) {
+    var name_s = $("#FINEXCOM_LABF"+no).val();
+    $("#dtfehla"+no).html('');
+    if(name_s.length > 3)
+    {
+      $.post("search_name.php", { name: name_s}, function(data) {
+            data = JSON.parse( data );
+            for(var i=0;i<data.length;i++)
+            {
+                $("#dtfehla"+no).append('<option value="'+data[i]+'"></option>');
+            }
+
+          })
+          .fail(function() {
+              alert("error");
+          });
+    }
+  }
+
+  }
+
 function lecloop() {
   var lec = document.getElementById("leclist");
   var i;
@@ -143,9 +276,7 @@ function midexam_hour_lec() {
       document.getElementById("mehle" + i).style.display = "none";
       document.getElementById('mehlec' + i).classList.add('hide');
       document.getElementById("MIDEXCOM_LECF" + i).style.display = "none";
-      document.getElementById('MIDEXCOM_LECL' + i).style.display = "none";
       document.getElementById("MIDEXCOM_LECF" + i).value = "";
-      document.getElementById("MIDEXCOM_LECL" + i).value = "";
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
@@ -153,11 +284,9 @@ function midexam_hour_lec() {
       document.getElementById("mehle" + i).style.display = "none";
       document.getElementById('mehlec' + i).classList.add('hide');
       document.getElementById('MIDEXCOM_LECF' + i).style.display = "none";
-      document.getElementById('MIDEXCOM_LECL' + i).style.display = "none";
       if(i>lec.value)
       {
         document.getElementById("MIDEXCOM_LECF" + i).value = "";
-        document.getElementById("MIDEXCOM_LECL" + i).value = "";
       }
     }
 
@@ -165,7 +294,6 @@ function midexam_hour_lec() {
       document.getElementById("mehle" + i).style.display = "";
       document.getElementById('mehlec' + i).classList.remove('hide');
       document.getElementById('MIDEXCOM_LECF' + i).style.display = "";
-      document.getElementById('MIDEXCOM_LECL' + i).style.display = "";
 
     }
   }
@@ -179,9 +307,7 @@ function midexam_hour_lab() {
       document.getElementById("ehla" + i).style.display = "none";
       document.getElementById('ehlab' + i).classList.add('hide');
       document.getElementById("MIDEXCOM_LABF" + i).style.display = "none";
-      document.getElementById('MIDEXCOM_LABL' + i).style.display = "none";
       document.getElementById("MIDEXCOM_LABF" + i).value = "";
-      document.getElementById("MIDEXCOM_LABL" + i).value = "";
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
@@ -189,11 +315,9 @@ function midexam_hour_lab() {
       document.getElementById("ehla" + i).style.display = "none";
       document.getElementById('ehlab' + i).classList.add('hide');
       document.getElementById('MIDEXCOM_LABF' + i).style.display = "none";
-      document.getElementById('MIDEXCOM_LABL' + i).style.display = "none";
       if(i>lab.value)
       {
         document.getElementById("MIDEXCOM_LABF" + i).value = "";
-        document.getElementById("MIDEXCOM_LABL" + i).value = "";
       }
     }
 
@@ -201,7 +325,6 @@ function midexam_hour_lab() {
       document.getElementById("ehla" + i).style.display = "";
       document.getElementById('ehlab' + i).classList.remove('hide');
       document.getElementById('MIDEXCOM_LABF' + i).style.display = "";
-      document.getElementById('MIDEXCOM_LABL' + i).style.display = "";
 
     }
   }
@@ -215,9 +338,8 @@ function midexam_hour_lec_sec() {
       document.getElementById("mehle" + i +"_sec").style.display = "none";
       document.getElementById('mehlec' + i +"_sec").classList.add('hide');
       document.getElementById("MIDEXCOM_LECF" + i +"_sec").style.display = "none";
-      document.getElementById('MIDEXCOM_LECL' + i +"_sec").style.display = "none";
       document.getElementById("MIDEXCOM_LECF" + i +"_sec").value = "";
-      document.getElementById("MIDEXCOM_LECL" + i +"_sec").value = "";
+
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
@@ -225,11 +347,9 @@ function midexam_hour_lec_sec() {
       document.getElementById("mehle" + i +"_sec").style.display = "none";
       document.getElementById('mehlec' + i +"_sec").classList.add('hide');
       document.getElementById('MIDEXCOM_LECF' + i +"_sec").style.display = "none";
-      document.getElementById('MIDEXCOM_LECL' + i +"_sec").style.display = "none";
       if(i>lec.value)
       {
         document.getElementById("MIDEXCOM_LECF" + i +"_sec").value = "";
-        document.getElementById("MIDEXCOM_LECL" + i +"_sec").value = "";
       }
     }
 
@@ -237,7 +357,6 @@ function midexam_hour_lec_sec() {
       document.getElementById("mehle" + i +"_sec").style.display = "";
       document.getElementById('mehlec' + i +"_sec").classList.remove('hide');
       document.getElementById('MIDEXCOM_LECF' + i +"_sec").style.display = "";
-      document.getElementById('MIDEXCOM_LECL' + i +"_sec").style.display = "";
 
     }
   }
@@ -251,9 +370,7 @@ function midexam_hour_lab_sec() {
       document.getElementById("ehla" + i +"_sec").style.display = "none";
       document.getElementById('ehlab' + i +"_sec").classList.add('hide');
       document.getElementById("MIDEXCOM_LABF" + i +"_sec").style.display = "none";
-      document.getElementById('MIDEXCOM_LABL' + i +"_sec").style.display = "none";
       document.getElementById("MIDEXCOM_LABF" + i +"_sec").value = "";
-      document.getElementById("MIDEXCOM_LABL" + i +"_sec").value = "";
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
@@ -261,11 +378,9 @@ function midexam_hour_lab_sec() {
       document.getElementById("ehla" + i +"_sec").style.display = "none";
       document.getElementById('ehlab' + i +"_sec").classList.add('hide');
       document.getElementById('MIDEXCOM_LABF' + i +"_sec").style.display = "none";
-      document.getElementById('MIDEXCOM_LABL' + i +"_sec").style.display = "none";
       if(i>lab.value)
       {
         document.getElementById("MIDEXCOM_LABF" + i +"_sec").value = "";
-        document.getElementById("MIDEXCOM_LABL" + i +"_sec").value = "";
       }
     }
 
@@ -273,7 +388,6 @@ function midexam_hour_lab_sec() {
       document.getElementById("ehla" + i +"_sec").style.display = "";
       document.getElementById('ehlab' + i +"_sec").classList.remove('hide');
       document.getElementById('MIDEXCOM_LABF' + i +"_sec").style.display = "";
-      document.getElementById('MIDEXCOM_LABL' + i +"_sec").style.display = "";
 
     }
   }
@@ -287,9 +401,7 @@ function finexam_hour_lec() {
       document.getElementById("fmehle" + i).style.display = "none";
       document.getElementById('fmehlec' + i).classList.add('hide');
       document.getElementById("FINEXCOM_LECF" + i).style.display = "none";
-      document.getElementById('FINEXCOM_LECL' + i).style.display = "none";
       document.getElementById("FINEXCOM_LECF" + i).value = "";
-      document.getElementById("FINEXCOM_LECL" + i).value = "";
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
@@ -297,11 +409,9 @@ function finexam_hour_lec() {
       document.getElementById("fmehle" + i).style.display = "none";
       document.getElementById('fmehlec' + i).classList.add('hide');
       document.getElementById('FINEXCOM_LECF' + i).style.display = "none";
-      document.getElementById('FINEXCOM_LECL' + i).style.display = "none";
       if(i>lec.value)
       {
         document.getElementById("FINEXCOM_LECF" + i).value = "";
-        document.getElementById("FINEXCOM_LECL" + i).value = "";
       }
 
     }
@@ -310,7 +420,6 @@ function finexam_hour_lec() {
       document.getElementById("fmehle" + i).style.display = "";
       document.getElementById('fmehlec' + i).classList.remove('hide');
       document.getElementById('FINEXCOM_LECF' + i).style.display = "";
-      document.getElementById('FINEXCOM_LECL' + i).style.display = "";
 
     }
   }
@@ -324,9 +433,7 @@ function finexam_hour_lab() {
       document.getElementById("fehla" + i).style.display = "none";
       document.getElementById('fehlab' + i).classList.add('hide');
       document.getElementById("FINEXCOM_LABF" + i).style.display = "none";
-      document.getElementById('FINEXCOM_LABL' + i).style.display = "none";
       document.getElementById("FINEXCOM_LABF" + i).value = "";
-      document.getElementById("FINEXCOM_LABL" + i).value = "";
     }
   } else {
     //document.getElementById("test1").innerHTML = lab.value;
@@ -334,11 +441,9 @@ function finexam_hour_lab() {
       document.getElementById("fehla" + i).style.display = "none";
       document.getElementById('fehlab' + i).classList.add('hide');
       document.getElementById('FINEXCOM_LABF' + i).style.display = "none";
-      document.getElementById('FINEXCOM_LABL' + i).style.display = "none";
       if(i>lab.value)
       {
         document.getElementById("FINEXCOM_LABF" + i).value = "";
-        document.getElementById("FINEXCOM_LABL" + i).value = "";
       }
 
     }
@@ -347,7 +452,6 @@ function finexam_hour_lab() {
       document.getElementById("fehla" + i).style.display = "";
       document.getElementById('fehlab' + i).classList.remove('hide');
       document.getElementById('FINEXCOM_LABF' + i).style.display = "";
-      document.getElementById('FINEXCOM_LABL' + i).style.display = "";
 
     }
   }
@@ -520,7 +624,7 @@ function submitfunc(casesubmit) {
 
   for(var i=1;i<=5;i++)
   {
-    tlec[i-1] = document.getElementById("TEACHERLEC_F"+i).value+" "+document.getElementById("TEACHERLEC_L"+i).value;
+    tlec[i-1] = document.getElementById("TEACHERLEC_F"+i).value;
   }
 
   teacher_lec = tlec;
@@ -541,27 +645,27 @@ function submitfunc(casesubmit) {
 
   for(var i=1;i<=document.getElementById("mexholec").value;i++)
   {
-    cmle[i-1] = document.getElementById("MIDEXCOM_LECF"+i).value+" "+document.getElementById("MIDEXCOM_LECL"+i).value;
+    cmle[i-1] = document.getElementById("MIDEXCOM_LECF"+i).value;
   }
   for(var i=1;i<=document.getElementById("mexholac").value;i++)
   {
-    cmla[i-1] = document.getElementById("MIDEXCOM_LABF"+i).value+" "+document.getElementById("MIDEXCOM_LABL"+i).value;
+    cmla[i-1] = document.getElementById("MIDEXCOM_LABF"+i).value;
   }
   for(var i=1;i<=document.getElementById("mexholec_sec").value;i++)
   {
-    cmle_sec[i-1] = document.getElementById("MIDEXCOM_LECF"+i+"_sec").value+" "+document.getElementById("MIDEXCOM_LECL"+i+"_sec").value;
+    cmle_sec[i-1] = document.getElementById("MIDEXCOM_LECF"+i+"_sec").value;
   }
   for(var i=1;i<=document.getElementById("mexholac_sec").value;i++)
   {
-    cmla_sec[i-1] = document.getElementById("MIDEXCOM_LABF"+i+"_sec").value+" "+document.getElementById("MIDEXCOM_LABL"+i+"_sec").value;
+    cmla_sec[i-1] = document.getElementById("MIDEXCOM_LABF"+i+"_sec").value;
   }
   for(var i=1;i<=document.getElementById("fexholec").value;i++)
   {
-    cfle[i-1] = document.getElementById("FINEXCOM_LECF"+i).value+" "+document.getElementById("FINEXCOM_LECL"+i).value;
+    cfle[i-1] = document.getElementById("FINEXCOM_LECF"+i).value;
   }
   for(var i=1;i<=document.getElementById("fexholac").value;i++)
   {
-    cfla[i-1] = document.getElementById("FINEXCOM_LABF"+i).value+" "+document.getElementById("FINEXCOM_LABL"+i).value;
+    cfla[i-1] = document.getElementById("FINEXCOM_LABF"+i).value;
   }
 
   commidlec = cmle;
@@ -698,7 +802,7 @@ function senddata(data,file_data)
 
   //prompt("data", data);
    file_data.append("DATA",data);
-   var URL = '../../application/test_data.php';
+   var URL = '../../application/course_evaluate.php';
    $.ajax({
                  url: URL,
                  dataType: 'text',
@@ -736,7 +840,7 @@ $(function() {//<-- wrapped here
     this.value = this.value.replace(/[^0-9.]/g, ''); //<-- replace all other than given set of values
   });
   $('.charonly').on('input', function() {
-    this.value = this.value.replace(/[^a-zA-Zก-ฮๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ.]/g, ''); //<-- replace all other than given set of values
+    this.value = this.value.replace(/[^a-zA-Zก-ฮๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ. ]/g, ''); //<-- replace all other than given set of values
   });
 });
 
@@ -1109,30 +1213,35 @@ function confreset() {
 
         <div class="form-inline" id="ctlec1">
           <label id="li1">1. &nbsp;</label>
-          <input type="text" class="form-control charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F1" placeholder="ชื่อ" size="20" >
-          <input type="text" class="form-control charonly" name="TEACHERLEC_L1" id="TEACHERLEC_L1" placeholder="นามสกุล" size="20" >
+          <input type="text" class="form-control charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'subject');" >
+          <datalist id="dtl1">
+          </datalist>
         </div>
 
         <div class="form-inline" id="ctlec2">
           <label id="li2">2. &nbsp;</label>
-          <input type="text" class="form-control charonly" name="TEACHERLEC_F2" id="TEACHERLEC_F2" placeholder="ชื่อ" size="20" >
-          <input type="text" class="form-control charonly" name="TEACHERLEC_L2" id="TEACHERLEC_L2" placeholder="นามสกุล" size="20" >
+          <input type="text" class="form-control charonly" name="TEACHERLEC_F2" id="TEACHERLEC_F2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'subject');" >
+          <datalist id="dtl2">
+          </datalist>
         </div>
 
         <div class="form-inline" id="ctlec3">
           <label id="li3">3. &nbsp;</label>
-          <input type="text" class="form-control charonly" name="TEACHERLEC_F3" id="TEACHERLEC_F3" placeholder="ชื่อ" size="20" >
-          <input type="text" class="form-control charonly" name="TEACHERLEC_L3" id="TEACHERLEC_L3" placeholder="นามสกุล" size="20" >
+          <input type="text" class="form-control charonly" name="TEACHERLEC_F3" id="TEACHERLEC_F3" list="dtl3" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(3,'subject');" >
+          <datalist id="dtl3">
+          </datalist>
         </div>
         <div class="form-inline" id="ctlec4">
           <label id="li4">4. &nbsp;</label>
-          <input type="text" class="form-control charonly" name="TEACHERLEC_F4" id="TEACHERLEC_F4" placeholder="ชื่อ" size="20" >
-          <input type="text" class="form-control charonly" name="TEACHERLEC_L4" id="TEACHERLEC_L4" placeholder="นามสกุล" size="20" >
+          <input type="text" class="form-control charonly" name="TEACHERLEC_F4" id="TEACHERLEC_F4" list="dtl4" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(4,'subject');" >
+          <datalist id="dtl4">
+          </datalist>
         </div>
         <div class="form-inline" id="ctlec5">
           <label id="li5">5. &nbsp;</label>
-          <input type="text" class="form-control charonly" name="TEACHERLEC_F5" id="TEACHERLEC_F5" placeholder="ชื่อ" size="20" >
-          <input type="text" class="form-control charonly" name="TEACHERLEC_L5" id="TEACHERLEC_L5" placeholder="นามสกุล" size="20" >
+          <input type="text" class="form-control charonly" name="TEACHERLEC_F5" id="TEACHERLEC_F5" list="dtl5" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(5,'subject');" >
+          <datalist id="dtl5">
+          </datalist>
         </div>
       </li>
 
@@ -1211,67 +1320,16 @@ function confreset() {
 
         </select> &nbsp; คน
 
-
-                      <div class="form-inline hide" id="mehlec1">
-                        <label id="mehle1" style="display:none;">1.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF1" id="MIDEXCOM_LECF1" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL1" id="MIDEXCOM_LECL1" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec2">
-                        <label id="mehle2" style="display:none;">2.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF2" id="MIDEXCOM_LECF2" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL2" id="MIDEXCOM_LECL2" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec3">
-                        <label id="mehle3" style="display:none;">3.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF3" id="MIDEXCOM_LECF3" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL3" id="MIDEXCOM_LECL3" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec4">
-                        <label id="mehle4" style="display:none;">4.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF4" id="MIDEXCOM_LECF4" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL4" id="MIDEXCOM_LECL4" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec5">
-                        <label id="mehle5" style="display:none;">5.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF5" id="MIDEXCOM_LECF5" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL5" id="MIDEXCOM_LECL5" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec6">
-                        <label id="mehle6" style="display:none;">1.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF6" id="MIDEXCOM_LECF6" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL6" id="MIDEXCOM_LECL6" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec7">
-                        <label id="mehle7" style="display:none;">7.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF7" id="MIDEXCOM_LECF7" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL7" id="MIDEXCOM_LECL7" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec8">
-                        <label id="mehle8" style="display:none;">8.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF8" id="MIDEXCOM_LECF8" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL8" id="MIDEXCOM_LECL8" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec9">
-                        <label id="mehle9" style="display:none;">9.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF9" id="MIDEXCOM_LECF9" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL9" id="MIDEXCOM_LECL9" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec10">
-                        <label id="mehle10" style="display:none;">10.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF10" id="MIDEXCOM_LECF10" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL10" id="MIDEXCOM_LECL10" placeholder="นามสกุล" size="20" >
-                      </div>
-
+        <?php
+            for ($i=1; $i<=10 ; $i++) {
+              echo '<div class="form-inline hide" id="mehlec'.$i.'">
+                <label id="mehle'.$i.'" style="display:none;">'.$i.'.&nbsp; </label>
+                <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF'.$i.'" id="MIDEXCOM_LECF'.$i.'" placeholder="ชื่อ" size="35" list="dtmeh'.$i.'" onkeydown="searchname('.$i.',511);">
+                <datalist id="dtmeh'.$i.'">
+                </datalist>
+              </div>';
+            }
+         ?>
 
                       <div class="form-inline">
                         <li style="font-size: 14px">
@@ -1290,66 +1348,17 @@ function confreset() {
 
          </select> &nbsp; คน
 
+         <?php
+             for ($i=1; $i<=10 ; $i++) {
+               echo '<div class="form-inline hide" id="ehlab'.$i.'">
+                 <label id="ehla'.$i.'" style="display:none;">'.$i.'.&nbsp; </label>
+                 <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF'.$i.'" id="MIDEXCOM_LABF'.$i.'" placeholder="ชื่อ" size="35" list="dtehlab'.$i.'" onkeydown="searchname('.$i.',512);">
+                 <datalist id="dtehlab'.$i.'">
+                 </datalist>
+               </div>';
+             }
+          ?>
 
-                          <div class="form-inline hide" id="ehlab1">
-                            <label id="ehla1" style="display:none;">1.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF1" id="MIDEXCOM_LABF1" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL1" id="MIDEXCOM_LABL1" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab2">
-                            <label id="ehla2" style="display:none;">2.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF2" id="MIDEXCOM_LABF2" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL2" id="MIDEXCOM_LABL2" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab3">
-                            <label id="ehla3" style="display:none;">3.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF3" id="MIDEXCOM_LABF3" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL3" id="MIDEXCOM_LABL3" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab4">
-                            <label id="ehla4" style="display:none;">4.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF4" id="MIDEXCOM_LABF4" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL4" id="MIDEXCOM_LABL4" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab5">
-                            <label id="ehla5" style="display:none;">5.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF5" id="MIDEXCOM_LABF5" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL5" id="MIDEXCOM_LABL5" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab6">
-                            <label id="ehla6" style="display:none;">6.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF6" id="MIDEXCOM_LABF6" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL6" id="MIDEXCOM_LABL6" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab7">
-                            <label id="ehla7" style="display:none;">7.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF7" id="MIDEXCOM_LABF7" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL7" id="MIDEXCOM_LABL7" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab8">
-                            <label id="ehla8" style="display:none;">8.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF8" id="MIDEXCOM_LABF8" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL8" id="MIDEXCOM_LABL8" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab9">
-                            <label id="ehla9" style="display:none;">9.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF9" id="MIDEXCOM_LABF9" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL9" id="MIDEXCOM_LABL9" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab10">
-                            <label id="ehla10" style="display:none;">10.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF10" id="MIDEXCOM_LABF10" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL10" id="MIDEXCOM_LABL10" placeholder="นามสกุล" size="20">
-                          </div>
                         </li>
                       </div>
                 </ul>
@@ -1377,67 +1386,16 @@ function confreset() {
 
         </select> &nbsp; คน
 
-
-                      <div class="form-inline hide" id="mehlec1_sec">
-                        <label id="mehle1_sec" style="display:none;">1.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF1_sec" id="MIDEXCOM_LECF1_sec" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL1_sec" id="MIDEXCOM_LECL1_sec" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec2_sec">
-                        <label id="mehle2_sec" style="display:none;">2.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF2_sec" id="MIDEXCOM_LECF2_sec" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL2_sec" id="MIDEXCOM_LECL2_sec" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec3_sec">
-                        <label id="mehle3_sec" style="display:none;">3.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF3_sec" id="MIDEXCOM_LECF3_sec" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL3_sec" id="MIDEXCOM_LECL3_sec" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec4_sec">
-                        <label id="mehle4_sec" style="display:none;">4.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF4_sec" id="MIDEXCOM_LECF4_sec" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL4_sec" id="MIDEXCOM_LECL4_sec" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec5_sec">
-                        <label id="mehle5_sec" style="display:none;">5.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF5_sec" id="MIDEXCOM_LECF5_sec" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL5_sec" id="MIDEXCOM_LECL5_sec" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec6_sec">
-                        <label id="mehle6_sec" style="display:none;">1.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF6_sec" id="MIDEXCOM_LECF6_sec" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL6_sec" id="MIDEXCOM_LECL6_sec" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec7_sec">
-                        <label id="mehle7_sec" style="display:none;">7.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF7_sec" id="MIDEXCOM_LECF7_sec" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL7_sec" id="MIDEXCOM_LECL7_sec" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec8_sec">
-                        <label id="mehle8_sec" style="display:none;">8.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF8_sec" id="MIDEXCOM_LECF8_sec" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL8_sec" id="MIDEXCOM_LECL8_sec" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec9_sec">
-                        <label id="mehle9_sec" style="display:none;">9.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF9_sec" id="MIDEXCOM_LECF9_sec" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL9_sec" id="MIDEXCOM_LECL9_sec" placeholder="นามสกุล" size="20" >
-                      </div>
-
-                      <div class="form-inline hide" id="mehlec10_sec">
-                        <label id="mehle10_sec" style="display:none;">10.&nbsp; </label>
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF10_sec" id="MIDEXCOM_LECF10_sec" placeholder="ชื่อ" size="20" >
-                        <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECL10_sec" id="MIDEXCOM_LECL10_sec" placeholder="นามสกุล" size="20" >
-                      </div>
-
+        <?php
+            for ($i=1; $i<=10 ; $i++) {
+              echo '<div class="form-inline hide" id="mehlec'.$i.'_sec">
+                <label id="mehle'.$i.'_sec" style="display:none;">'.$i.'.&nbsp; </label>
+                <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF'.$i.'_sec" id="MIDEXCOM_LECF'.$i.'_sec" placeholder="ชื่อ" size="35" list="dtmehle'.$i.'_sec" onkeydown="searchname('.$i.',521);">
+                <datalist id="dtmehle'.$i.'_sec">
+                </datalist>
+              </div>';
+            }
+         ?>
 
                       <div class="form-inline">
                         <li style="font-size: 14px">
@@ -1456,66 +1414,16 @@ function confreset() {
 
          </select> &nbsp; คน
 
-
-                          <div class="form-inline hide" id="ehlab1_sec">
-                            <label id="ehla1_sec" style="display:none;">1.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF1_sec" id="MIDEXCOM_LABF1_sec" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL1_sec" id="MIDEXCOM_LABL1_sec" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab2_sec">
-                            <label id="ehla2_sec" style="display:none;">2.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF2_sec" id="MIDEXCOM_LABF2_sec" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL2_sec" id="MIDEXCOM_LABL2_sec" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab3_sec">
-                            <label id="ehla3_sec" style="display:none;">3.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF3_sec" id="MIDEXCOM_LABF3_sec" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL3_sec" id="MIDEXCOM_LABL3_sec" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab4_sec">
-                            <label id="ehla4_sec" style="display:none;">4.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF4_sec" id="MIDEXCOM_LABF4_sec" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL4_sec" id="MIDEXCOM_LABL4_sec" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab5_sec">
-                            <label id="ehla5_sec" style="display:none;">5.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF5_sec" id="MIDEXCOM_LABF5_sec" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL5_sec" id="MIDEXCOM_LABL5_sec" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab6_sec">
-                            <label id="ehla6_sec" style="display:none;">6.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF6_sec" id="MIDEXCOM_LABF6_sec" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL6_sec" id="MIDEXCOM_LABL6_sec" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab7_sec">
-                            <label id="ehla7_sec" style="display:none;">7.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF7_sec" id="MIDEXCOM_LABF7_sec" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL7_sec" id="MIDEXCOM_LABL7_sec" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab8_sec">
-                            <label id="ehla8_sec" style="display:none;">8.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF8_sec" id="MIDEXCOM_LABF8_sec" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL8_sec" id="MIDEXCOM_LABL8_sec" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab9_sec">
-                            <label id="ehla9_sec" style="display:none;">9.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF9_sec" id="MIDEXCOM_LABF9_sec" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL9_sec" id="MIDEXCOM_LABL9_sec" placeholder="นามสกุล" size="20">
-                          </div>
-
-                          <div class="form-inline hide" id="ehlab10_sec">
-                            <label id="ehla10_sec" style="display:none;">10.&nbsp; </label>
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF10_sec" id="MIDEXCOM_LABF10_sec" placeholder="ชื่อ" size="20">
-                            <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABL10_sec" id="MIDEXCOM_LABL10_sec" placeholder="นามสกุล" size="20">
-                          </div>
+         <?php
+             for ($i=1; $i<=10 ; $i++) {
+               echo '<div class="form-inline hide" id="ehlab'.$i.'_sec">
+                 <label id="ehla'.$i.'_sec" style="display:none;">'.$i.'.&nbsp; </label>
+                 <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF'.$i.'_sec" id="MIDEXCOM_LABF'.$i.'_sec" placeholder="ชื่อ" size="35" list="dtehla'.$i.'_sec" onkeydown="searchname('.$i.',522);">
+                 <datalist id="dtehla'.$i.'_sec">
+                 </datalist>
+               </div>';
+             }
+          ?>
                         </li>
                       </div>
                 </ul>
@@ -1545,67 +1453,16 @@ function confreset() {
 
         </select> &nbsp; คน </div>
 
-
-                        <div class="form-inline hide" id="fmehlec1">
-                          <label id="fmehle1" style="display:none;">1.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF1" id="FINEXCOM_LECF1" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL1" id="FINEXCOM_LECL1" placeholder="นามสกุล" size="20" >
-                        </div>
-
-                        <div class="form-inline hide" id="fmehlec2">
-                          <label id="fmehle2" style="display:none;">2.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF2" id="FINEXCOM_LECF2" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL2" id="FINEXCOM_LECL2" placeholder="นามสกุล" size="20" >
-                        </div>
-
-                        <div class="form-inline hide" id="fmehlec3">
-                          <label id="fmehle3" style="display:none;">3.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF3" id="FINEXCOM_LECF3" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL3" id="FINEXCOM_LECL3" placeholder="นามสกุล" size="20" >
-                        </div>
-
-                        <div class="form-inline hide" id="fmehlec4">
-                          <label id="fmehle4" style="display:none;">4.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF4" id="FINEXCOM_LECF4" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL4" id="FINEXCOM_LECL4" placeholder="นามสกุล" size="20" >
-                        </div>
-
-                        <div class="form-inline hide" id="fmehlec5">
-                          <label id="fmehle5" style="display:none;">5.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF5" id="FINEXCOM_LECF5" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL5" id="FINEXCOM_LECL5" placeholder="นามสกุล" size="20" >
-                        </div>
-
-                        <div class="form-inline hide" id="fmehlec6">
-                          <label id="fmehle6" style="display:none;">6.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF6" id="FINEXCOM_LECF6" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL6" id="FINEXCOM_LECL6" placeholder="นามสกุล" size="20" >
-                        </div>
-
-                        <div class="form-inline hide" id="fmehlec7">
-                          <label id="fmehle7" style="display:none;">7.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF7" id="FINEXCOM_LECF7" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL7" id="FINEXCOM_LECL7" placeholder="นามสกุล" size="20" >
-                        </div>
-
-                        <div class="form-inline hide" id="fmehlec8">
-                          <label id="fmehle8" style="display:none;">8.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF8" id="FINEXCOM_LECF8" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL8" id="FINEXCOM_LECL8" placeholder="นามสกุล" size="20" >
-                        </div>
-
-                        <div class="form-inline hide" id="fmehlec9">
-                          <label id="fmehle9" style="display:none;">9.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF9" id="FINEXCOM_LECF9" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL9" id="FINEXCOM_LECL9" placeholder="นามสกุล" size="20" >
-                        </div>
-
-                        <div class="form-inline hide" id="fmehlec10">
-                          <label id="fmehle10" style="display:none;">10.&nbsp; </label>
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF10" id="FINEXCOM_LECF10" placeholder="ชื่อ" size="20" >
-                          <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECL10" id="FINEXCOM_LECL10" placeholder="นามสกุล" size="20" >
-                        </div>
-
+        <?php
+            for ($i=1; $i<=10 ; $i++) {
+              echo '<div class="form-inline hide" id="fmehlec'.$i.'">
+                <label id="fmehle'.$i.'" style="display:none;">'.$i.'.&nbsp; </label>
+                <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF'.$i.'" id="FINEXCOM_LECF'.$i.'" placeholder="ชื่อ" size="35" list="dtfmehle'.$i.'" onkeydown="searchname('.$i.',531);">
+                <datalist id="dtfmehle'.$i.'">
+                </datalist>
+              </div>';
+            }
+         ?>
 
 
                         <div class="form-inline">
@@ -1625,66 +1482,17 @@ function confreset() {
 
          </select> &nbsp; คน
 
+         <?php
+             for ($i=1; $i<=10 ; $i++) {
+               echo '<div class="form-inline hide" id="fehlab'.$i.'">
+                 <label id="fehla'.$i.'" style="display:none;">'.$i.'.&nbsp; </label>
+                 <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF'.$i.'" id="FINEXCOM_LABF'.$i.'" placeholder="ชื่อ" size="35" list="dtfehla'.$i.'" onkeydown="searchname('.$i.',532);">
+                 <datalist id="dtfehla'.$i.'">
+                 </datalist>
+               </div>';
+             }
+          ?>
 
-                            <div class="form-inline hide" id="fehlab1">
-                              <label id="fehla1" style="display:none;">1.&nbsp; </label>
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF1" id="FINEXCOM_LABF1" placeholder="ชื่อ" size="20" >
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL1" id="FINEXCOM_LABL1" placeholder="นามสกุล" size="20" >
-                            </div>
-
-                            <div class="form-inline hide" id="fehlab2">
-                              <label id="fehla2" style="display:none;">2.&nbsp; </label>
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF2" id="FINEXCOM_LABF2" placeholder="ชื่อ" size="20" >
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL2" id="FINEXCOM_LABL2" placeholder="นามสกุล" size="20" >
-                            </div>
-
-                            <div class="form-inline hide" id="fehlab3">
-                              <label id="fehla3" style="display:none;">3.&nbsp; </label>
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF3" id="FINEXCOM_LABF3" placeholder="ชื่อ" size="20" >
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL3" id="FINEXCOM_LABL3" placeholder="นามสกุล" size="20" >
-                            </div>
-
-                            <div class="form-inline hide" id="fehlab4">
-                              <label id="fehla4" style="display:none;">4.&nbsp; </label>
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF4" id="FINEXCOM_LABF4" placeholder="ชื่อ" size="20" >
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL4" id="FINEXCOM_LABL4" placeholder="นามสกุล" size="20" >
-                            </div>
-
-                            <div class="form-inline hide" id="fehlab5">
-                              <label id="fehla5" style="display:none;">5.&nbsp; </label>
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF5" id="FINEXCOM_LABF5" placeholder="ชื่อ" size="20" >
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL5" id="FINEXCOM_LABL5" placeholder="นามสกุล" size="20" >
-                            </div>
-
-                            <div class="form-inline hide" id="fehlab6">
-                              <label id="fehla6" style="display:none;">6.&nbsp; </label>
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF6" id="FINEXCOM_LABF6" placeholder="ชื่อ" size="20" >
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL6" id="FINEXCOM_LABL6" placeholder="นามสกุล" size="20" >
-                            </div>
-
-                            <div class="form-inline hide" id="fehlab7">
-                              <label id="fehla7" style="display:none;">7.&nbsp; </label>
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF7" id="FINEXCOM_LABF7" placeholder="ชื่อ" size="20" >
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL7" id="FINEXCOM_LABL7" placeholder="นามสกุล" size="20" >
-                            </div>
-
-                            <div class="form-inline hide" id="fehlab8">
-                              <label id="fehla8" style="display:none;">8.&nbsp; </label>
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF8" id="FINEXCOM_LABF8" placeholder="ชื่อ" size="20" >
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL8" id="FINEXCOM_LABL8" placeholder="นามสกุล" size="20" >
-                            </div>
-
-                            <div class="form-inline hide" id="fehlab9">
-                              <label id="fehla9" style="display:none;">9.&nbsp; </label>
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF9" id="FINEXCOM_LABF9" placeholder="ชื่อ" size="20" >
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL9" id="FINEXCOM_LABL9" placeholder="นามสกุล" size="20" >
-                            </div>
-
-                            <div class="form-inline hide" id="fehlab10">
-                              <label id="fehla10" style="display:none;">10.&nbsp; </label>
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF10" id="FINEXCOM_LABF10" placeholder="ชื่อ" size="20" >
-                              <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABL10" id="FINEXCOM_LABL10" placeholder="นามสกุล" size="20" >
-                            </div>
                           </li>
                         </div>
                   </ul>
