@@ -494,7 +494,7 @@ function getinfo(temp) {
   document.getElementById('MEASURE_TOTALLAB').value = temp['MEASURE']['TOTAL']['LAB'];
 
   //part5
-  /*document.getElementById('MIDEXAM_HOUR_LEC').value = temp['EXAM']['MID1']['HOUR']['LEC'];
+  document.getElementById('MIDEXAM_HOUR_LEC').value = temp['EXAM']['MID1']['HOUR']['LEC'];
   document.getElementById('MIDEXAM_HOUR_LAB').value = temp['EXAM']['MID1']['HOUR']['LAB'];
   document.getElementById('MIDEXAM_HOUR_LEC_SEC').value = temp['EXAM']['MID2']['HOUR']['LEC'];
   document.getElementById('MIDEXAM_HOUR_LAB_SEC').value = temp['EXAM']['MID2']['HOUR']['LAB'];
@@ -510,28 +510,46 @@ function getinfo(temp) {
 
   for(var i=0;i<temp['EXAM']['MID1']['NUMBER']['LEC'];i++)
   {
-    document.getElementById('MIDEXCOM_LECF'+i).value = temp['EXAM']['MID1']['COMMITTEE']['LEC'][i];
+    document.getElementById("mehle" + (i+1)).style.display = "";
+    document.getElementById('mehlec' + (i+1)).classList.remove('hide');
+    document.getElementById('MIDEXCOM_LECF'+(i+1)).style.display = "";
+    document.getElementById('MIDEXCOM_LECF'+(i+1)).value = temp['EXAM']['MID1']['COMMITTEE']['LEC'][i];
   }
   for(var i=0;i<temp['EXAM']['MID1']['NUMBER']['LAB'];i++)
   {
-    document.getElementById('MIDEXCOM_LABF'+i).value = temp['EXAM']['MID1']['COMMITTEE']['LAB'][i];
+    document.getElementById("ehla" + (i+1)).style.display = "";
+    document.getElementById('ehlab' + (i+1)).classList.remove('hide');
+    document.getElementById('MIDEXCOM_LABF' + (i+1)).style.display = "";
+    document.getElementById('MIDEXCOM_LABF'+(i+1)).value = temp['EXAM']['MID1']['COMMITTEE']['LAB'][i];
   }
   for(var i=0;i<temp['EXAM']['MID2']['NUMBER']['LEC'];i++)
   {
-    document.getElementById('MIDEXCOM_LECF'+i+'_sec').value = temp['EXAM']['MID2']['COMMITTEE']['LEC'][i];
+    document.getElementById("mehle" + (i+1) +"_sec").style.display = "";
+    document.getElementById('mehlec' + (i+1) +"_sec").classList.remove('hide');
+    document.getElementById('MIDEXCOM_LECF' + (i+1) +"_sec").style.display = "";
+    document.getElementById('MIDEXCOM_LECF'+(i+1)+'_sec').value = temp['EXAM']['MID2']['COMMITTEE']['LEC'][i];
   }
   for(var i=0;i<temp['EXAM']['MID2']['NUMBER']['LAB'];i++)
   {
-    document.getElementById('MIDEXCOM_LABF'+i+'_sec').value = temp['EXAM']['MID2']['COMMITTEE']['LAB'][i];
+    document.getElementById("ehla" + (i+1) +"_sec").style.display = "";
+    document.getElementById('ehlab' + (i+1) +"_sec").classList.remove('hide');
+    document.getElementById('MIDEXCOM_LABF' + (i+1) +"_sec").style.display = "";
+    document.getElementById('MIDEXCOM_LABF'+(i+1)+'_sec').value = temp['EXAM']['MID2']['COMMITTEE']['LAB'][i];
   }
   for(var i=0;i<temp['EXAM']['FINAL']['NUMBER']['LEC'];i++)
   {
-    document.getElementById('FINEXCOM_LECF'+i).value = temp['EXAM']['FINAL']['COMMITTEE']['LEC'][i];
+    document.getElementById("fmehle" + (i+1)).style.display = "";
+    document.getElementById('fmehlec' + (i+1)).classList.remove('hide');
+    document.getElementById('FINEXCOM_LECF' + (i+1)).style.display = "";
+    document.getElementById('FINEXCOM_LECF'+(i+1)).value = temp['EXAM']['FINAL']['COMMITTEE']['LEC'][i];
   }
   for(var i=0;i<temp['EXAM']['FINAL']['NUMBER']['LAB'];i++)
   {
-    document.getElementById('FINEXCOM_LABF'+i).value = temp['EXAM']['FINAL']['COMMITTEE']['LAB'][i];
-  }*/
+    document.getElementById("fehla" + (i+1)).style.display = "";
+    document.getElementById('fehlab' + (i+1)).classList.remove('hide');
+    document.getElementById('FINEXCOM_LABF' + (i+1)).style.display = "";
+    document.getElementById('FINEXCOM_LABF'+(i+1)).value = temp['EXAM']['FINAL']['COMMITTEE']['LAB'][i];
+  }
 
   //part6
   var choice3 = temp['CALCULATE']['TYPE'];
@@ -539,23 +557,79 @@ function getinfo(temp) {
   document.getElementById('EXPLAINATION').value = temp['CALCULATE']['EXPLAINATION'];
   var choice4 = temp['EVALUATE'];
   $('input[name="EVALUATE_TYPE"][value=' + choice4 + ']').prop('checked', true);
-  document.getElementById("CALCULATE_A_MIN").value = temp['CALCULATE']['A']['MIN'];
-  document.getElementById("CALCULATE_Bp_MIN").value = temp['CALCULATE']['B+']['MIN'];
-  document.getElementById("CALCULATE_Bp_MAX").value = temp['CALCULATE']['B+']['MAX'];
-  document.getElementById("CALCULATE_B_MIN").value = temp['CALCULATE']['B']['MIN'];
-  document.getElementById("CALCULATE_B_MAX").value = temp['CALCULATE']['B']['MAX'];
-  document.getElementById("CALCULATE_Cp_MIN").value = temp['CALCULATE']['C+']['MIN'];
-  document.getElementById("CALCULATE_Cp_MAX").value = temp['CALCULATE']['C+']['MAX'];
-  document.getElementById("CALCULATE_C_MIN").value = temp['CALCULATE']['C']['MIN'];
-  document.getElementById("CALCULATE_C_MAX").value = temp['CALCULATE']['C']['MAX'];
-  document.getElementById("CALCULATE_Dp_MIN").value = temp['CALCULATE']['D+']['MIN'];
-  document.getElementById("CALCULATE_Dp_MAX").value = temp['CALCULATE']['D+']['MAX'];
-  document.getElementById("CALCULATE_D_MIN").value = temp['CALCULATE']['D']['MIN'];
-  document.getElementById("CALCULATE_D_MAX").value = temp['CALCULATE']['D']['MAX'];
-  document.getElementById("CALCULATE_F_MAX").value = temp['CALCULATE']['F']['MAX'];
-  document.getElementById("CALCULATE_S_MIN").value = temp['CALCULATE']['S']['MIN'];
-  document.getElementById("CALCULATE_U_MAX").value = temp['CALCULATE']['U']['MAX'];
   document.getElementById("CALOTHER").value = temp['CALCULATE']['OTHERGRADE'];
+
+  //fucntion for disabled
+  if($("input[name='EVALUATE_TYPE']:checked").val()=="SU")
+  {
+    $('.atof').val("");
+    document.getElementById("CALCULATE_S_MIN").value = temp['CALCULATE']['S']['MIN'];
+    document.getElementById("CALCULATE_U_MAX").value = temp['CALCULATE']['U']['MAX'];
+    $('.atof').prop('disabled',true);
+    $('.atof').prop('required',false);
+    $('.stou').prop('required',true);
+    $('.stou').prop('disabled',false);
+  }
+  else if($("input[name='EVALUATE_TYPE']:checked").val()=="AF")
+  {
+    document.getElementById("CALCULATE_A_MIN").value = temp['CALCULATE']['A']['MIN'];
+    document.getElementById("CALCULATE_Bp_MIN").value = temp['CALCULATE']['B+']['MIN'];
+    document.getElementById("CALCULATE_Bp_MAX").value = temp['CALCULATE']['B+']['MAX'];
+    document.getElementById("CALCULATE_B_MIN").value = temp['CALCULATE']['B']['MIN'];
+    document.getElementById("CALCULATE_B_MAX").value = temp['CALCULATE']['B']['MAX'];
+    document.getElementById("CALCULATE_Cp_MIN").value = temp['CALCULATE']['C+']['MIN'];
+    document.getElementById("CALCULATE_Cp_MAX").value = temp['CALCULATE']['C+']['MAX'];
+    document.getElementById("CALCULATE_C_MIN").value = temp['CALCULATE']['C']['MIN'];
+    document.getElementById("CALCULATE_C_MAX").value = temp['CALCULATE']['C']['MAX'];
+    document.getElementById("CALCULATE_Dp_MIN").value = temp['CALCULATE']['D+']['MIN'];
+    document.getElementById("CALCULATE_Dp_MAX").value = temp['CALCULATE']['D+']['MAX'];
+    document.getElementById("CALCULATE_D_MIN").value = temp['CALCULATE']['D']['MIN'];
+    document.getElementById("CALCULATE_D_MAX").value = temp['CALCULATE']['D']['MAX'];
+    document.getElementById("CALCULATE_F_MAX").value = temp['CALCULATE']['F']['MAX'];
+
+    $('.stou').val("");
+    $('.atof').prop('disabled',false);
+    $('.atof').prop('required',true);
+    $('.stou').prop('disabled',true);
+    $('.stou').prop('required',false);
+  }
+
+  if($("input[name='CALCULATE']:checked").val()=="GROUP")
+  {
+
+    $('.atof').val("");
+    $('#EXPLAINATION').prop('required',true);
+    $('#EXPLAINATION').prop('disabled',false);
+    document.getElementById("CALCULATE_S_MIN").value = temp['CALCULATE']['S']['MIN'];
+    document.getElementById("CALCULATE_U_MAX").value = temp['CALCULATE']['U']['MAX'];
+    $('.atof').prop('disabled',true);
+    $('.stou').prop('disabled',true);
+    $('.atof').prop('required',false);
+    $('.stou').prop('required',false);
+    $('#EVALUATE1').prop('required',false);
+    $('#EVALUATE2').prop('required',false);
+    $('#EVALUATE1').prop('disabled',true);
+    $('#EVALUATE2').prop('disabled',true);
+    $('.opacity01').css("opacity","0.1");
+  }
+  else if ($("input[name='CALCULATE']:checked").val()=="CRITERIA")
+  {
+    document.getElementById("CALCULATE_A_MIN").value = temp['CALCULATE']['A']['MIN'];
+    document.getElementById("CALCULATE_Bp_MIN").value = temp['CALCULATE']['B+']['MIN'];
+    document.getElementById("CALCULATE_Bp_MAX").value = temp['CALCULATE']['B+']['MAX'];
+    document.getElementById("CALCULATE_B_MIN").value = temp['CALCULATE']['B']['MIN'];
+    document.getElementById("CALCULATE_B_MAX").value = temp['CALCULATE']['B']['MAX'];
+    document.getElementById("CALCULATE_Cp_MIN").value = temp['CALCULATE']['C+']['MIN'];
+    document.getElementById("CALCULATE_Cp_MAX").value = temp['CALCULATE']['C+']['MAX'];
+    document.getElementById("CALCULATE_C_MIN").value = temp['CALCULATE']['C']['MIN'];
+    document.getElementById("CALCULATE_C_MAX").value = temp['CALCULATE']['C']['MAX'];
+    document.getElementById("CALCULATE_Dp_MIN").value = temp['CALCULATE']['D+']['MIN'];
+    document.getElementById("CALCULATE_Dp_MAX").value = temp['CALCULATE']['D+']['MAX'];
+    document.getElementById("CALCULATE_D_MIN").value = temp['CALCULATE']['D']['MIN'];
+    document.getElementById("CALCULATE_D_MAX").value = temp['CALCULATE']['D']['MAX'];
+    document.getElementById("CALCULATE_F_MAX").value = temp['CALCULATE']['F']['MAX'];
+    $('.opacity01').css("opacity","1");
+  }
 
   //part7
   var choice5 = temp['ABSENT'];
@@ -1022,6 +1096,7 @@ $(document).ready(function(){
         $('#EVALUATE2').prop('required',true);
         $('#EVALUATE1').prop('disabled',false);
         $('#EVALUATE2').prop('disabled',false);
+        $('#EXPLAINATION').val("");
         $('.opacity01').css("opacity","1");
         document.getElementById("EVALUATE1").checked = false;
         document.getElementById("EVALUATE2").checked = false;
@@ -1725,8 +1800,8 @@ function confreset() {
           <br>
           <li style="font-size: 14px;">
             <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์จากโปรแกรม Microsoft Word (.doc หรือ .docx) เท่านั้น) : </b><br />
-          <div class="col-md-3 form-group">
-            <input type="file" class="filestyle" id="syllabus" data-icon="false" accept=".doc,.docx" required>
+          <div class="col-md-5 form-inline form-group">
+            <input type="file" class="filestyle" id="syllabus" data-icon="false" accept=".doc,.docx" required><font color="red"><b> ** จำเป็น</b></font>
           </div>
           </li>
 
