@@ -471,6 +471,12 @@ function getinfo(temp) {
   //part2
   var choice2 = temp['TYPE_TEACHING'];
   $('input[name="TYPE_TEACHING"][value=' + choice2 + ']').prop('checked', true);
+  if($('input[name="TYPE_TEACHING"]:checked').val()=="OTH")
+  {
+    $("#TYPE_TEACHING_NAME").val(temp['TYPE_TEACHING_NAME']);
+    $("#TYPE_TEACHING_NAME").prop('required',true);
+    $("#TYPE_TEACHING_NAME").show();
+  }
 
   //part3
   for(var i=0;i<=4;i++)
@@ -837,6 +843,7 @@ function submitfunc(casesubmit) {
       'TOTAL' : document.getElementById("TOTAL").value
     },
     'TYPE_TEACHING' : document.querySelector("input[name='TYPE_TEACHING']:checked").value,
+    'TYPE_TEACHING_NAME' : document.getElementById('TYPE_TEACHING_NAME').value,
     'TEACHER' : teacher_lec,
     'EXAM': {
       'MID1' : {
@@ -1116,6 +1123,7 @@ $(document).ready(function(){
     {
       $("#TYPE_TEACHING_NAME").prop('required',false);
       $("#TYPE_TEACHING_NAME").hide();
+      $("#TYPE_TEACHING_NAME").val("");
     }
 
     });
