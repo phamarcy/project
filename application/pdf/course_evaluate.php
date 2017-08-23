@@ -178,7 +178,7 @@ $pdf->SetX(60);
 $pdf->Cell(20, 7, iconv( 'UTF-8','TIS-620',$CHECKBOX['TRA'].' ฝึกงาน'), 0);
 $pdf->Cell(20, 7, iconv( 'UTF-8','TIS-620',$CHECKBOX['SEM'].' สัมนา'), 0);
 $pdf->Cell(30, 7, iconv( 'UTF-8','TIS-620',$CHECKBOX['LAB'].' ปฏิบัติการ'), 0);
-$pdf->Cell(10, 7, iconv( 'UTF-8','TIS-620',$CHECKBOX['OTH'].' อื่นๆ '.$DATA['TYPE_TEACHING_NAME'], 0);
+$pdf->Cell(10, 7, iconv( 'UTF-8','TIS-620',$CHECKBOX['OTH'].' อื่นๆ '.$DATA['TYPE_TEACHING_NAME']), 0);
 $pdf->Ln();
 
 $pdf->SetX(20);
@@ -194,7 +194,7 @@ $j=0;
 for($i=1;$i<6;$i++)
 {
 
-	$pdf->Cell(30,7,$i < count($DATA['TEACHER']['LEC']) +1  ? iconv( 'UTF-8','TIS-620',$i.') '.$DATA['TEACHER']['LEC'][$i-1]) : $i.")" ,0);
+	$pdf->Cell(30,7,$i < count($DATA['TEACHER']) +1  ? iconv( 'UTF-8','TIS-620',$i.') '.$DATA['TEACHER'][$i-1]) : $i.")" ,0);
 	$pdf->Ln();
 	$pdf->SetX(55);
 
@@ -203,8 +203,6 @@ for($i=1;$i<6;$i++)
 //$pdf->Ln();
 
 // Topic 4
-$SUMSCORE['LEC'] = 0;
-$SUMSCORE['LAB'] = 0;
 
 $pdf->SetX(20);
 $pdf->SetFont('angsab','',14);
@@ -225,28 +223,24 @@ $pdf->SetX(25);
 $pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','1. สอบกลางภาคฯ ครั้งที่ 1'),0);
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID1']['LEC'] ),0,0,"C");
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID1']['LAB'] ),0,0,"C");
-$SUMSCORE['LEC'] += floatval($DATA['MEASURE']['MID']['LEC']);
-$SUMSCORE['LAB'] += floatval($DATA['MEASURE']['MID']['LAB']);
+
 $pdf->Ln();
 
 $pdf->SetX(25);
 $pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','2. สอบกลางภาคฯ ครั้งที่ 2'),0);
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID2']['LEC'] ),0,0,"C");
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['MID2']['LAB'] ),0,0,"C");
-$SUMSCORE['LEC'] += floatval($DATA['MEASURE']['MID']['LEC']);
-$SUMSCORE['LAB'] += floatval($DATA['MEASURE']['MID']['LAB']);
+
 $pdf->Ln();
 
 $pdf->SetX(25);
 $pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','3. สอบไล่'),0);
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['FINAL']['LEC']),0,0,"C");
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['FINAL']['LAB']),0,0,"C");
-$SUMSCORE['LEC'] += floatval($DATA['MEASURE']['FINAL']['LEC']);
-$SUMSCORE['LAB'] += floatval($DATA['MEASURE']['FINAL']['LAB']);
 $pdf->Ln();
 
 $pdf->SetX(25);
-$pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','4. งานมอบหมาย ',0);
+$pdf->Cell(95,7,iconv( 'UTF-8','TIS-620','4. งานมอบหมาย '),0);
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['WORK']['LEC']),0,0,"C");
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA['MEASURE']['WORK']['LAB']),0,0,"C");
 $pdf->Ln();
