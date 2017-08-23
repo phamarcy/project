@@ -180,34 +180,113 @@ else
 												<div class="panel-heading">
 													<h3 class="panel-title">
 											<a data-toggle="collapse" href="#collapse4" disabled="disabled">
-											<i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b><i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b></a>
+											<i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></b></a>
 										</h3>
 												</div>
 												<?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
 												<div id="collapse4" class="panel-collapse collapse">
 													<div class="panel-body" style="font-size:14px;">
-														<table class="table ">
-															<thead>
-																<?php if ($_SESSION['level'] > 4 ): ?>
-																<th style="width:170px">คณะกรรมการ</th>
-																<?php endif; ?>
-																<th>คอมเม้นท์</th>
-															</thead>
-															<tbody>
-																<tr>
-																	<?php if ($_SESSION['level'] > 4 ): ?>
-																	<td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-																	<?php endif; ?>
-																	<td>เอกสารครบถ้วนสมบูรณ์</td>
-																</tr>
-																<tr>
-																	<?php if ($_SESSION['level'] > 4 ): ?>
-																	<td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-																	<?php endif; ?>
-																	<td>แก้ไขวันที่</td>
-																</tr>
-															</tbody>
-														</table>
+														<div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">อ.พสุธา โกมลมาลย์ &nbsp;<i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></a></b>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse">
+                                        <div class="panel-body">
+																					<table class="table ">
+																						<thead>
+																							<?php if ($_SESSION['level'] > 4 ): ?>
+																							<th style="width:170px">คณะกรรมการ</th>
+																							<?php endif; ?>
+																							<th>คอมเม้นท์</th>
+																						</thead>
+																						<tbody>
+																							<tr>
+																								<?php if ($_SESSION['level'] > 4 ): ?>
+																								<td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+																								<?php endif; ?>
+																								<td>เอกสารครบถ้วนสมบูรณ์</td>
+																							</tr>
+																							<tr>
+																								<?php if ($_SESSION['level'] > 4 ): ?>
+																								<td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+																								<?php endif; ?>
+																								<td>แก้ไขวันที่</td>
+																							</tr>
+																						</tbody>
+																					</table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">อ.ปูริดา กล้าประเสริฐ &nbsp;<i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></a></b>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+																					<table class="table ">
+																						<thead>
+																							<?php if ($_SESSION['level'] > 4 ): ?>
+																							<th style="width:170px">คณะกรรมการ</th>
+																							<?php endif; ?>
+																							<th>คอมเม้นท์</th>
+																						</thead>
+																						<tbody>
+																							<tr>
+																								<?php if ($_SESSION['level'] > 4 ): ?>
+																								<td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+																								<?php endif; ?>
+																								<td>เอกสารครบถ้วนสมบูรณ์</td>
+																							</tr>
+																							<tr>
+																								<?php if ($_SESSION['level'] > 4 ): ?>
+																								<td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+																								<?php endif; ?>
+																								<td>แก้ไขวันที่</td>
+																							</tr>
+																						</tbody>
+																					</table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+																					<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">ผศ.ปิยะวดี ยอดนา &nbsp;<i class="fa fa-long-arrow-right fa-fw"></i> สถานะการอนุมัติ : <b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></a></b>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse">
+                                        <div class="panel-body">
+																					<table class="table ">
+																						<thead>
+																							<?php if ($_SESSION['level'] > 4 ): ?>
+																							<th style="width:170px">คณะกรรมการ</th>
+																							<?php endif; ?>
+																							<th>คอมเม้นท์</th>
+																						</thead>
+																						<tbody>
+																							<tr>
+																								<?php if ($_SESSION['level'] > 4 ): ?>
+																								<td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+																								<?php endif; ?>
+																								<td>เอกสารครบถ้วนสมบูรณ์</td>
+																							</tr>
+																							<tr>
+																								<?php if ($_SESSION['level'] > 4 ): ?>
+																								<td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+																								<?php endif; ?>
+																								<td>แก้ไขวันที่</td>
+																							</tr>
+																						</tbody>
+																					</table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 													</div>
 												</div>
 												<?php  } ?>
