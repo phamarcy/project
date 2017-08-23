@@ -6,11 +6,6 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 $inputFileName = '../../application//grade/111.xls';
 
-/*$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-//    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-
-$spreadsheet = $reader->load($inputFileName);*/
-
 
 $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('../../application//grade/111.xls');
 

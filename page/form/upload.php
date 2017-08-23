@@ -7,6 +7,7 @@ $grade = new Course;
 $semeter= $deadline->Get_Current_Semester();
 $showgrade=$grade->Get_Grade($_SESSION['id']);
 $grade->Close_connection();
+
  ?>
 <html>
 <header>
@@ -105,16 +106,17 @@ $grade->Close_connection();
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($showgrade as $value):
-                    switch ($value['status']) {
-                      case 0:
-                      $status='<b id="statn">ยังไม่ได้อัปโหลด</b>';
-                        break;
-                      case 1:
-                      $status='<b id="statcf">อัปโหลดแล้ว</b>';
-                        break;
-                    }
-                  ?>
+                  <?php if (isset($showgrade)): ?>
+                        <?php foreach ($showgrade as $value):
+                          switch ($value['status']) {
+                            case 0:
+                            $status='<b id="statn">ยังไม่ได้อัปโหลด</b>';
+                              break;
+                            case 1:
+                            $status='<b id="statcf">อัปโหลดแล้ว</b>';
+                              break;
+                          }
+                        ?>
                           <tr>
                             <td><?php echo $value["course_id"]; ?></td>
                             <td><?php echo $value['course_name']; ?></td>
@@ -132,6 +134,7 @@ $grade->Close_connection();
                             </td>
                           </tr>
                   <?php endforeach; ?>
+                <?php endif; ?>
                 </tbody>
               </table>
           </div>
