@@ -910,6 +910,11 @@ function senddata(data,file_data)
                  type: 'post',
                  success: function (result) {
                       console.log(result);
+                      if(result=='save_success')
+                      {
+                        alert('บันทึกข้อมูลสำเร็จ');
+                      }
+
                  },
                  failure: function (result) {
                       alert(result);
@@ -1185,7 +1190,6 @@ function other_type() {
 function checkreq(casesubmit) {
   if($("[required]").val()!=null && $("[required]").val()!="")
   {
-    alert('บันทึกข้อมูลสำเร็จ');
     submitfunc(casesubmit);
   }
   else {
