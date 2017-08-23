@@ -10,9 +10,9 @@ require('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
 $deadline = new Deadline();
 $semester = $deadline->Get_Current_Semester();
-if(isset($_POST['data']))
+if(isset($_POST['DATA']))
 {
-	$data = $_POST['data'];
+	$data = $_POST['DATA'];
 	$DATA = json_decode($data,true);
 	if(isset($_FILES['syllabus']))
 	{
@@ -21,8 +21,9 @@ if(isset($_POST['data']))
 	}
 	Write_temp_data($data);
 
-	if($DATA['type'] == '1')
+	if($DATA['SUBMIT_TYPE'] == '2')
 	{
+		echo "save_success";
 		die;
 			// Write_temp_data($data);
 	}
@@ -54,8 +55,8 @@ function Write_temp_data($temp_data)
 	global $semester;
 	$data = json_decode($temp_data,true);
 	$path = Create_Folder($data['COURSE_ID'],'evaluate');
-	$temp_file = fopen($path."/".$data['COURSE_ID']."_evaluate_".$semester['semester']."_".$semester['year']."txt", "w");
-	fwrite($temp_data, $txt);
+	$temp_file = fopen($path."/".$data['COURSE_ID']."_evaluate_".$semester['semester']."_".$semester['year'].".txt", "w");
+	fwrite($temp_file, $temp_data);
 	fclose($temp_file);
 
 }
