@@ -119,34 +119,6 @@
     </script>
   </head>
   <body>
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        <a class="navbar-brand">ระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่</a>
-      </div>
-      <!-- /.navbar-header -->
-
-      <ul class="nav navbar-top-links navbar-right">
-        <b>ยินดีต้อนรับ | <font color="#51cc62"> คุณ คำแก้ว มาลูน </font></b>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                </a>
-          <ul class="dropdown-menu dropdown-user">
-            <li><a href="../logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-            </li>
-          </ul>
-          <!-- /.dropdown-user -->
-        </li>
-        <!-- /.dropdown -->
-      </ul>
-    </nav>
-
     <div class="container " style="margin-top: 20px;">
       <div class="well" >
         <div class="panel panel-warning">
@@ -177,5 +149,6 @@
         </div>
       </div>
     </div>
+
   </body>
 </html>

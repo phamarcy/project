@@ -5,7 +5,7 @@
 	    header('Location: login.php');
 	}else if($_SESSION['level'] == 7)
 	{
-		header('Location: form/admin.php');
+		header('Location: admin.php');
 	}
  ?>
 
