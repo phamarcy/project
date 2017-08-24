@@ -69,6 +69,113 @@ window.counttr = 0;
    });
  });
 
+ function getifo(temp) {
+   //part1
+   document.getElementById('department').value = temp['TEACHERDATA']['DEPARTMENT'];
+   document.getElementById('pre').value = temp['TEACHERDATA']['PREFIX'];
+   document.getElementById('fname').value = temp['TEACHERDATA']['NAME'];
+   document.getElementById('position').value = temp['TEACHERDATA']['POSITION'];
+   document.getElementById('qualification').value = temp['TEACHERDATA']['QUALIFICATION'];
+   document.getElementById('workplace').value = temp['TEACHERDATA']['WORKPLACE'];
+   document.getElementById('tel').value = temp['TEACHERDATA']['TELEPHONE']['NUMBER'];
+   document.getElementById('subtel').value = temp['TEACHERDATA']['TELEPHONE']['SUB'];
+   document.getElementById('mobile').value = temp['TEACHERDATA']['MOBILE'];
+   document.getElementById('email').value = temp['TEACHERDATA']['EMAIL'];
+   var choice1 = temp['TEACHERDATA']['HISTORY'];
+   $('input[name="topic"][value=' + choice1 + ']').prop('checked', true);
+
+   //part2
+   document.getElementById('course').value = temp['COURSEDATA']['COURSE_ID'];
+   document.getElementById('numstudent').value = temp['COURSEDATA']['NOSTUDENT'];
+   var choice2 = temp['COURSEDATA']['TYPE_COURSE'];
+   $('input[name="type_course"][value=' + choice2 + ']').prop('checked', true);
+   document.getElementById('reason').value = temp['COURSEDATA']['REASON'];
+   document.getElementById('hour').value = temp['COURSEDATA']['HOUR'];
+   //table
+   for(var tr=1;tr<=temp['NUMTABLE'];tr++)
+   {
+     var table = $('#detailteaching').closest('table');
+     if (table.find('input:text').length < 100) {
+       var x = $("tr[name=addtr]:last").closest('tr').nextAll('tr');
+       var rowCount = $('#detailteaching tr').length;
+       $.each(x, function(i, val) {
+         val.remove();
+       });
+       table.append('<tr class="warning" name="addtr" id="row' + (rowCount - 1) + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + (rowCount - 1) + '" id="delbtn' + (rowCount - 1) +
+         '" value="ลบ" onclick="deleteRow(' + (rowCount - 1) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="detail_topic' + (rowCount - 1) + '" id="detail_topic' + (rowCount - 1) +
+         '" size="30" value="'+temp['COURSEDATA']['DETAIL']['TOPICLEC'][i-1]+'"></div></td><td><input type="date" class="form-control" name="dateteach' + (rowCount - 1) + '" id="dateteach' + (rowCount - 1) +
+         '" size="2" value="'+temp['COURSEDATA']['DETAIL']['DATE'][i-1]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + (rowCount - 1) + '" id="timebegin' + (rowCount - 1) + '" size="2" value="'+temp['COURSEDATA']['DETAIL']['TIME']['BEGIN'][i-1]+'" >  ถึง  <input type="time" class="form-control" name="timeend'
+          + (rowCount - 1) + '" id="timeend' + (rowCount - 1) + '" size="2" value="'+temp['COURSEDATA']['DETAIL']['TIME']['END'][i-1]+'"></div></td><td><input type="text" class="form-control" id="room' + (rowCount - 1) + '" value="'+temp['COURSEDATA']['DETAIL']['ROOM'][i-1]+
+          '"></td></tr>');
+       $.each(x, function(i, val) {
+         table.append(val);
+       });
+     }
+   }
+
+   //part3
+   var choice3 = temp['PAYMENT']['LVLTEACHER']['CHOICE'];
+   $('input[name="levelteacher"][value=' + choice3 + ']').prop('checked', true);
+   if(choice3=="pro")
+   {
+     document.getElementById('GOV_LEVEL').value = temp['PAYMENT']['LVLTEACHER']['DESCRIPT'];
+   }else {
+     document.getElementById('NORM_LEVEL').value = temp['PAYMENT']['LVLTEACHER']['DESCRIPT'];
+   }
+
+   var choice4 = temp['PAYMENT']['COSTSPEC']['CHOICE'];
+   $('input[name="costspec"][value=' + choice4 + ']').prop('checked', true);
+   if(choice4=="choice1")
+   {
+     document.getElementById('choice1num').value; = temp['PAYMENT']['COSTSPEC']['NUMBER'];
+     document.getElementById('choice1hour').value = temp['PAYMENT']['COSTSPEC']['HOUR'];
+     document.getElementById('choice1cost').value = temp['PAYMENT']['COSTSPEC']['COST'];
+   }else {
+     document.getElementById('choice2num').value; = temp['PAYMENT']['COSTSPEC']['NUMBER'];
+     document.getElementById('choice2hour').value = temp['PAYMENT']['COSTSPEC']['HOUR'];
+     document.getElementById('choice2cost').value = temp['PAYMENT']['COSTSPEC']['COST'];
+   }
+
+   if(temp['PAYMENT']['COSTTRANS']['TRANSPLANE']['CHECKED'] == "true")
+   {
+     document.getElementById('AIR_DEPART').value = temp['PAYMENT']['COSTTRANS']['TRANSPLANE']['DEPART'];
+     document.getElementById('AIR_ARRIVE').value = temp['PAYMENT']['COSTTRANS']['TRANSPLANE']['ARRIVE'];
+     document.getElementById('planecost').value = temp['PAYMENT']['COSTTRANS']['TRANSPLANE']['COST'];
+   }
+
+   if(temp['PAYMENT']['COSTTRANS']['TRANSTAXI']['CHECKED'] == "true")
+   {
+     document.getElementById('TAXI_DEPART').value = temp['PAYMENT']['COSTTRANS']['TRANSTAXI']['DEPART'];
+     document.getElementById('TAXI_ARRIVE').value = temp['PAYMENT']['COSTTRANS']['TRANSTAXI']['ARRIVE'];
+     document.getElementById('taxicost').value = temp['PAYMENT']['COSTTRANS']['TRANSTAXI']['COST'];
+   }
+
+   if(temp['PAYMENT']['COSTTRANS']['TRANSSELFCAR']['CHECKED'] == "true")
+   {
+     document.getElementById('SELF_DISTANCT').value = temp['PAYMENT']['COSTTRANS']['TRANSSELFCAR']['DISTANCT'];
+     document.getElementById('selfunit').value = temp['PAYMENT']['COSTTRANS']['TRANSSELFCAR']['UNIT'];
+     document.getElementById('selfcost').value = temp['PAYMENT']['COSTTRANS']['TRANSSELFCAR']['COST'];
+   }
+
+   var choice5 = temp['PAYMENT']['COSTHOTEL']['CHOICE'];
+   $('input[name="hotelchoice"][value=' + choice5 + ']').prop('checked', true);
+   if(choice5=="way3")
+   {
+     document.getElementById('numnight').value = temp['PAYMENT']['COSTHOTEL']['NUMBER'];
+     document.getElementById('pernight').value = temp['PAYMENT']['COSTHOTEL']['PERNIGHT'];
+   }else if (choice5=="way1") {
+     document.getElementById('way1unit').value = temp['PAYMENT']['COSTHOTEL']['UNIT'];
+     document.getElementById('numnight').value = temp['PAYMENT']['COSTHOTEL']['NUMBER'];
+     document.getElementById('pernight').value = temp['PAYMENT']['COSTHOTEL']['PERNIGHT'];
+   }else {
+     document.getElementById('way2unit').value = temp['PAYMENT']['COSTHOTEL']['UNIT'];
+     document.getElementById('numnight').value = temp['PAYMENT']['COSTHOTEL']['NUMBER'];
+     document.getElementById('pernight').value = temp['PAYMENT']['COSTHOTEL']['PERNIGHT'];
+   }
+   document.getElementById('totalcost').value = temp['PAYMENT']['TOTALCOST'];
+
+ }
+
  function checksubject(btntype,type){
    if(btntype==1)
    {
@@ -125,15 +232,12 @@ window.counttr = 0;
    else if (btntype==2) {
      var file_data = new FormData;
      var id = document.getElementById('id').value;
-     var semester = document.getElementById('semester').value;
-     var year = document.getElementById('year').value;
+     var teachername = document.getElementById('teachername').value;
      JSON.stringify(id);
-     JSON.stringify(semester);
-     JSON.stringify(year);
+     JSON.stringify(teachername);
      JSON.stringify(type);
      file_data.append("id",id);
-     file_data.append("semester",semester);
-     file_data.append("year",year);
+     file_data.append("teachername",teachername);
      file_data.append("type",type);
      var URL = '../../application/document/search_document.php';
      $.ajax({
@@ -322,10 +426,11 @@ window.counttr = 0;
          'CHOICE' : document.querySelector("input[name='hotelchoice']:checked").value,
          'UNIT' : hotelunit,
          'NUMBER' : document.getElementById('numnight').value,
-         'pernight' : document.getElementById('pernight').value
+         'PERNIGHT' : document.getElementById('pernight').value
        },
-       'TOTALCOST' : document.getElementById('totalcost').value
-     }
+       'TOTALCOST' : document.getElementById('totalcost').value,
+    },
+    'NUMTABLE' : window.counttr
    };
 
    console.log(JSON.stringify(data));
@@ -593,7 +698,6 @@ window.counttr = 0;
      window.counttr = window.counttr + 1;
      var table = $(this).closest('table');
      if (table.find('input:text').length < 100) {
-       $('#delbtn').removeAttr("disabled");
        var x = $("tr[name=addtr]:last").closest('tr').nextAll('tr');
        var rowCount = $('#detailteaching tr').length;
        $.each(x, function(i, val) {
