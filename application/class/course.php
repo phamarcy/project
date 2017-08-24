@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__."/database.php");
 require_once(__DIR__."/manage_deadline.php");
+require_once(__DIR__."/person.php");
 /**
  *
  */
@@ -18,6 +19,7 @@ class Course
     $this->LOG = new Log();
     $this->DB = new Database();
     $this->DEADLINE = new Deadline();
+    $this->PERSON = new Person();
   }
 
   //search teacher prefix and name
@@ -64,7 +66,10 @@ class Course
 
   public function Search_Document($type,$id)
   {
-
+    if($type =='special')
+    {
+      return $this->Search_Special_Instructor($id);
+    }
     $doc_path = realpath($this->FILE_PATH."/temp/".$id."/".$type);
     $data = array();
     $data['info'] = $this->Get_Course_Info($id);
@@ -82,7 +87,26 @@ class Course
     }
       return $data;
   }
-
+  private function Search_Special_Instructor($course_id)
+  {
+    $doc_path = realpath($this->FILE_PATH."/temp/".$course_id."/".$type);
+    $data = array();
+    if(is_dir($doc_path))
+    {
+        $file_name = scandir($doc_path);
+        for($i=2;$i<count($file_name);$i++)
+        {
+            $files = explode("_",$file_name[$i]);
+            $id = $files[1];
+            $temp['name'] = $this->PERSON->Get_Special_Instructor_Name($id);
+            $temp['semester'] = $files[2];
+            $temp['year'] = $files[3];
+            $temp['year'] = str_replace(".txt","",$temp['year']);
+            array_push($data,$temp);
+        }
+    }
+    return $data;
+  }
   public function Get_Document($type,$id,$semester,$year)
   {
     $file_name = $id."_".$type."_".$semester."_".$year.".txt";

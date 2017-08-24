@@ -68,6 +68,22 @@ class Person
     }
   }
 
+  public function Get_Special_Instructor_Name($id)
+  {
+    $sql = "SELECT * FROM `special_instructor` WHERE `instructor_id` =".$id;
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $name['fname'] = $result[0]['firstname'];
+      $name['lname'] = $result[0]['lastname'];
+      return $name;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
   public function Get_All_Prefix()
   {
     $this->DB->Change_DB('person');
