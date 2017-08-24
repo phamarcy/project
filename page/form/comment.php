@@ -204,6 +204,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp202141" href="#teachersp202141-1">ดร.พจมาน ชำนาญกิจ</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
                                                               </h4>
@@ -245,6 +246,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp202141" href="#teachersp202141-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
                                                               </h4>
@@ -286,6 +288,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp202141" href="#teachersp202141-3">อ.พรพิมล ศิวินา</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
                                                               </h4>
@@ -450,6 +453,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp203151" href="#teachersp203151-1">ดร.พจมาน ชำนาญกิจ</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
                                                               </h4>
@@ -491,6 +495,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp203151" href="#teachersp203151-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
                                                               </h4>
@@ -532,6 +537,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp203151" href="#teachersp203151-3">อ.พรพิมล ศิวินา</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
                                                               </h4>
@@ -696,6 +702,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463681" href="#teachersp463681-1">ดร.พจมาน ชำนาญกิจ</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
                                                               </h4>
@@ -737,6 +744,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463681" href="#teachersp463681-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
                                                               </h4>
@@ -778,6 +786,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463681" href="#teachersp463681-3">อ.พรพิมล ศิวินา</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
                                                               </h4>
@@ -958,6 +967,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463311" href="#teachersp463311-1">ดร.พจมาน ชำนาญกิจ</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -993,6 +1003,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463311" href="#teachersp463311-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -1028,6 +1039,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463311" href="#teachersp463311-3">อ.พรพิมล ศิวินา</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -1174,6 +1186,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463331" href="#teachersp463331-1">ดร.พจมาน ชำนาญกิจ</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -1209,6 +1222,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463331" href="#teachersp463331-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -1244,6 +1258,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463331" href="#teachersp463331-3">อ.พรพิมล ศิวินา</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -1390,6 +1405,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp464301" href="#teachersp464301-1">ดร.พจมาน ชำนาญกิจ</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -1425,6 +1441,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp464301" href="#teachersp464301-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -1460,6 +1477,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp464301" href="#teachersp464301-3">อ.พรพิมล ศิวินา</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -1633,7 +1651,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463332" href="#teachersp463332-1">ดร.พจมาน ชำนาญกิจ</a>
-
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                               </h4>
                                                           </div>
                                                           <div id="teachersp463332-1" class="panel-collapse collapse">
@@ -1668,6 +1686,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463332" href="#teachersp463332-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -1703,6 +1722,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463332" href="#teachersp463332-3">อ.พรพิมล ศิวินา</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -1849,7 +1869,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463342" href="#teachersp463342-1">ดร.พจมาน ชำนาญกิจ</a>
-
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                               </h4>
                                                           </div>
                                                           <div id="teachersp463342-1" class="panel-collapse collapse">
@@ -1884,6 +1904,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463342" href="#teachersp463342-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -1919,6 +1940,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463342" href="#teachersp463342-3">อ.พรพิมล ศิวินา</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -2065,6 +2087,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp464445" href="#teachersp464445-1">ดร.พจมาน ชำนาญกิจ</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -2100,6 +2123,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp464445" href="#teachersp464445-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
@@ -2135,6 +2159,7 @@ session_start();
                                                           <div class="panel-heading">
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp464445" href="#teachersp464445-3">อ.พรพิมล ศิวินา</a>
+                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
                                                               </h4>
                                                           </div>
