@@ -597,17 +597,13 @@ function checksubject(btntype,type){
                        if(temp['info']!=false)
                        {
                          document.getElementById('formdrpd').style.display = "";
-                         //Object.keys(temp).length;
-                            var opt = document.createElement('option');
-                            opt.value = temp[0].semester;
-                            opt.innerHTML = temp[0].semester;
-                            document.getElementById('semester').appendChild(opt);
-
-                            var opt2 = document.createElement('option');
-                            opt2.value = temp[0].year;
-                            opt2.innerHTML = temp[0].year;
-                            document.getElementById('year').appendChild(opt2);
-
+                         for(var i=0;i<(Object.keys(temp).length - 1);i++)
+                         {
+                           var opt = document.createElement('option');
+                           opt.value = temp[i].semester +"_"+ temp[i].year;
+                           opt.innerHTML = "ภาคการศึกษา " +temp[i].semester +" ปีการศึกษา "+ temp[i].year;;
+                           document.getElementById('semester').appendChild(opt);
+                         }
                        }
                         else {
                           alert('ไม่พบกระบวนวิชาที่ค้นหา\nกรุณากรอกข้อมูลใหม่');
@@ -628,8 +624,10 @@ function checksubject(btntype,type){
   else if (btntype==2) {
     var file_data = new FormData;
     var id = document.getElementById('id').value;
-    var semester = document.getElementById('semester').value;
-    var year = document.getElementById('year').value;
+    var semester_temp = document.getElementById('semester').value;
+    var stringspl = semester_temp.split("_");
+    var semester = stringspl[0];
+    var year = stringspl[1];
     JSON.stringify(id);
     JSON.stringify(semester);
     JSON.stringify(year);
@@ -1237,14 +1235,9 @@ function confreset() {
   <div id="formdrpd" style="display: none;">
     <div class="form-inline">
       <div class="form-group " style="font-size:16px;">
-         ภาคการศึกษา
-        <select class="form-control required" id="semester" style="width: 70px;" required >
+         ภาคการศึกษาและปีการศึกษา
+        <select class="form-control required" id="semester" style="width: 300px;" required >
         </select>
-       </div>
-       <div class="form-group " style="font-size:16px;">
-         ปีการศึกษา
-         <select class="form-control required" id="year" style="width: 90px;" required >
-         </select>
        </div>
        <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,1);">
      </div>
