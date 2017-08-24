@@ -58,7 +58,7 @@ $prefix = $prefixobj->Get_All_Prefix();
  </style>
 
  <script>
-
+window.counttr = 0;
  // Charecter fixed
  $(function() {//<-- wrapped here
    $('.numonly').on('input', function() {
@@ -166,6 +166,220 @@ $prefix = $prefixobj->Get_All_Prefix();
                    }
         });
    }
+ }
+
+ function submitfunc(casesubmit) {
+
+   // pack table
+   var topiclec = {};
+   var date = {};
+   var datebegin = {};
+   var dateend = {};
+   var room = {};
+   var arrtopiclec = [];
+   var arrdate = [];
+   var arrtimebegin = [];
+   var arrtimeend = [];
+   var arrroom = [];
+
+   for(var i=1;i<=window.counttr;i++)
+   {
+      arrtopiclec[i-1] = document.getElementById('detail_topic'+i).value;
+      arrdate[i-1] = document.getElementById('dateteach'+i).value;
+      arrtimebegin[i-1] = document.getElementById('timebegin'+i).value;
+      arrtimeend[i-1] = document.getElementById('timeend'+i).value;
+      arrroom[i-1] = document.getElementById('room'+i).value;
+   }
+
+  topiclec = arrtopiclec;
+  date = arrdate;
+  timebegin = arrtimebegin;
+  timeend = arrtimeend;
+  room = arrroom;
+
+  // levelteacher
+  if($('input[name=levelteacher]').val()=="pro")
+  {
+      var lvteacher = document.getElementById('GOV_LEVEL').value;
+  }
+  else
+  {
+      var lvteacher = document.getElementById('NORM_LEVEL').value;
+  }
+
+  //costspec
+  if($('input[name=costspec]').val() == "choice1")
+  {
+      var num = document.getElementById('choice1num').value;
+      var hour = document.getElementById('choice1hour').value;
+      var cost = document.getElementById('choice1cost').value;
+  }
+  else if($('input[name=costspec]').val() == "choice2")
+  {
+      var num = document.getElementById('choice2num').value;
+      var hour = document.getElementById('choice2hour').value;
+      var cost = document.getElementById('choice2cost').value;
+  }
+
+  //trans
+  if(document.getElementById('transplane').checked == true)
+  {
+    var planecheck = "true";
+  }
+  else {
+    var planecheck = "false";
+  }
+
+  if(document.getElementById('transtaxi').checked == true)
+  {
+    var taxicheck = "true";
+  }
+  else {
+    var taxicheck = "false";
+  }
+
+  if(document.getElementById('transselfcar').checked == true)
+  {
+    var selfcarcheck = "true";
+  }
+  else {
+    var selfcarcheck = "false";
+  }
+
+  // hotelunit
+  if(document.querySelector("input[name='hotelchoice']:checked").value=="way1")
+  {
+    var hotelunit = document.getElementById('way1unit').value;
+  }
+  else if (document.querySelector("input[name='hotelchoice']:checked").value=="way2") {
+    var hotelunit = document.getElementById('way2unit').value;
+  }
+
+   var data = {
+     'TEACHERDATA' : {
+       'DEPARTMENT' : document.getElementById('department').value,
+       'PREFIX' : document.getElementById('pre').value,
+       'NAME' : document.getElementById('fname').value,
+       'POSITION' : document.getElementById('position').value,
+       'QUALIFICATION' : document.getElementById('qualification').value,
+       'WORKPLACE' : document.getElementById('workplace').value,
+       'TELEPHONE' : {
+         'NUMBER' : document.getElementById('tel').value,
+         'SUB' : document.getElementById('subtel').value
+       },
+       'MOBILE' : document.getElementById('mobile').value,
+       'EMAIL' : document.getElementById('email').value,
+       'HISTORY' : document.querySelector("input[name='topic']:checked").value
+     },
+     'COURSEDATA' : {
+       'COURSE_ID' : document.getElementById('course').value,
+       'NOSTUDENT' : document.getElementById('numstudent').value,
+       'TYPE_COURSE' : document.querySelector("input[name='type_course']:checked").value,
+       'REASON' : document.getElementById('reason').value,
+       'DETAIL' : {
+         'TOPICLEC' : topiclec,
+         'DATE' : date,
+         'TIME' : {
+           'BEGIN' : timebegin,
+           'END' : timeend
+         },
+         'ROOM' : room
+       },
+       'HOUR' : document.getElementById('hour').value
+     },
+     'PAYMENT' : {
+       'LVLTEACHER' : {
+         'CHOICE' : document.querySelector("input[name='levelteacher']:checked").value,
+         'DESCRIPT' : lvteacher
+       },
+       'COSTSPEC' : {
+         'CHOICE' : document.querySelector("input[name='costspec']:checked").value,
+         'NUMBER' : num,
+         'HOUR' : hour,
+         'COST' : cost
+       },
+       'COSTTRANS' : {
+         'TRANSPLANE' : {
+           'CHECKED' : planecheck,
+           'DEPART' : document.getElementById('AIR_DEPART').value,
+           'ARRIVE' : document.getElementById('AIR_ARRIVE').value,
+           'COST' : document.getElementById('planecost').value
+         },
+         'TRANSTAXI' : {
+           'CHECKED' : taxicheck,
+           'DEPART' : document.getElementById('TAXI_DEPART').value,
+           'ARRIVE' : document.getElementById('TAXI_ARRIVE').value,
+           'COST' : document.getElementById('taxicost').value
+         },
+         'TRANSSELFCAR' : {
+           'CHECKED' : selfcarcheck,
+           'DISTANCT' : document.getElementById('SELF_DISTANCT').value,
+           'UNIT' : document.getElementById('selfunit').value,
+           'COST' : document.getElementById('selfcost').value
+         }
+       },
+       'COSTHOTEL' : {
+         'CHOICE' : document.querySelector("input[name='hotelchoice']:checked").value,
+         'UNIT' : hotelunit,
+         'NUMBER' : document.getElementById('numnight').value,
+         'pernight' : document.getElementById('pernight').value
+       },
+       'TOTALCOST' : document.getElementById('totalcost').value
+     }
+   };
+
+   console.log(JSON.stringify(data));
+   /*if(casesubmit=='1')
+   {
+     senddata(JSON.stringify(data),getfile());
+   }
+   else if(casesubmit=='2')
+   {
+     senddata(JSON.stringify(data),getfile());
+     //console.log(JSON.stringify(data));
+   }*/
+ }
+
+ function senddata(data,file_data)
+ {
+
+   //prompt("data", data);
+    file_data.append("DATA",data);
+    var URL = '../../application/pdf/course_evaluate.php';
+    $.ajax({
+                  url: URL,
+                  dataType: 'text',
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: file_data,
+                  type: 'post',
+                  success: function (result) {
+                       console.log(result);
+                       if(result=='save_success')
+                       {
+                         alert('บันทึกข้อมูลสำเร็จ');
+                       }
+
+                  },
+                  failure: function (result) {
+                       alert(result);
+                  },
+                  error: function (xhr, status, p3, p4) {
+                       var err = "Error " + " " + status + " " + p3 + " " + p4;
+                       if (xhr.responseText && xhr.responseText[0] == "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                       console.log(err);
+                  }
+       });
+ }
+
+ function getfile()
+ {
+   var file_data = $('#cv').prop('files')[0];
+   var form_data = new FormData();
+   form_data.append('file', file_data);
+   return form_data;
  }
 
  $(document).ready(function(){
@@ -376,6 +590,7 @@ $prefix = $prefixobj->Get_All_Prefix();
 
 
    $('#adddetail').click(function() {
+     window.counttr = window.counttr + 1;
      var table = $(this).closest('table');
      if (table.find('input:text').length < 100) {
        $('#delbtn').removeAttr("disabled");
@@ -426,35 +641,16 @@ function lastcal() {
 
   }
 
-  function checkreq() {
+  function checkreq(casesubmit) {
     if($("[required]").val()!=null && $("[required]").val()!="")
     {
-      alert('บันทึกข้อมูลสำเร็จ');
-      submitfunc();
+      submitfunc(casesubmit);
     }
     else {
+
       alert('กรุณากรอกข้อมูลให้ครบถ้วน');
       return false;
     }
-  }
-
-  function checktran() {
-    if($("#inputfname").val()!=null && $("#inputfname").val()!="" &&
-      $("#inputlname").val()!=null && $("#inputlname").val()!="" &&
-      $("#inputyear").val()!=null && $("#inputyear").val()!="" &&
-      $("#semester").val()!=null && $("#semester").val()!="" &&
-      $("#inputsubject").val()!=null && $("inputsubject").val()!="")
-    {
-      alert('ตรวจพบข้อมูล');
-    }
-    else {
-      alert('กรุณากรอกข้อมูลให้ครบถ้วน');
-      return false;
-    }
-  }
-
-  function confreset() {
-      confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
   }
 
   function confreset() {
@@ -483,7 +679,7 @@ function lastcal() {
       <div class="form-inline">
         <div class="form-group " style="font-size:16px;">
            ชื่อ-นามสกุลของอาจารย์พิเศษ
-          <select class="form-control required" id="semester" style="width: 70px;" required >
+          <select class="form-control required" id="teachername" style="width: 70px;" required >
           </select>
          </div>
          <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,2);">
@@ -526,8 +722,8 @@ function lastcal() {
                  ?>
               </select>
               </div>&nbsp;&nbsp;&nbsp;&nbsp;
-              ชื่อ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="fname" size="20" required ></div>&nbsp;&nbsp;&nbsp;&nbsp;
-            นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="lname" size="20" required ></div></li>
+              ชื่อ-นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="fname" size="35" required ></div>&nbsp;
+
           </div>
 
           <div class="form-inline">
@@ -555,7 +751,7 @@ function lastcal() {
       </div>
 
         <div class="form-inline">
-          <li>E-mail &nbsp;&nbsp;<div class="form-group"><input style="height: 25px;" type="email" class="form-control" id="qualification" size="45" required ></div></li>
+          <li>E-mail &nbsp;&nbsp;<div class="form-group"><input style="height: 25px;" type="email" class="form-control" id="email" size="45" required ></div></li>
         </div>
         <div class="form-inline">
           <li>ประวัติการเชิญมาสอน <br>
@@ -641,11 +837,11 @@ function lastcal() {
           <div class="form-inline">
             <li>ค่าพาหนะเดินทาง </li>
             <div class="checkbox">
-              <div class="form-group"><label><input type="checkbox" name="transplane" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="2" min="0" max="99999" >&nbsp;&nbsp;บาท</label></div>
+              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="2" min="0" max="99999" >&nbsp;&nbsp;บาท</label></div>
               <br>
-              <div class="form-group"><label><input type="checkbox" name="transtaxi" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="2" min="0" max="99999" >&nbsp;&nbsp;บาท</label></div>
+              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="2" min="0" max="99999" >&nbsp;&nbsp;บาท</label></div>
               <br>
-              <div class="form-group"><label><input type="checkbox" name="transselfcar" id="transselfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;
+              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transselfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;
                 <input type="text" class="form-control numonly" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="1" min="0" max="9999"> &nbsp;กิโลเมตร  กิโลเมตรละ
                 <input type="text" class="form-control numonly" name="selfunit" id="selfunit" size="4">
                  บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
@@ -670,16 +866,22 @@ function lastcal() {
           <br>
           <div class="form-inline">
             <li style="font-size: 16px;" id="callist"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control numonly" name="totalcost" id="totalcost" size="10" data-minlength="5" min="0" max="99999" READONLY >&nbsp;&nbsp;บาท</li>
-
+            <br>
           </div>
         </ul>
+      </li>
+      <li  style="font-size: 14px;">
+        <b>เลือกไฟล์ Curriculum Vitae (CV) เพื่ออัพโหลด : </b><br />
+      <div class="col-md-5 form-inline form-group">
+        <input type="file" class="filestyle" id="cv" data-icon="false" required><font color="red"><b> ** จำเป็น</b></font>
+      </div>
       </li>
     </ol>
     <br>
     <br>
     <div align="center">
-      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" onclick="checkreq();"> &nbsp;
-      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว"> &nbsp;
+      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" onclick="checkreq('1');"> &nbsp;
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2');"> &nbsp;
       <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>
 </form>

@@ -1282,17 +1282,6 @@ function checkreq(casesubmit) {
   }
 }
 
-function checktran() {
-  if($("#inputyear").val()!=null && $("#inputyear").val()!="" && $("#semester").val()!=null && $("#semester").val()!="" && $("#inputsubject").val()!=null && $("inputsubject").val()!="")
-  {
-    alert('ตรวจพบข้อมูล');
-  }
-  else {
-    alert('กรุณากรอกข้อมูลให้ครบถ้วน');
-    return false;
-  }
-}
-
 function confreset() {
     confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
 }
@@ -1445,34 +1434,34 @@ function confreset() {
               </tr>
               <tr>
                 <td colspan="2">1. สอบกลางภาคฯครั้งที่ 1</td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC1" id="MEASURE_MIDLEC1" size="2"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB1" id="MEASURE_MIDLAB1" size="2"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC1" id="MEASURE_MIDLEC1" size="2" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB1" id="MEASURE_MIDLAB1" size="2" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">2. สอบกลางภาคฯครั้งที่ 2</td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC2" id="MEASURE_MIDLEC2" size="2"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB2" id="MEASURE_MIDLAB2" size="2"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC2" id="MEASURE_MIDLEC2" size="2" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB2" id="MEASURE_MIDLAB2" size="2" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">3. สอบไล่ </td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="2"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="2"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="2" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="2" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">4. งานมอบหมาย </td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_WORKLEC" id="MEASURE_WORKLEC" size="2"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_WORKLAB" id="MEASURE_WORKLAB" size="2"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_WORKLEC" id="MEASURE_WORKLEC" size="2" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_WORKLAB" id="MEASURE_WORKLAB" size="2" value="0"></div></td>
               </tr>
               <tr name="addtr">
 
                 <td colspan="2"><div class="form-group form-inline">5. อื่นๆ โปรดระบุ &nbsp;&nbsp;<input type="text" class="form-control" name="OTHER_MEA" id="OTHER_MEA" size="30"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_OTHLEC" id="MEASURE_OTHLEC" size="2"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_OTHLAB" id="MEASURE_OTHLAB" size="2"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_OTHLEC" id="MEASURE_OTHLEC" size="2" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_OTHLAB" id="MEASURE_OTHLAB" size="2" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2" align="right"><input type="button" class="btn btn-outline btn-warning" name="calmea" id="calmea" value="รวมคะแนน"></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="2"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="2"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="2" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="2" value="0"></div></td>
               </tr>
             </table>
             </div>
