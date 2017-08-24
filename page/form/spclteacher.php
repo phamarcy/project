@@ -127,11 +127,11 @@ window.counttr = 0;
    $('input[name="costspec"][value=' + choice4 + ']').prop('checked', true);
    if(choice4=="choice1")
    {
-     document.getElementById('choice1num').value; = temp['PAYMENT']['COSTSPEC']['NUMBER'];
+     document.getElementById('choice1num').value = temp['PAYMENT']['COSTSPEC']['NUMBER'];
      document.getElementById('choice1hour').value = temp['PAYMENT']['COSTSPEC']['HOUR'];
      document.getElementById('choice1cost').value = temp['PAYMENT']['COSTSPEC']['COST'];
    }else {
-     document.getElementById('choice2num').value; = temp['PAYMENT']['COSTSPEC']['NUMBER'];
+     document.getElementById('choice2num').value = temp['PAYMENT']['COSTSPEC']['NUMBER'];
      document.getElementById('choice2hour').value = temp['PAYMENT']['COSTSPEC']['HOUR'];
      document.getElementById('choice2cost').value = temp['PAYMENT']['COSTSPEC']['COST'];
    }
