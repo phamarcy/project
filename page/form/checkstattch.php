@@ -131,7 +131,7 @@ a[disabled="disabled"] {
                            <?php if ($_SESSION['level'] > 4 ): ?>
                                <th style="width:170px">คณะกรรมการ</th>
                            <?php endif; ?>
-                           <th>คอมเม้นท์</th>
+                           <th>ข้อเสนอแนะ</th>
                          </thead>
                          <tbody>
                            <tr>
@@ -171,7 +171,7 @@ a[disabled="disabled"] {
                        <?php if ($_SESSION['level'] > 4 ): ?>
                            <th style="width:170px">คณะกรรมการ</th>
                        <?php endif; ?>
-                       <th>คอมเม้นท์</th>
+                       <th>ข้อเสนอแนะ</th>
                      </thead>
                      <tbody>
                        <tr>
@@ -210,7 +210,7 @@ a[disabled="disabled"] {
                      <?php if ($_SESSION['level'] > 4 ): ?>
                          <th style="width:170px">คณะกรรมการ</th>
                      <?php endif; ?>
-                     <th>คอมเม้นท์</th>
+                     <th>ข้อเสนอแนะ</th>
                    </thead>
                    <tbody>
                      <tr>
@@ -267,7 +267,7 @@ a[disabled="disabled"] {
                        <?php if ($_SESSION['level'] > 4 ): ?>
                            <th style="width:170px">คณะกรรมการ</th>
                        <?php endif; ?>
-                       <th>คอมเม้นท์</th>
+                       <th>ข้อเสนอแนะ</th>
                      </thead>
                      <tbody>
                        <tr>
@@ -306,7 +306,7 @@ a[disabled="disabled"] {
                      <?php if ($_SESSION['level'] > 4 ): ?>
                          <th style="width:170px">คณะกรรมการ</th>
                      <?php endif; ?>
-                     <th>คอมเม้นท์</th>
+                     <th>ข้อเสนอแนะ</th>
                    </thead>
                    <tbody>
                      <tr>
@@ -363,7 +363,7 @@ a[disabled="disabled"] {
                      <?php if ($_SESSION['level'] > 4 ): ?>
                          <th style="width:170px">คณะกรรมการ</th>
                      <?php endif; ?>
-                     <th>คอมเม้นท์</th>
+                     <th>ข้อเสนอแนะ</th>
                    </thead>
                    <tbody>
                      <tr>
@@ -402,7 +402,7 @@ a[disabled="disabled"] {
                        <?php if ($_SESSION['level'] > 4 ): ?>
                            <th style="width:170px">คณะกรรมการ</th>
                        <?php endif; ?>
-                       <th>คอมเม้นท์</th>
+                       <th>ข้อเสนอแนะ</th>
                      </thead>
                      <tbody>
                        <tr>
@@ -460,7 +460,7 @@ a[disabled="disabled"] {
                      <?php if ($_SESSION['level'] > 4 ): ?>
                          <th style="width:170px">คณะกรรมการ</th>
                      <?php endif; ?>
-                     <th>คอมเม้นท์</th>
+                     <th>ข้อเสนอแนะ</th>
                    </thead>
                    <tbody>
                      <tr>
@@ -499,7 +499,7 @@ a[disabled="disabled"] {
                    <?php if ($_SESSION['level'] > 4 ): ?>
                        <th style="width:170px">คณะกรรมการ</th>
                    <?php endif; ?>
-                   <th>คอมเม้นท์</th>
+                   <th>ข้อเสนอแนะ</th>
                  </thead>
                  <tbody>
                    <tr>

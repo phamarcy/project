@@ -366,23 +366,24 @@
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
 						<?php }else { ?>
+						<?php if ($_SESSION['level']<=1): ?>
+							<li>
+								<a href="#"><i class="fa fa-edit fa-fw"></i> กรอกข้อมูล<span class="fa arrow"></span></a>
 
-						<li>
-							<a href="#"><i class="fa fa-edit fa-fw"></i> กรอกข้อมูล<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li>
+										<a href="#" onclick="loadDoc('form/evaform.php')"><i class="fa fa-pencil fa-fw"></i> กรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
+									</li>
+									<li>
+										<a href="#" onclick="loadDoc('form/spclteacher.php')"><i class="fa fa-pencil fa-fw"></i> กรอกแบบขออนุมัติเชิญอาจารย์พิเศษ</a>
+									</li>
+									<li>
+										<a href="#" onclick="loadDoc('form/upload.php')"><i class="fa fa-upload  fa-fw"></i> อัปโหลดคะแนน</a>
+									</li>
+								</ul>
+							</li>
+						<?php endif; ?>
 
-							<ul class="nav nav-second-level">
-								<li>
-									<a href="#" onclick="loadDoc('form/evaform.php')"><i class="fa fa-pencil fa-fw"></i> กรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
-								</li>
-								<li>
-									<a href="#" onclick="loadDoc('form/spclteacher.php')"><i class="fa fa-pencil fa-fw"></i> กรอกแบบขออนุมัติเชิญอาจารย์พิเศษ</a>
-								</li>
-								<li>
-									<a href="#" onclick="loadDoc('form/upload.php')"><i class="fa fa-upload  fa-fw"></i> อัปโหลดคะแนน</a>
-								</li>
-							</ul>
-							<!-- /.nav-second-level -->
-						</li>
 
 						<?php }
 						if($_SESSION['level'] >= 4)
@@ -397,7 +398,12 @@
 									<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> ประเมินกระบวนวิชา</a>
 								</li>
 							<?php
-						}
+						} ?>
+						<li>
+							<a href="#" onclick="loadDoc('form/history.php')"><i class="fa fa-newspaper-o  fa-fw"></i> ประวัติข้อเสนอแนะ</a>
+						</li>
+						<?php
+
 						}
 						 ?>
 
