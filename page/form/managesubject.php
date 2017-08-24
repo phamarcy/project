@@ -86,18 +86,36 @@ session_start();
                       <b>เพิ่มกระบวนวิชา</b>
                   </div>
                   <div class="panel-body">
-                    <div class="form-inline">
+
                     <form>
-                      <center>
-                      <input class="form-control" id="course_id" placeholder="e.g. 452111" style="width: 100px;">
+                      <div class="form-group">
+                          <div class="form-inline">
+                          <div class="form-group">
+                            <label for="">รหัสวิชา</label>
+                            <input class="form-control" id="course_id" placeholder="e.g. 452111" style="width: 120px;">
+                          </div>
+                          <div class="form-group">
+                            <label for="">หน่วยกิต</label>
+                            <input class="form-control" id="course_id" placeholder="e.g. 3(3-0-6)" style="width: 150px;">
+                          </div>
+                        </div>
+                     </div>
+                      <div class="form-group">
+                        <label for="">ชื่อวิชาภาษาไทย</label>
+                        <input class="form-control" id="course_name" placeholder="e.g. TOXICOLOGY" >
+                      </div>
+                      <div class="form-group">
+                        <label for="">ชื่อวิชาภาษาอังกฤษ</label>
+                        <input class="form-control" id="course_name" placeholder="e.g. พิษวิทยา" >
+                      </div>
                       <button type="button" class="btn btn-outline btn-primary" id="submit"  name="submit">เพิ่ม</button>
                       <div id="warning"></div>
-                    </center>
+
                     </form>
                     <form >
 
                     </form>
-                    </div>
+
                   </div>
                 </div>
               </div>
