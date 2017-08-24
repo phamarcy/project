@@ -601,7 +601,7 @@ function checksubject(btntype,type){
                          {
                            var opt = document.createElement('option');
                            opt.value = temp[i].semester +"_"+ temp[i].year;
-                           opt.innerHTML = "ภาคการศึกษา " +temp[i].semester +" ปีการศึกษา "+ temp[i].year;;
+                           opt.innerHTML = "ภาคการศึกษาที่ " +temp[i].semester +" ปีการศึกษา "+ temp[i].year;
                            document.getElementById('semester').appendChild(opt);
                          }
                        }
