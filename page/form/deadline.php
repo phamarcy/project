@@ -283,7 +283,11 @@ $(document).on('click', "#edit", function() {
     <div class="panel-body" style="padding-top: 0px;">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#course" data-toggle="tab">กำหนดเวลากรอกข้อมูลกระบวนวิชา</a>
+            <li class="active"><a href="#course" data-toggle="tab">กำหนดช่วงเวลาในการกรอกข้อมูลวิธีการวัดผลและประเมินผล</a>
+            </li>
+            <li><a href="#syllabus" data-toggle="tab">กำหนดช่วงเวลาในการอัพโหลดไฟล์ course syllabus</a>
+            </li>
+            <li><a href="#special" data-toggle="tab">กำหนดช่วงเวลาในการกรอกข้อมูลอาจารพิเศษ</a>
             </li>
             <li><a href="#evaluate" data-toggle="tab">กำหนดเวลาประเมินกระบวนวิชา</a>
             </li>
@@ -299,7 +303,7 @@ $(document).on('click', "#edit", function() {
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
                             <div class="form-inline">
-                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดเวลากรอกข้อมูลรายละเอียดกระบวนวิชา
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดเวลากรอกข้อมูลวิธีการวัดผลและประเมินผล
                                     <button type="button" class="btn btn-default" id="addbtn_course">เพิ่ม</button>
                                  </h5>
                             </div>
@@ -322,8 +326,8 @@ $(document).on('click', "#edit", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการกรอกข้อมูลกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการกรอกข้อมูลกระบวนวิชา <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
+                                            วันเปิดการกรอกข้อมูลวิธีการวัดผลและประเมินผล <input class="form-control" type="date" id="opendate"> <br><br>
+                                            วันสุดท้ายของการกรอกข้อมูลวิธีการวัดผลและประเมินผล <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
                                         </div>
                                         <br>
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
@@ -335,6 +339,89 @@ $(document).on('click', "#edit", function() {
                     </div>
                 </div>
             </div>
+            <div class="tab-pane fade" id="syllabus">
+                <div class="container">
+                    <div class="panel panel-default" style="margin-top: 20px;">
+                        <div class="panel-heading">
+                            <div class="form-inline">
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดช่วงเวลาในการอัพโหลดไฟล์ course syllabus
+                                    <button type="button" class="btn btn-default" id="addbtn_course">เพิ่ม</button>
+                                 </h5>
+                            </div>
+                        </div>
+                            <div class="panel-body" id="body_syllabus">
+                                <div class="well" style="position: relative;" id="group_syllabus">
+                                <br>
+                                    <form>
+                                        <div class="form-inline">
+                                            <h style="width: 100px;  ">ภาคการศึกษาที่ </h>
+                                            <div class="form-group">
+                                                <select class="form-control" id="semester" style="width: 70px; ">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                            </div>
+                                            ปีการศึกษา
+                                            <input class="form-control" id="year" name="year" placeholder="e.g. 2560" style="width: 100px;">
+                                        </div>
+                                        <br>
+                                        <div class="form-inline">
+                                            วันเปิดการอัพโหลดไฟล์ course syllabus <input class="form-control" type="date" id="opendate"> <br><br>
+                                            วันสุดท้ายของการอัพโหลดไฟล์ course syllabus <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
+                                        </div>
+                                        <br>
+                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
+                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_syllabus"  name="submit">บันทึก</button>
+                                        <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="special">
+                <div class="container">
+                    <div class="panel panel-default" style="margin-top: 20px;">
+                        <div class="panel-heading">
+                            <div class="form-inline">
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดช่วงเวลาในการกรอกข้อมูลอาจารพิเศษ
+                                    <button type="button" class="btn btn-default" id="addbtn_course">เพิ่ม</button>
+                                 </h5>
+                            </div>
+                        </div>
+                            <div class="panel-body" id="body_special">
+                                <div class="well" style="position: relative;" id="group_special">
+                                <br>
+                                    <form>
+                                        <div class="form-inline">
+                                            <h style="width: 100px;  ">ภาคการศึกษาที่ </h>
+                                            <div class="form-group">
+                                                <select class="form-control" id="semester" style="width: 70px; ">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                            </div>
+                                            ปีการศึกษา
+                                            <input class="form-control" id="year" name="year" placeholder="e.g. 2560" style="width: 100px;">
+                                        </div>
+                                        <br>
+                                        <div class="form-inline">
+                                            วันเปิดการกรอกข้อมูลอาจารพิเศษ <input class="form-control" type="date" id="opendate"> <br><br>
+                                            วันสุดท้ายของการกรอกข้อมูลอาจารพิเศษ <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
+                                        </div>
+                                        <br>
+                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
+                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_special"  name="submit">บันทึก</button>
+                                        <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="tab-pane fade" id="approve">
                 <div class="container">
                     <div class="panel panel-default" style="margin-top: 20px;">

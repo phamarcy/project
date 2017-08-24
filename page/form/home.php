@@ -107,10 +107,6 @@ else
 					</center>
 				</div>
 				<br>
-				<?php
-					if($_SESSION['level'] != 2 && $_SESSION['level'] !=3 )
-				{
-					?>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h5 class="panel-title">
@@ -275,7 +271,6 @@ else
 
 						</div>
 					</div>
-					<?php } ?>
 			</div>
 		</div>
 
