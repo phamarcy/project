@@ -42,8 +42,9 @@ $p = new Person();
  <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-
-
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+ <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+ <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
  </header>
  <body class="mybox">
@@ -72,6 +73,7 @@ $p = new Person();
                  <th>ชื่อ</th>
                  <th>นามสกุล</th>
                  <th>สถานะผู้ใช้งาน</th>
+                 <th>ระยะเวลา</th>
                  <th>สถานะการมอบอำนาจ</th>
                  <th></th>
                </thead>
@@ -80,6 +82,7 @@ $p = new Person();
                    <td>วิชัย</td>
                    <td>ใจดี</td>
                    <td>คณะกรรมการคณะ</td>
+                   <td>25/08/2560 - 30/08/2560 </td>
                    <td>ได้รับมอบอำนาจการอนุมัติ</td>
                    <td><input type="button" class="btn btn-outline btn-danger" id="cancelgrantbtn" value="ยกเลิกการมอบอำนาจ"></td>
                  </tr>
@@ -95,11 +98,17 @@ $p = new Person();
             <div class="form-inline" style="font-size: 14px;">
               <form class="" action="" method="post">
                 <div class="form-group">
+                  <label for="">ชื่อ</label>
                   <select class="form-control" name="">
-              <?php foreach ($p->Get_All_Teacher() as $value): ?>
-                      <option value="<?php echo $value['id'] ?>"><?php echo $value['prefix']." ".$value['name'] ?></option>
-              <?php endforeach; ?>
+                      <option >รศ.ดร. ภญ.ศิริวิภา ปิยะมงคล</option>
+                      <option >ผศ.ดร. ภก.ทรงวุฒิ ยศวิมลวัฒน์</option>
+                      <option >ผศ.ดร. ภญ.รัตนาภรณ์ อาวิพันธ์</option>
+                      <option >รศ.ดร. ภญ.หทัยกาญจน์ เชาวนพูนผล</option>
                   </select>
+                </div>
+                <div class="form-group">
+                  <label for="">ระยะเวลา</label>
+                  <input type="text" class="form-control" name="daterange" />
                 </div>
                 <input type="submit" class="btn btn-outline btn-warning" id="ค้นหา" value="มอบอำนาจ">
               </form>
@@ -113,5 +122,12 @@ $p = new Person();
  </body>
  <script type="text/javascript">
    $('select').select2();
+   $(function() {
+    $('input[name="daterange"]').daterangepicker({
+      locale: {
+            format: 'DD/MM/YYYY'
+        }
+    });
+  });
  </script>
  </html>
