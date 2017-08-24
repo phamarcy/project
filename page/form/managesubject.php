@@ -79,33 +79,67 @@ session_start();
           <h5><b>ภาคการศึกษาที่ 1 ปีการศึกษา 2560 ภาควิชาบริบาลเภสัชกรรม</b></h5>
         </div>
         <div class="panel-body">
-          <div class="panel panel-warning">
-            <div class="panel-heading">
-                <b>เพิ่มกระบวนวิชา</b>
-            </div>
-            <div class="panel-body">
-              <div class="form-inline">
-              <form>
-                <input class="form-control" id="course_id" placeholder="e.g. 452111" style="width: 100px;">
-                <button type="button" class="btn btn-outline btn-primary" id="submit"  name="submit">เพิ่ม</button>
-                <div id="warning"></div>
-              </form>
+          <div class="row">
+              <div class="col-md-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <b>เพิ่มกระบวนวิชา</b>
+                  </div>
+                  <div class="panel-body">
+                    <div class="form-inline">
+                    <form>
+                      <center>
+                      <input class="form-control" id="course_id" placeholder="e.g. 452111" style="width: 100px;">
+                      <button type="button" class="btn btn-outline btn-primary" id="submit"  name="submit">เพิ่ม</button>
+                      <div id="warning"></div>
+                    </center>
+                    </form>
+                    <form >
+
+                    </form>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+              <div class="col-md-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <b>ข้อมูลกระบวนวิชาในสังกัดย้อนหลัง</b>
+                  </div>
+                  <div class="panel-body">
+                    <div class="form-inline">
+                      <center>
+                        <form>
+                          <button type="button" class="btn btn-outline btn-primary " id="submit"  name="submit"><b>1/2557</b></button>
+                          <button type="button" class="btn btn-outline btn-primary " id="submit"  name="submit"><b>1/2558</b></button>
+                          <button type="button" class="btn btn-outline btn-primary " id="submit"  name="submit"><b>1/2559</b></button>
+                          <div id="warning"></div>
+                        </form>
+                      </center>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </div>
+
           <div class="panel panel-info">
             <div class="panel-heading">
               <b>กระบวนวิชาที่สังกัดในภาควิชา</b>
             </div>
             <div class="panel-body">
+              <center>
+              <button type="button" class="btn btn-outline btn-primary btn-lg " id="submit"  name="submit">บันทึกสำเนา</button>
+              </center>
+              <hr>
               <table class="table table-hover" style="font-size:14px">
                 <col width="130">
                 <col width="80">
                 <thead>
                     <tr>
-                        <th width="20%">รหัสวิชา</th>
-                        <th width="60%">ชื่อวิชา</th>
-                        <th width="20%"></th>
+                        <th width="10%">รหัสวิชา</th>
+                        <th width="65%">ชื่อวิชา</th>
+                        <th width="5%"></th>
+                        <th width="10%"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -113,16 +147,19 @@ session_start();
                         <td>462533</td>
                         <td>HEALTH BEHAVIORS AND PHARMACEUTICAL CARE</td>
                         <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                        <td><button type="button" class="btn btn-outline btn-success" id="add"  name="delete" >เพิ่มอาจารย์</button></td>
                     </tr>
                     <tr>
                         <td>461525</td>
                         <td>BASIC KNOWLEDGE OF THAI TRADITIONAL MEDICINEE</td>
                         <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                        <td><button type="button" class="btn btn-outline btn-success" id="add"  name="delete" >เพิ่มอาจารย์</button></td>
                     </tr>
                     <tr>
                         <td>461532</td>
                         <td>DRUG SYNTHESIS</td>
                         <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                        <td><button type="button" class="btn btn-outline btn-success" id="add"  name="delete" >เพิ่มอาจารย์</button></td>
                     </tr>
                 </tbody>
             </table>
