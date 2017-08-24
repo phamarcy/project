@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__."/database.php");
-
+require_once(__DIR__."/../config/configuration_variable.php");
 /**
  *
  */
@@ -12,10 +12,12 @@ class Person
 
   function __construct()
   {
+    global $DATABASE;
     # code...
     $this->LOG = new Log();
     $this->DB = new Database();
     $this->DB->Change_DB('person');
+    $this->DEFAULT_DB = $DATABASE['NAME'];
   }
 
   public function Get_Person_Name()
@@ -56,7 +58,7 @@ class Person
     $this->DB->Change_DB('person');
     $sql = "SELECT p.`name` as prefix ,s.`fname`,s.`lname` FROM `staff` s,`prefix` p WHERE s.`code` = '".$teacher_id."' AND s.`prefix_code` = p.`code` ";
     $result = $this->DB->Query($sql);
-    $this->DB->Change_DB('pharmacy');
+    $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)
     {
       $full_name = $result[0]['prefix']." ".$result[0]['fname']." ".$result[0]['lname'];
@@ -70,7 +72,7 @@ class Person
 
   public function Get_Special_Instructor_Name($id)
   {
-    $this->DB->Change_DB('pharmacy');
+    $this->DB->Change_DB($this->DEFAULT_DB);
     $sql = "SELECT * FROM `special_instructor` WHERE `instructor_id` = ".$id;
     $result = $this->DB->Query($sql);
     if($result)
@@ -89,7 +91,7 @@ class Person
     $this->DB->Change_DB('person');
     $sql = "SELECT `code`,`name` FROM `prefix`";
     $result = $this->DB->Query($sql);
-    $this->DB->Change_DB('pharmacy');
+    $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)
     {
       $prefix = array();
