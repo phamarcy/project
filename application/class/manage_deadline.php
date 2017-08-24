@@ -18,18 +18,6 @@ Class Deadline
 //require string type : course,approve
   public function Search_all($type)
   {
-      if($type == 'course')
-      {
-        $type = 1;
-      }
-      else if($type =='approve')
-      {
-        $type = 2;
-      }
-      else if($type == 'evaluate')
-      {
-        $type = 3;
-      }
       $this->DB = new Database();
       $sql = "SELECT s.`semester_num`,s.`year`,d.`last_date`,d.`open_date`
         FROM `deadline` d,`semester` s
@@ -50,23 +38,6 @@ Class Deadline
 //require array : data, string : type
   public function Update($data,$type)
   {
-
-    if($type == 'course')
-    {
-      $type = 1;
-    }
-    else if($type == 'approve')
-    {
-      $type = 2;
-    }
-    else if($type == 'evaluate')
-    {
-      $type = 3;
-    }
-    else {
-      $return['error'] = 'Update failed, Invalid type';
-      return $return;
-    }
     $semester_id = $this->Get_Semester_id($data['semester'],$data['year']);
     $this->DB = new Database();
     $sql = "INSERT INTO `deadline`(`semester_id`, `deadline_type`, `open_date`, `last_date`)

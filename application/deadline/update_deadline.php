@@ -18,8 +18,41 @@ else
 		{
 			if(isset($_POST['DATA']))
 			{
-				$result = $deadline->Update($_POST['DATA'],$type);
-				$DATA = $result;
+				if($type == 'course')
+				{
+					$type = '1';
+					$result = $deadline->Update($_POST['DATA'],$type);
+					$DATA = $result;
+				}
+				else if($type == 'syllabus')
+				{
+					$type = '2';
+					$result = $deadline->Update($_POST['DATA'],$type);
+					$DATA = $result;
+				}
+				else if($type == 'special')
+				{
+					$type = '3';
+					$result = $deadline->Update($_POST['DATA'],$type);
+					$DATA = $result;
+				}
+				else if($type == 'evaluate')
+				{
+					$type = '4';
+					$result = $deadline->Update($_POST['DATA'],$type);
+					$DATA = $result;
+				}
+				else if($type == 'approve')
+				{
+					$type = '5';
+					$result = $deadline->Update($_POST['DATA'],$type);
+					$DATA = $result;
+				}
+				else
+				{
+					$DATA['error'] = 'Invalid format';
+				}
+
 			}
 
 		}
@@ -30,14 +63,24 @@ else
 				$result = $deadline->Search_all('1');
 				$DATA['data'] = $result;
 			}
-			else if($type == 'approve')
+			else if($type == 'syllabus')
 			{
 				$result = $deadline->Search_all('2');
 				$DATA['data'] = $result;
 			}
-			else if($type == 'evaluate')
+			else if($type == 'special')
 			{
 				$result = $deadline->Search_all('3');
+				$DATA['data'] = $result;
+			}
+			else if($type == 'evaluate')
+			{
+				$result = $deadline->Search_all('4');
+				$DATA['data'] = $result;
+			}
+			else if($type == 'approve')
+			{
+				$result = $deadline->Search_all('5');
 				$DATA['data'] = $result;
 			}
 			else

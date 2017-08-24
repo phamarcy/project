@@ -44,6 +44,8 @@ function loaddataAll()
     $('#loading').html("<center><img src='../../application/picture/loading_icon.gif'></center>");
     $(".container").hide();
     loaddata('course');
+    loaddata('syllabus');
+    loaddata('special');
     loaddata('evaluate');
     loaddata('approve');
 }
@@ -133,7 +135,7 @@ function reset_date(object)
 }
 $(document).ready(function() {
   //add more data button
-    $("#addbtn_course, #addbtn_evaluate, #addbtn_approve").click(function() {
+    $("#addbtn_course, #addbtn_syllabus, #addbtn_special, #addbtn_evaluate, #addbtn_approve").click(function() {
         var id = $(this).attr('id');
         var type = id.split("_");
         type = type[1];
@@ -191,7 +193,7 @@ $(document).on('change', '#opendate', function() {
 });
 
 //submit data to database
-$(document).on('click', "#submitbtn_course, #submitbtn_approve, #submitbtn_evaluate", function() {
+$(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_special,#submitbtn_approve, #submitbtn_evaluate", function() {
     var id = $(this).attr('id');
     var type = id.split("_");
     type = type[1];
@@ -234,7 +236,7 @@ $(document).on('click', "#submitbtn_course, #submitbtn_approve, #submitbtn_evalu
       if(error == 0)
       {
       formData['semester'] = $(form).find('#semester').val();
-      $(form).find("#warning").html("<img src='../../application/picture/loading_icon.gif' height='42'> ");
+      $(form).find("#warning").html("<img src='../../application/picture/loading_icon.gif' height='60'> ");
       $.post(url, { 'DATA': formData }).done(function(data) {
           $(form).find("#warning").html("");
           console.log(data);
@@ -345,7 +347,7 @@ $(document).on('click', "#edit", function() {
                         <div class="panel-heading">
                             <div class="form-inline">
                                 <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดช่วงเวลาในการอัพโหลดไฟล์ course syllabus
-                                    <button type="button" class="btn btn-default" id="addbtn_course">เพิ่ม</button>
+                                    <button type="button" class="btn btn-default" id="addbtn_syllabus">เพิ่ม</button>
                                  </h5>
                             </div>
                         </div>
@@ -386,7 +388,7 @@ $(document).on('click', "#edit", function() {
                         <div class="panel-heading">
                             <div class="form-inline">
                                 <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดช่วงเวลาในการกรอกข้อมูลอาจารพิเศษ
-                                    <button type="button" class="btn btn-default" id="addbtn_course">เพิ่ม</button>
+                                    <button type="button" class="btn btn-default" id="addbtn_special">เพิ่ม</button>
                                  </h5>
                             </div>
                         </div>

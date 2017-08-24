@@ -89,7 +89,7 @@ $(function() {//<-- wrapped here
                 <div class="container">
                 <div class="tab-content">
                     <div class="tab-pane fade active in" id="course">
-                        <div class="panel panel-warning">
+                        <div class="panel panel-info">
                             <div class="panel-heading">
                               <h5>
                               <?php echo "แบบแจ้งวิธีการวัดผลและประเมินผล ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;?>
@@ -111,19 +111,19 @@ $(function() {//<-- wrapped here
                                           <td>1</td>
                                           <td>460100</td>
                                           <td>LEARNING THROUGH ACTIVITIES 1</td>
-                                          <td>@mdo</td>
+                                          <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
                                       </tr>
                                       <tr>
                                           <td>2</td>
                                           <td>460201</td>
                                           <td>LEARNING THROUGH ACTIVITIES 2</td>
-                                          <td>@fat</td>
+                                          <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
                                       </tr>
                                       <tr>
                                           <td>3</td>
                                           <td>460202</td>
                                           <td>LEARNING THROUGH ACTIVITIES 3</td>
-                                          <td>@twitter</td>
+                                          <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
                                       </tr>
                                   </tbody>
                               </table>
@@ -132,7 +132,7 @@ $(function() {//<-- wrapped here
                         </div>
                     </div>
                     <div class="tab-pane fade" id="special">
-                      <div class="panel panel-warning">
+                      <div class="panel panel-info">
                           <div class="panel-heading">
                             <h5>
                             <?php echo "แบบเชิญอาจารย์พิเศษ ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;?>
@@ -161,16 +161,16 @@ $(function() {//<-- wrapped here
                                                 <tr>
                                                     <td>1</td>
                                                     <td>ใจเริง มนต์ประสิทธิ์</td>
-                                                    <td>PDF</td>
-                                                    <td>CV</td>
+                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
+                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
                                                 </tr>
                                             </tbody>
                                             <tbody>
                                                 <tr>
                                                     <td>2</td>
                                                     <td>ฤกษ์ พินิจพันธ์</td>
-                                                    <td>PDF</td>
-                                                    <td>CV</td>
+                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
+                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
                                                 </tr>
                                             </tbody>
                                           </table>
@@ -199,20 +199,20 @@ $(function() {//<-- wrapped here
                                                 <tr>
                                                     <td>1</td>
                                                     <td>เกษราภรณ์ คำมิธรรม</td>
-                                                    <td>PDF</td>
-                                                    <td>CV</td>
+                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
+                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
                                                     <td>รัชนก อินทนนท์</td>
-                                                    <td>PDF</td>
-                                                    <td>CV</td>
+                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
+                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
                                                 </tr>
                                                 <tr>
                                                     <td>3</td>
                                                     <td>ณเดช คูกิมิยะ</td>
-                                                    <td>PDF</td>
-                                                    <td>CV</td>
+                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
+                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
                                                 </tr>
                                             </tbody>
                                           </table>
