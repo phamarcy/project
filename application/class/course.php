@@ -98,6 +98,7 @@ class Course
         {
             $files = explode("_",$file_name[$i]);
             $id = $files[1];
+            $temp['id'] = $files[1];
             $temp['name'] = $this->PERSON->Get_Special_Instructor_Name($id);
             $temp['semester'] = $files[2];
             $temp['year'] = $files[3];
