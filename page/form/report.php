@@ -146,7 +146,7 @@ $(function() {//<-- wrapped here
                                         <a data-toggle="collapse" href="#460100">460100 LEARNING THROUGH ACTIVITIES 1</a>
                                       </div>
                                     </div>
-                                    <div id="460100" class="panel-collapse collapse">
+                                    <div id="460100" class="panel-collapse collapse in">
                                       <div class="panel-body">
                                         <table class="table table-hover" style="font-size:14px">
                                             <thead>
@@ -184,7 +184,7 @@ $(function() {//<-- wrapped here
                                         <a data-toggle="collapse" href="#460201">460201 LEARNING THROUGH ACTIVITIES 2</a>
                                       </div>
                                     </div>
-                                    <div id="460201" class="panel-collapse collapse">
+                                    <div id="460201" class="panel-collapse collapse in">
                                       <div class="panel-body">
                                         <table class="table table-hover">
                                             <thead>
