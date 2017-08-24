@@ -180,7 +180,7 @@ else
 														<div class="panel-heading">
 															<h3 class="panel-title">
 														<a data-toggle="collapse" href="#collapse<?php echo $key ?>" disabled="disabled">
-														 <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและกระบวนวิชา  </b><i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
+														 <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b><i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
 													</h3>
 														</div>
 														<?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
