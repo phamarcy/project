@@ -89,7 +89,7 @@ class Course
   }
   private function Search_Special_Instructor($course_id)
   {
-    $doc_path = realpath($this->FILE_PATH."/temp/".$course_id."/".$type);
+    $doc_path = realpath($this->FILE_PATH."/temp/".$course_id."/special_instructor");
     $data = array();
     if(is_dir($doc_path))
     {
