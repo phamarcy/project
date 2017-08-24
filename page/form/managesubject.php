@@ -172,7 +172,7 @@ session_start();
             </div>
             <div class="panel-body">
               <center>
-              <button type="button" class="btn btn-outline btn-primary btn-lg " id="submit"  name="submit">บันทึกสำเนา</button>
+              <button type="button" class="btn btn-outline btn-primary btn-lg " id="submit"  name="submit">บันทึก</button>
               </center>
               <hr>
               <table class="table table-hover" style="font-size:14px">
