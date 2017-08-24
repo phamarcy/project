@@ -101,11 +101,11 @@ session_start();
                         </div>
                      </div>
                       <div class="form-group">
-                        <label for="">ชื่อวิชาภาษาไทย</label>
+                        <label for="">ชื่อวิชาภาษาอังกฤษ</label>
                         <input class="form-control" id="course_name" placeholder="e.g. TOXICOLOGY" >
                       </div>
                       <div class="form-group">
-                        <label for="">ชื่อวิชาภาษาอังกฤษ</label>
+                        <label for="">ชื่อวิชาภาษาไทย</label>
                         <input class="form-control" id="course_name" placeholder="e.g. พิษวิทยา" >
                       </div>
                       <button type="button" class="btn btn-outline btn-primary" id="submit"  name="submit">เพิ่ม</button>
