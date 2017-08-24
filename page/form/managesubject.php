@@ -121,10 +121,54 @@ session_start();
                 </div>
               </div>
           </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <b>กระบวนวิชาที่สังกัดในภาควิชา (ย้อนหลัง) 1/2559</b>
+            </div>
+            <div class="panel-body">
+              <center>
+              <button type="button" class="btn btn-outline btn-primary btn-lg " id="submit"  name="submit">นำไปใช้</button>
+              </center>
+              <hr>
+              <table class="table table-hover" style="font-size:14px">
+                <col width="130">
+                <col width="80">
+                <thead>
+                    <tr>
+                        <th width="10%">รหัสวิชา</th>
+                        <th width="65%">ชื่อวิชา</th>
+                        <th width="5%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>464402</td>
+                        <td>INTEGRATION IN PHARMACY</td>
+                        <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                    </tr>
+                    <tr>
+                        <td>464403</td>
+                        <td>PATIENT INTERVIEW AND DRUG DISPENSING</td>
+                        <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                    </tr>
+                    <tr>
+                        <td>464441</td>
+                        <td>PHARMACOEPIDEMIOLOGY 1</td>
+                        <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                    </tr>
+                    <tr>
+                        <td>464441</td>
+                        <td>PHARMACOEPIDEMIOLOGY 1</td>
+                        <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+          </div>
 
           <div class="panel panel-info">
             <div class="panel-heading">
-              <b>กระบวนวิชาที่สังกัดในภาควิชา</b>
+              <b>กระบวนวิชาใน 2/2557</b>
             </div>
             <div class="panel-body">
               <center>
