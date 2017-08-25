@@ -156,28 +156,425 @@ session_start();
                         <th width="10%">รหัสวิชา</th>
                         <th width="65%">ชื่อวิชา</th>
                         <th width="5%"></th>
+                        <th width="5%"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>464402</td>
                         <td>INTEGRATION IN PHARMACY</td>
+                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#464402" class="accordion-toggle">ผู้รับผิดชอบ</button></td>
                         <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                    </tr>
+                    <tr class="hiddenRow">
+                      <td colspan="12">
+                        <div class="accordian-body collapse" id="464402">
+                          <div class="panel panel-success">
+                            <div class="panel-heading">
+                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                            </div>
+                            <div class="panel-body">
+                                      <div class="panel-group" id="464402">
+                                          <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#464402" href="#listname464402-1">อาจารย์ผู้สอน</a>
+                                                  </h4>
+                                              </div>
+                                              <div id="listname464402-1" class="panel-collapse collapse">
+                                                  <div class="panel-body">
+                                                    <div class="col-md-5">
+                                                      <div class="form-group">
+                                                        <form class="" action="" method="post">
+                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
+                                                          <div class="form-inline">
+                                                            <input type="text" name="teacher" value="" class="form-control">
+                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                          </div>
+                                                        </form>
+                                                      </div>
+                                                    </div>
+                                                    <table class="table">
+                                                      <thead>
+                                                        <th>ลำดับ</th>
+                                                        <th>ชื่อ-นามสกุล</th>
+                                                        <th></th>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>1</td>
+                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#accordion" href="#listname464402-2">คณะกรรมการ</a>
+                                                  </h4>
+                                              </div>
+                                              <div id="listname464402-2" class="panel-collapse collapse">
+                                                  <div class="panel-body">
+                                                    <div class="col-md-5">
+                                                      <div class="form-group">
+                                                        <form class="" action="" method="post">
+                                                          <label for="">เพิ่มคณะกรรมการ</label>
+                                                          <div class="form-inline">
+                                                            <input type="text" name="teacher" value="" class="form-control">
+                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                          </div>
+                                                        </form>
+                                                      </div>
+                                                    </div>
+                                                    <table class="table">
+                                                      <thead>
+                                                        <th>ลำดับ</th>
+                                                        <th>ชื่อ-นามสกุล</th>
+                                                        <th></th>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>1</td>
+                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>2</td>
+                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>3</td>
+                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                  <!-- .panel-body -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
                     </tr>
                     <tr>
                         <td>464403</td>
                         <td>PATIENT INTERVIEW AND DRUG DISPENSING</td>
+                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#464403" class="accordion-toggle">ผู้รับผิดชอบ</button></td>
                         <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                    </tr>
+                    <tr class="hiddenRow">
+                      <td colspan="12">
+                        <div class="accordian-body collapse" id="464403">
+                          <div class="panel panel-success">
+                            <div class="panel-heading">
+                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                            </div>
+                            <div class="panel-body">
+                                      <div class="panel-group" id="464403">
+                                          <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#464403" href="#listname464403-1">อาจารย์ผู้สอน</a>
+                                                  </h4>
+                                              </div>
+                                              <div id="listname464403-1" class="panel-collapse collapse">
+                                                  <div class="panel-body">
+                                                    <div class="col-md-5">
+                                                      <div class="form-group">
+                                                        <form class="" action="" method="post">
+                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
+                                                          <div class="form-inline">
+                                                            <input type="text" name="teacher" value="" class="form-control">
+                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                          </div>
+                                                        </form>
+                                                      </div>
+                                                    </div>
+                                                    <table class="table">
+                                                      <thead>
+                                                        <th>ลำดับ</th>
+                                                        <th>ชื่อ-นามสกุล</th>
+                                                        <th></th>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>1</td>
+                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#accordion" href="#listname464403-2">คณะกรรมการ</a>
+                                                  </h4>
+                                              </div>
+                                              <div id="listname464403-2" class="panel-collapse collapse">
+                                                  <div class="panel-body">
+                                                    <div class="col-md-5">
+                                                      <div class="form-group">
+                                                        <form class="" action="" method="post">
+                                                          <label for="">เพิ่มคณะกรรมการ</label>
+                                                          <div class="form-inline">
+                                                            <input type="text" name="teacher" value="" class="form-control">
+                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                          </div>
+                                                        </form>
+                                                      </div>
+                                                    </div>
+                                                    <table class="table">
+                                                      <thead>
+                                                        <th>ลำดับ</th>
+                                                        <th>ชื่อ-นามสกุล</th>
+                                                        <th></th>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>1</td>
+                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>2</td>
+                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>3</td>
+                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                  <!-- .panel-body -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
                     </tr>
                     <tr>
                         <td>464441</td>
                         <td>PHARMACOEPIDEMIOLOGY 1</td>
+                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#464441" class="accordion-toggle">ผู้รับผิดชอบ</button></td>
                         <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                     </tr>
+                    <tr class="hiddenRow">
+                      <td colspan="12">
+                        <div class="accordian-body collapse" id="464441">
+                          <div class="panel panel-success">
+                            <div class="panel-heading">
+                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                            </div>
+                            <div class="panel-body">
+                                      <div class="panel-group" id="464441">
+                                          <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#464441" href="#listname464441-1">อาจารย์ผู้สอน</a>
+                                                  </h4>
+                                              </div>
+                                              <div id="listname464441-1" class="panel-collapse collapse">
+                                                  <div class="panel-body">
+                                                    <div class="col-md-5">
+                                                      <div class="form-group">
+                                                        <form class="" action="" method="post">
+                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
+                                                          <div class="form-inline">
+                                                            <input type="text" name="teacher" value="" class="form-control">
+                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                          </div>
+                                                        </form>
+                                                      </div>
+                                                    </div>
+                                                    <table class="table">
+                                                      <thead>
+                                                        <th>ลำดับ</th>
+                                                        <th>ชื่อ-นามสกุล</th>
+                                                        <th></th>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>1</td>
+                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#accordion" href="#listname464441-2">คณะกรรมการ</a>
+                                                  </h4>
+                                              </div>
+                                              <div id="listname464441-2" class="panel-collapse collapse">
+                                                  <div class="panel-body">
+                                                    <div class="col-md-5">
+                                                      <div class="form-group">
+                                                        <form class="" action="" method="post">
+                                                          <label for="">เพิ่มคณะกรรมการ</label>
+                                                          <div class="form-inline">
+                                                            <input type="text" name="teacher" value="" class="form-control">
+                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                          </div>
+                                                        </form>
+                                                      </div>
+                                                    </div>
+                                                    <table class="table">
+                                                      <thead>
+                                                        <th>ลำดับ</th>
+                                                        <th>ชื่อ-นามสกุล</th>
+                                                        <th></th>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>1</td>
+                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>2</td>
+                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>3</td>
+                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                  <!-- .panel-body -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
                     <tr>
-                        <td>464441</td>
-                        <td>PHARMACOEPIDEMIOLOGY 1</td>
+                        <td>463545</td>
+                        <td>INSTRUMENTS FOR EXTRACTION AND PHARMACEUTICAL ANALYSIS</td>
+                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463545" class="accordion-toggle">ผู้รับผิดชอบ</button></td>
                         <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                    </tr>
+                    <tr class="hiddenRow">
+                      <td colspan="12">
+                        <div class="accordian-body collapse" id="463545">
+                          <div class="panel panel-success">
+                            <div class="panel-heading">
+                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                            </div>
+                            <div class="panel-body">
+                                      <div class="panel-group" id="463545">
+                                          <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#463545" href="#listname463545-1">อาจารย์ผู้สอน</a>
+                                                  </h4>
+                                              </div>
+                                              <div id="listname463545-1" class="panel-collapse collapse">
+                                                  <div class="panel-body">
+                                                    <div class="col-md-5">
+                                                      <div class="form-group">
+                                                        <form class="" action="" method="post">
+                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
+                                                          <div class="form-inline">
+                                                            <input type="text" name="teacher" value="" class="form-control">
+                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                          </div>
+                                                        </form>
+                                                      </div>
+                                                    </div>
+                                                    <table class="table">
+                                                      <thead>
+                                                        <th>ลำดับ</th>
+                                                        <th>ชื่อ-นามสกุล</th>
+                                                        <th></th>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>1</td>
+                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#accordion" href="#listname463545-2">คณะกรรมการ</a>
+                                                  </h4>
+                                              </div>
+                                              <div id="listname463545-2" class="panel-collapse collapse">
+                                                  <div class="panel-body">
+                                                    <div class="col-md-5">
+                                                      <div class="form-group">
+                                                        <form class="" action="" method="post">
+                                                          <label for="">เพิ่มคณะกรรมการ</label>
+                                                          <div class="form-inline">
+                                                            <input type="text" name="teacher" value="" class="form-control">
+                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                          </div>
+                                                        </form>
+                                                      </div>
+                                                    </div>
+                                                    <table class="table">
+                                                      <thead>
+                                                        <th>ลำดับ</th>
+                                                        <th>ชื่อ-นามสกุล</th>
+                                                        <th></th>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>1</td>
+                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>2</td>
+                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>3</td>
+                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                  <!-- .panel-body -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
                     </tr>
                 </tbody>
             </table>
@@ -208,12 +605,12 @@ session_start();
                     <tr>
                         <td>462533</td>
                         <td>HEALTH BEHAVIORS AND PHARMACEUTICAL CARE</td>
+                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#462533" class="accordion-toggle">เพิ่มผู้รับผิดชอบ</button></td>
                         <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#203151" class="accordion-toggle">เพิ่มอาจารย์</button></td>
                     </tr>
                     <tr class="hiddenRow">
                       <td colspan="12">
-                        <div class="accordian-body collapse" id="203151">
+                        <div class="accordian-body collapse" id="462533">
                           <div class="panel panel-success">
                             <div class="panel-heading">
                               <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
@@ -231,7 +628,7 @@ session_start();
                                                     <div class="col-md-5">
                                                       <div class="form-group">
                                                         <form class="" action="" method="post">
-                                                          <label for="">เพิ่มอาจารย์ผู้สอน</label>
+                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
                                                           <div class="form-inline">
                                                             <input type="text" name="teacher" value="" class="form-control">
                                                             <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
@@ -243,22 +640,12 @@ session_start();
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
-                                                        <th>ลบ</th>
+                                                        <th></th>
                                                       </thead>
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
                                                           <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>2</td>
-                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>3</td>
-                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -289,19 +676,23 @@ session_start();
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
+                                                        <th></th>
                                                       </thead>
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
                                                           <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                         <tr>
                                                           <td>2</td>
                                                           <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                         <tr>
                                                           <td>3</td>
                                                           <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
                                                     </table>
@@ -318,14 +709,210 @@ session_start();
                     <tr>
                         <td>461525</td>
                         <td>BASIC KNOWLEDGE OF THAI TRADITIONAL MEDICINEE</td>
+                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#461525" class="accordion-toggle">เพิ่มผู้รับผิดชอบ</button></td>
                         <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#202141" class="accordion-toggle">เพิ่มอาจารย์</button></td>
+                    </tr>
+                    <tr class="hiddenRow">
+                      <td colspan="12">
+                        <div class="accordian-body collapse" id="461525">
+                          <div class="panel panel-success">
+                            <div class="panel-heading">
+                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                            </div>
+                            <div class="panel-body">
+                                      <div class="panel-group" id="461525">
+                                          <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#461525" href="#listname461525-1">อาจารย์ผู้สอน</a>
+                                                  </h4>
+                                              </div>
+                                              <div id="listname461525-1" class="panel-collapse collapse">
+                                                  <div class="panel-body">
+                                                    <div class="col-md-5">
+                                                      <div class="form-group">
+                                                        <form class="" action="" method="post">
+                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
+                                                          <div class="form-inline">
+                                                            <input type="text" name="teacher" value="" class="form-control">
+                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                          </div>
+                                                        </form>
+                                                      </div>
+                                                    </div>
+                                                    <table class="table">
+                                                      <thead>
+                                                        <th>ลำดับ</th>
+                                                        <th>ชื่อ-นามสกุล</th>
+                                                        <th></th>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>1</td>
+                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#accordion" href="#listname461525-2">คณะกรรมการ</a>
+                                                  </h4>
+                                              </div>
+                                              <div id="listname461525-2" class="panel-collapse collapse">
+                                                  <div class="panel-body">
+                                                    <div class="col-md-5">
+                                                      <div class="form-group">
+                                                        <form class="" action="" method="post">
+                                                          <label for="">เพิ่มคณะกรรมการ</label>
+                                                          <div class="form-inline">
+                                                            <input type="text" name="teacher" value="" class="form-control">
+                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                          </div>
+                                                        </form>
+                                                      </div>
+                                                    </div>
+                                                    <table class="table">
+                                                      <thead>
+                                                        <th>ลำดับ</th>
+                                                        <th>ชื่อ-นามสกุล</th>
+                                                        <th></th>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>1</td>
+                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>2</td>
+                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>3</td>
+                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                  <!-- .panel-body -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
                     </tr>
                     <tr>
                         <td>461532</td>
                         <td>DRUG SYNTHESIS</td>
+                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#461532" class="accordion-toggle">เพิ่มผู้รับผิดชอบ</button></td>
                         <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#202141" class="accordion-toggle">เพิ่มอาจารย์</button></td>
+                    </tr>
+                    <tr class="hiddenRow">
+                      <td colspan="12">
+                        <div class="accordian-body collapse" id="461532">
+                          <div class="panel panel-success">
+                            <div class="panel-heading">
+                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                            </div>
+                            <div class="panel-body">
+                                      <div class="panel-group" id="461532">
+                                          <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#461532" href="#listname461532-1">อาจารย์ผู้สอน</a>
+                                                  </h4>
+                                              </div>
+                                              <div id="listname461532-1" class="panel-collapse collapse">
+                                                  <div class="panel-body">
+                                                    <div class="col-md-5">
+                                                      <div class="form-group">
+                                                        <form class="" action="" method="post">
+                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
+                                                          <div class="form-inline">
+                                                            <input type="text" name="teacher" value="" class="form-control">
+                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                          </div>
+                                                        </form>
+                                                      </div>
+                                                    </div>
+                                                    <table class="table">
+                                                      <thead>
+                                                        <th>ลำดับ</th>
+                                                        <th>ชื่อ-นามสกุล</th>
+                                                        <th></th>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>1</td>
+                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#accordion" href="#listname461532-2">คณะกรรมการ</a>
+                                                  </h4>
+                                              </div>
+                                              <div id="listname461532-2" class="panel-collapse collapse">
+                                                  <div class="panel-body">
+                                                    <div class="col-md-5">
+                                                      <div class="form-group">
+                                                        <form class="" action="" method="post">
+                                                          <label for="">เพิ่มคณะกรรมการ</label>
+                                                          <div class="form-inline">
+                                                            <input type="text" name="teacher" value="" class="form-control">
+                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                          </div>
+                                                        </form>
+                                                      </div>
+                                                    </div>
+                                                    <table class="table">
+                                                      <thead>
+                                                        <th>ลำดับ</th>
+                                                        <th>ชื่อ-นามสกุล</th>
+                                                        <th></th>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>1</td>
+                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>2</td>
+                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>3</td>
+                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                  <!-- .panel-body -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
                     </tr>
                 </tbody>
             </table>
