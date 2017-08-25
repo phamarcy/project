@@ -148,13 +148,13 @@ div[class^="col-"] {
                                                   <a data-toggle="collapse" href="#comment463681-3">แบบเชิญอาจารย์พิเศษ</a>
                                               </div>
                                         </div>
-                                        <div id="comment463201-3" class="panel-collapse collapse in">
+                                        <div id="comment463681-3" class="panel-collapse collapse in">
                                           <div class="panel-body">
                                             <div class="panel-group" id="teachersp463681">
                                               <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                   <div class="panel-title" style="font-size:14px">
-                                                                <a data-toggle="collapse" data-parent="#teachersp463201" href="#teachersp463681-1">ดร.พจมาน ชำนาญกิจ</a>
+                                                                <a data-toggle="collapse" data-parent="#teachersp463681" href="#teachersp463681-1">ดร.พจมาน ชำนาญกิจ</a>
                                                                 <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
 
                                                             </div>

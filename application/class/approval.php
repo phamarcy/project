@@ -100,7 +100,7 @@ class approval
   //type = evaluate,syllabus,special
   private function Get_Doc_Status($course_id,$type)
   {
-      $status = 3;
+      $status = 4;
       $sql = "SELECT `status` FROM `approval_course`
       WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->SEMESTER_ID." AND `data_type` = '".$type."'";
       $result = $this->DB->Query($sql);
@@ -111,15 +111,15 @@ class approval
           switch ($result[$i]['status'])
           {
             case 'A':
-              $temp_status = 3;
+              $temp_status = 4;
               break;
             case 'D':
               $temp_status = 0;
               break;
             case 'P':
-              $temp_status = 1;
-            case 'E':
               $temp_status = 2;
+            case 'E':
+              $temp_status = 3;
             default:
               break;
           }
