@@ -98,10 +98,10 @@ session_start();
                                     <div class="form-group ">
                                       <label for="">ข้อเสนอแนะ</label>
                                       <textarea class="form-control" name="name" rows="8" cols="40"></textarea>
-                                      <br>
-                                      <button type="button" class="btn btn-primary btn-outline " name="button">ยืนยัน</button>
+
+
                                     </div>
-                                      <hr>
+
                                       <div class="form-group">
                                         <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text; ?></button> &nbsp;
                                         <button type="button" class="btn btn-outline btn-danger ">มีแก้ไข</button>
@@ -143,10 +143,10 @@ session_start();
                                     <div class="form-group ">
                                       <label for="">ข้อเสนอแนะ</label>
                                       <textarea class="form-control" name="name" rows="8" cols="40"></textarea>
-                                      <br>
-                                      <button type="button" class="btn btn-primary btn-outline" name="button">ยืนยัน</button>
+                                      
+
                                     </div>
-                                    <hr>
+
                                     <div class="form-group">
                                       <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text; ?></button> &nbsp;
                                       <button type="button" class="btn btn-outline btn-danger ">มีแก้ไข</button>
@@ -198,10 +198,10 @@ session_start();
                                             <div class="form-group ">
                                               <label for="">ข้อเสนอแนะ</label>
                                               <textarea class="form-control" name="name" rows="8" cols="40"></textarea>
-                                              <br>
-                                              <button type="button" class="btn btn-primary btn-outline" name="button">ยืนยัน</button>
+
+
                                             </div>
-                                            <hr>
+
                                             <div class="form-group">
                                               <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text; ?></button> &nbsp;
                                               <button type="button" class="btn btn-outline btn-danger ">มีแก้ไข</button>
@@ -244,10 +244,10 @@ session_start();
                                             <div class="form-group ">
                                               <label for="">ข้อเสนอแนะ</label>
                                               <textarea class="form-control" name="name" rows="8" cols="40"></textarea>
-                                              <br>
-                                              <button type="button" class="btn btn-primary btn-outline" name="button">ยืนยัน</button>
+
+
                                             </div>
-                                            <hr>
+
                                             <div class="form-group">
                                               <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text; ?></button> &nbsp;
                                               <button type="button" class="btn btn-outline btn-danger ">มีแก้ไข</button>
@@ -289,13 +289,8 @@ session_start();
                                             <div class="form-group ">
                                               <label for="">ข้อเสนอแนะ</label>
                                               <textarea class="form-control" name="name" rows="8" cols="40"></textarea>
-                                              <br>
-                                              <button type="button" class="btn btn-primary btn-outline" name="button">ยืนยัน</button>
-                                            </div>
-                                            <hr>
-                                            <div class="form-group">
-                                              <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text; ?></button> &nbsp;
-                                              <button type="button" class="btn btn-outline btn-danger ">มีแก้ไข</button>
+
+
                                             </div>
                                             <table class="table ">
                                               <thead>

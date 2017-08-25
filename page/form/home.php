@@ -70,13 +70,6 @@ else
 		<link rel="stylesheet" href="../dist/css/scrollbar.css">
 		<title></title>
 		<style>
-			a[disabled="disabled"] {
-				<?php if ($_SESSION['level']==2 or $_SESSION['level']==3) {
-					?>pointer-events: none;
-					<?php
-				}
-				?>
-			}
 			#statc {
 				color: #0d4b9d;
 			}
@@ -185,12 +178,12 @@ else
 														 <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b><i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
 													</h3>
 														</div>
-														<?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+														<?php if (isset($_SESSION['level'])) { ?>
 														<div id="collapse<?php echo $key ?>" class="panel-collapse collapse">
 															<div class="panel-body" style="font-size:14px;">
 																<table class="table ">
 																	<thead>
-																		<?php if ($_SESSION['level'] == 2 or $_SESSION['level'] == 3 or $_SESSION['level'] == 6): ?>
+																		<?php if ($_SESSION['level'] >=2): ?>
 																		<th style="width:170px">คณะกรรมการ</th>
 																		<?php endif; ?>
 																		<th>ข้อเสนอแนะ</th>
@@ -198,7 +191,7 @@ else
 																	<tbody>
 																		<?php foreach ($value_course['evaluate']['comment'] as $comment): ?>
 																			<tr>
-																				<?php if ($_SESSION['level'] > 4 ): ?>
+																				<?php if ($_SESSION['level'] >=2): ?>
 																				<td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
 																				<?php endif; ?>
 																				<td><?php echo $comment ?></td>
@@ -221,7 +214,7 @@ else
 													<i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></b></a>
 												</h3>
 														</div>
-														<?php if ($_SESSION['level'] != 2 && $_SESSION['level'] != 3) { ?>
+														<?php if (isset($_SESSION['level'])) { ?>
 														<div id="collapse<?php echo $key ?><?php echo $key ?>" class="panel-collapse collapse">
 															<div class="panel-body" style="font-size:14px;">
 																<div class="panel-group" id="accordion">
@@ -235,20 +228,20 @@ else
 																			<div class="panel-body">
 																				<table class="table ">
 																					<thead>
-																						<?php if ($_SESSION['level'] > 4 ): ?>
+																						<?php if ($_SESSION['level'] >=2): ?>
 																						<th style="width:170px">คณะกรรมการ</th>
 																						<?php endif; ?>
 																						<th>ข้อเสนอแนะ</th>
 																					</thead>
 																					<tbody>
 																						<tr>
-																							<?php if ($_SESSION['level'] > 4 ): ?>
+																							<?php if ($_SESSION['level'] >=2): ?>
 																							<td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
 																							<?php endif; ?>
 																							<td>เอกสารครบถ้วนสมบูรณ์</td>
 																						</tr>
 																						<tr>
-																							<?php if ($_SESSION['level'] > 4 ): ?>
+																							<?php if ($_SESSION['level'] >=2 ): ?>
 																							<td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
 																							<?php endif; ?>
 																							<td>แก้ไขวันที่</td>
