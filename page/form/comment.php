@@ -97,7 +97,7 @@ session_start();
                             <td style="text-align:center;">
                               <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                             </td>
-                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#202141" class="accordion-toggle">ดำเนินการ</button></td>
+                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#202141" class="accordion-toggle">ดูข้อมูล</button></td>
                           </tr>
                           <tr class="hiddenRow">
                             <td colspan="12">
@@ -346,7 +346,7 @@ session_start();
                             <td style="text-align:center;">
                               <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                             </td>
-                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#203151" class="accordion-toggle">ดำเนินการ</button></td>
+                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#203151" class="accordion-toggle">ดูข้อมูล</button></td>
                           </tr>
                           <tr class="hiddenRow">
                             <td colspan="12">
@@ -595,7 +595,7 @@ session_start();
                             <td style="text-align:center;">
                               <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                             </td>
-                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463681" class="accordion-toggle">ดำเนินการ</button></td>
+                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463681" class="accordion-toggle">ดูข้อมูล</button></td>
                           </tr>
                           <tr class="hiddenRow">
                             <td colspan="12">
@@ -872,7 +872,7 @@ session_start();
                             <td style="text-align:center;">
                               <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                             </td>
-                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463311" class="accordion-toggle">ดำเนินการ</button></td>
+                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463311" class="accordion-toggle">ดูข้อมูล</button></td>
                           </tr>
                           <tr class="hiddenRow">
                             <td colspan="12">
@@ -1091,7 +1091,7 @@ session_start();
                             <td style="text-align:center;">
                               <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                             </td>
-                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463331" class="accordion-toggle">ดำเนินการ</button></td>
+                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463331" class="accordion-toggle">ดูข้อมูล</button></td>
                           </tr>
                           <tr class="hiddenRow">
                             <td colspan="12">
@@ -1310,7 +1310,7 @@ session_start();
                             <td style="text-align:center;">
                               <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                             </td>
-                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#464301" class="accordion-toggle">ดำเนินการ</button></td>
+                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#464301" class="accordion-toggle">ดูข้อมูล</button></td>
                           </tr>
                           <tr class="hiddenRow">
                             <td colspan="12">
@@ -1556,7 +1556,7 @@ session_start();
                             <td style="text-align:center;">
                               <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                             </td>
-                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463332" class="accordion-toggle">ดำเนินการ</button></td>
+                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463332" class="accordion-toggle">ดูข้อมูล</button></td>
                           </tr>
                           <tr class="hiddenRow">
                             <td colspan="12">
@@ -1774,7 +1774,7 @@ session_start();
                             <td style="text-align:center;">
                               <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                             </td>
-                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463342" class="accordion-toggle">ดำเนินการ</button></td>
+                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463342" class="accordion-toggle">ดูข้อมูล</button></td>
                           </tr>
                           <tr class="hiddenRow">
                             <td colspan="12">
@@ -1992,7 +1992,7 @@ session_start();
                             <td style="text-align:center;">
                               <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                             </td>
-                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#464445" class="accordion-toggle">ดำเนินการ</button></td>
+                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#464445" class="accordion-toggle">ดูข้อมูล</button></td>
                           </tr>
                           <tr class="hiddenRow">
                             <td colspan="12">
