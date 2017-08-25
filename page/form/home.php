@@ -142,6 +142,9 @@ else
 
 									<?php
 										switch ($value_course['evaluate']['status']) {
+											 case '0':
+											 	$status_text='<b id="statfi">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+												break;
 											 case '1':
 											 $status_text='<b id="statfi">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
 												 break;

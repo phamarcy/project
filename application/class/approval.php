@@ -39,9 +39,19 @@ class approval
     $DATA= array();
     if($this->USER_LEVEL == 1)
     {
-
       $sql = "SELECT `course_id` FROM `course_responsible`
       WHERE `teacher_id` = '".$user_id."' AND `semester_id` = '".$this->SEMESTER_ID."'";
+    }
+    else if ($this->USER_LEVEL == 2)
+    {
+      $sql = "SELECT `course_id` FROM `course_responsible`
+      WHERE `department_id` = '1202' AND `semester_id` = '".$this->SEMESTER_ID."'";
+    }
+    else if ($this->USER_LEVEL == 3)
+    {
+      $sql = "SELECT `course_id` FROM `course_responsible`
+      WHERE  `semester_id` = '".$this->SEMESTER_ID."'";
+    }
       $result = $this->DB->Query($sql);
       if($result)
       {
@@ -74,13 +84,13 @@ class approval
         $error['error'] = "Error, Please Contact Admin";
         return json_encode($error);
       }
-    }
+
 
   }
   //type = evaluate,syllabus,special
   private function Get_Doc_Status($course_id,$type)
   {
-      $status = 4;
+      $status = 3;
       $sql = "SELECT `status` FROM `approval_course`
       WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->SEMESTER_ID." AND `data_type` = '".$type."'";
       $result = $this->DB->Query($sql);
@@ -91,12 +101,14 @@ class approval
           switch ($result[$i]['status'])
           {
             case 'A':
-              $temp_status = 4;
-              break;
-            case 'D':
               $temp_status = 3;
               break;
+            case 'D':
+              $temp_status = 0;
+              break;
             case 'P':
+              $temp_status = 1;
+            case 'E':
               $temp_status = 2;
             default:
               break;
