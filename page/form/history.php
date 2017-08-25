@@ -95,7 +95,7 @@ div[class^="col-"] {
                             <td>1</td>
                             <td >463681</td>
                             <td>INDUSTRIAL PHARMACY CLERKSHIP IN PRODUCTION 1</td>
-                            <td style="text-align:center;">1/2557</td>
+                            <td style="text-align:center;">1/2559</td>
                             <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463681" class="accordion-toggle">ดูข้อมูล</button></td>
                           </tr>
                           <tr class="hiddenRow">
@@ -270,9 +270,9 @@ div[class^="col-"] {
                           </tr>
                           <tr>
                             <td>2</td>
-                            <td >463201</td>
-                            <td>PHARMACEUTICAL BOTANY</td>
-                            <td style="text-align:center;">1/2557</td>
+                            <td >463681</td>
+                            <td>INDUSTRIAL PHARMACY CLERKSHIP IN PRODUCTION 1</td>
+                            <td style="text-align:center;">1/2558</td>
                             <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463201" class="accordion-toggle">ดูข้อมูล</button></td>
                           </tr>
                           <tr class="hiddenRow">
