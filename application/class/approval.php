@@ -57,6 +57,11 @@ class approval
       $sql = "SELECT `course_id` FROM `approval_course`
       WHERE `teacher_id` = '".$user_id."' AND `semester_id` = '".$this->SEMESTER_ID."'";
     }
+    else if ($this->USER_LEVEL == 6)
+    {
+      $sql = "SELECT DISTINCT `course_id` FROM `approval_course`
+      WHERE `semester_id` = '".$this->SEMESTER_ID."'";
+    }
       $result = $this->DB->Query($sql);
       if($result)
       {
