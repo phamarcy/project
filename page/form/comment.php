@@ -68,7 +68,7 @@ session_start();
             <div class="panel-group" id="accordion">
               <div class="panel panel-warning">
                 <div class="panel-heading">
-                  <div class="panel-title">
+                  <div class="panel-title" style="font-size:14px">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">รอการประเมิน</a>
                   </div>
                 </div>
@@ -110,11 +110,11 @@ session_start();
 
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment202141" href="#comment202141-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษาและ Course Syllabus</a>
                                                     <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                     <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment202141-2" class="panel-collapse collapse">
                                                 <div class="panel-body">
@@ -151,21 +151,21 @@ session_start();
                                         </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading ">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment202141" href="#comment202141-3">Instructor</a>
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment202141-3" class="panel-collapse collapse">
                                                 <div class="panel-body">
                                                   <div class="panel-group" id="teachersp202141">
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp202141" href="#teachersp202141-1">ดร.พจมาน ชำนาญกิจ</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp202141-1" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -202,12 +202,12 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp202141" href="#teachersp202141-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp202141-2" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -244,12 +244,12 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp202141" href="#teachersp202141-3">อ.พรพิมล ศิวินา</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp202141-3" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -318,11 +318,11 @@ session_start();
 
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment203151" href="#comment203151-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษาและCourse Syllabus</a>
                                                     <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                     <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment203151-2" class="panel-collapse collapse">
                                                 <div class="panel-body">
@@ -359,21 +359,21 @@ session_start();
                                         </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading ">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment203151" href="#comment203151-3">Instructor</a>
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment203151-3" class="panel-collapse collapse">
                                                 <div class="panel-body">
                                                   <div class="panel-group" id="teachersp203151">
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp203151" href="#teachersp203151-1">ดร.พจมาน ชำนาญกิจ</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp203151-1" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -410,12 +410,12 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp203151" href="#teachersp203151-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp203151-2" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -452,12 +452,12 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp203151" href="#teachersp203151-3">อ.พรพิมล ศิวินา</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp203151-3" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -526,11 +526,11 @@ session_start();
 
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment463681" href="#comment463681-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
                                                     <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                     <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment463681-2" class="panel-collapse collapse">
                                                 <div class="panel-body">
@@ -567,21 +567,21 @@ session_start();
                                         </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading ">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment463681" href="#comment463681-3">Instructor</a>
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment463681-3" class="panel-collapse collapse">
                                                 <div class="panel-body">
                                                   <div class="panel-group" id="teachersp463681">
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463681" href="#teachersp463681-1">ดร.พจมาน ชำนาญกิจ</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463681-1" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -618,12 +618,12 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463681" href="#teachersp463681-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463681-2" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -660,12 +660,12 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463681" href="#teachersp463681-3">อ.พรพิมล ศิวินา</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
                                                                   <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                                   <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463681-3" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -719,7 +719,7 @@ session_start();
 
               <div class="panel panel-success">
                 <div class="panel-heading">
-                  <div class="panel-title">
+                  <div class="panel-title" style="font-size:14px">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">ผ่านการประเมิน</a>
                   </div>
                 </div>
@@ -762,10 +762,10 @@ session_start();
 
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment463311" href="#comment463311-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
 
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment463311-2" class="panel-collapse collapse">
                                                 <div class="panel-body">
@@ -797,20 +797,20 @@ session_start();
                                         </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading ">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment463311" href="#comment463311-3">Instructor</a>
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment463311-3" class="panel-collapse collapse">
                                                 <div class="panel-body">
                                                   <div class="panel-group" id="teachersp463311">
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463311" href="#teachersp463311-1">ดร.พจมาน ชำนาญกิจ</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463311-1" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -842,11 +842,11 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463311" href="#teachersp463311-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463311-2" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -878,11 +878,11 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463311" href="#teachersp463311-3">อ.พรพิมล ศิวินา</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463311-3" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -946,10 +946,10 @@ session_start();
 
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment463331" href="#comment463331-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษาและCourse Syllabus</a>
 
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment463331-2" class="panel-collapse collapse">
                                                 <div class="panel-body">
@@ -981,20 +981,20 @@ session_start();
                                         </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading ">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment463331" href="#comment463331-3">Instructor</a>
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment463331-3" class="panel-collapse collapse">
                                                 <div class="panel-body">
                                                   <div class="panel-group" id="teachersp463331">
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463331" href="#teachersp463331-1">ดร.พจมาน ชำนาญกิจ</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463331-1" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1026,11 +1026,11 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463331" href="#teachersp463331-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463331-2" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1062,11 +1062,11 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463331" href="#teachersp463331-3">อ.พรพิมล ศิวินา</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463331-3" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1130,10 +1130,10 @@ session_start();
 
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment464301" href="#comment464301-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษาและCourse Syllabus</a>
 
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment464301-2" class="panel-collapse collapse">
                                                 <div class="panel-body">
@@ -1165,20 +1165,20 @@ session_start();
                                         </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading ">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment464301" href="#comment464301-3">Instructor</a>
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment464301-3" class="panel-collapse collapse">
                                                 <div class="panel-body">
                                                   <div class="panel-group" id="teachersp464301">
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp464301" href="#teachersp464301-1">ดร.พจมาน ชำนาญกิจ</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp464301-1" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1210,11 +1210,11 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp464301" href="#teachersp464301-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp464301-2" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1246,11 +1246,11 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp464301" href="#teachersp464301-3">อ.พรพิมล ศิวินา</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp464301-3" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1298,7 +1298,7 @@ session_start();
               </div>
               <div class="panel panel-danger">
                 <div class="panel-heading">
-                  <div class="panel-title">
+                  <div class="panel-title" style="font-size:14px">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">ไม่ผ่านการประเมิน</a>
                   </div>
                 </div>
@@ -1341,10 +1341,10 @@ session_start();
 
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment463332" href="#comment463332-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
 
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment463332-2" class="panel-collapse collapse">
                                                 <div class="panel-body">
@@ -1376,19 +1376,19 @@ session_start();
                                         </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading ">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment463332" href="#comment463332-3">Instructor</a>
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment463332-3" class="panel-collapse collapse">
                                                 <div class="panel-body">
                                                   <div class="panel-group" id="teachersp463332">
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463332" href="#teachersp463332-1">ดร.พจมาน ชำนาญกิจ</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463332-1" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1420,10 +1420,10 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463332" href="#teachersp463332-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463332-2" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1455,10 +1455,10 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463332" href="#teachersp463332-3">อ.พรพิมล ศิวินา</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463332-3" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1522,10 +1522,10 @@ session_start();
 
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment463342" href="#comment463342-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
 
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment463342-2" class="panel-collapse collapse">
                                                 <div class="panel-body">
@@ -1557,19 +1557,19 @@ session_start();
                                         </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading ">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment463342" href="#comment463342-3">Instructor</a>
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment463342-3" class="panel-collapse collapse">
                                                 <div class="panel-body">
                                                   <div class="panel-group" id="teachersp463342">
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463342" href="#teachersp463342-1">ดร.พจมาน ชำนาญกิจ</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463342-1" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1601,10 +1601,10 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463342" href="#teachersp463342-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463342-2" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1636,11 +1636,11 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463342" href="#teachersp463342-3">อ.พรพิมล ศิวินา</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp463342-3" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1704,10 +1704,10 @@ session_start();
 
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment464445" href="#comment464445-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
 
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment464445-2" class="panel-collapse collapse">
                                                 <div class="panel-body">
@@ -1739,20 +1739,20 @@ session_start();
                                         </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading ">
-                                                <h4 class="panel-title">
+                                                <div class="panel-title" style="font-size:14px">
                                                     <a data-toggle="collapse" data-parent="#comment464445" href="#comment464445-3">Instructor</a>
-                                                </h4>
+                                                </div>
                                             </div>
                                             <div id="comment464445-3" class="panel-collapse collapse">
                                                 <div class="panel-body">
                                                   <div class="panel-group" id="teachersp464445">
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp464445" href="#teachersp464445-1">ดร.พจมาน ชำนาญกิจ</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp464445-1" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1784,11 +1784,11 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp464445" href="#teachersp464445-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp464445-2" class="panel-collapse collapse">
                                                               <div class="panel-body">
@@ -1820,11 +1820,11 @@ session_start();
                                                       </div>
                                                       <div class="panel panel-default">
                                                           <div class="panel-heading">
-                                                              <h4 class="panel-title">
+                                                              <div class="panel-title" style="font-size:14px">
                                                                   <a data-toggle="collapse" data-parent="#teachersp464445" href="#teachersp464445-3">อ.พรพิมล ศิวินา</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
 
-                                                              </h4>
+                                                              </div>
                                                           </div>
                                                           <div id="teachersp464445-3" class="panel-collapse collapse">
                                                               <div class="panel-body">

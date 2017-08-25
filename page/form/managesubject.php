@@ -209,19 +209,19 @@ session_start();
                         <td>462533</td>
                         <td>HEALTH BEHAVIORS AND PHARMACEUTICAL CARE</td>
                         <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                        <td><button type="button" class="btn btn-outline btn-success" id="add"  name="delete" >เพิ่มอาจารย์</button></td>
+                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#202141" class="accordion-toggle">เพิ่มอาจารย์</button></td>
                     </tr>
                     <tr>
                         <td>461525</td>
                         <td>BASIC KNOWLEDGE OF THAI TRADITIONAL MEDICINEE</td>
                         <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                        <td><button type="button" class="btn btn-outline btn-success" id="add"  name="delete" >เพิ่มอาจารย์</button></td>
+                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#202141" class="accordion-toggle">เพิ่มอาจารย์</button></td>
                     </tr>
                     <tr>
                         <td>461532</td>
                         <td>DRUG SYNTHESIS</td>
                         <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                        <td><button type="button" class="btn btn-outline btn-success" id="add"  name="delete" >เพิ่มอาจารย์</button></td>
+                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#202141" class="accordion-toggle">เพิ่มอาจารย์</button></td>
                     </tr>
                 </tbody>
             </table>
