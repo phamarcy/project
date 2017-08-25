@@ -177,23 +177,13 @@ session_start();
                                       <div class="panel-group" id="464402">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#464402" href="#listname464402-1">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
                                               <div id="listname464402-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                        <form class="" action="" method="post">
-                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
-                                                          <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                          </div>
-                                                        </form>
-                                                      </div>
-                                                    </div>
+
                                                     <table class="table">
                                                       <thead>
                                                         <th>ลำดับ</th>
@@ -213,23 +203,13 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname464402-2">คณะกรรมการ</a>
                                                   </div>
                                               </div>
                                               <div id="listname464402-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                        <form class="" action="" method="post">
-                                                          <label for="">เพิ่มคณะกรรมการ</label>
-                                                          <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                          </div>
-                                                        </form>
-                                                      </div>
-                                                    </div>
+
                                                     <table class="table">
                                                       <thead>
                                                         <th>ลำดับ</th>
@@ -286,23 +266,13 @@ session_start();
                                       <div class="panel-group" id="464403">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#464403" href="#listname464403-1">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
                                               <div id="listname464403-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                        <form class="" action="" method="post">
-                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
-                                                          <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                          </div>
-                                                        </form>
-                                                      </div>
-                                                    </div>
+
                                                     <table class="table">
                                                       <thead>
                                                         <th>ลำดับ</th>
@@ -322,23 +292,13 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname464403-2">คณะกรรมการ</a>
                                                   </div>
                                               </div>
                                               <div id="listname464403-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                        <form class="" action="" method="post">
-                                                          <label for="">เพิ่มคณะกรรมการ</label>
-                                                          <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                          </div>
-                                                        </form>
-                                                      </div>
-                                                    </div>
+
                                                     <table class="table">
                                                       <thead>
                                                         <th>ลำดับ</th>
@@ -390,23 +350,13 @@ session_start();
                                       <div class="panel-group" id="464441">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#464441" href="#listname464441-1">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
                                               <div id="listname464441-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                        <form class="" action="" method="post">
-                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
-                                                          <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                          </div>
-                                                        </form>
-                                                      </div>
-                                                    </div>
+
                                                     <table class="table">
                                                       <thead>
                                                         <th>ลำดับ</th>
@@ -426,23 +376,13 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname464441-2">คณะกรรมการ</a>
                                                   </div>
                                               </div>
                                               <div id="listname464441-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                        <form class="" action="" method="post">
-                                                          <label for="">เพิ่มคณะกรรมการ</label>
-                                                          <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                          </div>
-                                                        </form>
-                                                      </div>
-                                                    </div>
+
                                                     <table class="table">
                                                       <thead>
                                                         <th>ลำดับ</th>
@@ -499,23 +439,13 @@ session_start();
                                       <div class="panel-group" id="463545">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#463545" href="#listname463545-1">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
                                               <div id="listname463545-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                        <form class="" action="" method="post">
-                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
-                                                          <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                          </div>
-                                                        </form>
-                                                      </div>
-                                                    </div>
+
                                                     <table class="table">
                                                       <thead>
                                                         <th>ลำดับ</th>
@@ -535,23 +465,13 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname463545-2">คณะกรรมการ</a>
                                                   </div>
                                               </div>
                                               <div id="listname463545-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                        <form class="" action="" method="post">
-                                                          <label for="">เพิ่มคณะกรรมการ</label>
-                                                          <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                          </div>
-                                                        </form>
-                                                      </div>
-                                                    </div>
+
                                                     <table class="table">
                                                       <thead>
                                                         <th>ลำดับ</th>
@@ -629,7 +549,7 @@ session_start();
                                       <div class="panel-group" id="462533">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#462533" href="#collapseOne">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
@@ -637,10 +557,12 @@ session_start();
                                                   <div class="panel-body">
                                                     <div class="col-md-5">
                                                       <div class="form-group">
+
                                                         <form class="" action="" method="post">
-                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
+                                                          <label for="">เพิ่มผู้รับผิดชอบ</label>
                                                           <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
+                                                            <input type="text" class="form-control charonly" name="teacher1" id="teacher1" list="teacher_list1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname();" >
+                                                            <datalist id="teacher_list1"></datalist>
                                                             <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
                                                           </div>
                                                         </form>
@@ -665,7 +587,7 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">คณะกรรมการ</a>
                                                   </div>
                                               </div>
@@ -733,7 +655,7 @@ session_start();
                                       <div class="panel-group" id="461525">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#461525" href="#listname461525-1">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
@@ -742,7 +664,7 @@ session_start();
                                                     <div class="col-md-5">
                                                       <div class="form-group">
                                                         <form class="" action="" method="post">
-                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
+                                                          <label for="">เพิ่มผู้รับผิดชอบ</label>
                                                           <div class="form-inline">
                                                             <input type="text" name="teacher" value="" class="form-control">
                                                             <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
@@ -769,7 +691,7 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname461525-2">คณะกรรมการ</a>
                                                   </div>
                                               </div>
@@ -837,7 +759,7 @@ session_start();
                                       <div class="panel-group" id="461532">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#461532" href="#listname461532-1">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
@@ -846,7 +768,7 @@ session_start();
                                                     <div class="col-md-5">
                                                       <div class="form-group">
                                                         <form class="" action="" method="post">
-                                                          <label for="">เพิ่มผู้รับผิดชอบผู้สอน</label>
+                                                          <label for="">เพิ่มผู้รับผิดชอบ</label>
                                                           <div class="form-inline">
                                                             <input type="text" name="teacher" value="" class="form-control">
                                                             <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
@@ -873,7 +795,7 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
+                                                  <div class="panel-title">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname461532-2">คณะกรรมการ</a>
                                                   </div>
                                               </div>
@@ -931,5 +853,25 @@ session_start();
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+    function searchname() {
+      var name_s = $("#teacher1").val();
+      $("#teacher_list1").html('');
+      if(name_s.length > 3)
+      {
+        $.post("search_name.php", { name: name_s}, function(data) {
+              data = JSON.parse( data );
+              for(var i=0;i<data.length;i++)
+              {
+                  $("#teacher_list1").append('<option value="'+data[i]+'"></option>');
+              }
+
+            })
+            .fail(function() {
+
+            });
+      }
+  }
+    </script>
   </body>
 </html>
