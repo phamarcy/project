@@ -277,38 +277,6 @@
 										</p>
 										<p>กระบวนวิชา : <b>204111</b>   ตอนที่ <b>1</b> ภาคปกติ</p>
 										<div class="detail">
-											<b style="font-size:16px;">ไม่ผ่านการอนุมัติ</b>
-										</div>
-										<p>
-											<span class="pull-right text-muted small">30 นาทีที่แล้ว</span>
-										</p>
-
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a href="#" onclick="loadDoc('form/checkstattch.php')">
-										<p>
-											<b id="statn" style="font-size:16px"><i class="fa fa-check fa-fw"></i></i></i> ไม่ผ่านการอนุมัติ </b>
-										</p>
-										<p>กระบวนวิชา : <b>204111</b>   ตอนที่ <b>1</b> ภาคปกติ</p>
-										<div class="detail">
-											<b style="font-size:16px;">ทดสอบ</b>
-										</div>
-										<p>
-											<span class="pull-right text-muted small">1 วันที่แล้ว</span>
-										</p>
-
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a href="#" onclick="loadDoc('form/checkstattch.php')">
-										<p>
-											<b id="statn" style="font-size:16px"><i class="fa fa-check fa-fw"></i></i></i> ไม่ผ่านการอนุมัติ </b>
-										</p>
-										<p>กระบวนวิชา : <b>204111</b>   ตอนที่ <b>1</b> ภาคปกติ</p>
-										<div class="detail">
 											<b style="font-size:16px;">ทดสอบ</b>
 										</div>
 										<p>

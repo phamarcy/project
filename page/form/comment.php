@@ -107,53 +107,11 @@ session_start();
                                     <b>ข้อเสนอแนะคณะกรรมการ</b>
                                   </div>
                                   <div class="panel-body">
-                                    <div class="panel-group" id="comment202141">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading clearfix">
-                                                <h4 class="panel-title ">
-                                                  <a data-toggle="collapse" data-parent="#comment202141" href="#comment202141-1">Course Syllabus</a>
-                                                  <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
-                                                  <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                </h4>
-                                            </div>
-                                            <div id="comment202141-1" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                  <div class="form-group ">
-                                                    <label for="">ข้อเสนอแนะ</label>
-                                                    <textarea class="form-control"name="name" rows="8" cols="40"></textarea>
-                                                    <br>
-                                                    <button type="button" class="btn btn-primary btn-outline" name="button">ยืนยัน</button>
-                                                  </div>
 
-                                                  <table class="table ">
-                                                    <thead>
-                                                      <?php if ($_SESSION['level'] > 4 ): ?>
-                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                      <?php endif; ?>
-                                                      <th>ข้อเสนอแนะ</th>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
-                                                      </tr>
-                                                    </tbody>
-                                                  </table>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#comment202141" href="#comment202141-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
+                                                    <a data-toggle="collapse" data-parent="#comment202141" href="#comment202141-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษาและ Course Syllabus</a>
                                                     <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                     <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
                                                 </h4>
@@ -357,52 +315,11 @@ session_start();
                                   </div>
                                   <div class="panel-body">
                                     <div class="panel-group" id="comment203151">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading clearfix">
-                                                <h4 class="panel-title ">
-                                                  <a data-toggle="collapse" data-parent="#comment203151" href="#comment203151-1">Course Syllabus</a>
-                                                  <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
-                                                  <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                </h4>
-                                            </div>
-                                            <div id="comment203151-1" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                  <div class="form-group ">
-                                                    <label for="">ข้อเสนอแนะ</label>
-                                                    <textarea class="form-control"name="name" rows="8" cols="40"></textarea>
-                                                    <br>
-                                                    <button type="button" class="btn btn-primary btn-outline" name="button">ยืนยัน</button>
-                                                  </div>
 
-                                                  <table class="table ">
-                                                    <thead>
-                                                      <?php if ($_SESSION['level'] > 4 ): ?>
-                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                      <?php endif; ?>
-                                                      <th>ข้อเสนอแนะ</th>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
-                                                      </tr>
-                                                    </tbody>
-                                                  </table>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#comment203151" href="#comment203151-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
+                                                    <a data-toggle="collapse" data-parent="#comment203151" href="#comment203151-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษาและCourse Syllabus</a>
                                                     <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
                                                     <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
                                                 </h4>
@@ -606,48 +523,7 @@ session_start();
                                   </div>
                                   <div class="panel-body">
                                     <div class="panel-group" id="comment463681">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading clearfix">
-                                                <h4 class="panel-title ">
-                                                  <a data-toggle="collapse" data-parent="#comment463681" href="#comment463681-1">Course Syllabus</a>
-                                                  <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text ?></bunton>
-                                                  <button type="button" class="btn btn-outline btn-danger ">ไม่<?php echo $approve_text ?></button>
-                                                </h4>
-                                            </div>
-                                            <div id="comment463681-1" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                  <div class="form-group ">
-                                                    <label for="">ข้อเสนอแนะ</label>
-                                                    <textarea class="form-control"name="name" rows="8" cols="40"></textarea>
-                                                    <br>
-                                                    <button type="button" class="btn btn-primary btn-outline" name="button">ยืนยัน</button>
-                                                  </div>
 
-                                                  <table class="table ">
-                                                    <thead>
-                                                      <?php if ($_SESSION['level'] > 4 ): ?>
-                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                      <?php endif; ?>
-                                                      <th>ข้อเสนอแนะ</th>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
-                                                      </tr>
-                                                    </tbody>
-                                                  </table>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
@@ -883,42 +759,7 @@ session_start();
                                   </div>
                                   <div class="panel-body">
                                     <div class="panel-group" id="comment463311">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading clearfix">
-                                                <h4 class="panel-title ">
-                                                  <a data-toggle="collapse" data-parent="#comment463311" href="#comment463311-1">Course Syllabus</a>
 
-                                                </h4>
-                                            </div>
-                                            <div id="comment463311-1" class="panel-collapse collapse">
-                                                <div class="panel-body">
-
-
-                                                  <table class="table ">
-                                                    <thead>
-                                                      <?php if ($_SESSION['level'] > 4 ): ?>
-                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                      <?php endif; ?>
-                                                      <th>ข้อเสนอแนะ</th>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
-                                                      </tr>
-                                                    </tbody>
-                                                  </table>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
@@ -1102,46 +943,11 @@ session_start();
                                   </div>
                                   <div class="panel-body">
                                     <div class="panel-group" id="comment463331">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading clearfix">
-                                                <h4 class="panel-title ">
-                                                  <a data-toggle="collapse" data-parent="#comment463331" href="#comment463331-1">Course Syllabus</a>
 
-                                                </h4>
-                                            </div>
-                                            <div id="comment463331-1" class="panel-collapse collapse">
-                                                <div class="panel-body">
-
-
-                                                  <table class="table ">
-                                                    <thead>
-                                                      <?php if ($_SESSION['level'] > 4 ): ?>
-                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                      <?php endif; ?>
-                                                      <th>ข้อเสนอแนะ</th>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
-                                                      </tr>
-                                                    </tbody>
-                                                  </table>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#comment463331" href="#comment463331-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
+                                                    <a data-toggle="collapse" data-parent="#comment463331" href="#comment463331-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษาและCourse Syllabus</a>
 
                                                 </h4>
                                             </div>
@@ -1321,46 +1127,11 @@ session_start();
                                   </div>
                                   <div class="panel-body">
                                     <div class="panel-group" id="comment464301">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading clearfix">
-                                                <h4 class="panel-title ">
-                                                  <a data-toggle="collapse" data-parent="#comment464301" href="#comment464301-1">Course Syllabus</a>
 
-                                                </h4>
-                                            </div>
-                                            <div id="comment464301-1" class="panel-collapse collapse">
-                                                <div class="panel-body">
-
-
-                                                  <table class="table ">
-                                                    <thead>
-                                                      <?php if ($_SESSION['level'] > 4 ): ?>
-                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                      <?php endif; ?>
-                                                      <th>ข้อเสนอแนะ</th>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
-                                                      </tr>
-                                                    </tbody>
-                                                  </table>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#comment464301" href="#comment464301-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
+                                                    <a data-toggle="collapse" data-parent="#comment464301" href="#comment464301-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษาและCourse Syllabus</a>
 
                                                 </h4>
                                             </div>
@@ -1567,42 +1338,7 @@ session_start();
                                   </div>
                                   <div class="panel-body">
                                     <div class="panel-group" id="comment463332">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading clearfix">
-                                                <h4 class="panel-title ">
-                                                  <a data-toggle="collapse" data-parent="#comment463332" href="#comment463332-1">Course Syllabus</a>
 
-                                                </h4>
-                                            </div>
-                                            <div id="comment463332-1" class="panel-collapse collapse">
-                                                <div class="panel-body">
-
-
-                                                  <table class="table ">
-                                                    <thead>
-                                                      <?php if ($_SESSION['level'] > 4 ): ?>
-                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                      <?php endif; ?>
-                                                      <th>ข้อเสนอแนะ</th>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
-                                                      </tr>
-                                                    </tbody>
-                                                  </table>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
@@ -1687,7 +1423,6 @@ session_start();
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463332" href="#teachersp463332-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
-
                                                               </h4>
                                                           </div>
                                                           <div id="teachersp463332-2" class="panel-collapse collapse">
@@ -1723,7 +1458,6 @@ session_start();
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463332" href="#teachersp463332-3">อ.พรพิมล ศิวินา</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
-
                                                               </h4>
                                                           </div>
                                                           <div id="teachersp463332-3" class="panel-collapse collapse">
@@ -1785,42 +1519,7 @@ session_start();
                                   </div>
                                   <div class="panel-body">
                                     <div class="panel-group" id="comment463342">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading clearfix">
-                                                <h4 class="panel-title ">
-                                                  <a data-toggle="collapse" data-parent="#comment463342" href="#comment463342-1">Course Syllabus</a>
 
-                                                </h4>
-                                            </div>
-                                            <div id="comment463342-1" class="panel-collapse collapse">
-                                                <div class="panel-body">
-
-
-                                                  <table class="table ">
-                                                    <thead>
-                                                      <?php if ($_SESSION['level'] > 4 ): ?>
-                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                      <?php endif; ?>
-                                                      <th>ข้อเสนอแนะ</th>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
-                                                      </tr>
-                                                    </tbody>
-                                                  </table>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
@@ -1905,7 +1604,6 @@ session_start();
                                                               <h4 class="panel-title">
                                                                   <a data-toggle="collapse" data-parent="#teachersp463342" href="#teachersp463342-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
                                                                   <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" class="btn btn-primary btn-outline">PDF</a>
-
                                                               </h4>
                                                           </div>
                                                           <div id="teachersp463342-2" class="panel-collapse collapse">
@@ -2003,42 +1701,7 @@ session_start();
                                   </div>
                                   <div class="panel-body">
                                     <div class="panel-group" id="comment464445">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading clearfix">
-                                                <h4 class="panel-title ">
-                                                  <a data-toggle="collapse" data-parent="#comment464445" href="#comment464445-1">Course Syllabus</a>
 
-                                                </h4>
-                                            </div>
-                                            <div id="comment464445-1" class="panel-collapse collapse">
-                                                <div class="panel-body">
-
-
-                                                  <table class="table ">
-                                                    <thead>
-                                                      <?php if ($_SESSION['level'] > 4 ): ?>
-                                                      <th style="width:170px">คณะกรรมการ</th>
-                                                      <?php endif; ?>
-                                                      <th>ข้อเสนอแนะ</th>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                        <?php endif; ?>
-                                                        <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
-                                                      </tr>
-                                                    </tbody>
-                                                  </table>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">

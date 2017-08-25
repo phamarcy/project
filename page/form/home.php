@@ -143,10 +143,10 @@ else
 									<?php
 										switch ($value_course['evaluate']['status']) {
 											 case '0':
-											 	$status_text='<b id="statfi">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+											 	$status_text='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
 												break;
 											 case '1':
-											 $status_text='<b id="statfi">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+											 $status_text='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
 												 break;
 											 case '2':
 											 $status_text='<b id="statwt">รอการพิจารนา <i class="fa  fa-clock-o fa-fw"></i></b>';
@@ -172,7 +172,6 @@ else
 										<div class="panel panel-success">
 											<div class="panel-heading">
 												<h3 class="panel-title">
-
 											<li><b><u>กระบวนวิชา</u></b> : <?php echo $value_course['id']." ".$value_course['name']?> </li>
 										</h3>
 											</div>
