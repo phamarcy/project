@@ -177,9 +177,9 @@ session_start();
                                       <div class="panel-group" id="464402">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#464402" href="#listname464402-1">อาจารย์ผู้สอน</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="listname464402-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
@@ -213,9 +213,9 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname464402-2">คณะกรรมการ</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="listname464402-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
@@ -244,12 +244,17 @@ session_start();
                                                         </tr>
                                                         <tr>
                                                           <td>2</td>
-                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
+                                                          <td>รศ.ดร. ภญ.หทัยกาญจน์   เชาวนพูนผล์</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                         <tr>
                                                           <td>3</td>
                                                           <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>4</td>
+                                                          <td>ผศ.ดร. ภก.สกนธ์   สุภากุล</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -281,9 +286,9 @@ session_start();
                                       <div class="panel-group" id="464403">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#464403" href="#listname464403-1">อาจารย์ผู้สอน</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="listname464403-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
@@ -307,7 +312,7 @@ session_start();
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
-                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td>ผศ.ดร. ภก.สกนธ์   สุภากุล</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -317,9 +322,9 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname464403-2">คณะกรรมการ</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="listname464403-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
@@ -353,7 +358,7 @@ session_start();
                                                         </tr>
                                                         <tr>
                                                           <td>3</td>
-                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td>ผศ.ดร. ภก.สกนธ์   สุภากุล</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -385,9 +390,9 @@ session_start();
                                       <div class="panel-group" id="464441">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#464441" href="#listname464441-1">อาจารย์ผู้สอน</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="listname464441-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
@@ -411,7 +416,7 @@ session_start();
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
-                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td>รศ.ดร. ภญ.หทัยกาญจน์   เชาวนพูนผล</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -421,9 +426,9 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname464441-2">คณะกรรมการ</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="listname464441-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
@@ -452,12 +457,17 @@ session_start();
                                                         </tr>
                                                         <tr>
                                                           <td>2</td>
-                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
+                                                          <td>ผศ.ดร. ภก.สกนธ์   สุภากุล</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                         <tr>
                                                           <td>3</td>
                                                           <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>4</td>
+                                                          <td>รศ.ดร. ภญ.หทัยกาญจน์   เชาวนพูนผล</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -489,9 +499,9 @@ session_start();
                                       <div class="panel-group" id="463545">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#463545" href="#listname463545-1">อาจารย์ผู้สอน</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="listname463545-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
@@ -515,7 +525,7 @@ session_start();
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
-                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td>รศ.ดร. ภญ.หทัยกาญจน์   เชาวนพูนผล</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -525,9 +535,9 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname463545-2">คณะกรรมการ</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="listname463545-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
@@ -619,9 +629,9 @@ session_start();
                                       <div class="panel-group" id="462533">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#462533" href="#collapseOne">อาจารย์ผู้สอน</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="collapseOne" class="panel-collapse collapse">
                                                   <div class="panel-body">
@@ -645,7 +655,7 @@ session_start();
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
-                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td>อ.ดร.ภญ.ดรุณี หงษ์วิเศษ </td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -655,9 +665,9 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">คณะกรรมการ</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="collapseTwo" class="panel-collapse collapse">
                                                   <div class="panel-body">
@@ -723,9 +733,9 @@ session_start();
                                       <div class="panel-group" id="461525">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#461525" href="#listname461525-1">อาจารย์ผู้สอน</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="listname461525-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
@@ -749,7 +759,7 @@ session_start();
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
-                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td>ผศ.ดร. ภญ.นันทวรรณ   กิติกรรณากรณ์</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -759,9 +769,9 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname461525-2">คณะกรรมการ</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="listname461525-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
@@ -827,9 +837,9 @@ session_start();
                                       <div class="panel-group" id="461532">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#461532" href="#listname461532-1">อาจารย์ผู้สอน</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="listname461532-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
@@ -853,7 +863,7 @@ session_start();
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
-                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td>รศ.ดร.ภญ.สุพร จารุมณี</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -863,9 +873,9 @@ session_start();
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <h4 class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname461532-2">คณะกรรมการ</a>
-                                                  </h4>
+                                                  </div>
                                               </div>
                                               <div id="listname461532-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
