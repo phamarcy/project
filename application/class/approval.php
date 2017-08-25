@@ -118,9 +118,12 @@ class approval
               break;
             case 'P':
               $temp_status = 2;
+              break;
             case 'E':
               $temp_status = 3;
+              break;
             default:
+              $temp_status = 1;
               break;
           }
           if($temp_status < $status)
