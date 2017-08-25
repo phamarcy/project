@@ -277,7 +277,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>อาจารย์ท่านี้เป็นผู้มีประสบการณ์</td>
+                                                                      <td>อาจารย์ท่านนี้เป็นผู้มีประสบการณ์</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -319,7 +319,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>ควรทกลองให้อาจารย์มาสอนก่อน</td>
+                                                                      <td>ควรทดลองให้อาจารย์มาสอนก่อน</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -526,7 +526,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>อาจารย์ท่านี้เป็นผู้มีประสบการณ์</td>
+                                                                      <td>อาจารย์ท่านนี้เป็นผู้มีประสบการณ์</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -568,7 +568,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>ควรทกลองให้อาจารย์มาสอนก่อน</td>
+                                                                      <td>ควรทดลองให้อาจารย์มาสอนก่อน</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -775,7 +775,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>อาจารย์ท่านี้เป็นผู้มีประสบการณ์</td>
+                                                                      <td>อาจารย์ท่านนี้เป็นผู้มีประสบการณ์</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -817,7 +817,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>ควรทกลองให้อาจารย์มาสอนก่อน</td>
+                                                                      <td>ควรทดลองให้อาจารย์มาสอนก่อน</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -1028,7 +1028,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>อาจารย์ท่านี้เป็นผู้มีประสบการณ์</td>
+                                                                      <td>อาจารย์ท่านนี้เป็นผู้มีประสบการณ์</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -1064,7 +1064,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>ควรทกลองให้อาจารย์มาสอนก่อน</td>
+                                                                      <td>ควรทดลองให้อาจารย์มาสอนก่อน</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -1247,7 +1247,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>อาจารย์ท่านี้เป็นผู้มีประสบการณ์</td>
+                                                                      <td>อาจารย์ท่านนี้เป็นผู้มีประสบการณ์</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -1283,7 +1283,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>ควรทกลองให้อาจารย์มาสอนก่อน</td>
+                                                                      <td>ควรทดลองให้อาจารย์มาสอนก่อน</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -1466,7 +1466,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>อาจารย์ท่านี้เป็นผู้มีประสบการณ์</td>
+                                                                      <td>อาจารย์ท่านนี้เป็นผู้มีประสบการณ์</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -1502,7 +1502,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>ควรทกลองให้อาจารย์มาสอนก่อน</td>
+                                                                      <td>ควรทดลองให้อาจารย์มาสอนก่อน</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -1711,7 +1711,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>อาจารย์ท่านี้เป็นผู้มีประสบการณ์</td>
+                                                                      <td>อาจารย์ท่านนี้เป็นผู้มีประสบการณ์</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -1747,7 +1747,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>ควรทกลองให้อาจารย์มาสอนก่อน</td>
+                                                                      <td>ควรทดลองให้อาจารย์มาสอนก่อน</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -1929,7 +1929,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>อาจารย์ท่านี้เป็นผู้มีประสบการณ์</td>
+                                                                      <td>อาจารย์ท่านนี้เป็นผู้มีประสบการณ์</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -1965,7 +1965,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>ควรทกลองให้อาจารย์มาสอนก่อน</td>
+                                                                      <td>ควรทดลองให้อาจารย์มาสอนก่อน</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -2148,7 +2148,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>อาจารย์ท่านี้เป็นผู้มีประสบการณ์</td>
+                                                                      <td>อาจารย์ท่านนี้เป็นผู้มีประสบการณ์</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -2184,7 +2184,7 @@ session_start();
                                                                       <?php if ($_SESSION['level'] > 4 ): ?>
                                                                       <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                                       <?php endif; ?>
-                                                                      <td>ควรทกลองให้อาจารย์มาสอนก่อน</td>
+                                                                      <td>ควรทดลองให้อาจารย์มาสอนก่อน</td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
