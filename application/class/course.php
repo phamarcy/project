@@ -108,17 +108,17 @@ class Course
     }
     return $data;
   }
-  public function Get_Document($type,$id,$semester,$year)
+  public function Get_Document($type,$course_id,$instructor_id,$semester,$year)
   {
 
     if($type == 'evaluate')
     {
-      $file_name = $id."_".$type."_".$semester."_".$year.".txt";
+      $file_name = $course_id."_".$type."_".$semester."_".$year.".txt";
     }
     else if ($type == 'special')
     {
       $type = "special_instructor";
-      $file_name = $id."_".$semester."_".$year.".txt";
+      $file_name = $instructor_id."_".$semester."_".$year.".txt";
 
     }
     else
@@ -126,7 +126,7 @@ class Course
       die("รูปแบบข้อมูลผิดพลาด กรุณาติดต่อผู้ดูแลระบบ");
     }
 
-    $doc_path = realpath($this->FILE_PATH."/temp/".$id."/".$type);
+    $doc_path = realpath($this->FILE_PATH."/temp/".$course_id."/".$type);
     $file_path = $doc_path."/".$file_name;
     return $this->FILE_PATH."/temp/".$id."/".$type;
     if (file_exists($file_path))
