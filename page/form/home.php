@@ -110,14 +110,13 @@ else
 									echo "<b>รายชื่อวิชา</b>";
 								}
 								?>
-
-
 	          </h5>
 						</div>
 						<!-- .panel-heading -->
 						<div class="panel-body" >
-							<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;" ></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกข้อมูลกระบวนวิชา <?php echo $deadline['edit']['day'].' '.$deadline['edit']['month'].' '.$deadline['edit']['year']."<br>"; ?> </b>
-
+							<?php if ($_SESSION['level'] < 4): ?>
+								<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;" ></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกข้อมูลกระบวนวิชา <?php echo $deadline['edit']['day'].' '.$deadline['edit']['month'].' '.$deadline['edit']['year']."<br>"; ?> </b>
+							<?php endif; ?>
 							<?php
 					if($_SESSION['level'] == 4 || $_SESSION['level'] == 5) {  ?>
 								<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับประเมินกระบวนวิชา <?php echo $deadline['con']['day'].' '.$deadline['con']['month'].' '.$deadline['con']['year']."<br>"; ?> </b>

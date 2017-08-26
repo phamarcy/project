@@ -49,7 +49,7 @@
 
 	<script>
 	$(document).ready(function(){
-		$("#noti").fadeIn();
+
 		$(document).on("click", function () {
     		$("#noti").hide("slow");
 				$("#logout").hide("slow");
