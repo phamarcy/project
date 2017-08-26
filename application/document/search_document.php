@@ -23,7 +23,15 @@ if(isset($_POST['id']) && isset($_POST['type']))
     $semester = $_POST['semester'];
     $year = $_POST['year'];
     $data = $course->Get_Document($type,$id,$semester,$year);
-    echo $data;
+    if($data == false)
+    {
+      echo "ไม่พบข้อมูล กรุณาติดต่อผู้ดูแลระบบ";
+    }
+    else
+    {
+      echo $data;
+    }
+
   }
   else
   {

@@ -98,10 +98,10 @@ class Course
         {
             $files = explode("_",$file_name[$i]);
             $id = $files[1];
-            $temp['id'] = $files[1];
+            $temp['id'] = $files[0];
             $temp['name'] = $this->PERSON->Get_Special_Instructor_Name($id);
-            $temp['semester'] = $files[2];
-            $temp['year'] = $files[3];
+            $temp['semester'] = $files[1];
+            $temp['year'] = $files[2];
             $temp['year'] = str_replace(".txt","",$temp['year']);
             array_push($data,$temp);
         }
@@ -110,9 +110,25 @@ class Course
   }
   public function Get_Document($type,$id,$semester,$year)
   {
-    $file_name = $id."_".$type."_".$semester."_".$year.".txt";
+
+    if($type == 'evaluate')
+    {
+      $file_name = $id."_".$type."_".$semester."_".$year.".txt";
+    }
+    else if ($type == 'special')
+    {
+      $type = "special_instructor";
+      $file_name = $id."_".$semester."_".$year.".txt";
+
+    }
+    else
+    {
+      die("รูปแบบข้อมูลผิดพลาด กรุณาติดต่อผู้ดูแลระบบ");
+    }
+
     $doc_path = realpath($this->FILE_PATH."/temp/".$id."/".$type);
     $file_path = $doc_path."/".$file_name;
+    return $this->FILE_PATH."/temp/".$id."/".$type;
     if (file_exists($file_path))
     {
       $data = file_get_contents($file_path);
