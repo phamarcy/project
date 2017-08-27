@@ -200,11 +200,12 @@ window.counttr = 0;
                         console.log(temp);
                         if(temp['info']!=false)
                         {
+                          var course_id = document.getElementById('id').value;
                           document.getElementById('formdrpd').style.display = "";
                           for(var i=0;i<(Object.keys(temp).length);i++)
                           {
                             var opt = document.createElement('option');
-                            opt.value = temp[i].id+"_"+temp[i].name+"_"+temp[i].semester+"_"+temp[i].year;
+                            opt.value = temp[i].id+"_"+course_id+"_"+temp[i].semester+"_"+temp[i].year;
                             opt.innerHTML = "คุณ"+temp[i].name+" ภาคการศึกษาที่ "+temp[i].semester+" ปีการศึกษา "+temp[i].year;
                             document.getElementById('teachername').appendChild(opt);
                           }
@@ -230,16 +231,16 @@ window.counttr = 0;
      var teachername_temp = document.getElementById('teachername').value;
      var stringspl = teachername_temp.split("_");
      var id = stringspl[0];
-     var teachername = stringspl[1];
+     var name = stringspl[1];
      var semester = stringspl[2];
      var year = stringspl[3];
      JSON.stringify(id);
-     JSON.stringify(teachername);
+     JSON.stringify(name);
      JSON.stringify(semester);
      JSON.stringify(year);
      JSON.stringify(type);
      file_data.append("id",id);
-     file_data.append("name",teachername);
+     file_data.append("name",name);
      file_data.append("semester",semester);
      file_data.append("year",year);
      file_data.append("type",type);
