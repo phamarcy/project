@@ -69,6 +69,25 @@ session_start();
       }
     });
 
+    function searchname(no,type) {
+      var name_s = $("#TEACHERLEC_F"+no).val();
+        $("#dtl"+no).html('');
+        if(name_s.length > 3)
+        {
+          $.post("search_name.php", { name: name_s}, function(data) {
+                data = JSON.parse( data );
+                for(var i=0;i<data.length;i++)
+                {
+                    $("#dtl"+no).append('<option value="'+data[i]+'"></option>');
+                }
+
+              })
+              .fail(function() {
+                  alert("error");
+              });
+        }
+      }
+
     </script>
   </head>
   <body>
@@ -80,46 +99,7 @@ session_start();
         </div>
         <div class="panel-body">
           <div class="row">
-              <div class="col-md-6">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                      <b>เพิ่มกระบวนวิชา</b>
-                  </div>
-                  <div class="panel-body">
-
-                    <form>
-                      <div class="form-group">
-                          <div class="form-inline">
-                          <div class="form-group">
-                            <label for="">รหัสวิชา</label>
-                            <input class="form-control" id="course_id" placeholder="e.g. 452111" style="width: 120px;">
-                          </div>
-                          <div class="form-group">
-                            <label for="">หน่วยกิต</label>
-                            <input class="form-control" id="course_id" placeholder="e.g. 3(3-0-6)" style="width: 150px;">
-                          </div>
-                        </div>
-                     </div>
-                      <div class="form-group">
-                        <label for="">ชื่อวิชาภาษาอังกฤษ</label>
-                        <input class="form-control" id="course_name" placeholder="e.g. TOXICOLOGY" >
-                      </div>
-                      <div class="form-group">
-                        <label for="">ชื่อวิชาภาษาไทย</label>
-                        <input class="form-control" id="course_name" placeholder="e.g. พิษวิทยา" >
-                      </div>
-                      <button type="button" class="btn btn-outline btn-primary" id="submit"  name="submit">เพิ่ม</button>
-                      <div id="warning"></div>
-
-                    </form>
-                    <form >
-
-                    </form>
-
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                       <b>ข้อมูลกระบวนวิชาในสังกัดย้อนหลัง</b>
@@ -128,13 +108,90 @@ session_start();
                     <div class="form-inline">
                       <center>
                         <form>
-                          <button type="button" class="btn btn-outline btn-primary " id="submit"  name="submit"><b>1/2557</b></button>
-                          <button type="button" class="btn btn-outline btn-primary " id="submit"  name="submit"><b>1/2558</b></button>
-                          <button type="button" class="btn btn-outline btn-primary " id="submit"  name="submit"><b>1/2559</b></button>
+                          <button type="button" class="btn btn-outline btn-primary " id="semester"  name="submit"><b>1/2557</b></button>
+                          <button type="button" class="btn btn-outline btn-primary " id="semester"  name="submit"><b>1/2558</b></button>
+                          <button type="button" class="btn btn-outline btn-primary " id="semester"  name="submit"><b>1/2559</b></button>
                           <div id="warning"></div>
                         </form>
                       </center>
                     </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <b>คณะกรรมการผู้รับผิดชอบ</b>
+                  </div>
+                  <div class="panel-body">
+                    <div class="form-group">
+                      <label for="">เพิ่มชุดคณะกรรมการ</label>
+                      <div class="form-inline">
+                          <input type="text" name="set_committee" value="" class="form-control" placeholder="e.g คณะกรรมการชุดที่ 1">
+                          <button type="button" name="button" class="btn btn-primary btn-outline">เพิ่ม</button>
+                      </div>
+
+                    </div>
+                    <div class="form-group">
+                      <label for="">ชุดคณะกรรมการ</label>
+                      <table class="table">
+                          <thead>
+                            <th>ลำดับ</th>
+                            <th>ชุดคณะกรรมการ</th>
+                            <th style="text-align:center;">รายชื่อคณะกรรมการ</th>
+                            <th></th>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td>คณะกรรมการชุดที่ 1</td>
+                              <td style="text-align:center;"><button type="button" name="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#1" class="accordion-toggle">รายชื่อ</button></td>
+                              <td><button type="button" name="button" class="btn btn-danger btn-outline">ลบ</button></td>
+                            </tr>
+                            <tr class="hiddenRow">
+
+                              <td colspan="6">
+                                <div class="accordian-body collapse" id="1">
+                                  <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <b>ข้อมูลกระบวนวิชาในสังกัดย้อนหลัง</b>
+                                    </div>
+                                    <div class="panel-body">
+                                  <div class="form-group">
+                                    <label for="">เพิ่มคณะกรรมการ</label>
+                                    <div class="form-inline">
+                                      <input type="text" class="form-control charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
+                                      <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                    </div>
+                                    <datalist id="dtl1"></datalist>
+                                  </div>
+                                  <hr>
+                                  <div class="form-group">
+                                    <label for="">รายชื่อ</label>
+                                    <table class="table">
+                                      <thead>
+                                        <th>ลำดับ</th>
+                                        <th>ชื่อ-นามสกุล</th>
+                                        <th></th>
+                                      </thead>
+                                      <tbody>
+                                        <td>1</td>
+                                        <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                        <td><button type="button" name="button" class="btn btn-outline btn-danger">ลบ</button></td>
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+                                  </div>
+                                </div>
+                                </td>
+                            </tr>
+                          </tbody>
+                      </table>
+                    </div>
+
+
+
                   </div>
                 </div>
               </div>
@@ -853,25 +910,6 @@ session_start();
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-    function searchname() {
-      var name_s = $("#teacher1").val();
-      $("#teacher_list1").html('');
-      if(name_s.length > 3)
-      {
-        $.post("search_name.php", { name: name_s}, function(data) {
-              data = JSON.parse( data );
-              for(var i=0;i<data.length;i++)
-              {
-                  $("#teacher_list1").append('<option value="'+data[i]+'"></option>');
-              }
 
-            })
-            .fail(function() {
-
-            });
-      }
-  }
-    </script>
   </body>
 </html>
