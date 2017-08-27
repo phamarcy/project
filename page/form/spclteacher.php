@@ -69,7 +69,7 @@ window.counttr = 0;
    });
  });
 
- function getifo(temp) {
+ function getinfo(temp) {
    //part1
    document.getElementById('department').value = temp['TEACHERDATA']['DEPARTMENT'];
    document.getElementById('pre').value = temp['TEACHERDATA']['PREFIX'];
@@ -83,6 +83,17 @@ window.counttr = 0;
    document.getElementById('email').value = temp['TEACHERDATA']['EMAIL'];
    var choice1 = temp['TEACHERDATA']['HISTORY'];
    $('input[name="topic"][value=' + choice1 + ']').prop('checked', true);
+   var topic = $("input[name='topic']").val();
+   if(topic=="yet")
+     {
+       $('#cvlist').hide();
+       $('input[name=cv]').prop('required', 'false');
+     }
+     else {
+       $('#cvlist').show();
+       $('input[name=cv]').prop('required', 'true');
+     }
+
 
    //part2
    document.getElementById('course').value = temp['COURSEDATA']['COURSE_ID'];
@@ -103,9 +114,9 @@ window.counttr = 0;
        });
        table.append('<tr class="warning" name="addtr" id="row' + (rowCount - 1) + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + (rowCount - 1) + '" id="delbtn' + (rowCount - 1) +
          '" value="ลบ" onclick="deleteRow(' + (rowCount - 1) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="detail_topic' + (rowCount - 1) + '" id="detail_topic' + (rowCount - 1) +
-         '" size="30" value="'+temp['COURSEDATA']['DETAIL']['TOPICLEC'][i-1]+'"></div></td><td><input type="date" class="form-control" name="dateteach' + (rowCount - 1) + '" id="dateteach' + (rowCount - 1) +
-         '" size="2" value="'+temp['COURSEDATA']['DETAIL']['DATE'][i-1]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + (rowCount - 1) + '" id="timebegin' + (rowCount - 1) + '" size="2" value="'+temp['COURSEDATA']['DETAIL']['TIME']['BEGIN'][i-1]+'" >  ถึง  <input type="time" class="form-control" name="timeend'
-          + (rowCount - 1) + '" id="timeend' + (rowCount - 1) + '" size="2" value="'+temp['COURSEDATA']['DETAIL']['TIME']['END'][i-1]+'"></div></td><td><input type="text" class="form-control" id="room' + (rowCount - 1) + '" value="'+temp['COURSEDATA']['DETAIL']['ROOM'][i-1]+
+         '" size="30" value="'+temp['COURSEDATA']['DETAIL']['TOPICLEC'][tr-1]+'"></div></td><td><input type="date" class="form-control" name="dateteach' + (rowCount - 1) + '" id="dateteach' + (rowCount - 1) +
+         '" size="2" value="'+temp['COURSEDATA']['DETAIL']['DATE'][tr-1]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + (rowCount - 1) + '" id="timebegin' + (rowCount - 1) + '" size="2" value="'+temp['COURSEDATA']['DETAIL']['TIME']['BEGIN'][tr-1]+'" >  ถึง  <input type="time" class="form-control" name="timeend'
+          + (rowCount - 1) + '" id="timeend' + (rowCount - 1) + '" size="2" value="'+temp['COURSEDATA']['DETAIL']['TIME']['END'][tr-1]+'"></div></td><td><input type="text" class="form-control" id="room' + (rowCount - 1) + '" value="'+temp['COURSEDATA']['DETAIL']['ROOM'][tr-1]+
           '"></td></tr>');
        $.each(x, function(i, val) {
          table.append(val);
@@ -138,6 +149,7 @@ window.counttr = 0;
 
    if(temp['PAYMENT']['COSTTRANS']['TRANSPLANE']['CHECKED'] == "true")
    {
+     document.getElementById('transplane').checked = true;
      document.getElementById('AIR_DEPART').value = temp['PAYMENT']['COSTTRANS']['TRANSPLANE']['DEPART'];
      document.getElementById('AIR_ARRIVE').value = temp['PAYMENT']['COSTTRANS']['TRANSPLANE']['ARRIVE'];
      document.getElementById('planecost').value = temp['PAYMENT']['COSTTRANS']['TRANSPLANE']['COST'];
@@ -145,6 +157,7 @@ window.counttr = 0;
 
    if(temp['PAYMENT']['COSTTRANS']['TRANSTAXI']['CHECKED'] == "true")
    {
+     document.getElementById('transtaxi').checked = true;
      document.getElementById('TAXI_DEPART').value = temp['PAYMENT']['COSTTRANS']['TRANSTAXI']['DEPART'];
      document.getElementById('TAXI_ARRIVE').value = temp['PAYMENT']['COSTTRANS']['TRANSTAXI']['ARRIVE'];
      document.getElementById('taxicost').value = temp['PAYMENT']['COSTTRANS']['TRANSTAXI']['COST'];
@@ -152,6 +165,7 @@ window.counttr = 0;
 
    if(temp['PAYMENT']['COSTTRANS']['TRANSSELFCAR']['CHECKED'] == "true")
    {
+     document.getElementById('transselfcar').checked = true;
      document.getElementById('SELF_DISTANCT').value = temp['PAYMENT']['COSTTRANS']['TRANSSELFCAR']['DISTANCT'];
      document.getElementById('selfunit').value = temp['PAYMENT']['COSTTRANS']['TRANSSELFCAR']['UNIT'];
      document.getElementById('selfcost').value = temp['PAYMENT']['COSTTRANS']['TRANSSELFCAR']['COST'];
@@ -173,6 +187,7 @@ window.counttr = 0;
      document.getElementById('pernight').value = temp['PAYMENT']['COSTHOTEL']['PERNIGHT'];
    }
    document.getElementById('totalcost').value = temp['PAYMENT']['TOTALCOST'];
+   $('#callist').show();
 
  }
 
@@ -253,8 +268,8 @@ window.counttr = 0;
      file_data.append("semester",semester);
      file_data.append("year",year);
      file_data.append("type",type);
-     var URL = '../../application/test_data.php';
-    //  var URL = '../../application/document/search_document.php';
+     //var URL = '../../application/test_data.php';
+     var URL = '../../application/document/search_document.php';
      $.ajax({
                    url: URL,
                    dataType: 'text',

@@ -242,6 +242,7 @@ function checksubject(btntype,type){
                   data: file_data,
                   type: 'post',
                   success: function (result) {
+                    console.log(result);
                     var temp = $.parseJSON(result);
                     console.log(temp);
                     if(temp!=null)
