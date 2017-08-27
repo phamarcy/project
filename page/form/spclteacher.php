@@ -389,11 +389,18 @@ window.counttr = 0;
     var hotelunit = document.getElementById('way2unit').value;
   }
 
+  //split fname / lname
+  var fullname =  document.getElementById('fname').value;
+  var splitor = fullname.split(" ");
+  var fname = splitor[0];
+  var lname = splitor[1];
+
    var data = {
      'TEACHERDATA' : {
        'DEPARTMENT' : document.getElementById('department').value,
        'PREFIX' : document.getElementById('pre').value,
-       'NAME' : document.getElementById('fname').value,
+       'FNAME' : fname,
+       'LNAME' : lname,
        'POSITION' : document.getElementById('position').value,
        'QUALIFICATION' : document.getElementById('qualification').value,
        'WORKPLACE' : document.getElementById('workplace').value,
