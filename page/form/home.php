@@ -16,8 +16,8 @@ $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
 /*echo "<pre>";
 print_r($data_course);exit;
-echo "</pre>";
-*/
+echo "</pre>";*/
+
 if($result == false)
 {
 	die("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาติดต่อผู้ดูแลระบบ");
@@ -133,29 +133,17 @@ else
 									?>
 
 									<?php
+										$status_text="";
 										switch ($value_course['evaluate']['status']) {
-											 case '0':
-											 	$status_text='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
-												break;
-											 case '1':
-											 $status_text='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
-												 break;
-											 case '2':
-											 $status_text='<b id="statwt">รอการพิจารนา <i class="fa  fa-clock-o fa-fw"></i></b>';
-												 break;
-											 case '3':
-											 $status_text='<b id="statn">มีการแก้ไขจากภาควิชา <i class="fa fa-pencil-square fa-fw"></i></b>';
-												 break;
-											 case '4':
-											 $status_text='<b id="statal">ภาควิชาเห็นชอบ รอคณะกรรมเห็นชอบ <i class="fa fa-user fa-fw"></i></b>';
-												 break;
-											 case '5':
-											 $status_text='<b id="statn">มีการแก้ไขเพิ่มเติมจากคณะ <i class="fa fa-user-plus fa-fw"></i></b>';
-												 break;
-											 case '6':
-											 $status_text='<b id="statcf">คณะกรรมการเห็นชอบ <i class="fa fa-check fa-fw"></i></b>';
-												 break;
-
+											 case 'A':
+											 		$status_text='<b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></b>';
+											 break;
+											 case 'D':
+											 	$status_text='<b id="statc">รอการพิจารณา <i class="fa fa-pencil-square-o fa-fw"></i></b>';
+											 break;
+											 case 'P':
+											 	$status_text='<b id="statn">ไม่อนุมัติ <i class="fa fa-clock-o fa-fw"></i></b>';
+											 break;
 										 }
 
 
