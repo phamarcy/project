@@ -16,7 +16,7 @@ if(isset($_POST['DATA']))
 	$data = $_POST['DATA'];
 	$DATA = json_decode($data,true);
 	$fname = $DATA['TEACHERDATA']['FNAME'];
-	$lname = $DATA['TEACHERDATA']['FNAME'];
+	$lname = $DATA['TEACHERDATA']['LNAME'];
 	$sql = "SELECT `instructor_id` FROM `special_instructor` WHERE `firstname` = '".$fname."' AND `lastname` = '".$lname."'";
 	$result = $db->Query($sql);
 	if($result == null)
