@@ -158,7 +158,7 @@ session_start();
                                     </div>
                                     <div class="panel-body">
                                   <div class="form-group">
-                                    <label for="">เพิ่มคณะกรรมการ</label>
+                                    <label for="">เพิ่มชุดคณะกรรมการ</label>
                                     <div class="form-inline">
                                       <input type="text" class="form-control charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
                                       <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
@@ -276,24 +276,10 @@ session_start();
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
-                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                                          <td>คณะกรรมการชุดที่ 1</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
-                                                        <tr>
-                                                          <td>2</td>
-                                                          <td>รศ.ดร. ภญ.หทัยกาญจน์   เชาวนพูนผล์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>3</td>
-                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>4</td>
-                                                          <td>ผศ.ดร. ภก.สกนธ์   สุภากุล</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
+
                                                       </tbody>
                                                     </table>
                                                   </div>
@@ -365,17 +351,7 @@ session_start();
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
-                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>2</td>
-                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>3</td>
-                                                          <td>ผศ.ดร. ภก.สกนธ์   สุภากุล</td>
+                                                          <td>คณะกรรมการชุดที่ 1</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -449,22 +425,7 @@ session_start();
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
-                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>2</td>
-                                                          <td>ผศ.ดร. ภก.สกนธ์   สุภากุล</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>3</td>
-                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>4</td>
-                                                          <td>รศ.ดร. ภญ.หทัยกาญจน์   เชาวนพูนผล</td>
+                                                          <td>คณะกรรมการชุดที่ 1</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -538,17 +499,7 @@ session_start();
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
-                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>2</td>
-                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>3</td>
-                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td>คณะกรรมการชุดที่ 1</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -653,7 +604,7 @@ session_start();
                                                     <div class="col-md-5">
                                                       <div class="form-group">
                                                         <form class="" action="" method="post">
-                                                          <label for="">เพิ่มคณะกรรมการ</label>
+                                                          <label for="">เพิ่มชุดคณะกรรมการ</label>
                                                           <div class="form-inline">
                                                             <input type="text" name="teacher" value="" class="form-control">
                                                             <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
@@ -670,17 +621,7 @@ session_start();
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
-                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>2</td>
-                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>3</td>
-                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td>คณะกรรมการชุดที่ 1</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -757,7 +698,7 @@ session_start();
                                                     <div class="col-md-5">
                                                       <div class="form-group">
                                                         <form class="" action="" method="post">
-                                                          <label for="">เพิ่มคณะกรรมการ</label>
+                                                          <label for="">เพิ่มชุดคณะกรรมการ</label>
                                                           <div class="form-inline">
                                                             <input type="text" name="teacher" value="" class="form-control">
                                                             <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
@@ -774,17 +715,7 @@ session_start();
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
-                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>2</td>
-                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>3</td>
-                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td>คณะกรรมการชุดที่ 1</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
@@ -861,7 +792,7 @@ session_start();
                                                     <div class="col-md-5">
                                                       <div class="form-group">
                                                         <form class="" action="" method="post">
-                                                          <label for="">เพิ่มคณะกรรมการ</label>
+                                                          <label for="">เพิ่มชุดคณะกรรมการ</label>
                                                           <div class="form-inline">
                                                             <input type="text" name="teacher" value="" class="form-control">
                                                             <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
@@ -878,17 +809,7 @@ session_start();
                                                       <tbody>
                                                         <tr>
                                                           <td>1</td>
-                                                          <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>2</td>
-                                                          <td>ผศ.ดร. ภก.ทรงวุฒิ   ยศวิมลวัฒน์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td>3</td>
-                                                          <td>รศ.ดร. ภญ.ศิริวิภา   ปิยะมงคล</td>
+                                                          <td>คณะกรรมการชุดที่ 1</td>
                                                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                         </tr>
                                                       </tbody>
