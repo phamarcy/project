@@ -73,7 +73,8 @@ window.counttr = 0;
    //part1
    document.getElementById('department').value = temp['TEACHERDATA']['DEPARTMENT'];
    document.getElementById('pre').value = temp['TEACHERDATA']['PREFIX'];
-   document.getElementById('fname').value = temp['TEACHERDATA']['NAME'];
+   var constring = temp['TEACHERDATA']['FNAME'] + temp['TEACHERDATA']['LNAME'];
+   document.getElementById('fname').value = constring;
    document.getElementById('position').value = temp['TEACHERDATA']['POSITION'];
    document.getElementById('qualification').value = temp['TEACHERDATA']['QUALIFICATION'];
    document.getElementById('workplace').value = temp['TEACHERDATA']['WORKPLACE'];
@@ -212,8 +213,8 @@ window.counttr = 0;
                    success: function (result) {
 
                         var temp = $.parseJSON(result);
-                        console.log(temp);
-                        if(temp['info']!=false)
+                        //console.log(temp);
+                        if(temp['info']!=false && temp[0]!=null)
                         {
                           var course_id = document.getElementById('id').value;
                           document.getElementById('formdrpd').style.display = "";
@@ -229,13 +230,14 @@ window.counttr = 0;
                           for(var i=0;i<(Object.keys(temp).length);i++)
                           {
                             var opt = document.createElement('option');
-                            opt.value = temp[i].id+"_"+course_id+"_"+temp[i].semester+"_"+temp[i].year;
+                            opt.value = temp[i].id +"_"+ course_id + "_" + temp[i].semester + "_" + temp[i].year +"_"+ temp[i].name;
+                            console.log(temp[i].id +"_"+ course_id + "_" + temp[i].semester + "_" + temp[i].year +"_"+ temp[i].name);
                             opt.innerHTML = "คุณ"+temp[i].name+" ภาคการศึกษาที่ "+temp[i].semester+" ปีการศึกษา "+temp[i].year;
                             document.getElementById('teachername').appendChild(opt);
                           }
                         }
                          else {
-                           alert('ไม่พบกระบวนวิชาที่ค้นหา\nกรุณากรอกข้อมูลใหม่');
+                           alert('ไม่พบข้อมูลเก่า ท่านสามารถกรอกข้อมูลใหม่ได้ตามแบบฟอร์มข้างล่าง');
                            document.getElementById('id').value = "";
                          }
                    },
@@ -258,11 +260,14 @@ window.counttr = 0;
      var course_id = stringspl[1];
      var semester = stringspl[2];
      var year = stringspl[3];
+     var name = stringspl[4];
+     JSON.stringify(name);
      JSON.stringify(course_id);
      JSON.stringify(instructor_id);
      JSON.stringify(semester);
      JSON.stringify(year);
      JSON.stringify(type);
+     file_data.append("name",name);
      file_data.append("course_id",course_id);
      file_data.append("instructor_id",instructor_id);
      file_data.append("semester",semester);
