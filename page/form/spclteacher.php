@@ -213,7 +213,7 @@ window.counttr = 0;
                    success: function (result) {
 
                         var temp = $.parseJSON(result);
-                        //console.log(temp);
+                        console.log(Object.keys(temp).length);
                         if(temp['info']!=false && temp[0]!=null)
                         {
                           var course_id = document.getElementById('id').value;
@@ -227,7 +227,7 @@ window.counttr = 0;
                               document.getElementsByName("teachername")[0].remove(0);
                             }
                           }
-                          for(var i=0;i<(Object.keys(temp).length);i++)
+                          for(var i=0;i<(Object.keys(temp).length-1);i++)
                           {
                             var opt = document.createElement('option');
                             opt.value = temp[i].id +"_"+ course_id + "_" + temp[i].semester + "_" + temp[i].year +"_"+ temp[i].name;
