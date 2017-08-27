@@ -180,10 +180,10 @@ window.counttr = 0;
    if(btntype==1)
    {
      var file_data = new FormData;
-     var id = document.getElementById('id').value;
-     JSON.stringify(id);
+     var course_id = document.getElementById('id').value;
+     JSON.stringify(course_id);
      JSON.stringify(type);
-     file_data.append("id",id);
+     file_data.append("course_id",course_id);
      file_data.append("type",type);
      var URL = '../../application/document/search_document.php';
      $.ajax({
@@ -202,6 +202,15 @@ window.counttr = 0;
                         {
                           var course_id = document.getElementById('id').value;
                           document.getElementById('formdrpd').style.display = "";
+                          //cleardatalist
+                          var selectobject = document.getElementById('teachername');
+                          var long = selectobject.length;
+                          if(long!=0 && long!=null)
+                          {
+                            for (var i=0; i<=long; i++){
+                              document.getElementsByName("teachername")[0].remove(0);
+                            }
+                          }
                           for(var i=0;i<(Object.keys(temp).length);i++)
                           {
                             var opt = document.createElement('option');
@@ -802,7 +811,7 @@ function lastcal() {
       <div class="form-inline">
         <div class="form-group " style="font-size:16px;">
            ชื่อ-นามสกุลของอาจารย์พิเศษ
-          <select class="form-control required" id="teachername" style="width: 400px;" required >
+          <select class="form-control required" id="teachername" name="teachername" style="width: 400px;" required >
           </select>
          </div>
          <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,2);">

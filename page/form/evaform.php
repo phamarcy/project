@@ -576,10 +576,10 @@ function checksubject(btntype,type){
   if(btntype==1)
   {
     var file_data = new FormData;
-    var id = document.getElementById('id').value;
-    JSON.stringify(id);
+    var course_id = document.getElementById('id').value;
+    JSON.stringify(course_id);
     JSON.stringify(type);
-    file_data.append("id",id);
+    file_data.append("course_id",course_id);
     file_data.append("type",type);
     var URL = '../../application/document/search_document.php';
     $.ajax({
@@ -597,6 +597,16 @@ function checksubject(btntype,type){
                        if(temp['info']!=false)
                        {
                          document.getElementById('formdrpd').style.display = "";
+                         //cleardatalist
+                         var selectobject = document.getElementById('semester');
+                         var long = selectobject.length;
+                         if(long!=0 && long!=null)
+                         {
+                           for (var i=0; i<=long; i++){
+                             document.getElementsByName("semester")[0].remove(0);
+                           }
+                         }
+
                          for(var i=0;i<(Object.keys(temp).length - 1);i++)
                          {
                            var opt = document.createElement('option');
@@ -623,16 +633,16 @@ function checksubject(btntype,type){
   }
   else if (btntype==2) {
     var file_data = new FormData;
-    var id = document.getElementById('id').value;
+    var course_id = document.getElementById('id').value;
     var semester_temp = document.getElementById('semester').value;
     var stringspl = semester_temp.split("_");
     var semester = stringspl[0];
     var year = stringspl[1];
-    JSON.stringify(id);
+    JSON.stringify(course_id);
     JSON.stringify(semester);
     JSON.stringify(year);
     JSON.stringify(type);
-    file_data.append("id",id);
+    file_data.append("course_id",course_id);
     file_data.append("semester",semester);
     file_data.append("year",year);
     file_data.append("type",type);
@@ -1197,7 +1207,7 @@ function confreset() {
     <div class="form-inline">
       <div class="form-group " style="font-size:16px;">
          ภาคการศึกษาและปีการศึกษา
-        <select class="form-control required" id="semester" style="width: 300px;" required >
+        <select class="form-control required" id="semester" name="semester" style="width: 300px;" required >
         </select>
        </div>
        <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,1);">
