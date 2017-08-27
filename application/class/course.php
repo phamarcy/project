@@ -82,7 +82,7 @@ class Course
             if($type == 'special_instructor')
             {
               $temp['id'] = $files[0];
-              $temp['name'] = $this->PERSON->Get_Special_Instructor_Name($id);
+              $temp['name'] = $this->PERSON->Get_Special_Instructor_Name($temp['id']);
               $temp['semester'] = $files[1];
               $temp['year'] = $files[2];
             }
