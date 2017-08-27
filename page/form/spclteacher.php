@@ -699,6 +699,19 @@ window.counttr = 0;
 
       $("#callist").hide();
 
+      //cvlist
+      $("input[name='topic']").change(function(){
+        if($(this).val()=="yet")
+        {
+          $('#cvlist').hide();
+          $('input[name=cv]').prop('required', 'false');
+        }
+        else {
+          $('#cvlist').show();
+          $('input[name=cv]').prop('required', 'true');
+        }
+      });
+
 
    $('#adddetail').click(function() {
      window.counttr = window.counttr + 1;
@@ -980,10 +993,10 @@ function lastcal() {
           </div>
         </ul>
       </li>
-      <li  style="font-size: 14px;">
+      <li  style="font-size: 14px;" >
         <b>เลือกไฟล์ Curriculum Vitae (CV) เพื่ออัพโหลด : </b><br />
       <div class="col-md-5 form-inline form-group">
-        <input type="file" class="filestyle" id="cv" data-icon="false" required><font color="red"><b> ** จำเป็น</b></font>
+        <input type="file" class="filestyle" id="cv" data-icon="false"><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
       </div>
       </li>
     </ol>
