@@ -12,23 +12,24 @@ $db = new Database();
 // var_dump($_POST);
 if(isset($_POST['DATA']))
 {
+
 	$data = $_POST['DATA'];
 	$DATA = json_decode($data,true);
-	$fname = $DATA['FNAME'];
-	$lname = $DATA['LNAME'];
+	$fname = $DATA['TEACHERDATA']['FNAME'];
+	$lname = $DATA['TEACHERDATA']['FNAME'];
 	$sql = "SELECT `instructor_id` FROM `special_instructor` WHERE `firstname` = '".$fname."' AND `lastname` = '".$lname."'";
 	$result = $db->Query($sql);
 	if($result == null)
 	{
-		$sql="INSERT INTO `special_instructor`(`instructor_id`, `firstname`, `lastname`) VALUES ('".$fname."','".$lname."')";
+		$sql="INSERT INTO `special_instructor`(`firstname`, `lastname`) VALUES ('".$fname."','".$lname."')";
 		$result = $db->Insert_Update_Delete($sql);
 		if($result)
 		{
-			$sql = "SELECT LAST_INSERT_ID();";
+			$sql = "SELECT LPAD( LAST_INSERT_ID(),11,'0') as id";
 			$temp_id = $db->Query($sql);
 			if($temp_id)
 			{
-				$instructor_id = $temp_id[0]['LAST_INSERT_ID()'];
+				$instructor_id = $temp_id[0]['id'];
 			}
 			else
 			{
@@ -86,8 +87,8 @@ function Write_temp_data($temp_data,$special_id)
 {
 	global $semester;
 	$data = json_decode($temp_data,true);
-	$path = Create_Folder($data['COURSE_ID'],'speacial_instructor');
-	$temp_file = fopen($path."/".$data['COURSE_ID']."_".$special_id."_".$semester['semester']."_".$semester['year'].".txt", "w");
+	$path = Create_Folder($data['COURSEDATA']['COURSE_ID'],'special_instructor');
+	$temp_file = fopen($path."/".$special_id."_".$semester['semester']."_".$semester['year'].".txt", "w");
 	fwrite($temp_file, $temp_data);
 	fclose($temp_file);
 
@@ -128,7 +129,7 @@ $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','แบบขออนุมัติเ
 $pdf->SetX(75);
 $pdf->Cell(10,7,iconv( 'UTF-8','TIS-620','ภาควิชา'),0,"C");
 $pdf->SetFont('angsa','',14);
-$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','    '.'บริบาลเภสัชกรรม'.'     '),0,"C");
+$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','    '.$DATA['TEACHERDATA']['DEPARTMENT'].'     '),0,"C");
 $pdf->Ln();
 
 $pdf->SetX(60);
@@ -149,7 +150,7 @@ $pdf->SetX(25);
 $pdf->SetFont('angsa','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','1.1 ชื่อ ')),7,iconv( 'UTF-8','TIS-620','1.1 ชื่อ '),0,"C");
 
-$RANK = 'นาย';
+$RANK = $DATA['TEACHERDATA']['PREFIX'];
 $FIRSTNAME = 'เกรียงไกร';
 $LASTNAME = 'ยังฉิม';
 $space_firstname = '';
@@ -172,25 +173,27 @@ $pdf->Ln();
 
 $pdf->SetX(25);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','1.2 ตำแหน่ง ')),7,iconv( 'UTF-8','TIS-620','1.2 ตำแหน่ง '),0,"C");
-$POSITION = 'เภสัชกรชำนาญการ';
+$POSITION = $DATA['TEACHERDATA']['POSITION'];
 $count = 155 - strlen($POSITION);
 $space_position = '';
 for($i=0;$i<$count;$i++)
 {
 	$space_position .= ' ';
 }
-$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','        '.$POSITION.$space_position),0,1);
+$pdf->MultiCell( 100, 7, iconv( 'UTF-8','TIS-620',$POSITION), 0,1);
+// $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','        '.$POSITION.$space_position),0,1);
 
 $pdf->SetX(25);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','1.3 คุณวุฒิ/สาขาที่เชี่ยวชาญ ')),7,iconv( 'UTF-8','TIS-620','1.3 คุณวุฒิ/สาขาที่เชี่ยวชาญ '),0,"C");
-$QUALIFICATION = 'เภสัชศาสตร์มหาบัณฑิต สาขาการจัดการเภสัชกรรม / การคุ้มครองผู้บริโภคด้านสาธารณสุข';
+$QUALIFICATION = $DATA['TEACHERDATA']['QUALIFICATION'];
 $count = 155 - strlen($QUALIFICATION);
 $space_qualification = '';
 for($i=0;$i<$count;$i++)
 {
 	$space_qualification .= ' ';
 }
-$pdf->Write(7,iconv( 'UTF-8','TIS-620','    '.$QUALIFICATION.$space_qualification),0,1);
+$pdf->MultiCell( 100, 7, iconv( 'UTF-8','TIS-620',$QUALIFICATION), 0,1);
+// $pdf->Write(7,iconv( 'UTF-8','TIS-620','    '.$QUALIFICATION.$space_qualification),0,1);
 $pdf->Ln();
 $pdf->SetX(25);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','1.4 สถานที่ทำงาน/สถานที่ติดต่อ    ')),7,iconv( 'UTF-8','TIS-620','1.4 สถานที่ทำงาน/สถานที่ติดต่อ    '),0,"C");
@@ -451,7 +454,7 @@ $pdf->SetX($money_position-20);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.'10'.'   เดือน   '.'กันยายน'.'   พ.ศ.   '.'2560'),0);
 $pdf->Output("special_instructor.pdf","F");
 
-// $pdf->Output($file_path."/".$DATA['COURSE_ID']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
+// $pdf->Output($file_path."/".$data['COURSEDATA']['COURSE_ID']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
 
  ?>
  PDF Created Click <a href="special_instructor.pdf">here</a> to Download

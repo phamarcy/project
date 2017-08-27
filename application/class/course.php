@@ -68,7 +68,7 @@ class Course
   {
     if($type =='special')
     {
-      return $this->Search_Special_Instructor($id);
+      $type = "special_instructor";
     }
     $doc_path = realpath($this->FILE_PATH."/temp/".$id."/".$type);
     $data = array();
@@ -79,9 +79,20 @@ class Course
         for($i=2;$i<count($file_name);$i++)
         {
             $files = explode("_",$file_name[$i]);
-            $temp['semester'] = $files[2];
-            $temp['year'] = $files[3];
-            $temp['year'] = str_replace(".txt","",$temp['year']);
+            if($type == 'special_instructor')
+            {
+              $temp['id'] = $files[0];
+              $temp['name'] = $this->PERSON->Get_Special_Instructor_Name($id);
+              $temp['semester'] = $files[1];
+              $temp['year'] = $files[2];
+            }
+            else
+            {
+              $temp['semester'] = $files[2];
+              $temp['year'] = $files[3];
+            }
+              $temp['year'] = str_replace(".txt","",$temp['year']);
+
             array_push($data,$temp);
         }
     }
