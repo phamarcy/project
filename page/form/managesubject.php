@@ -125,14 +125,6 @@ session_start();
                   </div>
                   <div class="panel-body">
                     <div class="form-group">
-                      <label for="">เพิ่มชุดคณะกรรมการ</label>
-                      <div class="form-inline">
-                          <input type="text" name="set_committee" value="" class="form-control" placeholder="e.g คณะกรรมการชุดที่ 1">
-                          <button type="button" name="button" class="btn btn-primary btn-outline">เพิ่ม</button>
-                      </div>
-
-                    </div>
-                    <div class="form-group">
                       <label for="">ชุดคณะกรรมการ</label>
                       <table class="table">
                           <thead>
@@ -145,25 +137,67 @@ session_start();
                             <tr>
                               <td>1</td>
                               <td>คณะกรรมการชุดที่ 1</td>
-                              <td style="text-align:center;"><button type="button" name="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#1" class="accordion-toggle">รายชื่อ</button></td>
-                              <td><button type="button" name="button" class="btn btn-danger btn-outline">ลบ</button></td>
+                              <td style="text-align:center;"><button type="button" name="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#set1" class="accordion-toggle">รายชื่อ</button></td>
                             </tr>
                             <tr class="hiddenRow">
 
                               <td colspan="6">
-                                <div class="accordian-body collapse" id="1">
+                                <div class="accordian-body collapse" id="set1">
                                   <div class="panel panel-info">
                                     <div class="panel-heading">
-                                        <b>ข้อมูลกระบวนวิชาในสังกัดย้อนหลัง</b>
+                                        <b>คณะกรรมการชุดที่ 1</b>
                                     </div>
                                     <div class="panel-body">
                                   <div class="form-group">
-                                    <label for="">เพิ่มชุดคณะกรรมการ</label>
+                                    <label for="">เพิ่มคณะกรรมการ</label>
                                     <div class="form-inline">
                                       <input type="text" class="form-control charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
                                       <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
                                     </div>
                                     <datalist id="dtl1"></datalist>
+                                  </div>
+                                  <hr>
+                                  <div class="form-group">
+                                    <label for="">รายชื่อ</label>
+                                    <table class="table">
+                                      <thead>
+                                        <th>ลำดับ</th>
+                                        <th>ชื่อ-นามสกุล</th>
+                                        <th></th>
+                                      </thead>
+                                      <tbody>
+                                        <td>1</td>
+                                        <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                        <td><button type="button" name="button" class="btn btn-outline btn-danger">ลบ</button></td>
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+                                  </div>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                              <td>1</td>
+                              <td>คณะกรรมการชุดที่ 2</td>
+                              <td style="text-align:center;"><button type="button" name="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#set2" class="accordion-toggle">รายชื่อ</button></td>
+                            </tr>
+                            <tr class="hiddenRow">
+
+                              <td colspan="6">
+                                <div class="accordian-body collapse" id="set2">
+                                  <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <b>คณะกรรมการชุดที่ 2</b>
+                                    </div>
+                                    <div class="panel-body">
+                                  <div class="form-group">
+                                    <label for="">เพิ่มคณะกรรมการ</label>
+                                    <div class="form-inline">
+                                      <input type="text" class="form-control charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'committee');" >
+                                      <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                    </div>
+                                    <datalist id="dtl2"></datalist>
                                   </div>
                                   <hr>
                                   <div class="form-group">
