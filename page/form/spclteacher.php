@@ -73,7 +73,7 @@ window.counttr = 0;
    //part1
    document.getElementById('department').value = temp['TEACHERDATA']['DEPARTMENT'];
    document.getElementById('pre').value = temp['TEACHERDATA']['PREFIX'];
-   var constring = temp['TEACHERDATA']['FNAME'] + temp['TEACHERDATA']['LNAME'];
+   var constring = temp['TEACHERDATA']['FNAME'] +" "+ temp['TEACHERDATA']['LNAME'];
    document.getElementById('fname').value = constring;
    document.getElementById('position').value = temp['TEACHERDATA']['POSITION'];
    document.getElementById('qualification').value = temp['TEACHERDATA']['QUALIFICATION'];
