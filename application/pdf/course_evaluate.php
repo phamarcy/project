@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__.'/../config/configuration_variable.php');
 require_once(__DIR__.'/../class/manage_deadline.php');
+require_once(__DIR__.'/../class/approval.php');
 require_once('example_data.php');
 require('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
@@ -546,9 +547,27 @@ $pdf->Ln();
 $pdf->SetX(35);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','(ผู้รับผิดชอบกระบวนวิชา)'),0,1);
 
+//change doc status from wating for create to pending
+$approve = new approval('1');
+$result = $approve->Update_Status_Evaluate($DATA['COURSE_ID'],'2','all','');
+if($result)
+{
+	$return['status'] = "success";
+	$return['msg'] = "บันทึกสำเร็จ";
+}
+else
+{
+	$return['status'] = "error";
+	$return['msg'] = 'ไม่สามารถอัพเดทข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
 
+}
+
+//end change
 
 ///check if docment is approved
+
+
+//if approve
 $pdf->Ln();
 $pdf->SetFont('angsab','',14);
 $pdf->SetX(20);
@@ -566,8 +585,10 @@ $pdf->Ln();
 
 $pdf->SetX(35);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','(หัวหน้าภาควิชา)'),0,1);
+//endif
+//if not, do nothing
 
-// echo $THAI_WEEK[date("w")] ,"ที่",date(" j "), $THAI_MONTH[date(" m ")-1] , " พ.ศ. ",date(" Y ")+543,"<br>";
+//save file
 $pdf->Output($file_path."/".$DATA['COURSE_ID']."_evaluate.pdf","F");
+echo json_encode($return);
 ?>
-save_success

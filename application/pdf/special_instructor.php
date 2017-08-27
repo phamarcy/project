@@ -9,108 +9,108 @@ define('FPDF_FONTPATH','font/');
 $deadline = new Deadline();
 $semester = $deadline->Get_Current_Semester();
 $db = new Database();
-var_dump($_POST);
-// if(isset($_POST['DATA']))
-// {
-// 	$data = $_POST['DATA'];
-// 	$DATA = json_decode($data,true);
-// 	$fname = $DATA['FNAME'];
-// 	$lname = $DATA['LNAME'];
-// 	$sql = "SELECT `instructor_id` FROM `special_instructor` WHERE `firstname` = '".$fname."' AND `lastname` = '".$lname."'";
-// 	$result = $db->Query($sql);
-// 	if($result == null)
-// 	{
-// 		$sql="INSERT INTO `special_instructor`(`instructor_id`, `firstname`, `lastname`) VALUES ('".$fname."','".$lname."')";
-// 		$result = $db->Insert_Update_Delete($sql);
-// 		if($result)
-// 		{
-// 			$sql = "SELECT LAST_INSERT_ID();";
-// 			$temp_id = $db->Query($sql);
-// 			if($temp_id)
-// 			{
-// 				$instructor_id = $temp_id[0]['LAST_INSERT_ID()'];
-// 			}
-// 			else
-// 			{
-// 				die("error");
-// 			}
-// 		}
-// 		else
-// 		{
-// 			die("error");
-// 		}
-// 	}
-// 	else
-// 	{
-// 		$instructor_id = $result[0]['instructor_id'];
-// 	}
-// 	if(isset($_FILES['cv']))
-// 	{
-//   	$file = $_FILES['cv'];
-// 		Upload($file,$instructor_id);
-// 	}
-// 	Write_temp_data($data,$instructor_id);
-//
-// 	if($DATA['SUBMIT_TYPE'] == '2')
-// 	{
-// 		echo "save_success";
-// 		die;
-// 	}
-// 	else if($DATA['SUBMIT_TYPE'] == '1')
-// 	{
-// 		$file_path = $FILE_PATH."/draft/special_instructor";
-// 	}
-// }
-// else
-// {
-// 	$return['error'] = 'No data';
-// 	echo json_encode($return);
-// }
-// function Upload($file,$course_id,$instructor_id)
-// {
-// 	global $FILE_PATH;
-// 	$path = $FILE_PATH."/cv";
-// 	$filename = $file['name'];
-// 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-// 	$uploadfile = $path."/".$course_id.'_'.$instructor_id.'.'.$ext;
-// 	if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
-// 	{
-//     echo "File is valid, and was successfully uploaded.\n";
-// 	}
-// 	else
-// 	{
-// 	    echo "Possible file upload attack!\n";
-// 	}
-// }
-// function Write_temp_data($temp_data,$special_id)
-// {
-// 	global $semester;
-// 	$data = json_decode($temp_data,true);
-// 	$path = Create_Folder($data['COURSE_ID'],'speacial_instructor');
-// 	$temp_file = fopen($path."/".$data['COURSE_ID']."_".$special_id."_".$semester['semester']."_".$semester['year'].".txt", "w");
-// 	fwrite($temp_file, $temp_data);
-// 	fclose($temp_file);
-//
-// }
-// function Create_Folder($course_id,$type)
-// {
-// 	$temp_path = __DIR__.'/../../files/temp';
-// 	if(!file_exists($temp_path))
-// 	{
-// 		mkdir($temp_path);
-// 	}
-// 	$course_path = $temp_path."/".$course_id;
-// 	if(!file_exists($course_path))
-// 	{
-// 		mkdir($course_path);
-// 	}
-// 	$type_path = $course_path."/".$type;
-// 	if(!file_exists($type_path))
-// 	{
-// 		mkdir($type_path);
-// 	}
-// 	return $type_path;
-// }
+// var_dump($_POST);
+if(isset($_POST['DATA']))
+{
+	$data = $_POST['DATA'];
+	$DATA = json_decode($data,true);
+	$fname = $DATA['FNAME'];
+	$lname = $DATA['LNAME'];
+	$sql = "SELECT `instructor_id` FROM `special_instructor` WHERE `firstname` = '".$fname."' AND `lastname` = '".$lname."'";
+	$result = $db->Query($sql);
+	if($result == null)
+	{
+		$sql="INSERT INTO `special_instructor`(`instructor_id`, `firstname`, `lastname`) VALUES ('".$fname."','".$lname."')";
+		$result = $db->Insert_Update_Delete($sql);
+		if($result)
+		{
+			$sql = "SELECT LAST_INSERT_ID();";
+			$temp_id = $db->Query($sql);
+			if($temp_id)
+			{
+				$instructor_id = $temp_id[0]['LAST_INSERT_ID()'];
+			}
+			else
+			{
+				die("error");
+			}
+		}
+		else
+		{
+			die("error");
+		}
+	}
+	else
+	{
+		$instructor_id = $result[0]['instructor_id'];
+	}
+	if(isset($_FILES['cv']))
+	{
+  	$file = $_FILES['cv'];
+		Upload($file,$instructor_id);
+	}
+	Write_temp_data($data,$instructor_id);
+
+	if($DATA['SUBMIT_TYPE'] == '2')
+	{
+		echo "save_success";
+		die;
+	}
+	else if($DATA['SUBMIT_TYPE'] == '1')
+	{
+		$file_path = $FILE_PATH."/draft/special_instructor";
+	}
+}
+else
+{
+	$return['error'] = 'No data';
+	echo json_encode($return);
+}
+function Upload($file,$course_id,$instructor_id)
+{
+	global $FILE_PATH;
+	$path = $FILE_PATH."/cv";
+	$filename = $file['name'];
+	$ext = pathinfo($filename, PATHINFO_EXTENSION);
+	$uploadfile = $path."/".$course_id.'_'.$instructor_id.'.'.$ext;
+	if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
+	{
+    echo "File is valid, and was successfully uploaded.\n";
+	}
+	else
+	{
+	    echo "Possible file upload attack!\n";
+	}
+}
+function Write_temp_data($temp_data,$special_id)
+{
+	global $semester;
+	$data = json_decode($temp_data,true);
+	$path = Create_Folder($data['COURSE_ID'],'speacial_instructor');
+	$temp_file = fopen($path."/".$data['COURSE_ID']."_".$special_id."_".$semester['semester']."_".$semester['year'].".txt", "w");
+	fwrite($temp_file, $temp_data);
+	fclose($temp_file);
+
+}
+function Create_Folder($course_id,$type)
+{
+	$temp_path = __DIR__.'/../../files/temp';
+	if(!file_exists($temp_path))
+	{
+		mkdir($temp_path);
+	}
+	$course_path = $temp_path."/".$course_id;
+	if(!file_exists($course_path))
+	{
+		mkdir($course_path);
+	}
+	$type_path = $course_path."/".$type;
+	if(!file_exists($type_path))
+	{
+		mkdir($type_path);
+	}
+	return $type_path;
+}
 
 //start generate pdf
 $pdf=new FPDF();

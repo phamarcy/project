@@ -108,24 +108,7 @@ class approval
       {
         for($i=0;$i<count($result);$i++)
         {
-          switch ($result[$i]['status'])
-          {
-            case 'A':
-              $temp_status = 4;
-              break;
-            case 'D':
-              $temp_status = 0;
-              break;
-            case 'P':
-              $temp_status = 2;
-              break;
-            case 'E':
-              $temp_status = 3;
-              break;
-            default:
-              $temp_status = 1;
-              break;
-          }
+          $temp_status = $result[$i]['status'];
           if($temp_status < $status)
           {
             $status = $temp_status;
@@ -139,6 +122,34 @@ class approval
       }
   }
 
+  public function Update_Status_Evaluate($course_id,$status,$teacher_id,$comment)
+  {
+    if($teacher_id == 'all') //update all status with course_id
+    {
+      $sql = "UPDATE `approval_course` SET `status`= '".$status."',`comment`= '".$comment."'
+      WHERE `course_id` = '".$course_id."'";
+    }
+    else //update specific teacher_id,course_id
+    {
+      $sql = "UPDATE `approval_course` SET `status`= '".$status."',`comment`= '".$comment."'
+      WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."'";
+    }
+    $result = $this->DB->Insert_Update_Delete($sql);
+    if($result)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+
+  }
+
+  public function Append_Status($course_id,$teacher_id,$level)
+  {
+    $status = '1'; //default status = waiting for create
+  }
   //get approval data to approval page
   public function Get_Approval_data($teacher_id)
   {
