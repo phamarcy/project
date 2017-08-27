@@ -181,7 +181,13 @@ else
 																				<?php if ($_SESSION['level'] >=2): ?>
 																				<td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
 																				<?php endif; ?>
-																				<td><?php echo $comment ?></td>
+																				<td><?php if ($comment=="" or $comment ==NULL) {
+																					echo "-";
+																				} else {
+																					echo $comment;
+																				}
+
+																				?></td>
 																			</tr>
 																		<?php endforeach; ?>
 																	</tbody>
