@@ -128,7 +128,7 @@ class Course
 
     $doc_path = realpath($this->FILE_PATH."/temp/".$course_id."/".$type);
     $file_path = $doc_path."/".$file_name;
-    return $this->FILE_PATH."/temp/".$id."/".$type;
+    // return $this->FILE_PATH."/temp/".$course_id."/".$type;
     if (file_exists($file_path))
     {
       $data = file_get_contents($file_path);

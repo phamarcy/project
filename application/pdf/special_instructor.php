@@ -10,107 +10,107 @@ $deadline = new Deadline();
 $semester = $deadline->Get_Current_Semester();
 $db = new Database();
 var_dump($_POST);
-if(isset($_POST['DATA']))
-{
-	$data = $_POST['DATA'];
-	$DATA = json_decode($data,true);
-	$fname = $DATA['FNAME'];
-	$lname = $DATA['LNAME'];
-	$sql = "SELECT `instructor_id` FROM `special_instructor` WHERE `firstname` = '".$fname."' AND `lastname` = '".$lname."'";
-	$result = $db->Query($sql);
-	if($result == null)
-	{
-		$sql="INSERT INTO `special_instructor`(`instructor_id`, `firstname`, `lastname`) VALUES ('".$fname."','".$lname."')";
-		$result = $db->Insert_Update_Delete($sql);
-		if($result)
-		{
-			$sql = "SELECT LAST_INSERT_ID();";
-			$temp_id = $db->Query($sql);
-			if($temp_id)
-			{
-				$instructor_id = $temp_id[0]['LAST_INSERT_ID()'];
-			}
-			else
-			{
-				die("error");
-			}
-		}
-		else
-		{
-			die("error");
-		}
-	}
-	else
-	{
-		$instructor_id = $result[0]['instructor_id'];
-	}
-	if(isset($_FILES['cv']))
-	{
-  	$file = $_FILES['cv'];
-		Upload($file,$instructor_id);
-	}
-	Write_temp_data($data,$instructor_id);
-
-	if($DATA['SUBMIT_TYPE'] == '2')
-	{
-		echo "save_success";
-		die;
-	}
-	else if($DATA['SUBMIT_TYPE'] == '1')
-	{
-		$file_path = $FILE_PATH."/draft/special_instructor";
-	}
-}
-else
-{
-	$return['error'] = 'No data';
-	echo json_encode($return);
-}
-function Upload($file,$course_id,$instructor_id)
-{
-	global $FILE_PATH;
-	$path = $FILE_PATH."/cv";
-	$filename = $file['name'];
-	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-	$uploadfile = $path."/".$course_id.'_'.$instructor_id.'.'.$ext;
-	if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
-	{
-    echo "File is valid, and was successfully uploaded.\n";
-	}
-	else
-	{
-	    echo "Possible file upload attack!\n";
-	}
-}
-function Write_temp_data($temp_data,$special_id)
-{
-	global $semester;
-	$data = json_decode($temp_data,true);
-	$path = Create_Folder($data['COURSE_ID'],'speacial_instructor');
-	$temp_file = fopen($path."/".$data['COURSE_ID']."_".$special_id."_".$semester['semester']."_".$semester['year'].".txt", "w");
-	fwrite($temp_file, $temp_data);
-	fclose($temp_file);
-
-}
-function Create_Folder($course_id,$type)
-{
-	$temp_path = __DIR__.'/../../files/temp';
-	if(!file_exists($temp_path))
-	{
-		mkdir($temp_path);
-	}
-	$course_path = $temp_path."/".$course_id;
-	if(!file_exists($course_path))
-	{
-		mkdir($course_path);
-	}
-	$type_path = $course_path."/".$type;
-	if(!file_exists($type_path))
-	{
-		mkdir($type_path);
-	}
-	return $type_path;
-}
+// if(isset($_POST['DATA']))
+// {
+// 	$data = $_POST['DATA'];
+// 	$DATA = json_decode($data,true);
+// 	$fname = $DATA['FNAME'];
+// 	$lname = $DATA['LNAME'];
+// 	$sql = "SELECT `instructor_id` FROM `special_instructor` WHERE `firstname` = '".$fname."' AND `lastname` = '".$lname."'";
+// 	$result = $db->Query($sql);
+// 	if($result == null)
+// 	{
+// 		$sql="INSERT INTO `special_instructor`(`instructor_id`, `firstname`, `lastname`) VALUES ('".$fname."','".$lname."')";
+// 		$result = $db->Insert_Update_Delete($sql);
+// 		if($result)
+// 		{
+// 			$sql = "SELECT LAST_INSERT_ID();";
+// 			$temp_id = $db->Query($sql);
+// 			if($temp_id)
+// 			{
+// 				$instructor_id = $temp_id[0]['LAST_INSERT_ID()'];
+// 			}
+// 			else
+// 			{
+// 				die("error");
+// 			}
+// 		}
+// 		else
+// 		{
+// 			die("error");
+// 		}
+// 	}
+// 	else
+// 	{
+// 		$instructor_id = $result[0]['instructor_id'];
+// 	}
+// 	if(isset($_FILES['cv']))
+// 	{
+//   	$file = $_FILES['cv'];
+// 		Upload($file,$instructor_id);
+// 	}
+// 	Write_temp_data($data,$instructor_id);
+//
+// 	if($DATA['SUBMIT_TYPE'] == '2')
+// 	{
+// 		echo "save_success";
+// 		die;
+// 	}
+// 	else if($DATA['SUBMIT_TYPE'] == '1')
+// 	{
+// 		$file_path = $FILE_PATH."/draft/special_instructor";
+// 	}
+// }
+// else
+// {
+// 	$return['error'] = 'No data';
+// 	echo json_encode($return);
+// }
+// function Upload($file,$course_id,$instructor_id)
+// {
+// 	global $FILE_PATH;
+// 	$path = $FILE_PATH."/cv";
+// 	$filename = $file['name'];
+// 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
+// 	$uploadfile = $path."/".$course_id.'_'.$instructor_id.'.'.$ext;
+// 	if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
+// 	{
+//     echo "File is valid, and was successfully uploaded.\n";
+// 	}
+// 	else
+// 	{
+// 	    echo "Possible file upload attack!\n";
+// 	}
+// }
+// function Write_temp_data($temp_data,$special_id)
+// {
+// 	global $semester;
+// 	$data = json_decode($temp_data,true);
+// 	$path = Create_Folder($data['COURSE_ID'],'speacial_instructor');
+// 	$temp_file = fopen($path."/".$data['COURSE_ID']."_".$special_id."_".$semester['semester']."_".$semester['year'].".txt", "w");
+// 	fwrite($temp_file, $temp_data);
+// 	fclose($temp_file);
+//
+// }
+// function Create_Folder($course_id,$type)
+// {
+// 	$temp_path = __DIR__.'/../../files/temp';
+// 	if(!file_exists($temp_path))
+// 	{
+// 		mkdir($temp_path);
+// 	}
+// 	$course_path = $temp_path."/".$course_id;
+// 	if(!file_exists($course_path))
+// 	{
+// 		mkdir($course_path);
+// 	}
+// 	$type_path = $course_path."/".$type;
+// 	if(!file_exists($type_path))
+// 	{
+// 		mkdir($type_path);
+// 	}
+// 	return $type_path;
+// }
 
 //start generate pdf
 $pdf=new FPDF();
@@ -193,17 +193,15 @@ for($i=0;$i<$count;$i++)
 $pdf->Write(7,iconv( 'UTF-8','TIS-620','    '.$QUALIFICATION.$space_qualification),0,1);
 $pdf->Ln();
 $pdf->SetX(25);
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','1.4 สถานที่ทำงาน    ')),7,iconv( 'UTF-8','TIS-620','1.4 สถานที่ทำงาน    '),0,"C");
-$pdf->Write( 7 , iconv( 'UTF-8','TIS-620' , 'กลุ่มงานคุ้มครองผู้บริโภค' ) );
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','1.4 สถานที่ทำงาน/สถานที่ติดต่อ    ')),7,iconv( 'UTF-8','TIS-620','1.4 สถานที่ทำงาน/สถานที่ติดต่อ    '),0,"C");
 $pdf->Ln();
+$pdf->SetX(35);
+$pdf->MultiCell( 140, 7, iconv( 'UTF-8','TIS-620','กลุ่มงานคุ้มครองผู้บริโภค'), 0,1);
+// $pdf->Ln();
 
-$pdf->SetX(25);
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','1.5 สถานที่ติดต่อ    ')),7,iconv( 'UTF-8','TIS-620','1.4 สถานที่ติดต่อ    '),0,"C");
-$pdf->Write( 7 , iconv( 'UTF-8','TIS-620' , '263 ต.เมืองง่า อ.เมือง จ.ลำพูน' ) );
-$pdf->Ln();
 $pdf->SetX(30);
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','โทรศัพท์ '.'089-851-2480'.' ต่อ '.' - ')),7,iconv( 'UTF-8','TIS-620','โทรศัพท์ '.'089-851-2480'.' ต่อ '.' - '),0,"C");
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','โทรสาร '.'089-851-2480'))+3,7,iconv( 'UTF-8','TIS-620','โทรสาร '.'089-851-2480'),0,"C");
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','โทรศัพท์ '.'089-851-2480'.' ต่อ '.' - ')),7,iconv( 'UTF-8','TIS-620','โทรศัพท์ '.'053-838204'.' ต่อ '.' - '),0,"C");
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','โทรศัพท์มือถือ '.'089-851-2480'))+3,7,iconv( 'UTF-8','TIS-620','โทรศัพท์มือถือ '.'089-851-2480'),0,"C");
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','อีเมลล์ '.' adiluckyo@gmail.com')),7,iconv( 'UTF-8','TIS-620','อีเมลล์ '.' adiluckyo@gmail.com'),0,1,"C");
 $pdf->SetX(32);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','กระบวนวิชานี้เป็นวิชา'))+5,7,iconv( 'UTF-8','TIS-620','หัวข้อที่เชิญมาสอน      '),0,"C");
@@ -344,7 +342,7 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','บาท'))+2,7,iconv
 $pdf->Ln();
 
 $pdf->SetX(25);
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','3.1 ค่าพาหนะเดินทาง '))+3,10,iconv('UTF-8','TIS-620','3.1 ค่าพาหนะเดินทาง'),0,1);
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','3.2 ค่าพาหนะเดินทาง '))+3,10,iconv('UTF-8','TIS-620','3.2 ค่าพาหนะเดินทาง'),0,1);
 $pdf->SetX(40);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, 3, 1,"C");
@@ -382,7 +380,7 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','บาท'))+2,7,iconv
 
 $pdf->AddPage();
 $pdf->SetX(25);
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','3.1 ค่าที่พัก '))+3,7,iconv('UTF-8','TIS-620','3.1 ค่าที่พัก'),0);
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','3.3 ค่าที่พัก '))+3,7,iconv('UTF-8','TIS-620','3.3 ค่าที่พัก'),0);
 $pdf->SetXY($pdf->GetX(),$pdf->GetY()+1);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, '', 1,"C");
@@ -451,8 +449,9 @@ $pdf->Cell(0,7,iconv('UTF-8','TIS-620','หัวหน้าภาควิช�
 
 $pdf->SetX($money_position-20);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.'10'.'   เดือน   '.'กันยายน'.'   พ.ศ.   '.'2560'),0);
+$pdf->Output("special_instructor.pdf","F");
 
-$pdf->Output($file_path."/".$DATA['COURSE_ID']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
+// $pdf->Output($file_path."/".$DATA['COURSE_ID']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
 
  ?>
- PDF Created Click <a href="speacial_instructor.pdf">here</a> to Download
+ PDF Created Click <a href="special_instructor.pdf">here</a> to Download
