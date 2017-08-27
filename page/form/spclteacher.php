@@ -460,11 +460,12 @@ window.counttr = 0;
        },
        'TOTALCOST' : document.getElementById('totalcost').value,
     },
-    'NUMTABLE' : window.counttr
+    'NUMTABLE' : window.counttr,
+    'SUBMIT_TYPE' : casesubmit
    };
 
    console.log(JSON.stringify(data));
-   /*if(casesubmit=='1')
+   if(casesubmit=='1')
    {
      senddata(JSON.stringify(data),getfile());
    }
@@ -472,7 +473,7 @@ window.counttr = 0;
    {
      senddata(JSON.stringify(data),getfile());
      //console.log(JSON.stringify(data));
-   }*/
+   }
  }
 
  function senddata(data,file_data)
@@ -480,7 +481,7 @@ window.counttr = 0;
 
    //prompt("data", data);
     file_data.append("DATA",data);
-    var URL = '../../application/pdf/course_evaluate.php';
+    var URL = '../../application/pdf/special_instructor.php';
     $.ajax({
                   url: URL,
                   dataType: 'text',
