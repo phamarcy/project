@@ -877,7 +877,7 @@ function lastcal() {
                  ?>
               </select>
               </div>&nbsp;&nbsp;&nbsp;&nbsp;
-              ชื่อ-นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control charonly" id="fname" size="35" required ></div>&nbsp;
+              ชื่อ-นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="fname" size="35" required ></div>&nbsp;
 
           </div>
 
