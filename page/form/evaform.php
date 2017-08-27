@@ -672,31 +672,6 @@ function checksubject(btntype,type){
 
 function submitfunc(casesubmit) {
 
-  //Loop for pack MEASURE
-  var count = $('#meastable tr').length;
-  var count2 = count-5;
-  var cart2 = [];
-  var cart3 = {};
-  if(count2>0)
-  {
-    for(var i=1;i<=count2;i++)
-    {
-      if(document.getElementById("MEASURE_OTHERCOMMENT"+i) == null)
-      {
-        continue;
-      }
-      else {
-        var cart = {
-          'NAME' : document.getElementById("MEASURE_OTHERCOMMENT"+i).value,
-          'LEC' : document.getElementById("MEASURE_OTHERLEC"+i).value,
-          'LAB' : document.getElementById("MEASURE_OTHERLAB"+i).value
-        };
-        cart2.push(cart);
-      }
-
-    }
-    cart3 = cart2;
-  }
 
 
   //Loop for pack TEACHER
@@ -1170,20 +1145,6 @@ $(document).ready(function(){
 
 });
 
-function deleteRow(r) {
-  var i = r;
-
-  var row = document.getElementById('row' + i);
-  row.parentNode.removeChild(row);
-}
-
-
-function deleteRow2(r) {
-  var i = r;
-
-  var row = document.getElementById('row2' + i);
-  row.parentNode.removeChild(row);
-}
 
 function other_type() {
   if(document.querySelector("input[name='TYPE_TEACHING']:checked").value=="OTH")
