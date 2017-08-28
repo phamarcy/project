@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2017 at 11:52 AM
+-- Generation Time: Aug 28, 2017 at 03:24 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -55,6 +55,7 @@ CREATE TABLE `approval_special` (
   `approval_id` int(11) NOT NULL,
   `instructor_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `teacher_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `course_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
   `level_approve` int(11) NOT NULL,
   `status` set('0','1','2','3','4') COLLATE utf8_unicode_ci NOT NULL,
   `comment` text COLLATE utf8_unicode_ci NOT NULL,
@@ -66,8 +67,8 @@ CREATE TABLE `approval_special` (
 -- Dumping data for table `approval_special`
 --
 
-INSERT INTO `approval_special` (`approval_id`, `instructor_id`, `teacher_id`, `level_approve`, `status`, `comment`, `semester_id`, `updated_date`) VALUES
-(3, '0000000001', '1234', 1, '2', '', 31, '2017-08-28 04:41:59');
+INSERT INTO `approval_special` (`approval_id`, `instructor_id`, `teacher_id`, `course_id`, `level_approve`, `status`, `comment`, `semester_id`, `updated_date`) VALUES
+(3, '0000000010', '1234', '460100', 1, '2', '', 31, '2017-08-28 07:59:50');
 
 -- --------------------------------------------------------
 
