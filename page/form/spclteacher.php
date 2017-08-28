@@ -231,7 +231,6 @@ window.counttr = 0;
                           {
                             var opt = document.createElement('option');
                             opt.value = temp[i].id +"_"+ course_id + "_" + temp[i].semester + "_" + temp[i].year +"_"+ temp[i].name;
-                            console.log(temp[i].id +"_"+ course_id + "_" + temp[i].semester + "_" + temp[i].year +"_"+ temp[i].name);
                             opt.innerHTML = "คุณ"+temp[i].name+" ภาคการศึกษาที่ "+temp[i].semester+" ปีการศึกษา "+temp[i].year;
                             document.getElementById('teachername').appendChild(opt);
                           }
@@ -285,7 +284,6 @@ window.counttr = 0;
                    type: 'post',
                    success: function (result) {
                      var temp = $.parseJSON(result);
-                     console.log(temp);
                      if(temp!=null)
                      {
                        getinfo(temp);
@@ -476,7 +474,6 @@ window.counttr = 0;
     'SUBMIT_TYPE' : casesubmit
    };
 
-   console.log(JSON.stringify(data));
    if(casesubmit=='1')
    {
      senddata(JSON.stringify(data),getfile());
@@ -484,7 +481,6 @@ window.counttr = 0;
    else if(casesubmit=='2')
    {
      senddata(JSON.stringify(data),getfile());
-     //console.log(JSON.stringify(data));
    }
  }
 
@@ -503,9 +499,7 @@ window.counttr = 0;
                   data: file_data,
                   type: 'post',
                   success: function (result) {
-                       console.log(result);
                        var temp = $.parseJSON(result);
-                       console.log(temp["status"]+","+temp["msg"]);
                        if(temp["status"]=='success')
                        {
                          alert(temp["msg"]);

@@ -593,7 +593,6 @@ function checksubject(btntype,type){
                   success: function (result) {
 
                        var temp = $.parseJSON(result);
-                       console.log(temp);
                        if(temp['info']!=false && temp[0]!=null)
                        {
                          document.getElementById('formdrpd').style.display = "";
@@ -660,7 +659,6 @@ function checksubject(btntype,type){
                   type: 'post',
                   success: function (result) {
                     var temp = $.parseJSON(result);
-                    console.log(temp);
                     if(temp!=null)
                     {
                       getinfo(temp);
@@ -904,9 +902,7 @@ function senddata(data,file_data)
                  data: file_data,
                  type: 'post',
                  success: function (result) {
-                   console.log(result);
                    var temp = $.parseJSON(result);
-                   console.log(temp["status"]+","+temp["msg"]);
                    if(temp["status"]=='success')
                    {
                      alert(temp["msg"]);
