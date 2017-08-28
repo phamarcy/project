@@ -123,7 +123,8 @@ class approval
       }
       else
       {
-        return false;
+        //not found on database, assume not creating
+        return "1";
       }
   }
   private function Get_Instructor_Data($course_id)
