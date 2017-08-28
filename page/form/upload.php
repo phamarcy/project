@@ -87,7 +87,6 @@ $grade->Close_connection();
                 </thead>
                 <tbody>
                   <?php if (is_array($showgrade) || is_object($showgrade)): ?>
-
                         <?php foreach ($showgrade as $value):
                           switch ($value['status']) {
                             case 0:
@@ -137,7 +136,11 @@ $("form#data").submit(function(){
         contentType: false,
         processData: false,
         success: function (data) {
-            console.log(data);
+            var temp = $.parseJSON(data);
+            console.log(temp);
+            alert(temp.msg);
+            window.location.reload(false);
+
         }
     });
 
