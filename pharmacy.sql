@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2017 at 07:32 PM
+-- Generation Time: Aug 28, 2017 at 11:52 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -56,10 +56,18 @@ CREATE TABLE `approval_special` (
   `instructor_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `teacher_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `level_approve` int(11) NOT NULL,
-  `status` set('P','D','A') COLLATE utf8_unicode_ci NOT NULL,
+  `status` set('0','1','2','3','4') COLLATE utf8_unicode_ci NOT NULL,
   `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `semester_id` int(11) NOT NULL,
   `updated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `approval_special`
+--
+
+INSERT INTO `approval_special` (`approval_id`, `instructor_id`, `teacher_id`, `level_approve`, `status`, `comment`, `semester_id`, `updated_date`) VALUES
+(3, '0000000001', '1234', 1, '2', '', 31, '2017-08-28 04:41:59');
 
 -- --------------------------------------------------------
 
@@ -250,6 +258,26 @@ INSERT INTO `expenses_type` (`type_id`, `name`, `price_per_unit`, `unit_name`) V
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `group_assessor`
+--
+
+CREATE TABLE `group_assessor` (
+  `id` int(11) NOT NULL,
+  `teacher_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `group_num` set('1','2','3','4') COLLATE utf8_unicode_ci NOT NULL,
+  `updated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `group_assessor`
+--
+
+INSERT INTO `group_assessor` (`id`, `teacher_id`, `group_num`, `updated_date`) VALUES
+(1, '1234', '1', '2017-08-28 04:04:18');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notification`
 --
 
@@ -352,7 +380,29 @@ CREATE TABLE `special_instructor` (
 --
 
 INSERT INTO `special_instructor` (`instructor_id`, `firstname`, `lastname`) VALUES
-(00000000001, 'อดิลักษณ์', 'ชูประทีป');
+(00000000010, 'อดิลักษณ์', 'ชูประทีป'),
+(00000000011, 'undefined', ''),
+(00000000012, 'อดิลักษณ์ชูประทีป', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subject_assessor`
+--
+
+CREATE TABLE `subject_assessor` (
+  `assessor_id` int(11) NOT NULL,
+  `assessor_group_num` set('1','2','3','4') COLLATE utf8_unicode_ci NOT NULL,
+  `course_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
+  `updated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `subject_assessor`
+--
+
+INSERT INTO `subject_assessor` (`assessor_id`, `assessor_group_num`, `course_id`, `updated_date`) VALUES
+(1, '1', '460100', '2017-08-28 04:03:53');
 
 -- --------------------------------------------------------
 
@@ -421,6 +471,12 @@ ALTER TABLE `expenses_type`
   ADD PRIMARY KEY (`type_id`);
 
 --
+-- Indexes for table `group_assessor`
+--
+ALTER TABLE `group_assessor`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `notification`
 --
 ALTER TABLE `notification`
@@ -458,6 +514,12 @@ ALTER TABLE `special_instructor`
   ADD PRIMARY KEY (`instructor_id`);
 
 --
+-- Indexes for table `subject_assessor`
+--
+ALTER TABLE `subject_assessor`
+  ADD PRIMARY KEY (`assessor_id`);
+
+--
 -- Indexes for table `training`
 --
 ALTER TABLE `training`
@@ -476,7 +538,7 @@ ALTER TABLE `approval_course`
 -- AUTO_INCREMENT for table `approval_special`
 --
 ALTER TABLE `approval_special`
-  MODIFY `approval_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `approval_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `course`
 --
@@ -508,6 +570,11 @@ ALTER TABLE `expenses`
 ALTER TABLE `expenses_type`
   MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสประเภทการใช้จ่าย', AUTO_INCREMENT=6;
 --
+-- AUTO_INCREMENT for table `group_assessor`
+--
+ALTER TABLE `group_assessor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
@@ -536,7 +603,12 @@ ALTER TABLE `speacial_lecture_instructor`
 -- AUTO_INCREMENT for table `special_instructor`
 --
 ALTER TABLE `special_instructor`
-  MODIFY `instructor_id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `instructor_id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `subject_assessor`
+--
+ALTER TABLE `subject_assessor`
+  MODIFY `assessor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `training`
 --
