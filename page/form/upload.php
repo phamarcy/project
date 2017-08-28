@@ -137,9 +137,8 @@ $("form#data").submit(function(){
         processData: false,
         success: function (data) {
             var temp = $.parseJSON(data);
-            console.log(temp);
             alert(temp.msg);
-            window.location.reload(false);
+            location.reload();
 
         }
     });

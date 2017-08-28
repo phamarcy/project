@@ -173,12 +173,12 @@ else
 													<div class="panel panel-default">
 														<div class="panel-heading">
 															<h3 class="panel-title">
-														<a data-toggle="collapse" href="#collapse<?php echo $key ?>" disabled="disabled">
-														 <i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b><i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
-													</h3>
+																<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']."_".$key ?>">
+														 		<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b><i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
+															</h3>
 														</div>
 														<?php if (isset($_SESSION['level'])) { ?>
-														<div id="collapse<?php echo $key ?>" class="panel-collapse collapse">
+														<div id="evaluate<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse">
 															<div class="panel-body" style="font-size:14px;">
 																<table class="table ">
 																	<thead>
@@ -188,15 +188,16 @@ else
 																		<th>ข้อเสนอแนะ</th>
 																	</thead>
 																	<tbody>
+
 																		<?php foreach ($value_course['evaluate']['comment'] as $comment): ?>
 																			<tr>
 																				<?php if ($_SESSION['level'] >=2): ?>
-																				<td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+																				<td style="width:170px"><?php echo $comment['name'] ?></td>
 																				<?php endif; ?>
-																				<td><?php if ($comment=="" or $comment ==NULL) {
+																				<td><?php if ($comment['comment']=="" or $comment['comment'] ==NULL) {
 																					echo "-";
 																				} else {
-																					echo $comment;
+																					echo $comment['comment'];
 																				}
 
 																				?></td>
@@ -215,47 +216,78 @@ else
 													<div class="panel panel-default">
 														<div class="panel-heading">
 															<h3 class="panel-title">
-													<a data-toggle="collapse" href="#collapse<?php echo $key ?><?php echo $key ?>" disabled="disabled">
+													<a data-toggle="collapse" href="#special<?php echo $value_course['id']."_".$key ?>" disabled="disabled">
 													<i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></b></a>
 												</h3>
 														</div>
 														<?php if (isset($_SESSION['level'])) { ?>
-														<div id="collapse<?php echo $key ?><?php echo $key ?>" class="panel-collapse collapse">
+														<div id="special<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse">
 															<div class="panel-body" style="font-size:14px;">
 																<div class="panel-group" id="accordion">
-																	<div class="panel panel-default">
-																		<div class="panel-heading">
-																			<h4 class="panel-title">
-																								<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">อ.พสุธา โกมลมาลย์ &nbsp;<i class="fa fa-long-arrow-right fa-fw"></i><b id="statcf">อนุมัติ <i class="fa fa-check fa-fw"></i></a></b>
-																						</h4>
-																		</div>
-																		<div id="collapseOne" class="panel-collapse collapse">
-																			<div class="panel-body">
-																				<table class="table ">
-																					<thead>
-																						<?php if ($_SESSION['level'] >=2): ?>
-																						<th style="width:170px">คณะกรรมการ</th>
-																						<?php endif; ?>
-																						<th>ข้อเสนอแนะ</th>
-																					</thead>
-																					<tbody>
-																						<tr>
+
+																	<?php foreach ($value_course['special'] as $keysp => $valuesp):
+
+																		switch ($valuesp['status']) {
+																			case '0':
+																			$status_sp='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+																			break;
+																		 case '1':
+																		 $status_sp='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+																			 break;
+																		 case '2':
+																		 $status_sp='<b id="statwt">รอการพิจารนา <i class="fa  fa-clock-o fa-fw"></i></b>';
+																			 break;
+																		 case '3':
+																		 $status_sp='<b id="statn">มีการแก้ไขจากภาควิชา <i class="fa fa-pencil-square fa-fw"></i></b>';
+																			 break;
+																		 case '4':
+																		 $status_sp='<b id="statal">ภาควิชาเห็นชอบ รอคณะกรรมเห็นชอบ <i class="fa fa-user fa-fw"></i></b>';
+																			 break;
+																		 case '5':
+																		 $status_sp='<b id="statn">มีการแก้ไขเพิ่มเติมจากคณะ <i class="fa fa-user-plus fa-fw"></i></b>';
+																			 break;
+																		 case '6':
+																		 $status_sp='<b id="statcf">คณะกรรมการเห็นชอบ <i class="fa fa-check fa-fw"></i></b>';
+																			 break;
+																		 }
+																		 ?>
+
+																		<div class="panel panel-default">
+																			<div class="panel-heading">
+																				<h4 class="panel-title">
+																						<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']."_".$keysp ?>"><?php echo $valuesp['name'].' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp ?> </a></b>
+																				</h4>
+																			</div>
+																			<div id="special_<?php echo $value_course['id']."_".$keysp ?>" class="panel-collapse collapse">
+																				<div class="panel-body">
+																					<table class="table ">
+																						<thead>
 																							<?php if ($_SESSION['level'] >=2): ?>
-																							<td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+																							<th style="width:170px">คณะกรรมการ</th>
 																							<?php endif; ?>
-																							<td>เอกสารครบถ้วนสมบูรณ์</td>
-																						</tr>
-																						<tr>
-																							<?php if ($_SESSION['level'] >=2 ): ?>
-																							<td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-																							<?php endif; ?>
-																							<td>แก้ไขวันที่</td>
-																						</tr>
-																					</tbody>
-																				</table>
+																							<th>ข้อเสนอแนะ</th>
+																						</thead>
+																						<tbody>
+																							<?php foreach ($valuesp['comment'] as $comment): ?>
+																								<tr>
+																									<?php if ($_SESSION['level'] >=2): ?>
+																									<td style="width:170px"><?php echo $comment['name'] ?></td>
+																									<?php endif; ?>
+																									<td><?php if ($comment['comment']=="" or $comment['comment'] ==NULL) {
+																										echo "-";
+																									} else {
+																										echo $comment['comment'];
+																									}
+
+																									?></td>
+																								</tr>
+																							<?php endforeach; ?>
+																						</tbody>
+																					</table>
+																				</div>
 																			</div>
 																		</div>
-																	</div>
+																	<?php endforeach; ?>
 																</div>
 															</div>
 														</div>
