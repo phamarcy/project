@@ -139,13 +139,15 @@ class Person
   }
   public function Get_Staff_Dep($staff_id)
   {
-    $sql = "SELECT `dep_code` FROM `staff` WHERE `code` = '".$staff_id."'";
+    $sql = "SELECT s.`dep_code`,dep.`name` FROM `staff`s,`department` dep
+    WHERE s.`code` = '".$staff_id."' AND s.`dep_code` = dep.`code`";
     $this->DB->Change_DB('person');
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)
     {
-      $department_id = $result[0]['dep_code'];
+      $department_id['code'] = $result[0]['dep_code'];
+      $department_id['name'] = $result[0]['name'];
       return $department_id;
     }
     else
@@ -153,12 +155,11 @@ class Person
       return false;
     }
   }
-  public function Add_Assessor($group_num,$teacher_name)
+  public function Add_Assessor($group_num,$teacher_name,$department_id)
   {
     $teacher_id = $this->Get_Teacher_Id($teacher_name);
     if($teacher_id != false)
     {
-      $department_id = $this->Get_Staff_Dep($teacher_id);
       if($department_id != false)
       {
         if($department_id == '1202')
