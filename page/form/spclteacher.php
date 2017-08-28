@@ -213,7 +213,7 @@ window.counttr = 0;
                    success: function (result) {
 
                         var temp = $.parseJSON(result);
-                        console.log(Object.keys(temp).length);
+                        //console.log(Object.keys(temp).length);
                         if(temp['info']!=false && temp[0]!=null)
                         {
                           var course_id = document.getElementById('id').value;
@@ -238,6 +238,7 @@ window.counttr = 0;
                         }
                          else {
                            alert('ไม่พบข้อมูลเก่า ท่านสามารถกรอกข้อมูลใหม่ได้ตามแบบฟอร์มข้างล่าง');
+                           document.getElementById('course').value = temp['info']['course_id'];
                          }
                    },
                    failure: function (result) {
@@ -505,9 +506,12 @@ window.counttr = 0;
                        console.log(result);
                        var temp = $.parseJSON(result);
                        console.log(temp["status"]+","+temp["msg"]);
-                       if(result=='success')
+                       if(temp["status"]=='success')
                        {
-                         alert('บันทึกข้อมูลสำเร็จ');
+                         alert(temp["msg"]);
+                       }
+                       else {
+                         alert(temp["msg"]);
                        }
 
                   },

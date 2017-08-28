@@ -594,7 +594,7 @@ function checksubject(btntype,type){
 
                        var temp = $.parseJSON(result);
                        console.log(temp);
-                       if(temp['info']!=false)
+                       if(temp['info']!=false && temp[0]!=null)
                        {
                          document.getElementById('formdrpd').style.display = "";
                          //cleardatalist
@@ -617,6 +617,10 @@ function checksubject(btntype,type){
                        }
                         else {
                           alert('ไม่พบกระบวนวิชาที่ค้นหา\nกรุณากรอกข้อมูลใหม่');
+                          document.getElementById('COURSE_ID').value = temp['info']['course_id'];
+                          document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
+                          document.getElementById('NAME_TH_COURSE').value = temp['info']['course_name_th'];
+                          document.getElementById('TOTAL').value = temp['info']['credit']+"("+temp['info']['hr_lec']+"-"+temp['info']['hr_lab']+"-"+temp['info']['hr_self']+")";
                         }
                   },
                   failure: function (result) {
@@ -900,11 +904,16 @@ function senddata(data,file_data)
                  data: file_data,
                  type: 'post',
                  success: function (result) {
-                      console.log(result);
-                      if(result=='save_success')
-                      {
-                        alert('บันทึกข้อมูลสำเร็จ');
-                      }
+                   console.log(result);
+                   var temp = $.parseJSON(result);
+                   console.log(temp["status"]+","+temp["msg"]);
+                   if(temp["status"]=='success')
+                   {
+                     alert(temp["msg"]);
+                   }
+                   else {
+                     alert(temp["msg"]);
+                   }
 
                  },
                  failure: function (result) {
