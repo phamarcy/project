@@ -239,10 +239,14 @@ window.counttr = 0;
                             document.getElementById('teachername').appendChild(opt);
                           }
                         }
-                         else {
-                           alert('ไม่พบข้อมูลเก่า ท่านสามารถกรอกข้อมูลใหม่ได้ตามแบบฟอร์มข้างล่าง');
-                           document.getElementById('course').value = temp['info']['course_id'];
+                        else if(temp['info']==false && temp[0]==null){
+                          alert('กระบวนวิชาที่ค้นหาไม่พบในระบบ\nกรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด');
+                          document.getElementById('id').value = "";
                          }
+                         else if(temp['info']!=false && temp[0]==null){
+                           alert('ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้\nสามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง');
+                           document.getElementById('course').value = temp['info']['course_id'];
+                          }
                    },
                    failure: function (result) {
                         alert(result);
