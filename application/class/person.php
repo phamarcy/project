@@ -30,8 +30,9 @@ class Person
     $sql = "SELECT s.`code` as code,p.`name` as prefix,s.`fname`,s.`lname`
     FROM `staff` s,`prefix` p,`position` po
     WHERE s.`position_code` = po.`code` and s.`prefix_code` = p.`code` AND s.`position_code` = '100000'";
-
+    $this->DB->Change_DB('person');
     $result = $this->DB->Query($sql);
+    $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)
     {
       $teacher = array();
@@ -109,7 +110,97 @@ class Person
     }
 
   }
+  private function Get_Teacher_Id($teacher_name)
+  {
+    $name = explode(" ",$teacher_name);
+    $name_space = count($name);
+    if($name_space >= 2)
+    {
+      $lname = $name[$name_space-1];
+      $fname = $name[$name_space-2];
+      $sql = "SELECT code FROM `staff` WHERE fname = '".$fname."' AND lname ='".$lname."'";
+      $this->DB->Change_DB('person');
+      $result = $this->DB->Query($sql);
+      $this->DB->Change_DB($this->DEFAULT_DB);
+      if($result)
+      {
+        $id = $result[0]['code'];
+        return $id;
+      }
+      else
+      {
+        return false;
+      }
+    }
+    else
+    {
+      return false;
+    }
+  }
+  public function Get_Staff_Dep($staff_id)
+  {
+    $sql = "SELECT `dep_code` FROM `staff` WHERE `code` = '".$staff_id."'";
+    $this->DB->Change_DB('person');
+    $result = $this->DB->Query($sql);
+    $this->DB->Change_DB($this->DEFAULT_DB);
+    if($result)
+    {
+      $department_id = $result[0]['dep_code'];
+      return $department_id;
+    }
+    else
+    {
+      return false;
+    }
+  }
+  public function Add_Assessor($group_num,$teacher_name)
+  {
+    $teacher_id = $this->Get_Teacher_Id($teacher_name);
+    if($teacher_id != false)
+    {
+      $department_id = $this->Get_Staff_Dep($teacher_id);
+      if($department_id != false)
+      {
+        if($department_id == '1202')
+        {
+          $group_num = '1'.$group_num;
+        }
+        else if($department_id == '1203')
+        {
+          $group_num = '2'.$group_num;
+        }
+        $sql = "INSERT INTO `group_assessor`(`teacher_id`, `group_num`)
+        VALUES ('".$teacher_id"','".$group_num"')";
+        $this->DB->Change_DB($this->DEFAULT_DB);
+        $result = $this->DB->Insert_Update_Delete($sql);
+        if($result)
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+      else
+      {
+        return false;
+      }
+    }
+    else
+    {
+      return false;
+    }
+  }
+  public function Delete_Assessor($group_num,$teacher_name)
+  {
 
+  }
+
+  public function Search_Assessor($group_num)
+  {
+
+  }
 
 }
 
