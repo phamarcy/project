@@ -69,10 +69,11 @@ class approval
         {
             $course['id'] = $result[$i]['course_id'];
             $course['name'] = $this->COURSE->Get_Course_Name($course['id']);
+            //search evaluate form
             $course['evaluate']['status'] = $this->Get_Doc_Status($course['id'],'evaluate');
-            $sql = "SELECT `comment` FROM `approval_course` WHERE `course_id` ='".$course['id']."'
+            $sql_course = "SELECT `comment` FROM `approval_course` WHERE `course_id` ='".$course['id']."'
             AND `semester_id` =".$this->SEMESTER_ID;
-            $comment_temp = $this->DB->Query($sql);
+            $comment_temp = $this->DB->Query($sql_course);
             if($comment_temp)
             {
               $course['evaluate']['comment'] = array();
@@ -81,7 +82,9 @@ class approval
                 array_push($course['evaluate']['comment'],$comment_temp[$j]['comment']);
               }
             }
-            array_push($DATA,$course);
+            //end search evaluate form
+            //search special instructor form
+            //end search special instructor
         }
         return json_encode($DATA);
       }
