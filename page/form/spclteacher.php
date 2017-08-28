@@ -860,8 +860,8 @@ function lastcal() {
       ภาควิชา
         <select class="form-control required" id="department" style="width: auto;" id="select" required >
          <option value="">--------------</option>
-         <option value="1">ภาควิชาวิทยาศาสตร์เภสัชกรรม</option>
-         <option value="2">ภาควิชาบริบาลเภสัชกรรม</option>
+         <option value="ภาควิชาวิทยาศาสตร์เภสัชกรรม">ภาควิชาวิทยาศาสตร์เภสัชกรรม</option>
+         <option value="ภาควิชาบริบาลเภสัชกรรม">ภาควิชาบริบาลเภสัชกรรม</option>
       </select>
         </div></center>
       </div>
