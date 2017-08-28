@@ -1,10 +1,12 @@
 <?php
 require_once(__DIR__.'/../class/manage_deadline.php');
 
+var_dump($_POST);
 $deadline = new Deadline();
 $semester = $deadline->Get_Current_Semester();
 if(isset($_FILES['file']))
 {
+
   $file = $_FILES['file'];
   if(isset($_POST['course_id']))
   {

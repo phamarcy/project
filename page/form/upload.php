@@ -33,11 +33,6 @@ $grade->Close_connection();
 
     <style>
 
-    a[disabled="disabled"] {
-     <?php if ($_SESSION['level'] == 2 or $_SESSION['level'] == 3) { ?>
-       pointer-events: none;
-     <?php  } ?>
-    }
     #statcf {
      color : #0e9d14;
     }
@@ -53,28 +48,13 @@ $grade->Close_connection();
     #statal {
      color : #da9001;
     }
-    .fileUpload {
-      position: relative;
-      overflow: hidden;
-      margin-top: -3px;
-    }
-    .fileUpload input.upload {
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin: 0;
-        padding: 0;
-        font-size: 20px;
-        cursor: pointer;
-        opacity: 0;
-        filter: alpha(opacity=0);
-    }
+
     </style>
 
 </header>
 
 
-<body class="mybox">
+<body class="mybox" >
     <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
       <div class="container">
         <div class="row">
@@ -90,19 +70,19 @@ $grade->Close_connection();
             </h5>
           </div>
           <!-- .panel-heading -->
-          <div class="panel-body">
+          <div class="panel-body" >
               <div class="alert alert-warning pull-left">
                   *หมายเหตุ ไฟล์ที่ต้องการอัปโหลดต้องเป็นไฟล์ Excel ที่มีนามสกุล .xls หรือ .xlsx เท่านั้น
               </div>
-
-              <table class="table table-striped">
+              <table class="table table-striped" style="font-size:14px;">
                 <thead>
                   <tr>
                     <th>รหัสวิชา</th>
                     <th>วิชา</th>
                     <th>ไฟล์</th>
                     <th>สถานะ</th>
-                    <th>อัปโหลด</th>
+                    <th>เลือกไฟล์</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -119,20 +99,21 @@ $grade->Close_connection();
                           }
                         ?>
                           <tr>
-                            <td><?php echo $value["course_id"]; ?></td>
-                            <td><?php echo $value['course_name']; ?></td>
-                            <td>
-                            <?php if (isset($value['url'])): ?>
-                                <a href="../../files<?php echo $value['url']; ?>" target="_blank"><i type="button" class="fa fa-file-excel-o fa-2x" ></i></a>
-                            <?php endif; ?>
-                            </td>
-                            <td><?php echo $status ?></td>
-                            <td>
-                              <div class="fileUpload btn btn-primary">
-                                <span>Upload</span>
-                                <input type="file" class="upload" />
-                              </div>
-                            </td>
+                            <form id="data" method="post">
+                              <td><?php echo $value["course_id"]; ?></td>
+                              <td><?php echo $value['course_name']; ?></td>
+                              <td>
+                              <?php if (isset($value['url'])): ?>
+                                  <a href="../../files<?php echo $value['url']; ?>" target="_blank"><i type="button" class="fa fa-file-excel-o fa-2x" ></i></a>
+                              <?php endif; ?>
+                              </td>
+                              <td><?php echo $status ?></td>
+                              <td style="width:20px;">
+                                <input name="file" id="grade_<?php echo $value["course_id"] ?>" type="file" accept=".xls, .xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                                <input name="course_id" value="<?php echo $value["course_id"] ?>" type="hidden" />
+                              </td>
+                              <td><button type="submit" name="button" class="btn btn-primary">อัพโหลด</button></td>
+                            </form>
                           </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
@@ -148,16 +129,16 @@ $("form#data").submit(function(){
     var formData = new FormData(this);
 
     $.ajax({
-        url: '../../application/test_data.php',
+        url: '../../application/document/upload_grade.php',
         type: 'POST',
         data: formData,
         async: false,
-        success: function (data) {
-            console.log(data);
-        },
         cache: false,
         contentType: false,
-        processData: false
+        processData: false,
+        success: function (data) {
+            console.log(data);
+        }
     });
 
     return false;
