@@ -82,6 +82,7 @@ class approval
                 array_push($course['evaluate']['comment'],$comment_temp[$j]['comment']);
               }
             }
+            array_push($DATA,$course);
             //end search evaluate form
             //search special instructor form
             //end search special instructor
