@@ -1,7 +1,6 @@
 <?php
 require_once(__DIR__.'/../class/manage_deadline.php');
 
-var_dump($_POST);
 $deadline = new Deadline();
 $semester = $deadline->Get_Current_Semester();
 if(isset($_FILES['file']))
@@ -17,11 +16,12 @@ if(isset($_FILES['file']))
 
 function Upload($file,$course_id)
 {
+  global $semester;
 	global $FILE_PATH;
 	$path = $FILE_PATH."/grade";
 	$filename = $file['name'];
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-	$uploadfile = $path."/".$course_id."_grade_".$semester['semester']."_".$year.".".$ext;
+	$uploadfile = $path."/".$course_id."_grade_".$semester['semester']."_".$semester['year'].".".$ext;
 	if (!move_uploaded_file($file['tmp_name'], $uploadfile))
 	{
 		$return['status'] = "error";
@@ -33,6 +33,7 @@ function Upload($file,$course_id)
   {
     $return['status'] = "success";
 		$return['msg'] = 'อัพโหลดสำเร็จ';
+    echo json_encode($return);
   }
 }
 
