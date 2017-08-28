@@ -3,6 +3,7 @@ require_once(__DIR__.'/../config/configuration_variable.php');
 require_once(__DIR__.'/../class/manage_deadline.php');
 require_once(__DIR__.'/../class/database.php');
 require_once(__DIR__.'/../class/course.php');
+require_once(__DIR__.'/../class/approval.php');
 require_once('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
 define('FPDF_FONTPATH','font/');
@@ -151,8 +152,8 @@ $pdf->SetFont('angsa','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','1.1 ชื่อ ')),7,iconv( 'UTF-8','TIS-620','1.1 ชื่อ '),0,"C");
 
 $RANK = $DATA['TEACHERDATA']['PREFIX'];
-$FIRSTNAME = 'เกรียงไกร';
-$LASTNAME = 'ยังฉิม';
+$FIRSTNAME = $DATA['TEACHERDATA']['FNAME'];
+$LASTNAME = $DATA['TEACHERDATA']['LNAME'];
 $space_firstname = '';
 $space_lastname = '';
 $count = 80 - strlen($RANK) - strlen($FIRSTNAME);
@@ -436,6 +437,20 @@ $pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.date(" j ").'   �
 $pdf->SetX($money_position-17);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
 
+//update approval special instructor
+$approve = new approval('1');
+$result = $approve->Append_Special_Instructor($DATA['COURSEDATA']['COURSE_ID'],$instructor_id);
+if(isset($result['error']))
+{
+	$return['status'] = "error";
+  $return['msg'] = $result['error'];
+	echo json_encode($return);
+	die;
+}
+//end update
+
+
+//check if document is approve
 $pdf->Ln();
 $pdf->SetX(20);
 $pdf->Cell(0+5,7,iconv( 'UTF-8','TIS-620',' การขอเชิญอาจารย์พิเศษนี้ได้ผ่านความเห็นชอบของกรรมการวิชาการภาควิชาฯ แล้ว เมื่อวันที่ '.'10'.'   เดือน   '.'กันยายน'.'   พ.ศ.   '.'2560'),0,1);
@@ -452,9 +467,11 @@ $pdf->Cell(0,7,iconv('UTF-8','TIS-620','หัวหน้าภาควิช�
 
 $pdf->SetX($money_position-20);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.'10'.'   เดือน   '.'กันยายน'.'   พ.ศ.   '.'2560'),0);
-$pdf->Output("special_instructor.pdf","F");
+$pdf->Output($file_path."/".$DATA['COURSEDATA']['COURSE_ID']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
 
-// $pdf->Output($file_path."/".$data['COURSEDATA']['COURSE_ID']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
+//end check
 
+$return['status'] = "success";
+$return['msg'] = "บันทึกสำเร็จ";
+echo json_encode($return);
  ?>
- PDF Created Click <a href="special_instructor.pdf">here</a> to Download

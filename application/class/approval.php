@@ -146,10 +146,33 @@ class approval
 
   }
 
-  public function Append_Status($course_id,$teacher_id,$level)
+  public function Append_Status_Evaluate($course_id,$teacher_id,$level)
   {
     $status = '1'; //default status = waiting for create
   }
+
+  public function Append_Special_Instructor($course_id,$instructor_id)
+  {
+    $sql = "SELECT ga.`teacher_id` FROM `subject_assessor` sa, `group_assessor` ga
+    WHERE sa.course_id = '460100' AND sa.assessor_group_num = ga.group_num";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      for($i=0;$i<count($result);$i++)
+      {
+        $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`,`level_approve`,`status`)
+        VALUES ('".$instructor_id."','".$result[$i]['teacher_id']."',1,'2')";
+        $approve_result = $this->DB->Insert_Update_Delete($sql);
+        if($approve_result == false)
+        {
+          $return['error'] = 'ไม่สามารถเพิ่มข้อมูลได้';
+        }
+      }
+    }
+    return true;
+  }
+
+
   //get approval data to approval page
   public function Get_Approval_data($teacher_id)
   {
