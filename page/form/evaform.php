@@ -1,5 +1,9 @@
 <?php
   session_start();
+  require_once('../../application/class/manage_deadline.php');
+  $dlobj = new Deadline();
+  $dleva = $dlobj->Search_all(1);
+  $dlcor = $dlobj->Search_all(2);
  ?>
  <html>
  <header>

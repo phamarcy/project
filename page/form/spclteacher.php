@@ -2,6 +2,10 @@
 require_once('../../application/class/person.php');
 $prefixobj = new Person();
 $prefix = $prefixobj->Get_All_Prefix();
+
+require_once('../../application/class/manage_deadline.php');
+$dlobj = new Deadline();
+$dlspcl = $dlobj->Search_all(3);
  ?>
 
 <html>
@@ -531,6 +535,87 @@ window.counttr = 0;
 
  $(document).ready(function(){
 
+   //deadline
+   var stringdlst = '<?php echo $dlspcl[0]['open_date'];  ?>';
+   var stringdlend = '<?php echo $dlspcl[0]['last_date'];  ?>';
+   var splitor = stringdlend.split("-");
+   var month = splitor[1];
+   var deadlinestart = new Date(stringdlst);
+   var deadlineend = new Date(stringdlend);
+   var dateobj = new Date();
+   var yy = dateobj.getFullYear();
+   var condi = dateobj.getMonth()+1;
+   if(condi<10)
+   {
+     var mm = "0"+condi;
+   }
+   else {
+     var mm = ''+dateobj.getMonth();
+   }
+   var dd = dateobj.getDate();
+   var today = new Date(yy+"-"+mm+"-"+dd);
+
+   if(month=="01")
+   {
+     var monthname = "มกราคม";
+   }
+   else if(month=="02")
+   {
+     var monthname = "กุมภาพันธ์";
+   }
+   else if(month=="03")
+   {
+     var monthname = "มีนาคม";
+   }
+   else if(month=="04")
+   {
+     var monthname = "เมษายน";
+   }
+   else if(month=="05")
+   {
+     var monthname = "พฤษภาคม";
+   }
+   else if(month=="06")
+   {
+     var monthname = "มิถุนายน";
+   }
+   else if(month=="07")
+   {
+     var monthname = "กรกฏาคม";
+   }
+   else if(month=="08")
+   {
+     var monthname = "สิงหาคม";
+   }
+   else if(month=="09")
+   {
+     var monthname = "กันยายน";
+   }
+   else if(month=="10")
+   {
+     var monthname = "ตุลาคม";
+   }
+   else if(month=="11")
+   {
+     var monthname = "พฤศจิกายน";
+   }
+   else
+   {
+     var monthname = "ธันวาคม";
+   }
+
+   if(deadlinestart<today && today<deadlineend)
+   {
+     $('#overtimemsg').hide();
+   }
+   else {
+     $('#dlhide').hide();
+     $('#formheader').hide();
+     $('#overtimemsg').show();
+     document.getElementById('overtimemsg2').innerHTML = "<br>วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ วันที่ "+splitor[2]+" "+monthname+" "+(parseInt(splitor[0])+543);
+   }
+
+
    // manage required form
    $("#GOV_LEVEL").prop('required',true);
    $("input[name='levelteacher']").change(function(){
@@ -824,7 +909,8 @@ function lastcal() {
   <div class="row">
     <center>
       <h3 class="page-header">แบบขออนุมัติเชิญอาจารย์พิเศษ คณะเภสัชศาสตร์</h3>
-      <form  data-toggle="validator" role="form">
+      <div id="overtimemsg"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการกรอกแบบขออนุมัติเชิญอาจารย์พิเศษแล้ว !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg2"></p></b> </div>
+      <form id="formheader" data-toggle="validator" role="form">
         <div id="formchecksj" class="form-inline" style="font-size:16px;">
                   <div class="form-group ">
                     รหัสกระบวนวิชา
@@ -847,7 +933,7 @@ function lastcal() {
          </form>
       </center>
 
-      <div class="panel panel-default"> <br>
+      <div id="dlhide" class="panel panel-default"> <br>
       <form action="" data-toggle="validator" role="form" name="form1" method="post">
       <div class="row form-inline" style="font-size:16px;">
         <center><div class="form-group">
