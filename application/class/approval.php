@@ -33,6 +33,24 @@ class approval
     $this->DB = new Database();
     $this->PERSON = new Person();
   }
+
+  //evaluate course evaluate document
+  public function Approve_Evaluate($teacher_id,$course_id,$level,$status,$comment)
+  {
+
+  }
+
+//evaluate special instructor
+  public function Approve_Special($instructor_id,$teacher_id,$course_id,$level,$status,$comment)
+  {
+
+  }
+
+//add new approval status
+public function Append_Status_Evaluate($course_id,$teacher_id,$level)
+{
+    $status = '1'; //default status = waiting for create
+}
 //check status in homt page
   public function Check_Status($user_id)
   {
@@ -70,8 +88,8 @@ class approval
             $course['id'] = $result[$i]['course_id'];
             $course['name'] = $this->COURSE->Get_Course_Name($course['id']);
             //search evaluate form
-            $course['evaluate']['status'] = $this->Get_Doc_Status($course['id'],'evaluate');
-            $sql_course = "SELECT `comment` FROM `approval_course` WHERE `course_id` ='".$course['id']."'
+            $course['evaluate']['status'] = $this->Get_Doc_Status($course['id']);
+            $sql_course = "SELECT `teacher_id`,`comment` FROM `approval_course` WHERE `course_id` ='".$course['id']."'
             AND `semester_id` =".$this->SEMESTER_ID;
             $comment_temp = $this->DB->Query($sql_course);
             if($comment_temp)
@@ -79,7 +97,9 @@ class approval
               $course['evaluate']['comment'] = array();
               for($j=0;$j<count($comment_temp);$j++)
               {
-                array_push($course['evaluate']['comment'],$comment_temp[$j]['comment']);
+                $comment['name'] = $this->PERSON->Get_Teacher_Name($comment_temp[$j]['teacher_id']);
+                $comment['comment'] = $comment_temp[$j]['comment'];
+                array_push($course['evaluate']['comment'],$comment);
               }
             }
             $course['special'] = $this->Get_Instructor_Data($course['id']);
@@ -103,11 +123,11 @@ class approval
 
   }
   //type = evaluate
-  private function Get_Doc_Status($course_id,$type)
+  private function Get_Doc_Status($course_id)
   {
       $status = 4;
       $sql = "SELECT `status` FROM `approval_course`
-      WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->SEMESTER_ID." AND `data_type` = '".$type."'";
+      WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->SEMESTER_ID;
       $result = $this->DB->Query($sql);
       if($result)
       {
@@ -139,7 +159,7 @@ class approval
        {
          $instructor['name'] = $result[$i]['firstname'].' '.$result[$i]['lastname'];
          $instructor['status'] = $this->Get_Instructor_Status($result[$i]['instructor_id']);
-         $sql = "SELECT comment FROM `approval_special`
+         $sql = "SELECT teacher_id,comment FROM `approval_special`
          WHERE instructor_id = ".$result[$i]['instructor_id'];
          $result_comment = $this->DB->Query($sql);
          $instructor['comment'] = array();
@@ -149,7 +169,9 @@ class approval
            {
              if($result_comment[$j]['comment'] != null)
              {
-               array_push($instructor['comment'],$result_comment[$j]['comment']);
+                $comment['name'] = $this->PERSON->Get_Teacher_Name($comment_temp[$j]['teacher_id']);
+                $comment['comment'] = $comment_temp[$j]['comment'];
+               array_push($instructor['comment'],$comment);
              }
            }
          }
@@ -208,11 +230,6 @@ class approval
       return false;
     }
 
-  }
-
-  public function Append_Status_Evaluate($course_id,$teacher_id,$level)
-  {
-    $status = '1'; //default status = waiting for create
   }
 
   public function Append_Special_Instructor($course_id,$instructor_id)
@@ -275,7 +292,7 @@ class approval
           $this->LOG->Write("Query Error : on sql command ".$sql);
         }
           //check status in course
-          $status = $this->Get_Course_Status($course['id']);
+          $status = $this->Get_Doc_Status($course['id']);
           if($status == 4)
           {
             array_push($data['approve'],$course);
@@ -300,16 +317,6 @@ class approval
     return json_encode($DATA);
   }
 
-  private function Get_Course_Status($course_id)
-  {
-    $status = 4;
-    $evaluate_status = $this->Get_Doc_Status($course_id,'evaluate');
-    if($evaluate_status < $status)
-    {
-      $status = $evaluate_status;
-    }
-    return $status;
-  }
   private function Get_Doc_Url($course_id,$type)
   {
     $course_id = '462452';
