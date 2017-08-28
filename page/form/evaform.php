@@ -617,7 +617,6 @@ function checksubject(btntype,type){
                        }
                         else {
                           alert('ไม่พบกระบวนวิชาที่ค้นหา\nกรุณากรอกข้อมูลใหม่');
-                          document.getElementById('id').value = "";
                         }
                   },
                   failure: function (result) {

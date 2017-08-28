@@ -238,7 +238,6 @@ window.counttr = 0;
                         }
                          else {
                            alert('ไม่พบข้อมูลเก่า ท่านสามารถกรอกข้อมูลใหม่ได้ตามแบบฟอร์มข้างล่าง');
-                           document.getElementById('id').value = "";
                          }
                    },
                    failure: function (result) {
@@ -504,7 +503,9 @@ window.counttr = 0;
                   type: 'post',
                   success: function (result) {
                        console.log(result);
-                       if(result=='save_success')
+                       var temp = $.parseJSON(result);
+                       console.log(temp["status"]+","+temp["msg"]);
+                       if(result=='success')
                        {
                          alert('บันทึกข้อมูลสำเร็จ');
                        }
@@ -1040,7 +1041,7 @@ function lastcal() {
     <br>
     <br>
     <div align="center">
-      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" onclick="checkreq('1');"> &nbsp;
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" onclick="checkreq('1');"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2');"> &nbsp;
       <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>
