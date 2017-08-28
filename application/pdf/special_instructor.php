@@ -55,7 +55,9 @@ if(isset($_POST['DATA']))
 
 	if($DATA['SUBMIT_TYPE'] == '2')
 	{
-		echo "save_success";
+		$return['status'] = "success";
+		$return['msg'] = "บันทึกสำเร็จ";
+		echo json_encode($return);
 		die;
 	}
 	else if($DATA['SUBMIT_TYPE'] == '1')
@@ -65,7 +67,8 @@ if(isset($_POST['DATA']))
 }
 else
 {
-	$return['error'] = 'No data';
+	$return['status'] = "error";
+	$return['msg'] = 'ไม่มีข้อมูลนำเข้า';
 	echo json_encode($return);
 }
 function Upload($file,$course_id,$instructor_id)
@@ -74,22 +77,21 @@ function Upload($file,$course_id,$instructor_id)
 	$path = $FILE_PATH."/cv";
 	$filename = $file['name'];
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-	$uploadfile = $path."/".$course_id.'_'.$instructor_id.'.'.$ext;
-	if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
+	$uploadfile = $path."/".$course_id.'_'.$instructor_id."_".$semester['semester']."_".$semester['year'].'.'.$ext;
+	if (!move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
 	{
-    echo "File is valid, and was successfully uploaded.\n";
-	}
-	else
-	{
-	    echo "Possible file upload attack!\n";
+		$return['status'] = "error";
+		$return['msg'] = 'ไม่สามารถบันทึกไฟล์ CV ได้';
+		echo json_encode($return);
+    die();
 	}
 }
-function Write_temp_data($temp_data,$special_id)
+function Write_temp_data($temp_data,$instructor_id)
 {
 	global $semester;
 	$data = json_decode($temp_data,true);
 	$path = Create_Folder($data['COURSEDATA']['COURSE_ID'],'special_instructor');
-	$temp_file = fopen($path."/".$special_id."_".$semester['semester']."_".$semester['year'].".txt", "w");
+	$temp_file = fopen($path."/".$instructor_id."_".$semester['semester']."_".$semester['year'].".txt", "w");
 	fwrite($temp_file, $temp_data);
 	fclose($temp_file);
 

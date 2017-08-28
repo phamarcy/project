@@ -21,7 +21,9 @@ if(isset($_POST['DATA']))
 
 	if($DATA['SUBMIT_TYPE'] == '2')
 	{
-		echo "save_success";
+		$return['status'] = "success";
+		$return['msg'] = "บันทึกสำเร็จ";
+		echo json_encode($return);
 		die;
 			// Write_temp_data($data);
 	}
@@ -33,7 +35,8 @@ if(isset($_POST['DATA']))
 }
 else
 {
-	$return['error'] = 'No data';
+	$return['status'] = "error";
+	$return['msg'] = 'ไม่มีข้อมูลนำเข้า';
 	echo json_encode($return);
 }
 function Upload($file,$course_id)
@@ -45,7 +48,10 @@ function Upload($file,$course_id)
 	$uploadfile = $path."/".$course_id.'.'.$ext;
 	if (!move_uploaded_file($file['tmp_name'], $uploadfile))
 	{
-    die("Cannot upload course syllabus file");
+		$return['status'] = "error";
+		$return['msg'] = 'ไม่สามารถบันทึกไฟล์ course syllabus ได้';
+		echo json_encode($return);
+    die();
 	}
 }
 function Write_temp_data($temp_data)
