@@ -141,6 +141,7 @@ class Person
   {
     $sql = "SELECT s.`dep_code`,dep.`name` FROM `staff`s,`department` dep
     WHERE s.`code` = '".$staff_id."' AND s.`dep_code` = dep.`code`";
+
     $this->DB->Change_DB('person');
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);

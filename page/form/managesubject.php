@@ -1,5 +1,12 @@
 <?php
 session_start();
+require_once(__DIR__."/../../application/class/person.php");
+require_once(__DIR__.'/../../application/class/manage_deadline.php');
+$person = new Person();
+$deadline = new Deadline;
+$semeter= $deadline->Get_Current_Semester();
+$department =$person->Get_Staff_Dep($_SESSION['id']);
+
  ?>
 <html>
   <head>
@@ -88,6 +95,8 @@ session_start();
         }
       }
 
+
+
     </script>
   </head>
   <body>
@@ -95,139 +104,166 @@ session_start();
     <div class="container" style="margin-top:30px">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h5><b>ภาคการศึกษาที่ 1 ปีการศึกษา 2560 ภาควิชาบริบาลเภสัชกรรม</b></h5>
+          <h5><b>ภาคเรียนที่ <?php echo $semeter['semester'];?> &nbsp;ปีการศึกษา <?php echo $semeter['year']." ";?><?php echo $department['name'] ?></b></h5>
         </div>
         <div class="panel-body">
-          <div class="row">
-              <div class="col-md-4">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                      <b>ข้อมูลกระบวนวิชาในสังกัดย้อนหลัง</b>
-                  </div>
-                  <div class="panel-body">
-                    <div class="form-inline">
-                      <center>
-                        <form>
-                          <button type="button" class="btn btn-outline btn-primary " id="semester"  name="submit"><b>1/2557</b></button>
-                          <button type="button" class="btn btn-outline btn-primary " id="semester"  name="submit"><b>1/2558</b></button>
-                          <button type="button" class="btn btn-outline btn-primary " id="semester"  name="submit"><b>1/2559</b></button>
-                          <div id="warning"></div>
-                        </form>
-                      </center>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-8">
+        <div class="row">
+              <div class="col-md-12">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                       <b>คณะกรรมการผู้รับผิดชอบ</b>
                   </div>
                   <div class="panel-body">
                     <div class="form-group">
-                      <label for="">ชุดคณะกรรมการ</label>
-                      <table class="table">
-                          <thead>
-                            <th>ลำดับ</th>
-                            <th>ชุดคณะกรรมการ</th>
-                            <th style="text-align:center;">รายชื่อคณะกรรมการ</th>
-                            <th></th>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>1</td>
-                              <td>คณะกรรมการชุดที่ 1</td>
-                              <td style="text-align:center;"><button type="button" name="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#set1" class="accordion-toggle">รายชื่อ</button></td>
-                            </tr>
-                            <tr class="hiddenRow">
+                      <div class="row">
+                          <div class="col-md-6">
+                            <table class="table">
+                                <thead>
+                                  <th>ลำดับ</th>
+                                  <th>ชุดคณะกรรมการ</th>
+                                  <th style="text-align:center;">รายชื่อคณะกรรมการ</th>
+                                  <th></th>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1</td>
+                                    <td>คณะกรรมการชุดที่ 1</td>
+                                    <td style="text-align:center;"><button type="button" name="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#set1" class="accordion-toggle">รายชื่อ</button></td>
+                                  </tr>
+                                  <tr class="hiddenRow">
 
-                              <td colspan="6">
-                                <div class="accordian-body collapse" id="set1">
-                                  <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <b>คณะกรรมการชุดที่ 1</b>
-                                    </div>
-                                    <div class="panel-body">
-                                  <div class="form-group">
-                                    <label for="">เพิ่มคณะกรรมการ</label>
-                                    <div class="form-inline">
-                                      <input type="text" class="form-control charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
-                                      <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                    </div>
-                                    <datalist id="dtl1"></datalist>
-                                  </div>
-                                  <hr>
-                                  <div class="form-group">
-                                    <label for="">รายชื่อ</label>
-                                    <table class="table">
-                                      <thead>
-                                        <th>ลำดับ</th>
-                                        <th>ชื่อ-นามสกุล</th>
-                                        <th></th>
-                                      </thead>
-                                      <tbody>
-                                        <td>1</td>
-                                        <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
-                                        <td><button type="button" name="button" class="btn btn-outline btn-danger">ลบ</button></td>
-                                      </tbody>
-                                    </table>
-                                  </div>
+                                    <td colspan="6">
+                                      <div class="accordian-body collapse" id="set1">
+                                        <div class="panel panel-info">
+                                          <div class="panel-heading">
+                                              <b>คณะกรรมการชุดที่ 1</b>
+                                          </div>
+                                          <div class="panel-body">
+                                        <div class="form-group">
+                                          <form id="data">
+                                              <label for="">เพิ่มคณะกรรมการ</label>
+                                              <div class="form-inline">
+                                                <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
+                                                <input type="hidden" name="group" value="1">
+                                                <input type="hidden" name="type" value="add">
+                                                <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                                <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                              </div>
+                                              <datalist id="dtl1"></datalist>
+                                         </form>
+                                        </div>
+                                        <hr>
+                                        <div class="form-group">
+                                          <label for="">รายชื่อ</label>
+                                          <table class="table">
+                                            <thead>
+                                              <th>ลำดับ</th>
+                                              <th>ชื่อ-นามสกุล</th>
+                                              <th></th>
+                                            </thead>
+                                            <tbody>
+                                              <td>1</td>
+                                              <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                              <td><button type="button" name="button" class="btn btn-outline btn-danger">ลบ</button></td>
+                                            </tbody>
+                                          </table>
+                                        </div>
 
-                                  </div>
-                                </div>
-                                </td>
-                            </tr>
-                            <tr>
-                              <td>1</td>
-                              <td>คณะกรรมการชุดที่ 2</td>
-                              <td style="text-align:center;"><button type="button" name="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#set2" class="accordion-toggle">รายชื่อ</button></td>
-                            </tr>
-                            <tr class="hiddenRow">
+                                        </div>
+                                      </div>
+                                      </td>
+                                  </tr>
+                                </tbody>
+                            </table>
+                          </div>
+                          <div class="col-md-6">
+                            <table class="table">
+                                <thead>
+                                  <th>ลำดับ</th>
+                                  <th>ชุดคณะกรรมการ</th>
+                                  <th style="text-align:center;">รายชื่อคณะกรรมการ</th>
+                                  <th></th>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1</td>
+                                    <td>คณะกรรมการชุดที่ 2</td>
+                                    <td style="text-align:center;"><button type="button" name="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#set2" class="accordion-toggle">รายชื่อ</button></td>
+                                  </tr>
+                                  <tr class="hiddenRow">
 
-                              <td colspan="6">
-                                <div class="accordian-body collapse" id="set2">
-                                  <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <b>คณะกรรมการชุดที่ 2</b>
-                                    </div>
-                                    <div class="panel-body">
-                                  <div class="form-group">
-                                    <label for="">เพิ่มคณะกรรมการ</label>
-                                    <div class="form-inline">
-                                      <input type="text" class="form-control charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'committee');" >
-                                      <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                    </div>
-                                    <datalist id="dtl2"></datalist>
-                                  </div>
-                                  <hr>
-                                  <div class="form-group">
-                                    <label for="">รายชื่อ</label>
-                                    <table class="table">
-                                      <thead>
-                                        <th>ลำดับ</th>
-                                        <th>ชื่อ-นามสกุล</th>
-                                        <th></th>
-                                      </thead>
-                                      <tbody>
-                                        <td>1</td>
-                                        <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
-                                        <td><button type="button" name="button" class="btn btn-outline btn-danger">ลบ</button></td>
-                                      </tbody>
-                                    </table>
-                                  </div>
+                                    <td colspan="6">
+                                      <div class="accordian-body collapse" id="set2">
+                                        <div class="panel panel-info">
+                                          <div class="panel-heading">
+                                              <b>คณะกรรมการชุดที่ 2</b>
+                                          </div>
+                                          <div class="panel-body">
+                                        <div class="form-group">
+                                          <label for="">เพิ่มคณะกรรมการ</label>
+                                          <div class="form-inline">
+                                            <form id="data" action="index.html" method="post">
 
-                                  </div>
-                                </div>
-                                </td>
-                            </tr>
-                          </tbody>
-                      </table>
+                                            <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
+                                            <input type="hidden" name="group" value="2">
+                                            <input type="hidden" name="type" value="add">
+                                            <input type="hidden" name="$department" value="<?php echo $department['code']  ?>">
+                                            <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+
+                                          </form>
+                                          </div>
+                                          <datalist id="dtl2"></datalist>
+                                        </div>
+                                        <hr>
+                                        <div class="form-group">
+                                          <label for="">รายชื่อ</label>
+                                          <table class="table">
+                                            <thead>
+                                              <th>ลำดับ</th>
+                                              <th>ชื่อ-นามสกุล</th>
+                                              <th></th>
+                                            </thead>
+                                            <tbody>
+                                              <td>1</td>
+                                              <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
+                                              <td><button type="button" name="button" class="btn btn-outline btn-danger">ลบ</button></td>
+                                            </tbody>
+                                          </table>
+                                        </div>
+
+                                        </div>
+                                      </div>
+                                      </td>
+                                  </tr>
+                                </tbody>
+                            </table>
+                          </div>
+                      </div>
+
                     </div>
-
-
-
                   </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-4">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <b>ข้อมูลกระบวนวิชาในสังกัดย้อนหลัง</b>
+                        </div>
+                        <div class="panel-body">
+                          <div class="form-inline">
+                            <center>
+                              <form>
+                                <button type="button" class="btn btn-outline btn-primary " id="semester"  name="submit"><b>1/2557</b></button>
+                                <button type="button" class="btn btn-outline btn-primary " id="semester"  name="submit"><b>1/2558</b></button>
+                                <button type="button" class="btn btn-outline btn-primary " id="semester"  name="submit"><b>1/2559</b></button>
+                                <div id="warning"></div>
+                              </form>
+                            </center>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
               </div>
           </div>
           <div class="panel panel-default">
@@ -864,7 +900,30 @@ session_start();
           </div>
         </div>
       </div>
-    </div>
 
+    </div>
+<script type="text/javascript">
+$("form#data").submit(function(){
+    //var file = document.forms['data']['filexcel'].files[0];
+    var formData = new FormData(this);
+    console.log(formData);
+
+    $.ajax({
+        url: '../../application/subject/group.php',
+        type: 'POST',
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          console.log(data);
+        }
+    });
+
+    return false;
+});
+
+</script>
   </body>
 </html>
