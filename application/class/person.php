@@ -170,7 +170,7 @@ class Person
           $group_num = '2'.$group_num;
         }
         $sql = "INSERT INTO `group_assessor`(`teacher_id`, `group_num`)
-        VALUES ('".$teacher_id"','".$group_num"')";
+        VALUES ('".$teacher_id"','".$group_num."')";
         $this->DB->Change_DB($this->DEFAULT_DB);
         $result = $this->DB->Insert_Update_Delete($sql);
         if($result)
