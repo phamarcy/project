@@ -171,10 +171,11 @@ class Person
         {
           $group_num = '2'.$group_num;
         }
+        //check if teacher is already exist in group
         $this->DB->Change_DB($this->DEFAULT_DB);
         $sql = "SELECT * FROM `group_assessor` WHERE `teacher_id` = '".$teacher_id."' AND `group_num` = '".$group_num."'";
         $result = $this->DB->Query($sql);
-        if($result == null)
+        if($result == null) //if not insert to group
         {
             $sql = "INSERT INTO `group_assessor`(`teacher_id`, `group_num`)
             VALUES ('".$teacher_id."','".$group_num."')";
@@ -212,9 +213,47 @@ class Person
     }
 
   }
-  public function Delete_Assessor($group_num,$teacher_name)
+  public function Delete_Assessor($group_num,$teacher_name,$department_id)
   {
-
+    $teacher_id = $this->Get_Teacher_Id($teacher_name);
+    if($teacher_id != false)
+    {
+      if($department_id != false)
+      {
+        if($department_id == '1202')
+        {
+          $group_num = '1'.$group_num;
+        }
+        else if($department_id == '1203')
+        {
+          $group_num = '2'.$group_num;
+        }
+        $this->DB->Change_DB($this->DEFAULT_DB);
+        $sql = "DELETE FROM `group_assessor` WHERE `teacher_id` = '".$teacher_id."' AND `group_num` = '".$group_num."'";
+        $result = $this->DB->Insert_Update_Delete($sql);
+        if($result)
+        {
+          $return['status'] = 'success';
+          $return['msg'] = 'ลบข้อมูลสำเร็จ';
+        }
+        else
+        {
+          $return['status'] = 'error';
+          $return['msg'] = 'ไม่สามารถลบข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+        }
+      }
+      else
+      {
+        $return['status'] = 'error';
+        $return['msg'] = 'ภาควิชาผิดพลาด กรุณาติดต่อผู้ดูแลระบบ';
+      }
+    }
+    else
+    {
+      $return['status'] = 'error';
+      $return['msg'] = 'ไม่พบข้อมูลอาจารย์ท่านนี้ในฐานข้อมูล กรุณาติดต่อผู้ดูแลระบบ';
+    }
+    return $return;
   }
 
   public function Search_Assessor($department_id)

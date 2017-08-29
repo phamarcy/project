@@ -16,17 +16,7 @@ if(isset($_POST['teacher']) && isset($_POST['group']) && isset($_POST['type']))
   }
   else if($type == 'remove')
   {
-      $result = $person->Delete_Assessor($group_num,$teacher_name,$dept_id);
-      if($result)
-      {
-        $return['status'] = 'success';
-        $return['msg'] = 'ลบข้อมูลสำเร็จ';
-      }
-      else
-      {
-        $return['status'] = 'error';
-        $return['msg'] = 'ไม่สามารถลบข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
-      }
+      $return = $person->Delete_Assessor($group_num,$teacher_name,$dept_id);
   }
   else
   {
