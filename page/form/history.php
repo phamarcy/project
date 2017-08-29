@@ -73,7 +73,7 @@ div[class^="col-"] {
         <div class="panel panel-default">
           <div class="panel-heading">
             <h5 class="panel-title">
-              ผลการค้นหา
+              <b>ผลการค้นหา</b>
             </h5>
           </div>
           <!-- .panel-heading -->
@@ -110,7 +110,7 @@ div[class^="col-"] {
                                       <div class="panel panel-default">
                                         <div class="panel-heading">
                                           <div class="panel-title" style="font-size:14px">
-                                            <a data-toggle="collapse" href="#comment463681-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
+                                            <a data-toggle="collapse" href="#comment463681-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</b></a>
                                             <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                           </div>
                                         </div>
@@ -145,7 +145,7 @@ div[class^="col-"] {
                                       <div class="panel panel-default">
                                         <div class="panel-heading ">
                                           <div class="panel-title" style="font-size:14px">
-                                                  <a data-toggle="collapse" href="#comment463681-3">แบบเชิญอาจารย์พิเศษ</a>
+                                                  <a data-toggle="collapse" href="#comment463681-3"><b>แบบเชิญอาจารย์พิเศษ</b></a>
                                               </div>
                                         </div>
                                         <div id="comment463681-3" class="panel-collapse collapse in">
@@ -287,7 +287,7 @@ div[class^="col-"] {
                                       <div class="panel panel-default">
                                         <div class="panel-heading">
                                           <div class="panel-title" style="font-size:14px">
-                                            <a data-toggle="collapse" href="#comment463201-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
+                                            <a data-toggle="collapse" href="#comment463201-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</b></a>
                                             <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a>
                                           </div>
                                         </div>
@@ -322,7 +322,7 @@ div[class^="col-"] {
                                       <div class="panel panel-default">
                                         <div class="panel-heading ">
                                           <div class="panel-title" style="font-size:14px">
-                                                  <a data-toggle="collapse" href="#comment463201-3">แบบเชิญอาจารย์พิเศษ</a>
+                                                  <a data-toggle="collapse" href="#comment463201-3"><b>แบบเชิญอาจารย์พิเศษ</b></a>
                                               </div>
                                         </div>
                                         <div id="comment463201-3" class="panel-collapse collapse in">

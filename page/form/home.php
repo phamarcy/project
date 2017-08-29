@@ -174,7 +174,7 @@ else
 														<div class="panel-heading">
 															<h3 class="panel-title" style="font-size:14">
 																<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']."_".$key ?>">
-														 		<i class="fa fa-file-o fa-fw"></i> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  <i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
+														 		<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b><i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
 															</h3>
 														</div>
 														<?php if (isset($_SESSION['level'])) { ?>
@@ -217,7 +217,7 @@ else
 														<div class="panel-heading">
 															<h3 class="panel-title" style="font-size:14">
 													<a data-toggle="collapse" href="#special<?php echo $value_course['id']."_".$key ?>" disabled="disabled">
-													<i class="fa fa-file-o fa-fw"></i>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></a>
+													<i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></b></a>
 												</h3>
 														</div>
 														<?php if (isset($_SESSION['level'])) { ?>

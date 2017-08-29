@@ -54,7 +54,7 @@ session_start();
         <div class="panel panel-default">
           <div class="panel-heading">
             <h5 class="panel-title" style="font-size:14px">
-              ภาคการศึกษาที่ 2 ปีการศึกษา 2560
+              <b>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</b>
           </h5>
           </div>
           <!-- .panel-heading -->
@@ -90,14 +90,14 @@ session_start();
                       <div class="accordian-body collapse" id="202141">
                         <div class="panel panel-success">
                           <div class="panel-heading" style="font-size:14px;">
-                            ข้อเสนอแนะคณะกรรมการ
+                            <b>ข้อเสนอแนะคณะกรรมการ</b>
                           </div>
                           <div class="panel-body">
                             <div class="panel-group" id="comment202141">
                               <div class="panel panel-default">
                                 <div class="panel-heading" >
                                   <div class="panel-title" style="font-size:14px">
-                                      <a data-toggle="collapse" data-parent="#comment202141" href="#comment202141-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
+                                      <a data-toggle="collapse" data-parent="#comment202141" href="#comment202141-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</b></a>
 
                                   </div>
                                 </div>
@@ -140,7 +140,7 @@ session_start();
                               <div class="panel panel-default">
                                 <div class="panel-heading ">
                                   <div class="panel-title" style="font-size:14px">
-                                      <a data-toggle="collapse" data-parent="#comment202141" href="#comment202141-3">แบบเชิญอาจารย์พิเศษ</a>
+                                      <a data-toggle="collapse" data-parent="#comment202141" href="#comment202141-3"><b>แบบเชิญอาจารย์พิเศษ</b></a>
                                   </div>
                                 </div>
                                 <div id="comment202141-3" class="panel-collapse collapse">

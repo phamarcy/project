@@ -114,7 +114,7 @@ echo "</pre>";*/
               <div class="col-md-12">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                      คณะกรรมการผู้รับผิดชอบ
+                      <b>คณะกรรมการผู้รับผิดชอบ</b>
                   </div>
                   <div class="panel-body">
                     <div class="form-group">
@@ -273,7 +273,7 @@ echo "</pre>";*/
                     <div class="col-md-4">
                       <div class="panel panel-default">
                         <div class="panel-heading">
-                          ข้อมูลกระบวนวิชาในสังกัดย้อนหลัง
+                          <b>ข้อมูลกระบวนวิชาในสังกัดย้อนหลัง</b>
                         </div>
                         <div class="panel-body">
                           <div class="form-inline">
@@ -294,7 +294,7 @@ echo "</pre>";*/
           </div>
           <div class="panel panel-default">
             <div class="panel-heading">
-              กระบวนวิชาที่สังกัดในภาควิชา (ย้อนหลัง) 1/2559
+              <b>กระบวนวิชาที่สังกัดในภาควิชา (ย้อนหลัง) 1/2559</b>
             </div>
             <div class="panel-body">
               <center>
@@ -324,7 +324,7 @@ echo "</pre>";*/
                         <div class="accordian-body collapse" id="464402">
                           <div class="panel panel-success">
                             <div class="panel-heading">
-                              รายชื่ออาจารย์ผู้รับผิดชอบ
+                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
                             </div>
                             <div class="panel-body">
                                       <div class="panel-group" id="464402">
@@ -399,7 +399,7 @@ echo "</pre>";*/
                         <div class="accordian-body collapse" id="464403">
                           <div class="panel panel-success">
                             <div class="panel-heading">
-                              รายชื่ออาจารย์ผู้รับผิดชอบ
+                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
                             </div>
                             <div class="panel-body">
                                       <div class="panel-group" id="464403">
@@ -473,7 +473,7 @@ echo "</pre>";*/
                         <div class="accordian-body collapse" id="464441">
                           <div class="panel panel-success">
                             <div class="panel-heading">
-                              รายชื่ออาจารย์ผู้รับผิดชอบ
+                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
                             </div>
                             <div class="panel-body">
                                       <div class="panel-group" id="464441">
@@ -547,7 +547,7 @@ echo "</pre>";*/
                         <div class="accordian-body collapse" id="463545">
                           <div class="panel panel-success">
                             <div class="panel-heading">
-                              รายชื่ออาจารย์ผู้รับผิดชอบ
+                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
                             </div>
                             <div class="panel-body">
                                       <div class="panel-group" id="463545">
@@ -617,7 +617,7 @@ echo "</pre>";*/
 
           <div class="panel panel-info">
             <div class="panel-heading">
-            กระบวนวิชาใน 2/2557
+            <b>กระบวนวิชาใน 2/2557</b>
             </div>
             <div class="panel-body">
               <center>
@@ -647,7 +647,7 @@ echo "</pre>";*/
                         <div class="accordian-body collapse" id="462533">
                           <div class="panel panel-success">
                             <div class="panel-heading">
-                              รายชื่ออาจารย์ผู้รับผิดชอบ
+                              <b><b>รายชื่ออาจารย์ผู้รับผิดชอบ</b></b>
                             </div>
                             <div class="panel-body">
                                       <div class="panel-group" id="462533">
@@ -699,194 +699,6 @@ echo "</pre>";*/
                                                   </div>
                                               </div>
                                               <div id="collapseTwo" class="panel-collapse collapse">
-                                                  <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                        <form class="" action="" method="post">
-                                                          <label for="">เพิ่มชุดคณะกรรมการ</label>
-                                                          <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                          </div>
-                                                        </form>
-                                                      </div>
-                                                    </div>
-                                                    <table class="table" style="font-size:14px;">
-                                                      <thead>
-                                                        <th>ลำดับ</th>
-                                                        <th>ชื่อ-นามสกุล</th>
-                                                        <th></th>
-                                                      </thead>
-                                                      <tbody>
-                                                        <tr>
-                                                          <td>1</td>
-                                                          <td>คณะกรรมการชุดที่ 1</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                      </tbody>
-                                                    </table>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                  <!-- .panel-body -->
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                        <td>461525</td>
-                        <td>BASIC KNOWLEDGE OF THAI TRADITIONAL MEDICINEE</td>
-                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#461525" class="accordion-toggle">เพิ่มผู้รับผิดชอบ</button></td>
-                        <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                    </tr>
-                    <tr class="hiddenRow">
-                      <td colspan="12">
-                        <div class="accordian-body collapse" id="461525">
-                          <div class="panel panel-success">
-                            <div class="panel-heading">
-                              รายชื่ออาจารย์ผู้รับผิดชอบ
-                            </div>
-                            <div class="panel-body">
-                                      <div class="panel-group" id="461525">
-                                          <div class="panel panel-default">
-                                              <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
-                                                      <a data-toggle="collapse" data-parent="#461525" href="#listname461525-1">อาจารย์ผู้สอน</a>
-                                                  </div>
-                                              </div>
-                                              <div id="listname461525-1" class="panel-collapse collapse">
-                                                  <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                        <form class="" action="" method="post">
-                                                          <label for="">เพิ่มผู้รับผิดชอบ</label>
-                                                          <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                          </div>
-                                                        </form>
-                                                      </div>
-                                                    </div>
-                                                    <table class="table" style="font-size:14px;">
-                                                      <thead>
-                                                        <th>ลำดับ</th>
-                                                        <th>ชื่อ-นามสกุล</th>
-                                                        <th></th>
-                                                      </thead>
-                                                      <tbody>
-                                                        <tr>
-                                                          <td>1</td>
-                                                          <td>ผศ.ดร. ภญ.นันทวรรณ   กิติกรรณากรณ์</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                      </tbody>
-                                                    </table>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="panel panel-default">
-                                              <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
-                                                      <a data-toggle="collapse" data-parent="#accordion" href="#listname461525-2">คณะกรรมการ</a>
-                                                  </div>
-                                              </div>
-                                              <div id="listname461525-2" class="panel-collapse collapse">
-                                                  <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                        <form class="" action="" method="post">
-                                                          <label for="">เพิ่มชุดคณะกรรมการ</label>
-                                                          <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                          </div>
-                                                        </form>
-                                                      </div>
-                                                    </div>
-                                                    <table class="table" style="font-size:14px;">
-                                                      <thead>
-                                                        <th>ลำดับ</th>
-                                                        <th>ชื่อ-นามสกุล</th>
-                                                        <th></th>
-                                                      </thead>
-                                                      <tbody>
-                                                        <tr>
-                                                          <td>1</td>
-                                                          <td>คณะกรรมการชุดที่ 1</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                      </tbody>
-                                                    </table>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                  <!-- .panel-body -->
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                        <td>461532</td>
-                        <td>DRUG SYNTHESIS</td>
-                        <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#461532" class="accordion-toggle">เพิ่มผู้รับผิดชอบ</button></td>
-                        <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                    </tr>
-                    <tr class="hiddenRow">
-                      <td colspan="12">
-                        <div class="accordian-body collapse" id="461532">
-                          <div class="panel panel-success">
-                            <div class="panel-heading">
-                              รายชื่ออาจารย์ผู้รับผิดชอบ
-                            </div>
-                            <div class="panel-body">
-                                      <div class="panel-group" id="461532">
-                                          <div class="panel panel-default">
-                                              <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
-                                                      <a data-toggle="collapse" data-parent="#461532" href="#listname461532-1">อาจารย์ผู้สอน</a>
-                                                  </div>
-                                              </div>
-                                              <div id="listname461532-1" class="panel-collapse collapse">
-                                                  <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                        <form class="" action="" method="post">
-                                                          <label for="">เพิ่มผู้รับผิดชอบ</label>
-                                                          <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                          </div>
-                                                        </form>
-                                                      </div>
-                                                    </div>
-                                                    <table class="table" style="font-size:14px;">
-                                                      <thead>
-                                                        <th>ลำดับ</th>
-                                                        <th>ชื่อ-นามสกุล</th>
-                                                        <th></th>
-                                                      </thead>
-                                                      <tbody>
-                                                        <tr>
-                                                          <td>1</td>
-                                                          <td>รศ.ดร.ภญ.สุพร จารุมณี</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                      </tbody>
-                                                    </table>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="panel panel-default">
-                                              <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
-                                                      <a data-toggle="collapse" data-parent="#accordion" href="#listname461532-2">คณะกรรมการ</a>
-                                                  </div>
-                                              </div>
-                                              <div id="listname461532-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
                                                     <div class="col-md-5">
                                                       <div class="form-group">
