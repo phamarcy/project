@@ -143,7 +143,7 @@ echo "</pre>";
                                           </div>
                                           <div class="panel-body">
                                         <div class="form-group">
-                                          <form id="data">
+                                          <form id="data"  method="post">
                                               <label for="">เพิ่มคณะกรรมการ</label>
                                               <div class="form-inline">
                                                 <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
@@ -166,15 +166,20 @@ echo "</pre>";
                                             </thead>
                                             <tbody>
 
-                                              <?php foreach ($assessor[0]['assessor'] as $key_assessor => $assessor_name): ?>
-                                                <tr>
-                                                  <form class="" action="index.html" method="post">
-                                                  <td><?php echo $key_assessor ?></td>
-                                                  <td></td>
-                                                  <td><button type="button" name="button" class="btn btn-outline btn-danger" value=''>ลบ</button></td>
-                                                  </form>
-                                                </tr>
-                                              <?php endforeach; ?>
+                                                  <?php foreach ($assessor[0]['assessor'] as $key_assessor => $assessor_name): ?>
+                                                    <form id='delete'  method="post">
+                                                      <input type="hidden" name="teacher"  id="name_assessor" value="<?php echo $assessor_name ?>">
+                                                      <input type="hidden" name="type" id="remove_assessor"  value="remove">
+                                                      <input type="hidden" name="group" value="1">
+                                                      <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                                    <tr>
+                                                        <td><?php echo $key_assessor+1; ?></td>
+                                                        <td><?php echo $assessor_name ?></td>
+                                                        <td><button type="submit" name="button" class="btn btn-outline btn-danger" value='delete'>ลบ</button></td>
+                                                    </tr>
+                                                    </form>
+                                                  <?php endforeach; ?>
+
                                             </tbody>
                                           </table>
                                         </div>
@@ -212,14 +217,12 @@ echo "</pre>";
                                         <div class="form-group">
                                           <label for="">เพิ่มคณะกรรมการ</label>
                                           <div class="form-inline">
-                                            <form id="data" action="index.html" method="post">
-
+                                            <form id="data"  method="post">
                                             <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
                                             <input type="hidden" name="group" value="2">
                                             <input type="hidden" name="type" value="add">
                                             <input type="hidden" name="$department" value="<?php echo $department['code']  ?>">
                                             <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-
                                           </form>
                                           </div>
                                           <datalist id="dtl2"></datalist>
@@ -917,7 +920,6 @@ $("form#data").submit(function(){
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
     console.log(formData);
-
     $.ajax({
         url: '../../application/subject/group.php',
         type: 'POST',
@@ -927,12 +929,35 @@ $("form#data").submit(function(){
         contentType: false,
         processData: false,
         success: function (data) {
-          console.log(data);
+          var msg=JSON.parse(data)
+          console.log(msg);
+          alert(msg.msg);
+          window.location.reload(false);
         }
     });
-
     return false;
 });
+$("form#delete").submit(function(){
+    //var file = document.forms['data']['filexcel'].files[0];
+    var file_data = new FormData(this);
+    $.ajax({
+        url: '../../application/subject/group.php',
+        type: 'post',
+        data: file_data,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          var msg=JSON.parse(data)
+          console.log(msg);
+          alert(msg.msg);
+          window.location.reload(false);
+        }
+    });
+    return false;
+});
+
 
 </script>
   </body>
