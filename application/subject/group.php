@@ -1,16 +1,18 @@
 <?php
 require_once(__DIR__.'/../class/person.php');
 $person = new Person();
-var_dump($_POST);exit();
+// var_dump($_POST);exit();
 
 
 if(isset($_POST['teacher']) && isset($_POST['group']) && isset($_POST['type']))
 {
   $group_num = $_POST['group'];
   $teacher_name = $_POST['teacher'];
+  $type = $_POST['type'];
+  $dept_id = $_POST['department'];
   if($type == 'add')
   {
-      $result = $person->Add_Assessor($group_num,$teacher_name);
+      $result = $person->Add_Assessor($group_num,$teacher_name,$dept_id);
       if($result)
       {
         $return['status'] = 'success';
@@ -24,7 +26,7 @@ if(isset($_POST['teacher']) && isset($_POST['group']) && isset($_POST['type']))
   }
   else if($type == 'remove')
   {
-      $result = $person->Delete_Assessor($group_num,$teacher_name);
+      $result = $person->Delete_Assessor($group_num,$teacher_name,$dept_id);
       if($result)
       {
         $return['status'] = 'success';
@@ -44,9 +46,3 @@ if(isset($_POST['teacher']) && isset($_POST['group']) && isset($_POST['type']))
   echo json_encode($return);
 }
  ?>
-<!--["teacher"]=>
-  string(40) "อนวัช วรรณภิละ"
-  ["group"]=>
-  string(1) "1"
-  ["type"]=>
-  string(3) "add"  -->

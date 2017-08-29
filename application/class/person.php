@@ -199,9 +199,40 @@ class Person
 
   }
 
-  public function Search_Assessor($group_num)
+  public function Search_Assessor($department_id)
   {
+    $DATA = array();
+    if($department_id == '1202')
+    {
+      $group_num = '1';
+    }
+    else if($department_id == '1203')
+    {
+      $group_num = '2';
+    }
+    for($j=1;$j<=2;$j++)
+    {
+      $group['group'] = $j;
+      $group['assessor'] = array();
+      $sql = "SELECT `teacher_id`
+      FROM `group_assessor` WHERE `group_num` = '".$group_num.$j."'";
+      $this->DB->Change_DB($this->DEFAULT_DB);
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
 
+        for($i=0;$i<count($result);$i++)
+        {
+            $teacher_name = $this->Get_Teacher_Name($result[$i]['teacher_id']);
+            array_push($group['assessor'],$teacher_name);
+        }
+
+      }
+
+      array_push($DATA,$group);
+      unset($group);
+    }
+    return $DATA;
   }
 
 }
