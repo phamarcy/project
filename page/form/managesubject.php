@@ -7,9 +7,9 @@ $deadline = new Deadline;
 $semeter= $deadline->Get_Current_Semester();
 $department =$person->Get_Staff_Dep($_SESSION['id']);
 $assessor=$person->Search_Assessor($department['code']);
-echo "<pre>";
+/*echo "<pre>";
 print_r($assessor);
-echo "</pre>";
+echo "</pre>";*/
  ?>
 <html>
   <head>
@@ -107,20 +107,20 @@ echo "</pre>";
     <div class="container" style="margin-top:30px">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h5><b>ภาคเรียนที่ <?php echo $semeter['semester'];?> &nbsp;ปีการศึกษา <?php echo $semeter['year']." ";?><?php echo $department['name'] ?></b></h5>
+          ภาคเรียนที่ <?php echo $semeter['semester'];?> &nbsp;ปีการศึกษา <?php echo $semeter['year']." ";?><?php echo $department['name'] ?>
         </div>
         <div class="panel-body">
         <div class="row">
               <div class="col-md-12">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                      <b>คณะกรรมการผู้รับผิดชอบ</b>
+                      คณะกรรมการผู้รับผิดชอบ
                   </div>
                   <div class="panel-body">
                     <div class="form-group">
                       <div class="row">
                           <div class="col-md-6">
-                            <table class="table">
+                            <table class="table" style="font-size:14px;"s>
                                 <thead>
                                   <th>ลำดับ</th>
                                   <th>ชุดคณะกรรมการ</th>
@@ -138,10 +138,10 @@ echo "</pre>";
                                     <td colspan="6">
                                       <div class="accordian-body collapse" id="set1">
                                         <div class="panel panel-info">
-                                          <div class="panel-heading">
-                                              <b>คณะกรรมการชุดที่ 1</b>
+                                          <div class="panel-heading" style="font-size:14px;">
+                                              คณะกรรมการชุดที่ 1
                                           </div>
-                                          <div class="panel-body">
+                                          <div class="panel-body" style="font-size:14px;">
                                         <div class="form-group">
                                           <form id="data"  method="post">
                                               <label for="">เพิ่มคณะกรรมการ</label>
@@ -157,8 +157,7 @@ echo "</pre>";
                                         </div>
                                         <hr>
                                         <div class="form-group">
-                                          <label for="">รายชื่อ</label>
-                                          <table class="table">
+                                          <table class="table" style="font-size:14px">
                                             <thead>
                                               <th>ลำดับ</th>
                                               <th>ชื่อ-นามสกุล</th>
@@ -192,7 +191,7 @@ echo "</pre>";
                             </table>
                           </div>
                           <div class="col-md-6">
-                            <table class="table">
+                            <table class="table" style="font-size:14px;">
                                 <thead>
                                   <th>ลำดับ</th>
                                   <th>ชุดคณะกรรมการ</th>
@@ -211,7 +210,7 @@ echo "</pre>";
                                       <div class="accordian-body collapse" id="set2">
                                         <div class="panel panel-info">
                                           <div class="panel-heading">
-                                              <b>คณะกรรมการชุดที่ 2</b>
+                                              คณะกรรมการชุดที่ 2
                                           </div>
                                           <div class="panel-body">
                                         <div class="form-group">
@@ -232,8 +231,7 @@ echo "</pre>";
                                         </div>
                                         <hr>
                                         <div class="form-group">
-                                          <label for="">รายชื่อ</label>
-                                          <table class="table">
+                                          <table class="table" style="font-size:14px;">
                                             <thead>
                                               <th>ลำดับ</th>
                                               <th>ชื่อ-นามสกุล</th>
@@ -275,7 +273,7 @@ echo "</pre>";
                     <div class="col-md-4">
                       <div class="panel panel-default">
                         <div class="panel-heading">
-                            <b>ข้อมูลกระบวนวิชาในสังกัดย้อนหลัง</b>
+                          ข้อมูลกระบวนวิชาในสังกัดย้อนหลัง
                         </div>
                         <div class="panel-body">
                           <div class="form-inline">
@@ -296,7 +294,7 @@ echo "</pre>";
           </div>
           <div class="panel panel-default">
             <div class="panel-heading">
-              <b>กระบวนวิชาที่สังกัดในภาควิชา (ย้อนหลัง) 1/2559</b>
+              กระบวนวิชาที่สังกัดในภาควิชา (ย้อนหลัง) 1/2559
             </div>
             <div class="panel-body">
               <center>
@@ -326,20 +324,20 @@ echo "</pre>";
                         <div class="accordian-body collapse" id="464402">
                           <div class="panel panel-success">
                             <div class="panel-heading">
-                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                              รายชื่ออาจารย์ผู้รับผิดชอบ
                             </div>
                             <div class="panel-body">
                                       <div class="panel-group" id="464402">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#464402" href="#listname464402-1">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
                                               <div id="listname464402-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
 
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
@@ -358,14 +356,14 @@ echo "</pre>";
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname464402-2">คณะกรรมการ</a>
                                                   </div>
                                               </div>
                                               <div id="listname464402-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
 
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
@@ -401,20 +399,20 @@ echo "</pre>";
                         <div class="accordian-body collapse" id="464403">
                           <div class="panel panel-success">
                             <div class="panel-heading">
-                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                              รายชื่ออาจารย์ผู้รับผิดชอบ
                             </div>
                             <div class="panel-body">
                                       <div class="panel-group" id="464403">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#464403" href="#listname464403-1">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
                                               <div id="listname464403-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
 
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
@@ -433,14 +431,14 @@ echo "</pre>";
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname464403-2">คณะกรรมการ</a>
                                                   </div>
                                               </div>
                                               <div id="listname464403-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
 
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
@@ -475,20 +473,20 @@ echo "</pre>";
                         <div class="accordian-body collapse" id="464441">
                           <div class="panel panel-success">
                             <div class="panel-heading">
-                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                              รายชื่ออาจารย์ผู้รับผิดชอบ
                             </div>
                             <div class="panel-body">
                                       <div class="panel-group" id="464441">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#464441" href="#listname464441-1">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
                                               <div id="listname464441-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
 
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
@@ -507,14 +505,14 @@ echo "</pre>";
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname464441-2">คณะกรรมการ</a>
                                                   </div>
                                               </div>
                                               <div id="listname464441-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
 
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
@@ -549,20 +547,20 @@ echo "</pre>";
                         <div class="accordian-body collapse" id="463545">
                           <div class="panel panel-success">
                             <div class="panel-heading">
-                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                              รายชื่ออาจารย์ผู้รับผิดชอบ
                             </div>
                             <div class="panel-body">
                                       <div class="panel-group" id="463545">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#463545" href="#listname463545-1">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
                                               <div id="listname463545-1" class="panel-collapse collapse">
                                                   <div class="panel-body">
 
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
@@ -581,14 +579,14 @@ echo "</pre>";
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname463545-2">คณะกรรมการ</a>
                                                   </div>
                                               </div>
                                               <div id="listname463545-2" class="panel-collapse collapse">
                                                   <div class="panel-body">
 
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
@@ -619,7 +617,7 @@ echo "</pre>";
 
           <div class="panel panel-info">
             <div class="panel-heading">
-              <b>กระบวนวิชาใน 2/2557</b>
+            กระบวนวิชาใน 2/2557
             </div>
             <div class="panel-body">
               <center>
@@ -649,13 +647,13 @@ echo "</pre>";
                         <div class="accordian-body collapse" id="462533">
                           <div class="panel panel-success">
                             <div class="panel-heading">
-                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                              รายชื่ออาจารย์ผู้รับผิดชอบ
                             </div>
                             <div class="panel-body">
                                       <div class="panel-group" id="462533">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#462533" href="#collapseOne">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
@@ -666,15 +664,18 @@ echo "</pre>";
 
                                                         <form class="" action="" method="post">
                                                           <label for="">เพิ่มผู้รับผิดชอบ</label>
-                                                          <div class="form-inline">
-                                                            <input type="text" class="form-control charonly" name="teacher1" id="teacher1" list="teacher_list1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname();" >
+                                                          <div class="form-group">
+                                                            <div class="form-inline">
+                                                              <input type="text" class="form-control charonly" name="teacher1" id="teacher1" list="teacher_list1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname();" >
+                                                              <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                            </div>
                                                             <datalist id="teacher_list1"></datalist>
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+
                                                           </div>
                                                         </form>
                                                       </div>
                                                     </div>
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
@@ -693,7 +694,7 @@ echo "</pre>";
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">คณะกรรมการ</a>
                                                   </div>
                                               </div>
@@ -710,7 +711,7 @@ echo "</pre>";
                                                         </form>
                                                       </div>
                                                     </div>
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
@@ -745,13 +746,13 @@ echo "</pre>";
                         <div class="accordian-body collapse" id="461525">
                           <div class="panel panel-success">
                             <div class="panel-heading">
-                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                              รายชื่ออาจารย์ผู้รับผิดชอบ
                             </div>
                             <div class="panel-body">
                                       <div class="panel-group" id="461525">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#461525" href="#listname461525-1">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
@@ -768,7 +769,7 @@ echo "</pre>";
                                                         </form>
                                                       </div>
                                                     </div>
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
@@ -787,7 +788,7 @@ echo "</pre>";
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname461525-2">คณะกรรมการ</a>
                                                   </div>
                                               </div>
@@ -804,7 +805,7 @@ echo "</pre>";
                                                         </form>
                                                       </div>
                                                     </div>
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
@@ -839,13 +840,13 @@ echo "</pre>";
                         <div class="accordian-body collapse" id="461532">
                           <div class="panel panel-success">
                             <div class="panel-heading">
-                              <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                              รายชื่ออาจารย์ผู้รับผิดชอบ
                             </div>
                             <div class="panel-body">
                                       <div class="panel-group" id="461532">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#461532" href="#listname461532-1">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
@@ -862,7 +863,7 @@ echo "</pre>";
                                                         </form>
                                                       </div>
                                                     </div>
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>
@@ -881,7 +882,7 @@ echo "</pre>";
                                           </div>
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
-                                                  <div class="panel-title">
+                                                  <div class="panel-title" style="font-size:14px;">
                                                       <a data-toggle="collapse" data-parent="#accordion" href="#listname461532-2">คณะกรรมการ</a>
                                                   </div>
                                               </div>
@@ -898,7 +899,7 @@ echo "</pre>";
                                                         </form>
                                                       </div>
                                                     </div>
-                                                    <table class="table">
+                                                    <table class="table" style="font-size:14px;">
                                                       <thead>
                                                         <th>ลำดับ</th>
                                                         <th>ชื่อ-นามสกุล</th>

@@ -174,16 +174,16 @@ else
 														<div class="panel-heading">
 															<h3 class="panel-title" style="font-size:14">
 																<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']."_".$key ?>">
-														 		<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b><i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
+														 		<i class="fa fa-file-o fa-fw"></i> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  <i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
 															</h3>
 														</div>
 														<?php if (isset($_SESSION['level'])) { ?>
 														<div id="evaluate<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse">
 															<div class="panel-body" style="font-size:14px;">
-																<table class="table ">
-																	<thead>
+																<table class="table " style="font-size:14px;">
+																	<thead >
 																		<?php if ($_SESSION['level'] >=2): ?>
-																		<th style="width:240px">คณะกรรมการ</th>
+																		<th style="width:250px">คณะกรรมการ</th>
 																		<?php endif; ?>
 																		<th>ข้อเสนอแนะ</th>
 																	</thead>
@@ -192,7 +192,7 @@ else
 																		<?php foreach ($value_course['evaluate']['comment'] as $comment): ?>
 																			<tr>
 																				<?php if ($_SESSION['level'] >=2): ?>
-																				<td style="width:240px"><?php echo $comment['name'] ?></td>
+																				<td style="width:250px"><?php echo $comment['name'] ?></td>
 																				<?php endif; ?>
 																				<td><?php if ($comment['comment']=="" or $comment['comment'] ==NULL) {
 																					echo "-";
@@ -217,7 +217,7 @@ else
 														<div class="panel-heading">
 															<h3 class="panel-title" style="font-size:14">
 													<a data-toggle="collapse" href="#special<?php echo $value_course['id']."_".$key ?>" disabled="disabled">
-													<i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></b></a>
+													<i class="fa fa-file-o fa-fw"></i>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></a>
 												</h3>
 														</div>
 														<?php if (isset($_SESSION['level'])) { ?>
@@ -260,10 +260,10 @@ else
 																			</div>
 																			<div id="special_<?php echo $value_course['id']."_".$keysp ?>" class="panel-collapse collapse">
 																				<div class="panel-body">
-																					<table class="table ">
+																					<table class="table " style="font-size:14px;">
 																						<thead>
 																							<?php if ($_SESSION['level'] >=2): ?>
-																							<th style="width:240px">คณะกรรมการ</th>
+																							<th style="width:250px">คณะกรรมการ</th>
 																							<?php endif; ?>
 																							<th>ข้อเสนอแนะ</th>
 																						</thead>
@@ -271,7 +271,7 @@ else
 																							<?php foreach ($valuesp['comment'] as $comment): ?>
 																								<tr>
 																									<?php if ($_SESSION['level'] >=2): ?>
-																									<td style="width:240px"><?php echo $comment['name'] ?></td>
+																									<td style="width:250px"><?php echo $comment['name'] ?></td>
 																									<?php endif; ?>
 																									<td><?php if ($comment['comment']=="" or $comment['comment'] ==NULL) {
 																										echo "-";
