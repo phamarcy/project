@@ -953,6 +953,121 @@ $(function() {//<-- wrapped here
 
 $(document).ready(function(){
 
+  //deadline
+  var flagcor = 0;
+  var flageva = 0;
+  var dateobj = new Date();
+  var yy = dateobj.getFullYear();
+  var condi = dateobj.getMonth()+1;
+  if(condi<10)
+  {
+    var mm = "0"+condi;
+  }
+  else {
+    var mm = ''+dateobj.getMonth();
+  }
+  var dd = dateobj.getDate();
+  var today = new Date(yy+"-"+mm+"-"+dd);
+
+  <?php $count = sizeof($dlcor); $x = 0;?>
+  for(var x=0;x< <?php echo $count; ?>;x++)
+  {
+    var stringdlstcor = '<?php echo $dlcor[$x]['open_date'];  ?>';
+    var stringdlendcor = '<?php echo $dlcor[$x]['last_date'];  ?>';
+    var splitor = stringdlendcor.split("-");
+    var monthcor = splitor[1];
+    var deadlinestartcor = new Date(stringdlstcor);
+    var deadlineendcor = new Date(stringdlendcor);
+
+    if(deadlinestartcor<today && today<deadlineendcor)
+    {
+      flagcor = flagcor + 1;
+      <?php $count2 = sizeof($dleva); $y = 0;?>
+      for(var y=0;y< <?php echo $count2; ?>;y++)
+      {
+        var stringdlsteva = '<?php echo $dleva[$y]['open_date'];  ?>';
+        var stringdlendeva = '<?php echo $dleva[$y]['last_date'];  ?>';
+        var splitor = stringdlendeva.split("-");
+        var montheva = splitor[1];
+        var deadlinestarteva = new Date(stringdlsteva);
+        var deadlineendeva = new Date(stringdlendeva);
+
+        if(deadlinestarteva<today && today<deadlineendeva)
+        {
+          flageva = flageva + 1;
+        }
+      }
+    }
+    else {
+      <?php $count2 = sizeof($dleva); $y = 0;?>
+      for(var y=0;y< <?php echo $count2; ?>;y++)
+      {
+        var stringdlsteva = '<?php echo $dleva[$y]['open_date'];  ?>';
+        var stringdlendeva = '<?php echo $dleva[$y]['last_date'];  ?>';
+        var splitor = stringdlendeva.split("-");
+        var montheva = splitor[1];
+        var deadlinestarteva = new Date(stringdlsteva);
+        var deadlineendeva = new Date(stringdlendeva);
+
+          if(deadlinestarteva<today && today<deadlineendeva)
+          {
+            flageva = flageva + 1;
+          }
+        }
+      }
+
+    console.log("flagcor"+flagcor+","+"flageva"+flageva);
+
+    if(flageva>=0 && flagcor<=0)
+    {
+      $('#overtimemsg').hide();
+      $('#bottomform').hide();
+      $('#overtimemsg5').hide();
+      $('#listcor').hide();
+      $('#syllabus').prop('required', true);
+      $('#syllabus_2').prop('required', false);
+      $('#COURSE_ID_2').prop('required', false);
+    }else if (flageva<=0 && flagcor>=0) {
+      $('#overtimemsg3').hide();
+      $('#overtimemsg5').hide();
+      $('#dlhide').hide();
+      $('#formheader').hide();
+      $('#syllabus').prop('required', false);
+      $('#syllabus_2').prop('required', true);
+      $('#COURSE_ID_2').prop('required', true);
+    }else if (flageva>=0 && flagcor>=0) {
+      $('#overtimemsg').hide();
+      $('#overtimemsg3').hide();
+      $('#bottomform').hide();
+      $('#overtimemsg5').hide();
+      $('#syllabus').prop('required', true);
+      $('#syllabus_2').prop('required', false);
+      $('#COURSE_ID_2').prop('required', false);
+    }else {
+      $('#overtimemsg').hide();
+      $('#overtimemsg3').hide();
+      $('#dlhide').hide();
+      $('#formheader').hide();
+      $('#bottomform').hide();
+      $('#syllabus').prop('required', false);
+      $('#syllabus_2').prop('required', false);
+      $('#COURSE_ID_2').prop('required', false);
+    }
+
+    /*if(deadlinestartcor<today && today<deadlineendcor)
+    {
+      $('#overtimemsg').hide();
+      break;
+    }
+    else {
+      $('#dlhide').hide();
+      $('#formheader').hide();
+      $('#overtimemsg').show();
+      //document.getElementById('overtimemsg2').innerHTML = "<br>วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ วันที่ "+splitor[2]+" "+monthname+" "+(parseInt(splitor[0])+543);
+    }*/
+
+  }
+
   //radio
   $("input[name='EVALUATE_TYPE']").change(function(){
     if($(this).val()=="SU")
@@ -1205,8 +1320,10 @@ function confreset() {
 <div class="row">
   <center>
     <h3 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์</h3>
-
-    <form  data-toggle="validator" role="form">
+    <div id="overtimemsg"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการกรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg2"></p></b> </div>
+    <div id="overtimemsg3"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการอัพโหลดไฟล์ Course Syllabus !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg4"></p></b> </div>
+    <div id="overtimemsg5"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการกรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษาและอัพโหลดไฟล์ Course Syllabus !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg6"></p></b> </div>
+    <form id="formheader" data-toggle="validator" role="form">
       <div id="formchecksj" class="form-inline" style="font-size:16px;">
                 <div class="form-group ">
                   รหัสกระบวนวิชา
@@ -1232,7 +1349,7 @@ function confreset() {
   </center>
 </div>
 
-<div class="panel panel-default">
+<div id="dlhide" class="panel panel-default">
 <form data-toggle="validator" role="form" name="form1" id="form1" method="post">
     <ol>
       <br>
@@ -1700,7 +1817,7 @@ function confreset() {
           </li>
 
           <br>
-          <li style="font-size: 14px;">
+          <li style="font-size: 14px;" id="listcor">
             <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์จากโปรแกรม Microsoft Word (.doc หรือ .docx) เท่านั้น) : </b><br />
           <div class="col-md-5 form-inline form-group">
             <input type="file" class="filestyle" id="syllabus" data-icon="false" accept=".doc,.docx" required><font color="red"><b> ** จำเป็น</b></font>
@@ -1720,5 +1837,24 @@ function confreset() {
 </div>
 </div>
 </div>
+  <div id="bottomform" class="panel panel-default">
+    <br>
+    <ol>
+      <form data-toggle="validator" role="form">
+      <li style="font-size: 14px;"><div class="form-inline form-group"><b>รหัสกระบวนวิชา : </b><input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID_2" id="COURSE_ID_2"   maxlength="6" required pattern=".{6,6}" ></div></li>
+      <li style="font-size: 14px;">
+        <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์จากโปรแกรม Microsoft Word (.doc หรือ .docx) เท่านั้น) : </b><br />
+        <div class="col-md-5 form-inline form-group">
+          <input type="file" class="filestyle" id="syllabus_2" data-icon="false" accept=".doc,.docx" required><font color="red"><b> ** จำเป็น</b></font>
+        </div>
+      </li>
+      <br><br>
+      <div align="center">
+        <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq('1')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
+        <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
+      </div>
+    </form>
+    </ol>
+  </div>
 </body>
 </html>
