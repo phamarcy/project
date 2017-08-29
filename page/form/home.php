@@ -183,7 +183,7 @@ else
 																<table class="table ">
 																	<thead>
 																		<?php if ($_SESSION['level'] >=2): ?>
-																		<th style="width:170px">คณะกรรมการ</th>
+																		<th style="width:200px">คณะกรรมการ</th>
 																		<?php endif; ?>
 																		<th>ข้อเสนอแนะ</th>
 																	</thead>
@@ -192,7 +192,7 @@ else
 																		<?php foreach ($value_course['evaluate']['comment'] as $comment): ?>
 																			<tr>
 																				<?php if ($_SESSION['level'] >=2): ?>
-																				<td style="width:170px"><?php echo $comment['name'] ?></td>
+																				<td style="width:200px"><?php echo $comment['name'] ?></td>
 																				<?php endif; ?>
 																				<td><?php if ($comment['comment']=="" or $comment['comment'] ==NULL) {
 																					echo "-";
@@ -263,7 +263,7 @@ else
 																					<table class="table ">
 																						<thead>
 																							<?php if ($_SESSION['level'] >=2): ?>
-																							<th style="width:170px">คณะกรรมการ</th>
+																							<th style="width:200px">คณะกรรมการ</th>
 																							<?php endif; ?>
 																							<th>ข้อเสนอแนะ</th>
 																						</thead>
@@ -271,7 +271,7 @@ else
 																							<?php foreach ($valuesp['comment'] as $comment): ?>
 																								<tr>
 																									<?php if ($_SESSION['level'] >=2): ?>
-																									<td style="width:170px"><?php echo $comment['name'] ?></td>
+																									<td style="width:200px"><?php echo $comment['name'] ?></td>
 																									<?php endif; ?>
 																									<td><?php if ($comment['comment']=="" or $comment['comment'] ==NULL) {
 																										echo "-";
