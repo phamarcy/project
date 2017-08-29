@@ -102,11 +102,14 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
                 array_push($course['evaluate']['comment'],$comment);
               }
             }
-            $course['special'] = $this->Get_Instructor_Data($course['id']);
-            array_push($DATA,$course);
             //end search evaluate form
             //search special instructor form
-            //end search special instructor
+            $course['special'] = $this->Get_Instructor_Data($course['id']);
+              //end search special instructor
+            array_push($DATA,$course);
+
+
+
         }
         return json_encode($DATA);
       }

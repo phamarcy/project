@@ -29,7 +29,16 @@ if(isset($_POST['DATA']))
 	}
 	else if($DATA['SUBMIT_TYPE'] == '1')
 	{
-		$file_path = $FILE_PATH."/draft/evaluate";
+		$file_path = $FILE_PATH."/draft/".$DATA['COURSE_ID'];
+		if(!file_exists($file_path))
+		{
+			mkdir($file_path);
+		}
+		$file_path = $file_path."/evaluate";
+		if(!file_exists($file_path))
+		{
+			mkdir($file_path);
+		}
 	}
 	//var_dump($DATA);
 }
@@ -595,6 +604,6 @@ $pdf->Cell(0,7,iconv('UTF-8','TIS-620','(หัวหน้าภาควิช
 //if not, do nothing
 
 //save file
-$pdf->Output($file_path."/".$DATA['COURSE_ID']."_evaluate.pdf","F");
+$pdf->Output($file_path."/".$DATA['COURSE_ID']."_evaluate_".$semester['semester']."_".$semester['year'].".pdf","F");
 echo json_encode($return);
 ?>

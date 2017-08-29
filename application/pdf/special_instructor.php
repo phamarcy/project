@@ -18,6 +18,7 @@ if(isset($_POST['DATA']))
 	$DATA = json_decode($data,true);
 	$fname = $DATA['TEACHERDATA']['FNAME'];
 	$lname = $DATA['TEACHERDATA']['LNAME'];
+	$course_id  = $DATA['COURSEDATA']['COURSE_ID'];
 	$sql = "SELECT `instructor_id` FROM `special_instructor` WHERE `firstname` = '".$fname."' AND `lastname` = '".$lname."'";
 	$result = $db->Query($sql);
 	if($result == null)
@@ -62,7 +63,16 @@ if(isset($_POST['DATA']))
 	}
 	else if($DATA['SUBMIT_TYPE'] == '1')
 	{
-		$file_path = $FILE_PATH."/draft/special_instructor";
+		$file_path = $FILE_PATH."/draft/".$course_id;
+		if(!file_exists($file_path))
+		{
+			mkdir($file_path);
+		}
+		$file_path = $file_path."/special_instructor";
+		if(!file_exists($file_path))
+		{
+			mkdir($file_path);
+		}
 	}
 }
 else
