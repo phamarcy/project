@@ -215,15 +215,18 @@ echo "</pre>";
                                           </div>
                                           <div class="panel-body">
                                         <div class="form-group">
-                                          <label for="">เพิ่มคณะกรรมการ</label>
                                           <div class="form-inline">
                                             <form id="data"  method="post">
-                                            <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
-                                            <input type="hidden" name="group" value="2">
-                                            <input type="hidden" name="type" value="add">
-                                            <input type="hidden" name="$department" value="<?php echo $department['code']  ?>">
-                                            <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                          </form>
+                                                <label for="">เพิ่มคณะกรรมการ</label>
+                                                <div class="form-inline">
+                                                  <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
+                                                  <input type="hidden" name="group" value="2">
+                                                  <input type="hidden" name="type" value="add">
+                                                  <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                                  <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                </div>
+                                                <datalist id="dtl1"></datalist>
+                                           </form>
                                           </div>
                                           <datalist id="dtl2"></datalist>
                                         </div>
@@ -237,9 +240,21 @@ echo "</pre>";
                                               <th></th>
                                             </thead>
                                             <tbody>
-                                              <td>1</td>
-                                              <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
-                                              <td><button type="button" name="button" class="btn btn-outline btn-danger">ลบ</button></td>
+
+                                                  <?php foreach ($assessor[1]['assessor'] as $key_assessor => $assessor_name): ?>
+                                                    <form id='delete'  method="post">
+                                                      <input type="hidden" name="teacher"  id="name_assessor" value="<?php echo $assessor_name ?>">
+                                                      <input type="hidden" name="type" id="remove_assessor"  value="remove">
+                                                      <input type="hidden" name="group" value="2">
+                                                      <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                                    <tr>
+                                                        <td><?php echo $key_assessor+1; ?></td>
+                                                        <td><?php echo $assessor_name ?></td>
+                                                        <td><button type="submit" name="button" class="btn btn-outline btn-danger" value='delete'>ลบ</button></td>
+                                                    </tr>
+                                                    </form>
+                                                  <?php endforeach; ?>
+
                                             </tbody>
                                           </table>
                                         </div>
