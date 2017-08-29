@@ -540,83 +540,89 @@ window.counttr = 0;
  $(document).ready(function(){
 
    //deadline
-   var stringdlst = '<?php echo $dlspcl[0]['open_date'];  ?>';
-   var stringdlend = '<?php echo $dlspcl[0]['last_date'];  ?>';
-   var splitor = stringdlend.split("-");
-   var month = splitor[1];
-   var deadlinestart = new Date(stringdlst);
-   var deadlineend = new Date(stringdlend);
-   var dateobj = new Date();
-   var yy = dateobj.getFullYear();
-   var condi = dateobj.getMonth()+1;
-   if(condi<10)
-   {
-     var mm = "0"+condi;
-   }
-   else {
-     var mm = ''+dateobj.getMonth();
-   }
-   var dd = dateobj.getDate();
-   var today = new Date(yy+"-"+mm+"-"+dd);
+     <?php $count = sizeof($dlspcl); $x = 0;?>
+  for(var x=0;x< <?php echo $count; ?>;x++)
+  {
+     var stringdlst = '<?php echo $dlspcl[$x]['open_date'];  ?>';
+     var stringdlend = '<?php echo $dlspcl[$x]['last_date'];  ?>';
+     <?php $x = $x+1; ?>
+     var splitor = stringdlend.split("-");
+     var month = splitor[1];
+     var deadlinestart = new Date(stringdlst);
+     var deadlineend = new Date(stringdlend);
+     var dateobj = new Date();
+     var yy = dateobj.getFullYear();
+     var condi = dateobj.getMonth()+1;
+     if(condi<10)
+     {
+       var mm = "0"+condi;
+     }
+     else {
+       var mm = ''+dateobj.getMonth();
+     }
+     var dd = dateobj.getDate();
+     var today = new Date(yy+"-"+mm+"-"+dd);
 
-   if(month=="01")
-   {
-     var monthname = "มกราคม";
-   }
-   else if(month=="02")
-   {
-     var monthname = "กุมภาพันธ์";
-   }
-   else if(month=="03")
-   {
-     var monthname = "มีนาคม";
-   }
-   else if(month=="04")
-   {
-     var monthname = "เมษายน";
-   }
-   else if(month=="05")
-   {
-     var monthname = "พฤษภาคม";
-   }
-   else if(month=="06")
-   {
-     var monthname = "มิถุนายน";
-   }
-   else if(month=="07")
-   {
-     var monthname = "กรกฏาคม";
-   }
-   else if(month=="08")
-   {
-     var monthname = "สิงหาคม";
-   }
-   else if(month=="09")
-   {
-     var monthname = "กันยายน";
-   }
-   else if(month=="10")
-   {
-     var monthname = "ตุลาคม";
-   }
-   else if(month=="11")
-   {
-     var monthname = "พฤศจิกายน";
-   }
-   else
-   {
-     var monthname = "ธันวาคม";
-   }
+     if(month=="01")
+     {
+       var monthname = "มกราคม";
+     }
+     else if(month=="02")
+     {
+       var monthname = "กุมภาพันธ์";
+     }
+     else if(month=="03")
+     {
+       var monthname = "มีนาคม";
+     }
+     else if(month=="04")
+     {
+       var monthname = "เมษายน";
+     }
+     else if(month=="05")
+     {
+       var monthname = "พฤษภาคม";
+     }
+     else if(month=="06")
+     {
+       var monthname = "มิถุนายน";
+     }
+     else if(month=="07")
+     {
+       var monthname = "กรกฏาคม";
+     }
+     else if(month=="08")
+     {
+       var monthname = "สิงหาคม";
+     }
+     else if(month=="09")
+     {
+       var monthname = "กันยายน";
+     }
+     else if(month=="10")
+     {
+       var monthname = "ตุลาคม";
+     }
+     else if(month=="11")
+     {
+       var monthname = "พฤศจิกายน";
+     }
+     else
+     {
+       var monthname = "ธันวาคม";
+     }
 
-   if(deadlinestart<today && today<deadlineend)
-   {
-     $('#overtimemsg').hide();
-   }
-   else {
-     $('#dlhide').hide();
-     $('#formheader').hide();
-     $('#overtimemsg').show();
-     document.getElementById('overtimemsg2').innerHTML = "<br>วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ วันที่ "+splitor[2]+" "+monthname+" "+(parseInt(splitor[0])+543);
+     if(deadlinestart<=today && today<=deadlineend)
+     {
+       $('#overtimemsg').hide();
+       break;
+     }
+     else {
+       $('#dlhide').hide();
+       $('#formheader').hide();
+       $('#overtimemsg').show();
+       //document.getElementById('overtimemsg2').innerHTML = "<br>วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ วันที่ "+splitor[2]+" "+monthname+" "+(parseInt(splitor[0])+543);
+     }
    }
 
 
