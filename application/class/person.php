@@ -171,28 +171,46 @@ class Person
         {
           $group_num = '2'.$group_num;
         }
-        $sql = "INSERT INTO `group_assessor`(`teacher_id`, `group_num`)
-        VALUES ('".$teacher_id."','".$group_num."')";
         $this->DB->Change_DB($this->DEFAULT_DB);
-        $result = $this->DB->Insert_Update_Delete($sql);
-        if($result)
+        $sql = "SELECT * FROM `group_assessor` WHERE `teacher_id` = '".$teacher_id."' AND `group_num` = '".$group_num."'";
+        $result = $this->DB->Query($sql);
+        if($result == null)
         {
-          return true;
+            $sql = "INSERT INTO `group_assessor`(`teacher_id`, `group_num`)
+            VALUES ('".$teacher_id."','".$group_num."')";
+
+            $result = $this->DB->Insert_Update_Delete($sql);
+            if($result)
+            {
+              $return['status'] = 'success';
+              $return['msg'] = 'เพิ่มข้อมูลสำเร็จ';
+            }
+            else
+            {
+              $return['status'] = 'error';
+              $return['msg'] = 'ไม่สามารถเพิ่มข้อมูลได้';
+            }
         }
         else
         {
-          return false;
+          $return['status'] = 'error';
+          $return['msg'] = 'อาจารย์ท่านนี้อยู่ในคณะกรรมการแล้ว';
         }
       }
       else
       {
-        return false;
+        $return['status'] = 'error';
+        $return['msg'] = 'ภาควิชาผิดพลาด กรุณาติดต่อผู้ดูแลระบบ';
       }
+      return $return;
     }
     else
     {
-      return false;
+      $return['status'] = 'error';
+      $return['msg'] = 'ไม่พบข้อมูลอาจารย์ท่านนี้ในฐานข้อมูล กรุณาติดต่อผู้ดูแลระบบ';
+      return $return;
     }
+
   }
   public function Delete_Assessor($group_num,$teacher_name)
   {

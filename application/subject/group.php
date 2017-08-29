@@ -12,17 +12,7 @@ if(isset($_POST['teacher']) && isset($_POST['group']) && isset($_POST['type']))
   $dept_id = $_POST['department'];
   if($type == 'add')
   {
-      $result = $person->Add_Assessor($group_num,$teacher_name,$dept_id);
-      if($result)
-      {
-        $return['status'] = 'success';
-        $return['msg'] = 'เพิ่มข้อมูลสำเร็จ';
-      }
-      else
-      {
-        $return['status'] = 'error';
-        $return['msg'] = 'ไม่สามารถลบข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
-      }
+      $return = $person->Add_Assessor($group_num,$teacher_name,$dept_id);
   }
   else if($type == 'remove')
   {
