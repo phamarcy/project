@@ -6,7 +6,10 @@ $person = new Person();
 $deadline = new Deadline;
 $semeter= $deadline->Get_Current_Semester();
 $department =$person->Get_Staff_Dep($_SESSION['id']);
-
+$assessor=$person->Search_Assessor($department['code']);
+echo "<pre>";
+print_r($assessor);
+echo "</pre>";
  ?>
 <html>
   <head>
@@ -162,9 +165,16 @@ $department =$person->Get_Staff_Dep($_SESSION['id']);
                                               <th></th>
                                             </thead>
                                             <tbody>
-                                              <td>1</td>
-                                              <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
-                                              <td><button type="button" name="button" class="btn btn-outline btn-danger">ลบ</button></td>
+
+                                              <?php foreach ($assessor[0]['assessor'] as $key_assessor => $assessor_name): ?>
+                                                <tr>
+                                                  <form class="" action="index.html" method="post">
+                                                  <td><?php echo $key_assessor ?></td>
+                                                  <td></td>
+                                                  <td><button type="button" name="button" class="btn btn-outline btn-danger" value=''>ลบ</button></td>
+                                                  </form>
+                                                </tr>
+                                              <?php endforeach; ?>
                                             </tbody>
                                           </table>
                                         </div>

@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__.'/../class/person.php');
 $person = new Person();
-// var_dump($_POST);exit();
+//var_dump($_POST);exit();
 
 
 if(isset($_POST['teacher']) && isset($_POST['group']) && isset($_POST['type']))
