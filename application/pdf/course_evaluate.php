@@ -40,6 +40,19 @@ if(isset($_POST['DATA']))
 			mkdir($file_path);
 		}
 	}
+	else if($DATA['SUBMIT_TYPE'] == '3')
+	{
+		$file_path = $FILE_PATH."/complete/".$DATA['COURSE_ID'];
+		if(!file_exists($file_path))
+		{
+			mkdir($file_path);
+		}
+		$file_path = $file_path."/evaluate";
+		if(!file_exists($file_path))
+		{
+			mkdir($file_path);
+		}
+	}
 	//var_dump($DATA);
 }
 else
@@ -581,25 +594,27 @@ else
 
 ///check if docment is approved
 
-
+else if($DATA['SUBMIT_TYPE'] == '3')
+{
 //if approve
-$pdf->Ln();
-$pdf->SetFont('angsab','',14);
-$pdf->SetX(20);
-$pdf->Cell(65,7,iconv( 'UTF-8','TIS-620','8. ความเห็นของหัวหน้าภาควิชา'),0);
-$pdf->SetFont('angsa','',14);
-$pdf->SetX(85);
-$pdf->Write( 7 , iconv( 'UTF-8','TIS-620' , 'เห็นชอบ' ) );
-$pdf->Ln();
-$pdf->SetX(25);
-$pdf->Cell(10,7,iconv('UTF-8','TIS-620','ลงชื่อ'),0);
-$image1 = "image1.jpg"; # signature
-$pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
-$pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
-$pdf->Ln();
+	$pdf->Ln();
+	$pdf->SetFont('angsab','',14);
+	$pdf->SetX(20);
+	$pdf->Cell(65,7,iconv( 'UTF-8','TIS-620','8. ความเห็นของหัวหน้าภาควิชา'),0);
+	$pdf->SetFont('angsa','',14);
+	$pdf->SetX(85);
+	$pdf->Write( 7 , iconv( 'UTF-8','TIS-620' , 'เห็นชอบ' ) );
+	$pdf->Ln();
+	$pdf->SetX(25);
+	$pdf->Cell(10,7,iconv('UTF-8','TIS-620','ลงชื่อ'),0);
+	$image1 = "image1.jpg"; # signature
+	$pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
+	$pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
+	$pdf->Ln();
 
-$pdf->SetX(35);
-$pdf->Cell(0,7,iconv('UTF-8','TIS-620','(หัวหน้าภาควิชา)'),0,1);
+	$pdf->SetX(35);
+	$pdf->Cell(0,7,iconv('UTF-8','TIS-620','(หัวหน้าภาควิชา)'),0,1);
+}
 //endif
 //if not, do nothing
 
