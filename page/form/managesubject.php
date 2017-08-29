@@ -312,7 +312,7 @@ echo "</pre>";*/
                         <th width="5%"></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="font-size:14px">
                     <tr>
                         <td>464402</td>
                         <td>INTEGRATION IN PHARMACY</td>

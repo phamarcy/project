@@ -54,7 +54,7 @@ session_start();
         <div class="panel panel-default">
           <div class="panel-heading">
             <h5 class="panel-title" style="font-size:14px">
-              <b>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</b>
+              ภาคการศึกษาที่ 2 ปีการศึกษา 2560
           </h5>
           </div>
           <!-- .panel-heading -->
@@ -89,48 +89,46 @@ session_start();
                     <td colspan="12">
                       <div class="accordian-body collapse" id="202141">
                         <div class="panel panel-success">
-                          <div class="panel-heading">
-                            <b>ข้อเสนอแนะคณะกรรมการ</b>
+                          <div class="panel-heading" style="font-size:14px;">
+                            ข้อเสนอแนะคณะกรรมการ
                           </div>
                           <div class="panel-body">
                             <div class="panel-group" id="comment202141">
                               <div class="panel panel-default">
                                 <div class="panel-heading" >
                                   <div class="panel-title" style="font-size:14px">
-                                                    <a data-toggle="collapse" data-parent="#comment202141" href="#comment202141-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
+                                      <a data-toggle="collapse" data-parent="#comment202141" href="#comment202141-2">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
 
-                                                </div>
+                                  </div>
                                 </div>
                                 <div id="comment202141-2" class="panel-collapse collapse">
                                   <div class="panel-body">
                                     <div class="form-group ">
                                       <label for="">ข้อเสนอแนะ</label>
                                       <textarea class="form-control" name="name" rows="8" cols="40"></textarea>
-
-
                                     </div>
 
                                     <div class="form-group">
                                       <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text; ?></button> &nbsp;
                                       <button type="button" class="btn btn-outline btn-danger ">มีแก้ไข</button>
                                     </div>
-                                    <table class="table ">
+                                    <table class="table " style="font-size:14px">
                                       <thead>
                                         <?php if ($_SESSION['level'] > 4 ): ?>
-                                        <th style="width:170px">คณะกรรมการ</th>
+                                        <th style="width:230px">คณะกรรมการ</th>
                                         <?php endif; ?>
                                         <th>ข้อเสนอแนะ</th>
                                       </thead>
                                       <tbody>
                                         <tr>
                                           <?php if ($_SESSION['level'] > 4 ): ?>
-                                          <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                                          <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
                                           <?php endif; ?>
                                           <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
                                         </tr>
                                         <tr>
                                           <?php if ($_SESSION['level'] > 4 ): ?>
-                                          <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                                          <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                           <?php endif; ?>
                                           <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
                                         </tr>
@@ -161,31 +159,29 @@ session_start();
                                             <div class="form-group ">
                                               <label for="">ข้อเสนอแนะ</label>
                                               <textarea class="form-control" name="name" rows="8" cols="40"></textarea>
-
-
                                             </div>
 
                                             <div class="form-group">
                                               <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text; ?></button> &nbsp;
                                               <button type="button" class="btn btn-outline btn-danger ">มีแก้ไข</button>
                                             </div>
-                                            <table class="table ">
+                                            <table class="table " style="font-size:14px">
                                               <thead>
                                                 <?php if ($_SESSION['level'] > 4 ): ?>
-                                                <th style="width:170px">คณะกรรมการ</th>
+                                                <th style="width:230px">คณะกรรมการ</th>
                                                 <?php endif; ?>
                                                 <th>ข้อเสนอแนะ</th>
                                               </thead>
                                               <tbody>
                                                 <tr>
                                                   <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                                                  <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
                                                   <?php endif; ?>
                                                   <td>อาจารย์ไม่ยังไม่เหมาะกับวิชา</td>
                                                 </tr>
                                                 <tr>
                                                   <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                                                  <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                   <?php endif; ?>
                                                   <td>อาจารย์เคยมีประสบการณ์</td>
                                                 </tr>
@@ -215,23 +211,23 @@ session_start();
                                               <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text; ?></button> &nbsp;
                                               <button type="button" class="btn btn-outline btn-danger ">มีแก้ไข</button>
                                             </div>
-                                            <table class="table ">
+                                            <table class="table " style="font-size:14px">
                                               <thead>
                                                 <?php if ($_SESSION['level'] > 4 ): ?>
-                                                <th style="width:170px">คณะกรรมการ</th>
+                                                <th style="width:230px">คณะกรรมการ</th>
                                                 <?php endif; ?>
                                                 <th>ข้อเสนอแนะ</th>
                                               </thead>
                                               <tbody>
                                                 <tr>
                                                   <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                                                  <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
                                                   <?php endif; ?>
                                                   <td>อาจารย์ท่านนี้เหมาะสมกับวิชานี้</td>
                                                 </tr>
                                                 <tr>
                                                   <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                                                  <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                   <?php endif; ?>
                                                   <td>อาจารย์ท่านนี้เป็นผู้มีประสบการณ์</td>
                                                 </tr>
@@ -255,23 +251,23 @@ session_start();
 
 
                                             </div>
-                                            <table class="table ">
+                                            <table class="table " style="font-size:14px">
                                               <thead>
                                                 <?php if ($_SESSION['level'] > 4 ): ?>
-                                                <th style="width:170px">คณะกรรมการ</th>
+                                                <th style="width:230px">คณะกรรมการ</th>
                                                 <?php endif; ?>
                                                 <th>ข้อเสนอแนะ</th>
                                               </thead>
                                               <tbody>
                                                 <tr>
                                                   <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:170px">ศ.อรรคพล ธรรมฉันธะ</td>
+                                                  <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
                                                   <?php endif; ?>
                                                   <td>อาจารย์ท่านนี้ยังไม่มีประสบการณ์</td>
                                                 </tr>
                                                 <tr>
                                                   <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:170px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                                                  <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
                                                   <?php endif; ?>
                                                   <td>ควรทดลองให้อาจารย์มาสอนก่อน</td>
                                                 </tr>
