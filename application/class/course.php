@@ -133,12 +133,12 @@ class Course
       if($result)
       {
         $return['status'] = 'success';
-        $return['msg'] = 'เพิ่มกระบวนวิชาสำเร็จ';
+        $return['msg'] = 'ลบกระบวนวิชาสำเร็จ';
       }
       else
       {
         $return['status'] = 'error';
-        $return['msg'] = 'ไม่สามารถเพิ่มกระบวนวิชาได้ กรุณาติดต่อผู้ดูแลระบบ';
+        $return['msg'] = 'ไม่สามารถลบกระบวนวิชาได้ กรุณาติดต่อผู้ดูแลระบบ';
       }
     }
     else
