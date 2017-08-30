@@ -4,6 +4,7 @@
 // adiluck chooprateep adiluckyo@gmail.com
 require_once(__DIR__.'/../config/configuration_variable.php');
 require_once(__DIR__.'/database.php');
+require_once(__DIR__.'/../lib/thai_date.php');
 //require_once('Log.php');
 Class Deadline
 {
@@ -13,17 +14,16 @@ Class Deadline
   function __construct()
   {
       $this->LOG = new Log();
+      $this->DB = new Database();
   }
 //Search all data from database
 //require string type : course,approve
   public function Search_all($type)
   {
-      $this->DB = new Database();
       $sql = "SELECT s.`semester_num`,s.`year`,d.`last_date`,d.`open_date`
         FROM `deadline` d,`semester` s
        WHERE d.`semester_id` = s.`semester_id` and d.`deadline_type` = ".$type;
       $result = $this->DB->Query($sql);
-      $this->Close_connection();
       if($result != null)
       {
         return $result;
@@ -36,15 +36,14 @@ Class Deadline
 
 //update data in Database
 //require array : data, string : type
-  public function Update($data,$type)
-  {
+public function Update($data,$type)
+{
     $semester_id = $this->Get_Semester_id($data['semester'],$data['year']);
-    $this->DB = new Database();
     $sql = "INSERT INTO `deadline`(`semester_id`, `deadline_type`, `open_date`, `last_date`)
     VALUES (".$semester_id.",'".$type."','".$data['opendate']."','".$data['lastdate']."')
     ON DUPLICATE KEY UPDATE `open_date` = '".$data['opendate']."', last_date = '".$data['lastdate']."'";
     $result = $this->DB->Insert_Update_Delete($sql);
-    $this->Close_connection();
+
     if($result == true)
     {
       $return['success'] = 'บันทึกเรียบร้อยแล้ว';
@@ -60,7 +59,6 @@ Class Deadline
 
   public function Get_Semester_id($semester,$year)
   {
-    $this->DB = new Database();
     //Search semester id form semester table
     $sql = "SELECT `semester_id` FROM `semester` WHERE `semester_num` = ".$semester." AND `year` = '".$year."'";
     $semester_id = $this->DB->Query($sql);
@@ -74,7 +72,6 @@ Class Deadline
       {
         $sql = "SELECT LAST_INSERT_ID();";
         $result = $this->DB->Query($sql);
-        $this->Close_connection();
         if($result)
         {
           $semester_id = $result[0]['LAST_INSERT_ID()'];
@@ -95,7 +92,6 @@ Class Deadline
     {
         $sql = "SELECT `semester_id` FROM `semester` WHERE `semester_num` = ".$semester." AND `year` = '".$year."'";
         $result = $this->DB->Query($sql);
-        $this->Close_connection();
         if($result)
         {
           $semester_id = $result[0]['semester_id'];
@@ -108,6 +104,75 @@ Class Deadline
         }
     }
 
+  }
+
+  public function Get_Current_Deadline($level)
+  {
+    global $THAI_MONTH,$BUDDHA_YEAR ;
+    $DATA = array();
+    $semester = $this->Get_Current_Semester();
+    $sql = "SELECT `deadline_type`,`open_date`,`last_date` FROM `deadline`
+    WHERE `semester_id` = ".$semester['id'];
+    if($level == 4 || $level == 5)
+    {
+      $sql .= " AND `deadline_type` = '4'";
+    }
+    else if($level == 1)
+    {
+      $sql .= " AND (`deadline_type` = '1' OR `deadline_type` = '2' OR `deadline_type` = '3')";
+    }
+    else if($level == 6)
+    {
+        $sql .= " AND `deadline_type` = '5'";
+    }
+    else
+    {
+      return null;
+    }
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      for($i=0;$i<count($result);$i++)
+      {
+        $open_date = explode("-",$result[$i]['open_date']);
+        $day = $open_date[2];
+        $month = $THAI_MONTH[$open_date[1] - 1];
+        $year = $open_date[0] + 543;
+        $type = $result[$i]['deadline_type'];
+        if($type == '1')
+        {
+          $data['measure']['day'] = $day;
+          $data['measure']['month'] = $month;
+          $data['measure']['year'] = $year;
+        }
+        else if ($type == 2)
+        {
+          $data['syllabus']['day'] = $day;
+          $data['syllabus']['month'] = $month;
+          $data['syllabus']['year'] = $year;
+        }
+        else if ($type == 3)
+        {
+          $data['special']['day'] = $day;
+          $data['special']['month'] = $month;
+          $data['special']['year'] = $year;
+        }
+        else if ($type == 4)
+        {
+          $data['evaluate']['day'] = $day;
+          $data['evaluate']['month'] = $month;
+          $data['evaluate']['year'] = $year;
+        }
+        else if($type == 5)
+        {
+          $data['approve']['day'] = $day;
+          $data['approve']['month'] = $month;
+          $data['approve']['year'] = $year;
+        }
+        // array_push($DATA,$data);
+      }
+    }
+    return $data;
   }
   public function Get_Current_Semester()
   {

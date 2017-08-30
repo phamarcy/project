@@ -7,28 +7,11 @@ $information_url = "application/information/index.php";
 $curl = new CURL();
 $deadline = new Deadline;
 $approve = new approval($_SESSION['level']);
-
 $data['level'] = $_SESSION['level'];
-$result = $curl->Request($data,$information_url);
+$deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
 $semeter= $deadline->Get_Current_Semester();
-
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
-/*echo "<pre>";
-print_r($data_course);exit;
-echo "</pre>";*/
-
-if($result == false)
-{
-	die("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาติดต่อผู้ดูแลระบบ");
-}
-else
-{
-	$result = json_decode($result,true);
-	$deadline = $result['deadline'];
-	$data = $result['data'];
-}
-
 ?>
 	<html>
 
@@ -114,16 +97,20 @@ else
 						</div>
 						<!-- .panel-heading -->
 						<div class="panel-body" >
-							<?php if ($_SESSION['level'] < 4): ?>
-								<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;" ></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกข้อมูลกระบวนวิชา <?php echo $deadline['edit']['day'].' '.$deadline['edit']['month'].' '.$deadline['edit']['year']."<br>"; ?> </b>
+							<?php if ($_SESSION['level'] == 1):?>
+
+								<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;" ></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา <?php echo $deadline_form['measure']['day'].' '.$deadline_form['measure']['month'].' '.$deadline_form['measure']['year']."<br>"; ?> </b>
+								<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;" ></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอัพโหลดไฟล์ course syllabus <?php echo $deadline_form['syllabus']['day'].' '.$deadline_form['syllabus']['month'].' '.$deadline_form['syllabus']['year']."<br>"; ?> </b>
+								<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;" ></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ <?php echo $deadline_form['special']['day'].' '.$deadline_form['special']['month'].' '.$deadline_form['special']['year']."<br>"; ?> </b>
+
 							<?php endif; ?>
 							<?php
 					if($_SESSION['level'] == 4 || $_SESSION['level'] == 5) {  ?>
-								<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับประเมินกระบวนวิชา <?php echo $deadline['con']['day'].' '.$deadline['con']['month'].' '.$deadline['con']['year']."<br>"; ?> </b>
+								<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับประเมินกระบวนวิชา <?php echo $deadline_form['evaluate']['day'] = $day.' '.$deadline_form['evaluate']['month'].' '.$deadline_form['evaluate']['year']."<br>"; ?> </b>
 								<?php }
 						else if($_SESSION['level'] == 6)
 						{ ?>
-								<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline['approve']['day'].' '.$deadline['approve']['month'].' '.$deadline['approve']['year']."<br>"; ?> </b>
+								<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline_form['approve']['day'].' '.$deadline_form['approve']['month'].' '.$deadline_form['approve']['year']."<br>"; ?> </b>
 								<?php	} ?>
 									<br>
 

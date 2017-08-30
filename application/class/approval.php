@@ -245,7 +245,7 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
       for($i=0;$i<count($result);$i++)
       {
         $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`,`course_id`,`level_approve`,`status`)
-        VALUES ('".$instructor_id."','".$result[$i]['teacher_id']."','".$course_id."',1,'2')";
+        VALUES ('".$instructor_id."','".$result[$i]['teacher_id']."','".$course_id."',1,'1')";
         $approve_result = $this->DB->Insert_Update_Delete($sql);
         if($approve_result == false)
         {

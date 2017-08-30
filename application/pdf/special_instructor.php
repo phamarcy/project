@@ -53,7 +53,6 @@ if(isset($_POST['DATA']))
 		Upload($file,$instructor_id);
 	}
 	Write_temp_data($data,$instructor_id);
-
 	if($DATA['SUBMIT_TYPE'] == '2')
 	{
 		$return['status'] = "success";
