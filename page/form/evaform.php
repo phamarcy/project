@@ -44,6 +44,8 @@
 
   <!-- validator -->
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+  <script src="../dist/sweetalert2/dist/sweetalert2.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../dist/sweetalert2/dist/sweetalert2.min.css">
 
   <link rel="stylesheet" href="../dist/css/scrollbar.css">
   <style>
@@ -620,11 +622,21 @@ function checksubject(btntype,type){
                          }
                        }
                        else if(temp['info']==false && temp[0]==null){
-                         alert('กระบวนวิชาที่ค้นหาไม่พบในระบบ\nกรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด');
+                         swal(
+                            'กระบวนวิชาที่ค้นหาไม่พบในระบบ!',
+                            'กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
+                            'error'
+                          )
+                         //alert('กระบวนวิชาที่ค้นหาไม่พบในระบบ\nกรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด');
                          document.getElementById('id').value = "";
                        }
                        else if(temp['info']!=false && temp[0]==null){
-                          alert('ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้\nสามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง');
+                          //alert('ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้\nสามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง');
+                          swal(
+                             'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้!',
+                             'สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
+                             'error'
+                           )
                           document.getElementById('COURSE_ID').value = temp['info']['course_id'];
                           document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
                           document.getElementById('NAME_TH_COURSE').value = temp['info']['course_name_th'];
@@ -671,6 +683,11 @@ function checksubject(btntype,type){
                     var temp = $.parseJSON(result);
                     if(temp!=null)
                     {
+                      swal(
+                         'สำเร็จ!',
+                         'ดึงข้อมูลสำเร็จ',
+                         'success'
+                       )
                       getinfo(temp);
                     }
                     else {
@@ -918,7 +935,12 @@ function senddata(data,file_data)
                    var temp = $.parseJSON(result);
                    if(temp["status"]=='success')
                    {
-                     alert(temp["msg"]);
+                     swal(
+                        'Success!',
+                        temp["msg"],
+                        'success'
+                      )
+                     //alert(temp["msg"]);
                    }
                    else {
                      alert(temp["msg"]);
@@ -1289,7 +1311,12 @@ $(document).ready(function(){
     var summea = callec + callab;
     if(summea!=100)
     {
-      alert('กรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง\nคะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100');
+      swal(
+        'ผิดพลาด',
+        'คะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100\nกรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง',
+        'error'
+      )
+      //alert('กรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง\nคะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100');
     }
     else {
       $('#MEASURE_TOTALLEC').val(callec);
@@ -1318,7 +1345,12 @@ function checkreq(casesubmit) {
   }
   else {
 
-    alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+    //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+    swal(
+      'ผิดพลาด',
+      'กรุณากรอกข้อมูลให้ครบถ้วน',
+      'error'
+    )
     return false;
   }
 }
@@ -1329,14 +1361,41 @@ function checkreq2(casesubmit) {
     submitfunc(casesubmit);
   }
   else {
-
-    alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+    swal(
+      'ผิดพลาด',
+      'กรุณากรอกข้อมูลให้ครบถ้วน',
+      'error'
+    )
+    //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
     return false;
   }
 }
 
 function confreset() {
-    confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
+    //confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
+    swal({
+      title: 'แน่ใจหรือไม่',
+      text: "ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then(function () {
+      document.getElementById("formheader").reset();
+      document.getElementById("form1").reset();
+      swal(
+        'Cleared!',
+        'รีเซ็ตข้อมูลเรียบร้อยแล้ว',
+        'success'
+      )
+    }, function (dismiss) {
+    // dismiss can be 'cancel', 'overlay',
+    // 'close', and 'timer'
+    if (dismiss === 'cancel') {
+
+    }
+  })
 }
 
 
@@ -1859,7 +1918,7 @@ function confreset() {
     <div align="center">
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq('1')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2')"> &nbsp;
-      <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>
 </form>
 </div>
