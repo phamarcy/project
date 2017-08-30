@@ -622,21 +622,21 @@ function checksubject(btntype,type){
                          }
                        }
                        else if(temp['info']==false && temp[0]==null){
-                         swal(
+                         /*swal(
                             'กระบวนวิชาที่ค้นหาไม่พบในระบบ!',
                             'กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
                             'error'
-                          )
-                         //alert('กระบวนวิชาที่ค้นหาไม่พบในระบบ\nกรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด');
+                          )*/
+                         alert('กระบวนวิชาที่ค้นหาไม่พบในระบบ\nกรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด');
                          document.getElementById('id').value = "";
                        }
                        else if(temp['info']!=false && temp[0]==null){
-                          //alert('ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้\nสามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง');
-                          swal(
+                          alert('ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้\nสามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง');
+                          /*swal(
                              'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้!',
                              'สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
                              'error'
-                           )
+                           )*/
                           document.getElementById('COURSE_ID').value = temp['info']['course_id'];
                           document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
                           document.getElementById('NAME_TH_COURSE').value = temp['info']['course_name_th'];
@@ -683,11 +683,11 @@ function checksubject(btntype,type){
                     var temp = $.parseJSON(result);
                     if(temp!=null)
                     {
-                      swal(
+                      /*swal(
                          'สำเร็จ!',
                          'ดึงข้อมูลสำเร็จ',
                          'success'
-                       )
+                       )*/
                       getinfo(temp);
                     }
                     else {
@@ -935,12 +935,12 @@ function senddata(data,file_data)
                    var temp = $.parseJSON(result);
                    if(temp["status"]=='success')
                    {
-                     swal(
+                     /*swal(
                         'Success!',
                         temp["msg"],
                         'success'
-                      )
-                     //alert(temp["msg"]);
+                      )*/
+                     alert(temp["msg"]);
                    }
                    else {
                      alert(temp["msg"]);
@@ -1311,12 +1311,12 @@ $(document).ready(function(){
     var summea = callec + callab;
     if(summea!=100)
     {
-      swal(
+      /*swal(
         'ผิดพลาด',
         'คะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100\nกรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง',
         'error'
-      )
-      //alert('กรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง\nคะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100');
+      )*/
+      alert('กรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง\nคะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100');
     }
     else {
       $('#MEASURE_TOTALLEC').val(callec);
@@ -1345,12 +1345,12 @@ function checkreq(casesubmit) {
   }
   else {
 
-    //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
-    swal(
+    alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+    /*swal(
       'ผิดพลาด',
       'กรุณากรอกข้อมูลให้ครบถ้วน',
       'error'
-    )
+    )*/
     return false;
   }
 }
@@ -1372,8 +1372,8 @@ function checkreq2(casesubmit) {
 }
 
 function confreset() {
-    //confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
-    swal({
+    confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
+    /*swal({
       title: 'แน่ใจหรือไม่',
       text: "ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่",
       type: 'warning',
@@ -1385,7 +1385,7 @@ function confreset() {
       document.getElementById("formheader").reset();
       document.getElementById("form1").reset();
       swal(
-        'Cleared!',
+        'เคลียร์!',
         'รีเซ็ตข้อมูลเรียบร้อยแล้ว',
         'success'
       )
@@ -1395,7 +1395,7 @@ function confreset() {
     if (dismiss === 'cancel') {
 
     }
-  })
+  })*/
 }
 
 
