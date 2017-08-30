@@ -134,7 +134,7 @@ public function Update($data,$type)
     {
       for($i=0;$i<count($result);$i++)
       {
-        $open_date = explode("-",$result[$i]['open_date']);
+        $open_date = explode("-",$result[$i]['last_date']);
         $day = $open_date[2];
         $month = $THAI_MONTH[$open_date[1] - 1];
         $year = $open_date[0] + 543;
