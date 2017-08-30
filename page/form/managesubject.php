@@ -675,19 +675,21 @@ echo "</pre>";*/
                                               </div>
                                               <div id="responsible_teacher_<?php echo $value['id'] ?>" class="panel-collapse collapse">
                                                   <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                        <form id="addteacher">
-                                                          <label for="">เพิ่มผู้รับผิดชอบ</label>
+                                                    <div class="col-md-8">
                                                           <div class="form-group">
-                                                            <div class="form-inline">
-                                                              <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_<?php echo $value['id'] ?>" list="dtl<?php echo $value['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(<?php echo $value['id'] ?>,'responsible');" >
-                                                              <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                            </div>
-                                                            <datalist id="dtl<?php echo $value['id'] ?>"></datalist>
+                                                            <form id="addteacher"  method="post">
+                                                                <label for="">เพิ่มผู้รับผิดชอบ</label>
+                                                                <div class="form-inline">
+                                                                  <input type="text" name="responsible_teacher" class="form-control charonly" name="teacher" id="TEACHERLEC_<?php echo $value['id'] ?>" list="dtl<?php echo $value['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(<?php echo $value['id'] ?>,'responsible');" >
+                                                                  <input type="hidden" name="type" value="add">
+                                                                  <input type="hidden" name="course" value="<?php echo $value['id'] ?>">
+                                                                  <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                                                  <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                                </div>
+                                                                <datalist id="dtl<?php echo $value['id'] ?>"></datalist>
+                                                           </form>
                                                           </div>
-                                                        </form>
-                                                      </div>
+
                                                     </div>
                                                     <table class="table" style="font-size:14px;">
                                                       <thead>
@@ -716,7 +718,7 @@ echo "</pre>";*/
                                                   <div class="panel-body">
                                                     <div class="col-md-5">
                                                       <div class="form-group">
-                                                        <form class="" action="" method="post">
+                                                        <form method="post" id="select_group">
                                                           <label for="">เพิ่มชุดคณะกรรมการ</label>
                                                           <div class="form-inline">
                                                             <form class="" action="index.html" method="post">
@@ -785,7 +787,24 @@ $("form#data").submit(function(){
     });
     return false;
 });
-
+$("form#addteacher").submit(function(){
+    //var file = document.forms['data']['filexcel'].files[0];
+    var formData = new FormData(this);
+    console.log(formData);
+    $.ajax({
+        url: '../../application/subject/responsible_course.php',
+        type: 'POST',
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          console.log(data);
+        }
+    });
+    return false;
+});
 $("form#addsubject").submit(function(){
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
