@@ -649,11 +649,12 @@ echo "</pre>";*/
                           <td><?php echo $value['name'] ?></td>
                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#<?php echo $value['id'] ?>" class="accordion-toggle">เพิ่มผู้รับผิดชอบ</button></td>
                           <td><button type="submit" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                          <input type="hidden" name="course" id="course" value="<?php echo $value['id'] ?>">
-                          <input type="hidden" name="semester_id" id="semester_id" value="<?php echo $semeter['id'] ?>">
-                          <input type="hidden" name="type" id="type" value="remove">
+                          <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
+                          <input type="hidden" name="course"  value="<?php echo $value['id'] ?>">
+                          <input type="hidden" name="semester_id"  value="<?php echo $semeter['id'] ?>">
+                          <input type="hidden" name="type" value="remove">
                       </tr>
-                  </form>
+                    </form>
                     <tr class="hiddenRow">
                       <td colspan="12">
                         <div class="accordian-body collapse" id="<?php echo $value['id'] ?>">
@@ -673,7 +674,7 @@ echo "</pre>";*/
                                                   <div class="panel-body">
                                                     <div class="col-md-8">
                                                           <div class="form-group">
-                                                            <form id="addsubject"  method="post">
+                                                            <form id="addteacher"  method="post">
                                                                 <label for="">เพิ่มผู้รับผิดชอบ</label>
                                                                 <div class="form-inline">
                                                                   <input type="text" name="responsible_teacher" class="form-control charonly" name="teacher" id="TEACHERLEC_<?php echo $value['id'] ?>" list="dtl<?php echo $value['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(<?php echo $value['id'] ?>,'responsible');" >
@@ -694,7 +695,6 @@ echo "</pre>";*/
                                                         <th></th>
                                                       </thead>
                                                       <tbody>
-
                                                         <tr>
                                                           <td>1</td>
                                                           <td>อ.ดร.ภญ.ดรุณี หงษ์วิเศษ </td>
@@ -715,18 +715,19 @@ echo "</pre>";*/
                                                   <div class="panel-body">
                                                     <div class="col-md-5">
                                                       <div class="form-group">
-                                                        <form method="post" id="select_group">
                                                           <label for="">เพิ่มชุดคณะกรรมการ</label>
                                                           <div class="form-inline">
-                                                            <form class="" action="index.html" method="post">
+                                                            <form id="addsubject" method="post">
+                                                              <input type="hidden" name="type" value="add">
+                                                              <input type="hidden" name="course_id" value="<?php echo $value['id'] ?>">
+                                                              <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
                                                               <select class="form-control" name="teacher_group">
                                                                 <option value="0">คณะกรรมการชุดที่ 1</option>
                                                                 <option value="1">คณะกรรมการชุดที่ 2</option>
                                                               </select>
-                                                              <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                              <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
                                                             </form>
                                                           </div>
-                                                        </form>
                                                       </div>
                                                     </div>
                                                     <table class="table" style="font-size:14px;">
@@ -736,11 +737,16 @@ echo "</pre>";*/
                                                         <th></th>
                                                       </thead>
                                                       <tbody>
-                                                        <tr>
-                                                          <td>1</td>
-                                                          <td>คณะกรรมการชุดที่ 1</td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
+                                                        <form id="remove">
+                                                          <tr>
+                                                            <td>1</td>
+                                                            <td>คณะกรรมการชุดที่ 1</td>
+                                                            <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                            <input type="hidden" name="type" value="remove">
+                                                            <input type="hidden" name="course_id" value="<?php echo $value['id'] ?>">
+                                                            <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                                          </tr>
+                                                        </form>
                                                       </tbody>
                                                     </table>
                                                   </div>
@@ -784,12 +790,33 @@ $("form#data").submit(function(){
     });
     return false;
 });
+$("form#addteacher").submit(function(){
+    //var file = document.forms['data']['filexcel'].files[0];
+    var formData = new FormData(this);
+    console.log(formData);
+    $.ajax({
+        url: '../../application/subject/responsible_course_department.php',
+        type: 'POST',
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          var msg=JSON.parse(data)
+          console.log(msg);
+          alert(msg.msg);
+          window.location.reload(false);
+        }
+    });
+    return false;
+});
 $("form#addsubject").submit(function(){
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
     console.log(formData);
     $.ajax({
-        url: '../../application/subject/responsible_course.php',
+        url: '../../application/subject/responsible_course_department.php',
         type: 'POST',
         data: formData,
         async: false,
@@ -808,9 +835,9 @@ $("form#addsubject").submit(function(){
 $("form#remove").submit(function(){
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
-    console.log(formData);
+    console.log("formData");
     $.ajax({
-        url: '../../application/subject/responsible_course.php',
+        url: '../../application/subject/responsible_course_department.php',
         type: 'POST',
         data: formData,
         async: false,
@@ -818,7 +845,10 @@ $("form#remove").submit(function(){
         contentType: false,
         processData: false,
         success: function (data) {
-          console.log(data);
+          var msg=JSON.parse(data)
+          console.log(msg);
+          alert(msg.msg);
+          window.location.reload(false);
         }
     });
     return false;
