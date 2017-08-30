@@ -125,10 +125,6 @@ public function Update($data,$type)
     {
         $sql .= " AND `deadline_type` = '5'";
     }
-    else
-    {
-      return null;
-    }
     $result = $this->DB->Query($sql);
     if($result)
     {
