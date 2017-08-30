@@ -629,10 +629,6 @@ echo "</pre>";*/
                       </div>
                     </form>
                 </div>
-                <div class="col-md-2">
-                  <button type="button" name="button" class="btn btn-success btn-outline btn-lg" onclick="submit_course">บันทึก</button>
-                </div>
-
               </div>
 
               <hr>
@@ -647,12 +643,12 @@ echo "</pre>";*/
                 </thead>
                 <tbody>
                   <?php foreach ($list_course as $key => $value): ?>
-                    <form id="addsubject" method="post">
+                    <form id="remove" method="post">
                       <tr>
                           <td><?php echo $value['id'] ?></td>
                           <td><?php echo $value['name'] ?></td>
                           <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#<?php echo $value['id'] ?>" class="accordion-toggle">เพิ่มผู้รับผิดชอบ</button></td>
-                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                          <td><button type="submit" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                           <input type="hidden" name="course" id="course" value="<?php echo $value['id'] ?>">
                           <input type="hidden" name="semester_id" id="semester_id" value="<?php echo $semeter['id'] ?>">
                           <input type="hidden" name="type" id="type" value="remove">
@@ -677,7 +673,7 @@ echo "</pre>";*/
                                                   <div class="panel-body">
                                                     <div class="col-md-8">
                                                           <div class="form-group">
-                                                            <form id="addteacher"  method="post">
+                                                            <form id="addsubject"  method="post">
                                                                 <label for="">เพิ่มผู้รับผิดชอบ</label>
                                                                 <div class="form-inline">
                                                                   <input type="text" name="responsible_teacher" class="form-control charonly" name="teacher" id="TEACHERLEC_<?php echo $value['id'] ?>" list="dtl<?php echo $value['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(<?php echo $value['id'] ?>,'responsible');" >
@@ -698,6 +694,7 @@ echo "</pre>";*/
                                                         <th></th>
                                                       </thead>
                                                       <tbody>
+
                                                         <tr>
                                                           <td>1</td>
                                                           <td>อ.ดร.ภญ.ดรุณี หงษ์วิเศษ </td>
@@ -787,24 +784,6 @@ $("form#data").submit(function(){
     });
     return false;
 });
-$("form#addteacher").submit(function(){
-    //var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
-    console.log(formData);
-    $.ajax({
-        url: '../../application/subject/responsible_course.php',
-        type: 'POST',
-        data: formData,
-        async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-          console.log(data);
-        }
-    });
-    return false;
-});
 $("form#addsubject").submit(function(){
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
@@ -818,7 +797,10 @@ $("form#addsubject").submit(function(){
         contentType: false,
         processData: false,
         success: function (data) {
-          console.log(data);
+          var msg=JSON.parse(data)
+          console.log(msg);
+          alert(msg.msg);
+          window.location.reload(false);
         }
     });
     return false;
