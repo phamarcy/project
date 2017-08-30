@@ -76,7 +76,13 @@ window.counttr = 0;
 
  function getinfo(temp) {
    //part1
-   document.getElementById('department').value = temp['TEACHERDATA']['DEPARTMENT'];
+   if(temp['TEACHERDATA']['DEPARTMENT']=="1")
+   {
+     document.getElementById('department').value = "ภาควิชาวิทยาศาสตร์เภสัชกรรม";
+   }else {
+     document.getElementById('department').value = "ภาควิชาบริบาลเภสัชกรรม";
+   }
+
    document.getElementById('pre').value = temp['TEACHERDATA']['PREFIX'];
    var constring = temp['TEACHERDATA']['FNAME'] +" "+ temp['TEACHERDATA']['LNAME'];
    document.getElementById('fname').value = constring;
@@ -354,13 +360,13 @@ window.counttr = 0;
   }
 
   //costspec
-  if($('input[name=costspec]').val() == "choice1")
+  if(document.querySelector("input[name='costspec']:checked").value=="choice1")
   {
       var num = document.getElementById('choice1num').value;
       var hour = document.getElementById('choice1hour').value;
       var cost = document.getElementById('choice1cost').value;
   }
-  else if($('input[name=costspec]').val() == "choice2")
+  else if(document.querySelector("input[name='costspec']:checked").value=="choice2")
   {
       var num = document.getElementById('choice2num').value;
       var hour = document.getElementById('choice2hour').value;
@@ -1090,10 +1096,10 @@ function lastcal() {
             <li>ค่าสอนพิเศษ</li>
             <div class="radio">
               <div class="form-group">
-                <input type="radio"  name="costspec" id="costspec" value="choice1" required>&nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control numonly" name="choice1num" id="choice1num" value="400" size="5"> ต่อชม.&nbsp;
+                <input type="radio"  name="costspec" id="costspec" value="choice1" required>&nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control numonly" name="choice1num" id="choice1num"  size="5"> ต่อชม.&nbsp;
               จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1hour" size="5" data-minlength="1" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999" READONLY>&nbsp;&nbsp;บาท
               </div><br>
-              <div class="form-group"><input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ <input type="text" class="form-control numonly" name="choice2num" id="choice2num" value="200" size="5"> ต่อชม.&nbsp;
+              <div class="form-group"><input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ <input type="text" class="form-control numonly" name="choice2num" id="choice2num" size="5"> ต่อชม.&nbsp;
               จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2hour" size="5" data-minlength="1" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2cost" size="5" data-minlength="5" min="0" max="99999" READONLY>&nbsp;&nbsp;บาท
               </div>
             </div>
@@ -1116,8 +1122,8 @@ function lastcal() {
             <li>ค่าที่พัก</li>
             <div class="form-group"><div class="radio">
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way3" required>&nbsp;&nbsp; ไม่เบิกค่าที่พัก&nbsp;&nbsp;<br>
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน <input type="text" class="form-control numonly" name="way1unit" id="way1unit" size="4" value="1500"> บาท/คน/คืน&nbsp;&nbsp;<br>
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน <input type="text" class="form-control numonly" name="way2unit" id="way2unit" size="4" value="800"> บาท/คน/คืน &nbsp;&nbsp;
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน <input type="text" class="form-control numonly" name="way1unit" id="way1unit" size="4" > บาท/คน/คืน&nbsp;&nbsp;<br>
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน <input type="text" class="form-control numonly" name="way2unit" id="way2unit" size="4" > บาท/คน/คืน &nbsp;&nbsp;
             </div></div>
             <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999"  >&nbsp;&nbsp;คืน
             &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" min="0" max="99999" READONLY  >&nbsp;&nbsp;บาท
