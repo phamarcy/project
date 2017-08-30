@@ -1323,6 +1323,18 @@ function checkreq(casesubmit) {
   }
 }
 
+function checkreq2(casesubmit) {
+  if($("#COURSE_ID_2").val()!=null && $("[COURSE_ID_2]").val()!="" && $("#syllabus_2").val()!=null && $("[syllabus_2]").val()!="")
+  {
+    submitfunc(casesubmit);
+  }
+  else {
+
+    alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+    return false;
+  }
+}
+
 function confreset() {
     confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
 }
@@ -1336,9 +1348,9 @@ function confreset() {
 <div class="row">
   <center>
     <h3 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์</h3>
-    <div id="overtimemsg"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการกรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg2"></p></b> </div>
-    <div id="overtimemsg3"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการอัพโหลดไฟล์ Course Syllabus !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg4"></p></b> </div>
-    <div id="overtimemsg5"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการกรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษาและอัพโหลดไฟล์ Course Syllabus !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg6"></p></b> </div>
+    <div id="overtimemsg" class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการกรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg2"></p></b> </div>
+    <div id="overtimemsg3" class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการอัพโหลดไฟล์ Course Syllabus !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg4"></p></b> </div>
+    <div id="overtimemsg5" class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการกรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษาและอัพโหลดไฟล์ Course Syllabus !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg6"></p></b> </div>
     <form id="formheader" data-toggle="validator" role="form">
       <div id="formchecksj" class="form-inline" style="font-size:16px;">
                 <div class="form-group ">
@@ -1866,7 +1878,7 @@ function confreset() {
       </li>
       <br><br>
       <div align="center">
-        <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="submitfunc('0')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
+        <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq2('0')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
         <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
       </div>
     </form>

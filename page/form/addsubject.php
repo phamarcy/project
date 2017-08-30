@@ -529,29 +529,7 @@ function confreset() {
   <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
 <div class="row">
   <center>
-    <h3 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์</h3>
-
-    <form  data-toggle="validator" role="form">
-      <div id="formchecksj" class="form-inline" style="font-size:16px;">
-                <div class="form-group ">
-                  รหัสกระบวนวิชา
-                   <input type="text" class="form-control numonly" id="id" name="id" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required >
-                </div>
-                <input type="hidden" name="type" value="1">
-               <button type="button" class="btn btn-outline btn-primary" onclick="checksubject(1,1);">ค้นหา</button>
-       </div>
-
-  <div id="formdrpd" style="display: none;">
-    <div class="form-inline">
-      <div class="form-group " style="font-size:16px;">
-         ภาคการศึกษาและปีการศึกษา
-        <select class="form-control required" id="semester" style="width: 300px;" required >
-        </select>
-       </div>
-       <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,1);">
-     </div>
-   </div>
-       </form>
+    <h3 class="page-header">เพิ่มกระบวนวิชา</h3>
 
 
   </center>
@@ -564,26 +542,25 @@ function confreset() {
       <li style="font-size: 14px">
         <div class="form-inline">
           <div class="form-group">
-          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID" id="COURSE_ID"   maxlength="6" required pattern=".{6,6}" >
+          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID" id="COURSE_ID"  placeholder="e.g. 204111"  maxlength="6" required pattern=".{6,6}" >
           </div>
-          <div class="form-group">
+          <!--<div class="form-group">
             &nbsp;จำนวนตอนที่ (ทั้งหมด) &nbsp;<input style="width: 70px;"type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="2" required pattern=".{1,2}" >
           </div>
           <div class="form-group"><div class="radio">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE1" value="NORMAL" checked>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" name="NORORSPE" id="NORORSPE2" value="SPECIAL">&nbsp;<b>ภาคพิเศษ</b>
-          </div></div>
+          </div></div>-->
           <br>
           <div class="form-group">
-          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   maxlength="50" required >
+          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   maxlength="50" required placeholder="e.g. การเรียนรู้นอกห้องเรียนเพื่อเสริมสร้างประสบการณ์ชีวิต">
           </div>
           <br>
           <div class="form-group">
-          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   maxlength="50" required >
+          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   maxlength="50" required placeholder="e.g. Learning outside for experience">
           </div>
           <div class="row">
-            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="5" maxlength="10" required pattern=".{8,10}" >&nbsp; หน่วยกิต
-            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="ENROLL" id="ENROLL" size="2" maxlength="3" pattern=".{1,3}" required> &nbsp; คน </div>
+            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="7" maxlength="10" required pattern=".{8,10}" placeholder="e.g. 3(3-0-6)" >&nbsp; หน่วยกิต
             </div>
           </div>
 
@@ -730,7 +707,6 @@ function confreset() {
     <br><br>
     <div align="center">
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq('1')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
-      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2')"> &nbsp;
       <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>
 </form>
