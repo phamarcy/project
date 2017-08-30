@@ -44,8 +44,8 @@
 
   <!-- validator -->
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
-  <script src="../dist/sweetalert2/dist/sweetalert2.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="../dist/sweetalert2/dist/sweetalert2.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/limonte-sweetalert2/6.6.9/sweetalert2.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
 
   <link rel="stylesheet" href="../dist/css/scrollbar.css">
   <style>
@@ -622,12 +622,12 @@ function checksubject(btntype,type){
                          }
                        }
                        else if(temp['info']==false && temp[0]==null){
-                         /*swal(
+                         swal(
                             'กระบวนวิชาที่ค้นหาไม่พบในระบบ!',
                             'กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
                             'error'
-                          )*/
-                         alert('กระบวนวิชาที่ค้นหาไม่พบในระบบ\nกรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด');
+                          )
+                         //alert('กระบวนวิชาที่ค้นหาไม่พบในระบบ\nกรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด');
                          document.getElementById('id').value = "";
                        }
                        else if(temp['info']!=false && temp[0]==null){
@@ -1361,12 +1361,12 @@ function checkreq2(casesubmit) {
     submitfunc(casesubmit);
   }
   else {
-    swal(
+    /*swal(
       'ผิดพลาด',
       'กรุณากรอกข้อมูลให้ครบถ้วน',
       'error'
-    )
-    //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+    )*/
+    alert('กรุณากรอกข้อมูลให้ครบถ้วน');
     return false;
   }
 }
