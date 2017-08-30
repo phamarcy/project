@@ -683,11 +683,11 @@ function checksubject(btntype,type){
                     var temp = $.parseJSON(result);
                     if(temp!=null)
                     {
-                      swal(
+                      /*swal(
                          'สำเร็จ!',
                          'ดึงข้อมูลสำเร็จ',
                          'success'
-                       )
+                       )*/
                       getinfo(temp);
                     }
                     else {
