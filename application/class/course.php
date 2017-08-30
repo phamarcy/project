@@ -120,6 +120,34 @@ class Course
     return $return;
   }
 
+  public function Remove_Dept_Course($course_id,$department_id,$semester_id)
+  {
+    $sql = "SELECT * FROM department_course_responsible
+    WHERE `course_id` = '".$course_id."' AND `semester_id` ='".$semester_id."'";
+    $result = $this->DB->Query($sql);
+    if($result == null)
+    {
+      $sql = "DELETE FROM `department_course_responsible`
+      WHERE `course_id` = '".$course_id."' AND `semester_id` ='".$semester_id."'";
+      $result = $this->DB->Insert_Update_Delete($sql);
+      if($result)
+      {
+        $return['status'] = 'success';
+        $return['msg'] = 'เพิ่มกระบวนวิชาสำเร็จ';
+      }
+      else
+      {
+        $return['status'] = 'error';
+        $return['msg'] = 'ไม่สามารถเพิ่มกระบวนวิชาได้ กรุณาติดต่อผู้ดูแลระบบ';
+      }
+    }
+    else
+    {
+      $return['status'] = 'error';
+      $return['msg'] = 'ไม่มีกระบวนวิชานี้อยู่ในภาควิชา';
+    }
+    return $return;
+  }
   public function Search_Document($type,$id)
   {
     if($type =='special')

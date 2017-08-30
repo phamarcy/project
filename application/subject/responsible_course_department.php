@@ -22,5 +22,20 @@ if(isset($_POST['type']))
     }
     echo json_encode($result);
   }
+  else if ($type == 'remove')
+  {
+    if(isset($_POST['course']) && isset($_POST['dep_id']) && isset($_POST['semester_id']) )
+    {
+      $course_id = $_POST['course'];
+      $department_id = $_POST['dep_id'];
+      $semester_id = $_POST['semester_id'];
+      $result = $course->Remove_Dept_Course($course_id,$department_id,$semester_id);
+    }
+    else
+    {
+      $result['status'] = "error";
+      $result['msg'] = "ข้อมูลผิดพลาด";
+    }
+  }
 }
 ?>
