@@ -6,6 +6,7 @@ $prefix = $prefixobj->Get_All_Prefix();
 require_once('../../application/class/manage_deadline.php');
 $dlobj = new Deadline();
 $dlspcl = $dlobj->Search_all(3);
+$current = $dlobj->Get_Current_Semester();
  ?>
 
 <html>
@@ -550,6 +551,7 @@ window.counttr = 0;
    else {
      var mm = ''+dateobj.getMonth();
    }
+
    var dd = dateobj.getDate();
    var today = new Date(yy+"-"+mm+"-"+dd);
 
@@ -558,9 +560,56 @@ window.counttr = 0;
   {
      var stringdlst = '<?php echo $dlspcl[$x]['open_date'];  ?>';
      var stringdlend = '<?php echo $dlspcl[$x]['last_date'];  ?>';
-     <?php $x = $x+1; ?>
      var splitor = stringdlend.split("-");
      var month = splitor[1];
+     if(month=="01")
+     {
+       var monthname = "มกราคม";
+     }
+     else if(month=="02")
+     {
+       var monthname = "กุมภาพันธ์";
+     }
+     else if(month=="03")
+     {
+       var monthname = "มีนาคม";
+     }
+     else if(month=="04")
+     {
+       var monthname = "เมษายน";
+     }
+     else if(month=="05")
+     {
+       var monthname = "พฤษภาคม";
+     }
+     else if(month=="06")
+     {
+       var monthname = "มิถุนายน";
+     }
+     else if(month=="07")
+     {
+       var monthname = "กรกฏาคม";
+     }
+     else if(month=="08")
+     {
+       var monthname = "สิงหาคม";
+     }
+     else if(month=="09")
+     {
+       var monthname = "กันยายน";
+     }
+     else if(month=="10")
+     {
+       var monthname = "ตุลาคม";
+     }
+     else if(month=="11")
+     {
+       var monthname = "พฤศจิกายน";
+     }
+     else
+     {
+       var monthname = "ธันวาคม";
+     }
      var deadlinestart = new Date(stringdlst);
      var deadlineend = new Date(stringdlend);
 
@@ -573,8 +622,16 @@ window.counttr = 0;
        $('#dlhide').hide();
        $('#formheader').hide();
        $('#overtimemsg').show();
-       //document.getElementById('overtimemsg2').innerHTML = "<br>วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ วันที่ "+splitor[2]+" "+monthname+" "+(parseInt(splitor[0])+543);
+       var checksem = <?php echo $dlspcl[$x]['semester_num']; ?>;
+       var checkyear = <?php echo $dlspcl[$x]['year']; ?>;
+       var cursem = <?php echo $current['semester']; ?>;
+       var curyear = <?php echo $current['year']; ?>;
+       if(checksem==cursem && checkyear==curyear)
+       {
+         document.getElementById('overtimemsg2').innerHTML = "<br>วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ วันที่ "+splitor[2]+" "+monthname+" "+(parseInt(splitor[0])+543);
+       }
      }
+     <?php $x = $x+1; ?>
    }
 
 

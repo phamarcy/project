@@ -4,6 +4,7 @@
   $dlobj = new Deadline();
   $dleva = $dlobj->Search_all(1);
   $dlcor = $dlobj->Search_all(2);
+  $current = $dlobj->Get_Current_Semester();
  ?>
  <html>
  <header>
@@ -693,206 +694,209 @@ function checksubject(btntype,type){
 function submitfunc(casesubmit) {
 
 
-
-  //Loop for pack TEACHER
-  var teacher_lec = {};
-  var tlec = [];
-
-  for(var i=1;i<=5;i++)
-  {
-    tlec[i-1] = document.getElementById("TEACHERLEC_F"+i).value;
-  }
-
-  teacher_lec = tlec;
-
-  //Loop for COMMITTEE
-  var commidlec = {};
-  var commidlab = {};
-  var commidlec_sec = {};
-  var commidlab_sec = {};
-  var comfinlec = {};
-  var comfinlab = {};
-  var cmle = [];
-  var cmla = [];
-  var cmle_sec = [];
-  var cmla_sec = [];
-  var cfle = [];
-  var cfla = [];
-
-  for(var i=1;i<=document.getElementById("mexholec").value;i++)
-  {
-    cmle[i-1] = document.getElementById("MIDEXCOM_LECF"+i).value;
-  }
-  for(var i=1;i<=document.getElementById("mexholac").value;i++)
-  {
-    cmla[i-1] = document.getElementById("MIDEXCOM_LABF"+i).value;
-  }
-  for(var i=1;i<=document.getElementById("mexholec_sec").value;i++)
-  {
-    cmle_sec[i-1] = document.getElementById("MIDEXCOM_LECF"+i+"_sec").value;
-  }
-  for(var i=1;i<=document.getElementById("mexholac_sec").value;i++)
-  {
-    cmla_sec[i-1] = document.getElementById("MIDEXCOM_LABF"+i+"_sec").value;
-  }
-  for(var i=1;i<=document.getElementById("fexholec").value;i++)
-  {
-    cfle[i-1] = document.getElementById("FINEXCOM_LECF"+i).value;
-  }
-  for(var i=1;i<=document.getElementById("fexholac").value;i++)
-  {
-    cfla[i-1] = document.getElementById("FINEXCOM_LABF"+i).value;
-  }
-
-  commidlec = cmle;
-  commidlab = cmla;
-  commidlec_sec = cmle_sec;
-  commidlab_sec = cmla_sec;
-  comfinlec = cfle;
-  comfinlab = cfla;
-
-
-
-  var data = {
-    'COURSE_ID': document.getElementById("COURSE_ID").value,
-    'SECTION' : document.getElementById("SECTION").value,
-    'NORORSPE' : document.querySelector("input[name='NORORSPE']:checked").value,
-    'NAMETH' : document.getElementById("NAME_TH_COURSE").value,
-    'NAMEENG' : document.getElementById("NAME_ENG_COURSE").value,
-    'STUDENT' : document.getElementById("ENROLL").value,
-    'CREDIT' : {
-      'TOTAL' : document.getElementById("TOTAL").value
-    },
-    'TYPE_TEACHING' : document.querySelector("input[name='TYPE_TEACHING']:checked").value,
-    'TYPE_TEACHING_NAME' : document.getElementById('TYPE_TEACHING_NAME').value,
-    'TEACHER' : teacher_lec,
-    'EXAM': {
-      'MID1' : {
-        'HOUR' : {
-          'LEC' : document.getElementById("MIDEXAM_HOUR_LEC").value,
-          'LAB' : document.getElementById("MIDEXAM_HOUR_LAB").value
-        },
-        'NUMBER' : {
-          'LEC' : document.getElementById("mexholec").value,
-          'LAB' : document.getElementById("mexholac").value
-        },
-        'COMMITTEE' : {
-          'LEC' : commidlec,
-          'LAB' : commidlab
-        }
-      },
-      'MID2' : {
-        'HOUR' : {
-          'LEC' : document.getElementById("MIDEXAM_HOUR_LEC_SEC").value,
-          'LAB' : document.getElementById("MIDEXAM_HOUR_LAB_SEC").value
-        },
-        'NUMBER' : {
-          'LEC' : document.getElementById("mexholec_sec").value,
-          'LAB' : document.getElementById("mexholac_sec").value
-        },
-        'COMMITTEE' : {
-          'LEC' : commidlec_sec,
-          'LAB' : commidlab_sec
-        }
-      },
-      'FINAL' : {
-        'HOUR' : {
-          'LEC' : document.getElementById("FINEXAM_HOUR_LEC").value,
-          'LAB' : document.getElementById("FINEXAM_HOUR_LAB").value
-        },
-        'NUMBER' : {
-          'LEC' : document.getElementById("fexholec").value,
-          'LAB' : document.getElementById("fexholac").value
-        },
-        'COMMITTEE' : {
-          'LEC' : comfinlec,
-          'LAB' : comfinlab
-        }
-      },
-      'SUGGESTION' : document.getElementById("suggestion").value
-    },
-    'MEASURE' : {
-      'MID1' : {
-        'LEC' : document.getElementById("MEASURE_MIDLEC1").value,
-        'LAB' : document.getElementById("MEASURE_MIDLAB1").value
-      },
-      'MID2' : {
-        'LEC' : document.getElementById("MEASURE_MIDLEC2").value,
-        'LAB' : document.getElementById("MEASURE_MIDLAB2").value
-      },
-      'FINAL' : {
-        'LEC' : document.getElementById("MEASURE_FINLEC").value,
-        'LAB' : document.getElementById("MEASURE_FINLAB").value
-      },
-      'WORK' : {
-        'LEC' : document.getElementById("MEASURE_WORKLEC").value,
-        'LAB' : document.getElementById("MEASURE_WORKLAB").value
-      },
-      'OTHER' : {
-        'LEC' : document.getElementById("MEASURE_OTHLEC").value,
-        'LAB' : document.getElementById("MEASURE_OTHLAB").value,
-        'OTH' : document.getElementById("OTHER_MEA").value
-      },
-      'TOTAL' : {
-        'LEC' : document.getElementById("MEASURE_TOTALLEC").value,
-        'LAB' : document.getElementById("MEASURE_TOTALLAB").value
-      }
-    },
-    'EVALUATE' : document.querySelector("input[name='EVALUATE_TYPE']:checked").value,
-    'CALCULATE' : {
-      'TYPE' : document.querySelector("input[name='CALCULATE']:checked").value,
-      'EXPLAINATION' : document.getElementById("EXPLAINATION").value,
-      'A' : {
-        'MIN' : document.getElementById("CALCULATE_A_MIN").value
-      },
-      'B+' : {
-        'MIN' : document.getElementById("CALCULATE_Bp_MIN").value,
-        'MAX' : document.getElementById("CALCULATE_Bp_MAX").value
-      },
-      'B' : {
-        'MIN' : document.getElementById("CALCULATE_B_MIN").value,
-        'MAX' : document.getElementById("CALCULATE_B_MAX").value
-      },
-      'C+' : {
-        'MIN' : document.getElementById("CALCULATE_Cp_MIN").value,
-        'MAX' : document.getElementById("CALCULATE_Cp_MAX").value
-      },
-      'C' : {
-        'MIN' : document.getElementById("CALCULATE_C_MIN").value,
-        'MAX' : document.getElementById("CALCULATE_C_MAX").value
-      },
-      'D+' : {
-        'MIN' : document.getElementById("CALCULATE_Dp_MIN").value,
-        'MAX' : document.getElementById("CALCULATE_Dp_MAX").value
-      },
-      'D' : {
-        'MIN' : document.getElementById("CALCULATE_D_MIN").value,
-        'MAX' : document.getElementById("CALCULATE_D_MAX").value
-      },
-      'F' : {
-        'MAX' : document.getElementById("CALCULATE_F_MAX").value
-      },
-      'S' : {
-        'MIN' : document.getElementById("CALCULATE_S_MIN").value
-      },
-      'U' : {
-        'MAX' : document.getElementById("CALCULATE_U_MAX").value
-      },
-      'OTHERGRADE' : document.getElementById("CALOTHER").value
-    },
-    'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,
-    'SUBMIT_TYPE' : casesubmit
-  };
-
   //alert(JSON.stringify(data));
-  if(casesubmit=='1')
+  if(casesubmit=='1'||casesubmit=='2')
   {
-    senddata(JSON.stringify(data),getfile());
+
+      //Loop for pack TEACHER
+      var teacher_lec = {};
+      var tlec = [];
+
+      for(var i=1;i<=5;i++)
+      {
+        tlec[i-1] = document.getElementById("TEACHERLEC_F"+i).value;
+      }
+
+      teacher_lec = tlec;
+
+      //Loop for COMMITTEE
+      var commidlec = {};
+      var commidlab = {};
+      var commidlec_sec = {};
+      var commidlab_sec = {};
+      var comfinlec = {};
+      var comfinlab = {};
+      var cmle = [];
+      var cmla = [];
+      var cmle_sec = [];
+      var cmla_sec = [];
+      var cfle = [];
+      var cfla = [];
+
+      for(var i=1;i<=document.getElementById("mexholec").value;i++)
+      {
+        cmle[i-1] = document.getElementById("MIDEXCOM_LECF"+i).value;
+      }
+      for(var i=1;i<=document.getElementById("mexholac").value;i++)
+      {
+        cmla[i-1] = document.getElementById("MIDEXCOM_LABF"+i).value;
+      }
+      for(var i=1;i<=document.getElementById("mexholec_sec").value;i++)
+      {
+        cmle_sec[i-1] = document.getElementById("MIDEXCOM_LECF"+i+"_sec").value;
+      }
+      for(var i=1;i<=document.getElementById("mexholac_sec").value;i++)
+      {
+        cmla_sec[i-1] = document.getElementById("MIDEXCOM_LABF"+i+"_sec").value;
+      }
+      for(var i=1;i<=document.getElementById("fexholec").value;i++)
+      {
+        cfle[i-1] = document.getElementById("FINEXCOM_LECF"+i).value;
+      }
+      for(var i=1;i<=document.getElementById("fexholac").value;i++)
+      {
+        cfla[i-1] = document.getElementById("FINEXCOM_LABF"+i).value;
+      }
+
+      commidlec = cmle;
+      commidlab = cmla;
+      commidlec_sec = cmle_sec;
+      commidlab_sec = cmla_sec;
+      comfinlec = cfle;
+      comfinlab = cfla;
+
+
+
+      var data = {
+        'COURSE_ID': document.getElementById("COURSE_ID").value,
+        'SECTION' : document.getElementById("SECTION").value,
+        'NORORSPE' : document.querySelector("input[name='NORORSPE']:checked").value,
+        'NAMETH' : document.getElementById("NAME_TH_COURSE").value,
+        'NAMEENG' : document.getElementById("NAME_ENG_COURSE").value,
+        'STUDENT' : document.getElementById("ENROLL").value,
+        'CREDIT' : {
+          'TOTAL' : document.getElementById("TOTAL").value
+        },
+        'TYPE_TEACHING' : document.querySelector("input[name='TYPE_TEACHING']:checked").value,
+        'TYPE_TEACHING_NAME' : document.getElementById('TYPE_TEACHING_NAME').value,
+        'TEACHER' : teacher_lec,
+        'EXAM': {
+          'MID1' : {
+            'HOUR' : {
+              'LEC' : document.getElementById("MIDEXAM_HOUR_LEC").value,
+              'LAB' : document.getElementById("MIDEXAM_HOUR_LAB").value
+            },
+            'NUMBER' : {
+              'LEC' : document.getElementById("mexholec").value,
+              'LAB' : document.getElementById("mexholac").value
+            },
+            'COMMITTEE' : {
+              'LEC' : commidlec,
+              'LAB' : commidlab
+            }
+          },
+          'MID2' : {
+            'HOUR' : {
+              'LEC' : document.getElementById("MIDEXAM_HOUR_LEC_SEC").value,
+              'LAB' : document.getElementById("MIDEXAM_HOUR_LAB_SEC").value
+            },
+            'NUMBER' : {
+              'LEC' : document.getElementById("mexholec_sec").value,
+              'LAB' : document.getElementById("mexholac_sec").value
+            },
+            'COMMITTEE' : {
+              'LEC' : commidlec_sec,
+              'LAB' : commidlab_sec
+            }
+          },
+          'FINAL' : {
+            'HOUR' : {
+              'LEC' : document.getElementById("FINEXAM_HOUR_LEC").value,
+              'LAB' : document.getElementById("FINEXAM_HOUR_LAB").value
+            },
+            'NUMBER' : {
+              'LEC' : document.getElementById("fexholec").value,
+              'LAB' : document.getElementById("fexholac").value
+            },
+            'COMMITTEE' : {
+              'LEC' : comfinlec,
+              'LAB' : comfinlab
+            }
+          },
+          'SUGGESTION' : document.getElementById("suggestion").value
+        },
+        'MEASURE' : {
+          'MID1' : {
+            'LEC' : document.getElementById("MEASURE_MIDLEC1").value,
+            'LAB' : document.getElementById("MEASURE_MIDLAB1").value
+          },
+          'MID2' : {
+            'LEC' : document.getElementById("MEASURE_MIDLEC2").value,
+            'LAB' : document.getElementById("MEASURE_MIDLAB2").value
+          },
+          'FINAL' : {
+            'LEC' : document.getElementById("MEASURE_FINLEC").value,
+            'LAB' : document.getElementById("MEASURE_FINLAB").value
+          },
+          'WORK' : {
+            'LEC' : document.getElementById("MEASURE_WORKLEC").value,
+            'LAB' : document.getElementById("MEASURE_WORKLAB").value
+          },
+          'OTHER' : {
+            'LEC' : document.getElementById("MEASURE_OTHLEC").value,
+            'LAB' : document.getElementById("MEASURE_OTHLAB").value,
+            'OTH' : document.getElementById("OTHER_MEA").value
+          },
+          'TOTAL' : {
+            'LEC' : document.getElementById("MEASURE_TOTALLEC").value,
+            'LAB' : document.getElementById("MEASURE_TOTALLAB").value
+          }
+        },
+        'EVALUATE' : document.querySelector("input[name='EVALUATE_TYPE']:checked").value,
+        'CALCULATE' : {
+          'TYPE' : document.querySelector("input[name='CALCULATE']:checked").value,
+          'EXPLAINATION' : document.getElementById("EXPLAINATION").value,
+          'A' : {
+            'MIN' : document.getElementById("CALCULATE_A_MIN").value
+          },
+          'B+' : {
+            'MIN' : document.getElementById("CALCULATE_Bp_MIN").value,
+            'MAX' : document.getElementById("CALCULATE_Bp_MAX").value
+          },
+          'B' : {
+            'MIN' : document.getElementById("CALCULATE_B_MIN").value,
+            'MAX' : document.getElementById("CALCULATE_B_MAX").value
+          },
+          'C+' : {
+            'MIN' : document.getElementById("CALCULATE_Cp_MIN").value,
+            'MAX' : document.getElementById("CALCULATE_Cp_MAX").value
+          },
+          'C' : {
+            'MIN' : document.getElementById("CALCULATE_C_MIN").value,
+            'MAX' : document.getElementById("CALCULATE_C_MAX").value
+          },
+          'D+' : {
+            'MIN' : document.getElementById("CALCULATE_Dp_MIN").value,
+            'MAX' : document.getElementById("CALCULATE_Dp_MAX").value
+          },
+          'D' : {
+            'MIN' : document.getElementById("CALCULATE_D_MIN").value,
+            'MAX' : document.getElementById("CALCULATE_D_MAX").value
+          },
+          'F' : {
+            'MAX' : document.getElementById("CALCULATE_F_MAX").value
+          },
+          'S' : {
+            'MIN' : document.getElementById("CALCULATE_S_MIN").value
+          },
+          'U' : {
+            'MAX' : document.getElementById("CALCULATE_U_MAX").value
+          },
+          'OTHERGRADE' : document.getElementById("CALOTHER").value
+        },
+        'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,
+        'SUBMIT_TYPE' : casesubmit
+      };
+
+    senddata(JSON.stringify(data),getfile('1'));
   }
-  else if(casesubmit=='2')
+  else if(casesubmit=='0')
   {
-    senddata(JSON.stringify(data),getfile());
-    //console.log(JSON.stringify(data));
+    var data = {
+      'COURSE_ID' : document.getElementById('COURSE_ID_2'),
+      'SUBMIT_TYPE' : casesubmit
+    };
+    senddata(JSON.stringify(data),getfile('0'));
   }
 
 }
@@ -933,12 +937,22 @@ function senddata(data,file_data)
       });
 }
 
-function getfile()
+function getfile(typedl)
 {
-  var file_data = $('#syllabus').prop('files')[0];
-  var form_data = new FormData();
-  form_data.append('file', file_data);
-  return form_data;
+  if(typedl=='1')
+  {
+    var file_data = $('#syllabus').prop('files')[0];
+    var form_data = new FormData();
+    form_data.append('file', file_data);
+    return form_data;
+  }
+  else {
+    var file_data = $('#syllabus_2').prop('files')[0];
+    var form_data = new FormData();
+    form_data.append('file', file_data);
+    return form_data;
+  }
+
 }
 
 // Charecter fixed
@@ -979,7 +993,7 @@ $(document).ready(function(){
     var deadlinestartcor = new Date(stringdlstcor);
     var deadlineendcor = new Date(stringdlendcor);
 
-    if(deadlinestartcor<today && today<deadlineendcor)
+    if(deadlinestartcor<=today && today<=deadlineendcor)
     {
       flagcor = flagcor + 1;
       <?php $count2 = sizeof($dleva); $y = 0;?>
@@ -992,10 +1006,11 @@ $(document).ready(function(){
         var deadlinestarteva = new Date(stringdlsteva);
         var deadlineendeva = new Date(stringdlendeva);
 
-        if(deadlinestarteva<today && today<deadlineendeva)
+        if(deadlinestarteva<=today && today<=deadlineendeva)
         {
           flageva = flageva + 1;
         }
+        <?php $y = $y +1; ?>
       }
     }
     else {
@@ -1009,16 +1024,18 @@ $(document).ready(function(){
         var deadlinestarteva = new Date(stringdlsteva);
         var deadlineendeva = new Date(stringdlendeva);
 
-          if(deadlinestarteva<today && today<deadlineendeva)
+          if(deadlinestarteva<=today && today<=deadlineendeva)
           {
             flageva = flageva + 1;
           }
+          <?php $y = $y +1; ?>
         }
       }
-
+      <?php $x = $x +1; ?>
+    }
     console.log("flagcor"+flagcor+","+"flageva"+flageva);
 
-    if(flageva>=0 && flagcor<=0)
+    if(flageva>0 && flagcor==0)
     {
       $('#overtimemsg').hide();
       $('#bottomform').hide();
@@ -1027,7 +1044,7 @@ $(document).ready(function(){
       $('#syllabus').prop('required', true);
       $('#syllabus_2').prop('required', false);
       $('#COURSE_ID_2').prop('required', false);
-    }else if (flageva<=0 && flagcor>=0) {
+    }else if (flageva==0 && flagcor>0) {
       $('#overtimemsg3').hide();
       $('#overtimemsg5').hide();
       $('#dlhide').hide();
@@ -1035,7 +1052,7 @@ $(document).ready(function(){
       $('#syllabus').prop('required', false);
       $('#syllabus_2').prop('required', true);
       $('#COURSE_ID_2').prop('required', true);
-    }else if (flageva>=0 && flagcor>=0) {
+    }else if (flageva>0 && flagcor>0) {
       $('#overtimemsg').hide();
       $('#overtimemsg3').hide();
       $('#bottomform').hide();
@@ -1043,7 +1060,7 @@ $(document).ready(function(){
       $('#syllabus').prop('required', true);
       $('#syllabus_2').prop('required', false);
       $('#COURSE_ID_2').prop('required', false);
-    }else {
+    }else if (flageva==0 && flagcor==0) {
       $('#overtimemsg').hide();
       $('#overtimemsg3').hide();
       $('#dlhide').hide();
@@ -1066,7 +1083,6 @@ $(document).ready(function(){
       //document.getElementById('overtimemsg2').innerHTML = "<br>วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ วันที่ "+splitor[2]+" "+monthname+" "+(parseInt(splitor[0])+543);
     }*/
 
-  }
 
   //radio
   $("input[name='EVALUATE_TYPE']").change(function(){
@@ -1850,7 +1866,7 @@ function confreset() {
       </li>
       <br><br>
       <div align="center">
-        <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq('1')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
+        <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="submitfunc('0')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
         <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
       </div>
     </form>
