@@ -64,8 +64,29 @@ class Course
     }
   }
 
-  public function Get_Dept_Course($department_id)
+  public function Get_Dept_Course($department_id,$semester_id)
   {
+    $DATA = array();
+    $sql = "SELECT c.`course_id`,c.`course_name_en` FROM `department_course_responsible` dc, `course` c
+    WHERE c.`course_id` = dc.`course_id` AND dc.`department_id` = '".$department_id."' AND dc.`semester_id` = ".$semester_id;
+
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      for($i=0;$i<count($result);$i++)
+      {
+        $course['id'] = $result[$i]['course_id'];
+        $course['name'] = $result[$i]['course_name_en'];
+        array_push($DATA,$course);
+      }
+      return $DATA;
+    }
+    else
+    {
+      $return['status'] = 'error';
+      $return['msg'] = 'ไม่สามารถค้นหาข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+      return $return;
+    }
 
   }
 

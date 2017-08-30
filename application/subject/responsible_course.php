@@ -6,7 +6,7 @@ if(isset($_POST['type']))
   $type = $_POST['type'];
   if($type == 'add')
   {
-    if(isset($_POST['course']) && isset($_POST['dep_id']) && isset($_POST['semester_id']) && )
+    if(isset($_POST['course']) && isset($_POST['dep_id']) && isset($_POST['semester_id']) )
     {
       $course_id = $_POST['course'];
       $department_id = $_POST['dep_id'];
@@ -16,7 +16,7 @@ if(isset($_POST['type']))
     else
     {
       $result['status'] = "error";
-      $result['msg'] = "ข้อมูลผิดพลาด"
+      $result['msg'] = "ข้อมูลผิดพลาด";
     }
     echo json_encode($result);
   }

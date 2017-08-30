@@ -17,6 +17,13 @@ if(isset($_POST['DATA']))
   	$file = $_FILES['file'];
 		Upload($file,$DATA['COURSE_ID']);
 	}
+	if($DATA['SUBMIT_TYPE'] == '0')
+	{
+		$return['status'] = "success";
+		$return['msg'] = 'อัพโหลดไฟล์เรียบร้อยแล้ว';
+		echo json_encode($return);
+		die;
+	}
 	Write_temp_data($data);
 
 	if($DATA['SUBMIT_TYPE'] == '2')
