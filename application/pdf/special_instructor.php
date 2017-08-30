@@ -133,34 +133,38 @@ $pdf->AddPage();
 $pdf->SetMargins(20,10,20,0);
 $pdf->AddFont('angsa','','angsa.php');
 $pdf->AddFont('angsab','','angsab.php');
+$pdf->AddFont('THSarabun','','THSarabun.php');
+$pdf->AddFont('THSarabun_B','','THSarabun_B.php');
+$pdf->AddFont('cordiab','','cordiab.php');
 $pdf->AddFont('cordia','','cordia.php');
+$pdf->AddFont('tahoma','','tahoma.php');
 $pdf->AddFont('ZapfDingbats','','zapfdingbats.php');
 
-$pdf->SetFont('angsab','',14);
+$pdf->SetFont('THSarabun_B','',14);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','แบบขออนุมัติเชิญอาจารย์พิเศษ'),0,1,"C");
 
 $pdf->SetX(75);
 $pdf->Cell(10,7,iconv( 'UTF-8','TIS-620','ภาควิชา'),0,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','    '.$DATA['TEACHERDATA']['DEPARTMENT'].'     '),0,"C");
 $pdf->Ln();
 
 $pdf->SetX(60);
-$pdf->SetFont('angsab','',14);
+$pdf->SetFont('THSarabun_B','',14);
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620','ภาคการศึกษาที่'),0,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell(15,7,iconv( 'UTF-8','TIS-620','        '.'2'.'         '),0,"C");
-$pdf->SetFont('angsab','',14);
+$pdf->SetFont('THSarabun_B','',14);
 $pdf->Cell(15,7,iconv( 'UTF-8','TIS-620','ปีการศึกษา'),0,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell(10,7,iconv( 'UTF-8','TIS-620','        '.'2559'.'         '),0,"C");
 $pdf->Ln();
 #1
-$pdf->SetFont('angsab','',14);
-$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','1. รายละเอียดของอาจารพิเศษ'),0,1);
+$pdf->SetFont('THSarabun_B','',14);
+$pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','1. รายละเอียดของอาจารย์พิเศษ'),0,1);
 
 $pdf->SetX(25);
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','1.1 ชื่อ ')),7,iconv( 'UTF-8','TIS-620','1.1 ชื่อ '),0,"C");
 
 $RANK = $DATA['TEACHERDATA']['PREFIX'];
@@ -223,19 +227,19 @@ $pdf->SetX(32);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','กระบวนวิชานี้เป็นวิชา'))+5,7,iconv( 'UTF-8','TIS-620','หัวข้อที่เชิญมาสอน      '),0,"C");
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, '', 1,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','อารจารย์พิเศษยังไม่เคยสอน'))+5,7,iconv( 'UTF-8','TIS-620',' ยังไม่เคยเชิญมาสอน'),0);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, '', 1,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','อารจารย์พิเศษเคยสอนมาแล้ว'))+5,7,iconv( 'UTF-8','TIS-620',' เคยเชิญมาสอนแล้ว'),0);
 $pdf->Ln();
 #2
-$pdf->SetFont('angsab','',14);
+$pdf->SetFont('THSarabun_B','',14);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','2 รายละเอียดกระบวนวิชา'),0,1);
 
 $pdf->SetX(25);
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','2.1 กระบวนวิชาที่สอน    ')),9,iconv( 'UTF-8','TIS-620','2.1 กระบวนวิชาที่สอน    '),0,"C");
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','462452')),9,iconv( 'UTF-8','TIS-620',' 462452 '),0,1,'C');
 
@@ -243,11 +247,11 @@ $pdf->SetX(25);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','2.2 กระบวนวิชานี้เป็นวิชา'))+5,7,iconv( 'UTF-8','TIS-620','2.2 กระบวนวิชานี้เป็นวิชา'),0);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, 3, 1,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','อารจารย์พิเศษยังไม่เคยสอน'))+5,7,iconv( 'UTF-8','TIS-620',' บังคับ'),0,"C");
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, '', 1,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','อารจารย์พิเศษยังไม่เคยสอน'))+5,7,iconv( 'UTF-8','TIS-620',' เลือก'),0,"C");
 $pdf->Ln();
 $pdf->SetX($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','2.2 กระบวนวิชานี้เป็นวิชา'))+30);
@@ -261,7 +265,7 @@ $pdf->Ln();
 $pdf->SetX(25);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','2.4 รายละเอียดในการสอน'),0,1);
 $pdf->SetX(35);
-$pdf->Cell(70,7,iconv( 'UTF-8','TIS-620','หัวข้อบรรยาย ปฏิบัติการ '));
+$pdf->Cell(70,7,iconv( 'UTF-8','TIS-620','หัวข้อบรรยาย/ปฏิบัติการ '));
 $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','ว/ด/ป ที่สอน '));
 $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','เวลา '));
 $pdf->Cell(30,7,iconv( 'UTF-8','TIS-620','ห้องเรียน'));
@@ -306,22 +310,22 @@ $pdf->Ln();
 
 #3
 $pdf->SetX(20);
-$pdf->SetFont('angsab','',14);
+$pdf->SetFont('THSarabun_B','',14);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','3 ค่าใช้จ่าย'),0,1);
 
 $pdf->SetX(30);
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','อาจารย์พิเศษเป็น '))+3,7,iconv('UTF-8','TIS-620','อาจารย์พิเศษเป็น'),0);
 
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, 3, 1,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ข้าราชการระดับ'))+1,7,iconv( 'UTF-8','TIS-620',' ข้าราชการระดับ'),0,"C");
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ชำนาญการ '))+5,7,iconv( 'UTF-8','TIS-620',' ชำนาญการ '),0,"C");
 
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, '', 1,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','บุคคลเอกชนเทียบตำแหน่ง'))+1,7,iconv( 'UTF-8','TIS-620',' บุคคลเอกชนเทียบตำแหน่ง'),0,"C");
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ชำนาญการ '))+2,7,iconv( 'UTF-8','TIS-620',' ชำนาญการ'),0,"C");
 $pdf->Ln();
@@ -331,7 +335,7 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','3.1 ค่าสอน
 $pdf->SetX(40);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, 3, 1,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ปริญญาตรีปฏิบัติการ 400/ชม.'))+1,7,iconv( 'UTF-8','TIS-620',' ปริญญาตรีบรรยาย 400/ชม.'),0);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620',' จำนวน   '))+2,7,iconv( 'UTF-8','TIS-620','  จำนวน   '),0);
 $pdf->Cell(13,7,iconv( 'UTF-8','TIS-620','300'),0,"C");
@@ -345,7 +349,7 @@ $pdf->Ln();
 $pdf->SetX(40);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, '', 1,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ปริญญาตรีปฏิบัติการ 200/ชม.'))+1,7,iconv( 'UTF-8','TIS-620',' ปริญญาตรีปฏิบัติการ 200/ชม.'),0);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620',' จำนวน   '))+2,7,iconv( 'UTF-8','TIS-620','  จำนวน   '),0);
 $pdf->Cell(13,7,iconv( 'UTF-8','TIS-620','300'),0,"C");
@@ -362,7 +366,7 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','3.2 ค่าพาห
 $pdf->SetX(40);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, 3, 1,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','เครื่องบิน  ระหว่าง'))+1,7,iconv( 'UTF-8','TIS-620','เครื่องบิน ระหว่าง'),0);
 $pdf->Cell(50,7,iconv( 'UTF-8','TIS-620','เชียงใหม่-กรุงเทพ'),0);
 $pdf->SetX($money_position);
@@ -374,7 +378,7 @@ $pdf->Ln();
 $pdf->SetX(40);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, 3, 1,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ค่า taxi'))+1,7,iconv( 'UTF-8','TIS-620','ค่า taxi'),0);
 $pdf->Cell(50,7,iconv( 'UTF-8','TIS-620','ดอนเมือง-ลาดพร้าว'),0);
 $pdf->SetX($money_position);
@@ -385,7 +389,7 @@ $pdf->Ln();
 
 $pdf->SetX(40);
 $pdf->SetFont('ZapfDingbats','',14);
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell(4,4, '', 1,"C");
 $pdf->SetXY($pdf->GetX(),$pdf->GetY()-1);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง 60 กม.ๆ ละ 4 บาท')),7,iconv( 'UTF-8','TIS-620','รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง 60 กม.ๆ ละ 4 บาท'),0);
@@ -400,13 +404,13 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','3.3 ค่าที่
 $pdf->SetXY($pdf->GetX(),$pdf->GetY()+1);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, '', 1,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->SetXY($pdf->GetX(),$pdf->GetY()-1);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620',' เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน'))+10,7,iconv( 'UTF-8','TIS-620',' เบิกได้เท่าจ่ายจริงไม่เกิน 1,500 บาท/คน/คืน'),0);
 $pdf->SetXY($pdf->GetX(),$pdf->GetY()+1);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, '', 1,"C");
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->SetXY($pdf->GetX(),$pdf->GetY()-1);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620',' เบิกในลักษณะเหมาจ่ายไม่เกิน 800 บาท/คน/คืน'))+1,7,iconv( 'UTF-8','TIS-620',' เบิกในลักษณะเหมาจ่ายไม่เกิน 800 บาท/คน/คืน'),0);
 $pdf->Ln();
@@ -419,13 +423,13 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','เป็นเงิ�
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',''),0,"C");
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','บาท'))+2,7,iconv( 'UTF-8','TIS-620','บาท'),0,1);
 $pdf->SetX($money_position-17);
-$pdf->SetFont('angsab','',14);
+$pdf->SetFont('THSarabun_B','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','สรุปค่าใช้จ่ายทั้งหมด'))+5,7,iconv( 'UTF-8','TIS-620',' สรุปค่าใช้จ่ายทั้งหมด'),0);
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',''),0,"C");
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','บาท'))+2,7,iconv( 'UTF-8','TIS-620','บาท'),0,1);
 
 $pdf->SetX(35);
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','ลงชื่อ'),0);
 $image1 = "image1.jpg"; # signature
 $pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
@@ -468,7 +472,7 @@ $pdf->SetX(20);
 $pdf->Cell(0+5,7,iconv( 'UTF-8','TIS-620',' การขอเชิญอาจารย์พิเศษนี้ได้ผ่านความเห็นชอบของกรรมการวิชาการภาควิชาฯ แล้ว เมื่อวันที่ '.date(" j ").'   เดือน   '.$THAI_MONTH[date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0,1);
 
 $pdf->SetX($money_position-25);
-$pdf->SetFont('angsa','',14);
+$pdf->SetFont('THSarabun','',14);
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','ลงชื่อ'),0);
 $image1 = "image1.jpg"; # signature
 $pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );

@@ -264,6 +264,7 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
     $data['pending'] = array();
     $data['approve'] = array();
     $data['disapprove'] = array();
+    $data['revised'] = array();
     //search data of document to approve
     $sql = "SELECT DISTINCT `course_id` FROM `approval_course` WHERE `teacher_id` = '".$teacher_id."'";
     $result = $this->DB->Query($sql);
@@ -302,9 +303,9 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
           }
           else if($status == 3)
           {
-            array_push($data['disapprove'],$course);
+            array_push($data['revised'],$course);
           }
-          else
+          else if($status == 1)
           {
             array_push($data['pending'],$course);
           }
