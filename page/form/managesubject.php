@@ -8,11 +8,12 @@ $deadline = new Deadline;
 $course = new course;
 $semeter= $deadline->Get_Current_Semester();
 $department =$person->Get_Staff_Dep($_SESSION['id']);
+
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
-echo "<pre>";
+/*echo "<pre>";
 print_r($list_course);
-echo "</pre>";
+echo "</pre>";*/
  ?>
 <html>
   <head>
@@ -83,24 +84,6 @@ echo "</pre>";
       }
     });*/
 
-    function searchname(no,type) {
-      var name_s = $("#TEACHERLEC_F"+no).val();
-        $("#dtl"+no).html('');
-        if(name_s.length > 3)
-        {
-          $.post("search_name.php", { name: name_s}, function(data) {
-                data = JSON.parse( data );
-                for(var i=0;i<data.length;i++)
-                {
-                    $("#dtl"+no).append('<option value="'+data[i]+'"></option>');
-                }
-
-              })
-              .fail(function() {
-                  alert("error");
-              });
-        }
-      }
 
 
 
@@ -150,7 +133,7 @@ echo "</pre>";
                                           <form id="data"  method="post">
                                               <label for="">เพิ่มคณะกรรมการ</label>
                                               <div class="form-inline">
-                                                <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
+                                                <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
                                                 <input type="hidden" name="group" value="1">
                                                 <input type="hidden" name="type" value="add">
                                                 <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
@@ -219,19 +202,20 @@ echo "</pre>";
                                           <div class="panel-body">
                                         <div class="form-group">
                                           <div class="form-inline">
+
                                             <form id="data"  method="post">
                                                 <label for="">เพิ่มคณะกรรมการ</label>
                                                 <div class="form-inline">
-                                                  <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
+                                                  <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'committee');" >
                                                   <input type="hidden" name="group" value="2">
                                                   <input type="hidden" name="type" value="add">
                                                   <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
                                                   <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
                                                 </div>
-                                                <datalist id="dtl1"></datalist>
+
+                                                <datalist id="dtl2"></datalist>
                                            </form>
                                           </div>
-                                          <datalist id="dtl2"></datalist>
                                         </div>
                                         <hr>
                                         <div class="form-group">
@@ -296,7 +280,7 @@ echo "</pre>";
               </div>
               </div>
           </div>
-          <?php if (isset($old_course)): ?>
+          <!--<?php if (isset($old_course)): ?>
             <div class="panel panel-default">
               <div class="panel-heading">
                 <b>กระบวนวิชาที่สังกัดในภาควิชา (ย้อนหลัง) 1/2559</b>
@@ -386,7 +370,7 @@ echo "</pre>";
                                                     </div>
                                                 </div>
                                             </div>
-                                    <!-- .panel-body -->
+
                                 </div>
                               </div>
                             </div>
@@ -460,7 +444,7 @@ echo "</pre>";
                                                     </div>
                                                 </div>
                                             </div>
-                                    <!-- .panel-body -->
+
                                 </div>
                               </div>
                             </div>
@@ -534,7 +518,7 @@ echo "</pre>";
                                                     </div>
                                                 </div>
                                             </div>
-                                    <!-- .panel-body -->
+
                                 </div>
                               </div>
                             </div>
@@ -608,7 +592,7 @@ echo "</pre>";
                                                     </div>
                                                 </div>
                                             </div>
-                                    <!-- .panel-body -->
+
                                 </div>
                               </div>
                             </div>
@@ -619,7 +603,7 @@ echo "</pre>";
               </table>
             </div>
             </div>
-          <?php endif; ?>
+          <?php endif; ?>-->
 
           <div class="panel panel-info">
             <div class="panel-heading">
@@ -653,8 +637,6 @@ echo "</pre>";
 
               <hr>
               <table class="table table-hover" style="font-size:14px">
-                <col width="130">
-                <col width="80">
                 <thead>
                     <tr>
                         <th width="10%">รหัสวิชา</th>
@@ -667,46 +649,42 @@ echo "</pre>";
                   <?php foreach ($list_course as $key => $value): ?>
                     <form id="addsubject" method="post">
                       <tr>
-                          <td>462533</td>
-                          <td>HEALTH BEHAVIORS AND PHARMACEUTICAL CARE</td>
-                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#462533" class="accordion-toggle">เพิ่มผู้รับผิดชอบ</button></td>
+                          <td><?php echo $value['id'] ?></td>
+                          <td><?php echo $value['name'] ?></td>
+                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#<?php echo $value['id'] ?>" class="accordion-toggle">เพิ่มผู้รับผิดชอบ</button></td>
                           <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                          <input type="hidden" name="course" id="course" value="<?php echo $value['id'] ?>">
+                          <input type="hidden" name="semester_id" id="semester_id" value="<?php echo $semeter['id'] ?>">
+                          <input type="hidden" name="type" id="type" value="remove">
                       </tr>
-                      <input type="hidden" name="course" id="course" value="">
-                      <input type="hidden" name="semester_id" id="semester_id" value="<?php echo $semeter['id'] ?>">
-                      <input type="hidden" name="type" id="type" value="remove">
                   </form>
-                  <?php endforeach; ?>
-
                     <tr class="hiddenRow">
                       <td colspan="12">
-                        <div class="accordian-body collapse" id="462533">
+                        <div class="accordian-body collapse" id="<?php echo $value['id'] ?>">
                           <div class="panel panel-success">
                             <div class="panel-heading">
                               <b><b>รายชื่ออาจารย์ผู้รับผิดชอบ</b></b>
                             </div>
                             <div class="panel-body">
-                                      <div class="panel-group" id="462533">
+                                      <div class="panel-group" id="<?php echo $value['id'] ?>">
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
                                                   <div class="panel-title" style="font-size:14px;">
-                                                      <a data-toggle="collapse" data-parent="#462533" href="#collapseOne">อาจารย์ผู้สอน</a>
+                                                      <a data-toggle="collapse" data-parent="<?php echo $value['id'] ?>" href="#responsible_teacher_<?php echo $value['id'] ?>">อาจารย์ผู้สอน</a>
                                                   </div>
                                               </div>
-                                              <div id="collapseOne" class="panel-collapse collapse">
+                                              <div id="responsible_teacher_<?php echo $value['id'] ?>" class="panel-collapse collapse">
                                                   <div class="panel-body">
                                                     <div class="col-md-5">
                                                       <div class="form-group">
-
-                                                        <form class="" action="" method="post">
+                                                        <form id="addteacher">
                                                           <label for="">เพิ่มผู้รับผิดชอบ</label>
                                                           <div class="form-group">
                                                             <div class="form-inline">
-                                                              <input type="text" class="form-control charonly" name="teacher1" id="teacher1" list="teacher_list1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname();" >
+                                                              <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_<?php echo $value['id'] ?>" list="dtl<?php echo $value['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(<?php echo $value['id'] ?>,'responsible');" >
                                                               <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
                                                             </div>
-                                                            <datalist id="teacher_list1"></datalist>
-
+                                                            <datalist id="dtl<?php echo $value['id'] ?>"></datalist>
                                                           </div>
                                                         </form>
                                                       </div>
@@ -731,18 +709,23 @@ echo "</pre>";
                                           <div class="panel panel-default">
                                               <div class="panel-heading">
                                                   <div class="panel-title" style="font-size:14px;">
-                                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">คณะกรรมการ</a>
+                                                      <a data-toggle="collapse" data-parent="#accordion" href="#responsible_set_<?php echo $value['id'] ?>">คณะกรรมการ</a>
                                                   </div>
                                               </div>
-                                              <div id="collapseTwo" class="panel-collapse collapse">
+                                              <div id="responsible_set_<?php echo $value['id'] ?>" class="panel-collapse collapse">
                                                   <div class="panel-body">
                                                     <div class="col-md-5">
                                                       <div class="form-group">
                                                         <form class="" action="" method="post">
                                                           <label for="">เพิ่มชุดคณะกรรมการ</label>
                                                           <div class="form-inline">
-                                                            <input type="text" name="teacher" value="" class="form-control">
-                                                            <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                            <form class="" action="index.html" method="post">
+                                                              <select class="form-control" name="teacher_group">
+                                                                <option value="0">คณะกรรมการชุดที่ 1</option>
+                                                                <option value="1">คณะกรรมการชุดที่ 2</option>
+                                                              </select>
+                                                              <button type="button" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                            </form>
                                                           </div>
                                                         </form>
                                                       </div>
@@ -771,6 +754,7 @@ echo "</pre>";
                         </div>
                       </td>
                     </tr>
+                <?php endforeach; ?>
                 </tbody>
             </table>
           </div>
@@ -838,6 +822,25 @@ $("form#remove").submit(function(){
     });
     return false;
 });
+
+    function searchname(no,type) {
+      var name_s = $("#TEACHERLEC_"+no).val();
+        $("#dtl"+no).html('');
+        if(name_s.length > 3)
+        {
+          $.post("search_name.php", { name: name_s}, function(data) {
+                data = JSON.parse( data );
+                for(var i=0;i<data.length;i++)
+                {
+                    $("#dtl"+no).append('<option value="'+data[i]+'"></option>');
+                }
+
+              })
+              .fail(function() {
+                  alert("error");
+              });
+        }
+      }
 $('select').select2();
 </script>
   </body>
