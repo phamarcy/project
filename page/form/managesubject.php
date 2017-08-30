@@ -9,9 +9,10 @@ $course = new course;
 $semeter= $deadline->Get_Current_Semester();
 $department =$person->Get_Staff_Dep($_SESSION['id']);
 $assessor=$person->Search_Assessor($department['code']);
-/*echo "<pre>";
-print_r($semeter);
-echo "</pre>";*/
+$list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
+echo "<pre>";
+print_r($list_course);
+echo "</pre>";
  ?>
 <html>
   <head>
@@ -640,12 +641,12 @@ echo "</pre>";*/
                         <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
                         <input type="hidden" name="semester_id" id="semester_id" value="<?php echo $semeter['id'] ?>">
                         <input type="hidden" name="type" id="type" value="add">
-                        <button type="submit" class="btn btn-outline btn-primary " id="submit"  name="submit">ยืนยัน</button>
+                        <button type="submit" class="btn btn-outline btn-primary " id="submit"  name="submit">เลือก</button>
                       </div>
                     </form>
                 </div>
                 <div class="col-md-2">
-                  <button type="button" name="button" class="btn btn-success btn-outline btn-lg" onclick="">บันทึก</button>
+                  <button type="button" name="button" class="btn btn-success btn-outline btn-lg" onclick="submit_course">บันทึก</button>
                 </div>
 
               </div>
@@ -663,7 +664,7 @@ echo "</pre>";*/
                     </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($variable as $key => $value): ?>
+                  <?php foreach ($list_course as $key => $value): ?>
                     <form id="addsubject" method="post">
                       <tr>
                           <td>462533</td>
@@ -814,14 +815,29 @@ $("form#addsubject").submit(function(){
         contentType: false,
         processData: false,
         success: function (data) {
-
           console.log(data);
-
         }
     });
     return false;
 });
-
+$("form#remove").submit(function(){
+    //var file = document.forms['data']['filexcel'].files[0];
+    var formData = new FormData(this);
+    console.log(formData);
+    $.ajax({
+        url: '../../application/subject/responsible_course.php',
+        type: 'POST',
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          console.log(data);
+        }
+    });
+    return false;
+});
 $('select').select2();
 </script>
   </body>
