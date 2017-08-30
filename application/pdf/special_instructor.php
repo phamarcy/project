@@ -237,11 +237,11 @@ else
 }
 $pdf->Cell(4,4, $HISTORY['yet'], 1,"C");
 $pdf->SetFont('THSarabun','',14);
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','อารจารย์พิเศษยังไม่เคยสอน'))+5,7,iconv( 'UTF-8','TIS-620',' ยังไม่เคยเชิญมาสอน'),0);
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','เคยเชิญมาสอน'))+5,7,iconv( 'UTF-8','TIS-620',' เคยเชิญมาสอน'),0);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, $HISTORY['already'], 1,"C");
 $pdf->SetFont('THSarabun','',14);
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','อารจารย์พิเศษเคยสอนมาแล้ว'))+5,7,iconv( 'UTF-8','TIS-620',' เคยเชิญมาสอนแล้ว'),0);
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ไม่เคยเชิญมาสอน'))+5,7,iconv( 'UTF-8','TIS-620',' ไม่เคยเชิญมาสอน'),0);
 $pdf->Ln();
 #2
 $pdf->SetFont('THSarabun_B','',14);
