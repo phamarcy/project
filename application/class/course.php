@@ -64,6 +64,41 @@ class Course
     }
   }
 
+  public function Get_Dept_Course($department_id)
+  {
+
+  }
+
+  public function Add_Dept_Course($course_id,$department_id,$semester_id)
+  {
+    $sql = "SELECT * FROM department_course_responsible
+    WHERE `course_id` = '".$course_id."' AND `semester_id` ='".$semester_id."'";
+    $result = $this->DB->Query($sql);
+    if($result == null)
+    {
+      $sql = "INSERT INTO `department_course_responsible`(`course_id`, `department_id`, `semester_id`)
+      VALUES ('".$course_id."','".$department_id."',".$semester_id.")";
+      $result = $this->DB->Insert_Update_Delete($sql);
+      if($result)
+      {
+        $return['status'] = 'success';
+        $return['msg'] = 'เพิ่มกระบวนวิชาสำเร็จ';
+      }
+      else
+      {
+        $return['status'] = 'error';
+        $return['msg'] = 'ไม่สามารถเพิ่มกระบวนวิชาได้ กรุณาติดต่อผู้ดูแลระบบ';
+      }
+
+    }
+    else
+    {
+      $return['status'] = 'error';
+      $return['msg'] = 'กระบวนวิชานี้มีอยู่แล้ว หรืออยู่ในภาควิชาอื่น';
+    }
+    return $return;
+  }
+
   public function Search_Document($type,$id)
   {
     if($type =='special')
