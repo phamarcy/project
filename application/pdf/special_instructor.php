@@ -210,7 +210,7 @@ for($i=0;$i<$count;$i++)
 }
 $pdf->MultiCell( 100, 7, iconv( 'UTF-8','TIS-620',$QUALIFICATION), 0,1);
 // $pdf->Write(7,iconv( 'UTF-8','TIS-620','    '.$QUALIFICATION.$space_qualification),0,1);
-$pdf->Ln();
+// $pdf->Ln();
 $pdf->SetX(25);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','1.4 สถานที่ทำงาน/สถานที่ติดต่อ    ')),7,iconv( 'UTF-8','TIS-620','1.4 สถานที่ทำงาน/สถานที่ติดต่อ    '),0,"C");
 $pdf->Ln();
@@ -284,7 +284,7 @@ $pdf->SetX(25);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','2.3 เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ   ')),7,iconv( 'UTF-8','TIS-620','2.3 เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ'),0,1,"C");
 $pdf->SetX(35);
 $pdf->MultiCell( 140, 7, iconv( 'UTF-8','TIS-620',$DATA['COURSEDATA']['REASON']), 0,1);
-$pdf->Ln();
+// $pdf->Ln();
 $pdf->SetX(25);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','2.4 รายละเอียดในการสอน'),0,1);
 $pdf->SetX(35);
