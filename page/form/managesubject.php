@@ -11,8 +11,9 @@ $department =$person->Get_Staff_Dep($_SESSION['id']);
 
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
+$history=$course->Get_History();
 echo "<pre>";
-print_r($list_course);
+print_r($history);
 echo "</pre>";
  ?>
 <html>
@@ -102,7 +103,7 @@ echo "</pre>";
 
                                               <label for="">เพิ่มคณะกรรมการ</label>
                                               <div class="form-inline">
-                                                <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" required>
+                                                <input type="text" class="form-control " name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" required>
                                                 <input type="hidden" name="group" value="1">
                                                 <input type="hidden" name="type" value="add">
                                                 <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
@@ -175,7 +176,7 @@ echo "</pre>";
                                             <form id="data"  method="post">
                                                 <label for="">เพิ่มคณะกรรมการ</label>
                                                 <div class="form-inline">
-                                                  <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'committee');" >
+                                                  <input type="text" class="form-control " name="teacher" id="TEACHERLEC_2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'committee');" >
                                                   <input type="hidden" name="group" value="2">
                                                   <input type="hidden" name="type" value="add">
                                                   <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
@@ -235,11 +236,10 @@ echo "</pre>";
                         <div class="panel-body">
                           <div class="form-inline">
                             <center>
-                              <form>
-                                <button type="button" class="btn btn-outline btn-primary " id="semester"  name="submit"><b>1/2557</b></button>
-                                <button type="button" class="btn btn-outline btn-primary " id="semester"  name="submit"><b>1/2558</b></button>
-                                <button type="button" class="btn btn-outline btn-primary " id="semester"  name="submit"><b>1/2559</b></button>
-                                <div id="warning"></div>
+                              <form id="history">
+                                <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history1"   value="1/2557"><b>1/2557</b></button>
+                                <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history2"   value="1/2558"><b>1/2558</b></button>
+                                <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history3"  value="1/2559"><b>1/2559</b></button>
                               </form>
                             </center>
                           </div>
@@ -639,7 +639,7 @@ echo "</pre>";
                                           <label for="">เพิ่มผู้รับผิดชอบ</label>
                                           <div class="form-inline">
                                             <form id="staff"  method="post">
-                                              <input type="text" name="responsible_teacher" class="form-control charonly" name="teacher" id="TEACHERLEC_<?php echo $value['id'] ?>" list="dtl<?php echo $value['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(<?php echo $value['id'] ?>,'responsible');" >
+                                              <input type="text" name="teacher" class="form-control " name="teacher" id="TEACHERLEC_<?php echo $value['id'] ?>" list="dtl<?php echo $value['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(<?php echo $value['id'] ?>,'responsible');" >
                                               <input type="hidden" name="type" value="add_teacher">
                                               <input type="hidden" name="course" value="<?php echo $value['id'] ?>">
                                               <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
@@ -814,6 +814,26 @@ $("form#remove").submit(function(){
           console.log(msg);
           alert(msg.msg);
           window.location.reload(false);
+        }
+    });
+    return false;
+});
+$("form#history").submit(function(){
+
+    //var myvar = $('#semester_history').val();
+    var data="123";
+    console.log(data);
+    $.ajax({
+        url: '../../application/subject/responsible_history.php',
+        type: 'POST',
+        data: { field1: "hello", field2 : "hello2"} ,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+
+        success: function (data) {
+          alert(data);
         }
     });
     return false;

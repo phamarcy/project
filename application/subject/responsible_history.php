@@ -1,4 +1,5 @@
 <?php
+var_dump($_POST);die;
 require_once(__DIR__.'/../class/course.php');
 if(isset($_POST['semester_id']) && isset($_POST['department_id']))
 {
