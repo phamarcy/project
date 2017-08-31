@@ -213,7 +213,7 @@ class Course
     $sql = "INSERT INTO `course_responsible`(`course_id`, `teacher_id`, `semester_id`)
     VALUES ('".$course_id."','".$teacher_id."',".$semester_id.") ON DUPLICATE KEY
     UPDATE `teacher_id` = '".$teacher_id."', `semester_id` = ".$semester_id;
-    $result = $this->DB->Query($sql);
+    $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
       $return['status'] = 'success';
@@ -238,7 +238,7 @@ class Course
     {
       $sql = "DELETE FROM `course_responsible`
       WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$semester_id;
-      $result = $this->DB->Query($sql);
+      $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
       {
         $return['status'] = 'success';
@@ -270,7 +270,7 @@ class Course
     $sql = "INSERT INTO `subject_assessor`(`course_id`, `assessor_group_num`, `semester_id`)
     VALUES ('".$course_id."','".$group_num."',".$semester_id.") ON DUPLICATE KEY
     UPDATE `assessor_group_num` = '".$group_num."', `semester_id` = ".$semester_id;
-    $result = $this->DB->Query($sql);
+    $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
       $return['status'] = 'success';
@@ -293,7 +293,7 @@ class Course
     {
       $sql = "DELETE FROM `course_responsible`
       WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$semester_id;
-      $result = $this->DB->Query($sql);
+      $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
       {
         $return['status'] = 'success';
