@@ -92,7 +92,20 @@ class Course
     }
 
   }
-
+  public function Get_History()
+  {
+    $DATA = array();
+    $curr_semester = $this->DEADLINE->Get_Current_Semester();
+    for($i=1;$i<=3;$i++)
+    {
+      $history = $this->DEADLINE->Search_Semester_id($curr_semester['semester'],$curr_semester['year'] - $i );
+      if($history != false)
+      {
+        array_push($DATA,$history);
+      }
+    }
+    return $DATA;
+  }
   public function Add_Dept_Course($course_id,$department_id,$semester_id)
   {
     $sql = "SELECT * FROM department_course_responsible
