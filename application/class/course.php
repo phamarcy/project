@@ -214,6 +214,36 @@ class Course
     return $return;
   }
 
+  public function Remove_Responsible_Staff($teacher_name,$course_id,$semester_id)
+  {
+    $teacher_id = $this->PERSON->Get_Teacher_Id($teacher_name);
+
+    $sql = "SELECT * FROM course_responsible
+    WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$semester_id;
+    $result = $this->DB->Query($sql);
+    if($result != null)
+    {
+      $sql = "DELETE FROM `course_responsible`
+      WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$semester_id;
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        $return['status'] = 'success';
+        $return['msg'] = 'ลบอาจารย์ผู้รับผิดชอบกระบวนวิชาสำเร็จ';
+      }
+      else
+      {
+        $return['status'] = 'error';
+        $return['msg'] = 'ไม่สามารถลบข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+      }
+
+    }
+    else
+    {
+      $return['status'] = 'error';
+      $return['msg'] = 'ไม่มีอาจารย์ท่านนี้อยู่ในรายชื่อผู้รับผิดชอบอยู่แล้ว';
+    }
+  }
   public function Add_Responsible_Assessor($course_id,$group_num,$semester_id,$department_id)
   {
     if($department_id == '1202')
@@ -237,6 +267,36 @@ class Course
     {
       $return['status'] = 'error';
       $return['msg'] = 'ไม่สามารถเพิ่มข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+    }
+    return $return;
+  }
+
+  public function Remove_Responsible_Assessor($course_id,$semester_id)
+  {
+    $sql = "SELECT * FROM `subject_assessor`
+    WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$semester_id;
+    $result = $this->DB->Query($sql);
+    if($result != null)
+    {
+      $sql = "DELETE FROM `course_responsible`
+      WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$semester_id;
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        $return['status'] = 'success';
+        $return['msg'] = 'ลบคณะกรรมการสำเร็จ';
+      }
+      else
+      {
+        $return['status'] = 'error';
+        $return['msg'] = 'ไม่สามารถลบข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+      }
+
+    }
+    else
+    {
+      $return['status'] = 'error';
+      $return['msg'] = 'ไม่มีคณะกรรมการชุดนี้อยู่ในรายชื่อผู้รับผิดชอบอยู่แล้ว';
     }
     return $return;
   }
