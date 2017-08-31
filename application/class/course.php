@@ -125,7 +125,7 @@ class Course
     $sql = "SELECT * FROM department_course_responsible
     WHERE `course_id` = '".$course_id."' AND `semester_id` ='".$semester_id."'";
     $result = $this->DB->Query($sql);
-    if($result == null)
+    if($result != null)
     {
       $sql = "DELETE FROM `department_course_responsible`
       WHERE `course_id` = '".$course_id."' AND `semester_id` ='".$semester_id."'";
