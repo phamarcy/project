@@ -46,6 +46,8 @@ $current = $dlobj->Get_Current_Semester();
  <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 
  <link rel="stylesheet" href="../dist/css/scrollbar.css">
+ <script src="../dist/js/sweetalert2.min.js"></script>
+ <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
 
  <!-- validator -->
  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
@@ -247,11 +249,21 @@ window.counttr = 0;
                           }
                         }
                         else if(temp['info']==false && temp[0]==null){
-                          alert('กระบวนวิชาที่ค้นหาไม่พบในระบบ\nกรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด');
+                          swal(
+                             'พบข้อผิดพลาด!',
+                             'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
+                             'error'
+                           )
+                          //alert('กระบวนวิชาที่ค้นหาไม่พบในระบบ\nกรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด');
                           document.getElementById('id').value = "";
                          }
                          else if(temp['info']!=false && temp[0]==null){
-                           alert('ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้\nสามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง');
+                           swal(
+                              'พบข้อผิดพลาด!',
+                              'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
+                              'error'
+                            )
+                           //alert('ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้\nสามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง');
                            document.getElementById('course').value = temp['info']['course_id'];
                           }
                    },
@@ -301,6 +313,11 @@ window.counttr = 0;
                      var temp = $.parseJSON(result);
                      if(temp!=null)
                      {
+                       swal(
+                          'สำเร็จ!',
+                          'ดึงข้อมูลสำเร็จ',
+                          'success'
+                        )
                        getinfo(temp);
                      }
                      else {
@@ -517,7 +534,12 @@ window.counttr = 0;
                        var temp = $.parseJSON(result);
                        if(temp["status"]=='success')
                        {
-                         alert(temp["msg"]);
+                         swal(
+                            'สำเร็จ!',
+                            temp["msg"],
+                            'success'
+                          )
+                         //alert(temp["msg"]);
                        }
                        else {
                          alert(temp["msg"]);
@@ -917,13 +939,41 @@ function lastcal() {
     }
     else {
 
-      alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+      //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+      swal(
+        'ผิดพลาด',
+        'กรุณากรอกข้อมูลให้ครบถ้วน',
+        'error'
+      )
       return false;
     }
   }
 
   function confreset() {
-      confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
+      //confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
+      swal({
+        title: 'แน่ใจหรือไม่',
+        text: "ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then(function () {
+        document.getElementById("formheader").reset();
+        document.getElementById("form1").reset();
+        swal(
+          'เคลียร์!',
+          'รีเซ็ตข้อมูลเรียบร้อยแล้ว',
+          'success'
+        )
+      }, function (dismiss) {
+      // dismiss can be 'cancel', 'overlay',
+      // 'close', and 'timer'
+      if (dismiss === 'cancel') {
+
+      }
+    })
   }
 
  </script>
