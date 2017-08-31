@@ -20,11 +20,6 @@ class Person
     $this->DEFAULT_DB = $DATABASE['NAME'];
   }
 
-  public function Get_Person_Name()
-  {
-
-  }
-
   public function Get_All_Teacher()
   {
     $sql = "SELECT s.`code` as code,p.`name` as prefix,s.`fname`,s.`lname`

@@ -77,6 +77,9 @@ class Course
       {
         $course['id'] = $result[$i]['course_id'];
         $course['name'] = $result[$i]['course_name_en'];
+        $staff = $this->Get_Responsible_Staff($course['id'],$semester_id);
+        $course['teacher'] = $staff['teacher'];
+        $course['assessor'] = $staff['assessor'];
         array_push($DATA,$course);
       }
       return $DATA;
@@ -148,6 +151,49 @@ class Course
     }
     return $return;
   }
+
+  private function Get_Responsible_Staff($course_id,$semester_id)
+  {
+    $DATA = array();
+    $DATA['teacher'] = '';
+    $DATA['assessor'] = '';
+    //get teacher
+    $sql = "SELECT `teacher_id` FROM `course_responsible`
+    WHERE `course_id` = '".$course_id."' AND `semester_id` = '".$semester_id."'";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $teacher_id = $result[0]['teacher_id'];
+      $name = $this->PERSON->Get_Teacher_Name($teacher_id);
+      if($name)
+      {
+        $DATA['teacher'] = $name;
+      }
+      else
+      {
+        $DATA['teacher'] = null;
+      }
+    }
+    //get assessor
+    $sql = "SELECT `assessor_group_num` FROM `subject_assessor`
+    WHERE `course_id` = '".$course_id."' AND `semester_id` = '".$semester_id."'";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $group_num = $result[0]['assessor_group_num'];
+      if($group_num != null)
+      {
+        $group_num = substr($group_num,-1);
+        $DATA['assessor'] = $group_num;
+      }
+      else
+      {
+        $DATA['assessor'] = null;
+      }
+    }
+    return $DATA;
+  }
+
   public function Search_Document($type,$id)
   {
     if($type =='special')
