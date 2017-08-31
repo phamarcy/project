@@ -56,12 +56,12 @@ if(isset($_POST['type']))
   }
   else if($type == 'remove_assessor')
   {
-    if(isset($_POST['course']) && isset($_POST['semester_id']) && isset($_POST['dep_id']))
+    if(isset($_POST['course']) && isset($_POST['semester_id']))
     {
       $course_id = $_POST['course'];
-      $department_id = $_POST['dep_id'];
+
       $semester_id = $_POST['semester_id'];
-      $result = $course->Remove_Responsible_Assessor($course_id,$semester_id,$department_id);
+      $result = $course->Remove_Responsible_Assessor($course_id,$semester_id);
 
     }
     else
