@@ -11,9 +11,9 @@ $department =$person->Get_Staff_Dep($_SESSION['id']);
 
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
-/*echo "<pre>";
+echo "<pre>";
 print_r($list_course);
-echo "</pre>";*/
+echo "</pre>";
  ?>
 <html>
   <head>
@@ -32,6 +32,9 @@ echo "</pre>";*/
     <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../dist/css/scrollbar.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
     <script src="../vendor/jquery/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -39,12 +42,11 @@ echo "</pre>";*/
     <script src="../vendor/metisMenu/metisMenu.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
     <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
+    <script type="text/javascript" src="../js/function.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
-    <link rel="stylesheet" href="../dist/css/scrollbar.css">
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <title></title>
     <style>
     .panel-heading {
@@ -53,48 +55,14 @@ echo "</pre>";*/
     }
 
     </style>
-    <script type="text/javascript">
-  /*  $(document).ready(function(){
-      $("#submit").click(function(){
-        var course_id = $("#course_id").val();
-        if($.isNumeric($('#course_id').val()))
-        {
-          if(course_id.length == 6)
-          {
-              $("#course_id").css("border-color","rgb(204, 204, 204)");
-              $("#warning").css("color","green").html('บันทึกกระบวนวิชา 462533	HEALTH BEHAVIORS AND PHARMACEUTICAL CARE สำเร็จ').fadeIn().delay(1500).fadeOut();
-              $("#course_id").val('');
-          }
-          else
-          {
-              $("#course_id").css("border-color","red");
-              show_warning('<div class="glyphicon glyphicon-alert" style="color: red;"></div> กรุณากรอกข้อมูลให้ถูกต้อง');
-          }
-
-        }
-        else
-        {
-            $("#course_id").css("border-color","red");
-          show_warning('<div class="glyphicon glyphicon-alert" style="color: red;"></div> กรุณากรอกข้อมูลให้ถูกต้อง');
-        }
-      });
-      function show_warning(text)
-      {
-        $("#warning").css("color","red").html(text).fadeIn();
-      }
-    });*/
-
-
-
-
-    </script>
   </head>
   <body>
+
   <h3 class="page-header" style="margin-bottom: 0px;"><center><b>จัดการกระบวนวิชา</b></center></h3>
     <div class="container" style="margin-top:30px">
       <div class="panel panel-default">
         <div class="panel-heading">
-          ภาคเรียนที่ <?php echo $semeter['semester'];?> &nbsp;ปีการศึกษา <?php echo $semeter['year']." ";?><?php echo $department['name'] ?>
+          <b>ภาคเรียนที่ <?php echo $semeter['semester'];?> &nbsp;ปีการศึกษา <?php echo $semeter['year']." ";?><?php echo $department['name'] ?></b>
         </div>
         <div class="panel-body">
         <div class="row">
@@ -130,14 +98,15 @@ echo "</pre>";*/
                                           </div>
                                           <div class="panel-body" style="font-size:14px;">
                                         <div class="form-group">
-                                          <form id="data"  method="post">
+                                          <form  id="data"  method="post" data-toggle="validator" role="form" >
+
                                               <label for="">เพิ่มคณะกรรมการ</label>
                                               <div class="form-inline">
-                                                <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
+                                                <input type="text" class="form-control charonly" name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" required>
                                                 <input type="hidden" name="group" value="1">
                                                 <input type="hidden" name="type" value="add">
                                                 <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                                <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                <button type="submit" name="submit" class="btn btn-outline btn-primary">เพิ่ม</button>
                                               </div>
                                               <datalist id="dtl1"></datalist>
                                          </form>
@@ -663,97 +632,85 @@ echo "</pre>";*/
                               <b><b>รายชื่ออาจารย์ผู้รับผิดชอบ</b></b>
                             </div>
                             <div class="panel-body">
-                                      <div class="panel-group" id="<?php echo $value['id'] ?>">
-                                          <div class="panel panel-default">
-                                              <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
-                                                      <a data-toggle="collapse" data-parent="<?php echo $value['id'] ?>" href="#responsible_teacher_<?php echo $value['id'] ?>">อาจารย์ผู้สอน</a>
-                                                  </div>
-                                              </div>
-                                              <div id="responsible_teacher_<?php echo $value['id'] ?>" class="panel-collapse collapse">
-                                                  <div class="panel-body">
-                                                    <div class="col-md-8">
-                                                          <div class="form-group">
-                                                            <form id="addteacher"  method="post">
-                                                                <label for="">เพิ่มผู้รับผิดชอบ</label>
-                                                                <div class="form-inline">
-                                                                  <input type="text" name="responsible_teacher" class="form-control charonly" name="teacher" id="TEACHERLEC_<?php echo $value['id'] ?>" list="dtl<?php echo $value['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(<?php echo $value['id'] ?>,'responsible');" >
-                                                                  <input type="hidden" name="type" value="add">
-                                                                  <input type="hidden" name="course" value="<?php echo $value['id'] ?>">
-                                                                  <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                                                  <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                                </div>
-                                                                <datalist id="dtl<?php echo $value['id'] ?>"></datalist>
-                                                           </form>
-                                                          </div>
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group">
 
-                                                    </div>
-                                                    <table class="table" style="font-size:14px;">
-                                                      <thead>
-                                                        <th>ลำดับ</th>
-                                                        <th>ชื่อ-นามสกุล</th>
-                                                        <th></th>
-                                                      </thead>
-                                                      <tbody>
-                                                        <tr>
-                                                          <td>1</td>
-                                                          <td>อ.ดร.ภญ.ดรุณี หงษ์วิเศษ </td>
-                                                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                        </tr>
-                                                      </tbody>
-                                                    </table>
-                                                  </div>
-                                              </div>
+                                          <label for="">เพิ่มผู้รับผิดชอบ</label>
+                                          <div class="form-inline">
+                                            <form id="responsible_teacher"  method="post">
+                                              <input type="text" name="responsible_teacher" class="form-control charonly" name="teacher" id="TEACHERLEC_<?php echo $value['id'] ?>" list="dtl<?php echo $value['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(<?php echo $value['id'] ?>,'responsible');" >
+                                              <input type="hidden" name="type" value="add">
+                                              <input type="hidden" name="course" value="<?php echo $value['id'] ?>">
+                                              <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                              <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                            </form>
                                           </div>
-                                          <div class="panel panel-default">
-                                              <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px;">
-                                                      <a data-toggle="collapse" data-parent="#accordion" href="#responsible_set_<?php echo $value['id'] ?>">คณะกรรมการ</a>
-                                                  </div>
-                                              </div>
-                                              <div id="responsible_set_<?php echo $value['id'] ?>" class="panel-collapse collapse">
-                                                  <div class="panel-body">
-                                                    <div class="col-md-5">
-                                                      <div class="form-group">
-                                                          <label for="">เพิ่มชุดคณะกรรมการ</label>
-                                                          <div class="form-inline">
-                                                            <form id="addsubject" method="post">
-                                                              <input type="hidden" name="type" value="add">
-                                                              <input type="hidden" name="course_id" value="<?php echo $value['id'] ?>">
-                                                              <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                                              <select class="form-control" name="teacher_group">
-                                                                <option value="0">คณะกรรมการชุดที่ 1</option>
-                                                                <option value="1">คณะกรรมการชุดที่ 2</option>
-                                                              </select>
-                                                              <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                            </form>
-                                                          </div>
-                                                      </div>
-                                                    </div>
-                                                    <table class="table" style="font-size:14px;">
-                                                      <thead>
-                                                        <th>ลำดับ</th>
-                                                        <th>ชื่อ-นามสกุล</th>
-                                                        <th></th>
-                                                      </thead>
-                                                      <tbody>
-                                                        <form id="remove">
-                                                          <tr>
-                                                            <td>1</td>
-                                                            <td>คณะกรรมการชุดที่ 1</td>
-                                                            <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                            <input type="hidden" name="type" value="remove">
-                                                            <input type="hidden" name="course_id" value="<?php echo $value['id'] ?>">
-                                                            <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                                          </tr>
-                                                        </form>
-                                                      </tbody>
-                                                    </table>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                  <!-- .panel-body -->
-                              </div>
+
+                                          <datalist id="dtl<?php echo $value['id'] ?>"></datalist>
+                                          <table class="table" style="font-size:14px;">
+                                            <thead>
+                                              <th>ลำดับ</th>
+                                              <th>ชื่อ-นามสกุล</th>
+                                              <th></th>
+                                            </thead>
+                                            <tbody>
+                                              <?php if ($value['teacher']!=NULL): ?>
+                                                <tr>
+                                                  <td>1</td>
+                                                  <td><?php echo $value['teacher'] ?></td>
+                                                  <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                </tr>
+                                              <?php endif; ?>
+                                            </tbody>
+                                          </table>
+                                     </form>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+
+                                      <label for="">เพิ่มชุดคณะกรรมการ</label>
+                                      <div class="form-inline">
+                                          <form id="responsible_group"  method="post">
+                                            <input type="hidden" name="type" value="add">
+                                            <input type="hidden" name="course_id" value="<?php echo $value['id'] ?>">
+                                            <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                            <select class="form-control" name="teacher_group">
+                                              <option value="0">คณะกรรมการชุดที่ 1</option>
+                                              <option value="1">คณะกรรมการชุดที่ 2</option>
+                                            </select>
+                                            <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                          </form>
+                                      </div>
+                                      <table class="table" >
+                                        <thead>
+                                          <th>ลำดับ</th>
+                                          <th>ชื่อ-นามสกุล</th>
+                                          <th></th>
+                                        </thead>
+                                        <tbody>
+                                          <form id="remove">
+                                            <?php if ($value['teacher']!=NULL): ?>
+
+                                            <tr>
+                                              <td>1</td>
+                                              <td>
+                                                <?php if ($value['teacher']==1):echo "คณะกรรมการชุดที่ 1"; ?>
+                                                <?php else: echo "คณะกรรมการชุดที่ 2";  ?>
+                                                <?php endif; ?>
+                                            </td>
+                                              <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                              <input type="hidden" name="type" value="remove">
+                                              <input type="hidden" name="course_id" value="<?php echo $value['id'] ?>">
+                                              <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                            </tr>
+                                            <?php endif; ?>
+                                          </form>
+                                        </tbody>
+                                      </table>
+
+                                  </div>
+                                </div>
                             </div>
                           </div>
                         </div>
@@ -790,7 +747,7 @@ $("form#data").submit(function(){
     });
     return false;
 });
-$("form#addteacher").submit(function(){
+$("form#responsible_teacher").submit(function(){
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
     console.log(formData);
