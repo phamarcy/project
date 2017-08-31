@@ -41,11 +41,11 @@ if(isset($_POST['type']))
   {
     if(isset($_POST['course']) && isset($_POST['semester_id']) && isset($_POST['group']) && isset($_POST['dep_id']))
     {
-      $group_num = $_POST['group']
+      $group_num = $_POST['group'];
       $course_id = $_POST['course'];
       $department_id = $_POST['dep_id'];
       $semester_id = $_POST['semester_id'];
-      $result = $course->Add_Responsible_Assessor($course_id,$group_num,$semester_id,$department_id)
+      $result = $course->Add_Responsible_Assessor($course_id,$group_num,$semester_id,$department_id);
     }
     else
     {

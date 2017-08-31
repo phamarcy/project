@@ -581,7 +581,7 @@ echo "</pre>";
             <div class="panel-body">
               <div class="row">
                 <div class="col-md-10">
-                    <form id="addsubject" method="post">
+                    <form id="course" method="post">
                       <div class="form-inline">
                         <div class="form-group">
                           <label for="">วิชา</label>
@@ -612,7 +612,7 @@ echo "</pre>";
                 </thead>
                 <tbody>
                   <?php foreach ($list_course as $key => $value): ?>
-                    <form id="remove" method="post">
+                    <form id="course" method="post">
                       <tr>
                           <td><?php echo $value['id'] ?></td>
                           <td><?php echo $value['name'] ?></td>
@@ -638,11 +638,11 @@ echo "</pre>";
 
                                           <label for="">เพิ่มผู้รับผิดชอบ</label>
                                           <div class="form-inline">
-                                            <form id="responsible_teacher"  method="post">
+                                            <form id="staff"  method="post">
                                               <input type="text" name="responsible_teacher" class="form-control charonly" name="teacher" id="TEACHERLEC_<?php echo $value['id'] ?>" list="dtl<?php echo $value['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(<?php echo $value['id'] ?>,'responsible');" >
-                                              <input type="hidden" name="type" value="add">
+                                              <input type="hidden" name="type" value="add_teacher">
                                               <input type="hidden" name="course" value="<?php echo $value['id'] ?>">
-                                              <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                              <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
                                               <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
                                             </form>
                                           </div>
@@ -655,13 +655,19 @@ echo "</pre>";
                                               <th></th>
                                             </thead>
                                             <tbody>
+                                              <form id="staff" method="post">
                                               <?php if ($value['teacher']!=NULL): ?>
                                                 <tr>
                                                   <td>1</td>
                                                   <td><?php echo $value['teacher'] ?></td>
-                                                  <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                                  <input type="hidden" name="type" value="remove_teacher">
+                                                  <input type="hidden" name="course" value="<?php echo $value['id'] ?>">
+                                                  <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
+                                                  <input type="hidden" name="teacher" value="<?php echo $value['teacher'] ?>">
+                                                  <td><button type="submit" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                 </tr>
                                               <?php endif; ?>
+                                              </form>
                                             </tbody>
                                           </table>
                                      </form>
@@ -671,13 +677,15 @@ echo "</pre>";
 
                                       <label for="">เพิ่มชุดคณะกรรมการ</label>
                                       <div class="form-inline">
-                                          <form id="responsible_group"  method="post">
-                                            <input type="hidden" name="type" value="add">
-                                            <input type="hidden" name="course_id" value="<?php echo $value['id'] ?>">
-                                            <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                            <select class="form-control" name="teacher_group">
-                                              <option value="0">คณะกรรมการชุดที่ 1</option>
-                                              <option value="1">คณะกรรมการชุดที่ 2</option>
+                                          <form id="staff"  method="post">
+                                            <input type="hidden" name="type" value="add_assessor">
+                                            <input type="hidden" name="course" value="<?php echo $value['id'] ?>">
+                                            <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
+                                            <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
+
+                                            <select class="form-control" name="group">
+                                              <option value="1">คณะกรรมการชุดที่ 1</option>
+                                              <option value="2">คณะกรรมการชุดที่ 2</option>
                                             </select>
                                             <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
                                           </form>
@@ -689,7 +697,7 @@ echo "</pre>";
                                           <th></th>
                                         </thead>
                                         <tbody>
-                                          <form id="remove">
+                                          <form id="staff" method="post">
                                             <?php if ($value['teacher']!=NULL): ?>
 
                                             <tr>
@@ -698,11 +706,12 @@ echo "</pre>";
                                                 <?php if ($value['teacher']==1):echo "คณะกรรมการชุดที่ 1"; ?>
                                                 <?php else: echo "คณะกรรมการชุดที่ 2";  ?>
                                                 <?php endif; ?>
-                                            </td>
-                                              <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                              <input type="hidden" name="type" value="remove">
-                                              <input type="hidden" name="course_id" value="<?php echo $value['id'] ?>">
-                                              <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                              </td>
+                                              <td><button type="submit" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
+                                              <input type="hidden" name="type" value="remove_assessor">
+                                              <input type="hidden" name="course" value="<?php echo $value['id'] ?>">
+                                              <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
+                                              <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
                                             </tr>
                                             <?php endif; ?>
                                           </form>
@@ -747,7 +756,7 @@ $("form#data").submit(function(){
     });
     return false;
 });
-$("form#responsible_teacher").submit(function(){
+$("form#course").submit(function(){
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
     console.log(formData);
@@ -768,12 +777,12 @@ $("form#responsible_teacher").submit(function(){
     });
     return false;
 });
-$("form#addsubject").submit(function(){
+$("form#staff").submit(function(){
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
     console.log(formData);
     $.ajax({
-        url: '../../application/subject/responsible_course_department.php',
+        url: '../../application/subject/responsible_staff.php',
         type: 'POST',
         data: formData,
         async: false,
@@ -781,10 +790,9 @@ $("form#addsubject").submit(function(){
         contentType: false,
         processData: false,
         success: function (data) {
-          var msg=JSON.parse(data)
-          console.log(msg);
-          alert(msg.msg);
-          window.location.reload(false);
+
+          console.log(data);
+
         }
     });
     return false;
