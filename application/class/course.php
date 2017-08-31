@@ -194,6 +194,53 @@ class Course
     return $DATA;
   }
 
+  public function Add_Responsible_Staff($course_id,$teacher_name,$semester_id)
+  {
+    $teacher_id = $this->PERSON->Get_Teacher_Id($teacher_name);
+    $sql = "INSERT INTO `course_responsible`(`course_id`, `teacher_id`, `semester_id`)
+    VALUES ('".$course_id."','".$teacher_id."',".$semester_id.") ON DUPLICATE KEY
+    UPDATE `teacher_id` = '".$teacher_id."', `semester_id` = ".$semester_id;
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $return['status'] = 'success';
+      $return['msg'] = 'เพิ่มอาจารย์ผู้รับผิดชอบกระบวนวิชาสำเร็จ';
+    }
+    else
+    {
+      $return['status'] = 'error';
+      $return['msg'] = 'ไม่สามารถเพิ่มข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+    }
+    return $return;
+  }
+
+  public function Add_Responsible_Assessor($course_id,$group_num,$semester_id,$department_id)
+  {
+    if($department_id == '1202')
+    {
+      $group_num = '1'.$group_num;
+    }
+    else if($department_id == '1203')
+    {
+      $group_num = '2'.$group_num;
+    }
+    $sql = "INSERT INTO `subject_assessor`(`course_id`, `assessor_group_num`, `semester_id`)
+    VALUES ('".$course_id."','".$group_num."',".$semester_id.") ON DUPLICATE KEY
+    UPDATE `assessor_group_num` = '".$group_num."', `semester_id` = ".$semester_id;
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $return['status'] = 'success';
+      $return['msg'] = 'เพิ่มคณะกรรมการสำเร็จ';
+    }
+    else
+    {
+      $return['status'] = 'error';
+      $return['msg'] = 'ไม่สามารถเพิ่มข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+    }
+    return $return;
+  }
+
   public function Search_Document($type,$id)
   {
     if($type =='special')
