@@ -59,7 +59,6 @@ if(isset($_POST['type']))
     if(isset($_POST['course']) && isset($_POST['semester_id']))
     {
       $course_id = $_POST['course'];
-
       $semester_id = $_POST['semester_id'];
       $result = $course->Remove_Responsible_Assessor($course_id,$semester_id);
 

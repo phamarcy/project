@@ -56,7 +56,20 @@ public function Update($data,$type)
     }
 
   }
-
+  public function Search_Semester_id($semester,$year)
+  {
+    $sql = "SELECT `semester_id` FROM `semester` WHERE `semester_num` = ".$semester." AND `year` = '".$year."'";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $semester_id = $result[0]['semester_id'];
+      return $semester_id;
+    }
+    else
+    {
+      return false;
+    }
+  }
   public function Get_Semester_id($semester,$year)
   {
     //Search semester id form semester table
@@ -85,7 +98,7 @@ public function Update($data,$type)
       }
       else {
         $this->LOG->Write("Error : insert new semester failed");
-        return $false;
+        return false;
       }
     }
     else //if exist search semester id

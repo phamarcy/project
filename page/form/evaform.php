@@ -622,7 +622,7 @@ function checksubject(btntype,type){
                            document.getElementById('semester').appendChild(opt);
                          }
                        }
-                       else if(temp['info']==false && temp[0]==null){
+                       else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
                          swal(
                             'พบข้อผิดพลาด!',
                             'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
@@ -642,6 +642,16 @@ function checksubject(btntype,type){
                           document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
                           document.getElementById('NAME_TH_COURSE').value = temp['info']['course_name_th'];
                           document.getElementById('TOTAL').value = temp['info']['credit']+"("+temp['info']['hr_lec']+"-"+temp['info']['hr_lab']+"-"+temp['info']['hr_self']+")";
+                        }
+                        else {
+                          if($('#id').val()=="" ||$('#id').val()==null )
+                          {
+                            swal(
+                               'พบข้อผิดพลาด!',
+                               'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
+                               'error'
+                             )
+                          }
                         }
 
                   },
