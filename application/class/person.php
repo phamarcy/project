@@ -105,7 +105,7 @@ class Person
     }
 
   }
-  private function Get_Teacher_Id($teacher_name)
+  public function Get_Teacher_Id($teacher_name)
   {
     $name = explode(" ",$teacher_name);
     $name_space = count($name);
