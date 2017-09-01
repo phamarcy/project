@@ -8,13 +8,13 @@ $deadline = new Deadline;
 $course = new course;
 $semeter= $deadline->Get_Current_Semester();
 $department =$person->Get_Staff_Dep($_SESSION['id']);
-
+$dep_js=$department['code'];
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History();
-echo "<pre>";
-print_r($history);
-echo "</pre>";
+/*echo "<pre>";
+print_r($department);
+echo "</pre>";*/
  ?>
 <html>
   <head>
@@ -47,6 +47,8 @@ echo "</pre>";
     <script type="text/javascript" src="../js/function.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="../dist/js/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
 
     <title></title>
     <style>
@@ -237,9 +239,9 @@ echo "</pre>";
                           <div class="form-inline">
                             <center>
                               <form id="history">
-                                <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history1"   value="1/2557"><b>1/2557</b></button>
-                                <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history2"   value="1/2558"><b>1/2558</b></button>
-                                <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history3"  value="1/2559"><b>1/2559</b></button>
+                                <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history1"  onclick="submitForm('1/2557')"><b>1/2557</b></button>
+                                <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history2"  onclick="submitForm('1/2558')"><b>1/2558</b></button>
+                                <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history3"onclick="submitForm('1/2559')" ><b>1/2559</b></button>
                               </form>
                             </center>
                           </div>
@@ -749,9 +751,17 @@ $("form#data").submit(function(){
         processData: false,
         success: function (data) {
           var msg=JSON.parse(data)
-          console.log(msg);
-          alert(msg.msg);
-          window.location.reload(false);
+          swal({
+            type:msg.status,
+            text: msg.msg,
+            timer: 2000,
+            confirmButtonText: "Ok!",
+          }, function(){
+            window.location.reload();
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 3000);
         }
     });
     return false;
@@ -770,9 +780,17 @@ $("form#course").submit(function(){
         processData: false,
         success: function (data) {
           var msg=JSON.parse(data)
-          console.log(msg);
-          alert(msg.msg);
-          window.location.reload(false);
+          swal({
+            type:msg.status,
+            text: msg.msg,
+            timer: 2000,
+            confirmButtonText: "Ok!",
+          }, function(){
+            window.location.reload();
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 3000);
         }
     });
     return false;
@@ -791,7 +809,18 @@ $("form#staff").submit(function(){
         processData: false,
         success: function (data) {
 
-          console.log(data);
+          var msg=JSON.parse(data)
+          swal({
+            type:msg.status,
+            text: msg.msg,
+            timer: 2000,
+            confirmButtonText: "Ok!",
+          }, function(){
+            window.location.reload();
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 3000);
 
         }
     });
@@ -800,7 +829,7 @@ $("form#staff").submit(function(){
 $("form#remove").submit(function(){
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
-    console.log("formData");
+    console.log(formData);
     $.ajax({
         url: '../../application/subject/responsible_course_department.php',
         type: 'POST',
@@ -818,26 +847,31 @@ $("form#remove").submit(function(){
     });
     return false;
 });
-$("form#history").submit(function(){
+function submitForm(num){
 
-    //var myvar = $('#semester_history').val();
-    var data="123";
-    console.log(data);
+  var data = new FormData;
+  var dep_id =<?php echo $dep_js ?>;
+
+  JSON.stringify(num);
+  JSON.stringify(dep_id);
+  data.append("semester_id",num);
+  data.append("department_id",dep_id);
     $.ajax({
         url: '../../application/subject/responsible_history.php',
         type: 'POST',
-        data: { field1: "hello", field2 : "hello2"} ,
+        data: data,
         async: false,
         cache: false,
         contentType: false,
         processData: false,
-
         success: function (data) {
-          alert(data);
+
+          console.log(data);
+
         }
     });
     return false;
-});
+}
 
     function searchname(no,type) {
       var name_s = $("#TEACHERLEC_"+no).val();
