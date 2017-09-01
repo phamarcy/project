@@ -1,128 +1,25 @@
 <?php
-require_once(__DIR__.'/../config/configuration_variable.php');
 require_once(__DIR__.'/../class/manage_deadline.php');
-require_once(__DIR__.'/../class/database.php');
-require_once(__DIR__.'/../class/course.php');
 require_once(__DIR__.'/../class/approval.php');
 require_once('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
 define('FPDF_FONTPATH','font/');
-$deadline = new Deadline();
-$semester = $deadline->Get_Current_Semester();
-$db = new Database();
+
+$file_path = '';
 // var_dump($_POST);
 if(isset($_POST['DATA']))
 {
-
 	$data = $_POST['DATA'];
 	$DATA = json_decode($data,true);
-	$fname = $DATA['TEACHERDATA']['FNAME'];
-	$lname = $DATA['TEACHERDATA']['LNAME'];
-	$course_id  = $DATA['COURSEDATA']['COURSE_ID'];
-	$sql = "SELECT `instructor_id` FROM `special_instructor` WHERE `firstname` = '".$fname."' AND `lastname` = '".$lname."'";
-	$result = $db->Query($sql);
-	if($result == null)
-	{
-		$sql="INSERT INTO `special_instructor`(`firstname`, `lastname`) VALUES ('".$fname."','".$lname."')";
-		$result = $db->Insert_Update_Delete($sql);
-		if($result)
-		{
-			$sql = "SELECT LPAD( LAST_INSERT_ID(),11,'0') as id";
-			$temp_id = $db->Query($sql);
-			if($temp_id)
-			{
-				$instructor_id = $temp_id[0]['id'];
-			}
-			else
-			{
-				die("error");
-			}
-		}
-		else
-		{
-			die("error");
-		}
-	}
-	else
-	{
-		$instructor_id = $result[0]['instructor_id'];
-	}
-	if(isset($_FILES['cv']))
-	{
-  	$file = $_FILES['cv'];
-		Upload($file,$instructor_id);
-	}
-	Write_temp_data($data,$instructor_id);
-	if($DATA['SUBMIT_TYPE'] == '2')
-	{
-		$return['status'] = "success";
-		$return['msg'] = "บันทึกสำเร็จ";
-		echo json_encode($return);
-		die;
-	}
-	else if($DATA['SUBMIT_TYPE'] == '1')
-	{
-		$file_path = $FILE_PATH."/draft/".$course_id;
-		if(!file_exists($file_path))
-		{
-			mkdir($file_path);
-		}
-		$file_path = $file_path."/special_instructor";
-		if(!file_exists($file_path))
-		{
-			mkdir($file_path);
-		}
-	}
+	$file_path = $DATA['FILE_PATH'];
+	$instructor_id = $DATA['ID'];
+	$semester = $DATA['SEMESTER'];
 }
 else
 {
 	$return['status'] = "error";
 	$return['msg'] = 'ไม่มีข้อมูลนำเข้า';
 	echo json_encode($return);
-}
-function Upload($file,$course_id,$instructor_id)
-{
-	global $FILE_PATH;
-	$path = $FILE_PATH."/cv";
-	$filename = $file['name'];
-	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-	$uploadfile = $path."/".$course_id.'_'.$instructor_id."_".$semester['semester']."_".$semester['year'].'.'.$ext;
-	if (!move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
-	{
-		$return['status'] = "error";
-		$return['msg'] = 'ไม่สามารถบันทึกไฟล์ CV ได้';
-		echo json_encode($return);
-    die();
-	}
-}
-function Write_temp_data($temp_data,$instructor_id)
-{
-	global $semester;
-	$data = json_decode($temp_data,true);
-	$path = Create_Folder($data['COURSEDATA']['COURSE_ID'],'special_instructor');
-	$temp_file = fopen($path."/".$instructor_id."_".$semester['semester']."_".$semester['year'].".txt", "w");
-	fwrite($temp_file, $temp_data);
-	fclose($temp_file);
-
-}
-function Create_Folder($course_id,$type)
-{
-	$temp_path = __DIR__.'/../../files/temp';
-	if(!file_exists($temp_path))
-	{
-		mkdir($temp_path);
-	}
-	$course_path = $temp_path."/".$course_id;
-	if(!file_exists($course_path))
-	{
-		mkdir($course_path);
-	}
-	$type_path = $course_path."/".$type;
-	if(!file_exists($type_path))
-	{
-		mkdir($type_path);
-	}
-	return $type_path;
 }
 
 //start generate pdf
@@ -576,19 +473,13 @@ $pdf->SetX($money_position-17);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
 
 //update approval special instructor
-$approve = new approval('1');
-$result = $approve->Append_Special_Instructor($DATA['COURSEDATA']['COURSE_ID'],$instructor_id);
-if(isset($result['error']))
-{
-	$return['status'] = "error";
-  $return['msg'] = $result['error'];
-	echo json_encode($return);
-	die;
-}
+
+
 //end update
 
-
 //check if document is approve
+if(isset($DATA['APPROVED']))
+{
 $pdf->Ln();
 $pdf->SetX(20);
 $pdf->Cell(0+5,7,iconv( 'UTF-8','TIS-620',' การขอเชิญอาจารย์พิเศษนี้ได้ผ่านความเห็นชอบของกรรมการวิชาการภาควิชาฯ แล้ว เมื่อวันที่ '.date(" j ").'   เดือน   '.$THAI_MONTH[date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0,1);
@@ -605,9 +496,11 @@ $pdf->Cell(0,7,iconv('UTF-8','TIS-620','หัวหน้าภาควิช�
 
 $pdf->SetX($money_position-20);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.'10'.'   เดือน   '.'กันยายน'.'   พ.ศ.   '.'2560'),0);
+}
+
 $pdf->Output($file_path."/".$DATA['COURSEDATA']['COURSE_ID']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
 
-//end check
+
 
 $return['status'] = "success";
 $return['msg'] = "บันทึกสำเร็จ";

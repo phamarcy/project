@@ -1,0 +1,162 @@
+<?php
+require_once(__DIR__.'/../config/configuration_variable.php');
+require_once(__DIR__.'/../class/manage_deadline.php');
+require_once(__DIR__.'/../class/database.php');
+require_once(__DIR__.'/../class/course.php');
+require_once(__DIR__.'/../class/approval.php');
+require_once(__DIR__.'/../class/curl.php');
+$curl = new CURL();
+$db = new Database();
+$deadline = new Deadline();
+$semester = $deadline->Get_Current_Semester();
+if(isset($_POST['DATA']))
+{
+
+	$data = $_POST['DATA'];
+	$DATA = json_decode($data,true);
+	$fname = $DATA['TEACHERDATA']['FNAME'];
+	$lname = $DATA['TEACHERDATA']['LNAME'];
+	$course_id  = $DATA['COURSEDATA']['COURSE_ID'];
+	$sql = "SELECT `instructor_id` FROM `special_instructor` WHERE `firstname` = '".$fname."' AND `lastname` = '".$lname."'";
+	$result = $db->Query($sql);
+	if($result == null)
+	{
+		$sql="INSERT INTO `special_instructor`(`firstname`, `lastname`) VALUES ('".$fname."','".$lname."')";
+		$result = $db->Insert_Update_Delete($sql);
+		if($result)
+		{
+			$sql = "SELECT LPAD( LAST_INSERT_ID(),11,'0') as id";
+			$temp_id = $db->Query($sql);
+			if($temp_id)
+			{
+				$instructor_id = $temp_id[0]['id'];
+			}
+			else
+			{
+				die("error");
+			}
+		}
+		else
+		{
+			die("error");
+		}
+	}
+	else
+	{
+		$instructor_id = $result[0]['instructor_id'];
+	}
+	if(isset($_FILES['cv']))
+	{
+  	$file = $_FILES['cv'];
+		Upload($file,$instructor_id);
+	}
+	Write_temp_data($data,$instructor_id);
+	if($DATA['SUBMIT_TYPE'] == '2')
+	{
+		$return['status'] = "success";
+		$return['msg'] = "บันทึกสำเร็จ";
+		echo json_encode($return);
+		die;
+	}
+	else if($DATA['SUBMIT_TYPE'] == '1')
+	{
+		$file_path = $FILE_PATH."/draft/".$course_id;
+		if(!file_exists($file_path))
+		{
+			mkdir($file_path);
+		}
+		$file_path = $file_path."/special_instructor";
+		if(!file_exists($file_path))
+		{
+			mkdir($file_path);
+		}
+    $data = array();
+    $DATA['ID'] = $instructor_id;
+    $DATA["FILE_PATH"] = $file_path;
+    $DATA['SEMESTER'] = $semester;
+    $data['DATA'] = json_encode($DATA);
+    $gen_result = Generate($data);
+    $gen_result = json_decode($gen_result,true);
+    if($gen_result['status'] == 'success')
+    {
+      $approve = new approval('1');
+      $result = $approve->Append_Special_Instructor($DATA['COURSEDATA']['COURSE_ID'],$instructor_id);
+      if($result)
+      {
+        $return['status'] = "success";
+        $return['msg'] = "บันทึกสำเร็จ";
+      }
+      else
+      {
+        $return['status'] = "error";
+        $return['msg'] = 'ไม่สามารถบัทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+      }
+    }
+    else
+    {
+      $return['status'] = "error";
+      $return['msg'] = 'ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+    }
+    echo json_encode($return);
+    die;
+	}
+}
+else
+{
+	$return['status'] = "error";
+	$return['msg'] = 'ไม่มีข้อมูลนำเข้า';
+	echo json_encode($return);
+}
+function Generate($data)
+{
+  global $curl;
+  $path = "application/pdf/special_instructor.php";
+  return $curl->Request($data,$path);
+}
+function Upload($file,$course_id,$instructor_id)
+{
+	global $FILE_PATH;
+	$path = $FILE_PATH."/cv";
+	$filename = $file['name'];
+	$ext = pathinfo($filename, PATHINFO_EXTENSION);
+	$uploadfile = $path."/".$course_id.'_'.$instructor_id."_".$semester['semester']."_".$semester['year'].'.'.$ext;
+	if (!move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
+	{
+		$return['status'] = "error";
+		$return['msg'] = 'ไม่สามารถบันทึกไฟล์ CV ได้';
+		echo json_encode($return);
+    die();
+	}
+}
+function Write_temp_data($temp_data,$instructor_id)
+{
+	global $semester;
+	$data = json_decode($temp_data,true);
+	$path = Create_Folder($data['COURSEDATA']['COURSE_ID'],'special_instructor');
+	$temp_file = fopen($path."/".$instructor_id."_".$semester['semester']."_".$semester['year'].".txt", "w");
+	fwrite($temp_file, $temp_data);
+	fclose($temp_file);
+
+}
+function Create_Folder($course_id,$type)
+{
+	$temp_path = __DIR__.'/../../files/temp';
+	if(!file_exists($temp_path))
+	{
+		mkdir($temp_path);
+	}
+	$course_path = $temp_path."/".$course_id;
+	if(!file_exists($course_path))
+	{
+		mkdir($course_path);
+	}
+	$type_path = $course_path."/".$type;
+	if(!file_exists($type_path))
+	{
+		mkdir($type_path);
+	}
+	return $type_path;
+}
+
+
+ ?>

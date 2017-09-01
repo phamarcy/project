@@ -1,68 +1,17 @@
 <?php
 require_once(__DIR__.'/../config/configuration_variable.php');
-require_once(__DIR__.'/../class/manage_deadline.php');
 require_once(__DIR__.'/../class/approval.php');
 require_once('example_data.php');
 require('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
-$deadline = new Deadline();
-$semester = $deadline->Get_Current_Semester();
+
 $file_path = '';
 if(isset($_POST['DATA']))
 {
 	$data = $_POST['DATA'];
 	$DATA = json_decode($data,true);
-	if(isset($_FILES['file']))
-	{
-  	$file = $_FILES['file'];
-		Upload($file,$DATA['COURSE_ID']);
-	}
-	if($DATA['SUBMIT_TYPE'] == '0')
-	{
-		$return['status'] = "success";
-		$return['msg'] = 'อัพโหลดไฟล์เรียบร้อยแล้ว';
-		echo json_encode($return);
-		die;
-	}
-	if($DATA['SUBMIT_TYPE'] != '0' && $DATA['SUBMIT_TYPE'] != '3')
-	{
-		Write_temp_data($data);
-	}
-
-	if($DATA['SUBMIT_TYPE'] == '2')
-	{
-		$return['status'] = "success";
-		$return['msg'] = "บันทึกสำเร็จ";
-		echo json_encode($return);
-		die;
-			// Write_temp_data($data);
-	}
-	else if($DATA['SUBMIT_TYPE'] == '1')
-	{
-		$file_path = $FILE_PATH."/draft/".$DATA['COURSE_ID'];
-		if(!file_exists($file_path))
-		{
-			mkdir($file_path);
-		}
-		$file_path = $file_path."/evaluate";
-		if(!file_exists($file_path))
-		{
-			mkdir($file_path);
-		}
-	}
-	else if($DATA['SUBMIT_TYPE'] == '3')
-	{
-		$file_path = $FILE_PATH."/complete/".$DATA['COURSE_ID'];
-		if(!file_exists($file_path))
-		{
-			mkdir($file_path);
-		}
-		$file_path = $file_path."/evaluate";
-		if(!file_exists($file_path))
-		{
-			mkdir($file_path);
-		}
-	}
+	$file_path = $DATA['FILE_PATH'];
+	$semester = $DATA['SEMESTER'];
 	//var_dump($DATA);
 }
 else
@@ -70,50 +19,7 @@ else
 	$return['status'] = "error";
 	$return['msg'] = 'ไม่มีข้อมูลนำเข้า';
 	echo json_encode($return);
-}
-function Upload($file,$course_id)
-{
-	global $FILE_PATH;
-	$path = $FILE_PATH."/syllabus";
-	$filename = $file['name'];
-	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-	$uploadfile = $path."/".$course_id.'.'.$ext;
-	if (!move_uploaded_file($file['tmp_name'], $uploadfile))
-	{
-		$return['status'] = "error";
-		$return['msg'] = 'ไม่สามารถบันทึกไฟล์ course syllabus ได้';
-		echo json_encode($return);
-    die();
-	}
-}
-function Write_temp_data($temp_data)
-{
-	global $semester;
-	$data = json_decode($temp_data,true);
-	$path = Create_Folder($data['COURSE_ID'],'evaluate');
-	$temp_file = fopen($path."/".$data['COURSE_ID']."_evaluate_".$semester['semester']."_".$semester['year'].".txt", "w");
-	fwrite($temp_file, $temp_data);
-	fclose($temp_file);
-
-}
-function Create_Folder($course_id,$type)
-{
-	$temp_path = __DIR__.'/../../files/temp';
-	if(!file_exists($temp_path))
-	{
-		mkdir($temp_path);
-	}
-	$course_path = $temp_path."/".$course_id;
-	if(!file_exists($course_path))
-	{
-		mkdir($course_path);
-	}
-	$type_path = $course_path."/".$type;
-	if(!file_exists($type_path))
-	{
-		mkdir($type_path);
-	}
-	return $type_path;
+	die;
 }
 
 //start generate pdf
@@ -589,26 +495,11 @@ $pdf->Ln();
 $pdf->SetX(35);
 $pdf->Cell(0,7,iconv('UTF-8','cp874','(ผู้รับผิดชอบกระบวนวิชา)'),0,1);
 
-//change doc status from wating for create to pending
-$approve = new approval('1');
-$result = $approve->Update_Status_Evaluate($DATA['COURSE_ID'],'2','all','');
-if($result)
-{
-	$return['status'] = "success";
-	$return['msg'] = "บันทึกสำเร็จ";
-}
-else
-{
-	$return['status'] = "error";
-	$return['msg'] = 'ไม่สามารถอัพเดทข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
 
-}
-
-//end change
 
 ///check if docment is approved
 
-if($DATA['SUBMIT_TYPE'] == '3')
+if(isset($DATA['APPROVED']))
 {
 //if approve
 	$pdf->Ln();
@@ -634,5 +525,6 @@ if($DATA['SUBMIT_TYPE'] == '3')
 
 //save file
 $pdf->Output($file_path."/".$DATA['COURSE_ID']."_evaluate_".$semester['semester']."_".$semester['year'].".pdf","F");
+$return['status'] = "success";
 echo json_encode($return);
 ?>

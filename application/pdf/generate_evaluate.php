@@ -8,6 +8,7 @@ $deadline = new Deadline();
 $semester = $deadline->Get_Current_Semester();
 $curl = new CURL();
 $file_path = '';
+
 if(isset($_POST['DATA']))
 {
 	$data = $_POST['DATA'];
@@ -49,9 +50,37 @@ if(isset($_POST['DATA']))
 		{
 			mkdir($file_path);
 		}
+    $data = array();
     $DATA["SECTION"] = '1';
     $DATA["STUDENT"] = $DATA["STUDENT"][0];
+    $DATA["FILE_PATH"] = $file_path;
+    $DATA['SEMESTER'] = $semester;
+    $data['DATA'] = json_encode($DATA);
+    $gen_result =  Generate($data);
+    $gen_result = json_decode($gen_result,true);
 
+    if($gen_result['status'] == 'success')
+    {
+      $approve = new approval('1');
+      $result = $approve->Update_Status_Evaluate($DATA['COURSE_ID'],'2','all','');
+      if($result)
+      {
+        $return['status'] = "success";
+        $return['msg'] = "บันทึกสำเร็จ";
+      }
+      else
+      {
+        $return['status'] = "error";
+        $return['msg'] = 'ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+      }
+    }
+    else
+    {
+      $return['status'] = "error";
+      $return['msg'] = 'ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+    }
+    echo json_encode($return);
+    die;
 	}
 	else if($DATA['SUBMIT_TYPE'] == '3')
 	{
@@ -67,12 +96,16 @@ if(isset($_POST['DATA']))
 		}
     $num_section = $DATA["SECTION"];
     $num_student = $DATA["STUDENT"];
+    $DATA['SEMESTER'] = $semester;
+    $DATA['FILE_PATH'] = $file_path;
+    $DATA['APPROVED'] = array();
     for($i=0;$i<$num_section;$i++)
     {
+      $data = array();
       $DATA["SECTION"] = $i+1;
       $DATA["STUDENT"] = $num_student[$i];
-      $DATA = json_encode($DATA);
-      echo Generate($DATA);
+      $data['DATA'] = json_encode($DATA);
+      echo Generate($data);
     }
 	}
 	//var_dump($DATA);
@@ -129,6 +162,7 @@ function Create_Folder($course_id,$type)
 }
 function Generate($data)
 {
+  global $curl;
   $path = "application/pdf/course_evaluate.php";
   return $curl->Request($data,$path);
 }
