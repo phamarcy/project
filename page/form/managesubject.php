@@ -864,7 +864,8 @@ function submitForm(num){
         contentType: false,
         processData: false,
         success: function (data) {
-          alert(data);
+          var msg=JSON.parse(data)
+          alert(msg.msg);
         }
     });
     return false;
