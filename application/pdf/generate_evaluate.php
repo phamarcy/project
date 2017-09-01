@@ -4,6 +4,8 @@ require_once(__DIR__.'/../class/manage_deadline.php');
 require_once(__DIR__.'/../class/approval.php');
 require_once(__DIR__.'/../class/curl.php');
 require_once(__DIR__.'/../lib/thai_date.php');
+require_once(__DIR__.'/../class/log.php');
+$log = new Log();
 $deadline = new Deadline();
 $semester = $deadline->Get_Current_Semester();
 $curl = new CURL();
@@ -125,10 +127,45 @@ function Upload($file,$course_id)
 	$uploadfile = $path."/".$course_id.'.'.$ext;
 	if (!move_uploaded_file($file['tmp_name'], $uploadfile))
 	{
-		$return['status'] = "error";
-		$return['msg'] = 'ไม่สามารถบันทึกไฟล์ course syllabus ได้';
-		echo json_encode($return);
-    die();
+    $err_status = $file['error'];
+    switch ($err_status) {
+           case UPLOAD_ERR_INI_SIZE:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ ไฟล์มีขนาดใหญ่เกินไป";
+               $log->Write("The uploaded file exceeds the upload_max_filesize directive in php.ini");
+               break;
+           case UPLOAD_ERR_FORM_SIZE:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ ไฟล์มีขนาดใหญ่เกินไป";
+               $log->Write("The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form");
+               break;
+           case UPLOAD_ERR_PARTIAL:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ กรุณาติดต่อผู้ดูแลระบบ";
+               $log->Write("The uploaded file was only partially uploaded");
+               break;
+           case UPLOAD_ERR_NO_FILE:
+               $message = "ไม่พบไฟล์";
+               $log->Write("No file was uploaded");
+               break;
+           case UPLOAD_ERR_NO_TMP_DIR:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ กรุณาติดต่อผู้ดูแลระบบ";
+               $log->Write("Missing a temporary folder");
+               break;
+           case UPLOAD_ERR_CANT_WRITE:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ กรุณาติดต่อผู้ดูแลระบบ";
+               $log->Write("Failed to write file to disk");
+               break;
+           case UPLOAD_ERR_EXTENSION:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ กรุณาติดต่อผู้ดูแลระบบ";
+               $log->Write("File upload stopped by extension");
+               break;
+           default:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ กรุณาติดต่อผู้ดูแลระบบ";
+               $log->Write("Unknown upload error");
+               break;
+             }
+             $return['status'] = "error";
+             $return['msg'] = $message;
+             echo json_encode($return);
+              die();
 	}
 }
 function Write_temp_data($temp_data)

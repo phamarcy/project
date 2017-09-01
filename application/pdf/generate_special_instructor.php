@@ -5,6 +5,8 @@ require_once(__DIR__.'/../class/database.php');
 require_once(__DIR__.'/../class/course.php');
 require_once(__DIR__.'/../class/approval.php');
 require_once(__DIR__.'/../class/curl.php');
+require_once(__DIR__.'/../class/log.php');
+$log = new Log();
 $curl = new CURL();
 $db = new Database();
 $deadline = new Deadline();
@@ -45,10 +47,10 @@ if(isset($_POST['DATA']))
 	{
 		$instructor_id = $result[0]['instructor_id'];
 	}
-	if(isset($_FILES['cv']))
+	if(isset($_FILES['file']))
 	{
-  	$file = $_FILES['cv'];
-		Upload($file,$instructor_id);
+  	$file = $_FILES['file'];
+		Upload($file,$course_id,$instructor_id);
 	}
 	Write_temp_data($data,$instructor_id);
 	if($DATA['SUBMIT_TYPE'] == '2')
@@ -115,15 +117,51 @@ function Generate($data)
 }
 function Upload($file,$course_id,$instructor_id)
 {
-	global $FILE_PATH;
+	global $FILE_PATH,$semester,$log;
 	$path = $FILE_PATH."/cv";
 	$filename = $file['name'];
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
 	$uploadfile = $path."/".$course_id.'_'.$instructor_id."_".$semester['semester']."_".$semester['year'].'.'.$ext;
-	if (!move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
+	if (!move_uploaded_file($file['tmp_name'], $uploadfile))
 	{
+    $err_status = $file['error'];
+    switch ($err_status) {
+           case UPLOAD_ERR_INI_SIZE:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ ไฟล์มีขนาดใหญ่เกินไป";
+               $log->Write("The uploaded file exceeds the upload_max_filesize directive in php.ini");
+               break;
+           case UPLOAD_ERR_FORM_SIZE:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ ไฟล์มีขนาดใหญ่เกินไป";
+               $log->Write("The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form");
+               break;
+           case UPLOAD_ERR_PARTIAL:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ กรุณาติดต่อผู้ดูแลระบบ";
+               $log->Write("The uploaded file was only partially uploaded");
+               break;
+           case UPLOAD_ERR_NO_FILE:
+               $message = "ไม่พบไฟล์";
+               $log->Write("No file was uploaded");
+               break;
+           case UPLOAD_ERR_NO_TMP_DIR:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ กรุณาติดต่อผู้ดูแลระบบ";
+               $log->Write("Missing a temporary folder");
+               break;
+           case UPLOAD_ERR_CANT_WRITE:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ กรุณาติดต่อผู้ดูแลระบบ";
+               $log->Write("Failed to write file to disk");
+               break;
+           case UPLOAD_ERR_EXTENSION:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ กรุณาติดต่อผู้ดูแลระบบ";
+               $log->Write("File upload stopped by extension");
+               break;
+
+           default:
+               $message = "ไม่สามารถอัพโหลดไฟล์ได้ กรุณาติดต่อผู้ดูแลระบบ";
+               $log->Write("Unknown upload error");
+               break;
+       }
 		$return['status'] = "error";
-		$return['msg'] = 'ไม่สามารถบันทึกไฟล์ CV ได้';
+		$return['msg'] = $message;
 		echo json_encode($return);
     die();
 	}
