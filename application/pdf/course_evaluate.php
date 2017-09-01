@@ -24,7 +24,10 @@ if(isset($_POST['DATA']))
 		echo json_encode($return);
 		die;
 	}
-	Write_temp_data($data);
+	if($DATA['SUBMIT_TYPE'] != '0' && $DATA['SUBMIT_TYPE'] != '3')
+	{
+		Write_temp_data($data);
+	}
 
 	if($DATA['SUBMIT_TYPE'] == '2')
 	{
