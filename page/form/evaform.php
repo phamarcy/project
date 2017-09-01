@@ -204,8 +204,8 @@ function searchname(no,type) {
   function section_box() {
     var sec = document.getElementById("SECTION");
     var i;
-    if (sec.value == 0) {
-      for (i = 1; i <= 5; i++) {
+    if (sec.value == 1) {
+      for (i = 2; i <= 5; i++) {
         document.getElementById("secdiv" + i).style.display = "none";
         document.getElementById('secdiv' + i).classList.add('hide');
         document.getElementById("ENROLL" + i).style.display = "none";
@@ -213,7 +213,7 @@ function searchname(no,type) {
       }
     } else {
 
-      for (i = 1; i <= 5; i++) {
+      for (i = 2; i <= 5; i++) {
         document.getElementById("secdiv" + i).style.display = "none";
         document.getElementById('secdiv' + i).classList.add('hide');
         document.getElementById('ENROLL' + i).style.display = "none";
@@ -223,7 +223,7 @@ function searchname(no,type) {
         }
       }
 
-      for (i = 1; i <= sec.value; i++) {
+      for (i = 2; i <= sec.value; i++) {
         document.getElementById("secdiv" + i).style.display = "";
         document.getElementById('secdiv' + i).classList.remove('hide');
         document.getElementById('ENROLL' + i).style.display = "";
@@ -429,7 +429,13 @@ function getinfo(temp) {
   $('input[name="NORORSPE"][value=' + choice1 + ']').prop('checked', true);
   document.getElementById('NAME_ENG_COURSE').value = temp['NAMEENG'];
   document.getElementById('NAME_TH_COURSE').value = temp['NAMETH'];
-  document.getElementById('ENROLL').value = temp['STUDENT'];
+
+  for (var i = 0; i <temp['SECTION']; i++) {
+    document.getElementById("secdiv" + (i+1)).style.display = "";
+    document.getElementById('secdiv' + (i+1)).classList.remove('hide');
+    document.getElementById('ENROLL'+(i+1)).style.display = "";
+    document.getElementById('ENROLL'+(i+1)).value = temp['STUDENT'][i];
+  }
   document.getElementById('TOTAL').value = temp['CREDIT']['TOTAL'];
 
   //part2
@@ -811,6 +817,14 @@ function submitfunc(casesubmit) {
       comfinlec = cfle;
       comfinlab = cfla;
 
+      //pack SECTION
+      var sectionobj = {};
+      var section = [];
+      for(var i=1;i<=document.getElementById("SECTION").value;i++)
+      {
+        section[i-1] = document.getElementById('ENROLL'+i).value;
+      }
+      sectionobj = section;
 
 
       var data = {
@@ -819,7 +833,7 @@ function submitfunc(casesubmit) {
         'NORORSPE' : document.querySelector("input[name='NORORSPE']:checked").value,
         'NAMETH' : document.getElementById("NAME_TH_COURSE").value,
         'NAMEENG' : document.getElementById("NAME_ENG_COURSE").value,
-        'STUDENT' : document.getElementById("ENROLL").value,
+        'STUDENT' : sectionobj,
         'CREDIT' : {
           'TOTAL' : document.getElementById("TOTAL").value
         },
@@ -944,6 +958,7 @@ function submitfunc(casesubmit) {
         'SUBMIT_TYPE' : casesubmit
       };
 
+    console.log(JSON.stringify(data));
     senddata(JSON.stringify(data),getfile('1'));
   }
   else if(casesubmit=='0')
@@ -1503,10 +1518,11 @@ function confreset() {
           <div class="form-group">
             &nbsp;จำนวนตอน (ทั้งหมด) &nbsp;
             <select class="form-control required" id="SECTION" name="SECTION" style="width: 70px;" required onchange="section_box()" >
-              <option value='0' selected>0</option>
+              <option value="1" selected>1</option>
             <?php
-            for ($i=1; $i <=5 ; $i++) {
-              echo "<option value=".$i.">".$i."</option>";
+            for($i=2;$i<=5;$i++)
+            {
+              echo '<option value="'.$i.'">'.$i.'</option>';
             }
              ?>
             </select>
@@ -1527,9 +1543,10 @@ function confreset() {
             <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="5" maxlength="10" required pattern=".{8,10}" >&nbsp; หน่วยกิต
             </div></div>
           </div>
+          <div class="form-inline" id="secdiv1">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ 1 จำนวน&nbsp;<input style="width: 70px;" type="text" class="form-control numonly" name="ENROLL1" id="ENROLL1" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>
             <?php
-                for ($i=1; $i<=5 ; $i++) {
-                  echo '<div class="form-inline hide" style="display: none;" id="secdiv'.$i.'">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ '.$i.' จำนวน&nbsp;<input style="width: 70px; display: none;" type="text" class="form-control numonly" name="ENROLL'.$i.'" id="ENROLL'.$i.'" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>';
+                for ($i=2; $i<=5 ; $i++) {
+                  echo '<div class="form-inline hide" style="display:none;" id="secdiv'.$i.'">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ '.$i.' จำนวน&nbsp;<input style="width: 70px; display: none;" type="text" class="form-control numonly" name="ENROLL'.$i.'" id="ENROLL'.$i.'" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>';
                 }
              ?>
 
