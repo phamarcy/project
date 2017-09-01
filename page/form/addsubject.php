@@ -60,226 +60,17 @@
 
 <script id="contentScript">
 
-function getinfo(temp) {
-  // part1
-  document.getElementById('COURSE_ID').value = temp['COURSE_ID'];
-  document.getElementById('SECTION').value = temp['SECTION'];
-  var choice1 = temp['NORORSPE'];
-  $('input[name="NORORSPE"][value=' + choice1 + ']').prop('checked', true);
-  document.getElementById('NAME_ENG_COURSE').value = temp['NAMEENG'];
-  document.getElementById('NAME_TH_COURSE').value = temp['NAMETH'];
-  document.getElementById('ENROLL').value = temp['STUDENT'];
-  document.getElementById('TOTAL').value = temp['CREDIT']['TOTAL'];
-
-  //part2
-  var choice2 = temp['TYPE_TEACHING'];
-  $('input[name="TYPE_TEACHING"][value=' + choice2 + ']').prop('checked', true);
-  if($('input[name="TYPE_TEACHING"]:checked').val()=="OTH")
-  {
-    $("#TYPE_TEACHING_NAME").val(temp['TYPE_TEACHING_NAME']);
-    $("#TYPE_TEACHING_NAME").prop('required',true);
-    $("#TYPE_TEACHING_NAME").show();
-  }
-
-  //part6
-  var choice3 = temp['CALCULATE']['TYPE'];
-  $('input[name="CALCULATE"][value=' + choice3 + ']').prop('checked', true);
-  document.getElementById('EXPLAINATION').value = temp['CALCULATE']['EXPLAINATION'];
-  var choice4 = temp['EVALUATE'];
-  $('input[name="EVALUATE_TYPE"][value=' + choice4 + ']').prop('checked', true);
-  document.getElementById("CALOTHER").value = temp['CALCULATE']['OTHERGRADE'];
-
-  //fucntion for disabled
-  if($("input[name='EVALUATE_TYPE']:checked").val()=="SU")
-  {
-    $('.atof').val("");
-    document.getElementById("CALCULATE_S_MIN").value = temp['CALCULATE']['S']['MIN'];
-    document.getElementById("CALCULATE_U_MAX").value = temp['CALCULATE']['U']['MAX'];
-    $('.atof').prop('disabled',true);
-    $('.atof').prop('required',false);
-    $('.stou').prop('required',true);
-    $('.stou').prop('disabled',false);
-  }
-  else if($("input[name='EVALUATE_TYPE']:checked").val()=="AF")
-  {
-    document.getElementById("CALCULATE_A_MIN").value = temp['CALCULATE']['A']['MIN'];
-    document.getElementById("CALCULATE_Bp_MIN").value = temp['CALCULATE']['B+']['MIN'];
-    document.getElementById("CALCULATE_Bp_MAX").value = temp['CALCULATE']['B+']['MAX'];
-    document.getElementById("CALCULATE_B_MIN").value = temp['CALCULATE']['B']['MIN'];
-    document.getElementById("CALCULATE_B_MAX").value = temp['CALCULATE']['B']['MAX'];
-    document.getElementById("CALCULATE_Cp_MIN").value = temp['CALCULATE']['C+']['MIN'];
-    document.getElementById("CALCULATE_Cp_MAX").value = temp['CALCULATE']['C+']['MAX'];
-    document.getElementById("CALCULATE_C_MIN").value = temp['CALCULATE']['C']['MIN'];
-    document.getElementById("CALCULATE_C_MAX").value = temp['CALCULATE']['C']['MAX'];
-    document.getElementById("CALCULATE_Dp_MIN").value = temp['CALCULATE']['D+']['MIN'];
-    document.getElementById("CALCULATE_Dp_MAX").value = temp['CALCULATE']['D+']['MAX'];
-    document.getElementById("CALCULATE_D_MIN").value = temp['CALCULATE']['D']['MIN'];
-    document.getElementById("CALCULATE_D_MAX").value = temp['CALCULATE']['D']['MAX'];
-    document.getElementById("CALCULATE_F_MAX").value = temp['CALCULATE']['F']['MAX'];
-
-    $('.stou').val("");
-    $('.atof').prop('disabled',false);
-    $('.atof').prop('required',true);
-    $('.stou').prop('disabled',true);
-    $('.stou').prop('required',false);
-  }
-
-  if($("input[name='CALCULATE']:checked").val()=="GROUP")
-  {
-
-    $('.atof').val("");
-    $('#EXPLAINATION').prop('required',true);
-    $('#EXPLAINATION').prop('disabled',false);
-    document.getElementById("CALCULATE_S_MIN").value = temp['CALCULATE']['S']['MIN'];
-    document.getElementById("CALCULATE_U_MAX").value = temp['CALCULATE']['U']['MAX'];
-    $('.atof').prop('disabled',true);
-    $('.stou').prop('disabled',true);
-    $('.atof').prop('required',false);
-    $('.stou').prop('required',false);
-    $('#EVALUATE1').prop('required',false);
-    $('#EVALUATE2').prop('required',false);
-    $('#EVALUATE1').prop('disabled',true);
-    $('#EVALUATE2').prop('disabled',true);
-    $('.opacity01').css("opacity","0.1");
-  }
-  else if ($("input[name='CALCULATE']:checked").val()=="CRITERIA")
-  {
-    document.getElementById("CALCULATE_A_MIN").value = temp['CALCULATE']['A']['MIN'];
-    document.getElementById("CALCULATE_Bp_MIN").value = temp['CALCULATE']['B+']['MIN'];
-    document.getElementById("CALCULATE_Bp_MAX").value = temp['CALCULATE']['B+']['MAX'];
-    document.getElementById("CALCULATE_B_MIN").value = temp['CALCULATE']['B']['MIN'];
-    document.getElementById("CALCULATE_B_MAX").value = temp['CALCULATE']['B']['MAX'];
-    document.getElementById("CALCULATE_Cp_MIN").value = temp['CALCULATE']['C+']['MIN'];
-    document.getElementById("CALCULATE_Cp_MAX").value = temp['CALCULATE']['C+']['MAX'];
-    document.getElementById("CALCULATE_C_MIN").value = temp['CALCULATE']['C']['MIN'];
-    document.getElementById("CALCULATE_C_MAX").value = temp['CALCULATE']['C']['MAX'];
-    document.getElementById("CALCULATE_Dp_MIN").value = temp['CALCULATE']['D+']['MIN'];
-    document.getElementById("CALCULATE_Dp_MAX").value = temp['CALCULATE']['D+']['MAX'];
-    document.getElementById("CALCULATE_D_MIN").value = temp['CALCULATE']['D']['MIN'];
-    document.getElementById("CALCULATE_D_MAX").value = temp['CALCULATE']['D']['MAX'];
-    document.getElementById("CALCULATE_F_MAX").value = temp['CALCULATE']['F']['MAX'];
-    $('.opacity01').css("opacity","1");
-  }
-
-  //part7
-  var choice5 = temp['ABSENT'];
-  $('input[name="ABSENT"][value=' + choice5 + ']').prop('checked', true);
-
-}
-
-function checksubject(btntype,type){
-
-  if(btntype==1)
-  {
-    var file_data = new FormData;
-    var course_id = document.getElementById('id').value;
-    JSON.stringify(course_id);
-    JSON.stringify(type);
-    file_data.append("course_id",course_id);
-    file_data.append("type",type);
-    var URL = '../../application/document/search_document.php';
-    $.ajax({
-                  url: URL,
-                  dataType: 'text',
-                  cache: false,
-                  contentType: false,
-                  processData: false,
-                  data: file_data,
-                  type: 'post',
-                  success: function (result) {
-
-                       var temp = $.parseJSON(result);
-                       console.log(temp);
-                       if(temp['info']!=false)
-                       {
-                         document.getElementById('formdrpd').style.display = "";
-                         for(var i=0;i<(Object.keys(temp).length - 1);i++)
-                         {
-                           var opt = document.createElement('option');
-                           opt.value = temp[i].semester +"_"+ temp[i].year;
-                           opt.innerHTML = "ภาคการศึกษาที่ " +temp[i].semester +" ปีการศึกษา "+ temp[i].year;
-                           document.getElementById('semester').appendChild(opt);
-                         }
-                       }
-                        else {
-                          alert('ไม่พบกระบวนวิชาที่ค้นหา\nกรุณากรอกข้อมูลใหม่');
-                          document.getElementById('id').value = "";
-                        }
-                  },
-                  failure: function (result) {
-                       alert(result);
-                  },
-                  error: function (xhr, status, p3, p4) {
-                       var err = "Error " + " " + status + " " + p3 + " " + p4;
-                       if (xhr.responseText && xhr.responseText[0] == "{")
-                            err = JSON.parse(xhr.responseText).Message;
-                       console.log(err);
-                  }
-       });
-  }
-  else if (btntype==2) {
-    var file_data = new FormData;
-    var course_id = document.getElementById('id').value;
-    var semester_temp = document.getElementById('semester').value;
-    var stringspl = semester_temp.split("_");
-    var semester = stringspl[0];
-    var year = stringspl[1];
-    JSON.stringify(course_id);
-    JSON.stringify(semester);
-    JSON.stringify(year);
-    JSON.stringify(type);
-    file_data.append("course_id",course_id);
-    file_data.append("semester",semester);
-    file_data.append("year",year);
-    file_data.append("type",type);
-    var URL = '../../application/document/search_document.php';
-    $.ajax({
-                  url: URL,
-                  dataType: 'text',
-                  cache: false,
-                  contentType: false,
-                  processData: false,
-                  data: file_data,
-                  type: 'post',
-                  success: function (result) {
-                    console.log(result);
-                    var temp = $.parseJSON(result);
-                    console.log(temp);
-                    if(temp!=null)
-                    {
-                      getinfo(temp);
-                    }
-                    else {
-                      alert('error');
-                    }
-                  },
-                  failure: function (result) {
-                       alert(result);
-                  },
-                  error: function (xhr, status, p3, p4) {
-                       var err = "Error " + " " + status + " " + p3 + " " + p4;
-                       if (xhr.responseText && xhr.responseText[0] == "{")
-                            err = JSON.parse(xhr.responseText).Message;
-                       console.log(err);
-                  }
-       });
-  }
-
-}
 
 function submitfunc(casesubmit) {
 
   var data = {
     'COURSE_ID': document.getElementById("COURSE_ID").value,
-    'SECTION' : document.getElementById("SECTION").value,
-    'NORORSPE' : document.querySelector("input[name='NORORSPE']:checked").value,
     'NAMETH' : document.getElementById("NAME_TH_COURSE").value,
     'NAMEENG' : document.getElementById("NAME_ENG_COURSE").value,
-    'STUDENT' : document.getElementById("ENROLL").value,
     'CREDIT' : {
       'TOTAL' : document.getElementById("TOTAL").value
     },
-    'TYPE_TEACHING' : document.querySelector("input[name='TYPE_TEACHING']:checked").value,
+    /*'TYPE_TEACHING' : document.querySelector("input[name='TYPE_TEACHING']:checked").value,
     'TYPE_TEACHING_NAME' : document.getElementById('TYPE_TEACHING_NAME').value,
     'EVALUATE' : document.querySelector("input[name='EVALUATE_TYPE']:checked").value,
     'CALCULATE' : {
@@ -323,23 +114,18 @@ function submitfunc(casesubmit) {
       },
       'OTHERGRADE' : document.getElementById("CALOTHER").value
     },
-    'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,
+    'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,*/
     'SUBMIT_TYPE' : casesubmit
   };
 
   //alert(JSON.stringify(data));
   if(casesubmit=='1')
   {
-    senddata(JSON.stringify(data),getfile());
-  }
-  else if(casesubmit=='2')
-  {
-    senddata(JSON.stringify(data),getfile());
-    //console.log(JSON.stringify(data));
+    senddata(JSON.stringify(data));
   }
 
 }
-function senddata(data,file_data)
+function senddata(data)
 {
 
   //prompt("data", data);
@@ -373,13 +159,6 @@ function senddata(data,file_data)
       });
 }
 
-function getfile()
-{
-  var file_data = $('#syllabus').prop('files')[0];
-  var form_data = new FormData();
-  form_data.append('file', file_data);
-  return form_data;
-}
 
 // Charecter fixed
 $(function() {//<-- wrapped here
@@ -567,7 +346,7 @@ function confreset() {
         </div>
       </li>
       <br>
-      <li style="font-size: 14px">
+      <!--<li style="font-size: 14px">
         <div class="form-inline">
           <b>ลักษณะการเรียนการสอน&nbsp;&nbsp;</b><br>
           <div class="form-group"><div class="radio">
@@ -698,13 +477,8 @@ function confreset() {
             <input type="radio" name="ABSENT" id="ABSENT2" value="U" >&nbsp;ให้อักษร U &nbsp;&nbsp;<br>
             <input type="radio" name="ABSENT" id="ABSENT3" value="CAL" >&nbsp;นำคะแนนทั้งหมดที่นักศึกษาได้รับก่อนการสอบไล่มาประเมิน &nbsp;&nbsp;<br>
           </div></div></div>
-          </li>
-
-
-
-
+        </li>-->
     </ol>
-    <br><br>
     <div align="center">
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq('1')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
       <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
