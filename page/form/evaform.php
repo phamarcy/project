@@ -958,7 +958,6 @@ function submitfunc(casesubmit) {
         'SUBMIT_TYPE' : casesubmit
       };
 
-    console.log(JSON.stringify(data));
     senddata(JSON.stringify(data),getfile('1'));
   }
   else if(casesubmit=='0')
