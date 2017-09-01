@@ -122,9 +122,13 @@ function Upload($file,$course_id)
 {
 	global $FILE_PATH;
 	$path = $FILE_PATH."/syllabus";
+  if(!file_exists($path))
+	{
+		mkdir($path);
+	}
 	$filename = $file['name'];
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-	$uploadfile = $path."/".$course_id.'.'.$ext;
+	$uploadfile = $path."/".$course_id."_".$semester['semester']."_".$semester['year'].'.'.$ext;
 	if (!move_uploaded_file($file['tmp_name'], $uploadfile))
 	{
     $err_status = $file['error'];

@@ -119,6 +119,10 @@ function Upload($file,$course_id,$instructor_id)
 {
 	global $FILE_PATH,$semester,$log;
 	$path = $FILE_PATH."/cv";
+  if(!file_exists($path))
+	{
+		mkdir($path);
+	}
 	$filename = $file['name'];
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
 	$uploadfile = $path."/".$course_id.'_'.$instructor_id."_".$semester['semester']."_".$semester['year'].'.'.$ext;
