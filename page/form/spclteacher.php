@@ -555,7 +555,6 @@ $current = $dlobj->Get_Current_Semester();
                             cancelButtonColor: '#d33',
                             confirmButtonText: 'Ok'
                           }).then(function () {
-                            location.reload();
                             swal(
                               'เคลียร์!',
                               'รีเซ็ตข้อมูลเรียบร้อยแล้ว',
