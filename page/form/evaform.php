@@ -946,12 +946,29 @@ function senddata(data,file_data)
                    var temp = $.parseJSON(result);
                    if(temp["status"]=='success')
                    {
-                     swal(
-                        'สำเร็จ!',
-                        temp["msg"],
-                        'success'
-                      )
-                     //alert(temp["msg"]);
+                     swal({
+                       title: 'สำเร็จ',
+                       text: temp["msg"],
+                       type: 'success',
+                       showCancelButton: false,
+                       confirmButtonColor: '#3085d6',
+                       cancelButtonColor: '#d33',
+                       confirmButtonText: 'Ok'
+                     }).then(function () {
+                       location.reload();
+                       swal(
+                         'เคลียร์!',
+                         'รีเซ็ตข้อมูลเรียบร้อยแล้ว',
+                         'success'
+                       )
+                     }, function (dismiss) {
+                     // dismiss can be 'cancel', 'overlay',
+                     // 'close', and 'timer'
+                     if (dismiss === 'cancel') {
+
+                     }
+                   })
+
                    }
                    else {
                      alert(temp["msg"]);
@@ -1066,7 +1083,6 @@ $(document).ready(function(){
       }
       <?php $x = $x +1; ?>
     }
-    console.log("flagcor"+flagcor+","+"flageva"+flageva);
 
     if(flageva>0 && flagcor==0)
     {

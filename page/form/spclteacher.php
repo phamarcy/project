@@ -65,7 +65,6 @@ $current = $dlobj->Get_Current_Semester();
  </style>
 
  <script>
-window.counttr = 0;
  // Charecter fixed
  $(function() {//<-- wrapped here
    $('.numonly').on('input', function() {
@@ -126,11 +125,11 @@ window.counttr = 0;
        $.each(x, function(i, val) {
          val.remove();
        });
-       table.append('<tr class="warning" name="addtr" id="row' + (rowCount - 1) + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + (rowCount - 1) + '" id="delbtn' + (rowCount - 1) +
-         '" value="ลบ" onclick="deleteRow(' + (rowCount - 1) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="detail_topic' + (rowCount - 1) + '" id="detail_topic' + (rowCount - 1) +
-         '" size="30" value="'+temp['COURSEDATA']['DETAIL']['TOPICLEC'][tr-1]+'"></div></td><td><input type="date" class="form-control" name="dateteach' + (rowCount - 1) + '" id="dateteach' + (rowCount - 1) +
-         '" size="2" value="'+temp['COURSEDATA']['DETAIL']['DATE'][tr-1]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + (rowCount - 1) + '" id="timebegin' + (rowCount - 1) + '" size="2" value="'+temp['COURSEDATA']['DETAIL']['TIME']['BEGIN'][tr-1]+'" >  ถึง  <input type="time" class="form-control" name="timeend'
-          + (rowCount - 1) + '" id="timeend' + (rowCount - 1) + '" size="2" value="'+temp['COURSEDATA']['DETAIL']['TIME']['END'][tr-1]+'"></div></td><td><input type="text" class="form-control" id="room' + (rowCount - 1) + '" value="'+temp['COURSEDATA']['DETAIL']['ROOM'][tr-1]+
+       table.append('<tr class="warning" name="addtr" id="row' + tr + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + tr + '" id="delbtn' + tr +
+         '" value="ลบ" onclick="deleteRow(' + tr + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="detail_topic' + tr + '" id="detail_topic' + tr +
+         '" size="30" value="'+temp['COURSEDATA']['DETAIL']['TOPICLEC'][tr-1]+'"></div></td><td><input type="date" class="form-control" name="dateteach' + tr + '" id="dateteach' + tr +
+         '" size="2" value="'+temp['COURSEDATA']['DETAIL']['DATE'][tr-1]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + tr + '" id="timebegin' + tr + '" size="2" value="'+temp['COURSEDATA']['DETAIL']['TIME']['BEGIN'][tr-1]+'" >  ถึง  <input type="time" class="form-control" name="timeend'
+          + tr + '" id="timeend' + tr + '" size="2" value="'+temp['COURSEDATA']['DETAIL']['TIME']['END'][tr-1]+'"></div></td><td><input type="text" class="form-control" id="room' + tr + '" value="'+temp['COURSEDATA']['DETAIL']['ROOM'][tr-1]+
           '"></td></tr>');
        $.each(x, function(i, val) {
          table.append(val);
@@ -351,7 +350,7 @@ window.counttr = 0;
    var arrtimeend = [];
    var arrroom = [];
 
-   for(var i=1;i<=window.counttr;i++)
+   for(var i=1;i<=(($('#detailteaching tr').length)-2);i++)
    {
       arrtopiclec[i-1] = document.getElementById('detail_topic'+i).value;
       arrdate[i-1] = document.getElementById('dateteach'+i).value;
@@ -430,6 +429,9 @@ window.counttr = 0;
   var fname = splitor[0];
   var lname = splitor[1];
 
+  //NUMTABLE
+  var rowtr = ($('#detailteaching tr').length)-2;
+
    var data = {
      'TEACHERDATA' : {
        'DEPARTMENT' : document.getElementById('department').value,
@@ -502,7 +504,7 @@ window.counttr = 0;
        },
        'TOTALCOST' : document.getElementById('totalcost').value,
     },
-    'NUMTABLE' : window.counttr,
+    'NUMTABLE' : rowtr,
     'SUBMIT_TYPE' : casesubmit
    };
 
@@ -534,11 +536,29 @@ window.counttr = 0;
                        var temp = $.parseJSON(result);
                        if(temp["status"]=='success')
                        {
-                         swal(
-                            'สำเร็จ!',
-                            temp["msg"],
-                            'success'
-                          )
+                          swal({
+                            title: 'สำเร็จ',
+                            text: temp["msg"],
+                            type: 'success',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ok'
+                          }).then(function () {
+                            location.reload();
+                            swal(
+                              'เคลียร์!',
+                              'รีเซ็ตข้อมูลเรียบร้อยแล้ว',
+                              'success'
+                            )
+                          }, function (dismiss) {
+                          // dismiss can be 'cancel', 'overlay',
+                          // 'close', and 'timer'
+                          if (dismiss === 'cancel') {
+
+                          }
+                        })
+
                          //alert(temp["msg"]);
                        }
                        else {
@@ -882,7 +902,6 @@ window.counttr = 0;
 
 
    $('#adddetail').click(function() {
-     window.counttr = window.counttr + 1;
      var table = $(this).closest('table');
      if (table.find('input:text').length < 100) {
        var x = $("tr[name=addtr]:last").closest('tr').nextAll('tr');
