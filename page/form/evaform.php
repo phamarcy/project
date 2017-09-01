@@ -997,7 +997,7 @@ function senddata(data,file_data)
                        cancelButtonColor: '#d33',
                        confirmButtonText: 'Ok'
                      }).then(function () {
-                       location.reload();
+
                        swal(
                          'เคลียร์!',
                          'รีเซ็ตข้อมูลเรียบร้อยแล้ว',
@@ -1393,6 +1393,18 @@ $(document).ready(function(){
     }
   });
 
+  //submit
+  /*$('#draftbtn').click(function(e) {
+    if($('#draftbtn').attr('disabled')==true)
+    {
+      alert('dis');
+    }
+    else {
+      alert('yes');
+    }
+  });*/
+
+
 });
 
 
@@ -1408,8 +1420,9 @@ function other_type() {
 
 
 function checkreq(casesubmit) {
-  if($("[required]").val()!=null && $("[required]").val()!="")
+  if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
   {
+    alert('aaaa');
     submitfunc(casesubmit);
   }
   else {
@@ -1542,13 +1555,13 @@ function confreset() {
             <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="5" maxlength="10" required pattern=".{8,10}" >&nbsp; หน่วยกิต
             </div></div>
           </div>
-          <div class="form-inline" id="secdiv1">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ 1 จำนวน&nbsp;<input style="width: 70px;" type="text" class="form-control numonly" name="ENROLL1" id="ENROLL1" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>
+          <div class="form-group"><div class="form-inline" id="secdiv1">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ 1 จำนวน&nbsp;<input style="width: 70px;" type="text" class="form-control numonly" name="ENROLL1" id="ENROLL1" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>
             <?php
                 for ($i=2; $i<=5 ; $i++) {
                   echo '<div class="form-inline hide" style="display:none;" id="secdiv'.$i.'">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ '.$i.' จำนวน&nbsp;<input style="width: 70px; display: none;" type="text" class="form-control numonly" name="ENROLL'.$i.'" id="ENROLL'.$i.'" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>';
                 }
              ?>
-
+           </div>
 
 
       </li>
