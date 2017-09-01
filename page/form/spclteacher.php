@@ -533,7 +533,7 @@ $current = $dlobj->Get_Current_Semester();
 
    //prompt("data", data);
     file_data.append("DATA",data);
-    var URL = '../../application/pdf/special_instructor.php';
+    var URL = '../../application/pdf/generate_special_instructor.php';
     $.ajax({
                   url: URL,
                   dataType: 'text',
