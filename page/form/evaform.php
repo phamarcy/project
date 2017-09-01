@@ -210,6 +210,7 @@ function searchname(no,type) {
         document.getElementById('secdiv' + i).classList.add('hide');
         document.getElementById("ENROLL" + i).style.display = "none";
         document.getElementById("ENROLL" + i).value = "";
+        $('#ENROLL'+i).prop('required', false);
       }
     } else {
 
@@ -217,6 +218,7 @@ function searchname(no,type) {
         document.getElementById("secdiv" + i).style.display = "none";
         document.getElementById('secdiv' + i).classList.add('hide');
         document.getElementById('ENROLL' + i).style.display = "none";
+        $('#ENROLL'+i).prop('required', false);
         if(i>sec.value)
         {
           document.getElementById("ENROLL" + i).value = "";
@@ -227,6 +229,7 @@ function searchname(no,type) {
         document.getElementById("secdiv" + i).style.display = "";
         document.getElementById('secdiv' + i).classList.remove('hide');
         document.getElementById('ENROLL' + i).style.display = "";
+        $('#ENROLL'+i).prop('required', true);
 
       }
     }
@@ -998,11 +1001,6 @@ function senddata(data,file_data)
                        confirmButtonText: 'Ok'
                      }).then(function () {
 
-                       swal(
-                         'เคลียร์!',
-                         'รีเซ็ตข้อมูลเรียบร้อยแล้ว',
-                         'success'
-                       )
                      }, function (dismiss) {
                      // dismiss can be 'cancel', 'overlay',
                      // 'close', and 'timer'
@@ -1013,7 +1011,24 @@ function senddata(data,file_data)
 
                    }
                    else {
-                     alert(temp["msg"]);
+                     swal({
+                       title: 'เกิดข้อผิดพลาด',
+                       text: temp["msg"],
+                       type: 'error',
+                       showCancelButton: false,
+                       confirmButtonColor: '#3085d6',
+                       cancelButtonColor: '#d33',
+                       confirmButtonText: 'Ok'
+                     }).then(function () {
+
+                     }, function (dismiss) {
+                     // dismiss can be 'cancel', 'overlay',
+                     // 'close', and 'timer'
+                     if (dismiss === 'cancel') {
+
+                     }
+                   })
+                     //alert(temp["msg"]);
                    }
 
                  },
@@ -1403,7 +1418,9 @@ $(document).ready(function(){
       alert('yes');
     }
   });*/
-
+    $('#form1').submit(function () {
+       return false;
+    });
 
 });
 
@@ -1420,21 +1437,27 @@ function other_type() {
 
 
 function checkreq(casesubmit) {
-  if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
+  if(casesubmit=='1')
   {
-    alert('aaaa');
-    submitfunc(casesubmit);
+    if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
+    {
+      submitfunc(casesubmit);
+    }
+    else {
+
+      //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+      swal(
+        '',
+        'กรุณากรอกข้อมูลให้ครบถ้วน',
+        'error'
+      )
+      return false;
+    }
   }
   else {
-
-    //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
-    swal(
-      '',
-      'กรุณากรอกข้อมูลให้ครบถ้วน',
-      'error'
-    )
-    return false;
+    submitfunc(casesubmit);
   }
+
 }
 
 function checkreq2(casesubmit) {
@@ -1482,6 +1505,7 @@ function confreset() {
 
 
 
+
 </script>
 </header>
 <body class="mybox">
@@ -1519,7 +1543,7 @@ function confreset() {
 </div>
 
 <div id="dlhide" class="panel panel-default">
-<form data-toggle="validator" role="form" name="form1" id="form1" method="post">
+<form data-toggle="validator" role="form" name="form1" id="form1" method="post" onsubmit="checkreq('1');">
     <ol>
       <br>
       <li style="font-size: 14px">
@@ -1558,7 +1582,7 @@ function confreset() {
           <div class="form-group"><div class="form-inline" id="secdiv1">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ 1 จำนวน&nbsp;<input style="width: 70px;" type="text" class="form-control numonly" name="ENROLL1" id="ENROLL1" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>
             <?php
                 for ($i=2; $i<=5 ; $i++) {
-                  echo '<div class="form-inline hide" style="display:none;" id="secdiv'.$i.'">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ '.$i.' จำนวน&nbsp;<input style="width: 70px; display: none;" type="text" class="form-control numonly" name="ENROLL'.$i.'" id="ENROLL'.$i.'" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>';
+                  echo '<div class="form-inline hide" style="display:none;" id="secdiv'.$i.'">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ '.$i.' จำนวน&nbsp;<input style="width: 70px; display: none;" type="text" class="form-control numonly" name="ENROLL'.$i.'" id="ENROLL'.$i.'" size="2" maxlength="3" pattern=".{1,3}">&nbsp;คน </div>';
                 }
              ?>
            </div>
@@ -2013,7 +2037,7 @@ function confreset() {
     </ol>
     <br><br>
     <div align="center">
-      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq('1')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
+      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn"  value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2')"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>

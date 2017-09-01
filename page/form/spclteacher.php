@@ -555,7 +555,7 @@ $current = $dlobj->Get_Current_Semester();
                             cancelButtonColor: '#d33',
                             confirmButtonText: 'Ok'
                           }).then(function () {
-                            
+
                           }, function (dismiss) {
                           // dismiss can be 'cancel', 'overlay',
                           // 'close', and 'timer'
@@ -567,7 +567,24 @@ $current = $dlobj->Get_Current_Semester();
                          //alert(temp["msg"]);
                        }
                        else {
-                         alert(temp["msg"]);
+                         swal({
+                           title: 'เกิดข้อผิดพลาด',
+                           text: temp["msg"],
+                           type: 'error',
+                           showCancelButton: false,
+                           confirmButtonColor: '#3085d6',
+                           cancelButtonColor: '#d33',
+                           confirmButtonText: 'Ok'
+                         }).then(function () {
+
+                         }, function (dismiss) {
+                         // dismiss can be 'cancel', 'overlay',
+                         // 'close', and 'timer'
+                         if (dismiss === 'cancel') {
+
+                         }
+                       })
+                         //alert(temp["msg"]);
                        }
 
                   },
