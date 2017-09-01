@@ -555,11 +555,7 @@ $current = $dlobj->Get_Current_Semester();
                             cancelButtonColor: '#d33',
                             confirmButtonText: 'Ok'
                           }).then(function () {
-                            swal(
-                              'เคลียร์!',
-                              'รีเซ็ตข้อมูลเรียบร้อยแล้ว',
-                              'success'
-                            )
+                            
                           }, function (dismiss) {
                           // dismiss can be 'cancel', 'overlay',
                           // 'close', and 'timer'
