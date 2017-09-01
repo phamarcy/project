@@ -22,6 +22,37 @@ class Course
     $this->PERSON = new Person();
   }
 
+  public function Add_New_Course($data)
+  {
+    $course = json_decode($data,true);
+    $sql = "SELECT * FROM `course` WHERE `course_id` = '".$course_id."'";
+    $result = $this->DB->Query($sql);
+    if($result == null)
+    {
+      $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`, `hr_lec`, `hr_lab`, `hr_self`)
+      VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7])";
+      $result = $this->DB->Insert_Update_Delete($sql);
+      if($result)
+      {
+        $return['status'] = 'success';
+        $return['msg'] = 'เพิ่มกระบวนวิชาสำเร็จ';
+      }
+      else
+      {
+        $return['status'] = 'error';
+        $return['msg'] = 'ไม่สามารถเพิ่มกระบวนวิชาได้ กรุณาติดต่อผู้ดูแลระบบ';
+      }
+    }
+    else
+    {
+      $return['status'] = 'error';
+      $return['msg'] = 'รหัสวิชานี้มีอยู่ในระบบแล้ว';
+    }
+    return $return;
+
+  }
+
+
   //search teacher prefix and name
   public function Get_Course_Name($course_id)
   {
