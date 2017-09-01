@@ -975,7 +975,7 @@ function senddata(data,file_data)
 
   //prompt("data", data);
    file_data.append("DATA",data);
-   var URL = '../../application/pdf/course_evaluate.php';
+   var URL = '../../application/pdf/generate.php';
    $.ajax({
                  url: URL,
                  dataType: 'text',
