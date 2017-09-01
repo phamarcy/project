@@ -67,9 +67,6 @@
   </style>
 
 <script id="contentScript">
-window.countmeabtn = 0;
-window.countsa1btn = 0;
-window.countsa2btn = 0;
 
 // searchname
 function searchname(no,type) {
@@ -202,6 +199,37 @@ function searchname(no,type) {
     }
   }
 
+  }
+
+  function section_box() {
+    var sec = document.getElementById("SECTION");
+    var i;
+    if (sec.value == 0) {
+      for (i = 1; i <= 5; i++) {
+        document.getElementById("secdiv" + i).style.display = "none";
+        document.getElementById('secdiv' + i).classList.add('hide');
+        document.getElementById("ENROLL" + i).style.display = "none";
+        document.getElementById("ENROLL" + i).value = "";
+      }
+    } else {
+
+      for (i = 1; i <= 5; i++) {
+        document.getElementById("secdiv" + i).style.display = "none";
+        document.getElementById('secdiv' + i).classList.add('hide');
+        document.getElementById('ENROLL' + i).style.display = "none";
+        if(i>sec.value)
+        {
+          document.getElementById("ENROLL" + i).value = "";
+        }
+      }
+
+      for (i = 1; i <= sec.value; i++) {
+        document.getElementById("secdiv" + i).style.display = "";
+        document.getElementById('secdiv' + i).classList.remove('hide');
+        document.getElementById('ENROLL' + i).style.display = "";
+
+      }
+    }
   }
 
 function midexam_hour_lec() {
@@ -624,7 +652,7 @@ function checksubject(btntype,type){
                        }
                        else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
                          swal(
-                            'พบข้อผิดพลาด!',
+                            '',
                             'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
                             'error'
                           )
@@ -634,7 +662,7 @@ function checksubject(btntype,type){
                        else if(temp['info']!=false && temp[0]==null){
                           //alert('ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้\nสามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง');
                           swal(
-                             'พบข้อผิดพลาด!',
+                             '',
                              'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
                              'error'
                            )
@@ -647,7 +675,7 @@ function checksubject(btntype,type){
                           if($('#id').val()=="" ||$('#id').val()==null )
                           {
                             swal(
-                               'พบข้อผิดพลาด!',
+                               '',
                                'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
                                'error'
                              )
@@ -1339,7 +1367,7 @@ $(document).ready(function(){
     if(summea!=100)
     {
       swal(
-        'ผิดพลาด',
+        '',
         'คะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100\nกรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง',
         'error'
       )
@@ -1374,7 +1402,7 @@ function checkreq(casesubmit) {
 
     //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
     swal(
-      'ผิดพลาด',
+      '',
       'กรุณากรอกข้อมูลให้ครบถ้วน',
       'error'
     )
@@ -1389,7 +1417,7 @@ function checkreq2(casesubmit) {
   }
   else {
     swal(
-      'ผิดพลาด',
+      '',
       'กรุณากรอกข้อมูลให้ครบถ้วน',
       'error'
     )
@@ -1473,7 +1501,15 @@ function confreset() {
           <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID" id="COURSE_ID"   maxlength="6" required pattern=".{6,6}" >
           </div>
           <div class="form-group">
-            &nbsp;จำนวนตอนที่ (ทั้งหมด) &nbsp;<input style="width: 70px;"type="text" class="form-control numonly" name="SECTION" id="SECTION" size="2" maxlength="2" required pattern=".{1,2}" >
+            &nbsp;จำนวนตอน (ทั้งหมด) &nbsp;
+            <select class="form-control required" id="SECTION" name="SECTION" style="width: 70px;" required onchange="section_box()" >
+              <option value='0' selected>0</option>
+            <?php
+            for ($i=1; $i <=5 ; $i++) {
+              echo "<option value=".$i.">".$i."</option>";
+            }
+             ?>
+            </select>
           </div>
           <div class="form-group"><div class="radio">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="NORORSPE" id="NORORSPE1" value="NORMAL" checked>&nbsp;<b>ภาคปกติ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1489,11 +1525,16 @@ function confreset() {
           </div>
           <div class="row">
             <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="5" maxlength="10" required pattern=".{8,10}" >&nbsp; หน่วยกิต
-            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนนักศึกษาที่ลงทะเบียนเรียน &nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="ENROLL" id="ENROLL" size="2" maxlength="3" pattern=".{1,3}" required> &nbsp; คน </div>
-            </div>
+            </div></div>
           </div>
+            <?php
+                for ($i=1; $i<=5 ; $i++) {
+                  echo '<div class="form-inline hide" style="display: none;" id="secdiv'.$i.'">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ '.$i.' จำนวน&nbsp;<input style="width: 70px; display: none;" type="text" class="form-control numonly" name="ENROLL'.$i.'" id="ENROLL'.$i.'" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>';
+                }
+             ?>
 
-        </div>
+
+
       </li>
       <br>
       <li style="font-size: 14px">

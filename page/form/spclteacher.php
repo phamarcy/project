@@ -247,9 +247,9 @@ $current = $dlobj->Get_Current_Semester();
                             document.getElementById('teachername').appendChild(opt);
                           }
                         }
-                        else if(temp['info']==false && temp[0]==null){
+                        else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
                           swal(
-                             'พบข้อผิดพลาด!',
+                             '',
                              'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
                              'error'
                            )
@@ -258,12 +258,22 @@ $current = $dlobj->Get_Current_Semester();
                          }
                          else if(temp['info']!=false && temp[0]==null){
                            swal(
-                              'พบข้อผิดพลาด!',
+                              '',
                               'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
                               'error'
                             )
                            //alert('ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้\nสามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง');
                            document.getElementById('course').value = temp['info']['course_id'];
+                          }
+                          else {
+                            if($('#id').val()=="" ||$('#id').val()==null )
+                            {
+                              swal(
+                                 '',
+                                 'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
+                                 'error'
+                               )
+                            }
                           }
                    },
                    failure: function (result) {
@@ -960,7 +970,7 @@ function lastcal() {
 
       //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
       swal(
-        'ผิดพลาด',
+        '',
         'กรุณากรอกข้อมูลให้ครบถ้วน',
         'error'
       )
