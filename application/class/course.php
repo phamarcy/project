@@ -101,7 +101,10 @@ class Course
       $history = $this->DEADLINE->Search_Semester_id($curr_semester['semester'],$curr_semester['year'] - $i );
       if($history != false)
       {
-        array_push($DATA,$history);
+        $data['id'] = $history;
+        $data['semester'] = $curr_semester['semester'];
+        $data['year'] = $curr_semester['year'] - $i;
+        array_push($DATA,$data);
       }
     }
     return $DATA;
