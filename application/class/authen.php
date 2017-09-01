@@ -18,7 +18,8 @@ class Authentication
 
   public function Authorize($username,$password)
   {
-    $sql = "SELECT `code`,`fname`,`lname` FROM `staff` WHERE `username` = '".$username."' AND `password` = '".$password."'";
+    $sql = "SELECT `code`,`fname`,`lname` FROM `staff` WHERE `username` = '".$username."'";
+    // $sql = "SELECT `code`,`fname`,`lname` FROM `staff` WHERE `username` = '".$username."' AND `password` = '".$password."'";
     $result = $this->DB->Query($sql);
     if($result)
     {
