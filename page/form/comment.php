@@ -27,7 +27,7 @@ session_start();
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
     <style >
     i:hover {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: bold;
       color: red;
     }

@@ -12,9 +12,9 @@ $dep_js=$department['code'];
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History();
-/*echo "<pre>";
-print_r($department);
-echo "</pre>";*/
+echo "<pre>";
+print_r($history);
+echo "</pre>";
  ?>
 <html>
   <head>
@@ -239,9 +239,9 @@ echo "</pre>";*/
                           <div class="form-inline">
                             <center>
                               <form id="history">
-                                <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history1"  onclick="submitForm('1/2557')"><b>1/2557</b></button>
-                                <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history2"  onclick="submitForm('1/2558')"><b>1/2558</b></button>
-                                <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history3"onclick="submitForm('1/2559')" ><b>1/2559</b></button>
+                                <?php foreach ($history as $key => $value): ?>
+                                  <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history<?php echo $key ?> "  onclick="submitForm('<?php echo $value['id']?>')"><b><?php echo $value['semester'].'/'.$value['year'] ?></b></button>
+                                <?php endforeach; ?>
                               </form>
                             </center>
                           </div>
@@ -813,14 +813,12 @@ $("form#staff").submit(function(){
           swal({
             type:msg.status,
             text: msg.msg,
-            timer: 2000,
+            timer: 5000,
             confirmButtonText: "Ok!",
           }, function(){
             window.location.reload();
           });
-          setTimeout(function() {
-            window.location.reload();
-          }, 3000);
+
 
         }
     });
@@ -856,6 +854,7 @@ function submitForm(num){
   JSON.stringify(dep_id);
   data.append("semester_id",num);
   data.append("department_id",dep_id);
+  console.log(data);
     $.ajax({
         url: '../../application/subject/responsible_history.php',
         type: 'POST',
@@ -865,9 +864,7 @@ function submitForm(num){
         contentType: false,
         processData: false,
         success: function (data) {
-
-          console.log(data);
-
+          alert(data);
         }
     });
     return false;
