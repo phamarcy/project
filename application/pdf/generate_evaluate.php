@@ -120,7 +120,7 @@ else
 }
 function Upload($file,$course_id)
 {
-	global $FILE_PATH;
+	global $FILE_PATH,$semester,$log;
 	$path = $FILE_PATH."/syllabus";
   if(!file_exists($path))
 	{
