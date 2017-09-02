@@ -12,9 +12,6 @@ $dep_js=$department['code'];
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History();
-echo "<pre>";
-print_r($history);
-echo "</pre>";
  ?>
 <html>
   <head>
@@ -238,11 +235,9 @@ echo "</pre>";
                         <div class="panel-body">
                           <div class="form-inline">
                             <center>
-                              <form id="history">
                                 <?php foreach ($history as $key => $value): ?>
-                                  <button type="submit" name="semester_history" class="btn btn-outline btn-primary " id="semester_history<?php echo $key ?> "  onclick="submitForm('<?php echo $value['id']?>')"><b><?php echo $value['semester'].'/'.$value['year'] ?></b></button>
+                                  <button type="button" name="semester_history" class="btn btn-outline btn-primary " onclick="submitForm('<?php echo $value['id']?>','<?php echo $value['semester'].'/'.$value['year'] ?>')"><b><?php echo $value['semester'].'/'.$value['year'] ?></b></button>
                                 <?php endforeach; ?>
-                              </form>
                             </center>
                           </div>
                         </div>
@@ -251,7 +246,9 @@ echo "</pre>";
               </div>
               </div>
           </div>
-          <!--<?php if (isset($old_course)): ?>
+          <div id="show_old"></div>
+          <?php if (isset($old_course)): ?>
+
             <div class="panel panel-default">
               <div class="panel-heading">
                 <b>กระบวนวิชาที่สังกัดในภาควิชา (ย้อนหลัง) 1/2559</b>
@@ -296,7 +293,6 @@ echo "</pre>";
                                                 </div>
                                                 <div id="listname464402-1" class="panel-collapse collapse">
                                                     <div class="panel-body">
-
                                                       <table class="table" style="font-size:14px;">
                                                         <thead>
                                                           <th>ลำดับ</th>
@@ -335,235 +331,11 @@ echo "</pre>";
                                                             <td>คณะกรรมการชุดที่ 1</td>
                                                             <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                                                           </tr>
-
                                                         </tbody>
                                                       </table>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                          <td>464403</td>
-                          <td>PATIENT INTERVIEW AND DRUG DISPENSING</td>
-                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#464403" class="accordion-toggle">ผู้รับผิดชอบ</button></td>
-                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                      </tr>
-                      <tr class="hiddenRow">
-                        <td colspan="12">
-                          <div class="accordian-body collapse" id="464403">
-                            <div class="panel panel-success">
-                              <div class="panel-heading">
-                                <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
-                              </div>
-                              <div class="panel-body">
-                                        <div class="panel-group" id="464403">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <div class="panel-title" style="font-size:14px;">
-                                                        <a data-toggle="collapse" data-parent="#464403" href="#listname464403-1">อาจารย์ผู้สอน</a>
-                                                    </div>
-                                                </div>
-                                                <div id="listname464403-1" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-
-                                                      <table class="table" style="font-size:14px;">
-                                                        <thead>
-                                                          <th>ลำดับ</th>
-                                                          <th>ชื่อ-นามสกุล</th>
-                                                          <th></th>
-                                                        </thead>
-                                                        <tbody>
-                                                          <tr>
-                                                            <td>1</td>
-                                                            <td>ผศ.ดร. ภก.สกนธ์   สุภากุล</td>
-                                                            <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                          </tr>
-                                                        </tbody>
-                                                      </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <div class="panel-title" style="font-size:14px;">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#listname464403-2">คณะกรรมการ</a>
-                                                    </div>
-                                                </div>
-                                                <div id="listname464403-2" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-
-                                                      <table class="table" style="font-size:14px;">
-                                                        <thead>
-                                                          <th>ลำดับ</th>
-                                                          <th>ชื่อ-นามสกุล</th>
-                                                          <th></th>
-                                                        </thead>
-                                                        <tbody>
-                                                          <tr>
-                                                            <td>1</td>
-                                                            <td>คณะกรรมการชุดที่ 1</td>
-                                                            <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                          </tr>
-                                                        </tbody>
-                                                      </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                          <td>464441</td>
-                          <td>PHARMACOEPIDEMIOLOGY 1</td>
-                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#464441" class="accordion-toggle">ผู้รับผิดชอบ</button></td>
-                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                      </tr>
-                      <tr class="hiddenRow">
-                        <td colspan="12">
-                          <div class="accordian-body collapse" id="464441">
-                            <div class="panel panel-success">
-                              <div class="panel-heading">
-                                <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
-                              </div>
-                              <div class="panel-body">
-                                        <div class="panel-group" id="464441">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <div class="panel-title" style="font-size:14px;">
-                                                        <a data-toggle="collapse" data-parent="#464441" href="#listname464441-1">อาจารย์ผู้สอน</a>
-                                                    </div>
-                                                </div>
-                                                <div id="listname464441-1" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-
-                                                      <table class="table" style="font-size:14px;">
-                                                        <thead>
-                                                          <th>ลำดับ</th>
-                                                          <th>ชื่อ-นามสกุล</th>
-                                                          <th></th>
-                                                        </thead>
-                                                        <tbody>
-                                                          <tr>
-                                                            <td>1</td>
-                                                            <td>รศ.ดร. ภญ.หทัยกาญจน์   เชาวนพูนผล</td>
-                                                            <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                          </tr>
-                                                        </tbody>
-                                                      </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <div class="panel-title" style="font-size:14px;">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#listname464441-2">คณะกรรมการ</a>
-                                                    </div>
-                                                </div>
-                                                <div id="listname464441-2" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-
-                                                      <table class="table" style="font-size:14px;">
-                                                        <thead>
-                                                          <th>ลำดับ</th>
-                                                          <th>ชื่อ-นามสกุล</th>
-                                                          <th></th>
-                                                        </thead>
-                                                        <tbody>
-                                                          <tr>
-                                                            <td>1</td>
-                                                            <td>คณะกรรมการชุดที่ 1</td>
-                                                            <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                          </tr>
-                                                        </tbody>
-                                                      </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                          <td>463545</td>
-                          <td>INSTRUMENTS FOR EXTRACTION AND PHARMACEUTICAL ANALYSIS</td>
-                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463545" class="accordion-toggle">ผู้รับผิดชอบ</button></td>
-                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                      </tr>
-                      <tr class="hiddenRow">
-                        <td colspan="12">
-                          <div class="accordian-body collapse" id="463545">
-                            <div class="panel panel-success">
-                              <div class="panel-heading">
-                                <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
-                              </div>
-                              <div class="panel-body">
-                                        <div class="panel-group" id="463545">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <div class="panel-title" style="font-size:14px;">
-                                                        <a data-toggle="collapse" data-parent="#463545" href="#listname463545-1">อาจารย์ผู้สอน</a>
-                                                    </div>
-                                                </div>
-                                                <div id="listname463545-1" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-
-                                                      <table class="table" style="font-size:14px;">
-                                                        <thead>
-                                                          <th>ลำดับ</th>
-                                                          <th>ชื่อ-นามสกุล</th>
-                                                          <th></th>
-                                                        </thead>
-                                                        <tbody>
-                                                          <tr>
-                                                            <td>1</td>
-                                                            <td>รศ.ดร. ภญ.หทัยกาญจน์   เชาวนพูนผล</td>
-                                                            <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                          </tr>
-                                                        </tbody>
-                                                      </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <div class="panel-title" style="font-size:14px;">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#listname463545-2">คณะกรรมการ</a>
-                                                    </div>
-                                                </div>
-                                                <div id="listname463545-2" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-
-                                                      <table class="table" style="font-size:14px;">
-                                                        <thead>
-                                                          <th>ลำดับ</th>
-                                                          <th>ชื่อ-นามสกุล</th>
-                                                          <th></th>
-                                                        </thead>
-                                                        <tbody>
-                                                          <tr>
-                                                            <td>1</td>
-                                                            <td>คณะกรรมการชุดที่ 1</td>
-                                                            <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                          </tr>
-                                                        </tbody>
-                                                      </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                 </div>
                               </div>
                             </div>
@@ -574,7 +346,7 @@ echo "</pre>";
               </table>
             </div>
             </div>
-          <?php endif; ?>-->
+          <?php endif; ?>
 
           <div class="panel panel-info">
             <div class="panel-heading">
@@ -731,7 +503,7 @@ echo "</pre>";
                 </tbody>
             </table>
           </div>
-          </div>
+        </div>
         </div>
       </div>
 
@@ -845,16 +617,35 @@ $("form#remove").submit(function(){
     });
     return false;
 });
-function submitForm(num){
+function add(){
+
+  var hidden = document.getElementById('hidden').value;
+  var type ="add_oldcourse";
+  //console.log(hidden,type);
+  $.ajax({
+      url: '../../application/subject/responsible_course_department.php',
+      type: 'POST',
+      data: { course : hidden, type : type} ,
+      contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+      success: function (response) {
+          console.log(response);
+      },
+      error: function () {
+          alert("error");
+      }
+  });
+
+  return false;
+}
+function submitForm(num,text){
 
   var data = new FormData;
   var dep_id =<?php echo $dep_js ?>;
-
   JSON.stringify(num);
   JSON.stringify(dep_id);
   data.append("semester_id",num);
   data.append("department_id",dep_id);
-  console.log(data);
+
     $.ajax({
         url: '../../application/subject/responsible_history.php',
         type: 'POST',
@@ -864,8 +655,99 @@ function submitForm(num){
         contentType: false,
         processData: false,
         success: function (data) {
-          var msg=JSON.parse(data)
-          alert(msg.msg);
+          var obj = JSON.parse(data);
+
+          if (typeof obj.msg == 'undefined') {
+            var count=$('#show_old').children().length;
+
+            if (count==0) {
+              $('#table_old')
+              $('#show_old').append(`
+
+        <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="heading">
+          <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse" aria-expanded2="true" aria-controls="collapse">
+            ข้อมูลวิชาย้อนหลัง ${text}
+          </a>
+          </h4>
+        </div>
+        <div class="panel-collapse collapse in" id="collapse" role="tabpanel" aria-labelledbyzz="heading">
+          <div class="panel-body">
+          <form name="formName">
+          <input type="hidden" id="hidden"name="hidden" value='`+data+`'>
+          <button onclick="add()" class="btn btn-outline btn-primary">น้ำข้อมูลไปใช้</button>
+          </form>
+          <table class="table" style="font-size:14px">
+          <thead><th>รหัสวิชา</th><th>ชื่อวิชา</th><th></th> </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+          </div>
+        </div>
+        </div>
+      `);
+            }
+            var k = '<tbody>'
+              for(i = 0;i < obj.length; i++){
+                  if (obj[i].teacher==1) {
+                    var text_group = "คณะกรรมการชุดที่ 1" ;
+                  }
+                  else if (obj[i].teacher==1) {
+                    var text_group = "คณะกรรมการชุดที่ 2" ;
+                  }else {
+                    var text_group = "-" ;
+                  }
+                  if (obj[i].teacher==1) {
+                    var text_group = "คณะกรรมการชุดที่ 1" ;
+                  }
+                  else if (obj[i].teacher==1) {
+                    var text_group = "คณะกรรมการชุดที่ 2" ;
+                  }else {
+                    var text_group = "-" ;
+                  }
+                  k+= '<tr>';
+                  k+= '<td>' + obj[i].id + '</td>';
+                  k+= '<td>' + obj[i].name + '</td>';
+                  k+='<td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#old'+obj[i].id+'" class="accordion-toggle">ผู้รับผิดชอบ</button></td>';
+                  k+= '</tr>';
+                  k+=`<tr class="hiddenRow">
+                    <td colspan="12">
+                      <div class="accordian-body collapse" id="old`+obj[i].id+`">
+                        <div class="panel panel-success">
+                          <div class="panel-heading">
+                            <b><b>รายชื่ออาจารย์ผู้รับผิดชอบ</b></b>
+                          </div>
+                          <div class="panel-body">
+                              <div class="row">
+                                <div class="col-md-6 ">
+                                <b >อาจารย์ผู้รับผิดชอบกระบวนวิชา</b>
+                                  <p>`+obj[i].teacher+`</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <b >ชุดคณะกรรมการประเมินกระบวนวิชา</b>
+                                    <p>`+text_group+`</p>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>`;
+              }
+              k+='</tbody>';
+              document.getElementById('tbody').innerHTML = k;
+
+          }else {
+            swal({
+              type:obj.status,
+              text: obj.msg,
+              timer: 5000,
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+          }
+          //alert(msg.msg);
         }
     });
     return false;
