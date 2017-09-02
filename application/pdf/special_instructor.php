@@ -240,12 +240,16 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','อาจารย์�
 if($DATA["PAYMENT"]["LVLTEACHER"]["CHOICE"] == "pro")
 {
 	$pro = 3;
+	$level_pro = $DATA["PAYMENT"]["LVLTEACHER"]["DESCRIPT"];
 	$norm = '';
+	$level_norm = '';
 }
 else if($DATA["PAYMENT"]["LVLTEACHER"]["CHOICE"] == "norm")
 {
 	$pro = '';
+	$level_pro = '';
 	$norm = 3;
+	$level_norm = $DATA["PAYMENT"]["LVLTEACHER"]["DESCRIPT"];
 }
 
 
@@ -254,13 +258,13 @@ $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, $pro, 1,"C");
 $pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ข้าราชการระดับ'))+1,7,iconv( 'UTF-8','TIS-620',' ข้าราชการระดับ'),0,"C");
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ชำนาญการ '))+5,7,iconv( 'UTF-8','TIS-620',' '.$DATA["PAYMENT"]["LVLTEACHER"]["DESCRIPT"]),0,"C");
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ชำนาญการ '))+5,7,iconv( 'UTF-8','TIS-620',' '.$level_pro),0,"C");
 
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, $norm, 1,"C");
 $pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','บุคคลเอกชนเทียบตำแหน่ง'))+1,7,iconv( 'UTF-8','TIS-620',' บุคคลเอกชนเทียบตำแหน่ง'),0,"C");
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ชำนาญการ '))+2,7,iconv( 'UTF-8','TIS-620',' '.$DATA["PAYMENT"]["LVLTEACHER"]["DESCRIPT"]),0,"C");
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ชำนาญการ '))+2,7,iconv( 'UTF-8','TIS-620',' '.$level_norm),0,"C");
 $pdf->Ln();
 $pdf->SetX(25);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','3.1 ค่าสอนพิเศษ '))+3,10,iconv('UTF-8','TIS-620','3.1 ค่าสอนพิเศษ'),0,1);
