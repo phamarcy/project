@@ -98,9 +98,9 @@ $(function() {//<-- wrapped here
 
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                              <h5>
+                              <h5><b>
                               <?php echo "แบบแจ้งวิธีการวัดผลและประเมินผล ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;?>
-                              </h5>
+                            </b></h5>
                             </div>
                             <div class="panel-body">
                               <?php
@@ -148,9 +148,9 @@ $(function() {//<-- wrapped here
                     <div class="tab-pane fade" id="special">
                       <div class="panel panel-info">
                           <div class="panel-heading">
-                            <h5>
+                            <h5><b>
                             <?php echo "แบบเชิญอาจารย์พิเศษ ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;?>
-                            </h5>
+                          </b></h5>
                           </div>
                           <div class="panel-body">
                             <?php
