@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once(__DIR__."/../../application/class/report.php");
  ?>
 <html>
 <header>
@@ -75,6 +76,11 @@ $(function() {//<-- wrapped here
       {
         $semester = $_POST['semester'];
         $year = $_POST['year'];
+        //start Search
+        $report = new Report();
+        $data_eva = $report->Get_Evaluate_Report($semester,$year);
+        $data_special = $report->Get_Special_Report($semester,$year);
+        //end search
       ?>
             <div class="panel-body">
                 <!-- Nav tabs -->
@@ -89,6 +95,7 @@ $(function() {//<-- wrapped here
                 <div class="container">
                 <div class="tab-content">
                     <div class="tab-pane fade active in" id="course">
+
                         <div class="panel panel-info">
                             <div class="panel-heading">
                               <h5>
@@ -96,6 +103,16 @@ $(function() {//<-- wrapped here
                               </h5>
                             </div>
                             <div class="panel-body">
+                              <?php
+                              if(isset($data_eva['status']))
+                              {
+                                echo '<div class="alert alert-danger">
+                                '.$data_eva['msg'].'
+                                </div>';
+                              }
+                              else
+                              {
+                              ?>
                               <div class="table-responsive">
                               <table class="table table-hover" style="font-size:14px">
                                   <thead>
@@ -103,31 +120,28 @@ $(function() {//<-- wrapped here
                                           <th>#</th>
                                           <th>รหัสวิชา</th>
                                           <th>ชื่อวิชา</th>
+                                          <th><center>Syllabus</center></th>
                                           <th>PDF</th>
                                       </tr>
                                   </thead>
                                   <tbody>
-                                      <tr>
-                                          <td>1</td>
-                                          <td>460100</td>
-                                          <td>LEARNING THROUGH ACTIVITIES 1</td>
-                                          <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
-                                      </tr>
-                                      <tr>
-                                          <td>2</td>
-                                          <td>460201</td>
-                                          <td>LEARNING THROUGH ACTIVITIES 2</td>
-                                          <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
-                                      </tr>
-                                      <tr>
-                                          <td>3</td>
-                                          <td>460202</td>
-                                          <td>LEARNING THROUGH ACTIVITIES 3</td>
-                                          <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
-                                      </tr>
+                                    <?php
+                                    for($i=0;$i<count($data_eva);$i++)
+                                    {
+                                      $num = $i+1;
+                                      echo '<tr>';
+                                      echo '<td>'.$num.'</td>';
+                                      echo '<td>'.$data_eva[$i]['id'].'</td>';
+                                      echo '<td>'.$data_eva[$i]['name'].'</td>';
+                                      echo '<td><center><a href="'.$data_eva[$i]['syllabus'].'"><i class="fa fa-file-word-o fa-2x" aria-hidden="true"></i></a></center></td>';
+                                      echo '<td><a href="'.$data_eva[$i]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>';
+                                      echo '</tr>';
+                                    }
+                                    ?>
                                   </tbody>
                               </table>
                           </div>
+                        <?php }?>
                             </div>
                         </div>
                     </div>
@@ -139,14 +153,26 @@ $(function() {//<-- wrapped here
                             </h5>
                           </div>
                           <div class="panel-body">
+                            <?php
+                            if(isset($data_special['status']))
+                            {
+                              echo '<div class="alert alert-danger">
+                              '.$data_special['msg'].'
+                              </div>';
+                            }
+                            else
+                            {
+                            ?>
                               <div class="panel-group" id="accordion">
-                                <div class="panel panel-default">
+                                <?php for($i=0;$i<count($data_special);$i++) {
+                                  $num = $i +1;
+                                echo '<div class="panel panel-default">
                                     <div class="panel-heading">
                                         <div class="panel-title" style="font-size:14px">
-                                        <a data-toggle="collapse" href="#460100">460100 LEARNING THROUGH ACTIVITIES 1</a>
+                                        <a data-toggle="collapse" href="#460100">'.$data_special[$i]['id'].' '.$data_special[$i]['name'].'</a>
                                       </div>
                                     </div>
-                                    <div id="460100" class="panel-collapse collapse in">
+                                    <div id="'.$data_special[$i]['id'].'" class="panel-collapse collapse in">
                                       <div class="panel-body">
                                         <table class="table table-hover" style="font-size:14px">
                                             <thead>
@@ -157,70 +183,25 @@ $(function() {//<-- wrapped here
                                                     <th>CV</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>ใจเริง มนต์ประสิทธิ์</td>
-                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
-                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
-                                                </tr>
-                                            </tbody>
-                                            <tbody>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>ฤกษ์ พินิจพันธ์</td>
-                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
-                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
-                                                </tr>
-                                            </tbody>
+                                            <tbody>';
+                                            for($j=0;$j<count($data_special[$i]['special']);$j++)
+                                            {
+                                              $num_special = $j+1;
+                                              echo '<tr>
+                                                  <td>'.$num_special.'</td>
+                                                  <td>'.$data_special[$i]['special'][$j]['name'].'</td>
+                                                  <td><a href="'.$data_special[$i]['special'][$j]['cv'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                                                  <td><a href="'.$data_special[$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                                                  </tr>';
+                                            }
+                                            echo '</tbody>
                                           </table>
                                         </div>
                                       </div>
                                     </div>
+                                </div>'; } ?>
                                 </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                      <div class="panel-title" style="font-size:14px">
-                                        <a data-toggle="collapse" href="#460201">460201 LEARNING THROUGH ACTIVITIES 2</a>
-                                      </div>
-                                    </div>
-                                    <div id="460201" class="panel-collapse collapse in">
-                                      <div class="panel-body">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>ชื่อ - สกุล</th>
-                                                    <th>PDF</th>
-                                                    <th>CV</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>เกษราภรณ์ คำมิธรรม</td>
-                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
-                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>รัชนก อินทนนท์</td>
-                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
-                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>ณเดช คูกิมิยะ</td>
-                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
-                                                    <td><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></td>
-                                                </tr>
-                                            </tbody>
-                                          </table>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-
+                              <?php } ?>
                             </div>
                           </div>
                       </div>
