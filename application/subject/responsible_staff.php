@@ -1,5 +1,5 @@
 <?php
-var_dump($_POST);die;
+/*var_dump($_POST);die;*/
 require_once(__DIR__.'/../class/course.php');
 if(isset($_POST['type']))
 {

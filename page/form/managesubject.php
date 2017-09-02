@@ -98,7 +98,7 @@ $history=$course->Get_History();
                                           </div>
                                           <div class="panel-body" style="font-size:14px;">
                                         <div class="form-group">
-                                          <form  id="data"  method="post" data-toggle="validator" role="form" >
+                                          <form role="form"  data-toggle="validator" id="data" >
 
                                               <label for="">เพิ่มคณะกรรมการ</label>
                                               <div class="form-inline">
@@ -106,7 +106,7 @@ $history=$course->Get_History();
                                                 <input type="hidden" name="group" value="1">
                                                 <input type="hidden" name="type" value="add">
                                                 <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                                <button type="submit" name="submit" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                                <button  type="submit" name="submit" class="btn btn-outline btn-primary">เพิ่ม</button>
                                               </div>
                                               <datalist id="dtl1"></datalist>
                                          </form>
@@ -172,16 +172,15 @@ $history=$course->Get_History();
                                         <div class="form-group">
                                           <div class="form-inline">
 
-                                            <form id="data"  method="post">
+                                            <form role="form"  data-toggle="validator" id="data"  method="post" >
                                                 <label for="">เพิ่มคณะกรรมการ</label>
                                                 <div class="form-inline">
-                                                  <input type="text" class="form-control " name="teacher" id="TEACHERLEC_2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'committee');" >
+                                                  <input type="text" required class="form-control " name="teacher" id="TEACHERLEC_2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'committee');" >
                                                   <input type="hidden" name="group" value="2">
                                                   <input type="hidden" name="type" value="add">
                                                   <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
                                                   <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
                                                 </div>
-
                                                 <datalist id="dtl2"></datalist>
                                            </form>
                                           </div>
@@ -247,108 +246,8 @@ $history=$course->Get_History();
               </div>
           </div>
           <div id="show_old"></div>
-          <?php if (isset($old_course)): ?>
 
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <b>กระบวนวิชาที่สังกัดในภาควิชา (ย้อนหลัง) 1/2559</b>
-              </div>
-              <div class="panel-body">
-                <center>
-                <button type="button" class="btn btn-outline btn-primary btn-lg " id="submit"  name="submit">นำไปใช้</button>
-                </center>
-                <hr>
-                <table class="table table-hover" style="font-size:14px">
-                  <col width="130">
-                  <col width="80">
-                  <thead>
-                      <tr>
-                          <th width="10%">รหัสวิชา</th>
-                          <th width="65%">ชื่อวิชา</th>
-                          <th width="5%"></th>
-                          <th width="5%"></th>
-                      </tr>
-                  </thead>
-                  <tbody style="font-size:14px">
-                      <tr>
-                          <td>464402</td>
-                          <td>INTEGRATION IN PHARMACY</td>
-                          <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#464402" class="accordion-toggle">ผู้รับผิดชอบ</button></td>
-                          <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                      </tr>
-                      <tr class="hiddenRow">
-                        <td colspan="12">
-                          <div class="accordian-body collapse" id="464402">
-                            <div class="panel panel-success">
-                              <div class="panel-heading">
-                                <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
-                              </div>
-                              <div class="panel-body">
-                                        <div class="panel-group" id="464402">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <div class="panel-title" style="font-size:14px;">
-                                                        <a data-toggle="collapse" data-parent="#464402" href="#listname464402-1">อาจารย์ผู้สอน</a>
-                                                    </div>
-                                                </div>
-                                                <div id="listname464402-1" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                      <table class="table" style="font-size:14px;">
-                                                        <thead>
-                                                          <th>ลำดับ</th>
-                                                          <th>ชื่อ-นามสกุล</th>
-                                                          <th></th>
-                                                        </thead>
-                                                        <tbody>
-                                                          <tr>
-                                                            <td>1</td>
-                                                            <td>รศ.ดร. ภก.วิรัตน์   นิวัฒนนันท์</td>
-                                                            <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                          </tr>
-                                                        </tbody>
-                                                      </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <div class="panel-title" style="font-size:14px;">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#listname464402-2">คณะกรรมการ</a>
-                                                    </div>
-                                                </div>
-                                                <div id="listname464402-2" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-
-                                                      <table class="table" style="font-size:14px;">
-                                                        <thead>
-                                                          <th>ลำดับ</th>
-                                                          <th>ชื่อ-นามสกุล</th>
-                                                          <th></th>
-                                                        </thead>
-                                                        <tbody>
-                                                          <tr>
-                                                            <td>1</td>
-                                                            <td>คณะกรรมการชุดที่ 1</td>
-                                                            <td><button type="button" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                          </tr>
-                                                        </tbody>
-                                                      </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                  </tbody>
-              </table>
-            </div>
-            </div>
-          <?php endif; ?>
-
-          <div class="panel panel-info">
+          <div class="panel panel-info" id="course_now">
             <div class="panel-heading">
             <b>กระบวนวิชาใน 2/2557</b>
             </div>
@@ -413,7 +312,7 @@ $history=$course->Get_History();
                                           <label for="">เพิ่มผู้รับผิดชอบ</label>
                                           <div class="form-inline">
                                             <form id="staff"  method="post">
-                                              <input type="text" name="teacher" class="form-control " name="teacher" id="TEACHERLEC_<?php echo $value['id'] ?>" list="dtl<?php echo $value['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(<?php echo $value['id'] ?>,'responsible');" >
+                                              <input type="text" name="teacher" required class="form-control " name="teacher" id="TEACHERLEC_<?php echo $value['id'] ?>" list="dtl<?php echo $value['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35"  onkeydown="searchname(<?php echo $value['id'] ?>,'responsible');" >
                                               <input type="hidden" name="type" value="add_teacher">
                                               <input type="hidden" name="course" value="<?php echo $value['id'] ?>">
                                               <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
@@ -451,13 +350,13 @@ $history=$course->Get_History();
 
                                       <label for="">เพิ่มชุดคณะกรรมการ</label>
                                       <div class="form-inline">
-                                          <form id="staff"  method="post">
+                                          <form id="staff"  method="post" data-toggle="validator" role="form">
                                             <input type="hidden" name="type" value="add_assessor">
                                             <input type="hidden" name="course" value="<?php echo $value['id'] ?>">
                                             <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
                                             <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
 
-                                            <select class="form-control" name="group">
+                                            <select class="form-control" name="group" >
                                               <option value="1">คณะกรรมการชุดที่ 1</option>
                                               <option value="2">คณะกรรมการชุดที่ 2</option>
                                             </select>
@@ -510,9 +409,23 @@ $history=$course->Get_History();
     </div>
 <script type="text/javascript">
 $("form#data").submit(function(){
+    var confirmPass = document.getElementById('TEACHERLEC_1').value;
+    var confirmPass2 = document.getElementById('TEACHERLEC_2').value;
+    if (confirmPass == "" || confirmPass == null ) {
+      swal({
+        type:"warning",
+        text: "กรุณากรอกข้อมูลให้ครบ",
+        confirmButtonText: "Ok!",
+      });
+    }
+    if (confirmPass2 == "" || confirmPass2 == null ) {
+      $('#data').validator();
+      return false;
+    }
+
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
-    console.log(formData);
+    //console.log(formData);
     $.ajax({
         url: '../../application/subject/group.php',
         type: 'POST',
@@ -526,7 +439,7 @@ $("form#data").submit(function(){
           swal({
             type:msg.status,
             text: msg.msg,
-            timer: 2000,
+
             confirmButtonText: "Ok!",
           }, function(){
             window.location.reload();
@@ -534,6 +447,7 @@ $("form#data").submit(function(){
           setTimeout(function() {
             window.location.reload();
           }, 3000);
+
         }
     });
     return false;
@@ -541,7 +455,7 @@ $("form#data").submit(function(){
 $("form#course").submit(function(){
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
-    console.log(formData);
+    //console.log(formData);
     $.ajax({
         url: '../../application/subject/responsible_course_department.php',
         type: 'POST',
@@ -570,7 +484,7 @@ $("form#course").submit(function(){
 $("form#staff").submit(function(){
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
-    console.log(formData);
+    //console.log(formData);
     $.ajax({
         url: '../../application/subject/responsible_staff.php',
         type: 'POST',
@@ -580,18 +494,18 @@ $("form#staff").submit(function(){
         contentType: false,
         processData: false,
         success: function (data) {
-
           var msg=JSON.parse(data)
           swal({
             type:msg.status,
             text: msg.msg,
-            timer: 5000,
+            timer: 2000,
             confirmButtonText: "Ok!",
           }, function(){
             window.location.reload();
           });
-
-
+          setTimeout(function() {
+            window.location.reload();
+          }, 3000);
         }
     });
     return false;
@@ -599,7 +513,7 @@ $("form#staff").submit(function(){
 $("form#remove").submit(function(){
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
-    console.log(formData);
+    //console.log(formData);
     $.ajax({
         url: '../../application/subject/responsible_course_department.php',
         type: 'POST',
@@ -627,8 +541,11 @@ function add(){
       type: 'POST',
       data: { course : hidden, type : type} ,
       contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-      success: function (response) {
-          console.log(response);
+      success: function (data) {
+        var msg=JSON.parse(data)
+        console.log(msg);
+        alert(msg.msg);
+        window.location.reload(false);
       },
       error: function () {
           alert("error");
