@@ -44,7 +44,6 @@ if(isset($_POST['type']))
     $data = $_POST['course'];
     $department_id = $_POST['dep'];
     $data = json_decode($data,true);
-
     for($i=0;$i<count($data);$i++)
     {
       $course_id = $data[$i]['id'];
@@ -55,6 +54,28 @@ if(isset($_POST['type']))
       {
         break;
       }
+      else
+      {
+        if($teacher_name != '')
+        {
+          $result = $course->Add_Responsible_Staff($course_id,$teacher_name,$semester['id']);
+          if($result['status'] == 'error')
+          {
+            break;
+          }
+        }
+        if($assessor_group != '')
+        {
+          $result = $course->Add_Responsible_Assessor($course_id,$assessor_group,$semester['id'],$department_id);
+          if($result['status'] == 'error')
+          {
+            break;
+          }
+        }
+
+      }
+      $result['status'] = 'success';
+      $result['msg'] = 'เพิ่มข้อมูลสำเร็จ';
     }
     echo json_encode($result);
   }

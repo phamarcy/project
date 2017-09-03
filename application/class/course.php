@@ -289,6 +289,7 @@ class Course
       $return['status'] = 'error';
       $return['msg'] = 'ไม่มีอาจารย์ท่านนี้อยู่ในรายชื่อผู้รับผิดชอบอยู่แล้ว';
     }
+    return $return;
   }
   public function Add_Responsible_Assessor($course_id,$group_num,$semester_id,$department_id)
   {
