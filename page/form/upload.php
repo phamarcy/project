@@ -30,7 +30,8 @@ $grade->Close_connection();
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
-
+    <script src="../dist/js/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
     <style>
 
     #statcf {
@@ -136,9 +137,18 @@ $("form#data").submit(function(){
         contentType: false,
         processData: false,
         success: function (data) {
-            var temp = $.parseJSON(data);
-            alert(temp.msg);
-            location.reload();
+          var msg=JSON.parse(data)
+          swal({
+            type:msg.status,
+            text: msg.msg,
+            timer: 2000,
+            confirmButtonText: "Ok!",
+          }, function(){
+            window.location.reload();
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 3000);
 
         }
     });

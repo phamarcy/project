@@ -12,6 +12,9 @@ $dep_js=$department['code'];
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History();
+/*echo "<pre>";
+print_r($semeter);
+echo "</pre>";*/
  ?>
 <html>
   <head>
@@ -207,7 +210,7 @@ $history=$course->Get_History();
 
           <div class="panel panel-info" id="course_now">
             <div class="panel-heading">
-            <b>กระบวนวิชาใน 2/2557</b>
+            <b>กระบวนวิชาใน <?php echo $semeter['semester'] ?>/<?php echo $semeter['year'] ?></b>
             </div>
             <div class="panel-body">
               <div class="row">
@@ -314,7 +317,7 @@ $history=$course->Get_History();
                                             <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
                                             <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
 
-                                            <select class="form-control" name="group">
+                                            <select class="form-control" name="group" id="select">
                                               <option value="1">คณะกรรมการชุดที่ 1</option>
                                               <option value="2">คณะกรรมการชุดที่ 2</option>
                                             </select>
@@ -512,9 +515,17 @@ $("form#remove").submit(function(){
         processData: false,
         success: function (data) {
           var msg=JSON.parse(data)
-          console.log(msg);
-          alert(msg.msg);
-          window.location.reload(false);
+          swal({
+            type:msg.status,
+            text: msg.msg,
+            timer: 2000,
+            confirmButtonText: "Ok!",
+          }, function(){
+            window.location.reload();
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 3000);
         }
     });
     return false;
@@ -531,9 +542,17 @@ function add(){
       contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
       success: function (data) {
         var msg=JSON.parse(data)
-        console.log(msg);
-        alert(msg.msg);
-        window.location.reload(false);
+        swal({
+          type:msg.status,
+          text: msg.msg,
+          timer: 2000,
+          confirmButtonText: "Ok!",
+        }, function(){
+          window.location.reload();
+        });
+        setTimeout(function() {
+          window.location.reload();
+        }, 3000);
       },
       error: function () {
           alert("error");
@@ -676,7 +695,8 @@ function submitForm(num,text){
               });
         }
       }
-$('select').select2({ width: '70%' });
+$('#select').select2({ width: '70%' });
+$('#search_course_id').select2();
 </script>
   </body>
 </html>
