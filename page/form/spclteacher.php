@@ -564,7 +564,7 @@ $current = $dlobj->Get_Current_Semester();
                             cancelButtonColor: '#d33',
                             confirmButtonText: 'Ok'
                           }).then(function () {
-
+                            location.reload();
                           }, function (dismiss) {
                           // dismiss can be 'cancel', 'overlay',
                           // 'close', and 'timer'
