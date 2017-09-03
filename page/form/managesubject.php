@@ -688,7 +688,7 @@ function submitForm(num,text){
               });
         }
       }
-$('select').select2({ width: 'resolve' });
+$('select').select2({ width: '70%' });
 </script>
   </body>
 </html>
