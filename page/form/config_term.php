@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+session_start();
+require_once(__DIR__."/../../application/class/manage_deadline.php");
+$deadline = new Deadline();
+$semester = $deadline->Get_Current_Semester();
+ ?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -130,16 +135,16 @@
                   <div class="form-inline">
                       <h style="width: 100px;  ">ภาคการศึกษาที่ </h>
                       <div class="form-group">
-                          <select class="form-control" id="semester" style="width: 70px;" disabled>
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
+                          <select class="form-control" id="semester" style="width: 70px;"  disabled>
+                              <option <?php echo ($semester['semester'] == '1') ?  "selected" : '' ;?>>1</option>
+                              <option <?php echo ($semester['semester'] == '2') ?  "selected" : '' ;?>>2</option>
+                              <option <?php echo ($semester['semester'] == '3') ?  "selected" : '' ;?>>3</option>
                           </select>
                       </div>
                       ปีการศึกษา
-                      <input class="form-control" id="year" name="year" placeholder="e.g. 2560" style="width: 100px;" value="2560" disabled>
+                      <input class="form-control" id="year" name="year" placeholder="e.g. 2560" style="width: 100px;" value="<?php echo $semester['year']; ?>" disabled>
                       <button type="button" class="btn btn-outline btn-default" id="change-data">เปลี่ยน</button>
-                    <img id="loading" src="" height="35px"/>
+                    <img id="loading" height="35px"/>
                   </div>
                   <br>
                 <div id="warning"></div>
