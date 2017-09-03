@@ -1012,6 +1012,12 @@ function lastcal() {
       }).then(function () {
         document.getElementById("formheader").reset();
         document.getElementById("form1").reset();
+        var rowtr = ($('#detailteaching tr').length)-2
+        for (var i = 1; i <=rowtr; i++) {
+          var row = document.getElementById('row' + i);
+          row.parentNode.removeChild(row);
+        }
+
         swal(
           'เคลียร์!',
           'รีเซ็ตข้อมูลเรียบร้อยแล้ว',
