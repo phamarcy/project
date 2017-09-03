@@ -442,6 +442,14 @@ $current = $dlobj->Get_Current_Semester();
   //NUMTABLE
   var rowtr = ($('#detailteaching tr').length)-2;
 
+  //make fixed2
+  var fixedcostplane = parseFloat(document.getElementById('planecost').value);
+  var costplane = fixedcostplane.toFixed(2);
+  var fixedcosttaxi = parseFloat(document.getElementById('taxicost').value);
+  var costtaxi = fixedcosttaxi.toFixed(2);
+  var fixedcosttotal = parseFloat(document.getElementById('totalcost').value);
+  var costtotal = fixedcosttotal.toFixed(2);
+
    var data = {
      'TEACHERDATA' : {
        'DEPARTMENT' : document.getElementById('department').value,
@@ -491,13 +499,13 @@ $current = $dlobj->Get_Current_Semester();
            'CHECKED' : planecheck,
            'DEPART' : document.getElementById('AIR_DEPART').value,
            'ARRIVE' : document.getElementById('AIR_ARRIVE').value,
-           'COST' : document.getElementById('planecost').value
+           'COST' : costplane
          },
          'TRANSTAXI' : {
            'CHECKED' : taxicheck,
            'DEPART' : document.getElementById('TAXI_DEPART').value,
            'ARRIVE' : document.getElementById('TAXI_ARRIVE').value,
-           'COST' : document.getElementById('taxicost').value
+           'COST' : costtaxi
          },
          'TRANSSELFCAR' : {
            'CHECKED' : selfcarcheck,
@@ -512,7 +520,7 @@ $current = $dlobj->Get_Current_Semester();
          'NUMBER' : document.getElementById('numnight').value,
          'PERNIGHT' : document.getElementById('pernight').value
        },
-       'TOTALCOST' : document.getElementById('totalcost').value,
+       'TOTALCOST' : costtotal
     },
     'NUMTABLE' : rowtr,
     'SUBMIT_TYPE' : casesubmit
@@ -524,6 +532,7 @@ $current = $dlobj->Get_Current_Semester();
    }
    else if(casesubmit=='2')
    {
+     console.log(JSON.stringify(data));
      senddata(JSON.stringify(data),getfile());
    }
  }
