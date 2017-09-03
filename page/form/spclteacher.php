@@ -1059,7 +1059,7 @@ function lastcal() {
       </center>
 
       <div id="dlhide" class="panel panel-default"> <br>
-      <form action="" data-toggle="validator" role="form" name="form1" method="post">
+      <form action="" data-toggle="validator" role="form" name="form1" id="form1" method="post">
       <div class="row form-inline" style="font-size:16px;">
         <center><div class="form-group">
       ภาควิชา
@@ -1252,7 +1252,7 @@ function lastcal() {
     <div align="center">
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" onclick="checkreq('1');"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2');"> &nbsp;
-      <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>
 </form>
 </div>

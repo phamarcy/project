@@ -1476,7 +1476,7 @@ function checkreq2(casesubmit) {
   }
 }
 
-function confreset() {
+function confreset(casereset) {
     //confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
     swal({
       title: 'แน่ใจหรือไม่',
@@ -1487,8 +1487,15 @@ function confreset() {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes'
     }).then(function () {
-      document.getElementById("formheader").reset();
-      document.getElementById("form1").reset();
+      if(casereset=='1')
+      {
+        document.getElementById("formheader").reset();
+        document.getElementById("form1").reset();
+      }else {
+        document.getElementById("formheader").reset();
+        document.getElementById("form2").reset();
+      }
+
       swal(
         'เคลียร์!',
         'รีเซ็ตข้อมูลเรียบร้อยแล้ว',
@@ -2039,7 +2046,7 @@ function confreset() {
     <div align="center">
       <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn"  value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2')"> &nbsp;
-      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset('1');" value="รีเซ็ตข้อมูล">
     </div>
 </form>
 </div>
@@ -2048,7 +2055,7 @@ function confreset() {
   <div id="bottomform" class="panel panel-default">
     <br>
     <ol>
-      <form data-toggle="validator" role="form">
+      <form data-toggle="validator" role="form" name="form2" id="form2">
       <li style="font-size: 14px;"><div class="form-inline form-group"><b>รหัสกระบวนวิชา : </b><input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID_2" id="COURSE_ID_2"   maxlength="6" required pattern=".{6,6}" ></div></li>
       <li style="font-size: 14px;">
         <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์จากโปรแกรม Microsoft Word (.doc หรือ .docx) เท่านั้น) : </b><br />
@@ -2059,7 +2066,7 @@ function confreset() {
       <br><br>
       <div align="center">
         <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq2('0')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
-        <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
+        <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset('2');" value="รีเซ็ตข้อมูล">
       </div>
     </form>
     </ol>
