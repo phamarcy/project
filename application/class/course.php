@@ -181,8 +181,24 @@ class Course
       $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
       {
-        $return['status'] = 'success';
-        $return['msg'] = 'ลบกระบวนวิชาสำเร็จ';
+        $result = $this->Remove_Responsible_Assessor($course_id,$semester_id);
+        if($result)
+        {
+          $result = $this->Remove_Responsible_Staff('all',$course_id,$semester_id);
+          if($result)
+          {
+            $return['status'] = 'success';
+            $return['msg'] = 'ลบกระบวนวิชาสำเร็จ';
+          }
+          else
+          {
+            $return = $result;
+          }
+        }
+        else
+        {
+          $return = $result;
+        }
       }
       else
       {
@@ -262,15 +278,29 @@ class Course
 
   public function Remove_Responsible_Staff($teacher_name,$course_id,$semester_id)
   {
-    $teacher_id = $this->PERSON->Get_Teacher_Id($teacher_name);
-
-    $sql = "SELECT * FROM course_responsible
-    WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$semester_id;
-    $result = $this->DB->Query($sql);
+    if($teacher_name != 'all')
+    {
+      $teacher_id = $this->PERSON->Get_Teacher_Id($teacher_name);
+      $sql = "SELECT * FROM course_responsible
+      WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$semester_id;
+      $result = $this->DB->Query($sql);
+    }
+    else
+    {
+      $result = '1';
+    }
     if($result != null)
     {
-      $sql = "DELETE FROM `course_responsible`
-      WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$semester_id;
+      $sql = "DELETE FROM `course_responsible` ";
+      if($teacher_name != 'all')
+      {
+        $sql .= "  WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$semester_id;
+      }
+      else
+      {
+          $sql .= "  WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$semester_id;
+      }
+
       $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
       {
