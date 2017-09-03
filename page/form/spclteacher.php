@@ -376,7 +376,7 @@ $current = $dlobj->Get_Current_Semester();
   room = arrroom;
 
   // levelteacher
-  if($('input[name=levelteacher]').val()=="pro")
+  if(document.querySelector("input[name='levelteacher']:checked").value=="pro")
   {
       var lvteacher = document.getElementById('GOV_LEVEL').value;
   }
