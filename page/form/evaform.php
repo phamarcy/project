@@ -1418,9 +1418,8 @@ $(document).ready(function(){
       alert('yes');
     }
   });*/
-    $('#form1').submit(function () {
-       return false;
-    });
+
+    
 
 });
 
@@ -2065,8 +2064,8 @@ function confreset(casereset) {
       </li>
       <br><br>
       <div align="center">
-        <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq2('0')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
-        <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset('2');" value="รีเซ็ตข้อมูล">
+        <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn2" id="submitbtn2" onclick="checkreq2('0')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
+        <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn2" id="resetbtn2" onclick="confreset('2');" value="รีเซ็ตข้อมูล">
       </div>
     </form>
     </ol>
