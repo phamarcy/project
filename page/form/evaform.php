@@ -1416,6 +1416,7 @@ $(document).ready(function(){
       if(file==null && file=="" && file== undefined)
       {
         e.preventDefault();
+        return false;
       }
     }
     else {
