@@ -325,7 +325,7 @@ class Course
     $result = $this->DB->Query($sql);
     if($result != null)
     {
-      $sql = "DELETE FROM `course_responsible`
+      $sql = "DELETE FROM `subject_assessor`
       WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$semester_id;
       $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
