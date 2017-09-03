@@ -11,7 +11,7 @@ $department =$person->Get_Staff_Dep($_SESSION['id']);
 $dep_js=$department['code'];
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
-$history=$course->Get_History();
+$history=$course->Get_History($department['code']);
 echo "<pre>";
 print_r($list_course);
 echo "</pre>";

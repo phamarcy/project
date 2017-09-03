@@ -127,7 +127,7 @@ class Course
     }
 
   }
-  public function Get_History()
+  public function Get_History($department_id)
   {
     $DATA = array();
     $curr_semester = $this->DEADLINE->Get_Current_Semester();
@@ -139,7 +139,10 @@ class Course
         $data['id'] = $history;
         $data['semester'] = $curr_semester['semester'];
         $data['year'] = $curr_semester['year'] - $i;
-        array_push($DATA,$data);
+        if($this->Get_Dept_Course($department_id,$data['id']) != null)
+        {
+          array_push($DATA,$data);
+        }
       }
     }
     return $DATA;
