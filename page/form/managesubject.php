@@ -356,7 +356,7 @@ $history=$course->Get_History();
                                             <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
                                             <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
 
-                                            <select class="form-control" name="group" >
+                                            <select class="form-control" name="group">
                                               <option value="1">คณะกรรมการชุดที่ 1</option>
                                               <option value="2">คณะกรรมการชุดที่ 2</option>
                                             </select>
@@ -688,7 +688,7 @@ function submitForm(num,text){
               });
         }
       }
-$('select').select2();
+$('select').select2({ width: 'resolve' });
 </script>
   </body>
 </html>
