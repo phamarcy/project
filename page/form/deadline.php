@@ -198,7 +198,6 @@ $(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_specia
   var button_object = $(this)
   var id = $(button_object).attr('id');
     swal({
-  title: 'บันทึกข้อมูล',
   text: "ต้องการบันทึกหรือไม่ ?",
   type: 'warning',
   showCancelButton: true,
@@ -253,7 +252,7 @@ $(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_specia
         var result = JSON.parse(data);
         if (typeof result.success === 'undefined' || result.success === null ) {
           swal(
-              'Error',
+              '',
                 result.error,
               'error'
             )
@@ -261,7 +260,7 @@ $(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_specia
         }
         else {
           swal(
-            'Success',
+            '',
             result.success,
             'success'
           )
@@ -272,7 +271,7 @@ $(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_specia
     }).fail(function() {
       $(form).find("#warning").html("");
       swal(
-          'Error',
+          '',
           "ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่",
           'error'
         )

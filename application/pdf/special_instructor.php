@@ -207,8 +207,11 @@ for($i=0;$i<count($DATA['COURSEDATA']['DETAIL']["TOPICLEC"]);$i++)
 	$current_y = $pdf->GetY();
 	$current_x = $pdf->GetX();
 
+	$data_date = strtotime($DATA['COURSEDATA']['DETAIL']["DATE"][$i]);
+ 	$date = date('d-m-Y',$data_date);
+
 	$pdf->SetXY($before_x + 70, $before_y);
-	$pdf->Cell(30,7,iconv('UTF-8','TIS-620',$DATA['COURSEDATA']['DETAIL']["DATE"][$i]));
+	$pdf->Cell(30,7,iconv('UTF-8','TIS-620',$date));
 
 	$current_x += 30;
 	$pdf->SetXY($before_x + 100, $before_y);
