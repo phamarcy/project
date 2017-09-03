@@ -537,7 +537,7 @@ function add(){
 
   var hidden = document.getElementById('hidden').value;
   var type ="add_oldcourse";
-  var dep = dep_js;
+  var dep = <?php echo $dep_js ?>;
   //console.log(hidden,type);
   $.ajax({
       url: '../../application/subject/responsible_course_department.php',
