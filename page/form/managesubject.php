@@ -75,150 +75,108 @@ $history=$course->Get_History();
                     <div class="form-group">
                       <div class="row">
                           <div class="col-md-6">
-                            <table class="table" style="font-size:14px;"s>
+                            <div class="panel panel-info">
+                              <div class="panel-heading" style="font-size:14px;">
+                                  คณะกรรมการชุดที่ 1
+                              </div>
+                              <div class="panel-body" style="font-size:14px;">
+                            <div class="form-group">
+                              <form role="form"  data-toggle="validator" id="data" >
+
+                                  <label for="">เพิ่มคณะกรรมการ</label>
+                                  <div class="form-inline">
+                                    <input type="text" class="form-control " name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" required>
+                                    <input type="hidden" name="group" value="1">
+                                    <input type="hidden" name="type" value="add">
+                                    <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                    <button  type="submit" name="submit" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                  </div>
+                                  <datalist id="dtl1"></datalist>
+                             </form>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                              <table class="table" style="font-size:14px">
                                 <thead>
                                   <th>ลำดับ</th>
-                                  <th>ชุดคณะกรรมการ</th>
-                                  <th style="text-align:center;">รายชื่อคณะกรรมการ</th>
+                                  <th>ชื่อ-นามสกุล</th>
                                   <th></th>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>คณะกรรมการชุดที่ 1</td>
-                                    <td style="text-align:center;"><button type="button" name="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#set1" class="accordion-toggle">รายชื่อ</button></td>
-                                  </tr>
-                                  <tr class="hiddenRow">
 
-                                    <td colspan="6">
-                                      <div class="accordian-body collapse" id="set1">
-                                        <div class="panel panel-info">
-                                          <div class="panel-heading" style="font-size:14px;">
-                                              คณะกรรมการชุดที่ 1
-                                          </div>
-                                          <div class="panel-body" style="font-size:14px;">
-                                        <div class="form-group">
-                                          <form role="form"  data-toggle="validator" id="data" >
+                                      <?php foreach ($assessor[0]['assessor'] as $key_assessor => $assessor_name): ?>
+                                        <form id='dataremove'  method="post">
+                                          <input type="hidden" name="teacher"  id="name_assessor" value="<?php echo $assessor_name ?>">
+                                          <input type="hidden" name="type" id="remove_assessor"  value="remove">
+                                          <input type="hidden" name="group" value="1">
+                                          <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                        <tr>
+                                            <td><?php echo $key_assessor+1; ?></td>
+                                            <td><?php echo $assessor_name ?></td>
+                                            <td><button type="submit" name="button" class="btn btn-outline btn-danger" value='delete'>ลบ</button></td>
+                                        </tr>
+                                        </form>
+                                      <?php endforeach; ?>
 
-                                              <label for="">เพิ่มคณะกรรมการ</label>
-                                              <div class="form-inline">
-                                                <input type="text" class="form-control " name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" required>
-                                                <input type="hidden" name="group" value="1">
-                                                <input type="hidden" name="type" value="add">
-                                                <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                                <button  type="submit" name="submit" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                              </div>
-                                              <datalist id="dtl1"></datalist>
-                                         </form>
-                                        </div>
-                                        <hr>
-                                        <div class="form-group">
-                                          <table class="table" style="font-size:14px">
-                                            <thead>
-                                              <th>ลำดับ</th>
-                                              <th>ชื่อ-นามสกุล</th>
-                                              <th></th>
-                                            </thead>
-                                            <tbody>
-
-                                                  <?php foreach ($assessor[0]['assessor'] as $key_assessor => $assessor_name): ?>
-                                                    <form id='data'  method="post">
-                                                      <input type="hidden" name="teacher"  id="name_assessor" value="<?php echo $assessor_name ?>">
-                                                      <input type="hidden" name="type" id="remove_assessor"  value="remove">
-                                                      <input type="hidden" name="group" value="1">
-                                                      <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                                    <tr>
-                                                        <td><?php echo $key_assessor+1; ?></td>
-                                                        <td><?php echo $assessor_name ?></td>
-                                                        <td><button type="submit" name="button" class="btn btn-outline btn-danger" value='delete'>ลบ</button></td>
-                                                    </tr>
-                                                    </form>
-                                                  <?php endforeach; ?>
-
-                                            </tbody>
-                                          </table>
-                                        </div>
-
-                                        </div>
-                                      </div>
-                                      </td>
-                                  </tr>
                                 </tbody>
-                            </table>
+                              </table>
+                            </div>
+
+                            </div>
+                          </div>
                           </div>
                           <div class="col-md-6">
-                            <table class="table" style="font-size:14px;">
+                            <div class="panel panel-info">
+                              <div class="panel-heading">
+                                  คณะกรรมการชุดที่ 2
+                              </div>
+                              <div class="panel-body">
+                            <div class="form-group">
+                              <div class="form-inline">
+
+                                <form role="form"  data-toggle="validator" id="data"  method="post" >
+                                    <label for="">เพิ่มคณะกรรมการ</label>
+                                    <div class="form-inline">
+                                      <input type="text" required class="form-control " name="teacher" id="TEACHERLEC_2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'committee');" >
+                                      <input type="hidden" name="group" value="2">
+                                      <input type="hidden" name="type" value="add">
+                                      <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                      <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                    </div>
+                                    <datalist id="dtl2"></datalist>
+                               </form>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                              <table class="table" style="font-size:14px;">
                                 <thead>
                                   <th>ลำดับ</th>
-                                  <th>ชุดคณะกรรมการ</th>
-                                  <th style="text-align:center;">รายชื่อคณะกรรมการ</th>
+                                  <th>ชื่อ-นามสกุล</th>
                                   <th></th>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>คณะกรรมการชุดที่ 2</td>
-                                    <td style="text-align:center;"><button type="button" name="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#set2" class="accordion-toggle">รายชื่อ</button></td>
-                                  </tr>
-                                  <tr class="hiddenRow">
 
-                                    <td colspan="6">
-                                      <div class="accordian-body collapse" id="set2">
-                                        <div class="panel panel-info">
-                                          <div class="panel-heading">
-                                              คณะกรรมการชุดที่ 2
-                                          </div>
-                                          <div class="panel-body">
-                                        <div class="form-group">
-                                          <div class="form-inline">
+                                      <?php foreach ($assessor[1]['assessor'] as $key_assessor => $assessor_name): ?>
+                                        <form id='dataremove'  method="post">
+                                          <input type="hidden" name="teacher"  id="name_assessor" value="<?php echo $assessor_name ?>">
+                                          <input type="hidden" name="type" id="remove_assessor"  value="remove">
+                                          <input type="hidden" name="group" value="2">
+                                          <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                        <tr>
+                                            <td><?php echo $key_assessor+1; ?></td>
+                                            <td><?php echo $assessor_name ?></td>
+                                            <td><button type="submit" name="button" class="btn btn-outline btn-danger" value='delete'>ลบ</button></td>
+                                        </tr>
+                                        </form>
+                                      <?php endforeach; ?>
 
-                                            <form role="form"  data-toggle="validator" id="data"  method="post" >
-                                                <label for="">เพิ่มคณะกรรมการ</label>
-                                                <div class="form-inline">
-                                                  <input type="text" required class="form-control " name="teacher" id="TEACHERLEC_2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'committee');" >
-                                                  <input type="hidden" name="group" value="2">
-                                                  <input type="hidden" name="type" value="add">
-                                                  <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                                  <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                </div>
-                                                <datalist id="dtl2"></datalist>
-                                           </form>
-                                          </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-group">
-                                          <table class="table" style="font-size:14px;">
-                                            <thead>
-                                              <th>ลำดับ</th>
-                                              <th>ชื่อ-นามสกุล</th>
-                                              <th></th>
-                                            </thead>
-                                            <tbody>
-
-                                                  <?php foreach ($assessor[1]['assessor'] as $key_assessor => $assessor_name): ?>
-                                                    <form id='data'  method="post">
-                                                      <input type="hidden" name="teacher"  id="name_assessor" value="<?php echo $assessor_name ?>">
-                                                      <input type="hidden" name="type" id="remove_assessor"  value="remove">
-                                                      <input type="hidden" name="group" value="2">
-                                                      <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                                    <tr>
-                                                        <td><?php echo $key_assessor+1; ?></td>
-                                                        <td><?php echo $assessor_name ?></td>
-                                                        <td><button type="submit" name="button" class="btn btn-outline btn-danger" value='delete'>ลบ</button></td>
-                                                    </tr>
-                                                    </form>
-                                                  <?php endforeach; ?>
-
-                                            </tbody>
-                                          </table>
-                                        </div>
-
-                                        </div>
-                                      </div>
-                                      </td>
-                                  </tr>
                                 </tbody>
-                            </table>
+                              </table>
+                            </div>
+
+                            </div>
+                          </div>
                           </div>
                       </div>
 
@@ -411,17 +369,47 @@ $history=$course->Get_History();
 $("form#data").submit(function(){
     var confirmPass = document.getElementById('TEACHERLEC_1').value;
     var confirmPass2 = document.getElementById('TEACHERLEC_2').value;
-    if (confirmPass == "" || confirmPass == null ) {
-      swal({
-        type:"warning",
-        text: "กรุณากรอกข้อมูลให้ครบ",
-        confirmButtonText: "Ok!",
-      });
-    }
-    if (confirmPass2 == "" || confirmPass2 == null ) {
-      $('#data').validator();
-      return false;
-    }
+    console.log(confirmPass);
+
+      if (confirmPass == ""  && confirmPass2 == "") {
+        swal({
+          type:"warning",
+          text: "กรุณากรอกข้อมูลให้ครบ",
+          confirmButtonText: "Ok!",
+        });
+        return false;
+      }
+
+    //var file = document.forms['data']['filexcel'].files[0];
+    var formData = new FormData(this);
+    //console.log(formData);
+    $.ajax({
+        url: '../../application/subject/group.php',
+        type: 'POST',
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          var msg=JSON.parse(data)
+          swal({
+            type:msg.status,
+            text: msg.msg,
+
+            confirmButtonText: "Ok!",
+          }, function(){
+            window.location.reload();
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 3000);
+
+        }
+    });
+    return false;
+});
+$("form#dataremove").submit(function(){
 
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
