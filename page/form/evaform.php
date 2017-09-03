@@ -1409,17 +1409,18 @@ $(document).ready(function(){
   });
 
   //submit
-  /*$('#draftbtn').click(function(e) {
-    if($('#draftbtn').attr('disabled')==true)
+  $('#submitbtn').click(function(e) {
+    if($('#submitbtn').hasClass('disabled')==true)
     {
-      alert('dis');
+      console.log('มี disabled');
     }
     else {
-      alert('yes');
+      console.log('ไม่มี disabled');
+      return true;
     }
-  });*/
+  });
 
-    
+
 
 });
 
