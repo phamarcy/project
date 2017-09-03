@@ -1412,10 +1412,13 @@ $(document).ready(function(){
   $('#submitbtn').click(function(e) {
     if($('#submitbtn').hasClass('disabled')==true)
     {
-      console.log('มี disabled');
+      var file = document.forms['form1']['syllabus'].files[0];
+      if(file==null && file=="" && file== undefined)
+      {
+        e.preventDefault();
+      }
     }
     else {
-      console.log('ไม่มี disabled');
       return true;
     }
   });
