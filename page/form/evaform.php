@@ -1413,7 +1413,7 @@ $(document).ready(function(){
     if($('#submitbtn').hasClass('disabled')==true)
     {
       var file = document.forms['form1']['syllabus'].files[0];
-      if(file==null && file=="" && file== undefined)
+      if(!file)
       {
         e.preventDefault();
         return false;
