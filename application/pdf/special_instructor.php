@@ -147,8 +147,10 @@ $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','2 รายละเอียดกร�
 $pdf->SetX(25);
 $pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','2.1 กระบวนวิชาที่สอน    ')),9,iconv( 'UTF-8','TIS-620','2.1 กระบวนวิชาที่สอน    '),0,"C");
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620',$DATA['COURSEDATA']['COURSE_ID'])),9,iconv( 'UTF-8','TIS-620',$DATA['COURSEDATA']['COURSE_ID']),0,1,'C');
-
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620',$DATA['COURSEDATA']['COURSE_ID'])),9,iconv( 'UTF-8','TIS-620',$DATA['COURSEDATA']['COURSE_ID']),0,'C');
+$pdf->SetX(100);
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','จำนวนนักศึกษาทั้งหมด    ')),9,iconv( 'UTF-8','TIS-620','จำนวนนักศึกษาทั้งหมด   '),0,"C");
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620',$DATA['COURSEDATA']['NOSTUDENT'].' คน')),9,iconv( 'UTF-8','TIS-620',$DATA['COURSEDATA']['NOSTUDENT'].' คน'),0,1,'C');
 
 if($DATA['COURSEDATA']['TYPE_COURSE'] == "require")
 {
