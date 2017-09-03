@@ -125,7 +125,7 @@ $grade->Close_connection();
 </div>
 <script type="text/javascript">
 $("form#data").submit(function(){
-    //var file = document.forms['data']['filexcel'].files[0];
+    var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
 
     $.ajax({
