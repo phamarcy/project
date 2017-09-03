@@ -588,13 +588,13 @@ function submitForm(num,text){
               $('#table_old')
               $('#show_old').append(`
 
-        <div class="panel panel-default">
+        <div class="panel panel-info">
         <div class="panel-heading" role="tab" id="heading">
-          <h4 class="panel-title">
-          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse" aria-expanded2="true" aria-controls="collapse">
+          <div class="panel-title" style="font-size:14px;" >
+          <b>
             ข้อมูลวิชาย้อนหลัง ${text}
-          </a>
-          </h4>
+          </b>
+          </div>
         </div>
         <div class="panel-collapse collapse in" id="collapse" role="tabpanel" aria-labelledbyzz="heading">
           <div class="panel-body">
