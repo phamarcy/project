@@ -1420,6 +1420,10 @@ $(document).ready(function(){
     }
   });
 
+  File: {
+    required: true
+}
+
 
 
 });
