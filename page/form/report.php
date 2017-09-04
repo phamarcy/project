@@ -133,8 +133,8 @@ $(function() {//<-- wrapped here
                                       echo '<td>'.$num.'</td>';
                                       echo '<td>'.$data_eva[$i]['id'].'</td>';
                                       echo '<td>'.$data_eva[$i]['name'].'</td>';
-                                      echo '<td><center><a href="'.$data_eva[$i]['syllabus'].'"><i class="fa fa-file-word-o fa-2x" aria-hidden="true"></i></a></center></td>';
-                                      echo '<td><a href="'.$data_eva[$i]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>';
+                                      echo '<td><center><a target="_blank" href="'.$data_eva[$i]['syllabus'].'"><i class="fa fa-file-word-o fa-2x" aria-hidden="true"></i></a></center></td>';
+                                      echo '<td><a target="_blank" href="'.$data_eva[$i]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>';
                                       echo '</tr>';
                                     }
                                     ?>
@@ -179,8 +179,8 @@ $(function() {//<-- wrapped here
                                                 <tr>
                                                     <th>#</th>
                                                     <th>ชื่อ - สกุล</th>
-                                                    <th>PDF</th>
                                                     <th>CV</th>
+                                                    <th>PDF</th>
                                                 </tr>
                                             </thead>
                                             <tbody>';
@@ -190,8 +190,8 @@ $(function() {//<-- wrapped here
                                               echo '<tr>
                                                   <td>'.$num_special.'</td>
                                                   <td>'.$data_special[$i]['special'][$j]['name'].'</td>
-                                                  <td><a href="'.$data_special[$i]['special'][$j]['cv'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
-                                                  <td><a href="'.$data_special[$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                                                  <td><a target="_blank" href="'.$data_special[$i]['special'][$j]['cv'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                                                  <td><a target="_blank" href="'.$data_special[$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
                                                   </tr>';
                                             }
                                             echo '</tbody>

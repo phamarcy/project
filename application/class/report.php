@@ -21,6 +21,7 @@ class Report
   private $PERSON;
   private $DEADLINE;
   private $FILE_PATH;
+  private $VIEW_URL;
 
   function __construct()
   {
@@ -36,6 +37,14 @@ class Report
     $this->COURSE = new Course();
     $this->DB = new Database();
     $this->PERSON = new Person();
+    $this->Get_URL();
+  }
+
+  private function Get_URL()
+  {
+    $url = $this->CURL->GET_SERVER_URL();
+    $url .= "/application/pdf/view.php";
+    $this->VIEW_URL = $url;
   }
 
   public function Get_Evaluate_Report($semester,$year)
@@ -51,7 +60,7 @@ class Report
         $data['name'] = $this->COURSE->Get_Course_Name($data['id']);
         $url = '';
         $data['syllabus'] = $url;
-        $data['pdf'] = $url;
+        $data['pdf'] = $this->VIEW_URL."?course=".$data['id']."&type=draft&info=evaluate&semester=".$semester."&year=".$year;
         $file_name = scandir($this->FILE_PATH."/".$data['id']."/evaluate");
         for($j=2;$j<count($file_name);$j++)
         {
@@ -118,7 +127,7 @@ class Report
             $instructor['id'] = $instructor_id[1];
             $instructor['name'] = $this->PERSON->Get_Special_Instructor_Name($instructor['id']);
             $instructor['cv'] = '-';
-            $instructor['pdf'] = '-';
+            $instructor['pdf'] =  $this->VIEW_URL."?course=".$data['id']."&id=".$instructor['id']."&type=complete&info=special&semester=".$semester."&year=".$year;
             array_push($data['special'],$instructor);
           }
         }
