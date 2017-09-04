@@ -21,6 +21,7 @@ class Report
   private $PERSON;
   private $DEADLINE;
   private $FILE_PATH;
+  private $DOWNLOAD_URL;
   private $VIEW_URL;
 
   function __construct()
@@ -43,8 +44,10 @@ class Report
   private function Get_URL()
   {
     $url = $this->CURL->GET_SERVER_URL();
-    $url .= "/application/pdf/view.php";
-    $this->VIEW_URL = $url;
+    $download_url = $url."/application/download/download.php";
+    $view_url = $url."/application/pdf/view.php";
+    $this->DOWNLOAD_URL = $download_url;
+    $this->VIEW_URL = $view_url;
   }
 
   public function Get_Evaluate_Report($semester,$year)
@@ -54,21 +57,25 @@ class Report
     {
       $DATA = array();
       $course = scandir($this->FILE_PATH);
+
       for($i=2;$i<count($course);$i++)
       {
-        $data['id'] = $course[$i];
-        $data['name'] = $this->COURSE->Get_Course_Name($data['id']);
-        $url = '';
-        $data['syllabus'] = $url;
-        $data['pdf'] = $this->VIEW_URL."?course=".$data['id']."&type=draft&info=evaluate&semester=".$semester."&year=".$year;
-        $file_name = scandir($this->FILE_PATH."/".$data['id']."/evaluate");
-        for($j=2;$j<count($file_name);$j++)
+        if(is_dir($this->FILE_PATH."/".$course[$i]))
         {
-          if($this->Check_File_Semester($semester,$year,$file_name[$j]))
-          {
-            array_push($DATA,$data);
-            break;
-          }
+            $data['id'] = $course[$i];
+            $data['name'] = $this->COURSE->Get_Course_Name($data['id']);
+            $url = '';
+            $data['syllabus'] = $url;
+            $data['pdf'] = $this->DOWNLOAD_URL."?course=".$data['id']."&info=evaluate&semester=".$semester."&year=".$year;
+            $file_name = scandir($this->FILE_PATH."/".$data['id']."/evaluate");
+            for($j=2;$j<count($file_name);$j++)
+            {
+              if($this->Check_File_Semester($semester,$year,$file_name[$j]))
+              {
+                array_push($DATA,$data);
+                break;
+              }
+            }
         }
       }
       if(count($DATA) == 0)
