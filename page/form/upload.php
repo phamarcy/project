@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
+{
+    die('กรุณา Login ใหม่');
+}
 require_once(__DIR__."/../../application/class/manage_deadline.php");
 require_once(__DIR__."/../../application/class/course.php");
 $deadline = new Deadline;
@@ -125,9 +129,16 @@ $grade->Close_connection();
 </div>
 <script type="text/javascript">
 $("form#data").submit(function(){
-    var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
+    var file = document.forms['data']['file'].files[0];
+    if (!file) {
+      swal({
+        type:"info",
+        text: "กรุณาเลือกไฟล",
+        timer: 2000,
 
+      });
+      return false;
+    }
     $.ajax({
         url: '../../application/document/upload_grade.php',
         type: 'POST',

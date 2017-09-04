@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
+{
+    die('กรุณา Login ใหม่');
+}
 require_once(__DIR__."/../../application/class/person.php");
 require_once(__DIR__.'/../../application/class/manage_deadline.php');
 require_once(__DIR__."/../../application/class/course.php");

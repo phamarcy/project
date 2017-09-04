@@ -3,6 +3,10 @@ require_once(__DIR__.'/../../application/class/curl.php');
 require_once(__DIR__.'/../../application/class/manage_deadline.php');
 require_once(__DIR__."/../../application/class/approval.php");
 session_start();
+if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
+{
+    die('กรุณา Login ใหม่');
+}
 $information_url = "application/information/index.php";
 $curl = new CURL();
 $deadline = new Deadline;

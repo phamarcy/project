@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
+{
+    die('กรุณา Login ใหม่');
+}
  ?>
   <html>
   <header>
@@ -36,6 +40,62 @@ session_start();
 
 
   <body class="mybox">
+    <script type="text/javascript">
+    function approve_course(course,type){
+      var teacher = <?php echo $teacher_id ?>
+
+      $.ajax({
+          url: '../../approve/approve.php',
+          data:{type:type,teacher_id:}
+          type: 'POST',
+          success:function(data){
+            console.log(data);
+          }
+      });
+
+    }
+    function approve_sp(course,teacherSp,type){
+
+      $.ajax({
+          url: '../../approve/approve.php',
+          type: 'POST',
+          success:function(data){
+
+          }
+      });
+
+    }
+    $("#data").submit(function(){
+        var file = document.forms['data']['file'].files[0];
+
+        $.ajax({
+            url: '../../approve/approve.php',
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+              var msg=JSON.parse(data)
+              swal({
+                type:msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!",
+              }, function(){
+                window.location.reload();
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 3000);
+
+            }
+        });
+
+        return false;
+    });
+    </script>
     <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
       <div class="container">
         <div class="row">
@@ -109,8 +169,8 @@ session_start();
                                     </div>
 
                                     <div class="form-group">
-                                      <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text; ?></button> &nbsp;
-                                      <button type="button" class="btn btn-outline btn-danger ">มีแก้ไข</button>
+                                      <button type="button" class="btn btn-outline btn-success " onclick="approve_course(,'approve')"><?php echo $approve_text; ?></button> &nbsp;
+                                      <button type="button" class="btn btn-outline btn-danger " onclick="approve_course(,'edit')">มีการแก้ไข</button>
                                     </div>
                                     <table class="table " style="font-size:14px">
                                       <thead>
@@ -162,8 +222,8 @@ session_start();
                                             </div>
 
                                             <div class="form-group">
-                                              <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text; ?></button> &nbsp;
-                                              <button type="button" class="btn btn-outline btn-danger ">มีแก้ไข</button>
+                                              <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(,,'edit')"><?php echo $approve_text; ?></button> &nbsp;
+                                              <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(,,'edit')">มีการแก้ไข</button>
                                             </div>
                                             <table class="table " style="font-size:14px">
                                               <thead>
@@ -209,7 +269,7 @@ session_start();
 
                                             <div class="form-group">
                                               <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text; ?></button> &nbsp;
-                                              <button type="button" class="btn btn-outline btn-danger ">มีแก้ไข</button>
+                                              <button type="button" class="btn btn-outline btn-danger ">มีการแก้ไข</button>
                                             </div>
                                             <table class="table " style="font-size:14px">
                                               <thead>
@@ -296,7 +356,46 @@ session_start();
       </div>
     </div>
     </div>
+    <script type="text/javascript">
+    $("form#data").submit(function(){
+        var file = document.forms['data']['file'].files[0];
+        if (!file) {
+          swal({
+            type:"info",
+            text: "กรุณาเลือกไฟล",
+            timer: 2000,
 
+          });
+          return false;
+        }
+        $.ajax({
+            url: '../../application/document/upload_grade.php',
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+              var msg=JSON.parse(data)
+              swal({
+                type:msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!",
+              }, function(){
+                window.location.reload();
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 3000);
+
+            }
+        });
+
+        return false;
+    });
+    </script>
   </body>
 
   </html>
