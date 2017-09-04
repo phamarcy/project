@@ -1004,6 +1004,7 @@ function senddata(data,file_data)
                        showCancelButton: false,
                        confirmButtonColor: '#3085d6',
                        cancelButtonColor: '#d33',
+                       timer: 2000,
                        confirmButtonText: 'Ok'
                      }).then(function () {
 
