@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
+{
+    die('กรุณา Login ใหม่');
+}
 ?>
 <html>
 <header>
