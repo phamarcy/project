@@ -140,11 +140,48 @@ function senddata(data)
                  data: file_data,
                  type: 'post',
                  success: function (result) {
-                      console.log(result);
-                      if(result=='save_success')
-                      {
-                        alert('บันทึกข้อมูลสำเร็จ');
-                      }
+                   var temp = $.parseJSON(result);
+                   if(temp["status"]=='success')
+                   {
+                     swal({
+                       title: 'สำเร็จ',
+                       text: temp["msg"],
+                       type: 'success',
+                       showCancelButton: false,
+                       confirmButtonColor: '#3085d6',
+                       cancelButtonColor: '#d33',
+                       confirmButtonText: 'Ok'
+                     }).then(function () {
+
+                     }, function (dismiss) {
+                     // dismiss can be 'cancel', 'overlay',
+                     // 'close', and 'timer'
+                     if (dismiss === 'cancel') {
+
+                     }
+                   })
+
+                   }
+                   else {
+                     swal({
+                       title: 'เกิดข้อผิดพลาด',
+                       text: temp["msg"],
+                       type: 'error',
+                       showCancelButton: false,
+                       confirmButtonColor: '#3085d6',
+                       cancelButtonColor: '#d33',
+                       confirmButtonText: 'Ok'
+                     }).then(function () {
+
+                     }, function (dismiss) {
+                     // dismiss can be 'cancel', 'overlay',
+                     // 'close', and 'timer'
+                     if (dismiss === 'cancel') {
+
+                     }
+                   })
+                     //alert(temp["msg"]);
+                   }
 
                  },
                  failure: function (result) {
