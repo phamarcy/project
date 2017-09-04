@@ -1,5 +1,7 @@
 <?php
 require_once(__DIR__.'/database.php');
+require_once(__DIR__."/../config/configuration_variable.php");
+
 /**
  *
  */
@@ -11,16 +13,20 @@ class Authentication
 
   function __construct()
   {
+    global $DATABASE;
       $this->DB = new Database();
       $this->DB->Change_DB('person');
       $this->LOG = new Log();
+      $this->DEFAULT_DB = $DATABASE['NAME'];
   }
 
   public function Authorize($username,$password)
   {
     $sql = "SELECT `code`,`fname`,`lname` FROM `staff` WHERE `username` = '".$username."'";
     // $sql = "SELECT `code`,`fname`,`lname` FROM `staff` WHERE `username` = '".$username."' AND `password` = '".$password."'";
+    $this->DB->Change_DB('person');
     $result = $this->DB->Query($sql);
+    $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)
     {
       $level = $this->Check_level($result[0]['code']);
@@ -46,7 +52,9 @@ class Authentication
   private function Check_level($code)
   {
     $sql = "SELECT `education` as level FROM `staff_mis` WHERE `code`='".$code."'";
+    $this->DB->Change_DB('person');
     $result = $this->DB->Query($sql);
+    $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)
     {
       return $result[0]['level'];

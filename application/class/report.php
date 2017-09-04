@@ -120,6 +120,12 @@ class Report
     {
       $DATA = array();
       $course = scandir($this->FILE_PATH);
+      if(count($course <= 2))
+      {
+        $return['status'] = 'error';
+        $return['msg'] = 'ไม่พบข้อมูล';
+        return $return;
+      }
       for($i=2;$i<count($course);$i++)
       {
         $data['id'] = $course[$i];
