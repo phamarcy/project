@@ -1,4 +1,9 @@
 <?php
+session_start();
+if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
+{
+    die('กรุณา Login ใหม่');
+}
 require_once('../../application/class/person.php');
 $prefixobj = new Person();
 $prefix = $prefixobj->Get_All_Prefix();

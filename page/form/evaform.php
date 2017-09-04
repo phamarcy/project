@@ -5,6 +5,12 @@
   $dleva = $dlobj->Search_all(1);
   $dlcor = $dlobj->Search_all(2);
   $current = $dlobj->Get_Current_Semester();
+
+  if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
+  {
+      die('กรุณา Login ใหม่');
+  }
+
  ?>
  <html>
  <header>
