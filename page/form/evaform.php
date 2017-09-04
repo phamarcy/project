@@ -981,7 +981,7 @@ function submitfunc(casesubmit) {
 }
 function senddata(data,file_data)
 {
-
+  console.log('hi');
   //prompt("data", data);
    file_data.append("DATA",data);
    var URL = '../../application/pdf/generate_evaluate.php';
@@ -1427,7 +1427,7 @@ $(document).ready(function(){
       }
     }
     else {
-      sendContactForm();
+      checkreq('1');
       return false;
     }
   });
@@ -1567,7 +1567,7 @@ function confreset(casereset) {
 </div>
 
 <div id="dlhide" class="panel panel-default">
-<form data-toggle="validator" role="form" name="form1" id="form1" method="post" onsubmit="checkreq('1');">
+<form data-toggle="validator" role="form" name="form1" id="form1" method="post" >
     <ol>
       <br>
       <li style="font-size: 14px">
