@@ -1427,13 +1427,15 @@ $(document).ready(function(){
       }
     }
     else {
-      return true;
+      sendContactForm();
+      return false;
     }
   });
 
   File: {
     required: true
 }
+
 
 
 
