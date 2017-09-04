@@ -130,7 +130,7 @@ function senddata(data)
 
   //prompt("data", data);
    file_data.append("DATA",data);
-   var URL = '../../application/pdf/course_evaluate.php';
+   var URL = '../../application/subject/add_course.php';
    $.ajax({
                  url: URL,
                  dataType: 'text',
