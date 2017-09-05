@@ -7,10 +7,21 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
 require_once(__DIR__."/../../application/class/person.php");
 require_once(__DIR__.'/../../application/class/manage_deadline.php');
 require_once(__DIR__."/../../application/class/course.php");
+require_once(__DIR__."/../../application/class/approval.php");
 $person = new Person();
 $deadline = new Deadline();
 $course = new course();
-
+$approval = new approval($_SESSION['level']);
+$semeter= $deadline->Get_Current_Semester();
+$department =$person->Get_Staff_Dep($_SESSION['id']);
+$dep_js=$department['code'];
+$assessor=$person->Search_Assessor($department['code']);
+$list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
+$history=$course->Get_History($department['code']);
+$data_forapproval=$approval->Get_Approval_data($_SESSION['id']);
+echo "<pre>";
+print_r($data_forapproval);
+echo "</pre>";
  ?>
   <html>
   <header>
@@ -33,9 +44,6 @@ $course = new course();
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
 
-
-    <!--ใช้ตัวนี้-->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
     <style >
     i:hover {
       font-size: 30px;
@@ -47,62 +55,7 @@ $course = new course();
 
 
   <body class="mybox">
-    <script type="text/javascript">
-    function approve_course(course,type){
-      var teacher = <?php echo $teacher_id ?>
 
-      $.ajax({
-          url: '../../approval/approve.php',
-          data:{type:type,teacher_id:}
-          type: 'POST',
-          success:function(data){
-            console.log(data);
-          }
-      });
-
-    }
-    function approve_sp(course,teacherSp,type){
-
-      $.ajax({
-          url: '../../approval/approve.php',
-          type: 'POST',
-          success:function(data){
-
-          }
-      });
-
-    }
-    $("#data").submit(function(){
-        var file = document.forms['data']['file'].files[0];
-
-        $.ajax({
-            url: '../../approve/approve.php',
-            type: 'POST',
-            data: formData,
-            async: false,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-              var msg=JSON.parse(data)
-              swal({
-                type:msg.status,
-                text: msg.msg,
-                timer: 2000,
-                confirmButtonText: "Ok!",
-              }, function(){
-                window.location.reload();
-              });
-              setTimeout(function() {
-                window.location.reload();
-              }, 3000);
-
-            }
-        });
-
-        return false;
-    });
-    </script>
     <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
       <div class="container">
         <div class="row">
@@ -140,45 +93,54 @@ $course = new course();
                   </tr>
                 </thead>
                 <tbody>
+                <?php if (is_array($data_forapproval) || is_object($data_forapproval)): ?>
+                <?php foreach ($data_forapproval as $key => $value): ?>
                   <tr>
-                    <td>1</td>
-                    <td>202141</td>
-                    <td>BIOLOGY FOR PHARMACY STUDENTS</td>
+                    <td><?php echo $key+1 ?></td>
+                    <td><?php echo $value['id'] ?></td>
+                    <td><?php echo $value['name'] ?></td>
                     <td style="text-align:center;">
-                      <a href="../../application/pdf/view.php?course=462452&info=syllabus" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                      <?php if (isset($value['syllabus']) ): ?>
+                          <a href="<?php echo $value['syllabus'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                      <?php endif; ?>
                     </td>
                     <td style="text-align:center;">
-                      <a href="../../application/pdf/view.php?course=462452&type=draft&info=evaluate" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                      <?php if (isset($value['evaluate']) ): ?>
+                          <a href="<?php echo $value['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                      <?php endif; ?>
+
                     </td>
-                    <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#202141" class="accordion-toggle">ดูข้อมูล</button></td>
+                    <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#<?php echo $value['id'] ?>" class="accordion-toggle">ดูข้อมูล</button></td>
                   </tr>
                   <tr class="hiddenRow">
                     <td colspan="12">
-                      <div class="accordian-body collapse" id="202141">
+                      <div class="accordian-body collapse" id="<?php echo $value['id'] ?>">
                         <div class="panel panel-success">
                           <div class="panel-heading" style="font-size:14px;">
                             <b>ข้อเสนอแนะคณะกรรมการ</b>
                           </div>
                           <div class="panel-body">
-                            <div class="panel-group" id="comment202141">
+                            <div class="panel-group" id="comment<?php echo $value['id'] ?>">
                               <div class="panel panel-default">
                                 <div class="panel-heading" >
                                   <div class="panel-title" style="font-size:14px">
-                                      <a data-toggle="collapse" data-parent="#comment202141" href="#comment202141-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</b></a>
+                                      <a data-toggle="collapse" data-parent="#comment<?php echo $value['id'] ?>" href="#comment<?php echo $value['id'] ?>-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</b></a>
 
                                   </div>
                                 </div>
-                                <div id="comment202141-2" class="panel-collapse collapse">
+                                <div id="comment<?php echo $value['id'] ?>-2" class="panel-collapse collapse">
                                   <div class="panel-body">
-                                    <div class="form-group ">
-                                      <label for="">ข้อเสนอแนะ</label>
-                                      <textarea class="form-control" name="name" rows="8" cols="40"></textarea>
-                                    </div>
+                                    <form id="approve_course" action="index.html" method="post">
+                                      <div class="form-group ">
+                                        <label for="">ข้อเสนอแนะ</label>
+                                        <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $value['id'] ?>"></textarea>
+                                      </div>
+                                      <div class="form-group">
+                                        <button type="button" class="btn btn-outline btn-success " onclick="approve_course(<?php echo $value['id'] ?>,'approve')"><?php echo $approve_text; ?></button> &nbsp;
+                                        <button type="button" class="btn btn-outline btn-danger " onclick="approve_course(<?php echo $value['id'] ?>,'edit')">มีการแก้ไข</button>
+                                      </div>
+                                    </form>
 
-                                    <div class="form-group">
-                                      <button type="button" class="btn btn-outline btn-success " onclick="approve_course(,'approve')"><?php echo $approve_text; ?></button> &nbsp;
-                                      <button type="button" class="btn btn-outline btn-danger " onclick="approve_course(,'edit')">มีการแก้ไข</button>
-                                    </div>
                                     <table class="table " style="font-size:14px">
                                       <thead>
                                         <?php if ($_SESSION['level'] > 4 ): ?>
@@ -187,172 +149,92 @@ $course = new course();
                                         <th>ข้อเสนอแนะ</th>
                                       </thead>
                                       <tbody>
-                                        <tr>
-                                          <?php if ($_SESSION['level'] > 4 ): ?>
-                                          <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                          <?php endif; ?>
-                                          <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
-                                        </tr>
-                                        <tr>
-                                          <?php if ($_SESSION['level'] > 4 ): ?>
-                                          <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                          <?php endif; ?>
-                                          <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
-                                        </tr>
+                                        <?php foreach ($value['comment'] as $keycomment => $valuecomment): ?>
+                                          <tr>
+                                            <?php if ($_SESSION['level'] > 4 ): ?>
+                                            <td style="width:230px"><?php echo $valuecomment['name'] ?></td>
+                                            <?php endif; ?>
+                                            <td><?php if (isset($valuecomment['comment'])) {
+                                              echo $valuecomment['comment'];
+                                            }else {
+                                              echo "-";
+                                            } ?></td>
+                                          </tr>
+                                        <?php endforeach; ?>
                                       </tbody>
                                     </table>
                                   </div>
                                 </div>
                               </div>
-                              <div class="panel panel-default">
-                                <div class="panel-heading ">
-                                  <div class="panel-title" style="font-size:14px">
-                                      <a data-toggle="collapse" data-parent="#comment202141" href="#comment202141-3"><b>แบบเชิญอาจารย์พิเศษ</b></a>
+                              <?php if (isset($value['special'])): ?>
+                              <?php foreach ($value['special'] as $keysp => $valuesp): ?>
+                                <div class="panel panel-default">
+                                  <div class="panel-heading ">
+                                    <div class="panel-title" style="font-size:14px">
+                                        <a data-toggle="collapse" data-parent="#comment<?php echo $value['id'] ?>" href="#comment<?php echo $value['id']."-".$keysp ?>"><b>แบบเชิญอาจารย์พิเศษ</b></a>
+                                    </div>
                                   </div>
-                                </div>
-                                <div id="comment202141-3" class="panel-collapse collapse">
-                                  <div class="panel-body">
-                                    <div class="panel-group" id="teachersp202141">
-                                      <div class="panel panel-default">
-                                        <div class="panel-heading" >
-                                          <div class="panel-title" style="font-size:14px">
-                                              <a data-toggle="collapse" data-parent="#teachersp202141" href="#teachersp202141-1">ดร.พจมาน ชำนาญกิจ</a>
-                                              <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a> &nbsp;
-
+                                  <div id="comment<?php echo $value['id']."-".$keysp ?>" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                      <div class="panel-group" id="teachersp<?php echo $value['id'] ?>">
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading" >
+                                            <div class="panel-title" style="font-size:14px">
+                                                <a data-toggle="collapse" data-parent="#teachersp<?php echo $value['id'] ?>" href="#teachersp<?php echo $value['id'] ?>-1">ดร.พจมาน ชำนาญกิจ</a>
+                                                <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a> &nbsp;
+                                            </div>
+                                          </div>
+                                          <div id="teachersp<?php echo $value['id']."-".$keysp ?>" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                              <div class="form-group ">
+                                                <label for="">ข้อเสนอแนะ</label>
+                                                <textarea class="form-control" name="name" rows="8" cols="40"></textarea>
+                                              </div>
+                                              <div class="form-group">
+                                                <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(,,'edit')"><?php echo $approve_text; ?></button> &nbsp;
+                                                <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(,,'edit')">มีการแก้ไข</button>
+                                              </div>
+                                              <table class="table " style="font-size:14px">
+                                                <thead>
+                                                  <?php if ($_SESSION['level'] > 4 ): ?>
+                                                  <th style="width:230px">คณะกรรมการ</th>
+                                                  <?php endif; ?>
+                                                  <th>ข้อเสนอแนะ</th>
+                                                </thead>
+                                                <tbody>
+                                                  <tr>
+                                                    <?php if ($_SESSION['level'] > 4 ): ?>
+                                                    <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
+                                                    <?php endif; ?>
+                                                    <td>อาจารย์ไม่ยังไม่เหมาะกับวิชา</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <?php if ($_SESSION['level'] > 4 ): ?>
+                                                    <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
+                                                    <?php endif; ?>
+                                                    <td>อาจารย์เคยมีประสบการณ์</td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
                                           </div>
                                         </div>
-                                        <div id="teachersp202141-1" class="panel-collapse collapse">
-                                          <div class="panel-body">
-                                            <div class="form-group ">
-                                              <label for="">ข้อเสนอแนะ</label>
-                                              <textarea class="form-control" name="name" rows="8" cols="40"></textarea>
-                                            </div>
-
-                                            <div class="form-group">
-                                              <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(,,'edit')"><?php echo $approve_text; ?></button> &nbsp;
-                                              <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(,,'edit')">มีการแก้ไข</button>
-                                            </div>
-                                            <table class="table " style="font-size:14px">
-                                              <thead>
-                                                <?php if ($_SESSION['level'] > 4 ): ?>
-                                                <th style="width:230px">คณะกรรมการ</th>
-                                                <?php endif; ?>
-                                                <th>ข้อเสนอแนะ</th>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                  <?php endif; ?>
-                                                  <td>อาจารย์ไม่ยังไม่เหมาะกับวิชา</td>
-                                                </tr>
-                                                <tr>
-                                                  <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                  <?php endif; ?>
-                                                  <td>อาจารย์เคยมีประสบการณ์</td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="panel panel-default">
-                                        <div class="panel-heading" >
-                                          <div class="panel-title" style="font-size:14px">
-                                                                  <a data-toggle="collapse" data-parent="#teachersp202141" href="#teachersp202141-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
-                                                                  <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a> &nbsp;
-
-                                                              </div>
-                                        </div>
-                                        <div id="teachersp202141-2" class="panel-collapse collapse">
-                                          <div class="panel-body">
-                                            <div class="form-group ">
-                                              <label for="">ข้อเสนอแนะ</label>
-                                              <textarea class="form-control" name="name" rows="8" cols="40"></textarea>
 
 
-                                            </div>
-
-                                            <div class="form-group">
-                                              <button type="button" class="btn btn-outline btn-success "><?php echo $approve_text; ?></button> &nbsp;
-                                              <button type="button" class="btn btn-outline btn-danger ">มีการแก้ไข</button>
-                                            </div>
-                                            <table class="table " style="font-size:14px">
-                                              <thead>
-                                                <?php if ($_SESSION['level'] > 4 ): ?>
-                                                <th style="width:230px">คณะกรรมการ</th>
-                                                <?php endif; ?>
-                                                <th>ข้อเสนอแนะ</th>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                  <?php endif; ?>
-                                                  <td>อาจารย์ท่านนี้เหมาะสมกับวิชานี้</td>
-                                                </tr>
-                                                <tr>
-                                                  <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                  <?php endif; ?>
-                                                  <td>อาจารย์ท่านนี้เป็นผู้มีประสบการณ์</td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="panel panel-default">
-                                        <div class="panel-heading" >
-                                          <div class="panel-title" style="font-size:14px">
-                                              <a data-toggle="collapse" data-parent="#teachersp202141" href="#teachersp202141-3">อ.พรพิมล ศิวินา</a>
-                                              <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank" ><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a> &nbsp;
-                                          </div>
-                                        </div>
-                                        <div id="teachersp202141-3" class="panel-collapse collapse">
-                                          <div class="panel-body">
-                                            <div class="form-group ">
-                                              <label for="">ข้อเสนอแนะ</label>
-                                              <textarea class="form-control" name="name" rows="8" cols="40"></textarea>
-
-
-                                            </div>
-                                            <table class="table " style="font-size:14px">
-                                              <thead>
-                                                <?php if ($_SESSION['level'] > 4 ): ?>
-                                                <th style="width:230px">คณะกรรมการ</th>
-                                                <?php endif; ?>
-                                                <th>ข้อเสนอแนะ</th>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                  <?php endif; ?>
-                                                  <td>อาจารย์ท่านนี้ยังไม่มีประสบการณ์</td>
-                                                </tr>
-                                                <tr>
-                                                  <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                  <?php endif; ?>
-                                                  <td>ควรทดลองให้อาจารย์มาสอนก่อน</td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                          </div>
-                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
+                              <?php endforeach; ?>
+                              <?php endif; ?>
                             </div>
                           </div>
                         </div>
                       </div>
                     </td>
                   </tr>
+                <?php endforeach; ?>
+                <?php endif; ?>
                 </tbody>
               </table>
 
@@ -363,7 +245,58 @@ $course = new course();
       </div>
     </div>
     </div>
+    <script type="text/javascript">
+    function approve_course(course,type){
+      var id = "<?php echo $_SESSION['id'] ?>";
+      var text ="comment_"+course;
+      var comment = document.getElementById(text).value;
+      $.ajax({
+          url: '../../application/approval/approve.php',
+          type: 'POST',
+          data:
+          {
+            course_id:course,
+            status:type,
+            teacher:id,
+            comment:comment
+          },
+          success:function(data){
+            console.log(data);
+          }
+      });
 
+    }
+    function approve_sp(course,teacherSp,type){
+      console.log(course,type);
+      $.ajax({
+          url: '../../approval/approve.php',
+          type: 'POST',
+          success:function(data){
+            console.log(data);
+          }
+      });
+
+    }
+    $("form#approve_course").submit(function(){
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: '../../aapproval/approve.php',
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+              var msg=JSON.parse(data)
+            }
+        });
+
+        return false;
+    });
+
+    </script>
   </body>
 
   </html>
