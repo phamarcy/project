@@ -1226,6 +1226,7 @@ $(document).ready(function(){
         $('.stou').prop('required',false);
         $('#EXPLAINATION').prop('disabled', false);
         $('#EXPLAINATION').prop('required', true);
+        $('#EXPLAINATION').val("");
         $('#CALOTHER').prop('disabled', true);
       }
       else if ($(this).val()=="CRITERIA")
@@ -1246,6 +1247,7 @@ $(document).ready(function(){
         $('#CALCULATE_D_MAX').val("54.9");
         $('.atof').prop('disabled',false);
         $('.atof').prop('required',true);
+        $('.stou').val("");
         $('.stou').prop('required',false);
         $('.stou').prop('disabled',true);
         $('#EXPLAINATION').val("");
@@ -1259,6 +1261,7 @@ $(document).ready(function(){
         $('.stou').prop('required',true);
         $('.stou').prop('disabled',false);
         $('#CALOTHER').prop('disabled', true);
+        $('#EXPLAINATION').val("");
       }
     });
 
