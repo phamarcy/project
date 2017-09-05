@@ -46,6 +46,9 @@ class approval
 
   }
 
+
+
+
 //add new approval status
 public function Append_Status_Evaluate($course_id,$teacher_id,$level)
 {
@@ -260,13 +263,10 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
   //get approval data to approval page
   public function Get_Approval_data($teacher_id)
   {
-    //init data
-    $data['pending'] = array();
-    $data['approve'] = array();
-    $data['disapprove'] = array();
-    $data['revised'] = array();
+    $data = array();
     //search data of document to approve
-    $sql = "SELECT DISTINCT `course_id` FROM `approval_course` WHERE `teacher_id` = '".$teacher_id."'";
+    $sql = "SELECT `course_id` FROM `subject_assessor` sa,`group_assessor` ga
+     WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'";
     $result = $this->DB->Query($sql);
     if($result)
     {
@@ -275,8 +275,10 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
         $course = array();
         $course['id'] = $result[$i]['course_id'];
         $course['name'] = $this->COURSE->Get_Course_Name($course['id']);
+        $course['status'] = '0'; //0 = ยังไม่ได้ลองความเห็น , 1 ลงความเห็นแล้ว
         $url = $this->Get_Doc_Url($course['id'],'draft');
         $course['evaluate'] = $url['evaluate'];
+        $course['syllabus'] = $url['syllabus'];
         $course['comment'] = array();
         $sql = "SELECT `teacher_id`,`comment` FROM `approval_course` WHERE `course_id` = '".$course['id']."'";
         $result_comment = $this->DB->Query($sql);
@@ -284,8 +286,12 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
         {
           for($j=0;$j<count($result_comment);$j++)
           {
+            if($result_comment[$j]['teacher_id'] == $teacher_id)
+            {
+              $course['status'] = '1';
+            }
             $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$j]['teacher_id']);
-            $comment['text'] = $result_comment[$j]['comment'];
+            $comment['comment'] = $result_comment[$j]['comment'];
             array_push($course['comment'],$comment);
           }
 
@@ -297,19 +303,7 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
         }
           //check status in course
           $status = $this->Get_Doc_Status($course['id']);
-          if($status == 4)
-          {
-            array_push($data['approve'],$course);
-          }
-          else if($status == 3)
-          {
-            array_push($data['revised'],$course);
-          }
-          else if($status == 1)
-          {
-            array_push($data['pending'],$course);
-          }
-
+          array_push($data,$course);
       }
     }
     else
@@ -317,17 +311,16 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
       //query error return error
       $this->LOG->Write("Query Error : on sql command ".$sql);
     }
-    $DATA['data'] = $data;
-    return json_encode($DATA);
+    $DATA = $data;
+    return $DATA;
   }
 
   private function Get_Doc_Url($course_id,$type)
   {
-    $course_id = '462452';
     $url = $this->CURL->GET_SERVER_URL();
     $view_url = $url."/application/pdf/view.php";
-    $return_url['evaluate'] = $view_url."?course=".$course_id."&type=".$type."&info=evaluate";
-    $return_url['syllabus'] = $view_url."?course=".$course_id."&info=syllabus";
+    $return_url['evaluate'] = $view_url."?course=".$course_id."&type=".$type."&info=evaluate&semester=".$this->SEMESTER."&year=".$this->YEAR;
+    $return_url['syllabus'] = $this->COURSE->Get_Course_Syllabus($course_id);
     return $return_url;
   }
 

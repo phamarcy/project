@@ -10,7 +10,9 @@ class Course
   private $LOG;
   private $DB;
   private $FILE_PATH;
-
+  private $SEMESTER;
+  private $DEADLINE;
+  private $PERSON;
 
   function __construct()
   {
@@ -20,6 +22,7 @@ class Course
     $this->DB = new Database();
     $this->DEADLINE = new Deadline();
     $this->PERSON = new Person();
+    $this->SEMESTER  = $this->DEADLINE->Get_Current_Semester();
   }
 
   public function Add_New_Course($data)
@@ -386,6 +389,8 @@ class Course
     return $return;
   }
 
+
+// search temp data
   public function Search_Document($type,$id)
   {
     if($type =='special')
@@ -472,11 +477,32 @@ class Course
     return $data;
   }
 
+  public function Get_Course_Syllabus($course_id)
+  {
+    $syllabus_file = $this->FILE_PATH."/syllabus/".$course_id."_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".doc";
+    if (file_exists(realpath($syllabus_file)))
+    {
+        $path = "/syllabus/".$course_id."_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".doc";
+    }
+    else
+    {
+      $syllabus_file = $this->FILE_PATH."/syllabus/".$course_id."_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".docx";
+      if (file_exists(realpath($syllabus_file)))
+      {
+
+          $path = "/syllabus/".$course_id."_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".docx";
+      }
+      else
+      {
+        $path = null;
+      }
+    }
+    return $path;
+  }
   public function Get_Grade($teacher_id)
   {
-    $curr_semester = $this->DEADLINE->Get_Current_Semester();
     $sql = "SELECT c.`course_id`,`course_name_en` as name FROM `course_responsible` cr,`course` c
-    WHERE cr.`teacher_id` = '".$teacher_id."' AND c.`course_id` = cr.`course_id` AND cr.`semester_id` = ".$curr_semester['id'];
+    WHERE cr.`teacher_id` = '".$teacher_id."' AND c.`course_id` = cr.`course_id` AND cr.`semester_id` = ".$this->SEMESTER['id'];
     $result = $this->DB->Query($sql);
     if($result)
     {
@@ -485,19 +511,19 @@ class Course
       {
         $temp['course_id'] = $result[$i]['course_id'];
         $temp['course_name'] = $result[$i]['name'];
-        $grade_file = $this->FILE_PATH."/grade/".$temp['course_id']."_grade_".$curr_semester['semester']."_".$curr_semester['year'].".xls";
+        $grade_file = $this->FILE_PATH."/grade/".$temp['course_id']."_grade_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".xls";
         if (file_exists(realpath($grade_file)))
         {
             $temp['status'] = 1;
-            $temp['url'] = "/grade/".$temp['course_id']."_grade_".$curr_semester['semester']."_".$curr_semester['year'].".xls";
+            $temp['url'] = "/grade/".$temp['course_id']."_grade_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".xls";
         }
         else
         {
-          $grade_file = $this->FILE_PATH."/grade/".$temp['course_id']."_grade_".$curr_semester['semester']."_".$curr_semester['year'].".xlsx";
+          $grade_file = $this->FILE_PATH."/grade/".$temp['course_id']."_grade_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".xlsx";
           if (file_exists(realpath($grade_file)))
           {
               $temp['status'] = 1;
-              $temp['url'] = "/grade/".$temp['course_id']."_grade_".$curr_semester['semester']."_".$curr_semester['year'].".xlsx";
+              $temp['url'] = "/grade/".$temp['course_id']."_grade_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".xlsx";
           }
           else
           {
