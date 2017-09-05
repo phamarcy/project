@@ -361,16 +361,32 @@ class Course
 
   public function Remove_Responsible_Assessor($course_id,$semester_id)
   {
-    $sql = "SELECT * FROM `subject_assessor`
+    $sql = "SELECT `assessor_group_num` FROM `subject_assessor`
     WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$semester_id;
     $result = $this->DB->Query($sql);
     if($result != null)
     {
       $sql = "DELETE FROM `subject_assessor`
       WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$semester_id;
-      $result = $this->DB->Insert_Update_Delete($sql);
-      if($result)
+      $result_delete_subject_assessor = $this->DB->Insert_Update_Delete($sql);
+      if($result_delete_subject_assessor)
       {
+        $sql = "SELECT `teacher_id` FROM `group_assessor` WHERE `group_num` = '".$result[0]['assessor_group_num']."'";
+        $result_teacher_id = $this->DB->Query($sql);
+        if($result_teacher_id)
+        {
+          $count = count($result_teacher_id);
+          for($i=0;$i<$count;$i++)
+          {
+            $sql = "DELETE FROM `approval_course` WHERE `teacher_id` = '".$result_teacher_id[$i]['teacher_id']."'
+            AND `course_id` = '".$course_id."' AND `semester_id` = '".$semester_id."'";
+            $result_delete = $this->DB->Insert_Update_Delete($sql);
+            if(!$result_delete)
+            {
+              $this->LOG->Write("Error sql :".$sql);
+            }
+          }
+        }
         $return['status'] = 'success';
         $return['msg'] = 'ลบคณะกรรมการสำเร็จ';
       }
