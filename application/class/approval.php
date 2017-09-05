@@ -54,7 +54,7 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
 {
     $status = '1'; //default status = waiting for create
 }
-//check status in homt page
+//check status in home page
   public function Check_Status($user_id)
   {
     $DATA= array();
@@ -156,17 +156,18 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
   private function Get_Instructor_Data($course_id)
   {
     $DATA = array();
-    $sql = "SELECT firstname,lastname,sa.instructor_id FROM `approval_special` sa,`special_instructor` si
-     WHERE `course_id` = '".$course_id."' AND sa.instructor_id = si.instructor_id";
+    $sql = "SELECT DISTINCT firstname,lastname,sa.instructor_id FROM `approval_special` sa,`special_instructor` si
+     WHERE `course_id` = '".$course_id."' AND sa.instructor_id = si.instructor_id  AND `semester_id` =".$this->SEMESTER_ID;
      $result = $this->DB->Query($sql);
      if($result)
      {
        for($i=0;$i<count($result);$i++)
        {
+         $instructor['id'] = $result[$i]['instructor_id'];
          $instructor['name'] = $result[$i]['firstname'].' '.$result[$i]['lastname'];
          $instructor['status'] = $this->Get_Instructor_Status($result[$i]['instructor_id']);
          $sql = "SELECT teacher_id,comment FROM `approval_special`
-         WHERE instructor_id = ".$result[$i]['instructor_id'];
+         WHERE instructor_id = ".$result[$i]['instructor_id']." AND `semester_id` =".$this->SEMESTER_ID;
          $result_comment = $this->DB->Query($sql);
          $instructor['comment'] = array();
          if($result_comment)
@@ -183,6 +184,11 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
          }
          array_push($DATA,$instructor);
        }
+     }
+     else
+     {
+       //query error return error
+       $this->LOG->Write("Query Error : on sql command ".$sql);
      }
      return $DATA;
 
@@ -247,8 +253,8 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
     {
       for($i=0;$i<count($result);$i++)
       {
-        $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`,`course_id`,`level_approve`,`status`)
-        VALUES ('".$instructor_id."','".$result[$i]['teacher_id']."','".$course_id."',1,'1')";
+        $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`)
+        VALUES ('".$instructor_id."','".$result[$i]['teacher_id']."','".$course_id."',1,'1',".$this->SEMESTER_ID.")";
         $approve_result = $this->DB->Insert_Update_Delete($sql);
         if($approve_result == false)
         {
@@ -263,10 +269,11 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
   //get approval data to approval page
   public function Get_Approval_data($teacher_id)
   {
-    $data = array();
+    $DATA = array();
     //search data of document to approve
     $sql = "SELECT `course_id` FROM `subject_assessor` sa,`group_assessor` ga
-     WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'";
+     WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
+     AND `semester_id` =".$this->SEMESTER_ID;
     $result = $this->DB->Query($sql);
     if($result)
     {
@@ -280,11 +287,13 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
         $course['evaluate'] = $url['evaluate'];
         $course['syllabus'] = $url['syllabus'];
         $course['comment'] = array();
-        $sql = "SELECT `teacher_id`,`comment` FROM `approval_course` WHERE `course_id` = '".$course['id']."'";
+        $sql = "SELECT `teacher_id`,`comment` FROM `approval_course` WHERE `course_id` = '".$course['id']."'
+        AND `semester_id` =".$this->SEMESTER_ID;
         $result_comment = $this->DB->Query($sql);
         if($result_comment)
         {
-          for($j=0;$j<count($result_comment);$j++)
+          $count = count($result_comment);
+          for($j=0;$j<$count;$j++)
           {
             if($result_comment[$j]['teacher_id'] == $teacher_id)
             {
@@ -301,9 +310,38 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
           //query error return error
           $this->LOG->Write("Query Error : on sql command ".$sql);
         }
+        //search special instructor data
+        $course['special'] = array();
+        $instructor = $this->Get_Instructor_Data($course['id']);
+        $count_instructor = count($instructor);
+        for($j=0;$j<$count_instructor;$j++)
+        {
+          $special = array();
+          $special['comment'] = array();
+          $special['name'] = $instructor[$j]['name'];
+          $special['status'] = '0';
+          $sql = "SELECT `teacher_id`,`comment` FROM `approval_special` WHERE `course_id` = '".$course['id']."'
+          AND `semester_id` =".$this->SEMESTER_ID;
+          $result_comment = $this->DB->Query($sql);
+          if($result_comment)
+          {
+            $count = count($result_comment);
+            for($k=0;$k<$count;$k++)
+            {
+              $comment = array();
+              if($result_comment[$k]['teacher_id'] == $teacher_id)
+              {
+                $special['status'] = '1';
+              }
+              $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$k]['teacher_id']);
+              $comment['comment'] = $result_comment[$k]['comment'];
+              array_push($special['comment'],$comment);
+            }
+          }
+          array_push($course['special'],$special);
+        }
           //check status in course
-          $status = $this->Get_Doc_Status($course['id']);
-          array_push($data,$course);
+          array_push($DATA,$course);
       }
     }
     else
@@ -311,7 +349,6 @@ public function Append_Status_Evaluate($course_id,$teacher_id,$level)
       //query error return error
       $this->LOG->Write("Query Error : on sql command ".$sql);
     }
-    $DATA = $data;
     return $DATA;
   }
 
