@@ -106,7 +106,7 @@ echo "</pre>";
                     </td>
                     <td style="text-align:center;">
                       <?php if (isset($value['evaluate']) ): ?>
-                          <a href="<?php echo $value['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                          <a href="../../file/<?php echo $value['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
                       <?php endif; ?>
 
                     </td>
@@ -167,32 +167,34 @@ echo "</pre>";
                                 </div>
                               </div>
                               <?php if (isset($value['special'])): ?>
-                              <?php foreach ($value['special'] as $keysp => $valuesp): ?>
+
                                 <div class="panel panel-default">
                                   <div class="panel-heading ">
                                     <div class="panel-title" style="font-size:14px">
-                                        <a data-toggle="collapse" data-parent="#comment<?php echo $value['id'] ?>" href="#comment<?php echo $value['id']."-".$keysp ?>"><b>แบบเชิญอาจารย์พิเศษ</b></a>
+                                        <a data-toggle="collapse" data-parent="#commentsp<?php echo $value['id'] ?>" href="#commentsp<?php echo $value['id']."-".$keysp ?>"><b>แบบเชิญอาจารย์พิเศษ</b></a>
                                     </div>
                                   </div>
-                                  <div id="comment<?php echo $value['id']."-".$keysp ?>" class="panel-collapse collapse">
+
+                                  <div id="commentsp<?php echo $value['id']."-".$keysp ?>" class="panel-collapse collapse">
                                     <div class="panel-body">
                                       <div class="panel-group" id="teachersp<?php echo $value['id'] ?>">
+                                      <?php foreach ($value['special']as $keysp => $valuesp): ?>
                                         <div class="panel panel-default">
                                           <div class="panel-heading" >
                                             <div class="panel-title" style="font-size:14px">
-                                                <a data-toggle="collapse" data-parent="#teachersp<?php echo $value['id'] ?>" href="#teachersp<?php echo $value['id'] ?>-1">ดร.พจมาน ชำนาญกิจ</a>
-                                                <a href="../../application/pdf/view.php?id=0000001&type=draft&info=special" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a> &nbsp;
+                                                <a data-toggle="collapse" data-parent="#teachersp<?php echo $value['id'] ?>" href="#teachersp<?php echo $value['id'] ?>-1"><?php echo $valuesp['name'] ?></a>
+                                                <a href="" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a> &nbsp;
                                             </div>
                                           </div>
                                           <div id="teachersp<?php echo $value['id']."-".$keysp ?>" class="panel-collapse collapse">
                                             <div class="panel-body">
                                               <div class="form-group ">
                                                 <label for="">ข้อเสนอแนะ</label>
-                                                <textarea class="form-control" name="name" rows="8" cols="40"></textarea>
+                                                <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $value['id'] ?>"></textarea>
                                               </div>
                                               <div class="form-group">
-                                                <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(,,'edit')"><?php echo $approve_text; ?></button> &nbsp;
-                                                <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(,,'edit')">มีการแก้ไข</button>
+                                                <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(<?php echo $value['id'] ?>,<?php echo $value['id']."-".$keysp ?>,'edit')"><?php echo $approve_text; ?></button> &nbsp;
+                                                <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(<?php echo $value['id'] ?>,<?php echo $value['id']."-".$keysp ?>,'edit')">มีการแก้ไข</button>
                                               </div>
                                               <table class="table " style="font-size:14px">
                                                 <thead>
@@ -202,30 +204,32 @@ echo "</pre>";
                                                   <th>ข้อเสนอแนะ</th>
                                                 </thead>
                                                 <tbody>
-                                                  <tr>
-                                                    <?php if ($_SESSION['level'] > 4 ): ?>
-                                                    <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                    <?php endif; ?>
-                                                    <td>อาจารย์ไม่ยังไม่เหมาะกับวิชา</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <?php if ($_SESSION['level'] > 4 ): ?>
-                                                    <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                    <?php endif; ?>
-                                                    <td>อาจารย์เคยมีประสบการณ์</td>
-                                                  </tr>
+                                                  <?php foreach ($valuesp['comment'] as $keycom => $valuecom): ?>
+                                                    <tr>
+                                                      <?php if ($_SESSION['level'] > 4 ): ?>
+                                                      <td style="width:230px"><?php echo $valuecom['name'] ?></td>
+                                                      <?php endif; ?>
+                                                      <td><?php if (isset($valuecom['comment'])) {
+                                                        echo $valuecom['comment'];
+                                                      }else {
+                                                        echo "-";
+                                                      } ?></td>
+                                                    </tr>
+                                                  <?php endforeach; ?>
+
+
                                                 </tbody>
                                               </table>
                                             </div>
                                           </div>
                                         </div>
-
+                                        <?php endforeach; ?>
 
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                              <?php endforeach; ?>
+
                               <?php endif; ?>
                             </div>
                           </div>
@@ -267,34 +271,27 @@ echo "</pre>";
 
     }
     function approve_sp(course,teacherSp,type){
-      console.log(course,type);
+      var id = "<?php echo $_SESSION['id'] ?>";
+      var text ="comment_sp_"+course;
+      var comment = document.getElementById(text).value;
+      console.log(course,teacherSp,type);
       $.ajax({
-          url: '../../approval/approve.php',
+          url: '../../application/approval/approve.php',
           type: 'POST',
+          data:
+          {
+            course_id:course,
+            status:type,
+            teacher:id,
+            teachersp:teacherSp,
+            comment:comment
+          },
           success:function(data){
             console.log(data);
           }
       });
 
     }
-    $("form#approve_course").submit(function(){
-        var formData = new FormData(this);
-
-        $.ajax({
-            url: '../../aapproval/approve.php',
-            type: 'POST',
-            data: formData,
-            async: false,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-              var msg=JSON.parse(data)
-            }
-        });
-
-        return false;
-    });
 
     </script>
   </body>
