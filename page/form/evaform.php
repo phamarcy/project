@@ -839,18 +839,15 @@ function submitfunc(casesubmit) {
       if(document.querySelector("input[name='CALCULATE']:checked").value == "GROUP")
       {
         evaluate_radio = "0";
-        console.log('1');
       }
       else {
 
         if(!(document.querySelector("input[name='EVALUATE_TYPE']:checked")))
         {
           evaluate_radio = "0";
-          console.log('2');
         }
         else {
           evaluate_radio = document.querySelector("input[name='EVALUATE_TYPE']:checked").value;
-          console.log('33');
         }
       }
 
@@ -1218,40 +1215,6 @@ $(document).ready(function(){
 
 
   //radio
-  $("input[name='EVALUATE_TYPE']").change(function(){
-    if($(this).val()=="SU")
-    {
-      $('.atof').val("");
-      $('.stou').val("");
-      $('.atof').prop('disabled',true);
-      $('.atof').prop('required',false);
-      $('.stou').prop('required',true);
-      $('.stou').prop('disabled',false);
-    }
-    else if($(this).val()=="AF")
-    {
-      $('#CALCULATE_A_MIN').val("80.0");
-      $('#CALCULATE_Bp_MIN').val("75.0");
-      $('#CALCULATE_B_MIN').val("70.0");
-      $('#CALCULATE_Cp_MIN').val("65.0");
-      $('#CALCULATE_C_MIN').val("60.0");
-      $('#CALCULATE_Dp_MIN').val("55.0");
-      $('#CALCULATE_D_MIN').val("50.0");
-      $('#CALCULATE_F_MAX').val("49.9");
-      $('#CALCULATE_Bp_MAX').val("79.9");
-      $('#CALCULATE_B_MAX').val("74.9");
-      $('#CALCULATE_Cp_MAX').val("69.9");
-      $('#CALCULATE_C_MAX').val("64.9");
-      $('#CALCULATE_Dp_MAX').val("59.9");
-      $('#CALCULATE_D_MAX').val("54.9");
-      $('.stou').val("");
-      $('.atof').prop('disabled',false);
-      $('.atof').prop('required',true);
-      $('.stou').prop('disabled',true);
-      $('.stou').prop('required',false);
-    }
-    });
-
     $("input[name='CALCULATE']").change(function(){
       if($(this).val()=="GROUP")
       {
@@ -1261,13 +1224,9 @@ $(document).ready(function(){
         $('.stou').prop('disabled',true);
         $('.atof').prop('required',false);
         $('.stou').prop('required',false);
-        $('#EVALUATE1').prop('required',false);
-        $('#EVALUATE2').prop('required',false);
-        $('#EVALUATE1').prop('disabled',true);
-        $('#EVALUATE2').prop('disabled',true);
-        $('.opacity01').css("opacity","0.1");
-        document.getElementById("EVALUATE1").checked = false;
-        document.getElementById("EVALUATE2").checked = false;
+        $('#EXPLAINATION').prop('disabled', false);
+        $('#EXPLAINATION').prop('required', true);
+        $('#CALOTHER').prop('disabled', true);
       }
       else if ($(this).val()=="CRITERIA")
       {
@@ -1285,18 +1244,21 @@ $(document).ready(function(){
         $('#CALCULATE_C_MAX').val("64.9");
         $('#CALCULATE_Dp_MAX').val("59.9");
         $('#CALCULATE_D_MAX').val("54.9");
+        $('.atof').prop('disabled',false);
+        $('.atof').prop('required',true);
+        $('.stou').prop('required',false);
+        $('.stou').prop('disabled',true);
+        $('#EXPLAINATION').val("");
+        $('#CALOTHER').prop('disabled', false);
+      }
+      else {
+        $('.atof').val("");
+        $('.stou').val("");
         $('.atof').prop('disabled',true);
         $('.atof').prop('required',false);
         $('.stou').prop('required',true);
         $('.stou').prop('disabled',false);
-        $('#EVALUATE1').prop('required',true);
-        $('#EVALUATE2').prop('required',true);
-        $('#EVALUATE1').prop('disabled',false);
-        $('#EVALUATE2').prop('disabled',false);
-        $('#EXPLAINATION').val("");
-        $('.opacity01').css("opacity","1");
-        document.getElementById("EVALUATE1").checked = false;
-        document.getElementById("EVALUATE2").checked = false;
+        $('#CALOTHER').prop('disabled', true);
       }
     });
 
@@ -1961,100 +1923,129 @@ function confreset(casereset) {
             <br>
             <div class="form-inline">
               <div class="form-group form-inline"><div class="radio">
-              <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม &nbsp;
-              <input type="text" class="form-control" name="EXPLAINATION" id="EXPLAINATION" placeholder="โปรดระบุ">
-              <br><input type="radio" name="CALCULATE" id="CALCULATE_TYPE2" value="CRITERIA" checked> อิงเกณฑ์ &nbsp;&nbsp;ได้กำหนดเกณฑ์ดังต่อไปนี้
-            </div></div>
-              <br><b class="opacity01">การประเมินผล</b><br>
-              <div class="form-group opacity01"><div class="radio">
-                <input type="radio" name="EVALUATE_TYPE" id="EVALUATE1" value="AF" required> ให้ลำดับขั้น A, B+ ,B, C+, C, D+, D, F <br>
-                <input type="radio" name="EVALUATE_TYPE" id="EVALUATE2" value="SU"> ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว)
-              </div></div>
-
+              <input type="radio" name="CALCULATE" id="CALCULATE_TYPE2" value="CRITERIA" checked> อิงเกณฑ์ &nbsp;&nbsp;ได้กำหนดเกณฑ์ดังต่อไปนี้
+              <div style="margin-left:20px;">
+              <div class="row">
+              <div class="col-md-10">
+              <table class="table table-hover" style="font-size: 14px; ">
+                <tr align="center">
+                  <th>เกรด</th>
+                  <th>คะแนนต่ำสุด</th>
+                  <th></th>
+                  <th>คะแนนสูงสุด</th>
+                  <th></th>
+                  <th>เกรด</th>
+                  <th>คะแนนต่ำสุด</th>
+                  <th></th>
+                  <th>คะแนนสูงสุด</th>
+                  <th></th>
+                </tr>
+                <tr align="center">
+                  <td>A</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_A_MIN" id="CALCULATE_A_MIN" maxlength="5" value="80.0"></td>
+                  <td>ถึง</td>
+                  <td><input type="text" class="form-control numonly" name="CALCULATE_A_MAX" id="CALCULATE_A_MAX" placeholder="100" disabled></td>
+                  <td></td>
+                  <td>D+</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" maxlength="5" value="55.0"></td>
+                  <td>ถึง</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_Dp_MAX" id="CALCULATE_Dp_MAX" maxlength="5" value="59.9"></td>
+                  <td></td>
+                </tr>
+                <tr align="center">
+                  <td>B+</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_Bp_MIN" id="CALCULATE_Bp_MIN" maxlength="5" value="75.0"></td>
+                  <td>ถึง</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_Bp_MAX" id="CALCULATE_Bp_MAX" maxlength="5" value="79.9"></td>
+                  <td></td>
+                  <td>D</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_D_MIN" id="CALCULATE_D_MIN" maxlength="5" value="50.0"></td>
+                  <td>ถึง</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_D_MAX" id="CALCULATE_D_MAX" maxlength="5" value="54.9"></td>
+                  <td></td>
+                </tr>
+                <tr align="center">
+                  <td>B</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_B_MIN" id="CALCULATE_B_MIN" maxlength="5" value="70.0"></td>
+                  <td>ถึง</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_B_MAX" id="CALCULATE_B_MAX" maxlength="5" value="74.9"></td>
+                  <td></td>
+                  <td>F</td>
+                  <td><input type="text" class="form-control numonly" name="CALCULATE_F_MIN" id="CALCULATE_F_MIN" placeholder="0" disabled></td>
+                  <td>ถึง</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" maxlength="5" value="49.9"></td>
+                  <td></td>
+                </tr>
+                <tr align="center">
+                  <td>C+</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_Cp_MIN" id="CALCULATE_Cp_MIN" maxlength="5" value="65.0"></td>
+                  <td>ถึง</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_Cp_MAX" id="CALCULATE_Cp_MAX" maxlength="5" value="69.9"></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr align="center">
+                  <td>C</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_C_MIN" id="CALCULATE_C_MIN" maxlength="5" value="60.0"></td>
+                  <td>ถึง</td>
+                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_C_MAX" id="CALCULATE_C_MAX" maxlength="5" value="64.9"></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
           </div>
-            <br>
-            <div class="row">
-            <div class="col-md-10">
-            <table class="table table-hover" style="font-size: 14px; ">
-              <tr align="center">
-                <th>เกรด</th>
-                <th>คะแนนต่ำสุด</th>
-                <th></th>
-                <th>คะแนนสูงสุด</th>
-                <th></th>
-                <th>เกรด</th>
-                <th>คะแนนต่ำสุด</th>
-                <th></th>
-                <th>คะแนนสูงสุด</th>
-                <th></th>
-              </tr>
-              <tr align="center">
-                <td>A</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_A_MIN" id="CALCULATE_A_MIN" maxlength="5" value="80.0"></td>
-                <td>ถึง</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_A_MAX" id="CALCULATE_A_MAX" placeholder="100" disabled></td>
-                <td></td>
-                <td>D+</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" maxlength="5" value="55.0"></td>
-                <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Dp_MAX" id="CALCULATE_Dp_MAX" maxlength="5" value="59.9"></td>
-                <td></td>
-              </tr>
-              <tr align="center">
-                <td>B+</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Bp_MIN" id="CALCULATE_Bp_MIN" maxlength="5" value="75.0"></td>
-                <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Bp_MAX" id="CALCULATE_Bp_MAX" maxlength="5" value="79.9"></td>
-                <td></td>
-                <td>D</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_D_MIN" id="CALCULATE_D_MIN" maxlength="5" value="50.0"></td>
-                <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_D_MAX" id="CALCULATE_D_MAX" maxlength="5" value="54.9"></td>
-                <td></td>
-              </tr>
-              <tr align="center">
-                <td>B</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_B_MIN" id="CALCULATE_B_MIN" maxlength="5" value="70.0"></td>
-                <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_B_MAX" id="CALCULATE_B_MAX" maxlength="5" value="74.9"></td>
-                <td></td>
-                <td>F</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_F_MIN" id="CALCULATE_F_MIN" placeholder="0" disabled></td>
-                <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" maxlength="5" value="49.9"></td>
-                <td></td>
-              </tr>
-              <tr align="center">
-                <td>C+</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Cp_MIN" id="CALCULATE_Cp_MIN" maxlength="5" value="65.0"></td>
-                <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_Cp_MAX" id="CALCULATE_Cp_MAX" maxlength="5" value="69.9"></td>
-                <td></td>
-                <td>S</td>
-                <td><input type="text" class="form-control numonly stou" name="CALCULATE_S_MIN" id="CALCULATE_S_MIN" maxlength="5" value=""></td>
-                <td>ถึง</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_S_MAX" id="CALCULATE_S_MIN" placeholder="100" disabled></td>
-                <td></td>
-              </tr>
-              <tr align="center">
-                <td>C</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_C_MIN" id="CALCULATE_C_MIN" maxlength="5" value="60.0"></td>
-                <td>ถึง</td>
-                <td><input type="text" class="form-control numonly atof" name="CALCULATE_C_MAX" id="CALCULATE_C_MAX" maxlength="5" value="64.9"></td>
-                <td></td>
-                <td>U</td>
-                <td><input type="text" class="form-control numonly" name="CALCULATE_U_MAX" id="CALCULATE_U_MIN" placeholder="0" disabled></td>
-                <td>ถึง</td>
-                <td><input type="text" class="form-control numonly stou" name="CALCULATE_U_MAX" id="CALCULATE_U_MAX" maxlength="5" value=""></td>
-                <td></td>
-              </tr>
-            </table>
-          </div>
-        </div>
-          <div class="form-inline">
+          <div class="row" style="margin-left: 10px;">
             <b>อื่นๆ</b><br>
             <textarea class="form-control" name="CALOTHER" id="CALOTHER" rows="4" cols="125" ></textarea>
           </div>
+        </div>
+            <br>
+              <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม &nbsp;
+              <div style="margin-left:35px;">
+                <input type="text" class="form-control" name="EXPLAINATION" id="EXPLAINATION" placeholder="โปรดระบุ">
+              </div>
+              <br>
+              <input type="radio" name="CALCULATE" id="CALCULATE_TYPE3" value="SU"> ให้อักษร S หรือ U
+              <div style="margin-left:35px;">
+              <div class="row">
+              <div class="col-md-5">
+              <table class="table table-hover" style="font-size: 14px; ">
+                <tr align="center" style="text-align:center;">
+                  <th>เกรด</th>
+                  <th>คะแนนต่ำสุด</th>
+                  <th></th>
+                  <th>คะแนนสูงสุด</th>
+                </tr>
+                <tr align="center">
+                  <td>S</td>
+                  <td><input type="text" class="form-control numonly stou" name="CALCULATE_S_MIN" id="CALCULATE_S_MIN" maxlength="5" value=""></td>
+                  <td>ถึง</td>
+                  <td><input type="text" class="form-control numonly" name="CALCULATE_S_MAX" id="CALCULATE_S_MIN" placeholder="100" disabled></td>
+                </tr>
+                <tr align="center">
+                  <td>U</td>
+                  <td><input type="text" class="form-control numonly" name="CALCULATE_U_MAX" id="CALCULATE_U_MIN" placeholder="0" disabled></td>
+                  <td>ถึง</td>
+                  <td><input type="text" class="form-control numonly stou" name="CALCULATE_U_MAX" id="CALCULATE_U_MAX" maxlength="5" value=""></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div></div>
+          </div>
+            <br>
+
+
 
 
           </li>
