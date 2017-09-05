@@ -52,21 +52,38 @@ class Report
 
   public function Get_Evaluate_Report($semester,$year)
   {
+    global $FILE_PATH;
     $semester_id = $this->DEADLINE->Search_Semester_id($semester,$year);
     if($semester_id)
     {
       $DATA = array();
       $course = scandir($this->FILE_PATH);
-
       for($i=2;$i<count($course);$i++)
       {
         if(is_dir($this->FILE_PATH."/".$course[$i]))
         {
             $data['id'] = $course[$i];
             $data['name'] = $this->COURSE->Get_Course_Name($data['id']);
-            $url = '';
-            $data['syllabus'] = $url;
+            $data['syllabus'] = $this->COURSE->Get_Course_Syllabus($data['id']);
             $data['pdf'] = $this->DOWNLOAD_URL."?course=".$data['id']."&info=evaluate&semester=".$semester."&year=".$year;
+            $grade_file = $FILE_PATH."/grade/".$data['id']."_grade_".$this->SEMESTER."_".$this->YEAR.".xls";
+            if (file_exists(realpath($grade_file)))
+            {
+                $data['grade'] = "/grade/".$data['id']."_grade_".$this->SEMESTER."_".$this->YEAR.".xls";
+            }
+            else
+            {
+              $grade_file = $FILE_PATH."/grade/".$data['id']."_grade_".$this->SEMESTER."_".$this->YEAR.".xlsx";
+              if (file_exists(realpath($grade_file)))
+              {
+                  $data['grade'] = "/grade/".$data['id']."_grade_".$this->SEMESTER."_".$this->YEAR.".xlsx";
+              }
+              else
+              {
+                $data['grade'] = null;
+
+              }
+            }
             $file_name = scandir($this->FILE_PATH."/".$data['id']."/evaluate");
             for($j=2;$j<count($file_name);$j++)
             {
@@ -120,30 +137,35 @@ class Report
     {
       $DATA = array();
       $course = scandir($this->FILE_PATH);
-      if(count($course <= 2))
+      if(count($course)<= 2)
       {
         $return['status'] = 'error';
         $return['msg'] = 'ไม่พบข้อมูล';
         return $return;
       }
+
       for($i=2;$i<count($course);$i++)
       {
         $data['id'] = $course[$i];
         $data['name'] = $this->COURSE->Get_Course_Name($data['id']);
         $data['special'] = array();
-        $file_name = scandir($this->FILE_PATH."/".$data['id']."/special_instructor");
-        for($j=2;$j<count($file_name);$j++)
+        if(is_dir($this->FILE_PATH."/".$data['id']))
         {
-          if($this->Check_File_Semester($semester,$year,$file_name[$j]))
+          $file_name = scandir($this->FILE_PATH."/".$data['id']."/special_instructor");
+          for($j=2;$j<count($file_name);$j++)
           {
-            $instructor_id = explode("_",$file_name[$j]);
-            $instructor['id'] = $instructor_id[1];
-            $instructor['name'] = $this->PERSON->Get_Special_Instructor_Name($instructor['id']);
-            $instructor['cv'] = '-';
-            $instructor['pdf'] =  $this->VIEW_URL."?course=".$data['id']."&id=".$instructor['id']."&type=complete&info=special&semester=".$semester."&year=".$year;
-            array_push($data['special'],$instructor);
+            if($this->Check_File_Semester($semester,$year,$file_name[$j]))
+            {
+              $instructor_id = explode("_",$file_name[$j]);
+              $instructor['id'] = $instructor_id[1];
+              $instructor['name'] = $this->PERSON->Get_Special_Instructor_Name($instructor['id']);
+              $instructor['cv'] = '-';
+              $instructor['pdf'] =  $this->VIEW_URL."?course=".$data['id']."&id=".$instructor['id']."&type=complete&info=special&semester=".$semester."&year=".$year;
+              array_push($data['special'],$instructor);
+            }
           }
         }
+
         if(count($data['special']) != 0)
         {
           array_push($DATA,$data);

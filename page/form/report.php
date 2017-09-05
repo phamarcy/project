@@ -80,6 +80,11 @@ $(function() {//<-- wrapped here
         $report = new Report();
         $data_eva = $report->Get_Evaluate_Report($semester,$year);
         $data_special = $report->Get_Special_Report($semester,$year);
+        // echo "<pre>";
+        // print_r($data_eva);
+        // print_r($data_special);
+        // echo "</pre>";
+
         //end search
       ?>
             <div class="panel-body">
@@ -120,7 +125,8 @@ $(function() {//<-- wrapped here
                                           <th>#</th>
                                           <th>รหัสวิชา</th>
                                           <th>ชื่อวิชา</th>
-                                          <th><center>Syllabus</center></th>
+                                          <th>Grade</th>
+                                          <th>Syllabus</th>
                                           <th>PDF</th>
                                       </tr>
                                   </thead>
@@ -133,8 +139,15 @@ $(function() {//<-- wrapped here
                                       echo '<td>'.$num.'</td>';
                                       echo '<td>'.$data_eva[$i]['id'].'</td>';
                                       echo '<td>'.$data_eva[$i]['name'].'</td>';
-                                      echo '<td><center><a target="_blank" href="'.$data_eva[$i]['syllabus'].'"><i class="fa fa-file-word-o fa-2x" aria-hidden="true"></i></a></center></td>';
-                                      echo '<td><a target="_blank" href="'.$data_eva[$i]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>';
+                                      if($data_eva[$i]['grade'] != '')
+                                        echo '<td><a target="_blank" href="../../files'.$data_eva[$i]['grade'].'"><i class="fa fa-file-excel-o fa-2x" aria-hidden="true"></i></a></td>';
+                                      else
+                                        echo '<td></td>';
+                                      if($data_eva[$i]['syllabus'] != '')
+                                        echo '<td><a target="_blank" href="../../files'.$data_eva[$i]['grade'].'"><i class="fa fa-file-word-o fa-2x" aria-hidden="true"></i></a></td>';
+                                      else
+                                        echo '<td></td>';
+                                      echo '<td><a target="_blank" href="'.$data_eva[$i]['pdf'].'"><i class="fa fa-file-archive-o fa-2x" aria-hidden="true"></i></a></td>';
                                       echo '</tr>';
                                     }
                                     ?>
