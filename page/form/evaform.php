@@ -835,6 +835,14 @@ function submitfunc(casesubmit) {
       }
       sectionobj = section;
 
+      //check radio
+      if(!(document.querySelector("input[name='EVALUATE_TYPE']:checked").value))
+      {
+        evaluate_radio = "0";
+      }else {
+        evaluate_radio = document.querySelector("input[name='EVALUATE_TYPE']:checked").value;
+      }
+      console.log(evaluate_radio);
 
       var data = {
         'COURSE_ID': document.getElementById("COURSE_ID").value,
@@ -921,7 +929,7 @@ function submitfunc(casesubmit) {
             'LAB' : document.getElementById("MEASURE_TOTALLAB").value
           }
         },
-        'EVALUATE' : document.querySelector("input[name='EVALUATE_TYPE']:checked").value,
+        'EVALUATE' : evaluate_radio,
         'CALCULATE' : {
           'TYPE' : document.querySelector("input[name='CALCULATE']:checked").value,
           'EXPLAINATION' : document.getElementById("EXPLAINATION").value,
@@ -981,7 +989,6 @@ function submitfunc(casesubmit) {
 }
 function senddata(data,file_data)
 {
-  console.log('hi');
   //prompt("data", data);
    file_data.append("DATA",data);
    var URL = '../../application/pdf/generate_evaluate.php';
@@ -1007,7 +1014,7 @@ function senddata(data,file_data)
                        timer: 2000,
                        confirmButtonText: 'Ok'
                      }).then(function () {
-
+                       window.location.reload();
                      }, function (dismiss) {
                      // dismiss can be 'cancel', 'overlay',
                      // 'close', and 'timer'
@@ -1246,6 +1253,8 @@ $(document).ready(function(){
         $('#EVALUATE1').prop('disabled',true);
         $('#EVALUATE2').prop('disabled',true);
         $('.opacity01').css("opacity","0.1");
+        document.getElementById("EVALUATE1").checked = false;
+        document.getElementById("EVALUATE2").checked = false;
       }
       else if ($(this).val()=="CRITERIA")
       {
@@ -1618,7 +1627,7 @@ function confreset(casereset) {
         <div class="form-inline">
           <b>ลักษณะการเรียนการสอน&nbsp;&nbsp;</b><br>
           <div class="form-group"><div class="radio">
-            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING1" value="LEC" required> บรรยาย &nbsp;<br>
+            <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING1" value="LEC" required checked> บรรยาย &nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING2" value="LECLAB"> บรรยายและปฏิบัติการ&nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING3" value="SPE"> โครงงานทางเภสัชกรรม&nbsp;<br>
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING4" value="TRA"> ฝึกงาน &nbsp;<br>
