@@ -836,13 +836,26 @@ function submitfunc(casesubmit) {
       sectionobj = section;
 
       //check radio
-      if(!(document.querySelector("input[name='EVALUATE_TYPE']:checked").value))
+      if(document.querySelector("input[name='CALCULATE']:checked").value == "GROUP")
       {
         evaluate_radio = "0";
-      }else {
-        evaluate_radio = document.querySelector("input[name='EVALUATE_TYPE']:checked").value;
+        console.log('1');
       }
-      console.log(evaluate_radio);
+      else {
+
+        if(!(document.querySelector("input[name='EVALUATE_TYPE']:checked")))
+        {
+          evaluate_radio = "0";
+          console.log('2');
+        }
+        else {
+          evaluate_radio = document.querySelector("input[name='EVALUATE_TYPE']:checked").value;
+          console.log('33');
+        }
+      }
+
+
+
 
       var data = {
         'COURSE_ID': document.getElementById("COURSE_ID").value,
@@ -1697,34 +1710,34 @@ function confreset(casereset) {
               </tr>
               <tr>
                 <td colspan="2">1. สอบกลางภาคฯครั้งที่ 1</td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC1" id="MEASURE_MIDLEC1" size="2" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB1" id="MEASURE_MIDLAB1" size="2" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC1" id="MEASURE_MIDLEC1" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB1" id="MEASURE_MIDLAB1" size="10" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">2. สอบกลางภาคฯครั้งที่ 2</td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC2" id="MEASURE_MIDLEC2" size="2" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB2" id="MEASURE_MIDLAB2" size="2" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC2" id="MEASURE_MIDLEC2" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB2" id="MEASURE_MIDLAB2" size="10" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">3. สอบไล่ </td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="2" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="2" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="10" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">4. งานมอบหมาย </td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_WORKLEC" id="MEASURE_WORKLEC" size="2" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_WORKLAB" id="MEASURE_WORKLAB" size="2" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_WORKLEC" id="MEASURE_WORKLEC" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_WORKLAB" id="MEASURE_WORKLAB" size="10" value="0"></div></td>
               </tr>
               <tr name="addtr">
 
                 <td colspan="2"><div class="form-group form-inline">5. อื่นๆ โปรดระบุ &nbsp;&nbsp;<input type="text" class="form-control" name="OTHER_MEA" id="OTHER_MEA" size="30"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_OTHLEC" id="MEASURE_OTHLEC" size="2" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_OTHLAB" id="MEASURE_OTHLAB" size="2" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_OTHLEC" id="MEASURE_OTHLEC" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_OTHLAB" id="MEASURE_OTHLAB" size="10" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2" align="right"><input type="button" class="btn btn-outline btn-warning" name="calmea" id="calmea" value="รวมคะแนน"></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="2" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="2" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="10" value="0"></div></td>
               </tr>
             </table>
             </div>
@@ -2051,7 +2064,7 @@ function confreset(casereset) {
             <b>นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย</b> &nbsp;&nbsp;โดยไม่ได้รับอนุญาตให้เลื่อนการสอบตามข้อบังคับฯ ของมหาวิทยาลัยเชียงใหม่ ว่าด้วยการศึกษาชั้นปริญญาตรี อาจารย์ผู้สอนจะประเมินดังนี้
             <br>
             <div class="form-inline"><div class="form-group"><div class="radio">
-            <input type="radio" name="ABSENT" id="ABSENT1" value="F" required>&nbsp;ให้ลำดับขั้น F &nbsp;&nbsp; <br>
+            <input type="radio" name="ABSENT" id="ABSENT1" value="F" required checked>&nbsp;ให้ลำดับขั้น F &nbsp;&nbsp; <br>
             <input type="radio" name="ABSENT" id="ABSENT2" value="U" >&nbsp;ให้อักษร U &nbsp;&nbsp;<br>
             <input type="radio" name="ABSENT" id="ABSENT3" value="CAL" >&nbsp;นำคะแนนทั้งหมดที่นักศึกษาได้รับก่อนการสอบไล่มาประเมิน &nbsp;&nbsp;<br>
           </div></div></div>
