@@ -1228,6 +1228,7 @@ $(document).ready(function(){
         $('#EXPLAINATION').prop('required', true);
         $('#EXPLAINATION').val("");
         $('#CALOTHER').prop('disabled', true);
+        $('#CALOTHER').val("");
       }
       else if ($(this).val()=="CRITERIA")
       {
@@ -1252,6 +1253,7 @@ $(document).ready(function(){
         $('.stou').prop('disabled',true);
         $('#EXPLAINATION').val("");
         $('#CALOTHER').prop('disabled', false);
+        $('#CALOTHER').val("");
       }
       else {
         $('.atof').val("");
@@ -1262,6 +1264,7 @@ $(document).ready(function(){
         $('.stou').prop('disabled',false);
         $('#CALOTHER').prop('disabled', true);
         $('#EXPLAINATION').val("");
+        $('#CALOTHER').val("");
       }
     });
 
