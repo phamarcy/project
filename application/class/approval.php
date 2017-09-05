@@ -30,7 +30,10 @@ class approval
     $this->USER_LEVEL = $level;
     $this->CURL = new CURL();
     $this->COURSE = new Course();
+    if (class_exists('Database'))
+    {
     $this->DB = new Database();
+    }
     $this->PERSON = new Person();
   }
 
@@ -50,10 +53,42 @@ class approval
 
 
 //add new approval status
-public function Append_Status_Evaluate($course_id,$teacher_id,$level)
-{
-    $status = '1'; //default status = waiting for create
-}
+  public function Append_Status_Evaluate($course_id)
+  {
+   //default status 1 = waiting for create
+      $sql = "SELECT ga.`teacher_id` FROM `subject_assessor` sa, `group_assessor` ga
+      WHERE sa.course_id = '".$course_id."' AND sa.assessor_group_num = ga.group_num";
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        for($i=0;$i<count($result);$i++)
+        {
+          $sql = "INSERT INTO `approval_course`(`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`)
+          VALUES ('".$result[$i]['teacher_id']."','".$course_id."',1,'1',".$this->SEMESTER_ID.")";
+          $approve_result = $this->DB->Insert_Update_Delete($sql);
+          if($approve_result == false)
+          {
+            $return['status'] = 'error';
+            $return['msg'] = 'ไม่สามารถเพิ่มข้อมูลได้';
+            break;
+          }
+          else
+          {
+            $return['status'] = 'success';
+            $return['msg'] = 'เพิ่มข้อมูลสำเร็จ';
+          }
+
+        }
+      }
+      else
+      {
+        $return['status'] = 'error';
+        $return['msg'] = 'กรุณาเพิ่มรายชื่อในชุดคณะกรรมการก่อน';
+      }
+
+      return $return;
+
+  }
 //check status in home page
   public function Check_Status($user_id)
   {

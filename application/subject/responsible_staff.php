@@ -1,9 +1,11 @@
 <?php
+session_start();
 // var_dump($_POST);die;
 require_once(__DIR__.'/../class/course.php');
-
+require_once(__DIR__.'/../class/approval.php');
 if(isset($_POST['type']))
 {
+  $approval = new approval($_SESSION['level']);
   $course = new Course();
   $type = $_POST['type'];
   if($type == 'add_teacher')
@@ -48,6 +50,10 @@ if(isset($_POST['type']))
       $department_id = $_POST['dep_id'];
       $semester_id = $_POST['semester_id'];
       $result = $course->Add_Responsible_Assessor($course_id,$group_num,$semester_id,$department_id);
+      if($result['status'] == "success")
+      {
+        $result = $approval->Append_Status_Evaluate($course_id);
+      }
     }
     else
     {

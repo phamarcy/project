@@ -389,73 +389,76 @@ $pdf->SetX(25);
 $pdf->Cell(0,7,iconv('UTF-8','cp874',' '.$EVA_AF.' ให้ลำดับขั้น A, B+ ,B, C+, C, D+, D, F'),0);
 $pdf->Ln();
 
-$pdf->SetX(35);
-$pdf->Cell(10,7,'A   = ',0,0,'C');
-$pdf->Cell(50,7,$DATA['CALCULATE']['A']['MIN'],0,0,'C');
-$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนขึ้นไป '),0,0,'C');
+if($DATA['CALCULATE']['TYPE'] = 'CRITERIA')
+{
+	$pdf->SetX(35);
+	$pdf->Cell(10,7,'A   = ',0,0,'C');
+	$pdf->Cell(50,7,' >= '.$DATA['CALCULATE']['A']['MIN'],0,0,'C');
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนขึ้นไป '),0,0,'C');
 
-$pdf->Cell(10,7,'D+  = ',0,0,'C');
-$pdf->Cell(20,7,$DATA['CALCULATE']['D+']['MIN'],0,0,'C');
-$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
-$pdf->Cell(20,7,$DATA['CALCULATE']['D+']['MAX'],0,0,'C');
-$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
-$pdf->Ln();
+	$pdf->Cell(10,7,'D+  = ',0,0,'C');
+	$pdf->Cell(20,7,$DATA['CALCULATE']['D+']['MIN'],0,0,'C');
+	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
+	$pdf->Cell(20,7,$DATA['CALCULATE']['D+']['MAX'],0,0,'C');
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
+	$pdf->Ln();
 
-$pdf->SetX(35);
-$pdf->Cell(10,7,'B+  = ',0,0,'C');
-$pdf->Cell(20,7,$DATA['CALCULATE']['B+']['MIN'],0,0,'C');
-$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
-$pdf->Cell(20,7,$DATA['CALCULATE']['B+']['MAX'],0,0,'C');
-$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
+	$pdf->SetX(35);
+	$pdf->Cell(10,7,'B+  = ',0,0,'C');
+	$pdf->Cell(20,7,$DATA['CALCULATE']['B+']['MIN'],0,0,'C');
+	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
+	$pdf->Cell(20,7,$DATA['CALCULATE']['B+']['MAX'],0,0,'C');
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 
-$pdf->Cell(10,7,'D   = ',0,0,'C');
-$pdf->Cell(20,7,$DATA['CALCULATE']['D']['MIN'],0,0,'C');
-$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
-$pdf->Cell(20,7,$DATA['CALCULATE']['D']['MAX'],0,0,'C');
-$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
+	$pdf->Cell(10,7,'D   = ',0,0,'C');
+	$pdf->Cell(20,7,$DATA['CALCULATE']['D']['MIN'],0,0,'C');
+	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
+	$pdf->Cell(20,7,$DATA['CALCULATE']['D']['MAX'],0,0,'C');
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 
-$pdf->Ln();
+	$pdf->Ln();
 
-$pdf->SetX(35);
+	$pdf->SetX(35);
 
-$pdf->Cell(10,7,'B   = ',0,0,'C');
-$pdf->Cell(20,7,$DATA['CALCULATE']['B']['MIN'],0,0,'C');
-$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
-$pdf->Cell(20,7,$DATA['CALCULATE']['B']['MAX'],0,0,'C');
-$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
+	$pdf->Cell(10,7,'B   = ',0,0,'C');
+	$pdf->Cell(20,7,$DATA['CALCULATE']['B']['MIN'],0,0,'C');
+	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
+	$pdf->Cell(20,7,$DATA['CALCULATE']['B']['MAX'],0,0,'C');
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 
-$pdf->Cell(10,7,'F   = ',0,0,'C');
-$pdf->Cell(50,7,$DATA['CALCULATE']['F']['MAX'],0,0,'C');
-$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนลงมา '),0,0,'C');
-$pdf->Ln();
+	$pdf->Cell(10,7,'F   = ',0,0,'C');
+	$pdf->Cell(50,7,' < '.$DATA['CALCULATE']['F']['MAX'],0,0,'C');
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนลงมา '),0,0,'C');
+	$pdf->Ln();
 
-$pdf->SetX(35);
-$pdf->Cell(10,7,'C+   = ',0,0,'C');
-$pdf->Cell(20,7,$DATA['CALCULATE']['C+']['MIN'],0,0,'C');
-$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
-$pdf->Cell(20,7,$DATA['CALCULATE']['C+']['MAX'],0,0,'C');
-$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
+	$pdf->SetX(35);
+	$pdf->Cell(10,7,'C+   = ',0,0,'C');
+	$pdf->Cell(20,7,$DATA['CALCULATE']['C+']['MIN'],0,0,'C');
+	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
+	$pdf->Cell(20,7,$DATA['CALCULATE']['C+']['MAX'],0,0,'C');
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 
-$pdf->Cell(10,7,'S   = ',0,0,'C');
-$pdf->Cell(50,7,$DATA['CALCULATE']['S']['MIN'],0,0,'C');
-$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนขึ้นไป '),0,0,'C');
-$pdf->Ln();
+	$pdf->Cell(10,7,'S   = ',0,0,'C');
+	$pdf->Cell(50,7," >= ".$DATA['CALCULATE']['S']['MIN'],0,0,'C');
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนขึ้นไป '),0,0,'C');
+	$pdf->Ln();
 
-$pdf->SetX(35);
-$pdf->Cell(10,7,'C   = ',0,0,'C');
-$pdf->Cell(20,7,$DATA['CALCULATE']['C']['MIN'],0,0,'C');
-$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
-$pdf->Cell(20,7,$DATA['CALCULATE']['C']['MAX'],0,0,'C');
-$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
+	$pdf->SetX(35);
+	$pdf->Cell(10,7,'C   = ',0,0,'C');
+	$pdf->Cell(20,7,$DATA['CALCULATE']['C']['MIN'],0,0,'C');
+	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
+	$pdf->Cell(20,7,$DATA['CALCULATE']['C']['MAX'],0,0,'C');
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 
-$pdf->Cell(10,7,'U   = ',0,0,'C');
-$pdf->Cell(50,7,$DATA['CALCULATE']['U']['MAX'],0,0,'C');
-$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนลงมา '),0,0,'C');
-$pdf->Ln();
-$pdf->Cell(20,7,iconv('UTF-8','cp874','อื่นๆ '),0,1);
-$pdf->SetX(25);
-$pdf->Write( 7 , iconv( 'UTF-8','cp874' ,$DATA['CALCULATE']['OTHERGRADE']) );
-$pdf->Ln();
+	$pdf->Cell(10,7,'U   = ',0,0,'C');
+	$pdf->Cell(50,7," < ".$DATA['CALCULATE']['U']['MAX'],0,0,'C');
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนลงมา '),0,0,'C');
+	$pdf->Ln();
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','อื่นๆ '),0,1);
+	$pdf->SetX(25);
+	$pdf->Write( 7 , iconv( 'UTF-8','cp874' ,$DATA['CALCULATE']['OTHERGRADE']) );
+	$pdf->Ln();
+}
 $pdf->Ln();
 // Topic 7
 $AB_F = $AB_U = $AB_CAL = '[   ]';

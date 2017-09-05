@@ -8,15 +8,20 @@ class Database
 {
 	private $connection;
 	private $log;
+	public $connected;
 	function __construct()
 	{
 		global $DATABASE;
 		$this->log = new Log();
-        $this->connection  = new mysqli($DATABASE['HOST'], $DATABASE['USERNAME'], $DATABASE['PASSWORD'],$DATABASE['NAME']);
+    $this->connection  = new mysqli($DATABASE['HOST'], $DATABASE['USERNAME'], $DATABASE['PASSWORD'],$DATABASE['NAME']);
 	    if ($this->connection->connect_error)
 	    {
 	    	$this->log->Write("Connection to database failed: " . $this->connection->connect_error);
 	    	die("Connection failed: " . $this->connection->connect_error);
+			}
+			else
+			{
+				$this->connected = true;
 			}
 			mysqli_set_charset($this->connection,"utf8");
     }
@@ -79,7 +84,11 @@ class Database
 
     public function Close_connection()
     {
-    	$this->connection->close();
+			if ($this->connected)
+			{
+      $this->connection->close();
+      $this->connected = false;
+    	}
     }
 }
  ?>

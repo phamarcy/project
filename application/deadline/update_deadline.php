@@ -93,6 +93,7 @@ else
 	{
 		$DATA['error'] = 'Invalid format';
 	}
+	$deadline->Close_connection();
 }
 sleep(1);
 echo json_encode($DATA);

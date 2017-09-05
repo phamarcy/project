@@ -64,7 +64,7 @@ if(isset($_POST['DATA']))
     if($gen_result['status'] == 'success')
     {
       $approve = new approval('1');
-      $result = $approve->Update_Status_Evaluate($DATA['COURSE_ID'],'2','all','');
+      $result = $approve->Update_Status_Evaluate($DATA['COURSE_ID'],'1','all','');
       if($result)
       {
         $return['status'] = "success";
