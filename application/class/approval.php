@@ -64,7 +64,7 @@ class approval
         for($i=0;$i<count($result);$i++)
         {
           $sql = "INSERT INTO `approval_course`(`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`)
-          VALUES ('".$result[$i]['teacher_id']."','".$course_id."',1,'1',".$this->SEMESTER_ID.")";
+          VALUES ('".$result[$i]['teacher_id']."','".$course_id."',1,'0',".$this->SEMESTER_ID.")";
           $approve_result = $this->DB->Insert_Update_Delete($sql);
           if($approve_result == false)
           {
@@ -100,12 +100,12 @@ class approval
     }
     else if ($this->USER_LEVEL == 2)
     {
-      $sql = "SELECT `course_id` FROM `course_responsible`
+      $sql = "SELECT `course_id` FROM `department_course_responsible`
       WHERE `department_id` = '1202' AND `semester_id` = '".$this->SEMESTER_ID."'";
     }
     else if ($this->USER_LEVEL == 3)
     {
-      $sql = "SELECT `course_id` FROM `course_responsible`
+      $sql = "SELECT `course_id` FROM `department_course_responsible`
       WHERE  `semester_id` = '".$this->SEMESTER_ID."'";
     }
     else if ($this->USER_LEVEL == 4 || $this->USER_LEVEL == 5)

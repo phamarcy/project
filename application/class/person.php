@@ -1,5 +1,7 @@
 <?php
 require_once(__DIR__."/database.php");
+require_once(__DIR__."/approval.php");
+require_once(__DIR__."/manage_deadline.php");
 require_once(__DIR__."/../config/configuration_variable.php");
 /**
  *
@@ -9,7 +11,7 @@ class Person
 
   private $LOG;
   private $DB;
-
+  private $DEADLINE;
   function __construct()
   {
     global $DATABASE;
@@ -18,6 +20,8 @@ class Person
     $this->DB = new Database();
     $this->DB->Change_DB('person');
     $this->DEFAULT_DB = $DATABASE['NAME'];
+    $deadline = new Deadline();
+    $this->DEADLINE = $deadline->Get_Current_Semester();
   }
 
   public function Get_All_Teacher()
@@ -178,6 +182,23 @@ class Person
             $result = $this->DB->Insert_Update_Delete($sql);
             if($result)
             {
+              $sql = "SELECT `course_id` FROM `subject_assessor` WHERE `assessor_group_num` = '".$group_num."'";
+              $result = $this->DB->Query($sql);
+              if($result)
+              {
+                $count = count($result);
+                for($i=0;$i<$count;$i++)
+                {
+                  $sql = "INSERT INTO `approval_course`(`teacher_id`, `course_id`, `status`, `level_approve`, `comment`, `semester_id`)
+                  VALUES ('".$teacher_id."','".$result[$i]['course_id']."','1','1',null,".$this->DEADLINE['id'].")";
+                    $result_add_new_approval = $this->DB->Insert_Update_Delete($sql);
+                    if(!$result_add_new_approval)
+                    {
+                      $return['status'] = 'error';
+                      $return['msg'] = 'ไม่สามารถเพิ่มข้อมูลได้';
+                    }
+                }
+              }
               $return['status'] = 'success';
               $return['msg'] = 'เพิ่มข้อมูลสำเร็จ';
             }
@@ -228,6 +249,25 @@ class Person
         $result = $this->DB->Insert_Update_Delete($sql);
         if($result)
         {
+          $sql = "SELECT `course_id` FROM `subject_assessor` WHERE `assessor_group_num` = '".$group_num."'";
+          $result = $this->DB->Query($sql);
+          if($result)
+          {
+            $count = count($result);
+            for($i=0;$i<$count;$i++)
+            {
+              $sql = "DELETE FROM `approval_course`
+              WHERE `course_id` = '".$result[$i]['course_id']."' AND teacher_id = '".$teacher_id."'";
+              $result_remove_approval = $this->DB->Insert_Update_Delete($sql);
+              if(!$result_remove_approval)
+              {
+                $return['status'] = 'error';
+                $return['msg'] = 'ไม่สามารถเพิ่มข้อมูลได้';
+              }
+            }
+
+          }
+
           $return['status'] = 'success';
           $return['msg'] = 'ลบข้อมูลสำเร็จ';
         }

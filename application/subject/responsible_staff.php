@@ -49,6 +49,7 @@ if(isset($_POST['type']))
       $course_id = $_POST['course'];
       $department_id = $_POST['dep_id'];
       $semester_id = $_POST['semester_id'];
+      $course->Remove_Responsible_Assessor($course_id,$semester_id);
       $result = $course->Add_Responsible_Assessor($course_id,$group_num,$semester_id,$department_id);
       if($result['status'] == "success")
       {
