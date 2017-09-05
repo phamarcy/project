@@ -60,7 +60,7 @@ $grade->Close_connection();
 
 
 <body class="mybox" >
-    <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
+    <div  style="padding-left: 30px; padding-right: 30px;">
       <div class="container">
         <div class="row">
             <center>
@@ -113,10 +113,10 @@ $grade->Close_connection();
                               </td>
                               <td><?php echo $status ?></td>
                               <td style="width:20px;">
-                                <input name="file" id="grade_<?php echo $value["course_id"] ?>" type="file" accept=".xls, .xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                                <input name="file"  id="grade_<?php echo $value["course_id"] ?>" type="file" accept=".xls, .xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
                                 <input name="course_id" value="<?php echo $value["course_id"] ?>" type="hidden" />
                               </td>
-                              <td><button type="submit" name="button" class="btn btn-primary">อัพโหลด</button></td>
+                              <td><button type="submit" name="button" class="btn btn-primary" >อัพโหลด</button></td>
                             </form>
                           </tr>
                   <?php endforeach; ?>
@@ -128,17 +128,23 @@ $grade->Close_connection();
     </div>
 </div>
 <script type="text/javascript">
-$("form#data").submit(function(){
-    var file = document.forms['data']['file'].files[0];
-    if (!file) {
-      swal({
-        type:"info",
-        text: "กรุณาเลือกไฟล",
-        timer: 2000,
 
+$("form#data").submit(function(){
+
+    /*var file = document.forms['data']['file'].files[0];*/
+    var formData = new FormData(this);
+    /*console.log(file);*/
+
+  /*  if (!file) {
+      swal({
+        type:"error",
+        text: "กรุณาเลือกไฟล์",
+        timer: 2000,
+        confirmButtonText: "Ok!"
       });
-      return false;
-    }
+
+    }*/
+
     $.ajax({
         url: '../../application/document/upload_grade.php',
         type: 'POST',
@@ -159,7 +165,7 @@ $("form#data").submit(function(){
           });
           setTimeout(function() {
             window.location.reload();
-          }, 3000);
+          }, 1000);
 
         }
     });

@@ -4,6 +4,13 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
 {
     die('กรุณา Login ใหม่');
 }
+require_once(__DIR__."/../../application/class/person.php");
+require_once(__DIR__.'/../../application/class/manage_deadline.php');
+require_once(__DIR__."/../../application/class/course.php");
+$person = new Person();
+$deadline = new Deadline();
+$course = new course();
+
  ?>
   <html>
   <header>
@@ -45,7 +52,7 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
       var teacher = <?php echo $teacher_id ?>
 
       $.ajax({
-          url: '../../approve/approve.php',
+          url: '../../approval/approve.php',
           data:{type:type,teacher_id:}
           type: 'POST',
           success:function(data){
@@ -57,7 +64,7 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
     function approve_sp(course,teacherSp,type){
 
       $.ajax({
-          url: '../../approve/approve.php',
+          url: '../../approval/approve.php',
           type: 'POST',
           success:function(data){
 
@@ -356,46 +363,7 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
       </div>
     </div>
     </div>
-    <script type="text/javascript">
-    $("form#data").submit(function(){
-        var file = document.forms['data']['file'].files[0];
-        if (!file) {
-          swal({
-            type:"info",
-            text: "กรุณาเลือกไฟล",
-            timer: 2000,
 
-          });
-          return false;
-        }
-        $.ajax({
-            url: '../../application/document/upload_grade.php',
-            type: 'POST',
-            data: formData,
-            async: false,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-              var msg=JSON.parse(data)
-              swal({
-                type:msg.status,
-                text: msg.msg,
-                timer: 2000,
-                confirmButtonText: "Ok!",
-              }, function(){
-                window.location.reload();
-              });
-              setTimeout(function() {
-                window.location.reload();
-              }, 3000);
-
-            }
-        });
-
-        return false;
-    });
-    </script>
   </body>
 
   </html>

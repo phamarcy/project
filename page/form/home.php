@@ -16,6 +16,10 @@ $deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
 $semeter= $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
+
+echo "<pre>";
+print_r($data_course);
+echo "</pre>";
 ?>
 	<html>
 
@@ -53,7 +57,7 @@ $data_course= json_decode($var, true);
 		<script src="../dist/js/sb-admin-2.js"></script>
 
 		<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
-
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 		<link rel="stylesheet" href="../dist/css/scrollbar.css">
 		<title></title>
 		<style>
@@ -180,7 +184,9 @@ $data_course= json_decode($var, true);
 																	</thead>
 																	<tbody>
 
-																		<?php foreach ($value_course['evaluate']['comment'] as $comment): ?>
+																		<?php
+                                    if (!empty($valuesp['comment'])) {
+                                    foreach ($value_course['evaluate']['comment'] as $comment): ?>
 																			<tr>
 																				<?php if ($_SESSION['level'] >=2): ?>
 																				<td style="width:250px"><?php echo $comment['name'] ?></td>
@@ -193,7 +199,7 @@ $data_course= json_decode($var, true);
 
 																				?></td>
 																			</tr>
-																		<?php endforeach; ?>
+																		<?php endforeach;  }?>
 																	</tbody>
 																</table>
 															</div>
@@ -251,6 +257,7 @@ $data_course= json_decode($var, true);
 																			</div>
 																			<div id="special_<?php echo $value_course['id']."_".$keysp ?>" class="panel-collapse collapse">
 																				<div class="panel-body">
+
 																					<table class="table " style="font-size:14px;">
 																						<thead>
 																							<?php if ($_SESSION['level'] >=2): ?>
@@ -259,20 +266,27 @@ $data_course= json_decode($var, true);
 																							<th>ข้อเสนอแนะ</th>
 																						</thead>
 																						<tbody>
-																							<?php foreach ($valuesp['comment'] as $comment): ?>
+
+																							<?php
+
+                                                # code...
+                                                if (!empty($valuesp['comment'])) {
+                                                  # code...
+                                                foreach ($valuesp['comment'] as $comment): ?>
 																								<tr>
-																									<?php if ($_SESSION['level'] >=2): ?>
-																									<td style="width:250px"><?php echo $comment['name'] ?></td>
-																									<?php endif; ?>
-																									<td><?php if ($comment['comment']=="" or $comment['comment'] ==NULL) {
-																										echo "-";
-																									} else {
-																										echo $comment['comment'];
-																									}
+  																									<?php if ($_SESSION['level'] >=2): ?>
+  																									<td style="width:250px"><?php echo $comment['name'] ?></td>
+  																									<?php endif; ?>
+  																									<td><?php if ($comment['comment']=="" or $comment['comment'] ==NULL) {
+  																										echo "-";
+  																									} else {
+  																										echo $comment['comment'];
+  																									}
 
 																									?></td>
 																								</tr>
-																							<?php endforeach; ?>
+																							<?php endforeach;
+                                                }  ?>
 																						</tbody>
 																					</table>
 																				</div>

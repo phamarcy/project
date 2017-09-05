@@ -8,17 +8,18 @@ require_once(__DIR__."/../../application/class/person.php");
 require_once(__DIR__.'/../../application/class/manage_deadline.php');
 require_once(__DIR__."/../../application/class/course.php");
 $person = new Person();
-$deadline = new Deadline;
-$course = new course;
+$deadline = new Deadline();
+$course = new course();
 $semeter= $deadline->Get_Current_Semester();
 $department =$person->Get_Staff_Dep($_SESSION['id']);
 $dep_js=$department['code'];
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
+/*
 echo "<pre>";
 print_r($list_course);
-echo "</pre>";
+echo "</pre>";*/
  ?>
 <html>
   <head>
