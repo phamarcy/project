@@ -1417,7 +1417,7 @@ function checkreq(casesubmit) {
   if(casesubmit=='1')
   {
     if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
-    {
+    { console.log('hey');
       swal({
         title: 'แน่ใจหรือไม่',
         text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
