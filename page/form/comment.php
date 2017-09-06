@@ -50,6 +50,21 @@ echo "</pre>";
       font-weight: bold;
       color: red;
     }
+    #statcf {
+     color : #0e9d14;
+    }
+
+    #statn {
+     color : #ec2c2c;
+    }
+
+    #statwt {
+     color : #acb500;
+    }
+
+    #statal {
+     color : #da9001;
+    }
     </style>
   </header>
 
@@ -89,7 +104,7 @@ echo "</pre>";
                     <th>ชื่อวิชา</th>
                     <th style="text-align:center;">Course</th>
                     <th style="text-align:center;">Evaluate</th>
-                    <th>สถานะการประเมิน</th>
+                    <th style="text-align:center;">สถานะการ<?php echo $approve_text ?></th>
                     <th></th>
                   </tr>
                 </thead>
@@ -111,7 +126,7 @@ echo "</pre>";
                       <?php endif; ?>
 
                     </td>
-                    <th><?php echo $value['status'] ?></th>
+                    <td align="center"><?php if($value['status']==0){echo '<i id="statn" class="fa fa-user-times fa-2x" aria-hidden="true"></i>';}else{echo '<i id="statcf" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>';}?></td>
                     <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#<?php echo $value['id'] ?>" class="accordion-toggle">ดูข้อมูล</button></td>
                   </tr>
                   <tr class="hiddenRow">
