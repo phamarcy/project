@@ -540,65 +540,27 @@ function getinfo(temp) {
   var choice3 = temp['CALCULATE']['TYPE'];
   $('input[name="CALCULATE"][value=' + choice3 + ']').prop('checked', true);
   document.getElementById('EXPLAINATION').value = temp['CALCULATE']['EXPLAINATION'];
-  var choice4 = temp['EVALUATE'];
-  $('input[name="EVALUATE_TYPE"][value=' + choice4 + ']').prop('checked', true);
   document.getElementById("CALOTHER").value = temp['CALCULATE']['OTHERGRADE'];
 
   //fucntion for disabled
-  if($("input[name='EVALUATE_TYPE']:checked").val()=="SU")
-  {
-    $('.atof').val("");
-    document.getElementById("CALCULATE_S_MIN").value = temp['CALCULATE']['S']['MIN'];
-    document.getElementById("CALCULATE_U_MAX").value = temp['CALCULATE']['U']['MAX'];
-    $('.atof').prop('disabled',true);
-    $('.atof').prop('required',false);
-    $('.stou').prop('required',true);
-    $('.stou').prop('disabled',false);
-  }
-  else if($("input[name='EVALUATE_TYPE']:checked").val()=="AF")
-  {
-    document.getElementById("CALCULATE_A_MIN").value = temp['CALCULATE']['A']['MIN'];
-    document.getElementById("CALCULATE_Bp_MIN").value = temp['CALCULATE']['B+']['MIN'];
-    document.getElementById("CALCULATE_Bp_MAX").value = temp['CALCULATE']['B+']['MAX'];
-    document.getElementById("CALCULATE_B_MIN").value = temp['CALCULATE']['B']['MIN'];
-    document.getElementById("CALCULATE_B_MAX").value = temp['CALCULATE']['B']['MAX'];
-    document.getElementById("CALCULATE_Cp_MIN").value = temp['CALCULATE']['C+']['MIN'];
-    document.getElementById("CALCULATE_Cp_MAX").value = temp['CALCULATE']['C+']['MAX'];
-    document.getElementById("CALCULATE_C_MIN").value = temp['CALCULATE']['C']['MIN'];
-    document.getElementById("CALCULATE_C_MAX").value = temp['CALCULATE']['C']['MAX'];
-    document.getElementById("CALCULATE_Dp_MIN").value = temp['CALCULATE']['D+']['MIN'];
-    document.getElementById("CALCULATE_Dp_MAX").value = temp['CALCULATE']['D+']['MAX'];
-    document.getElementById("CALCULATE_D_MIN").value = temp['CALCULATE']['D']['MIN'];
-    document.getElementById("CALCULATE_D_MAX").value = temp['CALCULATE']['D']['MAX'];
-    document.getElementById("CALCULATE_F_MAX").value = temp['CALCULATE']['F']['MAX'];
-
-    $('.stou').val("");
-    $('.atof').prop('disabled',false);
-    $('.atof').prop('required',true);
-    $('.stou').prop('disabled',true);
-    $('.stou').prop('required',false);
-  }
-
   if($("input[name='CALCULATE']:checked").val()=="GROUP")
   {
-
     $('.atof').val("");
-    $('#EXPLAINATION').prop('required',true);
     $('#EXPLAINATION').prop('disabled',false);
-    document.getElementById("CALCULATE_S_MIN").value = temp['CALCULATE']['S']['MIN'];
-    document.getElementById("CALCULATE_U_MAX").value = temp['CALCULATE']['U']['MAX'];
     $('.atof').prop('disabled',true);
     $('.stou').prop('disabled',true);
     $('.atof').prop('required',false);
     $('.stou').prop('required',false);
-    $('#EVALUATE1').prop('required',false);
-    $('#EVALUATE2').prop('required',false);
-    $('#EVALUATE1').prop('disabled',true);
-    $('#EVALUATE2').prop('disabled',true);
-    $('.opacity01').css("opacity","0.1");
+    $('#CALOTHER').prop('disabled',true);
   }
   else if ($("input[name='CALCULATE']:checked").val()=="CRITERIA")
   {
+    $('#EXPLAINATION').prop('disabled',true);
+    $('#CALOTHER').prop('disabled',false);
+    $('.stou').prop('disabled',true);
+    $('.atof').prop('required',true);
+    $('.atof').prop('disabled',false);
+    $('.stou').prop('required',false);
     document.getElementById("CALCULATE_A_MIN").value = temp['CALCULATE']['A']['MIN'];
     document.getElementById("CALCULATE_Bp_MIN").value = temp['CALCULATE']['B+']['MIN'];
     document.getElementById("CALCULATE_Bp_MAX").value = temp['CALCULATE']['B+']['MAX'];
@@ -613,7 +575,16 @@ function getinfo(temp) {
     document.getElementById("CALCULATE_D_MIN").value = temp['CALCULATE']['D']['MIN'];
     document.getElementById("CALCULATE_D_MAX").value = temp['CALCULATE']['D']['MAX'];
     document.getElementById("CALCULATE_F_MAX").value = temp['CALCULATE']['F']['MAX'];
-    $('.opacity01').css("opacity","1");
+  }else {
+    $('.atof').val("");
+    $('#EXPLAINATION').prop('disabled',true);
+    $('#CALOTHER').prop('disabled',true);
+    $('.atof').prop('disabled',true);
+    $('.stou').prop('disabled',false);
+    $('.atof').prop('required',false);
+    $('.stou').prop('required',true);
+    document.getElementById("CALCULATE_S_MIN").value = temp['CALCULATE']['S']['MIN'];
+    document.getElementById("CALCULATE_U_MAX").value = temp['CALCULATE']['U']['MAX'];
   }
 
   //part7
