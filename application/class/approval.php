@@ -421,6 +421,7 @@ class approval
         for($j=0;$j<$count_instructor;$j++)
         {
           $special = array();
+          $special['id'] = $instructor[$j]['id'];
           $special['comment'] = array();
           $special['name'] = $instructor[$j]['name'];
           $special['status'] = '0';
