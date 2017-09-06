@@ -289,11 +289,6 @@ class approval
          array_push($DATA,$instructor);
        }
      }
-     else
-     {
-       //query error return error
-       $this->LOG->Write("Query Error : on sql command ".$sql);
-     }
      return $DATA;
 
   }
@@ -409,11 +404,6 @@ class approval
           }
 
         }
-        else
-        {
-          //query error return error
-          $this->LOG->Write("Query Error : on sql command ".$sql);
-        }
         //search special instructor data
         $course['special'] = array();
         $instructor = $this->Get_Instructor_Data($course['id']);
@@ -461,11 +451,6 @@ class approval
           //check status in course
           array_push($DATA,$course);
       }
-    }
-    else
-    {
-      //query error return error
-      $this->LOG->Write("Query Error : on sql command ".$sql);
     }
     return $DATA;
   }

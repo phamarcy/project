@@ -48,13 +48,98 @@
 	  <link rel="stylesheet" href="dist/css/scrollbar.css">
 
 	<script>
-	$(document).ready(function(){
+	setInterval(update_noti, 10000);
+	function update_noti(){
+		$.ajax({
+				url: "../application/notification/get_data.php" ,
+				type: "POST",
+				data: ''
+		}).done(function(result) {
+			if(result != '')
+			{
+				var obj = jQuery.parseJSON(result);
+				if(obj != '')
+				{
+					$("#new_noti").text(obj.length);
+					if ($(".label-danger").css('display') == 'none'){}
+					{
+						$(".label-danger").show("fast");
+						console.log("show new noti");
+					}
+					for(var i=0;i<obj.length;i++)
+					{
+						append_noti(obj[i]);
+					}
 
+				}
+			}
+
+		});
+	}
+	function read_noti()
+	{
+		$.ajax({
+				url: "../application/notification/read_data.php" ,
+				type: "POST",
+				data: ''
+		}).done(function(result) {
+
+		});
+	}
+	function append_noti(data)
+	{
+		var object = document.getElementById("notification_element");
+		var element = $(object).clone();
+		var data = jQuery.parseJSON(data);
+		var status = '';
+		if(data != '')
+		{
+			switch(data.STATUS) {
+				case '0':
+				status ='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+				break;
+			 case '1':
+			 	 status ='<b id="statwt">รอการพิจารนา <i class="fa  fa-clock-o fa-fw"></i></b>';
+				 break;
+			 case '2':
+			 	 status ='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+				 break;
+			 case '3':
+			 	 status ='<b id="statn">มีการแก้ไขจากภาควิชา <i class="fa fa-pencil-square fa-fw"></i></b>';
+				 break;
+			 case '4':
+			 	 status ='<b id="statal">ภาควิชาเห็นชอบ รอคณะกรรมเห็นชอบ <i class="fa fa-user fa-fw"></i></b>';
+				 break;
+			 case '5':
+			 	 status ='<b id="statn">มีการแก้ไขเพิ่มเติมจากคณะ <i class="fa fa-user-plus fa-fw"></i></b>';
+				 break;
+			 case '6':
+			 	 status ='<b id="statcf">คณะกรรมการเห็นชอบ <i class="fa fa-check fa-fw"></i></b>';
+				 break;
+    	 default:
+        status = '';
+				break;
+			}
+
+			$(element).find("#course_id").text(data.COURSE_ID);
+			$(element).find("#date").text(data.DATE);
+			$(element).find("#status").html(status);
+			$("#noti").html(element);
+		}
+
+	}
+	$(document).ready(function(){
 		$(document).on("click", function () {
     		$("#noti").hide("slow");
 				$("#logout").hide("slow");
 		});
 		$("#icon-dropdown").click(function(){
+			var read =  $("#noti").is(':visible');
+			console.log(read);
+			if(read == true)
+			{
+				read_noti();
+			}
 			$("#noti").slideToggle();
 			$(".label-danger").hide("fast");
 			$("#logout").hide("slow");
@@ -194,8 +279,6 @@
 			document.documentElement.scrollTop = 0;
 		}
 
-
-
 	</script>
 </header>
 
@@ -219,80 +302,22 @@
 				<!-- /.dropdown -->
 				<li class="dropdown" id="icon-dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-										<i class="fa fa-bell fa-fw"></i> <span class="label label-danger red">4</span>
+										<i class="fa fa-bell fa-fw"></i> <span class="label label-danger red" id="new_noti">0</span>
 						</a>
 					<ul class="dropdown-menu scrollable-menu" role="menu" id="noti">
-						<li >
+						<li id="notification_element">
 							<a href="#" class="disabled">
-										<p>
-											<b id="statcf" style="font-size:18px"><i class="fa fa-check fa-fw "></i> อนุมัติ </b>
+										<p id="status">
+
 										</p>
-										<p>กระบวนวิชา : <b>204111</b>   ตอนที่ <b>1</b> ภาคปกติ</p>
-										<div class="detail">
-											<b style="font-size:16px">ผ่านการอนุมัติเรียบร้อยแล้ว</b>
-										</div>
+										<p>กระบวนวิชา : <b id="course_id"></b>
 										<p>
-											<span class="pull-right text-muted small">4 นาทีที่แล้ว</span>
+											เมื่อวันที่ <span class="pull-right text-muted small" id="date"></span>
 										</p>
 
 							</a>
 						</li>
-						<li class="divider"></li>
-						<li>
-							<a href="#" class="disabled">
-										<p>
-											<b id="statwt" style="font-size:18px"><i class="fa fa-clock-o fa-fw"></i></i> รอการพิจารนา </b>
-										</p>
-										<p>กระบวนวิชา : <b>204111</b>   ตอนที่ <b>1</b> ภาคปกติ</p>
-										<div class="detail">
-											<b style="font-size:16px;">รอการพิจารณาการวัดผลและประเมินผลการศึกษา</b>
-										</div>
-										<p>
-											<span class="pull-right text-muted small">4 นาทีที่แล้ว</span>
-										</p>
-
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a href="#" class="disabled">
-										<p>
-											<b id="statal" style="font-size:16px"><i class="fa fa-user fa-fw"></i></i> ภาควิชาเห็นชอบ รอคณะบดีอนุมัติ </b>
-										</p>
-										<p>กระบวนวิชา : <b>204111</b>   ตอนที่ <b>1</b> ภาคปกติ</p>
-										<div class="detail">
-											<b style="font-size:16px;">รอการพิจารณาจากคณะบดี</b>
-										</div>
-										<p>
-											<span class="pull-right text-muted small">30 นาทีที่แล้ว</span>
-										</p>
-
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a href="#" onclick="loadDoc('form/checkstattch.php')">
-										<p>
-											<b id="statn" style="font-size:16px"><i class="fa fa-check fa-fw"></i></i></i> ไม่ผ่านการอนุมัติ </b>
-										</p>
-										<p>กระบวนวิชา : <b>204111</b>   ตอนที่ <b>1</b> ภาคปกติ</p>
-										<div class="detail">
-											<b style="font-size:16px;">ทดสอบ</b>
-										</div>
-										<p>
-											<span class="pull-right text-muted small">1 วันที่แล้ว</span>
-										</p>
-
-							</a>
-						</li>
-
-						<li class="divider"></li>
-						<li>
-							<a class="text-center" href="#">
-														<strong>ดูการแจ้งเตือนทั้งหมด</strong>
-														<i class="fa fa-angle-right"></i>
-												</a>
-						</li>
+						<li class="divider" id="notification_line"></li>
 					</ul>
 					<!-- /.dropdown-alerts -->
 				</li>
