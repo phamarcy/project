@@ -741,6 +741,7 @@ $current = $dlobj->Get_Current_Semester();
               $("#AIR_DEPART").prop('required',true);
               $("#AIR_ARRIVE").prop('required',true);
               $("#planecost").prop('required',true);
+              $("#planecost").val("0");
           }
           else
           {
@@ -749,7 +750,7 @@ $current = $dlobj->Get_Current_Semester();
             $("#planecost").prop('required',false);
             $("#AIR_DEPART").val("");
             $("#AIR_ARRIVE").val("");
-            $("#planecost").val("");
+            $("#planecost").val("0");
           }
       });
 
@@ -758,6 +759,7 @@ $current = $dlobj->Get_Current_Semester();
              $("#TAXI_DEPART").prop('required',true);
              $("#TAXI_ARRIVE").prop('required',true);
              $("#taxicost").prop('required',true);
+             $("#taxicost").val("0");
          }
          else
          {
@@ -766,7 +768,7 @@ $current = $dlobj->Get_Current_Semester();
            $("#taxicost").prop('required',false);
            $("#TAXI_DEPART").val("");
            $("#TAXI_ARRIVE").val("");
-           $("#taxicost").val("");
+           $("#taxicost").val("0");
          }
      });
 
@@ -774,13 +776,14 @@ $current = $dlobj->Get_Current_Semester();
         if (this.checked) {
             $("#SELF_DISTANCT").prop('required',true);
             $("#selfunit").val("5");
+            $("#selfcost").val("0");
         }
         else
         {
           $("#SELF_DISTANCT").prop('required',false);
           $("#SELF_DISTANCT").val("");
           $("#selfunit").val("");
-          $("#selfcost").val("");
+          $("#selfcost").val("0");
 
         }
     });
@@ -1023,7 +1026,24 @@ function lastcal() {
   function checkreq(casesubmit) {
     if($("[required]").val()!=null && $("[required]").val()!="")
     {
+      swal({
+      title: 'แน่ใจหรือไม่',
+      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ok',
+      cancelButtonText: 'Cancel'
+    }).then(function () {
       submitfunc(casesubmit);
+    }, function (dismiss) {
+    // dismiss can be 'cancel', 'overlay',
+    // 'close', and 'timer'
+    if (dismiss === 'cancel') {
+
+    }
+  })
     }
     else {
 
@@ -1251,9 +1271,9 @@ function lastcal() {
           <div class="form-inline">
             <li>ค่าพาหนะเดินทาง </li>
             <div class="checkbox">
-              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="planecost" id="planecost" size="5" data-minlength="2" min="0" max="99999" >&nbsp;&nbsp;บาท</label></div>
+              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="planecost" id="planecost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
               <br>
-              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="taxicost" id="taxicost" size="5" data-minlength="2" min="0" max="99999" >&nbsp;&nbsp;บาท</label></div>
+              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="taxicost" id="taxicost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
               <br>
               <div class="form-group"><label><input type="checkbox" name="transchoice" id="transselfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;
                 <input type="text" class="form-control numonly" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="1" min="0" max="9999"> &nbsp;กิโลเมตร  กิโลเมตรละ
