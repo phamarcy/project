@@ -27,13 +27,12 @@ class Course
 
   public function Add_New_Course($data)
   {
-    $course = json_decode($data,true);
-    $sql = "SELECT * FROM `course` WHERE `course_id` = '".$course_id."'";
+    $sql = "SELECT * FROM `course` WHERE `course_id` = '".$data["COURSE_ID"]."'";
     $result = $this->DB->Query($sql);
     if($result == null)
     {
       $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`, `hr_lec`, `hr_lab`, `hr_self`)
-      VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7])";
+      VALUES ('".$data["COURSE_ID"]."','".$data["NAMETH"]."','".$data["NAMETH"]."','".$data["CREDIT"]["TOTAL"]."','".$data["CREDIT"]["LEC"]."','".$data["CREDIT"]["LAB"]."','".$data["CREDIT"]["SELF"]."')";
       $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
       {
