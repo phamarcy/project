@@ -48,7 +48,7 @@
 	  <link rel="stylesheet" href="dist/css/scrollbar.css">
 
 	<script>
-	setInterval(update_noti, 10000);
+	setInterval(update_noti, 600000);
 	function update_noti(){
 		$.ajax({
 				url: "../application/notification/get_data.php" ,
