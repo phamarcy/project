@@ -207,11 +207,11 @@ echo "</pre>";
                                             <div class="panel-body">
                                               <div class="form-group ">
                                                 <label for="">ข้อเสนอแนะ</label>
-                                                <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $value['id'] ?>"></textarea>
+                                                <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $valuesp['id'] ?>"></textarea>
                                               </div>
                                               <div class="form-group">
-                                                <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(<?php echo $value['id'] ?>,<?php echo $value['id']."-".$keysp ?>,'edit')"><?php echo $approve_text; ?></button> &nbsp;
-                                                <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(<?php echo $value['id'] ?>,<?php echo $value['id']."-".$keysp ?>,'edit')">มีการแก้ไข</button>
+                                                <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(<?php echo $value['id'] ?>,<?php echo $valuesp['id'] ?>,'edit')"><?php echo $approve_text; ?></button> &nbsp;
+                                                <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(<?php echo $value['id'] ?>,<?php echo $valuesp['id'] ?>,'edit')">มีการแก้ไข</button>
                                               </div>
                                               <table class="table " style="font-size:14px">
                                                 <thead>
@@ -282,14 +282,25 @@ echo "</pre>";
             comment:comment
           },
           success:function(data){
-            console.log(data);
+            var msg=JSON.parse(data)
+            swal({
+              type:msg.status,
+              text: msg.msg,
+
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 1000);
           }
       });
 
     }
     function approve_sp(course,teacherSp,type){
       var id = "<?php echo $_SESSION['id'] ?>";
-      var text ="comment_sp_"+course;
+      var text ="comment_sp_"+teacherSp;
       var comment = document.getElementById(text).value;
       console.log(course,teacherSp,type);
       $.ajax({
@@ -304,7 +315,18 @@ echo "</pre>";
             comment:comment
           },
           success:function(data){
-            console.log(data);
+            var msg=JSON.parse(data)
+            swal({
+              type:msg.status,
+              text: msg.msg,
+
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 1000);
           }
       });
 
