@@ -63,12 +63,21 @@
 
 function submitfunc(casesubmit) {
 
+  //CREDIT
+  var splitor = document.getElementById("TOTAL").value;
+  var total = splitor.charAt(0);
+  var lec = splitor.charAt(2);
+  var lab = splitor.charAt(4);
+  var self = splitor.charAt(6);
   var data = {
     'COURSE_ID': document.getElementById("COURSE_ID").value,
     'NAMETH' : document.getElementById("NAME_TH_COURSE").value,
     'NAMEENG' : document.getElementById("NAME_ENG_COURSE").value,
     'CREDIT' : {
-      'TOTAL' : document.getElementById("TOTAL").value
+      'TOTAL' : total,
+      'LEC' : lec,
+      'LAB' : lab,
+      'SELF' : self
     },
     /*'TYPE_TEACHING' : document.querySelector("input[name='TYPE_TEACHING']:checked").value,
     'TYPE_TEACHING_NAME' : document.getElementById('TYPE_TEACHING_NAME').value,
@@ -118,7 +127,7 @@ function submitfunc(casesubmit) {
     'SUBMIT_TYPE' : casesubmit
   };
 
-  //alert(JSON.stringify(data));
+  //console.log(JSON.stringify(data));
   if(casesubmit=='1')
   {
     senddata(JSON.stringify(data));
