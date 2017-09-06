@@ -78,6 +78,7 @@ if(isset($_POST['DATA']))
     $DATA['SEMESTER'] = $semester;
     $data['DATA'] = json_encode($DATA);
     $gen_result = Generate($data);
+		die($gen_result);
     $gen_result = json_decode($gen_result,true);
     if($gen_result['status'] == 'success')
     {

@@ -423,6 +423,15 @@ else if($DATA["PAYMENT"]["COSTHOTEL"]["CHOICE"] == "way2")
 	$unit1 = ' ';
 
 }
+else if ($DATA["PAYMENT"]["COSTHOTEL"]["CHOICE"] == "way3")
+{
+	$choice_hotel1 = '';
+	$choice_hotel2 = '';
+	$unit2 = '';
+	$night = '';
+	$price = '';
+	$unit1 = ' ';
+}
 
 
 
