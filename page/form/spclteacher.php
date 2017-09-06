@@ -786,6 +786,31 @@ $current = $dlobj->Get_Current_Semester();
     });
 
     // CALCULATE
+    if(document.querySelector("input[name='costspec']:checked").value=="choice1")
+    {
+      $('#choice1hour').val("");
+      $('#choice1cost').val("");
+      $('#choice1num').val("400");
+      $('#choice2hour').val("");
+      $('#choice2cost').val("");
+      $('#choice2num').val("");
+      $('#choice1hour').keyup(function(){
+          var textone;
+          var texttwo;
+          textone = parseFloat($('#choice1hour').val());
+          texttwo = parseFloat($('#choice1num').val());
+          var result = textone*texttwo;
+          $('#choice1cost').val(result.toFixed(2));
+      });
+      $('#choice1num').keyup(function(){
+          var textone;
+          var texttwo;
+          textone = parseFloat($('#choice1hour').val());
+          texttwo = parseFloat($('#choice1num').val());
+          var result = textone*texttwo;
+          $('#choice1cost').val(result.toFixed(2));
+      });
+    }
 
     $("input[name='costspec']").change(function(){
       if($(this).val()=="choice1")
@@ -859,6 +884,14 @@ $current = $dlobj->Get_Current_Semester();
         $('#selfcost').val(result.toFixed(2));
     });
 
+    if(document.querySelector("input[name='hotelchoice']:checked").value=="way3")
+    {
+      $('#numnight').prop('required',false);
+      $('#numnight').val("0");
+      $('#pernight').val("0");
+      $('#way1unit').val("");
+      $('#way2unit').val("");
+    }
 
     $("input[name='hotelchoice']").change(function(){
       if($(this).val()=="way1")
@@ -1138,7 +1171,7 @@ function lastcal() {
           <li>ประวัติการเชิญมาสอน <br>
               <div class="form-group">
                 <div class="radio">
-                <input type="radio" name="topic" id="topic" value="yet" required> &nbsp;เคยเชิญมาสอน
+                <input type="radio" name="topic" id="topic" value="yet" required checked> &nbsp;เคยเชิญมาสอน
                 &nbsp;<input type="radio" name="topic" id="topic" value="already"> &nbsp;ไม่เคยเชิญมาสอน
               </div>
             </div>
@@ -1161,7 +1194,7 @@ function lastcal() {
               <div class="form-inline">
                 <li>กระบวนวิชานี้เป็นวิชา &nbsp;<br />
                   <div class="form-group"><div class="radio">
-                    <input type="radio" name="type_course" id="type_course" value="require" required> &nbsp;บังคับ
+                    <input type="radio" name="type_course" id="type_course" value="require" required checked> &nbsp;บังคับ
                     &nbsp;<input type="radio" name="type_course" id="type_course" value="choose"> &nbsp;เลือก
                   </div></div>
                 </li>
@@ -1207,7 +1240,7 @@ function lastcal() {
             <li>ค่าสอนพิเศษ</li>
             <div class="radio">
               <div class="form-group">
-                <input type="radio"  name="costspec" id="costspec" value="choice1" required>&nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control numonly" name="choice1num" id="choice1num"  size="5"> ต่อชม.&nbsp;
+                <input type="radio"  name="costspec" id="costspec" value="choice1" required checked>&nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control numonly" name="choice1num" id="choice1num"  size="5" value="400"> ต่อชม.&nbsp;
               จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1hour" size="5" data-minlength="1" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999" READONLY>&nbsp;&nbsp;บาท
               </div><br>
               <div class="form-group"><input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ <input type="text" class="form-control numonly" name="choice2num" id="choice2num" size="5"> ต่อชม.&nbsp;
@@ -1232,7 +1265,7 @@ function lastcal() {
           <div class="form-inline">
             <li>ค่าที่พัก</li>
             <div class="form-group"><div class="radio">
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way3" required>&nbsp;&nbsp; ไม่เบิกค่าที่พัก&nbsp;&nbsp;<br>
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way3" required checked>&nbsp;&nbsp; ไม่เบิกค่าที่พัก&nbsp;&nbsp;<br>
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน <input type="text" class="form-control numonly" name="way1unit" id="way1unit" size="4" > บาท/คน/คืน&nbsp;&nbsp;<br>
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน <input type="text" class="form-control numonly" name="way2unit" id="way2unit" size="4" > บาท/คน/คืน &nbsp;&nbsp;
             </div></div>
