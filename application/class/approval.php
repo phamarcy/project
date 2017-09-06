@@ -50,13 +50,21 @@ class approval
     }
     if($teacher_id == 'all') //update all status with course_id
     {
-      $sql = "UPDATE `approval_course` SET `status`= '".$status."',`comment`= '".$comment."',`level_approve` = '".$level_approve."'
-      WHERE `course_id` = '".$course_id."'";
+      $sql = "UPDATE `approval_course` SET `status`= '".$status."',`comment`= '".$comment."'";
+      if($comment != null)
+      {
+        $sql .= ",`comment`= '".$comment."'";
+      }
+      $sql .= " WHERE `course_id` = '".$course_id."'";
     }
     else //update specific teacher_id,course_id
     {
-      $sql = "UPDATE `approval_course` SET `status`= '".$status."',`comment`= '".$comment."',`level_approve` = '".$level_approve."'
-      WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."'";
+      $sql = "UPDATE `approval_course` SET `status`= '".$status."',`level_approve` = '".$level_approve."'";
+      if($comment != null)
+      {
+        $sql .= ",`comment`= '".$comment."'";
+      }
+      $sql .= " WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."'";
     }
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
@@ -73,15 +81,33 @@ class approval
 //evaluate special instructor
   public function Update_Status_Special($instructor_id,$teacher_id,$course_id,$status,$comment)
   {
+    if($this->USER_LEVEL < 6)
+    {
+      $level_approve = '1';
+    }
+    else
+    {
+      $level_approve = '2';
+    }
+
     if($teacher_id == 'all') //update all status with course_id
     {
-      $sql = "UPDATE `approval_special` SET `status`= '".$status."',`comment`= '".$comment."'
-      WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."'";
+      $sql = "UPDATE `approval_special` SET `status`= '".$status."'";
+      if($comment != null)
+      {
+        $sql .= ",`comment`= '".$comment."'";
+      }
+      $sql .= " WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."'";
+
     }
     else //update specific teacher_id,course_id
     {
-      $sql = "UPDATE `approval_special` SET `status`= '".$status."',`comment`= '".$comment."'
-      WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."' AND `teacher_id` = '".$teacher_id."'";
+      $sql = "UPDATE `approval_special` SET `status`= '".$status."'";
+      if($comment != null)
+      {
+        $sql .= ",`comment`= '".$comment."'";
+      }
+      $sql .= " WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."' AND `teacher_id` = '".$teacher_id."'";
     }
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
