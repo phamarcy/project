@@ -74,7 +74,7 @@ echo "</pre>";
         <div class="panel panel-default">
           <div class="panel-heading">
             <h5 class="panel-title" style="font-size:14px">
-              <b>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</b>
+              <b>ภาคการศึกษาที่ <?php echo $semeter['semester'] ?> ปีการศึกษา <?php echo $semeter['year'] ?></b>
           </h5>
           </div>
           <!-- .panel-heading -->
@@ -89,6 +89,7 @@ echo "</pre>";
                     <th>ชื่อวิชา</th>
                     <th style="text-align:center;">Course</th>
                     <th style="text-align:center;">Evaluate</th>
+                    <th>สถานะการประเมิน</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -110,6 +111,7 @@ echo "</pre>";
                       <?php endif; ?>
 
                     </td>
+                    <th><?php echo $value['status'] ?></th>
                     <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#<?php echo $value['id'] ?>" class="accordion-toggle">ดูข้อมูล</button></td>
                   </tr>
                   <tr class="hiddenRow">

@@ -62,6 +62,25 @@ echo "</pre>";*/
       margin-bottom: 0px;
     }
 
+      #statc {
+        color: #0d4b9d;
+      }
+      #statcf {
+        color: #0e9d14;
+      }
+
+      #statn {
+        color: #ec2c2c;
+      }
+
+      #statwt {
+        color: #acb500;
+      }
+
+      #statal {
+        color: #da9001;
+      }
+
     </style>
   </head>
   <body>
@@ -244,9 +263,10 @@ echo "</pre>";*/
                 <thead>
                     <tr>
                         <th width="10%">รหัสวิชา</th>
-                        <th width="65%">ชื่อวิชา</th>
+                        <th width="80%">ชื่อวิชา</th>
+                        <th width="7%">สถานะ</th>
                         <th width="5%"></th>
-                        <th width="10%"></th>
+                        <th width="5%"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -257,7 +277,8 @@ echo "</pre>";*/
                           <tr>
                               <td><?php echo $value_list['id']; ?></td>
                               <td><?php echo $value_list['name']; ?></td>
-                              <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#<?php echo $value_list['id'] ?>" class="accordion-toggle">เพิ่มผู้รับผิดชอบ</button></td>
+                              <td ><?php if($value_list['teacher']!= NULL and $value_list['assessor']!= NULL){echo '<i id="statcf" class=" fa fa-check-square-o fa-2x " aria-hidden="true"></i>';}else{echo '<i id="statn" class="fa fa-times fa-2x" aria-hidden="true"></i>';} ?></td>
+                              <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#<?php echo $value_list['id'] ?>" class="accordion-toggle">ผู้รับผิดชอบ</button></td>
                               <td><button type="submit" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
                               <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
                               <input type="hidden" name="course"  value="<?php echo $value_list['id'] ?>">
@@ -280,7 +301,7 @@ echo "</pre>";*/
                                               <label for="">เพิ่มผู้รับผิดชอบ</label>
                                               <div class="form-inline">
                                                 <form id="staff"  method="post">
-                                                  <input type="text" name="teacher" required class="form-control " name="teacher" id="TEACHERLEC_<?php echo $value_list['id'] ?>" list="dtl<?php echo $value_list['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35"  onkeydown="searchname(<?php echo $value['id'] ?>,'responsible');" >
+                                                  <input type="text" name="teacher" required class="form-control " name="teacher" id="TEACHERLEC_<?php echo $value_list['id'] ?>" list="dtl<?php echo $value_list['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35"  onkeydown="searchname(<?php echo $value_list['id'] ?>,'responsible');" >
                                                   <input type="hidden" name="type" value="add_teacher">
                                                   <input type="hidden" name="course" value="<?php echo $value_list['id'] ?>">
                                                   <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
