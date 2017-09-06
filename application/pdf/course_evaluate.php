@@ -349,32 +349,30 @@ $pdf->Ln();
  $pdf->AddPage();
 
 // Topic 6
-$EVA_AF = $EVA_SU = '[   ]';
-if($DATA['EVALUATE'] == 'SU')
-{
-	$EVA_SU = '[ / ]';
-}
-else if ($DATA['EVALUATE'] =='AF')
-{
-	$EVA_AF = '[ / ]';
-}
-$CAL_CRITERIA = $CAL_GROUP = '[   ]';
+
+$CAL_CRITERIA = $CAL_GROUP = $CAL_SU = '[   ]';
 if($DATA['CALCULATE']['TYPE'] == 'GROUP')
 {
 	$CAL_GROUP = '[ / ]';
 }
-else if($DATA['CALCULATE']['TYPE'] = 'CRITERIA')
+else if($DATA['CALCULATE']['TYPE'] == 'CRITERIA')
 {
 	$CAL_CRITERIA = '[ / ]';
+}
+else if ($DATA['CALCULATE']['TYPE'] == 'SU')
+{
+	$CAL_SU = '[ / ]';
 }
 
 $pdf->SetFont('THSarabun_B','',14);
 $pdf->SetX(20);
 $pdf->Cell(0,7,iconv( 'UTF-8','cp874','6. วิธีการตัดเกรด'),0,1,"L");
 $pdf->SetX(25);
-$pdf->Cell(0,7,iconv('UTF-8','cp874',' '.$CAL_GROUP.' อิงกลุ่ม'),0,1);
+$pdf->Cell(0,7,iconv('UTF-8','cp874',' '.$CAL_GROUP.' อิงกลุ่ม     '.$DATA['CALCULATE']["EXPLAINATION"]),0,1);
 $pdf->SetX(25);
-$pdf->Cell(30,7,iconv('UTF-8','cp874',' '.$CAL_CRITERIA.' อิงเกณฑ์'),0);
+$pdf->Cell(30,7,iconv('UTF-8','cp874',' '.$CAL_CRITERIA.' อิงเกณฑ์'),0,1);
+$pdf->SetX(25);
+$pdf->Cell(0,7,iconv('UTF-8','cp874',' '.$CAL_SU.' ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว)  '),0);
 $pdf->SetFont('THSarabun','',14);
 $pdf->Ln();
 
@@ -383,13 +381,22 @@ $pdf->SetX(25);
 $pdf->Cell(0,7,iconv('UTF-8','cp874','การประเมินผล'),0,1);
 $pdf->SetX(25);
 $pdf->SetFont('THSarabun','',14);
-$pdf->Cell(0,7,iconv('UTF-8','cp874',' '.$EVA_SU.' ให้อักษร S หรือ U (ได้รับการอนุมัติจากมหาวิทยาลัยแล้ว)  '),0);
-$pdf->Ln();
-$pdf->SetX(25);
-$pdf->Cell(0,7,iconv('UTF-8','cp874',' '.$EVA_AF.' ให้ลำดับขั้น A, B+ ,B, C+, C, D+, D, F'),0);
-$pdf->Ln();
+if($DATA['CALCULATE']['TYPE'] == 'SU')
+{
+	$pdf->SetX(35);
+	$pdf->Cell(10,7,'S   = ',0,0,'C');
+	$pdf->Cell(50,7," >= ".$DATA['CALCULATE']['S']['MIN'],0,0,'C');
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนขึ้นไป '),0,0,'C');
+	$pdf->Ln();
 
-if($DATA['CALCULATE']['TYPE'] = 'CRITERIA')
+	$pdf->SetX(35);
+	$pdf->Cell(10,7,'U   = ',0,0,'C');
+	$pdf->Cell(50,7," < ".$DATA['CALCULATE']['U']['MAX'],0,0,'C');
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนลงมา '),0,0,'C');
+	$pdf->Ln();
+
+}
+else if($DATA['CALCULATE']['TYPE'] == 'CRITERIA')
 {
 	$pdf->SetX(35);
 	$pdf->Cell(10,7,'A   = ',0,0,'C');
@@ -437,10 +444,6 @@ if($DATA['CALCULATE']['TYPE'] = 'CRITERIA')
 	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
 	$pdf->Cell(20,7,$DATA['CALCULATE']['C+']['MAX'],0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
-
-	$pdf->Cell(10,7,'S   = ',0,0,'C');
-	$pdf->Cell(50,7," >= ".$DATA['CALCULATE']['S']['MIN'],0,0,'C');
-	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนขึ้นไป '),0,0,'C');
 	$pdf->Ln();
 
 	$pdf->SetX(35);
@@ -449,16 +452,12 @@ if($DATA['CALCULATE']['TYPE'] = 'CRITERIA')
 	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
 	$pdf->Cell(20,7,$DATA['CALCULATE']['C']['MAX'],0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
-
-	$pdf->Cell(10,7,'U   = ',0,0,'C');
-	$pdf->Cell(50,7," < ".$DATA['CALCULATE']['U']['MAX'],0,0,'C');
-	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนลงมา '),0,0,'C');
 	$pdf->Ln();
+}
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','อื่นๆ '),0,1);
 	$pdf->SetX(25);
 	$pdf->Write( 7 , iconv( 'UTF-8','cp874' ,$DATA['CALCULATE']['OTHERGRADE']) );
 	$pdf->Ln();
-}
 $pdf->Ln();
 // Topic 7
 $AB_F = $AB_U = $AB_CAL = '[   ]';
