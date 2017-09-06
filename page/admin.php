@@ -220,9 +220,6 @@
 							<li>
 								<a href="#" onclick="loadDoc('form/managesubject.php')"><i class="fa fa-user-md fa-fw"></i> จัดการกระบวนวิชา</a>
 							</li>
-							<li>
-								<a href="#" onclick="loadDoc('form/setsubject.php')"><i class="fa fa-user-md fa-fw"></i> กำหนดกระบวนวิชา</a>
-							</li>
               <li>
 								<a href="#" onclick="loadDoc('form/config_term.php')"><i class="fa fa-user-md fa-fw"></i> กำหนดภาคการศึกษาปัจจุบัน</a>
 							</li>
