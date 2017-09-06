@@ -835,22 +835,6 @@ function submitfunc(casesubmit) {
       }
       sectionobj = section;
 
-      //check radio
-      if(document.querySelector("input[name='CALCULATE']:checked").value == "GROUP")
-      {
-        evaluate_radio = "0";
-      }
-      else {
-
-        if(!(document.querySelector("input[name='EVALUATE_TYPE']:checked")))
-        {
-          evaluate_radio = "0";
-        }
-        else {
-          evaluate_radio = document.querySelector("input[name='EVALUATE_TYPE']:checked").value;
-        }
-      }
-
 
 
 
@@ -939,7 +923,6 @@ function submitfunc(casesubmit) {
             'LAB' : document.getElementById("MEASURE_TOTALLAB").value
           }
         },
-        'EVALUATE' : evaluate_radio,
         'CALCULATE' : {
           'TYPE' : document.querySelector("input[name='CALCULATE']:checked").value,
           'EXPLAINATION' : document.getElementById("EXPLAINATION").value,
