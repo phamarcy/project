@@ -491,7 +491,7 @@ $pdf->SetX(25);
 $pdf->Cell(10,7,iconv('UTF-8','cp874','ลงชื่อ'),0);
 $image1 = "image1.jpg"; # signature
 $pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
-$pdf->Cell(0,7,iconv('UTF-8','cp874','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
+$pdf->Cell(0,7,iconv('UTF-8','cp874','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[(int)date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
 $pdf->Ln();
 
 $pdf->SetX(35);
@@ -516,7 +516,7 @@ if(isset($DATA['APPROVED']))
 	$pdf->Cell(10,7,iconv('UTF-8','cp874','ลงชื่อ'),0);
 	$image1 = "image1.jpg"; # signature
 	$pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
-	$pdf->Cell(0,7,iconv('UTF-8','cp874','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
+	$pdf->Cell(0,7,iconv('UTF-8','cp874','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[(int)date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
 	$pdf->Ln();
 
 	$pdf->SetX(35);
