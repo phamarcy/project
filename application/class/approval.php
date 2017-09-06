@@ -38,18 +38,61 @@ class approval
   }
 
   //evaluate course evaluate document
-  public function Approve_Evaluate($teacher_id,$course_id,$level,$status,$comment)
+  public function Update_Status_Evaluate($course_id,$status,$teacher_id,$comment)
   {
+    if($this->USER_LEVEL < 6)
+    {
+      $level_approve = '1';
+    }
+    else
+    {
+      $level_approve = '2';
+    }
+    if($teacher_id == 'all') //update all status with course_id
+    {
+      $sql = "UPDATE `approval_course` SET `status`= '".$status."',`comment`= '".$comment."',`level_approve` = '".$level_approve."'
+      WHERE `course_id` = '".$course_id."'";
+    }
+    else //update specific teacher_id,course_id
+    {
+      $sql = "UPDATE `approval_course` SET `status`= '".$status."',`comment`= '".$comment."',`level_approve` = '".$level_approve."'
+      WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."'";
+    }
+    $result = $this->DB->Insert_Update_Delete($sql);
+    if($result)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
 
   }
 
 //evaluate special instructor
-  public function Approve_Special($instructor_id,$teacher_id,$course_id,$level,$status,$comment)
+  public function Update_Status_Special($instructor_id,$teacher_id,$course_id,$status,$comment)
   {
-
+    if($teacher_id == 'all') //update all status with course_id
+    {
+      $sql = "UPDATE `approval_special` SET `status`= '".$status."',`comment`= '".$comment."'
+      WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."'";
+    }
+    else //update specific teacher_id,course_id
+    {
+      $sql = "UPDATE `approval_special` SET `status`= '".$status."',`comment`= '".$comment."'
+      WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."' AND `teacher_id` = '".$teacher_id."'";
+    }
+    $result = $this->DB->Insert_Update_Delete($sql);
+    if($result)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
-
-
 
 
 //add new approval status
@@ -166,7 +209,7 @@ class approval
   //type = evaluate
   private function Get_Doc_Status($course_id)
   {
-      $status = 4;
+      $status = 7;
       $sql = "SELECT `status` FROM `approval_course`
       WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->SEMESTER_ID;
       $result = $this->DB->Query($sql);
@@ -185,7 +228,7 @@ class approval
       else
       {
         //not found on database, assume not creating
-        return "1";
+        return "0";
       }
   }
   private function Get_Instructor_Data($course_id)
@@ -255,29 +298,7 @@ class approval
 
   }
 
-  public function Update_Status_Evaluate($course_id,$status,$teacher_id,$comment)
-  {
-    if($teacher_id == 'all') //update all status with course_id
-    {
-      $sql = "UPDATE `approval_course` SET `status`= '".$status."',`comment`= '".$comment."'
-      WHERE `course_id` = '".$course_id."'";
-    }
-    else //update specific teacher_id,course_id
-    {
-      $sql = "UPDATE `approval_course` SET `status`= '".$status."',`comment`= '".$comment."'
-      WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."'";
-    }
-    $result = $this->DB->Insert_Update_Delete($sql);
-    if($result)
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
 
-  }
 
   public function Append_Special_Instructor($course_id,$instructor_id)
   {
@@ -306,9 +327,18 @@ class approval
   {
     $DATA = array();
     //search data of document to approve
-    $sql = "SELECT `course_id` FROM `subject_assessor` sa,`group_assessor` ga
-     WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
-     AND `semester_id` =".$this->SEMESTER_ID;
+    if($this->USER_LEVEL < 6)
+    {
+      $sql = "SELECT `course_id` FROM `subject_assessor` sa,`group_assessor` ga
+       WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
+       AND `semester_id` =".$this->SEMESTER_ID;
+    }
+    else
+    {
+      $sql = "SELECT DISTINCT `course_id` FROM `approval_course`
+      WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
+    }
+
     $result = $this->DB->Query($sql);
     if($result)
     {
