@@ -1376,6 +1376,22 @@ $(document).ready(function(){
     }
   });
 
+  $('#submitbtn2').click(function(e) {
+    if($('#submitbtn2').hasClass('disabled')==true)
+    {
+      var file = document.forms['form2']['syllabus_2'].files[0];
+      if(!file)
+      {
+        e.preventDefault();
+        return false;
+      }
+    }
+    else {
+      checkreq2('0');
+      return false;
+    }
+  });
+
   File: {
     required: true
 }
@@ -1402,7 +1418,24 @@ function checkreq(casesubmit) {
   {
     if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
     {
-      submitfunc(casesubmit);
+      swal({
+        title: 'แน่ใจหรือไม่',
+        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok',
+        cancelButtonText: 'Cancel'
+      }).then(function () {
+        submitfunc(casesubmit);
+      }, function (dismiss) {
+      // dismiss can be 'cancel', 'overlay',
+      // 'close', and 'timer'
+      if (dismiss === 'cancel') {
+
+      }
+    })
     }
     else {
 
@@ -1424,7 +1457,24 @@ function checkreq(casesubmit) {
 function checkreq2(casesubmit) {
   if($("#COURSE_ID_2").val()!=null && $("[COURSE_ID_2]").val()!="" && $("#syllabus_2").val()!=null && $("[syllabus_2]").val()!="")
   {
-    submitfunc(casesubmit);
+    swal({
+      title: 'แน่ใจหรือไม่',
+      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ok',
+      cancelButtonText: 'Cancel'
+    }).then(function () {
+      submitfunc(casesubmit);
+    }, function (dismiss) {
+    // dismiss can be 'cancel', 'overlay',
+    // 'close', and 'timer'
+    if (dismiss === 'cancel') {
+
+    }
+  })
   }
   else {
     swal(
@@ -2048,7 +2098,7 @@ function confreset(casereset) {
       </li>
       <br><br>
       <div align="center">
-        <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn2" id="submitbtn2" onclick="checkreq2('0')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
+        <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn2" id="submitbtn2" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
         <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn2" id="resetbtn2" onclick="confreset('2');" value="รีเซ็ตข้อมูล">
       </div>
     </form>

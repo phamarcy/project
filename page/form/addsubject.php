@@ -127,8 +127,7 @@ function submitfunc(casesubmit) {
 }
 function senddata(data)
 {
-
-  //prompt("data", data);
+   var file_data = new FormData;
    file_data.append("DATA",data);
    var URL = '../../application/subject/add_course.php';
    $.ajax({
