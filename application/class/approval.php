@@ -378,7 +378,7 @@ class approval
         $course['evaluate'] = $url['evaluate'];
         $course['syllabus'] = $url['syllabus'];
         $course['comment'] = array();
-        $sql = "SELECT `teacher_id`,`comment` FROM `approval_course` WHERE `course_id` = '".$course['id']."'
+        $sql = "SELECT `teacher_id`,`comment`,`status` FROM `approval_course` WHERE `course_id` = '".$course['id']."'
         AND `semester_id` =".$this->SEMESTER_ID;
         $result_comment = $this->DB->Query($sql);
         if($result_comment)
@@ -388,7 +388,20 @@ class approval
           {
             if($result_comment[$j]['teacher_id'] == $teacher_id)
             {
-              $course['status'] = '1';
+              if($this->USER_LEVEL < 6)
+              {
+                if($result_comment[$j]['status'] != 1)
+                {
+                  $course['status'] = '1';
+                }
+              }
+              else
+              {
+                if($result_comment[$j]['status'] != 5)
+                {
+                  $course['status'] = '1';
+                }
+              }
             }
             $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$j]['teacher_id']);
             $comment['comment'] = $result_comment[$j]['comment'];
@@ -411,7 +424,7 @@ class approval
           $special['comment'] = array();
           $special['name'] = $instructor[$j]['name'];
           $special['status'] = '0';
-          $sql = "SELECT `teacher_id`,`comment` FROM `approval_special` WHERE `course_id` = '".$course['id']."'
+          $sql = "SELECT `teacher_id`,`comment`,`status` FROM `approval_special` WHERE `course_id` = '".$course['id']."'
           AND `semester_id` =".$this->SEMESTER_ID;
           $result_comment = $this->DB->Query($sql);
           if($result_comment)
@@ -422,7 +435,20 @@ class approval
               $comment = array();
               if($result_comment[$k]['teacher_id'] == $teacher_id)
               {
-                $special['status'] = '1';
+                if($this->USER_LEVEL < 6)
+                {
+                  if($result_comment[$k]['status'] != 1)
+                  {
+                    $course['status'] = '1';
+                  }
+                }
+                else
+                {
+                  if($result_comment[$k]['status'] != 5)
+                  {
+                    $course['status'] = '1';
+                  }
+                }
               }
               $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$k]['teacher_id']);
               $comment['comment'] = $result_comment[$k]['comment'];
