@@ -1,6 +1,6 @@
 <?php
 session_start();
-var_dump($_POST);exit();
+// var_dump($_POST);exit();
 require_once(__DIR__.'/../class/approval.php');
 if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
 {
@@ -11,7 +11,7 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
 }
 else
 {
-  if($_SESSION['level'] != 4 && $_SESSION['level'] != 5)
+  if($_SESSION['level'] != 3)
   {
     $return['status'] = 'error';
     $return['msg'] = "สิทธิ์ไม่ถูกต้อง";

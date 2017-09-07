@@ -84,13 +84,16 @@ class Report
 
               }
             }
-            $file_name = scandir($this->FILE_PATH."/".$data['id']."/evaluate");
-            for($j=2;$j<count($file_name);$j++)
+            if(is_dir($this->FILE_PATH."/".$data['id']."/evaluate"))
             {
-              if($this->Check_File_Semester($semester,$year,$file_name[$j]))
+              $file_name = scandir($this->FILE_PATH."/".$data['id']."/evaluate");
+              for($j=2;$j<count($file_name);$j++)
               {
-                array_push($DATA,$data);
-                break;
+                if($this->Check_File_Semester($semester,$year,$file_name[$j]))
+                {
+                  array_push($DATA,$data);
+                  break;
+                }
               }
             }
         }
@@ -151,19 +154,23 @@ class Report
         $data['special'] = array();
         if(is_dir($this->FILE_PATH."/".$data['id']))
         {
-          $file_name = scandir($this->FILE_PATH."/".$data['id']."/special_instructor");
-          for($j=2;$j<count($file_name);$j++)
+          if(is_dir($this->FILE_PATH."/".$data['id']."/special_instructor"))
           {
-            if($this->Check_File_Semester($semester,$year,$file_name[$j]))
+            $file_name = scandir($this->FILE_PATH."/".$data['id']."/special_instructor");
+            for($j=2;$j<count($file_name);$j++)
             {
-              $instructor_id = explode("_",$file_name[$j]);
-              $instructor['id'] = $instructor_id[1];
-              $instructor['name'] = $this->PERSON->Get_Special_Instructor_Name($instructor['id']);
-              $instructor['cv'] = '-';
-              $instructor['pdf'] =  $this->VIEW_URL."?course=".$data['id']."&id=".$instructor['id']."&type=complete&info=special&semester=".$semester."&year=".$year;
-              array_push($data['special'],$instructor);
+              if($this->Check_File_Semester($semester,$year,$file_name[$j]))
+              {
+                $instructor_id = explode("_",$file_name[$j]);
+                $instructor['id'] = $instructor_id[1];
+                $instructor['name'] = $this->PERSON->Get_Special_Instructor_Name($instructor['id']);
+                $instructor['cv'] = '-';
+                $instructor['pdf'] =  $this->VIEW_URL."?course=".$data['id']."&id=".$instructor['id']."&type=complete&info=special&semester=".$semester."&year=".$year;
+                array_push($data['special'],$instructor);
+              }
             }
           }
+
         }
 
         if(count($data['special']) != 0)

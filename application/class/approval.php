@@ -80,7 +80,22 @@ class approval
         $noti['COURSE_ID'] = $course_id;
         $noti['STATUS'] = $status_after;
         $noti['DATE'] = date("d-m-Y h:i:sa");
+        $noti['TYPE'] = '1'; //1 evaluate , 2, special instructor
         $this->Send_Noti($course_id,json_encode($noti));
+      }
+      if($status_after == 7)
+      {
+        $pdf_complete = $this->Send_Complete_Evaluate($course_id);
+        $pdf_result = json_decode($pdf_complete,true);
+        if($pdf_result != null)
+        {
+          return true;
+        }
+        else
+        {
+            $this->LOG->Write($pdf_complete);
+            return false;
+        }
       }
       return true;
     }
@@ -91,6 +106,15 @@ class approval
 
   }
 
+  private function Send_Complete_Evaluate($course_id)
+  {
+    $data['SUBMIT_TYPE'] = '3';
+    $data['COURSE_ID'] = $course_id;
+    $DATA['DATA'] = json_encode($data);
+    $url = "application/pdf/generate_evaluate.php";
+    $result = $this->CURL->Request($DATA,$url);
+    return $result;
+  }
 //evaluate special instructor
   public function Update_Status_Special($instructor_id,$teacher_id,$course_id,$status,$comment)
   {

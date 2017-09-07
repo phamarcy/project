@@ -2,6 +2,7 @@
 require_once(__DIR__.'/../config/configuration_variable.php');
 require_once(__DIR__.'/../class/manage_deadline.php');
 require_once(__DIR__.'/../class/approval.php');
+require_once(__DIR__.'/../class/course.php');
 require_once(__DIR__.'/../class/curl.php');
 require_once(__DIR__.'/../lib/thai_date.php');
 require_once(__DIR__.'/../class/log.php');
@@ -9,8 +10,8 @@ $log = new Log();
 $deadline = new Deadline();
 $semester = $deadline->Get_Current_Semester();
 $curl = new CURL();
+$course = new Course();
 $file_path = '';
-
 if(isset($_POST['DATA']))
 {
 	$data = $_POST['DATA'];
@@ -86,6 +87,9 @@ if(isset($_POST['DATA']))
 	}
 	else if($DATA['SUBMIT_TYPE'] == '3')
 	{
+		$course_id = $DATA['COURSE_ID'];
+		$DATA = $course->Get_Document('evaluate',$course_id,null,$semester['semester'],$semester['year']);
+		$DATA = json_decode($DATA,true);
 		$file_path = $FILE_PATH."/complete/".$DATA['COURSE_ID'];
 		if(!file_exists($file_path))
 		{

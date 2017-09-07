@@ -47,9 +47,10 @@ $pdf->Cell(0,10,iconv( 'UTF-8','cp874','ภาคการศึกษาที�
 
 $pdf->SetX(20);
 $pdf->SetFont('THSarabun_B','',14);
+$SECTION = '1';
 if($DATA['NORORSPE'] == "NORMAL")
 {
-	$nor_section = $DATA['SECTION'];
+	$nor_section = $SECTION = $DATA['SECTION'];
 	$nor_credit = $DATA['CREDIT']['TOTAL'];
 	$nor_student = $DATA['STUDENT'];
 	$spe_sction = '-';
@@ -58,7 +59,7 @@ if($DATA['NORORSPE'] == "NORMAL")
 }
 else if($DATA['NORORSPE'] == "SPECIAL")
 {
-	$spe_sction = $DATA['SECTION'];
+	$spe_sction = $SECTION = $DATA['SECTION'];
 	$spe_credit = $DATA['CREDIT']['TOTAL'];
 	$spe_student = $DATA['STUDENT'];
 	$nor_section = '-';
@@ -521,12 +522,15 @@ if(isset($DATA['APPROVED']))
 
 	$pdf->SetX(35);
 	$pdf->Cell(0,7,iconv('UTF-8','cp874','(หัวหน้าภาควิชา)'),0,1);
+	$pdf->Output($file_path."/".$DATA['COURSE_ID']."_".$SECTION."_evaluate_".$semester['semester']."_".$semester['year'].".pdf","F");
 }
-//endif
-//if not, do nothing
+else
+{
+	//save file
+	$pdf->Output($file_path."/".$DATA['COURSE_ID']."_evaluate_".$semester['semester']."_".$semester['year'].".pdf","F");
 
-//save file
-$pdf->Output($file_path."/".$DATA['COURSE_ID']."_evaluate_".$semester['semester']."_".$semester['year'].".pdf","F");
+}
+
 $return['status'] = "success";
 echo json_encode($return);
 ?>
