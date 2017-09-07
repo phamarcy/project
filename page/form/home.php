@@ -190,7 +190,7 @@ echo "</pre>";
 																	<tbody>
 
 																		<?php
-                                    if (!empty($valuesp['comment'])) {
+                                    if (!empty($value_course['evaluate']['comment'])) {
                                     foreach ($value_course['evaluate']['comment'] as $comment): ?>
 																			<tr>
 																				<?php if ($_SESSION['level'] >=2): ?>
