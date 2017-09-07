@@ -141,19 +141,19 @@ echo "</pre>";*/
 										 $status_text='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
 											 break;
 										 case '3':
-										 $status_text='<b id="statal">มีการแก้ไขจากภาควิชา <i class="fa fa-pencil-square fa-fw"></i></b>';
+										 $status_text='<b id="statal">มีการแก้ไขจากภาควิชา<i class="fa fa-pencil-square fa-fw"></i></b>';
 											 break;
 										 case '4':
-										 $status_text='<b id="statcf">ภาควิชาผ่าน<i class="fa fa-user fa-fw"></i></b>';
+										 $status_text='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค<i class="fa fa-user fa-fw"></i></b>';
 											 break;
 										 case '5':
 										 $status_text='<b id="statwt">รอคณะอนุมัติ<i class="fa fa-user-plus fa-fw"></i></b>';
 											 break;
 										 case '6':
-										 $status_text='<b id="statal">มีการแก้ไขจากคณะ <i class="fa fa-check fa-fw"></i></b>';
+										 $status_text='<b id="statal">มีการแก้ไขจากคณะ<i class="fa fa-check fa-fw"></i></b>';
 											 break;
                      case '7':
-                     $status_text='<b id="statcf">ผ่าน <i class="fa fa-check fa-fw"></i></b>';
+                     $status_text='<b id="statcf">ผ่าน<i class="fa fa-check fa-fw"></i></b>';
                        break;
 
 										 }
@@ -250,7 +250,7 @@ echo "</pre>";*/
                 										 $status_sp='<b id="statal">มีการแก้ไขจากภาควิชา <i class="fa fa-pencil-square fa-fw"></i></b>';
                 											 break;
                 										 case '4':
-                										 $status_sp='<b id="statcf">ภาควิชาผ่าน<i class="fa fa-user fa-fw"></i></b>';
+                										 $status_sp='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค<i class="fa fa-user fa-fw"></i></b>';
                 											 break;
                 										 case '5':
                 										 $status_sp='<b id="statwt">รอคณะอนุมัติ<i class="fa fa-user-plus fa-fw"></i></b>';
