@@ -19,9 +19,9 @@ $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
 $data_forapproval=$approval->Get_Approval_data($_SESSION['id']);
-echo "<pre>";
+/*echo "<pre>";
 print_r($data_forapproval);
-echo "</pre>";
+echo "</pre>";*/
  ?>
   <html>
   <header>
