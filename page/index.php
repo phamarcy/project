@@ -51,7 +51,7 @@
 	window.onload =  function(){
       update_noti();
     };
-	setInterval(update_noti, 600000);
+	setInterval(update_noti, 10000);
 	function update_noti(){
 		$.ajax({
 				url: "../application/notification/get_data.php" ,
@@ -127,7 +127,6 @@
 				$(element).find("#date").text(data.DATE);
 				$(element).find("#status").html(status);
 				$("#noti").prepend(element);
-				console.log(element);
 			}
 		}
 	}
@@ -139,7 +138,7 @@
 		});
 		$("#icon-dropdown").click(function(){
 			var read =  $("#noti").is(':visible');
-			if(read == true)
+			if(read == false)
 			{
 				read_noti();
 			}
