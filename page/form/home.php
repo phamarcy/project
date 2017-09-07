@@ -16,9 +16,9 @@ $deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
 $semeter= $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
-echo "<pre>";
-print_r($data_course);
-echo "</pre>";
+/*echo "<pre>";
+print_r($_SESSION['level']);
+echo "</pre>";*/
 ?>
 	<html>
 
@@ -171,10 +171,13 @@ echo "</pre>";
 															<h3 class="panel-title" style="font-size:14px;">
 																<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']."_".$key ?>">
 														 		<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b><i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
-                                <?php if(($value_course['evaluate']['status'])==4){ ?>
-                                  <button class='btn btn-outline btn-success'  onclick='senttohead(<?php echo $value_course['id'] ?>);'>หัวหน้าภาคยืนยัน</button>
-                                  <?php
-                                } ?>
+                                <?php if ($_SESSION['level']==3): ?>
+                                  <?php if(($value_course['evaluate']['status'])==4){ ?>
+                                    <button class='btn btn-outline btn-success'  onclick='senttohead(<?php echo $value_course['id'] ?>);'>หัวหน้าภาคยืนยัน</button>
+                                    <?php
+                                  } ?>
+                                <?php endif; ?>
+
 															</h3>
 														</div>
 														<?php if (isset($_SESSION['level'])) { ?>
@@ -259,10 +262,12 @@ echo "</pre>";
 																			<div class="panel-heading">
 																				<h3 class="panel-title" style="font-size:14px;">
 																						<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']."_".$keysp ?>"><?php echo $valuesp['name'].' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp ?> </a></b>
-                                            <?php if(($valuesp['status'])==4){ ?>
-                                              <button class='btn btn-outline btn-success'  onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>หัวหน้าภาคยืนยัน</button>
-                                              <?php
-                                            } ?>
+                                            <?php if ($_SESSION==3): ?>
+                                              <?php if(($valuesp['status'])==4){ ?>
+                                                <button class='btn btn-outline btn-success'  onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>หัวหน้าภาคยืนยัน</button>
+                                                <?php
+                                              } ?>
+                                            <?php endif; ?>
 																				</h3>
 																			</div>
 																			<div id="special_<?php echo $value_course['id']."_".$keysp ?>" class="panel-collapse collapse">
