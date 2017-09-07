@@ -19,19 +19,31 @@ else
   }
   else
   {
-    $course_id = $_POST['course_id'];
-    $approve = new approval($_SESSION['level']);
-    $result = $approve->Update_Status_Evaluate($course_id,'5','all',null);
-    if($result)
+    if(isset($_POST['course_id']))
     {
-      $return['status'] = "success";
-      $return['msg'] = "บันทึกสำเร็จ";
+      $course_id = $_POST['course_id'];
+      $approve = new approval($_SESSION['level']);
+      $result = $approve->Update_Status_Evaluate($course_id,'5','all',null);
+      if($result)
+      {
+        $return['status'] = "success";
+        $return['msg'] = "บันทึกสำเร็จ";
+      }
+      else
+      {
+        $return['status'] = "error";
+        $return['msg'] = "ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ";
+      }
+      echo json_encode($return);
     }
     else
     {
-      $return['status'] = "error";
-      $return['msg'] = "ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ";
+      $return['status'] = 'error';
+      $return['msg'] = "ข้อมูลไม่ถูกต้อง";
+      echo json_encode($return);
+      return ;
     }
+
   }
 
 }
