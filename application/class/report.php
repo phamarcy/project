@@ -189,6 +189,38 @@ class Report
 
   }
 
+  //search comment history
+  public function Get_Comment_History($course_id)
+  {
+    $course = array();
+    $course['comment'] = array();
+    $course['id'] = $course_id;
+    $course['name'] = $this->COURSE->Get_Course_Name($course_id);
+    $sql = "SELECT `teacher_id`,`comment`,`semester_num`,`year` FROM `approval_course` ac, `semester` s
+    WHERE ac.`semester_id` = s.`semester_id` AND ac.`course_id` = '".$course_id."' ORDER BY ac.`semester_id`";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $count = count($result);
+      for($i=0;$i<$count;$i++)
+      {
+        $semester = $result[$i]['semester_num']."/".$result[$i]['year'];
+        if(!array_key_exists($semester,$course['comment']))
+        {
+          $course['comment'][$semester] = array();
+        }
+        if($result[$i]['comment'] != null)
+        {
+          $data['name'] = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          $data['comment'] = $result[$i]['comment'];
+          array_push($course['comment'][$semester],$data);
+        }
+      }
+
+    }
+    return $course;
+  }
+
 }
 
 
