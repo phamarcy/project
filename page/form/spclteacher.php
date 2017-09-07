@@ -625,98 +625,43 @@ $current = $dlobj->Get_Current_Semester();
  $(document).ready(function(){
 
    //deadline
-   var dateobj = new Date();
-   var yy = dateobj.getFullYear();
-   var condi = dateobj.getMonth()+1;
-   if(condi<10)
-   {
-     var mm = "0"+condi;
-   }
-   else {
-     var mm = ''+dateobj.getMonth();
-   }
+   <?php
+     $flagspcl = 0;
+     $dd = date('d');
+     $mm = date('m');
+     $yy = date('Y');
+     $today = $yy.'-'.$mm.'-'.$dd;
 
-   var dd = dateobj.getDate();
-   var today = new Date(yy+"-"+mm+"-"+dd);
+     $count = sizeof($dlspcl);
+     for ($x=0; $x < $count ; $x++) {
+       $deadlinestart = $dlspcl[$x]['open_date'];
+       $deadlineend = $dlspcl[$x]['last_date'];
+       $checksem = $dlspcl[$x]['semester_num'];
+       $checkyear = $dlspcl[$x]['year'];
+       $cursem = $current['semester'];
+       $curyear = $current['year'];
 
-     <?php $count = sizeof($dlspcl); $x = 0;?>
-  for(var x=0;x< <?php echo $count; ?>;x++)
-  {
-     var stringdlst = '<?php echo $dlspcl[$x]['open_date'];  ?>';
-     var stringdlend = '<?php echo $dlspcl[$x]['last_date'];  ?>';
-     var splitor = stringdlend.split("-");
-     var month = splitor[1];
-     if(month=="01")
-     {
-       var monthname = "มกราคม";
-     }
-     else if(month=="02")
-     {
-       var monthname = "กุมภาพันธ์";
-     }
-     else if(month=="03")
-     {
-       var monthname = "มีนาคม";
-     }
-     else if(month=="04")
-     {
-       var monthname = "เมษายน";
-     }
-     else if(month=="05")
-     {
-       var monthname = "พฤษภาคม";
-     }
-     else if(month=="06")
-     {
-       var monthname = "มิถุนายน";
-     }
-     else if(month=="07")
-     {
-       var monthname = "กรกฏาคม";
-     }
-     else if(month=="08")
-     {
-       var monthname = "สิงหาคม";
-     }
-     else if(month=="09")
-     {
-       var monthname = "กันยายน";
-     }
-     else if(month=="10")
-     {
-       var monthname = "ตุลาคม";
-     }
-     else if(month=="11")
-     {
-       var monthname = "พฤศจิกายน";
-     }
-     else
-     {
-       var monthname = "ธันวาคม";
-     }
-     var deadlinestart = new Date(stringdlst);
-     var deadlineend = new Date(stringdlend);
-
-     if(deadlinestart<=today && today<=deadlineend)
-     {
-       $('#overtimemsg').hide();
-       break;
-     }
-     else {
-       $('#dlhide').hide();
-       $('#formheader').hide();
-       $('#overtimemsg').show();
-       var checksem = <?php echo $dlspcl[$x]['semester_num']; ?>;
-       var checkyear = <?php echo $dlspcl[$x]['year']; ?>;
-       var cursem = <?php echo $current['semester']; ?>;
-       var curyear = <?php echo $current['year']; ?>;
-       if(checksem==cursem && checkyear==curyear)
+       if($checksem==$cursem && $checkyear==$curyear)
        {
-         document.getElementById('overtimemsg2').innerHTML = "<br>วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ วันที่ "+splitor[2]+" "+monthname+" "+(parseInt(splitor[0])+543);
-       }
+           if($deadlinestart<=$today && $today<=$deadlineend)
+           {
+               $flagspcl = $flagspcl + 1;
+           }
+        }
+
      }
-     <?php $x = $x+1; ?>
-   }
+
+     if($flagspcl>0)
+     {
+       echo "$('#overtimemsg').hide();";
+
+     }else {
+         echo "$('#dlhide').hide();
+         $('#formheader').hide();
+         $('#overtimemsg').show();";
+     }
+
+    ?>
 
 
    // manage required form

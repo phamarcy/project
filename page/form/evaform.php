@@ -1053,119 +1053,89 @@ $(function() {//<-- wrapped here
 $(document).ready(function(){
 
   //deadline
-  var flagcor = 0;
-  var flageva = 0;
-  var dateobj = new Date();
-  var yy = dateobj.getFullYear();
-  var condi = dateobj.getMonth()+1;
-  if(condi<10)
-  {
-    var mm = "0"+condi;
-  }
-  else {
-    var mm = ''+dateobj.getMonth();
-  }
-  var dd = dateobj.getDate();
-  var today = new Date(yy+"-"+mm+"-"+dd);
+  <?php
+    (int)$flagcor = 0;
+    (int)$flageva = 0;
+    $dd = date('d');
+    $mm = date('m');
+    $yy = date('Y');
+    $yy = $yy;
+    $today = $yy.'-'.$mm.'-'.$dd;
 
-  <?php $count = sizeof($dlcor); $x = 0;?>
-  for(var x=0;x< <?php echo $count; ?>;x++)
-  {
-    var stringdlstcor = '<?php echo $dlcor[$x]['open_date'];  ?>';
-    var stringdlendcor = '<?php echo $dlcor[$x]['last_date'];  ?>';
-    var splitor = stringdlendcor.split("-");
-    var monthcor = splitor[1];
-    var deadlinestartcor = new Date(stringdlstcor);
-    var deadlineendcor = new Date(stringdlendcor);
+    $count = sizeof($dlcor);
+    for ($x=0; $x < $count ; $x++) {
+      $deadlinestartcor = $dlcor[$x]['open_date'];
+      $deadlineendcor = $dlcor[$x]['last_date'];
+      (int)$checksemcor =  $dlcor[$x]['semester_num'];
+      (int)$checkyearcor =  $dlcor[$x]['year'];
+      (int)$cursem =  $current['semester'];
+      (int)$curyear =  $current['year'];
 
-    if(deadlinestartcor<=today && today<=deadlineendcor)
-    {
-      flagcor = flagcor + 1;
-      <?php $count2 = sizeof($dleva); $y = 0;?>
-      for(var y=0;y< <?php echo $count2; ?>;y++)
+      if($checksemcor==$cursem && $checkyearcor==$curyear)
       {
-        var stringdlsteva = '<?php echo $dleva[$y]['open_date'];  ?>';
-        var stringdlendeva = '<?php echo $dleva[$y]['last_date'];  ?>';
-        var splitor = stringdlendeva.split("-");
-        var montheva = splitor[1];
-        var deadlinestarteva = new Date(stringdlsteva);
-        var deadlineendeva = new Date(stringdlendeva);
-
-        if(deadlinestarteva<=today && today<=deadlineendeva)
-        {
-          flageva = flageva + 1;
-        }
-        <?php $y = $y +1; ?>
-      }
-    }
-    else {
-      <?php $count2 = sizeof($dleva); $y = 0;?>
-      for(var y=0;y< <?php echo $count2; ?>;y++)
-      {
-        var stringdlsteva = '<?php echo $dleva[$y]['open_date'];  ?>';
-        var stringdlendeva = '<?php echo $dleva[$y]['last_date'];  ?>';
-        var splitor = stringdlendeva.split("-");
-        var montheva = splitor[1];
-        var deadlinestarteva = new Date(stringdlsteva);
-        var deadlineendeva = new Date(stringdlendeva);
-
-          if(deadlinestarteva<=today && today<=deadlineendeva)
+          if($deadlinestartcor<=$today && $today<=$deadlineendcor)
           {
-            flageva = flageva + 1;
+            $flagcor = $flagcor + 1;
+
           }
-          <?php $y = $y +1; ?>
-        }
-      }
-      <?php $x = $x +1; ?>
+       }
     }
 
-    if(flageva>0 && flagcor==0)
-    {
-      $('#overtimemsg').hide();
+    $count2 = sizeof($dleva);
+    for ($y=0; $y < $count2; $y++) {
+      $deadlinestarteva = $dleva[$y]['open_date'];
+      $deadlineendeva = $dleva[$y]['last_date'];
+      (int)$checksemeva =  $dleva[$y]['semester_num'];
+      (int)$checkyeareva =  $dleva[$y]['year'];
+      (int)$cursem =  $current['semester'];
+      (int)$curyear =  $current['year'];
+
+      if($checksemeva==$cursem && $checkyeareva==$curyear)
+      {
+        if($deadlinestarteva<=$today && $today<=$deadlineendeva)
+        {
+          $flageva = $flageva + 1;
+        }
+      }
+    }
+
+
+    if($flageva>0 && $flagcor==0)
+    { echo " $('#overtimemsg').hide();
       $('#bottomform').hide();
       $('#overtimemsg5').hide();
       $('#listcor').hide();
       $('#syllabus').prop('required', true);
       $('#syllabus_2').prop('required', false);
-      $('#COURSE_ID_2').prop('required', false);
-    }else if (flageva==0 && flagcor>0) {
-      $('#overtimemsg3').hide();
+      $('#COURSE_ID_2').prop('required', false);";
+    }else if ($flageva==0 && $flagcor>0) {
+      echo "$('#overtimemsg3').hide();
       $('#overtimemsg5').hide();
       $('#dlhide').hide();
       $('#formheader').hide();
       $('#syllabus').prop('required', false);
       $('#syllabus_2').prop('required', true);
-      $('#COURSE_ID_2').prop('required', true);
-    }else if (flageva>0 && flagcor>0) {
-      $('#overtimemsg').hide();
+      $('#COURSE_ID_2').prop('required', true);";
+    }else if ($flageva>0 && $flagcor>0) {
+      echo "$('#overtimemsg').hide();
       $('#overtimemsg3').hide();
       $('#bottomform').hide();
       $('#overtimemsg5').hide();
       $('#syllabus').prop('required', true);
       $('#syllabus_2').prop('required', false);
-      $('#COURSE_ID_2').prop('required', false);
-    }else if (flageva==0 && flagcor==0) {
-      $('#overtimemsg').hide();
+      $('#COURSE_ID_2').prop('required', false);";
+    }else if ($flageva==0 && $flagcor==0) {
+      echo "$('#overtimemsg').hide();
       $('#overtimemsg3').hide();
       $('#dlhide').hide();
       $('#formheader').hide();
       $('#bottomform').hide();
       $('#syllabus').prop('required', false);
       $('#syllabus_2').prop('required', false);
-      $('#COURSE_ID_2').prop('required', false);
+      $('#COURSE_ID_2').prop('required', false);";
     }
 
-    /*if(deadlinestartcor<today && today<deadlineendcor)
-    {
-      $('#overtimemsg').hide();
-      break;
-    }
-    else {
-      $('#dlhide').hide();
-      $('#formheader').hide();
-      $('#overtimemsg').show();
-      //document.getElementById('overtimemsg2').innerHTML = "<br>วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ วันที่ "+splitor[2]+" "+monthname+" "+(parseInt(splitor[0])+543);
-    }*/
+   ?>
 
 
   //radio
@@ -1417,7 +1387,7 @@ function checkreq(casesubmit) {
   if(casesubmit=='1')
   {
     if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
-    { 
+    {
       swal({
         title: 'แน่ใจหรือไม่',
         text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
