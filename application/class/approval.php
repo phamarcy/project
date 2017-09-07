@@ -70,6 +70,7 @@ class approval
       }
       $sql .= " WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."'";
     }
+    $sql .= " AND `semester_id` = ".$this->SEMESTER_ID;
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
@@ -121,6 +122,7 @@ class approval
       }
       $sql .= " WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."' AND `teacher_id` = '".$teacher_id."'";
     }
+      $sql .= " AND `semester_id` = ".$this->SEMESTER_ID;
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
@@ -292,8 +294,8 @@ class approval
            {
              if($result_comment[$j]['comment'] != null)
              {
-                $comment['name'] = $this->PERSON->Get_Teacher_Name($comment_temp[$j]['teacher_id']);
-                $comment['comment'] = $comment_temp[$j]['comment'];
+                $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$j]['teacher_id']);
+                $comment['comment'] = $result_comment[$j]['comment'];
                array_push($instructor['comment'],$comment);
              }
            }
@@ -427,6 +429,9 @@ class approval
           $special['comment'] = array();
           $special['name'] = $instructor[$j]['name'];
           $special['status'] = '0';
+          $url = $this->Get_Special_Doc_Url($special['id'],$course['id'],'draft');
+          $special['pdf'] = $url['pdf'];
+          $special['cv'] = $url['cv'];
           $sql = "SELECT `teacher_id`,`comment`,`status` FROM `approval_special` WHERE `course_id` = '".$course['id']."'
           AND `semester_id` =".$this->SEMESTER_ID;
           $result_comment = $this->DB->Query($sql);
@@ -442,14 +447,14 @@ class approval
                 {
                   if($result_comment[$k]['status'] != 1)
                   {
-                    $course['status'] = '1';
+                    $special['status'] = '1';
                   }
                 }
                 else
                 {
                   if($result_comment[$k]['status'] != 5)
                   {
-                    $course['status'] = '1';
+                    $special['status'] = '1';
                   }
                 }
               }
@@ -475,7 +480,14 @@ class approval
     $return_url['syllabus'] = $this->COURSE->Get_Course_Syllabus($course_id);
     return $return_url;
   }
-
+  private function Get_Special_Doc_Url($instructor_id,$course_id,$type)
+  {
+    $url = $this->CURL->GET_SERVER_URL();
+    $view_url = $url."/application/pdf/view.php";
+    $return_url['pdf'] = $view_url."?course=".$course_id."&id=".$instructor_id."&type=".$type."&info=special&semester=".$this->SEMESTER."&year=".$this->YEAR;
+    $return_url['cv'] = $this->PERSON->Get_CV($instructor_id,$course_id);
+    return $return_url;
+  }
   private function Send_Noti($course_id,$msg)
   {
     //get all involved staff

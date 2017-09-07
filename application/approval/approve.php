@@ -17,14 +17,14 @@ else
     $approve = new approval($_SESSION['level']);
     $course_id = $_POST['course_id'];
     $status = $_POST['status'];
-    if($status == 'edit')
+    if($status == 'edit' || $status == 'edit_sp')
     {
       if($_SESSION['level'] < 6)
         $status = '3';
       else
         $status = '6';
     }
-    else if($status == 'approve')
+    else if($status == 'approve' || $status == 'approve_sp')
     {
       if($_SESSION['level'] < 6)
         $status = '4';
@@ -38,7 +38,15 @@ else
     }
     $teacher_id = $_POST['teacher'];
     $comment = $_POST['comment'];
-    $result = $approve->Update_Status_Evaluate($course_id,$status,$teacher_id,$comment);
+    if(isset($_POST['teachersp']))
+    {
+      $instructor_id = $_POST['teachersp'];
+      $result = $approve->Update_Status_Special($instructor_id,$teacher_id,$course_id,$status,$comment);
+    }
+    else
+    {
+      $result = $approve->Update_Status_Evaluate($course_id,$status,$teacher_id,$comment);
+    }
     if($result)
     {
       $return['status'] = 'success';

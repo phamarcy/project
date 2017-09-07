@@ -12,9 +12,11 @@ class Person
   private $LOG;
   private $DB;
   private $DEADLINE;
+  private $FILE_PATH;
+
   function __construct()
   {
-    global $DATABASE;
+    global $DATABASE,$FILE_PATH;
     # code...
     $this->LOG = new Log();
     $this->DB = new Database();
@@ -22,6 +24,7 @@ class Person
     $this->DEFAULT_DB = $DATABASE['NAME'];
     $deadline = new Deadline();
     $this->DEADLINE = $deadline->Get_Current_Semester();
+    $this->FILE_PATH = $FILE_PATH;
   }
 
   public function Get_All_Teacher()
@@ -325,6 +328,35 @@ class Person
       unset($group);
     }
     return $DATA;
+  }
+  public function Get_CV($instructor_id,$course_id)
+  {
+    $CV_file = $this->FILE_PATH."/cv/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".doc";
+    if (file_exists(realpath($CV_file)))
+    {
+        $path = "/syllabus/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".doc";
+    }
+    else
+    {
+      $CV_file = $this->FILE_PATH."/cv/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".docx";
+      if (file_exists(realpath($CV_file)))
+      {
+          $path = "/syllabus/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".docx";
+      }
+      else
+      {
+        $CV_file = $this->FILE_PATH."/cv/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".pdf";
+        if (file_exists(realpath($CV_file)))
+        {
+          $path = "/syllabus/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".docx";
+        }
+        else
+        {
+            $path = null;
+        }
+      }
+    }
+    return $path;
   }
 
 }
