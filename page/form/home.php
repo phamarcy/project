@@ -230,27 +230,28 @@ echo "</pre>";
 																	<?php foreach ($value_course['special'] as $keysp => $valuesp):
 
 																		switch ($valuesp['status']) {
-																			case '0':
-																			$status_sp='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
-																			break;
-																		 case '1':
-																		 $status_sp='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
-																			 break;
-																		 case '2':
-																		 $status_sp='<b id="statwt">รอการพิจารนา <i class="fa  fa-clock-o fa-fw"></i></b>';
-																			 break;
-																		 case '3':
-																		 $status_sp='<b id="statn">มีการแก้ไขจากภาควิชา <i class="fa fa-pencil-square fa-fw"></i></b>';
-																			 break;
-																		 case '4':
-																		 $status_sp='<b id="statal">ภาควิชาเห็นชอบ รอคณะกรรมเห็นชอบ <i class="fa fa-user fa-fw"></i></b>';
-																			 break;
-																		 case '5':
-																		 $status_sp='<b id="statn">มีการแก้ไขเพิ่มเติมจากคณะ <i class="fa fa-user-plus fa-fw"></i></b>';
-																			 break;
-																		 case '6':
-																		 $status_sp='<b id="statcf">คณะกรรมการเห็นชอบ <i class="fa fa-check fa-fw"></i></b>';
-																			 break;
+                                      case '0':
+                											$status_sp='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+                											break;
+                										 case '1':
+                										 $status_sp='<b id="statwt">รอการพิจารนา <i class="fa  fa-clock-o fa-fw"></i></b>';
+                											 break;
+                										 case '2':
+                										 $status_sp='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+                											 break;
+                										 case '3':
+                										 $status_sp='<b id="statn">มีการแก้ไขจากภาควิชา <i class="fa fa-pencil-square fa-fw"></i></b>';
+                											 break;
+                										 case '4':
+                										 $status_sp='<b id="statal">ภาควิชาเห็นชอบ รอคณะกรรมเห็นชอบ <i class="fa fa-user fa-fw"></i></b>';
+                											 break;
+                										 case '5':
+                										 $status_sp='<b id="statn">มีการแก้ไขเพิ่มเติมจากคณะ <i class="fa fa-user-plus fa-fw"></i></b>';
+                											 break;
+                										 case '6':
+                										 $status_sp='<b id="statcf">คณะกรรมการเห็นชอบ <i class="fa fa-check fa-fw"></i></b>';
+                											 break;
+
 																		 }
 																		 ?>
 
