@@ -94,6 +94,7 @@
 			var element = $(object).clone();
 			var data = jQuery.parseJSON(obj[i]);
 			var status = '';
+			var type = '';
 			if(data != '')
 			{
 				switch(data.STATUS) {
@@ -128,7 +129,18 @@
 
 				$(element).find("#course_id").text(data.COURSE_ID);
 				$(element).find("#date").text("เมื่อวันที่ "+data.DATE);
+				console.log(data.TYPE);
+				if(data.TYPE == '1')
+				{
+					type = "แบบวัดผลประเมินผล";
+				}
+				else
+				{
+					type = "แบบเชิญอาจารย์พิเศษ <br> นาย อดิลักษณ์ ชูประทีป";
+				}
+				$(element).find("#type").html(type);
 				$(element).find("#status").html(status);
+				$("#noti").prepend('<li class="divider"></li>');
 				$("#noti").prepend(element);
 			}
 		}
@@ -315,7 +327,7 @@
 										<p id="status">
 
 										</p>
-										<p id="type"> แบบวัดผลประเมินผล </p>
+										<p id="type">  </p>
 										<p>กระบวนวิชา : <b id="course_id"></b>
 										<p>
 											<span class="pull-right text-muted small" id="date"></span>
