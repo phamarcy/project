@@ -160,7 +160,7 @@ echo "</pre>";
 
                                     <table class="table " style="font-size:14px">
                                       <thead>
-                                        <?php if ($_SESSION['level'] > 4 ): ?>
+                                        <?php if ($_SESSION['level'] > 1 ): ?>
                                         <th style="width:230px">คณะกรรมการ</th>
                                         <?php endif; ?>
                                         <th>ข้อเสนอแนะ</th>
@@ -168,10 +168,10 @@ echo "</pre>";
                                       <tbody>
                                         <?php foreach ($value['comment'] as $keycomment => $valuecomment): ?>
                                           <tr>
-                                            <?php if ($_SESSION['level'] > 4 ): ?>
+                                            <?php if ($_SESSION['level'] > 1 ): ?>
                                             <td style="width:230px"><?php echo $valuecomment['name'] ?></td>
                                             <?php endif; ?>
-                                            <td><?php if (isset($valuecomment['comment'])) {
+                                            <td><?php if (($valuecomment['comment'])!="") {
                                               echo $valuecomment['comment'];
                                             }else {
                                               echo "-";
@@ -188,18 +188,18 @@ echo "</pre>";
                                 <div class="panel panel-default">
                                   <div class="panel-heading ">
                                     <div class="panel-title" style="font-size:14px">
-                                        <a data-toggle="collapse" data-parent="#commentsp<?php echo $value['id'] ?>" href="#commentsp<?php echo $value['id']."-".$keysp ?>"><b>แบบเชิญอาจารย์พิเศษ</b></a>
+                                        <a data-toggle="collapse" data-parent="#commentsp<?php echo $value['id'] ?>" href="#commentsp<?php echo $value['id'] ?>"><b>แบบเชิญอาจารย์พิเศษ</b></a>
                                     </div>
                                   </div>
 
-                                  <div id="commentsp<?php echo $value['id']."-".$keysp ?>" class="panel-collapse collapse">
+                                  <div id="commentsp<?php echo $value['id'] ?>" class="panel-collapse collapse">
                                     <div class="panel-body">
                                       <div class="panel-group" id="teachersp<?php echo $value['id'] ?>">
-                                      <?php foreach ($value['special']as $keysp => $valuesp): ?>
+                                        <?php foreach ($value['special']as $keysp => $valuesp): ?>
                                         <div class="panel panel-default">
                                           <div class="panel-heading" >
                                             <div class="panel-title" style="font-size:14px">
-                                                <a data-toggle="collapse" data-parent="#teachersp<?php echo $value['id'] ?>" href="#teachersp<?php echo $value['id'] ?>-1"><?php echo $valuesp['name'] ?></a>
+                                                <a data-toggle="collapse" data-parent="#teachersp<?php echo $value['id'] ?>" href="#teachersp<?php echo $value['id']."-".$keysp ?>"><?php echo $valuesp['name'] ?></a>
                                                 <a href="" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a> &nbsp;
                                             </div>
                                           </div>
@@ -210,12 +210,12 @@ echo "</pre>";
                                                 <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $valuesp['id'] ?>"></textarea>
                                               </div>
                                               <div class="form-group">
-                                                <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(<?php echo $value['id'] ?>,<?php echo $valuesp['id'] ?>,'edit')"><?php echo $approve_text; ?></button> &nbsp;
-                                                <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(<?php echo $value['id'] ?>,<?php echo $valuesp['id'] ?>,'edit')">มีการแก้ไข</button>
+                                                <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(<?php echo $value['id'] ?>,'<?php echo $valuesp['id'] ?>','approve_sp')"><?php echo $approve_text; ?></button> &nbsp;
+                                                <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(<?php echo $value['id'] ?>,'<?php echo $valuesp['id'] ?>','edit_sp')">มีการแก้ไข</button>
                                               </div>
                                               <table class="table " style="font-size:14px">
                                                 <thead>
-                                                  <?php if ($_SESSION['level'] > 4 ): ?>
+                                                  <?php if ($_SESSION['level'] > 1 ): ?>
                                                   <th style="width:230px">คณะกรรมการ</th>
                                                   <?php endif; ?>
                                                   <th>ข้อเสนอแนะ</th>
@@ -223,10 +223,10 @@ echo "</pre>";
                                                 <tbody>
                                                   <?php foreach ($valuesp['comment'] as $keycom => $valuecom): ?>
                                                     <tr>
-                                                      <?php if ($_SESSION['level'] > 4 ): ?>
+                                                      <?php if ($_SESSION['level'] > 1 ): ?>
                                                       <td style="width:230px"><?php echo $valuecom['name'] ?></td>
                                                       <?php endif; ?>
-                                                      <td><?php if (isset($valuecom['comment'])) {
+                                                      <td><?php if (($valuecom['comment'])!="") {
                                                         echo $valuecom['comment'];
                                                       }else {
                                                         echo "-";
@@ -282,27 +282,17 @@ echo "</pre>";
             comment:comment
           },
           success:function(data){
-            var msg=JSON.parse(data)
-            swal({
-              type:msg.status,
-              text: msg.msg,
-
-              confirmButtonText: "Ok!",
-            }, function(){
-              window.location.reload();
-            });
-            setTimeout(function() {
-              window.location.reload();
-            }, 1000);
+            console.log(data);
           }
       });
 
     }
     function approve_sp(course,teacherSp,type){
+
       var id = "<?php echo $_SESSION['id'] ?>";
       var text ="comment_sp_"+teacherSp;
       var comment = document.getElementById(text).value;
-      console.log(course,teacherSp,type);
+
       $.ajax({
           url: '../../application/approval/approve.php',
           type: 'POST',
@@ -315,18 +305,7 @@ echo "</pre>";
             comment:comment
           },
           success:function(data){
-            var msg=JSON.parse(data)
-            swal({
-              type:msg.status,
-              text: msg.msg,
-
-              confirmButtonText: "Ok!",
-            }, function(){
-              window.location.reload();
-            });
-            setTimeout(function() {
-              window.location.reload();
-            }, 1000);
+            console.log(data);
           }
       });
 
