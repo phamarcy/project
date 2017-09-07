@@ -48,6 +48,9 @@
 	  <link rel="stylesheet" href="dist/css/scrollbar.css">
 
 	<script>
+	window.onload =  function(){
+      update_noti();
+    };
 	setInterval(update_noti, 600000);
 	function update_noti(){
 		$.ajax({
@@ -65,10 +68,7 @@
 					{
 						$(".label-danger").show("fast");
 					}
-					for(var i=0;i<obj.length;i++)
-					{
-						append_noti(obj[i]);
-					}
+					append_noti(obj);
 
 				}
 			}
@@ -85,49 +85,54 @@
 
 		});
 	}
-	function append_noti(data)
+	function append_noti(obj)
 	{
 		var object = document.getElementById("notification_element");
-		var element = $(object).clone();
-		var data = jQuery.parseJSON(data);
-		var status = '';
-		if(data != '')
+		 $("#noti").html('');
+		for(var i=0;i<obj.length;i++)
 		{
-			switch(data.STATUS) {
-				case '0':
-				status ='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
-				break;
-			 case '1':
-			 	 status ='<b id="statwt">รอการพิจารนา <i class="fa  fa-clock-o fa-fw"></i></b>';
-				 break;
-			 case '2':
-			 	 status ='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
-				 break;
-			 case '3':
-			 	 status ='<b id="statn">มีการแก้ไขจากภาควิชา <i class="fa fa-pencil-square fa-fw"></i></b>';
-				 break;
-			 case '4':
-			 	 status ='<b id="statal">ภาควิชาเห็นชอบ รอคณะกรรมเห็นชอบ <i class="fa fa-user fa-fw"></i></b>';
-				 break;
-			 case '5':
-			 	 status ='<b id="statn">มีการแก้ไขเพิ่มเติมจากคณะ <i class="fa fa-user-plus fa-fw"></i></b>';
-				 break;
-			 case '6':
-			 	 status ='<b id="statcf">คณะกรรมการเห็นชอบ <i class="fa fa-check fa-fw"></i></b>';
-				 break;
-    	 default:
-        status = '';
-				break;
+			var element = $(object).clone();
+			var data = jQuery.parseJSON(obj[i]);
+			var status = '';
+			if(data != '')
+			{
+				switch(data.STATUS) {
+					case '0':
+					status ='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+					break;
+				 case '1':
+				 	 status ='<b id="statwt">รอการพิจารนา <i class="fa  fa-clock-o fa-fw"></i></b>';
+					 break;
+				 case '2':
+				 	 status ='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+					 break;
+				 case '3':
+				 	 status ='<b id="statn">มีการแก้ไขจากภาควิชา <i class="fa fa-pencil-square fa-fw"></i></b>';
+					 break;
+				 case '4':
+				 	 status ='<b id="statal">ภาควิชาเห็นชอบ รอคณะกรรมเห็นชอบ <i class="fa fa-user fa-fw"></i></b>';
+					 break;
+				 case '5':
+				 	 status ='<b id="statn">มีการแก้ไขเพิ่มเติมจากคณะ <i class="fa fa-user-plus fa-fw"></i></b>';
+					 break;
+				 case '6':
+				 	 status ='<b id="statcf">คณะกรรมการเห็นชอบ <i class="fa fa-check fa-fw"></i></b>';
+					 break;
+	    	 default:
+	        status = '';
+					break;
+				}
+
+				$(element).find("#course_id").text(data.COURSE_ID);
+				$(element).find("#date").text(data.DATE);
+				$(element).find("#status").html(status);
+				$("#noti").prepend(element);
+				console.log(element);
 			}
-
-			$(element).find("#course_id").text(data.COURSE_ID);
-			$(element).find("#date").text(data.DATE);
-			$(element).find("#status").html(status);
-			$("#noti").html(element);
 		}
-
 	}
 	$(document).ready(function(){
+		update_noti();
 		$(document).on("click", function () {
     		$("#noti").hide("slow");
 				$("#logout").hide("slow");

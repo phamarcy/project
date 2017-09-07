@@ -221,6 +221,14 @@ class Report
     return $course;
   }
 
+  public function Append_Notification($user_id,$msg)
+  {
+    $status = '0';
+    $sql = "INSERT INTO `notification`(`user_id`, `message`, `status`)
+     VALUES ('".$user_id."','".$msg."','".$status."')";
+    $this->DB->Insert_Update_Delete($sql);
+  }
+
 }
 
 

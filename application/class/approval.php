@@ -4,6 +4,7 @@ require_once(__DIR__."/manage_deadline.php");
 require_once(__DIR__.'/curl.php');
 require_once(__DIR__."/course.php");
 require_once(__DIR__."/person.php");
+require_once(__DIR__."/report.php");
 /**
  *
  */
@@ -18,6 +19,7 @@ class approval
   private $CURL;
   private $COURSE;
   private $PERSON;
+  private $REPORT;
 
   function __construct($level)
   {
@@ -35,11 +37,13 @@ class approval
     $this->DB = new Database();
     }
     $this->PERSON = new Person();
+    $this->REPORT = new Report();
   }
 
   //evaluate course evaluate document
   public function Update_Status_Evaluate($course_id,$status,$teacher_id,$comment)
   {
+    $status_before = $this->Get_Doc_Status($course_id);
     if($this->USER_LEVEL < 6)
     {
       $level_approve = '1';
@@ -69,6 +73,14 @@ class approval
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
+      $status_after = $this->Get_Doc_Status($course_id);
+      if($status_before != $status_after)
+      {
+        $noti['COURSE_ID'] = $course_id;
+        $noti['STATUS'] = $status_after;
+        $noti['DATE'] = date("d-m-Y h:i:sa");
+        $this->Send_Noti($course_id,json_encode($noti));
+      }
       return true;
     }
     else
@@ -464,6 +476,35 @@ class approval
     return $return_url;
   }
 
+  private function Send_Noti($course_id,$msg)
+  {
+    //get all involved staff
+    //send notification to resiponsible teacher
+    $sql = "SELECT `teacher_id` FROM `course_responsible` WHERE `course_id` = '".$course_id."'";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $count = count($result);
+      for($i=0;$i<$count;$i++)
+      {
+        $teacher_id = $result[$i]['teacher_id'];
+        $this->REPORT->Append_Notification($teacher_id,$msg);
+      }
+    }
+    //send notification to course assessor
+    $sql = "SELECT `teacher_id` FROM `group_assessor` ga, `subject_assessor` sa
+    WHERE ga.`group_num` = sa.`assessor_group_num` AND sa.`course_id` = '".$course_id."'";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $count = count($result);
+      for($i=0;$i<$count;$i++)
+      {
+        $teacher_id = $result[$i]['teacher_id'];
+        $this->REPORT->Append_Notification($teacher_id,$msg);
+      }
+    }
+  }
   public function Close_connection()
   {
     $this->DB->Close_connection();
