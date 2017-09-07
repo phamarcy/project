@@ -64,7 +64,6 @@
 					if ($(".label-danger").css('display') == 'none'){}
 					{
 						$(".label-danger").show("fast");
-						console.log("show new noti");
 					}
 					for(var i=0;i<obj.length;i++)
 					{
@@ -135,7 +134,6 @@
 		});
 		$("#icon-dropdown").click(function(){
 			var read =  $("#noti").is(':visible');
-			console.log(read);
 			if(read == true)
 			{
 				read_noti();
