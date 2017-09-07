@@ -124,7 +124,7 @@
 				}
 
 				$(element).find("#course_id").text(data.COURSE_ID);
-				$(element).find("#date").text(data.DATE);
+				$(element).find("#date").text("เมื่อวันที่ "+data.DATE);
 				$(element).find("#status").html(status);
 				$("#noti").prepend(element);
 			}
@@ -307,14 +307,15 @@
 										<i class="fa fa-bell fa-fw"></i> <span class="label label-danger red" id="new_noti">0</span>
 						</a>
 					<ul class="dropdown-menu scrollable-menu" role="menu" id="noti">
-						<li id="notification_element">
+						<li id="notification_element" style="width: 304px;">
 							<a href="#" class="disabled">
 										<p id="status">
 
 										</p>
+										<p id="type"> แบบวัดผลประเมินผล </p>
 										<p>กระบวนวิชา : <b id="course_id"></b>
 										<p>
-											เมื่อวันที่ <span class="pull-right text-muted small" id="date"></span>
+											<span class="pull-right text-muted small" id="date"></span>
 										</p>
 
 							</a>
