@@ -16,7 +16,9 @@ $deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
 $semeter= $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
-
+echo "<pre>";
+print_r($data_course);
+echo "</pre>";
 ?>
 	<html>
 
@@ -56,6 +58,8 @@ $data_course= json_decode($var, true);
 		<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 		<link rel="stylesheet" href="../dist/css/scrollbar.css">
+    <script src="../dist/js/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
 		<title></title>
 		<style>
 			#statc {
@@ -90,7 +94,7 @@ $data_course= json_decode($var, true);
 				<br>
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h5 class="panel-title" style="font-size:14">
+							<h5 class="panel-title" style="font-size:14px;">
 								<?php
 								if ($_SESSION['level']==1) {
 									echo "<b>รายชื่อวิชาที่รับผิดชอบ</b>";
@@ -155,18 +159,22 @@ $data_course= json_decode($var, true);
 									<div class="panel-group" id="accordione1">
 										<div class="panel panel-success">
 											<div class="panel-heading">
-												<h3 class="panel-title" style="font-size:14">
+												<h3 class="panel-title" style="font-size:14px;">
 											<li><b><u>กระบวนวิชา</u></b> : <?php echo $value_course['id']." ".$value_course['name']?> </li>
-										</h3>
+										    </h3>
 											</div>
 											<div class="panel-body" style="font-size:14px;">
 
 												<div class="panel-group">
 													<div class="panel panel-default">
 														<div class="panel-heading">
-															<h3 class="panel-title" style="font-size:14">
+															<h3 class="panel-title" style="font-size:14px;">
 																<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']."_".$key ?>">
 														 		<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b><i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
+                                <?php if(($value_course['evaluate']['status'])==4){ ?>
+                                  <button class='btn btn-outline btn-success'  onclick='senttohead(<?php echo $value_course['id'] ?>);'>หัวหน้าภาคยืนยัน</button>
+                                  <?php
+                                } ?>
 															</h3>
 														</div>
 														<?php if (isset($_SESSION['level'])) { ?>
@@ -209,10 +217,10 @@ $data_course= json_decode($var, true);
 												<div class="panel-group">
 													<div class="panel panel-default">
 														<div class="panel-heading">
-															<h3 class="panel-title" style="font-size:14">
-													<a data-toggle="collapse" href="#special<?php echo $value_course['id']."_".$key ?>" disabled="disabled">
-													<i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></b></a>
-												</h3>
+															<h3 class="panel-title" style="font-size:14px;">
+      													<a data-toggle="collapse" href="#special<?php echo $value_course['id']."_".$key ?>" disabled="disabled">
+      													<i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></b></a>
+      												</h3>
 														</div>
 														<?php if (isset($_SESSION['level'])) { ?>
 														<div id="special<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse">
@@ -248,9 +256,13 @@ $data_course= json_decode($var, true);
 
 																		<div class="panel panel-default">
 																			<div class="panel-heading">
-																				<div class="panel-title" style="font-size:14">
+																				<h3 class="panel-title" style="font-size:14px;">
 																						<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']."_".$keysp ?>"><?php echo $valuesp['name'].' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp ?> </a></b>
-																				</div>
+                                            <?php if(($valuesp['status'])==4){ ?>
+                                              <button class='btn btn-outline btn-success'  onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>หัวหน้าภาคยืนยัน</button>
+                                              <?php
+                                            } ?>
+																				</h3>
 																			</div>
 																			<div id="special_<?php echo $value_course['id']."_".$keysp ?>" class="panel-collapse collapse">
 																				<div class="panel-body">
@@ -307,7 +319,59 @@ $data_course= json_decode($var, true);
 					</div>
 			</div>
 		</div>
+<script>
+  function senttohead(course){
 
+    $.ajax({
+        url: '../../application/approval/send_board.php',
+        type: 'POST',
+        data:
+        {
+          course_id:course
+        },
+        success:function(data){
+          var msg=JSON.parse(data)
+          swal({
+            type:msg.status,
+            text: msg.msg,
+            timer: 2000,
+            confirmButtonText: "Ok!",
+          }, function(){
+            window.location.reload();
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 1000);
+        }
+    });
+  }
+  function senttoheadSP(course,teachersp){
+
+    $.ajax({
+        url: '../../application/approval/send_board.php',
+        type: 'POST',
+        data:
+        {
+          course_id:course,
+          teachersp:teachersp
+        },
+        success:function(data){
+          var msg=JSON.parse(data)
+          swal({
+            type:msg.status,
+            text: msg.msg,
+            timer: 2000,
+            confirmButtonText: "Ok!",
+          }, function(){
+            window.location.reload();
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 1000);
+        }
+    });
+  }
+</script>
 	</body>
 
 	</html>

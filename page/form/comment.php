@@ -19,9 +19,9 @@ $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
 $data_forapproval=$approval->Get_Approval_data($_SESSION['id']);
-echo "<pre>";
+/*echo "<pre>";
 print_r($data_forapproval);
-echo "</pre>";
+echo "</pre>";*/
  ?>
   <html>
   <header>
@@ -43,7 +43,8 @@ echo "</pre>";
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
-
+    <script src="../dist/js/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
     <style >
     i:hover {
       font-size: 30px;
@@ -117,12 +118,12 @@ echo "</pre>";
                     <td><?php echo $value['name'] ?></td>
                     <td style="text-align:center;">
                       <?php if (isset($value['syllabus']) ): ?>
-                          <a href="<?php echo $value['syllabus'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                          <a href="../../files<?php echo $value['syllabus'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
                       <?php endif; ?>
                     </td>
                     <td style="text-align:center;">
                       <?php if (isset($value['evaluate']) ): ?>
-                          <a href="../../file/<?php echo $value['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                          <a href="<?php echo $value['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
                       <?php endif; ?>
 
                     </td>
@@ -282,7 +283,18 @@ echo "</pre>";
             comment:comment
           },
           success:function(data){
-            console.log(data);
+            var msg=JSON.parse(data)
+            swal({
+              type:msg.status,
+              text: msg.msg,
+              timer: 2000,
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 1000);
           }
       });
 
@@ -305,7 +317,18 @@ echo "</pre>";
             comment:comment
           },
           success:function(data){
-            console.log(data);
+            var msg=JSON.parse(data)
+            swal({
+              type:msg.status,
+              text: msg.msg,
+              timer: 2000,
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 1000);
           }
       });
 
