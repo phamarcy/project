@@ -17,7 +17,7 @@ $semeter= $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
 /*echo "<pre>";
-print_r($_SESSION['level']);
+print_r($data_course);
 echo "</pre>";*/
 ?>
 	<html>
@@ -268,9 +268,10 @@ echo "</pre>";*/
 																		<div class="panel panel-default">
 																			<div class="panel-heading">
 																				<h3 class="panel-title" style="font-size:14px;">
+                                          <?php echo $_SESSION ?>
 																						<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']."_".$keysp ?>"><?php echo $valuesp['name'].' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp ?> </a></b>
-                                            <?php if ($_SESSION==3): ?>
-                                              <?php if(($valuesp['status'])==4){ ?>
+                                            <?php if ($_SESSION['level']==3): ?>
+                                              <?php if($valuesp['status']==4){ ?>
                                                 <button class='btn btn-outline btn-success'  onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>หัวหน้าภาคยืนยัน</button>
                                                 <?php
                                               } ?>

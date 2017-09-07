@@ -19,9 +19,9 @@ $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
 $data_forapproval=$approval->Get_Approval_data($_SESSION['id']);
-/*echo "<pre>";
+echo "<pre>";
 print_r($data_forapproval);
-echo "</pre>";*/
+echo "</pre>";
  ?>
   <html>
   <header>
@@ -200,8 +200,13 @@ echo "</pre>";*/
                                         <div class="panel panel-default">
                                           <div class="panel-heading" >
                                             <div class="panel-title" style="font-size:14px">
-                                                <a data-toggle="collapse" data-parent="#teachersp<?php echo $value['id'] ?>" href="#teachersp<?php echo $value['id']."-".$keysp ?>"><?php echo $valuesp['name'] ?></a>
-                                                <a href="" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x" ></i></a> &nbsp;
+                                                <a data-toggle="collapse" data-parent="#teachersp<?php echo $value['id'] ?>" href="#teachersp<?php echo $value['id']."-".$keysp ?>"><?php echo $valuesp['name'] ?></a>&nbsp;&nbsp;
+                                                <?php if ($valuesp['pdf']!=""): ?>
+                                                  <b>PDF :</b><a href="<?php echo $valuesp['pdf'] ?>" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>&nbsp;&nbsp;
+                                                <?php endif; ?>
+                                                <?php if ($valuesp['cv']!=""): ?>
+                                                  <b>CV :</b><a href="../../files<?php echo $valuesp['cv'] ?>" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x  " ></i></a>
+                                                <?php endif; ?>
                                             </div>
                                           </div>
                                           <div id="teachersp<?php echo $value['id']."-".$keysp ?>" class="panel-collapse collapse">
