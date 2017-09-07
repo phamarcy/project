@@ -51,7 +51,7 @@
 	window.onload =  function(){
       update_noti();
     };
-	setInterval(update_noti, 10000);
+	setInterval(update_noti, 30000);
 	function update_noti(){
 		$.ajax({
 				url: "../application/notification/get_data.php" ,
