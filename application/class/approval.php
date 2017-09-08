@@ -93,7 +93,7 @@ class approval
         }
         else
         {
-            $this->LOG->Write($pdf_complete);
+            $this->LOG->Write("Completing file error : ".$pdf_complete);
             return false;
         }
       }
@@ -172,7 +172,7 @@ class approval
         $noti['STATUS'] = (string)$status_after;
         $noti['NAME'] = $this->PERSON->Get_Special_Instructor_Name($instructor_id);
         $noti['DATE'] = date("d-m-Y h:i:sa");
-        $noti['TYPE'] = '1'; //1 evaluate , 2, special instructor
+        $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
         $this->Send_Noti($course_id,json_encode($noti));
       }
       if($status_after == 7)
@@ -258,7 +258,8 @@ class approval
   {
     $level_approve = '2';
     $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`, `course_id`, `status`,`level_approve`, `comment`,`semester_id`)
-    VALUES ('".$instructor_id."','".$teacher_id."','".$course_id."','".$status."','".$level_approve."','".$comment."','".$this->SEMESTER_ID."')";
+    VALUES ('".$instructor_id."','".$teacher_id."','".$course_id."','".$status."','".$level_approve."','".$comment."','".$this->SEMESTER_ID."')
+    ON DUPLICATE KEY UPDATE `status` = '".$status."'";
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
@@ -291,7 +292,7 @@ class approval
     }
     else if ($this->USER_LEVEL == 4 || $this->USER_LEVEL == 5)
     {
-      $sql = "SELECT `course_id` FROM `approval_course`
+      $sql = "SELECT DISTINCT `course_id` FROM `approval_course`
       WHERE `teacher_id` = '".$user_id."' AND `semester_id` = '".$this->SEMESTER_ID."'";
     }
     else if ($this->USER_LEVEL == 6)
@@ -443,7 +444,8 @@ class approval
       for($i=0;$i<count($result);$i++)
       {
         $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`)
-        VALUES ('".$instructor_id."','".$result[$i]['teacher_id']."','".$course_id."',1,'1',".$this->SEMESTER_ID.")";
+        VALUES ('".$instructor_id."','".$result[$i]['teacher_id']."','".$course_id."',1,'1',".$this->SEMESTER_ID.")
+        ON DUPLICATE KEY UPDATE `status` = '1'";
         $approve_result = $this->DB->Insert_Update_Delete($sql);
         if($approve_result == false)
         {
@@ -480,7 +482,7 @@ class approval
         $course = array();
         $course['id'] = $result[$i]['course_id'];
         $course['name'] = $this->COURSE->Get_Course_Name($course['id']);
-        $course['status'] = '0'; //0 = ยังไม่ได้ลองความเห็น , 1 ลงความเห็นแล้ว
+        $course['status'] = '0'; //0 = ยังไม่ได้ลงความเห็น , 1 ลงความเห็นแล้ว
         $url = $this->Get_Doc_Url($course['id'],'draft');
         $course['evaluate'] = $url['evaluate'];
         $course['syllabus'] = $url['syllabus'];
@@ -522,8 +524,8 @@ class approval
         $count_instructor = count($instructor);
         for($j=0;$j<$count_instructor;$j++)
         {
-          if($instructor[$j]['status'] >= 5)
-          {
+          // if($instructor[$j]['status'] >= 5)
+          // {
             $special = array();
             $special['id'] = $instructor[$j]['id'];
             $special['comment'] = array();
@@ -564,7 +566,7 @@ class approval
               }
             }
             array_push($course['special'],$special);
-          }
+          // }
         }
           //check status in course
           array_push($DATA,$course);

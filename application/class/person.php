@@ -363,7 +363,10 @@ class Person
     }
     return $path;
   }
-
+  public function Close_connection()
+  {
+    $this->DB->Close_connection();
+  }
 }
 
 

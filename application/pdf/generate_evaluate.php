@@ -111,9 +111,20 @@ if(isset($_POST['DATA']))
       $DATA["SECTION"] = $i+1;
       $DATA["STUDENT"] = $num_student[$i];
       $data['DATA'] = json_encode($DATA);
-      echo Generate($data);
+			$return_pdf = Generate($data);
+			$result_pdf = json_decode($return_pdf,true);
+			if($result_pdf == null || $result_pdf['status'] != 'success')
+			{
+				$return['status'] = "error";
+				$return['msg'] = "ไม่สามารถสร้าง pdf ได้";
+				$LOG->Write("Generating pdf error : ".$return_pdf);
+				echo  json_encode($return);
+			}
     }
+		$return['status'] = 'success';
+		echo json_encode($return);
 	}
+	return;
 	//var_dump($DATA);
 }
 else
