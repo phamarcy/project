@@ -30,6 +30,13 @@ require_once(__DIR__."/../../application/class/report.php");
     <script type="text/javascript" src="../js/function.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
     <link rel="stylesheet" href="../dist/css/scrollbar.css">
+    <style >
+    i:hover {
+      font-size: 30px;
+      font-weight: bold;
+      color: red;
+    }
+    </style>
 </header>
 <script type="text/javascript">
 //search report data in first load
