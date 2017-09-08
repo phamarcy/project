@@ -230,7 +230,7 @@ echo "</pre>";*/
       												</h3>
 														</div>
 														<?php if (isset($_SESSION['level'])) { ?>
-														<div id="special<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse">
+														<div id="special<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse  in">
 															<div class="panel-body" style="font-size:14px;">
 																<div class="panel-group" id="accordion">
 
@@ -268,7 +268,7 @@ echo "</pre>";*/
 																		<div class="panel panel-default">
 																			<div class="panel-heading">
 																				<h3 class="panel-title" style="font-size:14px;">
-                                          <?php echo $_SESSION ?>
+
 																						<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']."_".$keysp ?>"><?php echo $valuesp['name'].' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp ?> </a></b>
                                             <?php if ($_SESSION['level']==3): ?>
                                               <?php if($valuesp['status']==4){ ?>
