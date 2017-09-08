@@ -24,7 +24,15 @@ else
     {
       $course_id = $_POST['course_id'];
       $approve = new approval($_SESSION['level']);
-      $result = $approve->Update_Status_Evaluate($course_id,'5','all',null);
+      if(isset($_POST['teachersp']))
+      {
+        $instructor_id = $_POST['teachersp'];
+        $result = $approve->Update_Status_Special($instructor_id,'all',$course_id,'5',null);
+      }
+      else
+      {
+        $result = $approve->Update_Status_Evaluate($course_id,'5','all',null);
+      }
       if($result)
       {
         $return['status'] = "success";

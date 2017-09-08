@@ -158,6 +158,11 @@ class Person
       return false;
     }
   }
+
+  public function Get_Board_Data()
+  {
+
+  }
   public function Add_Assessor($group_num,$teacher_name,$department_id)
   {
     $teacher_id = $this->Get_Teacher_Id($teacher_name);

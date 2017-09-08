@@ -10,28 +10,40 @@ $log = new Log();
 $curl = new CURL();
 $db = new Database();
 $deadline = new Deadline();
+$course = new Course();
 $semester = $deadline->Get_Current_Semester();
+$instructor_id = '';
 if(isset($_POST['DATA']))
 {
-
 	$data = $_POST['DATA'];
 	$DATA = json_decode($data,true);
-	$fname = $DATA['TEACHERDATA']['FNAME'];
-	$lname = $DATA['TEACHERDATA']['LNAME'];
-	$course_id  = $DATA['COURSEDATA']['COURSE_ID'];
-	$sql = "SELECT `instructor_id` FROM `special_instructor` WHERE `firstname` = '".$fname."' AND `lastname` = '".$lname."'";
-	$result = $db->Query($sql);
-	if($result == null)
+	if($DATA['SUBMIT_TYPE'] == '3')
 	{
-		$sql="INSERT INTO `special_instructor`(`firstname`, `lastname`) VALUES ('".$fname."','".$lname."')";
-		$result = $db->Insert_Update_Delete($sql);
-		if($result)
+		$instructor_id = $DATA['TEACHERDATA']['ID'];
+	}
+	else if($DATA['SUBMIT_TYPE'] != '3')
+	{
+		$fname = $DATA['TEACHERDATA']['FNAME'];
+		$lname = $DATA['TEACHERDATA']['LNAME'];
+		$course_id  = $DATA['COURSEDATA']['COURSE_ID'];
+		$sql = "SELECT `instructor_id` FROM `special_instructor` WHERE `firstname` = '".$fname."' AND `lastname` = '".$lname."'";
+		$result = $db->Query($sql);
+		if($result == null)
 		{
-			$sql = "SELECT LPAD( LAST_INSERT_ID(),11,'0') as id";
-			$temp_id = $db->Query($sql);
-			if($temp_id)
+			$sql="INSERT INTO `special_instructor`(`firstname`, `lastname`) VALUES ('".$fname."','".$lname."')";
+			$result = $db->Insert_Update_Delete($sql);
+			if($result)
 			{
-				$instructor_id = $temp_id[0]['id'];
+				$sql = "SELECT LPAD( LAST_INSERT_ID(),11,'0') as id";
+				$temp_id = $db->Query($sql);
+				if($temp_id)
+				{
+					$instructor_id = $temp_id[0]['id'];
+				}
+				else
+				{
+					die("error");
+				}
 			}
 			else
 			{
@@ -40,19 +52,18 @@ if(isset($_POST['DATA']))
 		}
 		else
 		{
-			die("error");
+			$instructor_id = $result[0]['instructor_id'];
 		}
-	}
-	else
-	{
-		$instructor_id = $result[0]['instructor_id'];
 	}
 	if(isset($_FILES['file']))
 	{
   	$file = $_FILES['file'];
 		Upload($file,$course_id,$instructor_id);
 	}
-	Write_temp_data($data,$instructor_id);
+	if($DATA['SUBMIT_TYPE'] != '0' && $DATA['SUBMIT_TYPE'] != '3')
+	{
+		Write_temp_data($data,$instructor_id); //create txt file
+	}
 	if($DATA['SUBMIT_TYPE'] == '2')
 	{
 		$return['status'] = "success";
@@ -101,6 +112,51 @@ if(isset($_POST['DATA']))
     }
     echo json_encode($return);
     die;
+	}
+	else if($DATA['SUBMIT_TYPE'] == '3')
+	{
+		$course_id = $DATA['COURSEDATA']['COURSE_ID'];
+		$instructor_id = $DATA['TEACHERDATA']['ID'];
+		$temp_data = $course->Get_Document('special',$course_id,$instructor_id,$semester['semester'],$semester['year']);
+		$DATA = json_decode($temp_data,true);
+		switch (json_last_error()) {
+		        case JSON_ERROR_DEPTH:
+		            $log->Write('Json decode error - Maximum stack depth exceeded');
+		        break;
+		        case JSON_ERROR_STATE_MISMATCH:
+		            $log->Write('Json decode error - Underflow or the modes mismatch');
+		        break;
+		        case JSON_ERROR_CTRL_CHAR:
+		            $log->Write('Json decode error - Unexpected control character found');
+		        break;
+		        case JSON_ERROR_SYNTAX:
+		            $log->Write('Json decode error - Syntax error, malformed JSON');
+		        break;
+		        case JSON_ERROR_UTF8:
+		            $log->Write('Json decode error - Malformed UTF-8 characters, possibly incorrectly encoded');
+		        break;
+		        default:
+		            $log->Write('Json decode error - Unknown error');
+		        break;
+		    }
+		$file_path = $FILE_PATH."/complete/".$course_id;
+		if(!file_exists($file_path))
+		{
+			mkdir($file_path);
+		}
+		$file_path = $file_path."/special_instructor";
+		if(!file_exists($file_path))
+		{
+			mkdir($file_path);
+		}
+
+		$DATA['ID'] = $instructor_id;
+    $DATA['SEMESTER'] = $semester;
+    $DATA['FILE_PATH'] = $file_path;
+    $DATA['APPROVED'] = array();
+    $data = array();
+    $data['DATA'] = json_encode($DATA);
+    echo Generate($data);
 	}
 }
 else
