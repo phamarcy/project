@@ -216,12 +216,12 @@ class Report
         {
           $course['comment'][$semester] = array();
         }
-        if($result[$i]['comment'] != null)
-        {
+        // if($result[$i]['comment'] != null)
+        // {
           $data['name'] = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
           $data['comment'] = $result[$i]['comment'];
           array_push($course['comment'][$semester],$data);
-        }
+        // }
       }
 
     }
@@ -235,7 +235,10 @@ class Report
      VALUES ('".$user_id."','".$msg."','".$status."')";
     $this->DB->Insert_Update_Delete($sql);
   }
-
+  public function Close_connection()
+  {
+    $this->DB->Close_connection();
+  }
 }
 
 
