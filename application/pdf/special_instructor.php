@@ -510,10 +510,12 @@ $pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0
 $pdf->Ln();
 
 $pdf->SetXY($money_position-15,$pdf->GetY()+3);
-$pdf->Cell(0,7,iconv('UTF-8','TIS-620','หัวหน้าภาควิชา'),0,1);
+$pdf->Cell(0,7,iconv('UTF-8','TIS-620','อดิลักษณ์ ชูประทีป'),0,1);
+$pdf->SetXY($money_position-15,$pdf->GetY()+3);
+$pdf->Cell(0,7,iconv('UTF-8','TIS-620','หัวหน้า/ผู้แทนหัวหน้าภาควิชา'),0,1);
 
 $pdf->SetX($money_position-20);
-$pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.'10'.'   เดือน   '.'กันยายน'.'   พ.ศ.   '.'2560'),0);
+$pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[(int)date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
 }
 
 $pdf->Output($file_path."/".$DATA['COURSEDATA']['COURSE_ID']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");

@@ -26,6 +26,7 @@ if(isset($_POST['DATA']))
 		$return['status'] = "success";
 		$return['msg'] = 'อัพโหลดไฟล์เรียบร้อยแล้ว';
 		echo json_encode($return);
+		Close_connection();
 		die;
 	}
 	if($DATA['SUBMIT_TYPE'] != '0' && $DATA['SUBMIT_TYPE'] != '3')
@@ -38,6 +39,7 @@ if(isset($_POST['DATA']))
 		$return['status'] = "success";
 		$return['msg'] = "บันทึกสำเร็จ";
 		echo json_encode($return);
+		 Close_connection();
 		die;
 			// Write_temp_data($data);
 	}
@@ -83,6 +85,7 @@ if(isset($_POST['DATA']))
       $return['msg'] = 'ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
     }
     echo json_encode($return);
+		 Close_connection();
     die;
 	}
 	else if($DATA['SUBMIT_TYPE'] == '3')
@@ -124,6 +127,7 @@ if(isset($_POST['DATA']))
 		$return['status'] = 'success';
 		echo json_encode($return);
 	}
+	 Close_connection();
 	return;
 	//var_dump($DATA);
 }
@@ -132,6 +136,7 @@ else
 	$return['status'] = "error";
 	$return['msg'] = 'ไม่มีข้อมูลนำเข้า';
 	echo json_encode($return);
+	Close_connection();
 }
 function Upload($file,$course_id)
 {
@@ -221,5 +226,11 @@ function Generate($data)
   global $curl;
   $path = "application/pdf/course_evaluate.php";
   return $curl->Request($data,$path);
+}
+function Close_connection()
+{
+	global $deadline,$course;
+	$deadline->Close_connection();
+	$course->Close_connection();
 }
  ?>

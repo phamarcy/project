@@ -69,6 +69,7 @@ if(isset($_POST['DATA']))
 		$return['status'] = "success";
 		$return['msg'] = "บันทึกสำเร็จ";
 		echo json_encode($return);
+		Close_connection();
 		die;
 	}
 	else if($DATA['SUBMIT_TYPE'] == '1')
@@ -111,6 +112,7 @@ if(isset($_POST['DATA']))
       $return['msg'] = 'ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
     }
     echo json_encode($return);
+		Close_connection();
     die;
 	}
 	else if($DATA['SUBMIT_TYPE'] == '3')
@@ -157,6 +159,7 @@ if(isset($_POST['DATA']))
     $data = array();
     $data['DATA'] = json_encode($DATA);
     echo Generate($data);
+		Close_connection();
 	}
 }
 else
@@ -169,6 +172,7 @@ function Generate($data)
 {
   global $curl;
   $path = "application/pdf/special_instructor.php";
+	Close_connection();
   return $curl->Request($data,$path);
 }
 function Upload($file,$course_id,$instructor_id)
@@ -223,6 +227,7 @@ function Upload($file,$course_id,$instructor_id)
 		$return['status'] = "error";
 		$return['msg'] = $message;
 		echo json_encode($return);
+		Close_connection();
     die();
 	}
 }
@@ -255,6 +260,11 @@ function Create_Folder($course_id,$type)
 	}
 	return $type_path;
 }
-
+function Close_connection()
+{
+	global $deadline,$course;
+	$deadline->Close_connection();
+	$course->Close_connection();
+}
 
  ?>
