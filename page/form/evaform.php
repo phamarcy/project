@@ -1330,37 +1330,68 @@ $(document).ready(function(){
   });
 
   //submit
-  $('#submitbtn').click(function(e) {
-    if($('#submitbtn').hasClass('disabled')==true)
-    {
-      var file = document.forms['form1']['syllabus'].files[0];
-      if(!file)
-      {
-        e.preventDefault();
-        return false;
-      }
-    }
-    else {
-      checkreq('1');
-      return false;
-    }
-  });
+  $( '#form1' ).submit( function( event ) {
+    event.preventDefault();
 
-  $('#submitbtn2').click(function(e) {
-    if($('#submitbtn2').hasClass('disabled')==true)
-    {
-      var file = document.forms['form2']['syllabus_2'].files[0];
-      if(!file)
-      {
-        e.preventDefault();
-        return false;
-      }
-    }
-    else {
-      checkreq2('0');
+    var fail = false;
+    var fail_log = '';
+    $( '#form1' ).find( 'select, textarea,input' ).each(function(){
+        if( ! $( this ).prop( 'required' )){
+
+        } else {
+            if ( ! $( this ).val() ) {
+                fail = true;
+                name = $( this ).attr( 'name' );
+                fail_log += name + " is required \n";
+            }
+
+        }
+    });
+
+    if ( ! fail ) {
+      checkreq('1');
+    } else {
+      swal(
+        '',
+        'กรุณากรอกข้อมูลให้ครบถ้วน',
+        'error'
+      )
       return false;
     }
-  });
+
+    });
+
+    $( '#form2' ).submit( function( event ) {
+      event.preventDefault();
+
+      var fail = false;
+      var fail_log = '';
+      $( '#form2' ).find( 'select, textarea,input' ).each(function(){
+          if( ! $( this ).prop( 'required' )){
+
+          } else {
+              if ( ! $( this ).val() ) {
+                  fail = true;
+                  name = $( this ).attr( 'name' );
+                  fail_log += name + " is required \n";
+              }
+
+          }
+      });
+
+      if ( ! fail ) {
+        checkreq2('0');
+      } else {
+        swal(
+          '',
+          'กรุณากรอกข้อมูลให้ครบถ้วน',
+          'error'
+        )
+        return false;
+      }
+
+      });
+      
 
   File: {
     required: true

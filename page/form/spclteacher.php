@@ -90,8 +90,10 @@ $current = $dlobj->Get_Current_Semester();
    }
 
    document.getElementById('pre').value = temp['TEACHERDATA']['PREFIX'];
-   var constring = temp['TEACHERDATA']['FNAME'] +" "+ temp['TEACHERDATA']['LNAME'];
+   var constring = temp['TEACHERDATA']['FNAME'];
+   var constring2 = temp['TEACHERDATA']['LNAME'];
    document.getElementById('fname').value = constring;
+   document.getElementById('lname').value = constring2;
    document.getElementById('position').value = temp['TEACHERDATA']['POSITION'];
    document.getElementById('qualification').value = temp['TEACHERDATA']['QUALIFICATION'];
    document.getElementById('workplace').value = temp['TEACHERDATA']['WORKPLACE'];
@@ -439,10 +441,8 @@ $current = $dlobj->Get_Current_Semester();
   }
 
   //split fname / lname
-  var fullname =  document.getElementById('fname').value;
-  var splitor = fullname.split(" ");
-  var fname = splitor[0];
-  var lname = splitor[1];
+  var fname =  document.getElementById('fname').value;
+  var lname = document.getElementById('lname').value;
 
   //NUMTABLE
   var rowtr = ($('#detailteaching tr').length)-2;
@@ -665,7 +665,6 @@ $current = $dlobj->Get_Current_Semester();
 
 
    // manage required form
-   $("#GOV_LEVEL").prop('required',true);
    $("input[name='levelteacher']").change(function(){
      if($(this).val()=="pro")
      {
@@ -917,6 +916,38 @@ $current = $dlobj->Get_Current_Semester();
         }
       });
 
+      //submitfunction
+      $( '#form1' ).submit( function( event ) {
+        event.preventDefault();
+
+        var fail = false;
+        var fail_log = '';
+        $( '#form1' ).find( 'select, textarea,input' ).each(function(){
+            if( ! $( this ).prop( 'required' )){
+
+            } else {
+                if ( ! $( this ).val() ) {
+                    fail = true;
+                    name = $( this ).attr( 'name' );
+                    fail_log += name + " is required \n";
+                }
+
+            }
+        });
+
+        if ( ! fail ) {
+          checkreq('1');
+        } else {
+          swal(
+            '',
+            'กรุณากรอกข้อมูลให้ครบถ้วน',
+            'error'
+          )
+          return false;
+        }
+
+        });
+
 
    $('#adddetail').click(function() {
      var table = $(this).closest('table');
@@ -969,7 +1000,7 @@ function lastcal() {
   }
 
   function checkreq(casesubmit) {
-    if($("[required]").val()!=null && $("[required]").val()!="")
+    if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
     {
       swal({
       title: 'แน่ใจหรือไม่',
@@ -1035,6 +1066,8 @@ function lastcal() {
     })
   }
 
+
+
  </script>
 
 </header>
@@ -1068,7 +1101,7 @@ function lastcal() {
       </center>
 
       <div id="dlhide" class="panel panel-default"> <br>
-      <form action="" data-toggle="validator" role="form" name="form1" id="form1" method="post">
+      <form data-toggle="validator" role="form" name="form1" id="form1" method="post">
       <div class="row form-inline" style="font-size:16px;">
         <center><div class="form-group">
       ภาควิชา
@@ -1101,8 +1134,8 @@ function lastcal() {
                  ?>
               </select>
               </div>&nbsp;&nbsp;&nbsp;&nbsp;
-              ชื่อ-นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="fname" size="35" required ></div>&nbsp;
-
+              ชื่อ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="fname" size="20" required ></div>&nbsp;
+              นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="lname" size="20" required ></div>&nbsp;
           </div>
 
           <div class="form-inline">
@@ -1259,7 +1292,7 @@ function lastcal() {
     <br>
     <br>
     <div align="center">
-      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" onclick="checkreq('1');"> &nbsp;
+      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2');"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>
