@@ -116,7 +116,7 @@ echo "</pre>";*/
                                     <input type="hidden" name="group" value="1">
                                     <input type="hidden" name="type" value="add">
                                     <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                    <button  type="submit" name="submit" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                    <button name="submit" class="btn btn-outline btn-primary" onclick="addgroup(1,1,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
                                   </div>
                                   <datalist id="dtl1"></datalist>
                              </form>
@@ -168,7 +168,7 @@ echo "</pre>";*/
                                       <input type="hidden" name="group" value="2">
                                       <input type="hidden" name="type" value="add">
                                       <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                      <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
+                                      <button name="button" class="btn btn-outline btn-primary" onclick="addgroup(2,2,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
                                     </div>
                                     <datalist id="dtl2"></datalist>
                                </form>
@@ -398,185 +398,37 @@ echo "</pre>";*/
 
     </div>
 <script type="text/javascript">
-$("form#data").submit(function(){
-    var confirmPass = document.getElementById('TEACHERLEC_1').value;
-    var confirmPass2 = document.getElementById('TEACHERLEC_2').value;
-    console.log(confirmPass);
-
-      if (confirmPass == ""  && confirmPass2 == "") {
-        swal({
-          type:"warning",
-          text: "กรุณากรอกข้อมูลให้ครบ",
-          confirmButtonText: "Ok!",
-        });
-        return false;
-      }
-
-    //var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
-    //console.log(formData);
-    $.ajax({
-        url: '../../application/subject/group.php',
-        type: 'POST',
-        data: formData,
-        async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-          var msg=JSON.parse(data)
-          swal({
-            type:msg.status,
-            text: msg.msg,
-
-            confirmButtonText: "Ok!",
-          }, function(){
-            window.location.reload();
-          });
-          setTimeout(function() {
-            window.location.reload();
-          }, 1000);
-
-        }
+function addgroup(teacher,group,type,department) {
+  console.log(teacher,group,type,department);
+  var text = "TEACHERLEC_"+group;
+  var confirmPass = document.getElementById(text).value;
+  if (!confirmPass) {
+    swal({
+      type:"warning",
+      text: "กรุณากรอกข้อมูลให้ครบ",
+      confirmButtonText: "Ok!",
     });
     return false;
-});
-$("form#dataremove").submit(function(){
-
-    //var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
-    //console.log(formData);
-    $.ajax({
-        url: '../../application/subject/group.php',
-        type: 'POST',
-        data: formData,
-        async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-          var msg=JSON.parse(data)
-          swal({
-            type:msg.status,
-            text: msg.msg,
-
-            confirmButtonText: "Ok!",
-          }, function(){
-            window.location.reload();
-          });
-          setTimeout(function() {
-            window.location.reload();
-          }, 1000);
-
-        }
-    });
-    return false;
-});
-$("form#course").submit(function(){
-    //var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
-    //console.log(formData);
-    $.ajax({
-        url: '../../application/subject/responsible_course_department.php',
-        type: 'POST',
-        data: formData,
-        async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-          var msg=JSON.parse(data)
-          swal({
-            type:msg.status,
-            text: msg.msg,
-            timer: 2000,
-            confirmButtonText: "Ok!",
-          }, function(){
-            window.location.reload();
-          });
-          setTimeout(function() {
-            window.location.reload();
-          }, 1000);
-        }
-    });
-    return false;
-});
-$("form#staff").submit(function(){
-    //var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
-    //console.log(formData);
-    $.ajax({
-        url: '../../application/subject/responsible_staff.php',
-        type: 'POST',
-        data: formData,
-        async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-          var msg=JSON.parse(data)
-          swal({
-            type:msg.status,
-            text: msg.msg,
-            timer: 2000,
-            confirmButtonText: "Ok!",
-          }, function(){
-            window.location.reload();
-          });
-          setTimeout(function() {
-            window.location.reload();
-          }, 1000);
-        }
-    });
-    return false;
-});
-
-$("form#remove").submit(function(){
-    //var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
-    //console.log(formData);
-    $.ajax({
-        url: '../../application/subject/responsible_course_department.php',
-        type: 'POST',
-        data: formData,
-        async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-          var msg=JSON.parse(data)
-          swal({
-            type:msg.status,
-            text: msg.msg,
-            timer: 2000,
-            confirmButtonText: "Ok!",
-          }, function(){
-            window.location.reload();
-          });
-          setTimeout(function() {
-            window.location.reload();
-          }, 1000);
-        }
-    });
-    return false;
-});
-function add(){
-
-  var hidden = document.getElementById('hidden').value;
-  var type ="add_oldcourse";
-  var dep = <?php echo $dep_js ?>;
-  //console.log(dep);
+  }
   $.ajax({
-      url: '../../application/subject/responsible_course_department.php',
+      url: '../../application/subject/group.php',
       type: 'POST',
-      data: { course : hidden, type : type, dep:dep} ,
-      contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+      data: {
+        teacher : teacher,
+        group : group,
+        type : type,
+        department :department_id
+      },
+      async: false,
+      cache: false,
+      contentType: false,
+      processData: false,
       success: function (data) {
         var msg=JSON.parse(data)
         swal({
           type:msg.status,
           text: msg.msg,
-          timer: 2000,
+
           confirmButtonText: "Ok!",
         }, function(){
           window.location.reload();
@@ -584,13 +436,226 @@ function add(){
         setTimeout(function() {
           window.location.reload();
         }, 1000);
-      },
-      error: function () {
-          alert("error");
+
       }
   });
-
   return false;
+}
+
+$("form#dataremove").submit(function(){
+
+    //var file = document.forms['data']['filexcel'].files[0];
+    var formData = new FormData(this);
+    //console.log(formData);
+    swal({
+      title: 'แน่ใจหรือไม่',
+      text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก'
+    }).then(function () {
+      $.ajax({
+          url: '../../application/subject/group.php',
+          type: 'POST',
+          data: formData,
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+            var msg=JSON.parse(data)
+            swal({
+              type:msg.status,
+              text: msg.msg,
+
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 1000);
+
+          }
+      });
+    }, function (dismiss) {
+    if (dismiss === 'cancel') {}
+  })
+
+});
+$("form#course").submit(function(){
+    //var file = document.forms['data']['filexcel'].files[0];
+    var formData = new FormData(this);
+    //console.log(formData);
+    swal({
+      title: 'แน่ใจหรือไม่',
+      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก'
+    }).then(function () {
+      $.ajax({
+          url: '../../application/subject/responsible_course_department.php',
+          type: 'POST',
+          data: formData,
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+            var msg=JSON.parse(data)
+            swal({
+              type:msg.status,
+              text: msg.msg,
+              timer: 2000,
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 1000);
+          }
+      });
+    }, function (dismiss) {
+    if (dismiss === 'cancel') {}
+  })
+
+});
+$("form#staff").submit(function(){
+    //var file = document.forms['data']['filexcel'].files[0];
+    var formData = new FormData(this);
+    //console.log(formData);
+    swal({
+      title: 'แน่ใจหรือไม่',
+      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก'
+    }).then(function () {
+      $.ajax({
+          url: '../../application/subject/responsible_staff.php',
+          type: 'POST',
+          data: formData,
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+            var msg=JSON.parse(data)
+            swal({
+              type:msg.status,
+              text: msg.msg,
+              timer: 2000,
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 1000);
+          }
+      });
+    }, function (dismiss) {
+    if (dismiss === 'cancel') {}
+  })
+
+});
+
+$("form#remove").submit(function(){
+    //var file = document.forms['data']['filexcel'].files[0];
+    var formData = new FormData(this);
+    //console.log(formData);
+    swal({
+      title: 'แน่ใจหรือไม่',
+      text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก'
+    }).then(function () {
+      $.ajax({
+          url: '../../application/subject/responsible_course_department.php',
+          type: 'POST',
+          data: formData,
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+            var msg=JSON.parse(data)
+            swal({
+              type:msg.status,
+              text: msg.msg,
+              timer: 2000,
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 1000);
+          }
+      });
+    }, function (dismiss) {
+    if (dismiss === 'cancel') {}
+  })
+
+});
+function add(){
+
+  var hidden = document.getElementById('hidden').value;
+  var type ="add_oldcourse";
+  var dep = <?php echo $dep_js ?>;
+  //console.log(dep);
+  swal({
+    title: 'แน่ใจหรือไม่',
+    text: 'คุณต้องกาเพิ่มวิชาใช่หรือไม่',
+    type: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'ตกลง',
+    cancelButtonText: 'ยกเลิก'
+  }).then(function () {
+    $.ajax({
+        url: '../../application/subject/responsible_course_department.php',
+        type: 'POST',
+        data: { course : hidden, type : type, dep:dep} ,
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        success: function (data) {
+          var msg=JSON.parse(data)
+          swal({
+            type:msg.status,
+            text: msg.msg,
+            timer: 2000,
+            confirmButtonText: "Ok!",
+          }, function(){
+            window.location.reload();
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 1000);
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+  }, function (dismiss) {
+  if (dismiss === 'cancel') {}
+})
+
 }
 function submitForm(num,text){
 
@@ -600,6 +665,7 @@ function submitForm(num,text){
   JSON.stringify(dep_id);
   data.append("semester_id",num);
   data.append("department_id",dep_id);
+
 
     $.ajax({
         url: '../../application/subject/responsible_history.php',

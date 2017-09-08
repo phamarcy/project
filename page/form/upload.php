@@ -12,6 +12,10 @@ $semeter= $deadline->Get_Current_Semester();
 $showgrade=$grade->Get_Grade($_SESSION['id']);
 $grade->Close_connection();
 
+//close
+$grade->Close_connection();
+$deadline->Close_connection();
+
  ?>
 <html>
 <header>

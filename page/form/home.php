@@ -141,19 +141,19 @@ echo "</pre>";*/
 										 $status_text='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
 											 break;
 										 case '3':
-										 $status_text='<b id="statal">มีการแก้ไขจากภาควิชา<i class="fa fa-pencil-square fa-fw"></i></b>';
+										 $status_text='<b id="statal">มีการแก้ไขจากภาควิชา <i class="fa fa-pencil-square fa-fw"></i></b>';
 											 break;
 										 case '4':
-										 $status_text='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค<i class="fa fa-user fa-fw"></i></b>';
+										 $status_text='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค <i class="fa fa-user fa-fw"></i></b>';
 											 break;
 										 case '5':
-										 $status_text='<b id="statwt">รอคณะอนุมัติ<i class="fa fa-user-plus fa-fw"></i></b>';
+										 $status_text='<b id="statwt">รอคณะอนุมัติ <i class="fa fa-user-plus fa-fw"></i></b>';
 											 break;
 										 case '6':
-										 $status_text='<b id="statal">มีการแก้ไขจากคณะ<i class="fa fa-check fa-fw"></i></b>';
+										 $status_text='<b id="statal">มีการแก้ไขจากคณะ <i class="fa fa-check fa-fw"></i></b>';
 											 break;
                      case '7':
-                     $status_text='<b id="statcf">ผ่าน<i class="fa fa-check fa-fw"></i></b>';
+                     $status_text='<b id="statcf">ผ่าน <i class="fa fa-check fa-fw"></i></b>';
                        break;
 
 										 }
@@ -250,10 +250,10 @@ echo "</pre>";*/
                 										 $status_sp='<b id="statal">มีการแก้ไขจากภาควิชา <i class="fa fa-pencil-square fa-fw"></i></b>';
                 											 break;
                 										 case '4':
-                										 $status_sp='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค<i class="fa fa-user fa-fw"></i></b>';
+                										 $status_sp='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค <i class="fa fa-user fa-fw"></i></b>';
                 											 break;
                 										 case '5':
-                										 $status_sp='<b id="statwt">รอคณะอนุมัติ<i class="fa fa-user-plus fa-fw"></i></b>';
+                										 $status_sp='<b id="statwt">รอคณะอนุมัติ <i class="fa fa-user-plus fa-fw"></i></b>';
                 											 break;
                 										 case '6':
                 										 $status_sp='<b id="statal">มีการแก้ไขจากคณะ <i class="fa fa-check fa-fw"></i></b>';
@@ -335,55 +335,80 @@ echo "</pre>";*/
 		</div>
 <script>
   function senttohead(course){
+    swal({
+      title: 'แน่ใจหรือไม่',
+      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก'
+    }).then(function () {
+      $.ajax({
+          url: '../../application/approval/send_board.php',
+          type: 'POST',
+          data:
+          {
+            course_id:course
+          },
+          success:function(data){
+            var msg=JSON.parse(data)
+            swal({
+              type:msg.status,
+              text: msg.msg,
+              timer: 2000,
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 1000);
+          }
+      });
+    }, function (dismiss) {
+    if (dismiss === 'cancel') {}
+  })
 
-    $.ajax({
-        url: '../../application/approval/send_board.php',
-        type: 'POST',
-        data:
-        {
-          course_id:course
-        },
-        success:function(data){
-          var msg=JSON.parse(data)
-          swal({
-            type:msg.status,
-            text: msg.msg,
-            timer: 2000,
-            confirmButtonText: "Ok!",
-          }, function(){
-            window.location.reload();
-          });
-          setTimeout(function() {
-            window.location.reload();
-          }, 1000);
-        }
-    });
   }
   function senttoheadSP(course,teachersp){
-
-    $.ajax({
-        url: '../../application/approval/send_board.php',
-        type: 'POST',
-        data:
-        {
-          course_id:course,
-          teachersp:teachersp
-        },
-        success:function(data){
-          var msg=JSON.parse(data)
-          swal({
-            type:msg.status,
-            text: msg.msg,
-            timer: 2000,
-            confirmButtonText: "Ok!",
-          }, function(){
-            window.location.reload();
-          });
-          setTimeout(function() {
-            window.location.reload();
-          }, 1000);
-        }
-    });
+    swal({
+      title: 'แน่ใจหรือไม่',
+      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก'
+    }).then(function () {
+      $.ajax({
+          url: '../../application/approval/send_board.php',
+          type: 'POST',
+          data:
+          {
+            course_id:course,
+            teachersp:teachersp
+          },
+          success:function(data){
+            var msg=JSON.parse(data)
+            swal({
+              type:msg.status,
+              text: msg.msg,
+              timer: 2000,
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 1000);
+          }
+      });
+    }, function (dismiss) {
+    if (dismiss === 'cancel') {}
+  })
   }
 </script>
 	</body>

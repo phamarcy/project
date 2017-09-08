@@ -19,6 +19,11 @@ $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
 $data_forapproval=$approval->Get_Approval_data($_SESSION['id']);
+//close db
+//$person->Close_connection();
+$deadline->Close_connection();
+$course->Close_connection();
+$approval->Close_connection();
 /*echo "<pre>";
 print_r($data_forapproval);
 echo "</pre>";*/
@@ -149,14 +154,16 @@ echo "</pre>";*/
                                 <div id="comment<?php echo $value['id'] ?>-2" class="panel-collapse collapse">
                                   <div class="panel-body">
                                     <form id="approve_course" action="index.html" method="post">
-                                      <div class="form-group ">
-                                        <label for="">ข้อเสนอแนะ</label>
-                                        <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $value['id'] ?>"></textarea>
-                                      </div>
+                                      <?php if ($value['status']!=1): ?>
+                                        <div class="form-group ">
+                                          <label for="">ข้อเสนอแนะ</label>
+                                          <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $value['id'] ?>"></textarea>
+                                        </div>
                                       <div class="form-group">
                                         <button type="button" class="btn btn-outline btn-success " onclick="approve_course(<?php echo $value['id'] ?>,'approve')"><?php echo $approve_text; ?></button> &nbsp;
                                         <button type="button" class="btn btn-outline btn-danger " onclick="approve_course(<?php echo $value['id'] ?>,'edit')">มีการแก้ไข</button>
                                       </div>
+                                      <?php endif; ?>
                                     </form>
 
                                     <table class="table " style="font-size:14px">
@@ -202,23 +209,26 @@ echo "</pre>";*/
                                             <div class="panel-title" style="font-size:14px">
                                                 <a data-toggle="collapse" data-parent="#teachersp<?php echo $value['id'] ?>" href="#teachersp<?php echo $value['id']."-".$keysp ?>"><?php echo $valuesp['name'] ?></a>&nbsp;&nbsp;
                                                 <?php if ($valuesp['pdf']!=""): ?>
-                                                  <b>PDF :</b><a href="<?php echo $valuesp['pdf'] ?>" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>&nbsp;&nbsp;
+                                                  <b>PDF : </b><a href="<?php echo $valuesp['pdf'] ?>" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>&nbsp;&nbsp;
                                                 <?php endif; ?>
                                                 <?php if ($valuesp['cv']!=""): ?>
-                                                  <b>CV :</b><a href="../../files<?php echo $valuesp['cv'] ?>" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x  " ></i></a>
+                                                  <b>CV : </b><a href="../../files<?php echo $valuesp['cv'] ?>" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x  " ></i></a>&nbsp;&nbsp;
                                                 <?php endif; ?>
+                                                <b>สถานะข้อเสนอแนะ : </b> <?php if($valuesp['status']==0){echo '<i id="statn" class="fa fa-user-times fa-2x" aria-hidden="true"></i>';}else{echo '<i id="statcf" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>';}?>
                                             </div>
                                           </div>
                                           <div id="teachersp<?php echo $value['id']."-".$keysp ?>" class="panel-collapse collapse">
                                             <div class="panel-body">
-                                              <div class="form-group ">
-                                                <label for="">ข้อเสนอแนะ</label>
-                                                <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $valuesp['id'] ?>"></textarea>
-                                              </div>
-                                              <div class="form-group">
-                                                <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(<?php echo $value['id'] ?>,'<?php echo $valuesp['id'] ?>','approve_sp')"><?php echo $approve_text; ?></button> &nbsp;
-                                                <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(<?php echo $value['id'] ?>,'<?php echo $valuesp['id'] ?>','edit_sp')">มีการแก้ไข</button>
-                                              </div>
+                                              <?php if ($value['status']!=1): ?>
+                                                <div class="form-group ">
+                                                  <label for="">ข้อเสนอแนะ</label>
+                                                  <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $valuesp['id'] ?>"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                  <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(<?php echo $value['id'] ?>,'<?php echo $valuesp['id'] ?>','approve_sp')"><?php echo $approve_text; ?></button> &nbsp;
+                                                  <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(<?php echo $value['id'] ?>,'<?php echo $valuesp['id'] ?>','edit_sp')">มีการแก้ไข</button>
+                                                </div>
+                                              <?php endif; ?>
                                               <table class="table " style="font-size:14px">
                                                 <thead>
                                                   <?php if ($_SESSION['level'] > 1 ): ?>
@@ -277,31 +287,44 @@ echo "</pre>";*/
       var id = "<?php echo $_SESSION['id'] ?>";
       var text ="comment_"+course;
       var comment = document.getElementById(text).value;
-      $.ajax({
-          url: '../../application/approval/approve.php',
-          type: 'POST',
-          data:
-          {
-            course_id:course,
-            status:type,
-            teacher:id,
-            comment:comment
-          },
-          success:function(data){
-            var msg=JSON.parse(data)
-            swal({
-              type:msg.status,
-              text: msg.msg,
-              timer: 2000,
-              confirmButtonText: "Ok!",
-            }, function(){
-              window.location.reload();
-            });
-            setTimeout(function() {
-              window.location.reload();
-            }, 1000);
-          }
-      });
+      swal({
+        title: 'แน่ใจหรือไม่',
+        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ตกลง',
+        cancelButtonText: 'ยกเลิก'
+      }).then(function () {
+        $.ajax({
+            url: '../../application/approval/approve.php',
+            type: 'POST',
+            data:
+            {
+              course_id:course,
+              status:type,
+              teacher:id,
+              comment:comment
+            },
+            success:function(data){
+              var msg=JSON.parse(data)
+              swal({
+                type:msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!",
+              }, function(){
+                window.location.reload();
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 1000);
+            }
+        });
+      }, function (dismiss) {
+      if (dismiss === 'cancel') {}
+    })
 
     }
     function approve_sp(course,teacherSp,type){
@@ -309,33 +332,47 @@ echo "</pre>";*/
       var id = "<?php echo $_SESSION['id'] ?>";
       var text ="comment_sp_"+teacherSp;
       var comment = document.getElementById(text).value;
+      swal({
+        title: 'แน่ใจหรือไม่',
+        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ตกลง',
+        cancelButtonText: 'ยกเลิก'
+      }).then(function () {
+        $.ajax({
+            url: '../../application/approval/approve.php',
+            type: 'POST',
+            data:
+            {
+              course_id:course,
+              status:type,
+              teacher:id,
+              teachersp:teacherSp,
+              comment:comment
+            },
+            success:function(data){
+              var msg=JSON.parse(data)
+              swal({
+                type:msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!",
+              }, function(){
+                window.location.reload();
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 1000);
+            }
+        });
+      }, function (dismiss) {
+      if (dismiss === 'cancel') {}
+    })
 
-      $.ajax({
-          url: '../../application/approval/approve.php',
-          type: 'POST',
-          data:
-          {
-            course_id:course,
-            status:type,
-            teacher:id,
-            teachersp:teacherSp,
-            comment:comment
-          },
-          success:function(data){
-            var msg=JSON.parse(data)
-            swal({
-              type:msg.status,
-              text: msg.msg,
-              timer: 2000,
-              confirmButtonText: "Ok!",
-            }, function(){
-              window.location.reload();
-            });
-            setTimeout(function() {
-              window.location.reload();
-            }, 1000);
-          }
-      });
+
 
     }
 
