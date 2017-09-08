@@ -5,11 +5,14 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
     die('กรุณา Login ใหม่');
 }
 require_once(__DIR__."/../../application/class/report.php");
-$report = new Report();
-$history=$report->Get_Comment_History('460100');
-echo "<pre>";
-print_r($history);
-echo "</pre>";
+if (isset($_POST['subject'])) {
+  $report = new Report();
+  $history=$report->Get_Comment_History($_POST['subject']);
+  echo "<pre>";
+  print_r($history);
+  echo "</pre>";
+}
+
 ?>
 
   <html>
@@ -58,25 +61,14 @@ div[class^="col-"] {
           <center>
             <h3 class="page-header">ประวัติข้อเสนอแนะ</h3>
 
-          <form data-toggle="validator" role="form">
+          <form name="history" method="post" action"">
             <div class="form-inline" style="font-size:16px;">
               <div class="form-group ">
                 ค้นหาวิชา
-                <input type="text" class="form-control numonly" id="id" name="id" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required>
+                <input type="text" name="subject" class="form-control numonly" id="id" name="id" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required>
               </div>
               <input type="hidden" name="type" value="1">
-              <button type="button" class="btn btn-outline btn-primary" >ค้นหา</button>
-            </div>
-
-            <div id="formdrpd" style="display: none;">
-              <div class="form-inline">
-                <div class="form-group " style="font-size:16px;">
-                  ภาคการศึกษาและปีการศึกษา
-                  <select class="form-control required" id="semester" style="width: 300px;" required>
-            </select>
-                </div>
-                <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" >
-              </div>
+              <button type="submit" class="btn btn-outline btn-primary" >ค้นหา</button>
             </div>
           </form>
           </center>
