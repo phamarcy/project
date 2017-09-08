@@ -214,17 +214,41 @@ class Report
         $semester = $result[$i]['semester_num']."/".$result[$i]['year'];
         if(!array_key_exists($semester,$course['comment']))
         {
-          $course['comment'][$semester] = array();
+          $course['comment'][$semester]['special'] = array();
+          $course['comment'][$semester]['evaluate'] = array();
         }
-        // if($result[$i]['comment'] != null)
-        // {
           $data['name'] = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
           $data['comment'] = $result[$i]['comment'];
-          array_push($course['comment'][$semester],$data);
-        // }
+          array_push($course['comment'][$semester]['evaluate'],$data);
       }
-
     }
+    $sql = "SELECT `teacher_id`,`comment`,`instructor_id`,`semester_num`,`year` FROM `approval_special` sa, `semester` s
+    WHERE sa.`semester_id` = s.`semester_id` AND sa.`course_id` = '".$course_id."' ORDER BY sa.`semester_id`";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $count = count($result);
+      for($i=0;$i<$count;$i++)
+      {
+        $semester = $result[$i]['semester_num']."/".$result[$i]['year'];
+        if(!array_key_exists($semester,$course['comment']))
+        {
+          $course['comment'][$semester]['special'] = array();
+          $course['comment'][$semester]['evaluate'] = array();
+        }
+        $instructor_id = $result[$i]['instructor_id'];
+        $instructor_name = $this->PERSON->Get_Special_Instructor_Name($instructor_id);
+        if(!array_key_exists($instructor_id,$course['comment'][$semester]['special']))
+        {
+          $course['comment'][$semester]['special'][$instructor_id] = array();
+          $course['comment'][$semester]['special'][$instructor_id]['name'] = $instructor_name;
+        }
+        $data['name'] = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+        $data['comment'] = $result[$i]['comment'];
+        array_push($course['comment'][$semester]['special'][$instructor_id],$data);
+      }
+    }
+
     return $course;
   }
 
