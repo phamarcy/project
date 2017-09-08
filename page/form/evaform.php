@@ -936,7 +936,11 @@ function submitfunc(casesubmit) {
           'OTHERGRADE' : document.getElementById("CALOTHER").value
         },
         'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,
-        'SUBMIT_TYPE' : casesubmit
+        'SUBMIT_TYPE' : casesubmit,
+        'USERID' : '<?php echo $_SESSION['id']; ?>',
+        'DATE' : '<?php echo date('d'); ?>',
+        'MONTH' : '<?php echo date('m'); ?>',
+        'YEAR' : '<?php echo date('Y')+543; ?>'
       };
 
     senddata(JSON.stringify(data),getfile('1'));
@@ -1391,7 +1395,7 @@ $(document).ready(function(){
       }
 
       });
-      
+
 
   File: {
     required: true

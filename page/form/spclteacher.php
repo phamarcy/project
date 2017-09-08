@@ -528,7 +528,11 @@ $current = $dlobj->Get_Current_Semester();
        'TOTALCOST' : costtotal
     },
     'NUMTABLE' : rowtr,
-    'SUBMIT_TYPE' : casesubmit
+    'SUBMIT_TYPE' : casesubmit,
+    'USERID' : '<?php echo $_SESSION['id']; ?>',
+    'DATE' : '<?php echo date('d'); ?>',
+    'MONTH' : '<?php echo date('m'); ?>',
+    'YEAR' : '<?php echo date('Y')+543; ?>'
    };
 
    if(casesubmit=='1')
@@ -537,7 +541,6 @@ $current = $dlobj->Get_Current_Semester();
    }
    else if(casesubmit=='2')
    {
-     console.log(JSON.stringify(data));
      senddata(JSON.stringify(data),getfile());
    }
  }
