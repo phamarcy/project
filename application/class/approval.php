@@ -212,7 +212,7 @@ class approval
         for($i=0;$i<count($result);$i++)
         {
           $sql = "INSERT INTO `approval_course`(`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`)
-          VALUES ('".$result[$i]['teacher_id']."','".$course_id."',1,'0',".$this->SEMESTER_ID.")";
+          VALUES ('".$result[$i]['teacher_id']."','".$course_id."',1,'1',".$this->SEMESTER_ID.")";
           $approve_result = $this->DB->Insert_Update_Delete($sql);
           if($approve_result == false)
           {
@@ -246,6 +246,11 @@ class approval
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
+      $noti['COURSE_ID'] = $course_id;
+      $noti['STATUS'] = $status;
+      $noti['DATE'] = date("d-m-Y h:i:sa");
+      $noti['TYPE'] = '1'; //1 evaluate , 2, special instructor
+      $this->Send_Noti($course_id,json_encode($noti));
       return true;
     }
     else
@@ -263,6 +268,12 @@ class approval
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
+      $noti['COURSE_ID'] = $course_id;
+      $noti['STATUS'] = $status;
+      $noti['NAME'] = $this->PERSON->Get_Special_Instructor_Name($instructor_id);
+      $noti['DATE'] = date("d-m-Y h:i:sa");
+      $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
+      $this->Send_Noti($course_id,json_encode($noti));
       return true;
     }
     else
@@ -452,6 +463,12 @@ class approval
           $return['error'] = 'ไม่สามารถเพิ่มข้อมูลได้';
         }
       }
+      $noti['COURSE_ID'] = $course_id;
+      $noti['STATUS'] = '1';
+      $noti['NAME'] = $this->PERSON->Get_Special_Instructor_Name($instructor_id);
+      $noti['DATE'] = date("d-m-Y h:i:sa");
+      $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
+      $this->Send_Noti($course_id,json_encode($noti));
     }
     return true;
   }
