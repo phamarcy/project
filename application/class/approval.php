@@ -81,7 +81,7 @@ class approval
         $noti['STATUS'] = (string)$status_after;
         $noti['DATE'] = date("d-m-Y h:i:sa");
         $noti['TYPE'] = '1'; //1 evaluate , 2, special instructor
-        $this->Send_Noti($course_id,json_encode($noti));
+        $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       }
       if($status_after == 7)
       {
@@ -173,7 +173,7 @@ class approval
         $noti['NAME'] = $this->PERSON->Get_Special_Instructor_Name($instructor_id);
         $noti['DATE'] = date("d-m-Y h:i:sa");
         $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
-        $this->Send_Noti($course_id,json_encode($noti));
+        $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       }
       if($status_after == 7)
       {
@@ -250,7 +250,7 @@ class approval
       $noti['STATUS'] = $status;
       $noti['DATE'] = date("d-m-Y h:i:sa");
       $noti['TYPE'] = '1'; //1 evaluate , 2, special instructor
-      $this->Send_Noti($course_id,json_encode($noti));
+      $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       return true;
     }
     else
@@ -273,7 +273,7 @@ class approval
       $noti['NAME'] = $this->PERSON->Get_Special_Instructor_Name($instructor_id);
       $noti['DATE'] = date("d-m-Y h:i:sa");
       $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
-      $this->Send_Noti($course_id,json_encode($noti));
+      $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       return true;
     }
     else
@@ -468,7 +468,7 @@ class approval
       $noti['NAME'] = $this->PERSON->Get_Special_Instructor_Name($instructor_id);
       $noti['DATE'] = date("d-m-Y h:i:sa");
       $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
-      $this->Send_Noti($course_id,json_encode($noti));
+      $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
     }
     return true;
   }
