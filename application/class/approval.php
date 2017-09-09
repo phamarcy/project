@@ -552,7 +552,7 @@ class approval
             $special['pdf'] = $url['pdf'];
             $special['cv'] = $url['cv'];
             $sql = "SELECT `teacher_id`,`comment`,`status` FROM `approval_special` WHERE `course_id` = '".$course['id']."'
-            AND `semester_id` =".$this->SEMESTER_ID;
+            AND `instructor_id` = '".$special['id']."'AND `semester_id` =".$this->SEMESTER_ID;
             $result_comment = $this->DB->Query($sql);
             if($result_comment)
             {

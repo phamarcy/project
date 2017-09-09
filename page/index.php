@@ -138,7 +138,7 @@
 				}
 				else
 				{
-					type = "แบบเชิญอาจารย์พิเศษ <br> นาย อดิลักษณ์ ชูประทีป";
+					type = "แบบเชิญอาจารย์พิเศษ <br> "+data.NAME;
 				}
 				$(element).find("#type").html(type);
 				$(element).find("#status").html(status);
