@@ -69,8 +69,10 @@
 						$(".label-danger").show("fast");
 					}
 					append_noti(obj);
-
 				}
+			}
+			else {
+				$(".label-danger").hide();
 			}
 
 		});
