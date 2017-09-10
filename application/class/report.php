@@ -203,7 +203,7 @@ class Report
     $course['comment'] = array();
     $course['id'] = $course_id;
     $course['name'] = $this->COURSE->Get_Course_Name($course_id);
-    $sql = "SELECT `teacher_id`,`comment`,`semester_num`,`year` FROM `approval_course` ac, `semester` s
+    $sql = "SELECT `teacher_id`,`comment`,`semester_num`,`year` FROM `comment_course` ac, `semester` s
     WHERE ac.`semester_id` = s.`semester_id` AND ac.`course_id` = '".$course_id."' ORDER BY ac.`semester_id`";
     $result = $this->DB->Query($sql);
     if($result)
@@ -222,7 +222,7 @@ class Report
           array_push($course['comment'][$semester]['evaluate'],$data);
       }
     }
-    $sql = "SELECT `teacher_id`,`comment`,`instructor_id`,`semester_num`,`year` FROM `approval_special` sa, `semester` s
+    $sql = "SELECT `teacher_id`,`comment`,`instructor_id`,`semester_num`,`year` FROM `comment_special` sa, `semester` s
     WHERE sa.`semester_id` = s.`semester_id` AND sa.`course_id` = '".$course_id."' ORDER BY sa.`semester_id`";
     $result = $this->DB->Query($sql);
     if($result)

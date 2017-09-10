@@ -43,6 +43,16 @@ class approval
   //evaluate course evaluate document
   public function Update_Status_Evaluate($course_id,$status,$teacher_id,$comment)
   {
+    if($comment != null && $comment != '' && $teacher_id != 'all')
+    {
+      $sql = "INSERT INTO `comment_course`(`teacher_id`, `comment`, `semester_id`,`course_id`)
+      VALUES ('".$teacher_id."','".$comment."','".$this->SEMESTER_ID."','".$course_id."')";
+      $result = $this->DB->Insert_Update_Delete($sql);
+      if(!$result)
+      {
+        $this->LOG->Write("Insert comment history error");
+      }
+    }
     $status_before = $this->Get_Doc_Status($course_id);
     if($this->USER_LEVEL < 6)
     {
@@ -75,7 +85,6 @@ class approval
       $sql .= " WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."'";
     }
     $sql .= " AND `semester_id` = ".$this->SEMESTER_ID;
-    // die($sql);
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
@@ -139,6 +148,16 @@ class approval
 //evaluate special instructor
   public function Update_Status_Special($instructor_id,$teacher_id,$course_id,$status,$comment)
   {
+    if($comment != null && $comment != '' && $teacher_id != 'all')
+    {
+      $sql = "INSERT INTO `comment_special`(`teacher_id`, `instructor_id`, `comment`, `semester_id`, `course_id`)
+      VALUES ('".$teacher_id."','".$instructor_id."','".$comment."','".$this->SEMESTER_ID."','".$course_id."')";
+      $result = $this->DB->Insert_Update_Delete($sql);
+      if(!$result)
+      {
+        $this->LOG->Write("Insert comment history error");
+      }
+    }
     $status_before = $this->Get_Instructor_Status($instructor_id);
     if($this->USER_LEVEL < 6)
     {
@@ -184,6 +203,16 @@ class approval
       }
       if($status_after == 7)
       {
+        //save instructor to database
+        $sql = "INSERT INTO `course_hire`(`course_id`, `instructor_id`, `semester_id`)
+        VALUES ('".$course_id."','".$instructor_id."','".$this->SEMESTER_ID."')";
+        $result = $this->DB->Insert_Update_Delete($sql);
+        if(!$result)
+        {
+          $this->LOG->Write("course hire error ");
+        }
+
+        //starting generate pdf
         $pdf_complete = $this->Send_Complete_Special($course_id,$instructor_id);
         $pdf_result = json_decode($pdf_complete,true);
         if($pdf_result != null)
