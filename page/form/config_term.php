@@ -98,6 +98,7 @@ $semester = $deadline->Get_Current_Semester();
       {
         $(form).find("#loading").attr("src",loading_pic);
         $.post(url, { 'DATA': formData }).done(function(data) {
+            $(form).find("#loading").hide();
             $(form).find("#loading").attr("src",'');
             $(form).find("#warning").html("");
             console.log(data);
