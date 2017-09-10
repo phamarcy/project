@@ -51,7 +51,7 @@ public function Update($data,$type)
     }
     else
     {
-      $return['error'] = 'Update failed, please contact admin';
+      $return['error'] = 'ข้อมูลไม่ถูกต้อง กรุณากรอกใหม่ ';
       return $return;
     }
 
@@ -99,7 +99,7 @@ public function Update($data,$type)
     //Search semester id form semester table
     $sql = "SELECT `semester_id` FROM `semester` WHERE `semester_num` = ".$semester." AND `year` = '".$year."'";
     $result = $this->DB->Query($sql);
-    if($result)
+    if($result != null)
     {
       $semester_id = $result[0]['semester_id'];
       return $semester_id;
