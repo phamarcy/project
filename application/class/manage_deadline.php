@@ -73,69 +73,48 @@ public function Update($data,$type)
 
   public function Add_Semester($semester,$year)
   {
-    $sql = "INSERT INTO `semester` (`semester_num`, `year`) VALUES (".$semester.",'".$year."');";
-    $result = $this->DB->Insert_Update_Delete($sql);
-    if($result)
+    $sql = "SELECT `semester_id` FROM `semester` WHERE `semester_num` = ".$semester." AND `year` = '".$year."'";
+    $semester_id = $this->DB->Query($sql);
+    if($semester_id == null)
+    {
+      $sql = "INSERT INTO `semester` (`semester_num`, `year`) VALUES (".$semester.",'".$year."');";
+      $result = $this->DB->Insert_Update_Delete($sql);
+      if($result)
+      {
+        return true;
+      }
+      else
+      {
+        $this->LOG->Write("Error : insert new semester failed");
+        return false;
+      }
+    }
+    else
     {
       return true;
-    }
-    else {
-      $this->LOG->Write("Error : insert new semester failed");
-      return false;
     }
   }
   public function Get_Semester_id($semester,$year)
   {
     //Search semester id form semester table
     $sql = "SELECT `semester_id` FROM `semester` WHERE `semester_num` = ".$semester." AND `year` = '".$year."'";
-    $semester_id = $this->DB->Query($sql);
-
-
-    if($semester_id == null) //if not exist, insert new semester
+    $result = $this->DB->Query($sql);
+    if($result)
     {
-      $result = $this->Add_Semester($semester,$year);
-      if($result)
-      {
-        $sql = "SELECT LAST_INSERT_ID();";
-        $result = $this->DB->Query($sql);
-        if($result)
-        {
-          $semester_id = $result[0]['LAST_INSERT_ID()'];
-          return $semester_id;
-        }
-        else
-        {
-          $this->LOG->Write("Error : Get semester id failed");
-          return $false;
-        }
-      }
-      else
-      {
-        return false;
-      }
+      $semester_id = $result[0]['semester_id'];
+      return $semester_id;
     }
-    else //if exist search semester id
+    else
     {
-        $sql = "SELECT `semester_id` FROM `semester` WHERE `semester_num` = ".$semester." AND `year` = '".$year."'";
-        $result = $this->DB->Query($sql);
-        if($result)
-        {
-          $semester_id = $result[0]['semester_id'];
-          return $semester_id;
-        }
-        else
-        {
-          $this->LOG->Write("Error : search semester id failed");
-          return false;
-        }
+      $this->LOG->Write("Error : search semester id failed");
+      return false;
     }
-
   }
 
   public function Get_Current_Deadline($level)
   {
     global $THAI_MONTH,$BUDDHA_YEAR ;
-    $DATA = array();
+    $data = array();
     $semester = $this->Get_Current_Semester();
     $sql = "SELECT `deadline_type`,`open_date`,`last_date` FROM `deadline`
     WHERE `semester_id` = ".$semester['id'];

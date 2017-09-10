@@ -13,7 +13,7 @@ $deadline = new Deadline;
 $approve = new approval($_SESSION['level']);
 $data['level'] = $_SESSION['level'];
 $deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
-$semeter= $deadline->Get_Current_Semester();
+$semester = $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
 /*echo "<pre>";
@@ -84,11 +84,17 @@ echo "</pre>";*/
 	</head>
 
 	<body class="mybox">
+    <?php if($semester['id'] == false)
+          {
+              echo '<div class="alert alert-danger"><center>ระบบยังไม่มีภาค และปีการศึกษาปัจจุบัน กรุณาติดต่อเจ้าหน้าที่ </center></div>';
+                die();
+          }
+         ?>
 		<div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
 			<div class="container">
 				<div class="row">
 					<center>
-						<h3 class="page-header"><b>ภาคเรียนที่ <?php echo $semeter['semester'];?> &nbsp;ปีการศึกษา <?php echo $semeter['year'];?></b></h3>
+						<h3 class="page-header"><b>ภาคเรียนที่ <?php echo $semester['semester'];?> &nbsp;ปีการศึกษา <?php echo $semester['year'];?></b></h3>
 					</center>
 				</div>
 				<br>
