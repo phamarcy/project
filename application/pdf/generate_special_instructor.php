@@ -156,6 +156,7 @@ if(isset($_POST['DATA']))
     $DATA['SEMESTER'] = $semester;
     $DATA['FILE_PATH'] = $file_path;
     $DATA['APPROVED'] = array();
+		$DATA['APPROVED']['ID'] = $_POST['APPROVER_ID'];
     $data = array();
     $data['DATA'] = json_encode($DATA);
     echo Generate($data);

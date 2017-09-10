@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__.'/../class/manage_deadline.php');
 require_once(__DIR__.'/../class/approval.php');
+require_once(__DIR__.'/../class/person.php');
 require_once('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
 define('FPDF_FONTPATH','font/');
@@ -476,19 +477,21 @@ $image1 = "image1.jpg"; # signature
 $pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
 $pdf->Ln();
 
+$person = new Person();
+$teacher_name = $person->Get_Teacher_Name($DATA['USERID']);
 $pdf->SetXY(40,$pdf->GetY()+3);
-$pdf->Cell(0,7,iconv('UTF-8','TIS-620','(ผศ.ภก.ยงยุทธ เรือนทา)'),0);
+$pdf->Cell(0,7,iconv('UTF-8','TIS-620','('.$teacher_name.')'),0);
 $pdf->SetX($money_position-5);
-$pdf->Cell(0,7,iconv('UTF-8','TIS-620','(ผศ.ภก.ยงยุทธ เรือนทา)'),0,1);
+$pdf->Cell(0,7,iconv('UTF-8','TIS-620','('.$teacher_name.')'),0,1);
 $pdf->SetX(45);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','ผู้เชิญอาจารย์พิเศษ'),0);
 $pdf->SetX($money_position-5);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','ผู้รับผิดชอบกระบวนวิชา'),0,1);
 
 $pdf->SetX(35);
-$pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[(int)date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
+$pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.$DATA['DATE'].'   เดือน   '.$THAI_MONTH[(int)$DATA['MONTH']-1].'   พ.ศ.   '.$DATA['YEAR']),0);
 $pdf->SetX($money_position-17);
-$pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[(int)date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
+$pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.$DATA['DATE'].'   เดือน   '.$THAI_MONTH[(int)$DATA['MONTH']-1].'   พ.ศ.   '.$DATA['YEAR']),0);
 
 //update approval special instructor
 
@@ -498,6 +501,8 @@ $pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.date(" j ").'   �
 //check if document is approve
 if(isset($DATA['APPROVED']))
 {
+	$approver_name = $person->Get_Teacher_Name($DATA['APPROVED']['ID']);
+
 $pdf->Ln();
 $pdf->SetX(20);
 $pdf->Cell(0+5,7,iconv( 'UTF-8','TIS-620',' การขอเชิญอาจารย์พิเศษนี้ได้ผ่านความเห็นชอบของกรรมการวิชาการภาควิชาฯ แล้ว เมื่อวันที่ '.date(" j ").'   เดือน   '.$THAI_MONTH[(int)date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0,1);
@@ -510,14 +515,14 @@ $pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0
 $pdf->Ln();
 
 $pdf->SetXY($money_position-15,$pdf->GetY()+3);
-$pdf->Cell(0,7,iconv('UTF-8','TIS-620','อดิลักษณ์ ชูประทีป'),0,1);
+$pdf->Cell(0,7,iconv('UTF-8','TIS-620',$approver_name),0,1);
 $pdf->SetXY($money_position-15,$pdf->GetY()+3);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','หัวหน้า/ผู้แทนหัวหน้าภาควิชา'),0,1);
 
 $pdf->SetX($money_position-20);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[(int)date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
 }
-
+$person->Close_connection();
 $pdf->Output($file_path."/".$DATA['COURSEDATA']['COURSE_ID']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
 
 

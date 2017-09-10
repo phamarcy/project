@@ -131,6 +131,7 @@ class approval
     $data['COURSEDATA']['COURSE_ID'] = $course_id;
     $data['TEACHERDATA']['ID'] = $instructor_id;
     $DATA['DATA'] = json_encode($data);
+    $DATA['APPROVER_ID'] = $_SESSION['id'];
     $url = "application/pdf/generate_special_instructor.php";
     $result = $this->CURL->Request($DATA,$url);
     return $result;
