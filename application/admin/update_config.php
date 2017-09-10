@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__.'/../class/manage_deadline.php');
 function Current_Semester($semester,$year)
 {
   $system_config_path = "../config/system/";
@@ -15,22 +16,29 @@ function Current_Semester($semester,$year)
 
 if(isset($_POST['DATA']))
 {
+  $deadline = new Deadline();
   $data = $_POST['DATA'];
   if($data['config_type'] == 'manage_semester')
   {
-    $result = Current_Semester($data['semester'],$data['year']);
+    $result = $deadline->Add_Semester($data['semester'],$data['year']);
     if($result)
     {
-      $return['success'] = "อัพเดทภาคการศึกษาปัจจุบันเรียบร้อยแล้ว";
+      $result = Current_Semester($data['semester'],$data['year']);
+      if($result)
+      {
+        $return['success'] = "อัพเดทภาคการศึกษาปัจจุบันเรียบร้อยแล้ว";
+      }
+      else
+      {
+          $return['error'] = "ไม่สามารถอัพเดทข้อมูลได้";
+      }
     }
     else
     {
         $return['error'] = "ไม่สามารถอัพเดทข้อมูลได้";
     }
+
     echo json_encode($return);
   }
-
-
-
 }
  ?>

@@ -70,6 +70,20 @@ public function Update($data,$type)
       return false;
     }
   }
+
+  public function Add_Semester($semester,$year)
+  {
+    $sql = "INSERT INTO `semester` (`semester_num`, `year`) VALUES (".$semester.",'".$year."');";
+    $result = $this->DB->Insert_Update_Delete($sql);
+    if($result)
+    {
+      return true;
+    }
+    else {
+      $this->LOG->Write("Error : insert new semester failed");
+      return false;
+    }
+  }
   public function Get_Semester_id($semester,$year)
   {
     //Search semester id form semester table
@@ -79,8 +93,7 @@ public function Update($data,$type)
 
     if($semester_id == null) //if not exist, insert new semester
     {
-      $sql = "INSERT INTO `semester` (`semester_num`, `year`) VALUES (".$semester.",'".$year."');";
-      $result = $this->DB->Insert_Update_Delete($sql);
+      $result = $this->Add_Semester($semester,$year);
       if($result)
       {
         $sql = "SELECT LAST_INSERT_ID();";
@@ -96,8 +109,8 @@ public function Update($data,$type)
           return $false;
         }
       }
-      else {
-        $this->LOG->Write("Error : insert new semester failed");
+      else
+      {
         return false;
       }
     }
