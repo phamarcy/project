@@ -219,7 +219,7 @@ echo "</pre>";*/
                                           </div>
                                           <div id="teachersp<?php echo $value['id']."-".$keysp ?>" class="panel-collapse collapse">
                                             <div class="panel-body">
-                                              <?php if ($value['status']!=1): ?>
+                                              <?php if ($valuesp['status']==0): ?>
                                                 <div class="form-group ">
                                                   <label for="">ข้อเสนอแนะ</label>
                                                   <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $valuesp['id'] ?>"></textarea>

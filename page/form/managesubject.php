@@ -441,50 +441,41 @@ function addgroup(teacher,group,type,department) {
   });
   return false;
 }
+function  deletestaff(teacher,group,depertment){
+
+  $.ajax({
+    url:,
+    data:,
+    async: false,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function(data){
+
+    }
+  });
+}
+function  deletegroup(teacher,group,depertment){
+  $.ajax({
+    url:,
+    data:,
+    async: false,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function(data){
+
+    }
+  });
+}
 
 $("form#dataremove").submit(function(){
 
     //var file = document.forms['data']['filexcel'].files[0];
     var formData = new FormData(this);
-    //console.log(formData);
-    swal({
-      title: 'แน่ใจหรือไม่',
-      text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
-      type: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'ตกลง',
-      cancelButtonText: 'ยกเลิก'
-    }).then(function () {
-      $.ajax({
-          url: '../../application/subject/group.php',
-          type: 'POST',
-          data: formData,
-          async: false,
-          cache: false,
-          contentType: false,
-          processData: false,
-          success: function (data) {
-            var msg=JSON.parse(data)
-            swal({
-              type:msg.status,
-              text: msg.msg,
 
-              confirmButtonText: "Ok!",
-            }, function(){
-              window.location.reload();
-            });
-            setTimeout(function() {
-              window.location.reload();
-            }, 1000);
-
-          }
-      });
-    }, function (dismiss) {
-    if (dismiss === 'cancel') {}
-  })
-
+    console.log(formData);
+    return false;
 });
 $("form#course").submit(function(){
     //var file = document.forms['data']['filexcel'].files[0];
