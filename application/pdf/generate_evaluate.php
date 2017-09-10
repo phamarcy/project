@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once(__DIR__.'/../config/configuration_variable.php');
 require_once(__DIR__.'/../class/manage_deadline.php');
 require_once(__DIR__.'/../class/approval.php');
@@ -108,6 +109,7 @@ if(isset($_POST['DATA']))
     $DATA['SEMESTER'] = $semester;
     $DATA['FILE_PATH'] = $file_path;
     $DATA['APPROVED'] = array();
+		$DATA['APPROVED']['ID'] = $_POST['APPROVER_ID'];
     for($i=0;$i<$num_section;$i++)
     {
       $data = array();
@@ -120,7 +122,7 @@ if(isset($_POST['DATA']))
 			{
 				$return['status'] = "error";
 				$return['msg'] = "ไม่สามารถสร้าง pdf ได้";
-				$LOG->Write("Generating pdf error : ".$return_pdf);
+				$log->Write("Generating pdf error : ".$return_pdf);
 				echo  json_encode($return);
 			}
     }

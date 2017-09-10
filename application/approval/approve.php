@@ -103,16 +103,6 @@ else
           $return['status'] = 'error';
           $return['msg'] = "ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ";
         }
-        if($result)
-        {
-          $return['status'] = 'success';
-          $return['msg'] = "บันทึกสำเร็จ";
-        }
-        else
-        {
-          $return['status'] = 'error';
-          $return['msg'] = "ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ";
-        }
       }
       else //board approve
       {

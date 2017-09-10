@@ -54,16 +54,20 @@ class approval
     }
     if($teacher_id == 'all') //update all status with course_id
     {
-      $sql = "UPDATE `approval_course` SET `status`= '".$status."',`comment`= '".$comment."'";
+      $sql = "UPDATE `approval_course` SET `status`= '".$status."'";
       if($comment != null)
       {
         $sql .= ",`comment`= '".$comment."'";
       }
       $sql .= " WHERE `course_id` = '".$course_id."'";
+      if((int)$status <= 4 )
+      {
+        $sql .= " AND `level_approve` = '".$level_approve."'";
+      }
     }
     else //update specific teacher_id,course_id
     {
-      $sql = "UPDATE `approval_course` SET `status`= '".$status."',`level_approve` = '".$level_approve."'";
+      $sql = "UPDATE `approval_course` SET `status`= '".$status."'";
       if($comment != null)
       {
         $sql .= ",`comment`= '".$comment."'";
@@ -71,6 +75,7 @@ class approval
       $sql .= " WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."'";
     }
     $sql .= " AND `semester_id` = ".$this->SEMESTER_ID;
+    // die($sql);
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
@@ -114,6 +119,7 @@ class approval
     $data['SUBMIT_TYPE'] = '3';
     $data['COURSE_ID'] = $course_id;
     $DATA['DATA'] = json_encode($data);
+    $DATA['APPROVER_ID'] = $_SESSION['id'];
     $url = "application/pdf/generate_evaluate.php";
     $result = $this->CURL->Request($DATA,$url);
     return $result;
