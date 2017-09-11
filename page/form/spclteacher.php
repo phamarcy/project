@@ -917,13 +917,14 @@ $current = $dlobj->Get_Current_Semester();
         if($(this).val()=="yet")
         {
           $('#cvlist').hide();
-          $('input[name=cv]').prop('required', 'false');
+          $('input[name=cv]').prop('required', false);
         }
         else {
           $('#cvlist').show();
-          $('input[name=cv]').prop('required', 'true');
+          $('input[name=cv]').prop('required', true);
         }
       });
+
 
       //submitfunction
       $( '#form1' ).submit( function( event ) {
