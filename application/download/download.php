@@ -4,22 +4,34 @@ require_once(__DIR__."/../config/configuration_variable.php");
 
 
 
-function add_zip($zip,$course)
+function add_zip($zip,$course,$type)
 {
   global $path_file,$year,$semester;
-  $zip->addEmptyDir($course);
-  $doc_path = $path_file."/".$course."/evaluate";
-  $doc_file = scandir($doc_path);
-  $count = count($doc_file);
-  for($i=2;$i<$count;$i++)
+  if($type == 'special')
   {
-    $doc_file_name = substr($doc_file[$i],0,-4);
-    $prefix = explode("_",$doc_file_name);
-    if($prefix[0] == $course && $prefix[3] == $semester && $prefix[4] == $year)
+    $type = 'special_instructor';
+  }
+  $doc_path = $path_file."/".$course."/".$type;
+  if(is_dir($doc_path))
+  {
+    $doc_file = scandir($doc_path);
+    $count = count($doc_file);
+    if($count>2)
     {
-       $zip->addFile($doc_path."/".$doc_file[$i],$course."/".$doc_file[$i]);
+        $zip->addEmptyDir($course);
+    }
+    for($i=2;$i<$count;$i++)
+    {
+      $doc_file_name = substr($doc_file[$i],0,-4);
+      $prefix = explode("_",$doc_file_name);
+      $count_prefix = count($prefix);
+      if($prefix[0] == $course && $prefix[$count_prefix-2] == $semester && $prefix[$count_prefix-1] == $year)
+      {
+         $zip->addFile($doc_path."/".$doc_file[$i],$course."/".$doc_file[$i]);
+      }
     }
   }
+
 }
 
 if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) && isset($_GET['info']))
@@ -31,7 +43,7 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
   $type = $_GET['info'];
 
   $zip = new ZipArchive();
-  $zip_file = $path_file."/report_".$course."_".$semester."_".$year.".zip";
+  $zip_file = $path_file."/report_".$type."_".$course."_".$semester."_".$year.".zip";
   if(file_exists($zip_file))
   {
     unlink($zip_file);
@@ -44,7 +56,7 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
   //get specific course in semester
   if($course != 'all')
   {
-    add_zip($zip,$course);
+    add_zip($zip,$course,$type);
   }
   else
   {
@@ -55,7 +67,7 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
     {
       if(is_dir($path_file."/".$course_folder[$i]))
       {
-        add_zip($zip,$course_folder[$i]);
+        add_zip($zip,$course_folder[$i],$type);
       }
     }
   }
@@ -69,6 +81,7 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
   else
   {
     $zip->close();
+    die;
     header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
     header('Content-Disposition: attachment; filename="'.basename($zip_file).'"');
