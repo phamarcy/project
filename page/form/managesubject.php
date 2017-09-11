@@ -113,10 +113,7 @@ echo "</pre>";*/
                                   <label for="">เพิ่มคณะกรรมการ</label>
                                   <div class="form-inline">
                                     <input type="text" class="form-control " name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" required>
-                                    <input type="hidden" name="group" value="1">
-                                    <input type="hidden" name="type" value="add">
-                                    <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                    <button name="submit" class="btn btn-outline btn-primary" onclick="addgroup(1,1,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
+                                    <button  type="button" class="btn btn-outline btn-primary" onclick="teacherGroup(1,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
                                   </div>
                                   <datalist id="dtl1"></datalist>
                              </form>
@@ -132,15 +129,12 @@ echo "</pre>";*/
                                 <tbody>
 
                                       <?php foreach ($assessor[0]['assessor'] as $key_assessor => $assessor_name): ?>
-                                        <form id='dataremove'  method="post">
-                                          <input type="hidden" name="teacher"  id="name_assessor" value="<?php echo $assessor_name ?>">
-                                          <input type="hidden" name="type" id="remove_assessor"  value="remove">
-                                          <input type="hidden" name="group" value="1">
-                                          <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                        <form >
+                                          <input type="hidden" name="teacher"  id="name_assessor1" value="<?php echo $assessor_name ?>">
                                         <tr>
                                             <td><?php echo $key_assessor+1; ?></td>
                                             <td><?php echo $assessor_name ?></td>
-                                            <td><button type="submit" name="button" class="btn btn-outline btn-danger" value='delete'>ลบ</button></td>
+                                            <td><button type="button" name="button" class="btn btn-outline btn-danger" onclick="teacherGroup(1,'remove',<?php echo $department['code']  ?>,'<?php echo $assessor_name ?>')">ลบ</button></td>
                                         </tr>
                                         </form>
                                       <?php endforeach; ?>
@@ -165,10 +159,7 @@ echo "</pre>";*/
                                     <label for="">เพิ่มคณะกรรมการ</label>
                                     <div class="form-inline">
                                       <input type="text" required class="form-control " name="teacher" id="TEACHERLEC_2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'committee');" >
-                                      <input type="hidden" name="group" value="2">
-                                      <input type="hidden" name="type" value="add">
-                                      <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
-                                      <button name="button" class="btn btn-outline btn-primary" onclick="addgroup(2,2,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
+                                      <button  type="button" class="btn btn-outline btn-primary" onclick="teacherGroup(2,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
                                     </div>
                                     <datalist id="dtl2"></datalist>
                                </form>
@@ -185,15 +176,13 @@ echo "</pre>";*/
                                 <tbody>
 
                                       <?php foreach ($assessor[1]['assessor'] as $key_assessor => $assessor_name): ?>
-                                        <form id='dataremove'  method="post">
-                                          <input type="hidden" name="teacher"  id="name_assessor" value="<?php echo $assessor_name ?>">
-                                          <input type="hidden" name="type" id="remove_assessor"  value="remove">
-                                          <input type="hidden" name="group" value="2">
-                                          <input type="hidden" name="department" value="<?php echo $department['code']  ?>">
+                                        <form >
+                                          <input type="hidden" name="teacher"  id="name_assessor2" value="<?php echo $assessor_name ?>">
+
                                         <tr>
                                             <td><?php echo $key_assessor+1; ?></td>
                                             <td><?php echo $assessor_name ?></td>
-                                            <td><button type="submit" name="button" class="btn btn-outline btn-danger" value='delete'>ลบ</button></td>
+                                            <td><button type="button" name="button" class="btn btn-outline btn-danger" onclick="teacherGroup(2,'remove',<?php echo $department['code']  ?>,'<?php echo $assessor_name ?>')">ลบ</button></td>
                                         </tr>
                                         </form>
                                       <?php endforeach; ?>
@@ -398,174 +387,47 @@ echo "</pre>";*/
 
     </div>
 <script type="text/javascript">
-function addgroup(teacher,group,type,department) {
-  console.log(teacher,group,type,department);
-  var text = "TEACHERLEC_"+group;
-  var confirmPass = document.getElementById(text).value;
-  if (!confirmPass) {
-    swal({
-      type:"warning",
-      text: "กรุณากรอกข้อมูลให้ครบ",
-      confirmButtonText: "Ok!",
-    });
-    return false;
-  }
-  $.ajax({
-      url: '../../application/subject/group.php',
-      type: 'POST',
-      data: {
-        teacher : teacher,
-        group : group,
-        type : type,
-        department :department_id
-      },
-      async: false,
-      cache: false,
-      contentType: false,
-      processData: false,
-      success: function (data) {
-        var msg=JSON.parse(data)
+function teacherGroup(group,type,department){
+  if (type=='add') {
+    var text = "TEACHERLEC_"+group;
+    var element = document.getElementById(text).value;
+      if (!element) {
         swal({
-          type:msg.status,
-          text: msg.msg,
-
-          confirmButtonText: "Ok!",
-        }, function(){
-          window.location.reload();
+          type:"warning",
+          text: "กรุณากรอกข้อมูลให้ครบ",
+          confirmButtonText: "ตกลง!",
         });
-        setTimeout(function() {
-          window.location.reload();
-        }, 1000);
-
+        return false;
       }
-  });
-  return false;
-}
-function  deletestaff(teacher,group,depertment){
 
-  $.ajax({
-    url:,
-    data:,
-    async: false,
-    cache: false,
-    contentType: false,
-    processData: false,
-    success: function(data){
-
-    }
-  });
-}
-function  deletegroup(teacher,group,depertment){
-  $.ajax({
-    url:,
-    data:,
-    async: false,
-    cache: false,
-    contentType: false,
-    processData: false,
-    success: function(data){
-
-    }
-  });
-}
-
-$("form#dataremove").submit(function(){
-
-    //var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
-
-    console.log(formData);
-    return false;
-});
-$("form#course").submit(function(){
-    //var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
-    //console.log(formData);
-    swal({
-      title: 'แน่ใจหรือไม่',
-      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
-      type: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'ตกลง',
-      cancelButtonText: 'ยกเลิก'
-    }).then(function () {
-      $.ajax({
-          url: '../../application/subject/responsible_course_department.php',
-          type: 'POST',
-          data: formData,
-          async: false,
-          cache: false,
-          contentType: false,
-          processData: false,
-          success: function (data) {
-            var msg=JSON.parse(data)
-            swal({
-              type:msg.status,
-              text: msg.msg,
-              timer: 2000,
-              confirmButtonText: "Ok!",
-            }, function(){
-              window.location.reload();
-            });
-            setTimeout(function() {
-              window.location.reload();
-            }, 1000);
-          }
-      });
-    }, function (dismiss) {
-    if (dismiss === 'cancel') {}
-  })
-
-});
-$("form#staff").submit(function(){
-    //var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
-    //console.log(formData);
-    swal({
-      title: 'แน่ใจหรือไม่',
-      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
-      type: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'ตกลง',
-      cancelButtonText: 'ยกเลิก'
-    }).then(function () {
-      $.ajax({
-          url: '../../application/subject/responsible_staff.php',
-          type: 'POST',
-          data: formData,
-          async: false,
-          cache: false,
-          contentType: false,
-          processData: false,
-          success: function (data) {
-            var msg=JSON.parse(data)
-            swal({
-              type:msg.status,
-              text: msg.msg,
-              timer: 2000,
-              confirmButtonText: "Ok!",
-            }, function(){
-              window.location.reload();
-            });
-            setTimeout(function() {
-              window.location.reload();
-            }, 1000);
-          }
-      });
-    }, function (dismiss) {
-    if (dismiss === 'cancel') {}
-  })
-
-});
-
-$("form#remove").submit(function(){
-    //var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
-    //console.log(formData);
+        $.ajax({
+            url: '../../application/subject/group.php',
+            type: 'POST',
+            data: {
+              group:group,
+              teacher:element,
+              type:type,
+              department:department,
+            },
+            success: function (data) {
+              var msg=JSON.parse(data)
+              swal({
+                type:msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!",
+              }, function(){
+                window.location.reload();
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 1000);
+            }
+        });
+  }
+  if(type=='remove'){
+    var text = "name_assessor"+group;
+    var element = document.getElementById(text).value;
     swal({
       title: 'แน่ใจหรือไม่',
       text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
@@ -576,55 +438,52 @@ $("form#remove").submit(function(){
       confirmButtonText: 'ตกลง',
       cancelButtonText: 'ยกเลิก'
     }).then(function () {
-      $.ajax({
-          url: '../../application/subject/responsible_course_department.php',
-          type: 'POST',
-          data: formData,
-          async: false,
-          cache: false,
-          contentType: false,
-          processData: false,
-          success: function (data) {
-            var msg=JSON.parse(data)
-            swal({
-              type:msg.status,
-              text: msg.msg,
-              timer: 2000,
-              confirmButtonText: "Ok!",
-            }, function(){
-              window.location.reload();
-            });
-            setTimeout(function() {
-              window.location.reload();
-            }, 1000);
-          }
-      });
+
+        $.ajax({
+            url: '../../application/subject/group.php',
+            type: 'POST',
+            data: {
+              group:group,
+              teacher:element,
+              type:type,
+              department:department,
+            },
+            success: function (data) {
+              var msg=JSON.parse(data)
+              swal({
+                type:msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!",
+              }, function(){
+                window.location.reload();
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 1000);
+            }
+        });
+
     }, function (dismiss) {
     if (dismiss === 'cancel') {}
   })
+  }
 
-});
-function add(){
 
-  var hidden = document.getElementById('hidden').value;
-  var type ="add_oldcourse";
-  var dep = <?php echo $dep_js ?>;
-  //console.log(dep);
-  swal({
-    title: 'แน่ใจหรือไม่',
-    text: 'คุณต้องกาเพิ่มวิชาใช่หรือไม่',
-    type: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'ตกลง',
-    cancelButtonText: 'ยกเลิก'
-  }).then(function () {
+}
+
+$("form#course").submit(function(){
+    //var file = document.forms['data']['filexcel'].files[0];
+    var formData = new FormData(this);
+    //console.log(formData);
     $.ajax({
         url: '../../application/subject/responsible_course_department.php',
         type: 'POST',
-        data: { course : hidden, type : type, dep:dep} ,
-        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
         success: function (data) {
           var msg=JSON.parse(data)
           swal({
@@ -638,15 +497,116 @@ function add(){
           setTimeout(function() {
             window.location.reload();
           }, 1000);
-        },
-        error: function () {
-            alert("error");
         }
     });
+    return false;
+});
+$("form#staff").submit(function(){
+    //var file = document.forms['data']['filexcel'].files[0];
+    var formData = new FormData(this);
+    //console.log(formData);
+    $.ajax({
+        url: '../../application/subject/responsible_staff.php',
+        type: 'POST',
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          var msg=JSON.parse(data)
+          swal({
+            type:msg.status,
+            text: msg.msg,
+            timer: 2000,
+            confirmButtonText: "Ok!",
+          }, function(){
+            window.location.reload();
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 1000);
+        }
+    });
+    return false;
+});
+
+$("form#remove").submit(function(){
+  swal({
+    title: 'แน่ใจหรือไม่',
+    text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
+    type: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'ตกลง',
+    cancelButtonText: 'ยกเลิก'
+  }).then(function () {
+
+    $.ajax({
+        url: '../../application/subject/responsible_course_department.php',
+        type: 'POST',
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          var msg=JSON.parse(data)
+          swal({
+            type:msg.status,
+            text: msg.msg,
+            timer: 2000,
+            confirmButtonText: "Ok!",
+          }, function(){
+            window.location.reload();
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 1000);
+        }
+    });
+
   }, function (dismiss) {
   if (dismiss === 'cancel') {}
 })
+    //var file = document.forms['data']['filexcel'].files[0];
+    var formData = new FormData(this);
+    //console.log(formData);
 
+    return false;
+});
+function add(){
+
+  var hidden = document.getElementById('hidden').value;
+  var type ="add_oldcourse";
+  var dep = <?php echo $dep_js ?>;
+  //console.log(dep);
+  $.ajax({
+      url: '../../application/subject/responsible_course_department.php',
+      type: 'POST',
+      data: { course : hidden, type : type, dep:dep} ,
+      contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+      success: function (data) {
+        var msg=JSON.parse(data)
+        swal({
+          type:msg.status,
+          text: msg.msg,
+          timer: 2000,
+          confirmButtonText: "Ok!",
+        }, function(){
+          window.location.reload();
+        });
+        setTimeout(function() {
+          window.location.reload();
+        }, 1000);
+      },
+      error: function () {
+          alert("error");
+      }
+  });
+
+  return false;
 }
 function submitForm(num,text){
 
@@ -656,7 +616,6 @@ function submitForm(num,text){
   JSON.stringify(dep_id);
   data.append("semester_id",num);
   data.append("department_id",dep_id);
-
 
     $.ajax({
         url: '../../application/subject/responsible_history.php',

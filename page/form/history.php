@@ -94,10 +94,13 @@ div[class^="col-"] {
                           </tr>
                         </thead>
                         <tbody>
+                          <?php foreach ($history['comment'] as $key => $value): ?>
+
+                          <?php endforeach; ?>
                           <tr>
-                            <td>1</td>
-                            <td >463681</td>
-                            <td>INDUSTRIAL PHARMACY CLERKSHIP IN PRODUCTION 1</td>
+                            <td><?php echo $key+1 ?></td>
+                            <td ><?php echo $history['id'] ?></td>
+                            <td><?php echo $history['name'] ?></td>
                             <td style="text-align:center;">1/2559</td>
                             <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463681" class="accordion-toggle">ดูข้อมูล</button></td>
                           </tr>
