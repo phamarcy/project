@@ -103,15 +103,14 @@ $current = $dlobj->Get_Current_Semester();
    document.getElementById('email').value = temp['TEACHERDATA']['EMAIL'];
    var choice1 = temp['TEACHERDATA']['HISTORY'];
    $('input[name="topic"][value=' + choice1 + ']').prop('checked', true);
-   var topic = $("input[name='topic']").val();
-   if(topic=="yet")
+   if(document.querySelector("input[name='topic']:checked").value=="yet")
      {
        $('#cvlist').hide();
-       $('input[name=cv]').prop('required', 'false');
+       $('input[name=cv]').prop('required', false);
      }
      else {
        $('#cvlist').show();
-       $('input[name=cv]').prop('required', 'true');
+       $('input[name=cv]').prop('required', true);
      }
 
 
@@ -1298,7 +1297,7 @@ function lastcal() {
       <li  style="font-size: 14px;" >
         <b>เลือกไฟล์ Curriculum Vitae (CV) เพื่ออัพโหลด : </b><br />
       <div class="col-md-5 form-inline form-group">
-        <input type="file" class="filestyle" id="cv" data-icon="false"><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
+        <input type="file" class="filestyle" id="cv" name="cv" data-icon="false"><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
       </div>
       </li>
     </ol>
