@@ -401,8 +401,30 @@ function checkreq(casesubmit) {
 
 }
 
-function confreset() {
-    confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
+function confreset(casereset) {
+    //confirm("ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่");
+    swal({
+      title: 'แน่ใจหรือไม่',
+      text: "ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then(function () {
+      document.getElementById("form1").reset();
+      swal(
+        'เคลียร์!',
+        'รีเซ็ตข้อมูลเรียบร้อยแล้ว',
+        'success'
+      )
+    }, function (dismiss) {
+    // dismiss can be 'cancel', 'overlay',
+    // 'close', and 'timer'
+    if (dismiss === 'cancel') {
+
+    }
+  })
 }
 
 
