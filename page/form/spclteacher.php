@@ -103,7 +103,7 @@ $current = $dlobj->Get_Current_Semester();
    document.getElementById('email').value = temp['TEACHERDATA']['EMAIL'];
    var choice1 = temp['TEACHERDATA']['HISTORY'];
    $('input[name="topic"][value=' + choice1 + ']').prop('checked', true);
-   if(document.querySelector("input[name='topic']:checked").value=="yet")
+   if(document.querySelector("input[name='topic']:checked").value=="already")
      {
        $('#cvlist').hide();
        $('input[name=cv]').prop('required', false);
@@ -914,7 +914,7 @@ $current = $dlobj->Get_Current_Semester();
 
       //cvlist
       $("input[name='topic']").change(function(){
-        if($(this).val()=="yet")
+        if($(this).val()=="already")
         {
           $('#cvlist').hide();
           $('input[name=cv]').prop('required', false);
@@ -1189,8 +1189,8 @@ function lastcal() {
           <li>ประวัติการเชิญมาสอน <br>
               <div class="form-group">
                 <div class="radio">
-                <input type="radio" name="topic" id="topic" value="yet" required checked> &nbsp;เคยเชิญมาสอน
-                &nbsp;<input type="radio" name="topic" id="topic" value="already"> &nbsp;ไม่เคยเชิญมาสอน
+                <input type="radio" name="topic" id="topic" value="already" required checked> &nbsp;เคยเชิญมาสอน
+                &nbsp;<input type="radio" name="topic" id="topic" value="yet"> &nbsp;ไม่เคยเชิญมาสอน
               </div>
             </div>
             </li>

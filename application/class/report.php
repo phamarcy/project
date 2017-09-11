@@ -5,6 +5,10 @@ require_once(__DIR__.'/curl.php');
 require_once(__DIR__."/course.php");
 require_once(__DIR__."/person.php");
 require_once(__DIR__."/../config/configuration_variable.php");
+require_once(__DIR__."/../../page/vendor/PHPMailer/PHPMailerAutoload.php");
+require_once(__DIR__."/../../page/vendor/autoload.php");
+
+use Mailgun\Mailgun;
 /**
  *
  */
@@ -263,6 +267,116 @@ class Report
   {
     $this->DB->Close_connection();
   }
+
+  public function Sendemail($data,$email)
+  {
+    global $EMAIL;
+    $type = $data['TYPE'];
+    if($type=='EVALUATE')
+    {
+
+    }
+    else {
+      $name = $data['NAME'];
+    }
+
+    $course_id = $data['COURSE_ID'];
+    $status = $data['STATUS'];
+
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+    $mail->SMTPDebug = $EMAIL['SMTPDebug'];
+    $mail->SMTPAuth = $EMAIL['SMTPAuth'];
+    $mail->SMTPSecure = $EMAIL['SMTPSecure'];
+    $mail->Host = $EMAIL['Host'];
+    $mail->Port = $EMAIL['Port'];
+    $mail->IsHTML(true);
+    $mail->Username = $EMAIL['Username'];
+    $mail->Password = $EMAIL['Password'];
+    $mail->SetFrom($EMAIL['SETFROM']);
+    $sendsubject = "=?utf-8?b?".base64_encode('ระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่')."?=";
+    $mail->Subject = $sendsubject;
+
+      if($type=='EVALUATE')
+        {
+          switch ($status) {
+              case '0':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id."<br>"."แบบวัดประเมินผลของท่านอยู่ระหว่างการกรอกข้อมูล";
+                  break;
+              case '1':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id."<br>"."แบบวัดประเมินผลของท่านอยู่ระหว่างการรอพิจารณา";
+                  break;
+              case '2':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id."<br>"."คณะกรรมการไม่เห็นชอบกับแบบวัดประเมินผลของท่าน";
+                  break;
+              case '3':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id."<br>"."แบบวัดประเมินผลของท่านต้องมีการแก้ไข";
+                  break;
+              case '4':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id."<br>"."แบบวัดประเมินผลของท่านเห็นชอบจากคณะกรรมการระดับภาคแล้ว";
+                  break;
+              case '5':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id."<br>"."แบบวัดประเมินผลของท่านอยู่ระหว่างการรอคณะกรรมการอนุมัติ";
+                  break;
+              case '6':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id."<br>"."แบบวัดประเมินผลของท่านต้องมีการแก้ไข";
+                  break;
+              case '7':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id."<br>"."แบบวัดประเมินผลของท่านได้รับการเห็นชอบจากคณะกรรมการแล้ว";
+                  break;
+                default:
+                  return 'error';
+                  break;
+          }
+
+        }
+        elseif ($type=='SPECIAL')
+        {
+          switch ($status) {
+              case '0':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id." ผู้รับผิดชอบกระบวนวิชา คุณ".$name."<br>"."แบบขออนุมัติเชิญอาจารย์พิเศษของท่านอยู่ระหว่างการกรอกข้อมูล";
+                  break;
+              case '1':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id." ผู้รับผิดชอบกระบวนวิชา คุณ".$name."<br>"."แบบขออนุมัติเชิญอาจารย์พิเศษของท่านอยู่ระหว่างการรอพิจารณา";
+                  break;
+              case '2':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id." ผู้รับผิดชอบกระบวนวิชา คุณ".$name."<br>"."คณะกรรมการไม่เห็นชอบกับแบบขออนุมัติเชิญอาจารย์พิเศษของท่าน";
+                  break;
+              case '3':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id." ผู้รับผิดชอบกระบวนวิชา คุณ".$name."<br>"."แบบขออนุมัติเชิญอาจารย์พิเศษของท่านต้องมีการแก้ไข";
+                  break;
+              case '4':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id." ผู้รับผิดชอบกระบวนวิชา คุณ".$name."<br>"."แบบขออนุมัติเชิญอาจารย์พิเศษของท่านเห็นชอบจากคณะกรรมการระดับภาคแล้ว";
+                  break;
+              case '5':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id." ผู้รับผิดชอบกระบวนวิชา คุณ".$name."<br>"."แบบขออนุมัติเชิญอาจารย์พิเศษของท่านอยู่ระหว่างการรอคณะกรรมการอนุมัติ";
+                  break;
+              case '6':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id." ผู้รับผิดชอบกระบวนวิชา คุณ".$name."<br>"."แบบขออนุมัติเชิญอาจารย์พิเศษของท่านต้องมีการแก้ไข";
+                  break;
+              case '7':
+                  $bodystring = "รหัสกระบวนวิชา ".$course_id." ผู้รับผิดชอบกระบวนวิชา คุณ".$name."<br>"."แบบขออนุมัติเชิญอาจารย์พิเศษของท่านได้รับการเห็นชอบจากคณะกรรมการแล้ว";
+                  break;
+                default:
+                  return 'error';
+                  break;
+          }
+        }
+
+        $bodystring = $bodystring."<br><br>----อีเมล์นี้ส่งจากระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่----";
+
+        $mail->Body = $bodystring;
+        $mail->AddAddress($email);
+
+         if(!$mail->Send()) {
+            $email_status = 'sending error';
+         } else {
+            $email_status = 'sent';
+         }
+
+         echo "<br><br>".$email_status;
+  } //end email
+
 }
 
 
