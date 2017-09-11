@@ -285,7 +285,7 @@ class Report
 
     $mail = new PHPMailer();
     $mail->IsSMTP();
-    $mail->SMTPDebug = $EMAIL['SMTPDebug'];
+    //$mail->SMTPDebug = $EMAIL['SMTPDebug'];
     $mail->SMTPAuth = $EMAIL['SMTPAuth'];
     $mail->SMTPSecure = $EMAIL['SMTPSecure'];
     $mail->Host = $EMAIL['Host'];

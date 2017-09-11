@@ -918,10 +918,16 @@ $current = $dlobj->Get_Current_Semester();
         {
           $('#cvlist').hide();
           $('input[name=cv]').prop('required', false);
+          $('#submitbtn').removeClass("disabled");
+          $('#submitbtn').removeClass("disabled");
+          $("#submitbtn").prop("disabled", false);
+          $('#cvdanger').removeClass("has-error");
+          $('#cvdanger').removeClass("has-danger");
         }
         else {
           $('#cvlist').show();
           $('input[name=cv]').prop('required', true);
+
         }
       });
 
@@ -1121,7 +1127,7 @@ function lastcal() {
       </center>
 
       <div id="dlhide" class="panel panel-default"> <br>
-      <form data-toggle="validator" role="form" name="form1" id="form1" method="post">
+      <form name="form1" id="form1" data-toggle="validator" role="form"  method="post">
       <div class="row form-inline" style="font-size:16px;">
         <center><div class="form-group">
       ภาควิชา
@@ -1304,7 +1310,7 @@ function lastcal() {
       </li>
       <li  style="font-size: 14px;" >
         <b>เลือกไฟล์ Curriculum Vitae (CV) เพื่ออัพโหลด : </b><br />
-      <div class="col-md-5 form-inline form-group">
+      <div id="cvdanger" class="col-md-5 form-inline form-group">
         <input type="file" class="filestyle" id="cv" name="cv" data-icon="false"><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
       </div>
       </li>
