@@ -329,8 +329,9 @@ class approval
     }
     else if ($this->USER_LEVEL == 2)
     {
+      $dept_id = $this->PERSON->Get_Staff_Dep($user_id);
       $sql = "SELECT `course_id` FROM `department_course_responsible`
-      WHERE `department_id` = '1202' AND `semester_id` = '".$this->SEMESTER_ID."'";
+      WHERE `department_id` = '".$dept_id['code']."' AND `semester_id` = '".$this->SEMESTER_ID."'";
     }
     else if ($this->USER_LEVEL == 3)
     {
