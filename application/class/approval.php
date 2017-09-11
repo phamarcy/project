@@ -248,7 +248,7 @@ class approval
         for($i=0;$i<count($result);$i++)
         {
           $sql = "INSERT INTO `approval_course`(`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`)
-          VALUES ('".$result[$i]['teacher_id']."','".$course_id."',1,'1',".$this->SEMESTER_ID.")";
+          VALUES ('".$result[$i]['teacher_id']."','".$course_id."',1,'0',".$this->SEMESTER_ID.")";
           $approve_result = $this->DB->Insert_Update_Delete($sql);
           if($approve_result == false)
           {
