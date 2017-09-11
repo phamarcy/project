@@ -5,10 +5,6 @@ require_once(__DIR__.'/curl.php');
 require_once(__DIR__."/course.php");
 require_once(__DIR__."/person.php");
 require_once(__DIR__."/../config/configuration_variable.php");
-require_once(__DIR__."/../lib/PHPMailer/PHPMailerAutoload.php");
-require_once(__DIR__."/../lib/autoload.php");
-
-use Mailgun\Mailgun;
 /**
  *
  */
@@ -266,41 +262,6 @@ class Report
   public function Close_connection()
   {
     $this->DB->Close_connection();
-  }
-
-  public function Sendemail($status,$email)
-  {
-    $email_status = '';
-    if($status=='success') //ครบ 7 คน
-    {
-      $mail = new PHPMailer();
-      $mail->IsSMTP();
-      $mail->SMTPDebug = $EMAIL['SMTPDebug'];
-      $mail->SMTPAuth = $EMAIL['SMTPAuth'];
-      $mail->SMTPSecure = $EMAIL['SMTPSecure'];
-      $mail->Host = $EMAIL['Host'];
-      $mail->Port = $EMAIL['Port']; // or 587
-      $mail->IsHTML(true);
-      $mail->Username = $EMAIL['Username'];
-      $mail->Password = $EMAIL['Password'];
-      $mail->SetFrom($EMAIL['SETFROM']);
-      $mail->Subject = "ระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่";
-      if($status)
-      {
-        $mail->Body = "";
-        $mail->AddAddress($email);
-
-         if(!$mail->Send()) {
-            $email_status = 'sending error';
-         } else {
-            $email_status = 'sent';
-         }
-      }
-
-    }
-    else { //อนุมัติยังไม่ครบ
-      return 'error';
-    }
   }
 }
 
