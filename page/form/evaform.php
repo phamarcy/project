@@ -597,6 +597,7 @@ function checksubject(btntype,type){
 
   if(btntype==1)
   {
+    document.getElementById("form1").reset();
     var file_data = new FormData;
     var course_id = document.getElementById('id').value;
     JSON.stringify(course_id);
@@ -1419,7 +1420,7 @@ function other_type() {
 
 
 function checkreq(casesubmit) {
-  if(casesubmit=='1')
+  if(casesubmit=='1'||casesubmit=='2')
   {
     if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
     {

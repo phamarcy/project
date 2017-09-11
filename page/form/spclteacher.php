@@ -213,6 +213,7 @@ $current = $dlobj->Get_Current_Semester();
  function checksubject(btntype,type){
    if(btntype==1)
    {
+     document.getElementById("form1").reset();
      var file_data = new FormData;
      var course_id = document.getElementById('id').value;
      JSON.stringify(course_id);
@@ -294,6 +295,12 @@ $current = $dlobj->Get_Current_Semester();
         });
    }
    else if (btntype==2) {
+     var rowtr = ($('#detailteaching tr').length)-2
+     for (var i = 1; i <=rowtr; i++) {
+       var row = document.getElementById('row' + i);
+       row.parentNode.removeChild(row);
+     }
+
      var file_data = new FormData;
      var teachername_temp = document.getElementById('teachername').value;
      var stringspl = teachername_temp.split("_");
