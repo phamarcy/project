@@ -41,6 +41,11 @@
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 
   <link rel="stylesheet" href="../dist/css/scrollbar.css">
+
+
+  <script src="../dist/js/sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
+
   <style>
   input[type=text],input[type=number]{
     height: 30px;
@@ -316,6 +321,37 @@ $(document).ready(function(){
 
     });
 
+    $( '#form1' ).submit( function( event ) {
+      event.preventDefault();
+
+      var fail = false;
+      var fail_log = '';
+      $( '#form1' ).find( 'select, textarea,input' ).each(function(){
+          if( ! $( this ).prop( 'required' )){
+
+          } else {
+              if ( ! $( this ).val() ) {
+                  fail = true;
+                  name = $( this ).attr( 'name' );
+                  fail_log += name + " is required \n";
+              }
+
+          }
+      });
+
+      if ( ! fail ) {
+        checkreq('1');
+      } else {
+        swal(
+          '',
+          'กรุณากรอกข้อมูลให้ครบถ้วน',
+          'error'
+        )
+        return false;
+      }
+
+      });
+
 });
 
 function other_type() {
@@ -330,15 +366,39 @@ function other_type() {
 
 
 function checkreq(casesubmit) {
-  if($("[required]").val()!=null && $("[required]").val()!="")
-  {
-    submitfunc(casesubmit);
-  }
-  else {
+    if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
+    {
+      swal({
+        title: 'แน่ใจหรือไม่',
+        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok',
+        cancelButtonText: 'Cancel'
+      }).then(function () {
+        submitfunc(casesubmit);
+      }, function (dismiss) {
+      // dismiss can be 'cancel', 'overlay',
+      // 'close', and 'timer'
+      if (dismiss === 'cancel') {
 
-    alert('กรุณากรอกข้อมูลให้ครบถ้วน');
-    return false;
-  }
+      }
+    })
+    }
+    else {
+
+      //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+      swal(
+        '',
+        'กรุณากรอกข้อมูลให้ครบถ้วน',
+        'error'
+      )
+      return false;
+    }
+
+
 }
 
 function confreset() {
@@ -360,7 +420,7 @@ function confreset() {
 </div>
 
 <div class="panel panel-default">
-<form data-toggle="validator" role="form" name="form1" id="form1" method="post">
+<form data-toggle="validator" role="form" name="form1" id="form1" method="post" onsubmit="checkreq('1')">
     <ol>
       <br>
       <li style="font-size: 14px">
@@ -525,7 +585,7 @@ function confreset() {
         </li>-->
     </ol>
     <div align="center">
-      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" onclick="checkreq('1')" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
+      <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
       <input type="reset" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
     </div>
 </form>
