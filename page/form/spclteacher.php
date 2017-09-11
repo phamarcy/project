@@ -1055,6 +1055,16 @@ function lastcal() {
           row.parentNode.removeChild(row);
         }
 
+        document.getElementById('formdrpd').style.display = "none";
+        var selectobject = document.getElementById('teachername');
+        var long = selectobject.length;
+        if(long!=0 && long!=null)
+        {
+          for (var i=0; i<=long; i++){
+            document.getElementsByName("teachername")[0].remove(0);
+          }
+        }
+
         swal(
           'เคลียร์!',
           'รีเซ็ตข้อมูลเรียบร้อยแล้ว',
