@@ -923,10 +923,14 @@ $current = $dlobj->Get_Current_Semester();
           $("#submitbtn").prop("disabled", false);
           $('#cvdanger').removeClass("has-error");
           $('#cvdanger').removeClass("has-danger");
+          $('#submitbtn2').show();
+          $('#submitbtn').hide();
         }
         else {
           $('#cvlist').show();
           $('input[name=cv]').prop('required', true);
+          $('#submitbtn2').hide();
+          $('#submitbtn').show();
 
         }
       });
@@ -1016,36 +1020,73 @@ function lastcal() {
   }
 
   function checkreq(casesubmit) {
-    if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
-    {
-      swal({
-      title: 'แน่ใจหรือไม่',
-      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
-      type: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Ok',
-      cancelButtonText: 'Cancel'
-    }).then(function () {
-      submitfunc(casesubmit);
-    }, function (dismiss) {
-    // dismiss can be 'cancel', 'overlay',
-    // 'close', and 'timer'
-    if (dismiss === 'cancel') {
 
-    }
-  })
+    if(casesubmit=='1'||casesubmit=='2')
+    {
+      if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
+      {
+        swal({
+        title: 'แน่ใจหรือไม่',
+        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok',
+        cancelButtonText: 'Cancel'
+      }).then(function () {
+        submitfunc(casesubmit);
+      }, function (dismiss) {
+      // dismiss can be 'cancel', 'overlay',
+      // 'close', and 'timer'
+      if (dismiss === 'cancel') {
+
+      }
+        })
+      }
+      else {
+
+        //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+        swal(
+          '',
+          'กรุณากรอกข้อมูลให้ครบถ้วน',
+          'error'
+        )
+        return false;
+        }
     }
     else {
+      if($("#course").val()!="" && $("#numstudent").val()!="" && $("#reason").val()!="" && $("#hour").val()!="")
+      {
+        swal({
+        title: 'แน่ใจหรือไม่',
+        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok',
+        cancelButtonText: 'Cancel'
+      }).then(function () {
+        submitfunc('1');
+      }, function (dismiss) {
+      // dismiss can be 'cancel', 'overlay',
+      // 'close', and 'timer'
+      if (dismiss === 'cancel') {
 
-      //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
-      swal(
-        '',
-        'กรุณากรอกข้อมูลให้ครบถ้วน',
-        'error'
-      )
-      return false;
+      }
+        })
+      }
+      else {
+
+        //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+        swal(
+          '',
+          'กรุณากรอกข้อมูลให้ครบถ้วน',
+          'error'
+        )
+        return false;
+        }
     }
   }
 
@@ -1318,6 +1359,7 @@ function lastcal() {
     <br>
     <br>
     <div align="center">
+      <input type="button" style="font-size: 18px; display:none;" class="btn btn-outline btn-success" name="submitbtn2" id="submitbtn2" value="ยืนยันเพื่อส่งข้อมูล" onclick="checkreq('0')"> &nbsp;
       <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2');"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">

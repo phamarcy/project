@@ -8,5 +8,5 @@ $data['TYPE'] = 'SPECIAL';
 $data['NAME'] = 'ณรงค์รัชต์ หงส์อัศวิน';
 $data['STATUS'] = '7';
 
-$sender->Sendemail($data,"b.narongrat.hongatsawin@gmail.com");
+$sender->Sendemail('รหัสอาจารย์',$data);
  ?>

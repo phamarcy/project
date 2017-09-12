@@ -268,9 +268,10 @@ class Report
     $this->DB->Close_connection();
   }
 
-  public function Sendemail($data,$email)
+  public function Sendemail($teacher_id,$data)
   {
     global $EMAIL;
+    $idobj = new Person;
     $type = $data['TYPE'];
     if($type=='EVALUATE')
     {
@@ -297,7 +298,7 @@ class Report
     $sendsubject = "=?utf-8?b?".base64_encode('ระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่')."?=";
     $mail->Subject = $sendsubject;
 
-      if($type=='EVALUATE')
+      if($type=='1')
         {
           switch ($status) {
               case '0':
@@ -330,7 +331,7 @@ class Report
           }
 
         }
-        elseif ($type=='SPECIAL')
+        elseif ($type=='2')
         {
           switch ($status) {
               case '0':
@@ -366,7 +367,13 @@ class Report
         $bodystring = $bodystring."<br><br>----อีเมล์นี้ส่งจากระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่----";
 
         $mail->Body = $bodystring;
-        $mail->AddAddress($email);
+        if($mail->AddAddress($idobj->Get_Teacher_Email($teacher_id)) == false)
+        {
+          return 'error: not found email';
+        }
+        else {
+          $mail->AddAddress($idobj->Get_Teacher_Email($teacher_id));
+        }
 
          if(!$mail->Send()) {
             $email_status = 'sending error';
