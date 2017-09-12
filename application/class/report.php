@@ -283,6 +283,8 @@ class Report
 
     $course_id = $data['COURSE_ID'];
     $status = $data['STATUS'];
+    $date = $data['DATE_USER'];
+    $time = $data['TIME_USER'];
 
     $mail = new PHPMailer();
     $mail->IsSMTP();
@@ -364,12 +366,13 @@ class Report
           }
         }
 
+        $bodystring = $bodystring." เมื่อวันที่ ".$date." เวลา ".$time;
         $bodystring = $bodystring."<br><br>----อีเมล์นี้ส่งจากระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่----";
 
         $mail->Body = $bodystring;
         if($mail->AddAddress($idobj->Get_Teacher_Email($teacher_id)) == false)
         {
-          return 'error: not found email';
+          echo 'error: not found email';
         }
         else {
           $mail->AddAddress($idobj->Get_Teacher_Email($teacher_id));
