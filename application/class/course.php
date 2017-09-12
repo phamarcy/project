@@ -460,7 +460,14 @@ class Course
   public function Get_Document($type,$course_id,$instructor_id,$teacher_id,$semester,$year)
   {
     //check responsible
-    $check_access = $this->Check_Access($teacher_id,$course_id);
+    if($teacher_id != null)
+    {
+      $check_access = $this->Check_Access($teacher_id,$course_id);
+    }
+    else
+    {
+      $check_access = null;
+    }
     if($type == 'evaluate')
     {
       $file_name = $course_id."_".$type."_".$semester."_".$year.".txt";

@@ -92,7 +92,7 @@ if(isset($_POST['DATA']))
 	else if($DATA['SUBMIT_TYPE'] == '3')
 	{
 		$course_id = $DATA['COURSE_ID'];
-		$DATA = $course->Get_Document('evaluate',$course_id,null,$semester['semester'],$semester['year']);
+		$DATA = $course->Get_Document('evaluate',$course_id,null,null,$semester['semester'],$semester['year']);
 		$DATA = json_decode($DATA,true);
 		$file_path = $FILE_PATH."/complete/".$DATA['COURSE_ID'];
 		if(!file_exists($file_path))
