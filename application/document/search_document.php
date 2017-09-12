@@ -33,7 +33,7 @@ if(isset($_POST['course_id']) && isset($_POST['type']))
     $semester = $_POST['semester'];
     $year = $_POST['year'];
 
-    $data = $course->Get_Document($type,$course_id,$instructor_id,$semester,$year);
+    $data = $course->Get_Document($type,$course_id,$instructor_id,$_SESSION['id'],$semester,$year);
     if($data == false)
     {
       $data['status'] = 'error';

@@ -460,9 +460,10 @@ class Course
     }
     return $data;
   }
-  public function Get_Document($type,$course_id,$instructor_id,$semester,$year)
+  public function Get_Document($type,$course_id,$instructor_id,$teacher_id,$semester,$year)
   {
-
+    //check responsible
+    $check_access = $this->Check_Access($teacher_id,$course_id);
     if($type == 'evaluate')
     {
       $file_name = $course_id."_".$type."_".$semester."_".$year.".txt";
@@ -483,7 +484,11 @@ class Course
     if (file_exists($file_path))
     {
       $data = file_get_contents($file_path);
-    } else
+      $data = json_decode($data,true);
+      $data['ACCESS'] = $check_access;
+      $data = json_encode($data);
+    }
+    else
     {
       $data = false;
     }
@@ -512,6 +517,22 @@ class Course
     }
     return $path;
   }
+
+  private function Check_Access($teacher_id,$course_id)
+  {
+    $sql = "SELECT `respon_id` FROM `course_responsible`
+    WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$this->SEMESTER['id'];
+    $result = $this->DB->Query($sql);
+    if($result != null)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
   public function Get_Grade($teacher_id)
   {
     $sql = "SELECT c.`course_id`,`course_name_en` as name FROM `course_responsible` cr,`course` c
