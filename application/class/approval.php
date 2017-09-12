@@ -88,12 +88,22 @@ class approval
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
+      if((int)$status == 1)
+      {
+        $sql = " DELETE FROM `approval_course` WHERE `course_id` = '".$course_id."' AND `level_approve` = '2' AND `semester_id` = ".$this->SEMESTER_ID;
+        $result_delete = $this->DB->Insert_Update_Delete($sql);
+        if(!$result_delete)
+        {
+          return false;
+        }
+      }
       $status_after = $this->Get_Doc_Status($course_id);
       if($status_before != $status_after)
       {
         $noti['COURSE_ID'] = $course_id;
         $noti['STATUS'] = (string)$status_after;
-        $noti['DATE'] = date("d-m-Y h:i:sa");
+        $noti['DATE_USER'] = date("d-m-Y");
+        $noti['TIME_USER'] = date("h:i:sa");
         $noti['TYPE'] = '1'; //1 evaluate , 2, special instructor
         $this->Sendemail($course_id,$noti);
         $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
@@ -198,7 +208,8 @@ class approval
         $noti['COURSE_ID'] = $course_id;
         $noti['STATUS'] = (string)$status_after;
         $noti['NAME'] = $this->PERSON->Get_Special_Instructor_Name($instructor_id);
-        $noti['DATE'] = date("d-m-Y h:i:sa");
+        $noti['DATE_USER'] = date("d-m-Y");
+        $noti['TIME_USER'] = date("h:i:sa");
         $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
         $this->Sendemail($course_id,$noti);
         $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));

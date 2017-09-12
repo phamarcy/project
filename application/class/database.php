@@ -43,7 +43,6 @@ class Database
     {
     	$data = array();
     	$result = $this->connection->query($sql);
-
     	if ($result)
 	    {
 	    	if ($result->num_rows > 0)
@@ -62,8 +61,10 @@ class Database
 		}
 		else
 		{
-			echo $this->connection->connect_error;
+			// echo $this->connection->connect_error;
+			$this->log->Write("sql error : " . $sql);
 			$this->log->Write("Query error : " . mysqli_error($this->connection));
+
 	    return false;
 		}
 
@@ -77,6 +78,7 @@ class Database
 			}
 			else
 			{
+				$this->log->Write("sql error : " . $sql);
 				$this->log->Write("Query error : " . mysqli_error($this->connection));
 				return false;
 			}

@@ -130,7 +130,7 @@
 				}
 
 				$(element).find("#course_id").text(data.COURSE_ID);
-				$(element).find("#date").text("เมื่อวันที่ "+data.DATE);
+				$(element).find("#date").text("เมื่อวันที่ "+data.DATE_USER+" เวลา "+data.TIME_USER);
 				console.log(data.TYPE);
 				if(data.TYPE == '1')
 				{
