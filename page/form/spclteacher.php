@@ -208,6 +208,14 @@ $current = $dlobj->Get_Current_Semester();
    document.getElementById('totalcost').value = temp['PAYMENT']['TOTALCOST'];
    $('#callist').show();
 
+   //buttondiv
+   if(temp['ACCESS'] == true)
+   {
+     $('#buttondiv').show();
+   }else {
+     $('#buttondiv').hide();
+   }
+
  }
 
  function checksubject(btntype,type){
@@ -1369,7 +1377,7 @@ function lastcal() {
     </ol>
     <br>
     <br>
-    <div align="center">
+    <div id="buttondiv" align="center">
       <input type="button" style="font-size: 18px; display:none;" class="btn btn-outline btn-success" name="submitbtn2" id="submitbtn2" value="ยืนยันเพื่อส่งข้อมูล" onclick="checkreq('0')"> &nbsp;
       <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2');"> &nbsp;

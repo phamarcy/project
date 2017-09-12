@@ -591,6 +591,13 @@ function getinfo(temp) {
   var choice5 = temp['ABSENT'];
   $('input[name="ABSENT"][value=' + choice5 + ']').prop('checked', true);
 
+  //buttondiv
+  if(temp['ACCESS'] == true)
+  {
+    $('#buttondiv').show();
+  }else {
+    $('#buttondiv').hide();
+  }
 }
 
 function checksubject(btntype,type){
@@ -2092,7 +2099,7 @@ function confreset(casereset) {
 
     </ol>
     <br><br>
-    <div align="center">
+    <div id="buttondiv" align="center">
       <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn"  value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2')"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset('1');" value="รีเซ็ตข้อมูล">
