@@ -37,7 +37,10 @@ if(isset($_POST['course_id']) && isset($_POST['type']))
     $data = $course->Get_Document($type,$course_id,$instructor_id,$semester,$year);
     if($data == false)
     {
-      echo "ไม่พบข้อมูล กรุณาติดต่อผู้ดูแลระบบ";
+      $data['status'] = 'error';
+      $data['msg'] = "ไม่พบข้อมูล กรุณาติดต่อผู้ดูแลระบบ";
+      echo json_encode($data);
+      die;
     }
     else
     {

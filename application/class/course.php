@@ -470,7 +470,7 @@ class Course
     else if ($type == 'special')
     {
       $type = "special_instructor";
-      $file_name = $instructor_id."_".$semester."_".$year.".txt";
+      $file_name = $course_id."_".$instructor_id."_".$semester."_".$year.".txt";
 
     }
     else

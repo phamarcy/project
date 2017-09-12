@@ -62,7 +62,7 @@ if(isset($_POST['DATA']))
 	}
 	if($DATA['SUBMIT_TYPE'] != '0' && $DATA['SUBMIT_TYPE'] != '3')
 	{
-		Write_temp_data($data,$instructor_id); //create txt file
+		Write_temp_data($data,$instructor_id,$course_id); //create txt file
 	}
 	if($DATA['SUBMIT_TYPE'] == '2')
 	{
@@ -232,12 +232,12 @@ function Upload($file,$course_id,$instructor_id)
     die();
 	}
 }
-function Write_temp_data($temp_data,$instructor_id)
+function Write_temp_data($temp_data,$instructor_id,$course_id)
 {
 	global $semester;
 	$data = json_decode($temp_data,true);
 	$path = Create_Folder($data['COURSEDATA']['COURSE_ID'],'special_instructor');
-	$temp_file = fopen($path."/".$instructor_id."_".$semester['semester']."_".$semester['year'].".txt", "w");
+	$temp_file = fopen($path."/".$course_id."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".txt", "w");
 	fwrite($temp_file, $temp_data);
 	fclose($temp_file);
 
