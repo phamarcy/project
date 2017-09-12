@@ -387,13 +387,13 @@ if($DATA['CALCULATE']['TYPE'] == 'SU')
 {
 	$pdf->SetX(35);
 	$pdf->Cell(10,7,'S   = ',0,0,'C');
-	$pdf->Cell(50,7," ตั้งแต่ ".$DATA['CALCULATE']['S']['MIN'],0,0,'C');
+	$pdf->Cell(50,7,iconv('UTF-8','cp874'," ตั้งแต่ ".$DATA['CALCULATE']['S']['MIN']),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนขึ้นไป '),0,0,'C');
 	$pdf->Ln();
 
 	$pdf->SetX(35);
 	$pdf->Cell(10,7,'U   = ',0,0,'C');
-	$pdf->Cell(50,7," น้อยกว่า ".$DATA['CALCULATE']['U']['MAX'],0,0,'C');
+	$pdf->Cell(50,7,iconv('UTF-8','cp874'," น้อยกว่า ".$DATA['CALCULATE']['U']['MAX']),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนลงมา '),0,0,'C');
 	$pdf->Ln();
 
@@ -402,7 +402,7 @@ else if($DATA['CALCULATE']['TYPE'] == 'CRITERIA')
 {
 	$pdf->SetX(35);
 	$pdf->Cell(10,7,'A   = ',0,0,'C');
-	$pdf->Cell(50,7,' ตั้งแต่ '.$DATA['CALCULATE']['A']['MIN'],0,0,'C');
+	$pdf->Cell(50,7,iconv('UTF-8','cp874',' ตั้งแต่ '.$DATA['CALCULATE']['A']['MIN']),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนขึ้นไป '),0,0,'C');
 
 	$pdf->Cell(10,7,'D+  = ',0,0,'C');
@@ -436,7 +436,7 @@ else if($DATA['CALCULATE']['TYPE'] == 'CRITERIA')
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 
 	$pdf->Cell(10,7,'F   = ',0,0,'C');
-	$pdf->Cell(50,7,' น้อยกว่า '.$DATA['CALCULATE']['F']['MAX'],0,0,'C');
+	$pdf->Cell(50,7,iconv('UTF-8','cp874',' น้อยกว่า '.$DATA['CALCULATE']['F']['MAX']),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนลงมา '),0,0,'C');
 	$pdf->Ln();
 
