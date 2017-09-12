@@ -520,9 +520,9 @@ class approval
     //search data of document to approve
     if($this->USER_LEVEL < 6)
     {
-      $sql = "SELECT `course_id` FROM `subject_assessor` sa,`group_assessor` ga
+      $sql = "SELECT `course_id` FROM `subject_assessor` sa,`group_assessor` ga,`approval_course` ac
        WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
-       AND `semester_id` =".$this->SEMESTER_ID;
+       AND ac.`status` >= '1' AND `semester_id` =".$this->SEMESTER_ID;
     }
     else
     {
