@@ -389,22 +389,17 @@ class Person
     $this->DB->Change_DB('pharmacy');
     $sql = 'SELECT * FROM grant_approve';
     $result = $this->DB->Query($sql);
-
-    if ($result) {
-      return count($result);
-      if (count($result)>0)
-      {
-        return $result;
-      }
-      else
-      {
-        return $result;
-      }
-    }
-
+    return $result;
   }
-  public function Check_Grant(){
 
+  public function Check_Grant($teacher){
+    $this->DB->Change_DB('pharmacy');
+    $sql = 'SELECT * FROM grant_approve WHERE teacher_id = '.$teacher.'';
+    $result = $this->DB->Query($sql);
+    if ($result) {
+      $_SESSION['id'] = 7;
+    }
+    return $result;
   }
   public function Close_connection()
   {
