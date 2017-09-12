@@ -139,6 +139,23 @@ class Person
       return false;
     }
   }
+
+  public function Get_Teacher_Email($teacher_id)
+  {
+    $sql = "SELECT `email` FROM `staff` WHERE `code` = '".$teacher_id."'";
+    $this->DB->Change_DB('person');
+    $result = $this->DB->Query($sql);
+    $this->DB->Change_DB($this->DEFAULT_DB);
+    if($result)
+    {
+      return $result[0]['email'];
+    }
+    else
+    {
+      return false
+    }
+  }
+
   public function Get_Staff_Dep($staff_id)
   {
     $sql = "SELECT s.`dep_code`,dep.`name` FROM `staff`s,`department` dep
