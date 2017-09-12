@@ -1,8 +1,7 @@
 <?php
+session_start();
 require_once(__DIR__.'/../class/course.php');
 $course = new Course();
-// var_dump($_POST);
-// die;
 if(isset($_POST['course_id']) && isset($_POST['type']))
 {
   if(isset($_POST['instructor_id']))

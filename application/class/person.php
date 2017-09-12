@@ -327,6 +327,10 @@ class Person
     {
       $group_num = '2';
     }
+    else
+    {
+      $group_num = '0';
+    }
     for($j=1;$j<=2;$j++)
     {
       $group['group'] = $j;
@@ -337,7 +341,6 @@ class Person
       $result = $this->DB->Query($sql);
       if($result)
       {
-
         for($i=0;$i<count($result);$i++)
         {
             $teacher_name = $this->Get_Teacher_Name($result[$i]['teacher_id']);
