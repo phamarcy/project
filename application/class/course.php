@@ -422,16 +422,13 @@ class Course
             $files = explode("_",$file_name[$i]);
             if($type == 'special_instructor')
             {
-              $temp['id'] = $files[0];
+              $temp['id'] = $files[1];
               $temp['name'] = $this->PERSON->Get_Special_Instructor_Name($temp['id']);
-              $temp['semester'] = $files[1];
-              $temp['year'] = $files[2];
+
             }
-            else
-            {
               $temp['semester'] = $files[2];
               $temp['year'] = $files[3];
-            }
+
               $temp['year'] = str_replace(".txt","",$temp['year']);
 
             array_push($data,$temp);
@@ -460,9 +457,10 @@ class Course
     }
     return $data;
   }
-  public function Get_Document($type,$course_id,$instructor_id,$semester,$year)
+  public function Get_Document($type,$course_id,$instructor_id,$teacher_id,$semester,$year)
   {
-
+    //check responsible
+    $check_access = $this->Check_Access($teacher_id,$course_id);
     if($type == 'evaluate')
     {
       $file_name = $course_id."_".$type."_".$semester."_".$year.".txt";
@@ -470,7 +468,7 @@ class Course
     else if ($type == 'special')
     {
       $type = "special_instructor";
-      $file_name = $instructor_id."_".$semester."_".$year.".txt";
+      $file_name = $course_id."_".$instructor_id."_".$semester."_".$year.".txt";
 
     }
     else
@@ -483,7 +481,11 @@ class Course
     if (file_exists($file_path))
     {
       $data = file_get_contents($file_path);
-    } else
+      $data = json_decode($data,true);
+      $data['ACCESS'] = $check_access;
+      $data = json_encode($data);
+    }
+    else
     {
       $data = false;
     }
@@ -512,6 +514,22 @@ class Course
     }
     return $path;
   }
+
+  private function Check_Access($teacher_id,$course_id)
+  {
+    $sql = "SELECT `respon_id` FROM `course_responsible`
+    WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$this->SEMESTER['id'];
+    $result = $this->DB->Query($sql);
+    if($result != null)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
   public function Get_Grade($teacher_id)
   {
     $sql = "SELECT c.`course_id`,`course_name_en` as name FROM `course_responsible` cr,`course` c

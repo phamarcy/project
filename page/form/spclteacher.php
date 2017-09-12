@@ -335,12 +335,23 @@ $current = $dlobj->Get_Current_Semester();
                      var temp = $.parseJSON(result);
                      if(temp!=null)
                      {
-                       swal(
-                          'สำเร็จ!',
-                          'ดึงข้อมูลสำเร็จ',
-                          'success'
-                        )
-                       getinfo(temp);
+                       if(temp['status'] == 'success')
+                       {
+                         swal(
+                            'สำเร็จ!',
+                            'ดึงข้อมูลสำเร็จ',
+                            'success'
+                          )
+                         getinfo(temp);
+                       }
+                       else {
+                         swal(
+                            'ผิดพลาด',
+                            temp['msg'],
+                            'error'
+                          )
+                       }
+
                      }
                      else {
                        alert('error');
@@ -918,10 +929,20 @@ $current = $dlobj->Get_Current_Semester();
         {
           $('#cvlist').hide();
           $('input[name=cv]').prop('required', false);
+          $('#submitbtn').removeClass("disabled");
+          $('#submitbtn').removeClass("disabled");
+          $("#submitbtn").prop("disabled", false);
+          $('#cvdanger').removeClass("has-error");
+          $('#cvdanger').removeClass("has-danger");
+          $('#submitbtn2').show();
+          $('#submitbtn').hide();
         }
         else {
           $('#cvlist').show();
           $('input[name=cv]').prop('required', true);
+          $('#submitbtn2').hide();
+          $('#submitbtn').show();
+
         }
       });
 
@@ -1010,36 +1031,73 @@ function lastcal() {
   }
 
   function checkreq(casesubmit) {
-    if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
-    {
-      swal({
-      title: 'แน่ใจหรือไม่',
-      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
-      type: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Ok',
-      cancelButtonText: 'Cancel'
-    }).then(function () {
-      submitfunc(casesubmit);
-    }, function (dismiss) {
-    // dismiss can be 'cancel', 'overlay',
-    // 'close', and 'timer'
-    if (dismiss === 'cancel') {
 
-    }
-  })
+    if(casesubmit=='1'||casesubmit=='2')
+    {
+      if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
+      {
+        swal({
+        title: 'แน่ใจหรือไม่',
+        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok',
+        cancelButtonText: 'Cancel'
+      }).then(function () {
+        submitfunc(casesubmit);
+      }, function (dismiss) {
+      // dismiss can be 'cancel', 'overlay',
+      // 'close', and 'timer'
+      if (dismiss === 'cancel') {
+
+      }
+        })
+      }
+      else {
+
+        //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+        swal(
+          '',
+          'กรุณากรอกข้อมูลให้ครบถ้วน',
+          'error'
+        )
+        return false;
+        }
     }
     else {
+      if($("#course").val()!="" && $("#numstudent").val()!="" && $("#reason").val()!="" && $("#hour").val()!="")
+      {
+        swal({
+        title: 'แน่ใจหรือไม่',
+        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok',
+        cancelButtonText: 'Cancel'
+      }).then(function () {
+        submitfunc('1');
+      }, function (dismiss) {
+      // dismiss can be 'cancel', 'overlay',
+      // 'close', and 'timer'
+      if (dismiss === 'cancel') {
 
-      //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
-      swal(
-        '',
-        'กรุณากรอกข้อมูลให้ครบถ้วน',
-        'error'
-      )
-      return false;
+      }
+        })
+      }
+      else {
+
+        //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+        swal(
+          '',
+          'กรุณากรอกข้อมูลให้ครบถ้วน',
+          'error'
+        )
+        return false;
+        }
     }
   }
 
@@ -1121,7 +1179,7 @@ function lastcal() {
       </center>
 
       <div id="dlhide" class="panel panel-default"> <br>
-      <form data-toggle="validator" role="form" name="form1" id="form1" method="post">
+      <form name="form1" id="form1" data-toggle="validator" role="form"  method="post">
       <div class="row form-inline" style="font-size:16px;">
         <center><div class="form-group">
       ภาควิชา
@@ -1304,7 +1362,7 @@ function lastcal() {
       </li>
       <li  style="font-size: 14px;" >
         <b>เลือกไฟล์ Curriculum Vitae (CV) เพื่ออัพโหลด : </b><br />
-      <div class="col-md-5 form-inline form-group">
+      <div id="cvdanger" class="col-md-5 form-inline form-group">
         <input type="file" class="filestyle" id="cv" name="cv" data-icon="false"><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
       </div>
       </li>
@@ -1312,6 +1370,7 @@ function lastcal() {
     <br>
     <br>
     <div align="center">
+      <input type="button" style="font-size: 18px; display:none;" class="btn btn-outline btn-success" name="submitbtn2" id="submitbtn2" value="ยืนยันเพื่อส่งข้อมูล" onclick="checkreq('0')"> &nbsp;
       <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2');"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">

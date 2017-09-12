@@ -22,7 +22,7 @@ $styleArray = array(
          'vertical' => PHPExcel_Style_Alignment::VERTICAL_TOP
      ),'
      borders' => array(
-  		'outline' => array(
+  		'inside' => array(
   			'style' => PHPExcel_Style_Border::BORDER_THICK,
   			'color' => array('argb' => 'FFFF0000'),
   		)
@@ -81,17 +81,21 @@ $Excel->getActiveSheet(1)
     {
       $Excel->getActiveSheet()->getColumnDimension($columnID)->setAutoSize(true);
     }
+
+
+
 $file_path = $FILE_PATH.'/temp';
 
-$sql = "SELECT DISTINCT `course_id` FROM `approval_course` WHERE `status` = '7'";
+$sql = "SELECT DISTINCT `course_id` FROM `approval_course` WHERE `status` = '7' AND `semester_id` = ".$semester['id'];
 $result = $database->Query($sql);
 if($result)
 {
   $count = count($result);
+  $Excel->setActiveSheetIndex(0);
+  $row = 4;
   for($i=0;$i<$count;$i++)
   {
     $course_id = $result[$i]['course_id'];
-    $row = 4;
     $temp_file = $file_path.'/'.$course_id."/evaluate/".$course_id."_evaluate_".$semester['semester']."_".$semester['year'].".txt";
     if(file_exists($temp_file))
     {
@@ -202,6 +206,8 @@ if($result)
     {
       echo "not found ".$temp_file;
     }
+
+
   }
 }
 
@@ -219,13 +225,72 @@ $Excel->setActiveSheetIndex(2)
             ->setCellValue('E3', 'เคยเชิญมาสอนแล้ว')
             ->setCellValue('F3', 'ยังไม่เคยเชิญมาสอน')
             ->setCellValue('G3', 'หัวข้อที่สอน')
-            ->setCellValue('H3', 'คะแนนอื่นๆ')
-            ->setCellValue('I3', 'ค่าสอน')
-            ->setCellValue('J3', 'ค่าเดินทาง')
-            ->setCellValue('K3', 'ค่าที่พัก')
-            ->setCellValue('L3', 'รวมค่าใช้จ่าย');
+            ->setCellValue('H3', 'ค่าสอน')
+            ->setCellValue('I3', 'ค่าเดินทาง')
+            ->setCellValue('J3', 'ค่าที่พัก')
+            ->setCellValue('K3', 'รวมค่าใช้จ่าย');
 $Excel->getActiveSheet(2)
         ->setTitle('อาจารย์พิเศษ');
+
+$file_path = $FILE_PATH.'/temp';
+
+
+  $sql = "SELECT DISTINCT `course_id`,`instructor_id` FROM `course_hire`
+  WHERE `semester_id` = ".$semester['id']." ORDER BY `course_id`";
+  $result = $database->Query($sql);
+  if($result)
+  {
+    $count = count($result);
+    $row = 4;
+    for($i=0;$i<$count;$i++)
+    {
+      $instructor_id = $result[$i]['instructor_id'];
+      $course_id = $result[$i]['course_id'];
+      $temp_file = $file_path.'/'.$course_id."/special_instructor/".$course_id."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".txt";
+
+      if(file_exists($temp_file))
+      {
+        $data = file_get_contents($temp_file);
+        $data = json_decode($data,true);
+        $instructor_name = $data["TEACHERDATA"]['PREFIX']." ".$data["TEACHERDATA"]['FNAME']." ".$data["TEACHERDATA"]["LNAME"];
+        $Excel->setActiveSheetIndex(2)->setCellValue('A'.$row, $data["COURSEDATA"]["COURSE_ID"]);
+        $Excel->setActiveSheetIndex(2)->setCellValue('B'.$row, $instructor_name);
+        $Excel->setActiveSheetIndex(2)->setCellValue('C'.$row, $data["TEACHERDATA"]['POSITION']);
+        $Excel->setActiveSheetIndex(2)->setCellValue('D'.$row, $data["TEACHERDATA"]['WORKPLACE']);
+        $yet = '';
+        $already = '';
+        switch ($data["TEACHERDATA"]["HISTORY"]) {
+          case 'yet':
+            $yet = '/';
+            break;
+          case 'already':
+            $already = '/';
+            break;
+          default:
+            # code...
+            break;
+        }
+        $Excel->setActiveSheetIndex(2)->setCellValue('E'.$row, $already);
+        $Excel->setActiveSheetIndex(2)->setCellValue('F'.$row, $yet);
+        $topic = '';
+        $count_topic = count($data["COURSEDATA"]["DETAIL"]["TOPICLEC"]);
+        for($j=0;$j<$count_topic;$j++)
+        {
+          $topic .= $data["COURSEDATA"]["DETAIL"]["TOPICLEC"][$j]."\n";
+        }
+        $Excel->setActiveSheetIndex(2)->setCellValue('G'.$row, $topic);
+
+        $cost_trans = (float)$data["PAYMENT"]["COSTTRANS"]["TRANSPLANE"]["COST"] + (float)$data["PAYMENT"]["COSTTRANS"]["TRANSTAXI"]["COST"] + (float)$data["PAYMENT"]["COSTTRANS"]["TRANSSELFCAR"]["COST"];
+        $Excel->setActiveSheetIndex(2)->setCellValue('H'.$row, $cost_trans);
+
+
+        $Excel->setActiveSheetIndex(2)->setCellValue('I'.$row, $data["PAYMENT"]["COSTHOTEL"]["PERNIGHT"]);
+        $Excel->setActiveSheetIndex(2)->setCellValue('J'.$row, $data["PAYMENT"]["TOTALCOST"]);
+        $row++;
+      }
+    }
+  }
+
 
 foreach(range('A','Z') as $columnID)
   {
