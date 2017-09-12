@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once(__DIR__.'/../class/curl.php');
 require_once(__DIR__."/../config/configuration_variable.php");
 
@@ -81,7 +82,6 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
   else
   {
     $zip->close();
-    die;
     header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
     header('Content-Disposition: attachment; filename="'.basename($zip_file).'"');
