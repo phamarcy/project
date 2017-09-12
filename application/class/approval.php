@@ -95,6 +95,7 @@ class approval
         $noti['STATUS'] = (string)$status_after;
         $noti['DATE'] = date("d-m-Y h:i:sa");
         $noti['TYPE'] = '1'; //1 evaluate , 2, special instructor
+        $this->Sendemail($course_id,$noti);
         $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       }
       if($status_after == 7)
@@ -199,6 +200,7 @@ class approval
         $noti['NAME'] = $this->PERSON->Get_Special_Instructor_Name($instructor_id);
         $noti['DATE'] = date("d-m-Y h:i:sa");
         $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
+        $this->Sendemail($course_id,$noti);
         $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       }
       if($status_after == 7)
@@ -644,6 +646,36 @@ class approval
     $return_url['pdf'] = $view_url."?course=".$course_id."&id=".$instructor_id."&type=".$type."&info=special&semester=".$this->SEMESTER."&year=".$this->YEAR;
     $return_url['cv'] = $this->PERSON->Get_CV($instructor_id,$course_id);
     return $return_url;
+  }
+  private function Sendemail($course_id,$data)
+  {
+    //get all involved staff
+    //send notification to resiponsible teacher
+    $sql = "SELECT `teacher_id` FROM `course_responsible` WHERE `course_id` = '".$course_id."'";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $count = count($result);
+      for($i=0;$i<$count;$i++)
+      {
+        $teacher_id = $result[$i]['teacher_id'];
+        $this->REPORT->Sendemail($teacher_id,$data);
+      }
+    }
+
+    //send email to course assessor
+    $sql = "SELECT `teacher_id` FROM `group_assessor` ga, `subject_assessor` sa
+    WHERE ga.`group_num` = sa.`assessor_group_num` AND sa.`course_id` = '".$course_id."'";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $count = count($result);
+      for($i=0;$i<$count;$i++)
+      {
+        $teacher_id = $result[$i]['teacher_id'];
+        $this->REPORT->Sendemail($teacher_id,$data);
+      }
+    }
   }
   private function Send_Noti($course_id,$msg)
   {
