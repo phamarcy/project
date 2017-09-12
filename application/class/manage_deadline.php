@@ -180,6 +180,11 @@ public function Update($data,$type)
     global $CONFIG_PATH;
     $system_path = $CONFIG_PATH."/system/";
     $current_semester_path = $system_path."current_semester.txt";
+    if(!file_exists($current_semester_path))
+    {
+      $return['status'] = "error";
+      $return['msg'] = "ไม่พบไฟล์ system";
+    }
     $file = fopen($current_semester_path,"r");
     $file_data = fread($file,filesize($current_semester_path));
     $file_data = explode("/",$file_data);

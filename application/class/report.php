@@ -60,10 +60,24 @@ class Report
     $semester_id = $this->DEADLINE->Search_Semester_id($semester,$year);
     if($semester_id)
     {
+      $dept_id = $this->PERSON->Get_Staff_Dep($_SESSION['id']);
+      $temp_course = $this->COURSE->Get_Dept_Course($dept_id['code'],$semester_id);
+      $dept_course = array();
+      if(!isset($temp_course['status']))
+      {
+        for($i=0;$i<count($temp_course);$i++)
+        {
+          array_push($dept_course,$temp_course[$i]['id']);
+        }
+      }
       $DATA = array();
       $course = scandir($this->FILE_PATH);
       for($i=2;$i<count($course);$i++)
       {
+        if($_SESSION['level'] == 2 && !in_array($course[$i],$dept_course))
+        {
+          continue;
+        }
         if(is_dir($this->FILE_PATH."/".$course[$i]))
         {
             $data['id'] = $course[$i];
