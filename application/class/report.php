@@ -287,7 +287,7 @@ class Report
     global $EMAIL;
     $idobj = new Person;
     $type = $data['TYPE'];
-    if($type=='EVALUATE')
+    if($type=='1')
     {
 
     }
