@@ -6,6 +6,10 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
 }
 require_once(__DIR__."/../../application/class/person.php");
 $p = new Person();
+$data=$p->Get_Grant();
+echo "<pre>";
+print_r($data);
+echo "</pre>";
  ?>
 <html>
 <header>
@@ -49,6 +53,9 @@ $p = new Person();
 <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
  <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+ <script src="../dist/js/sweetalert2.min.js"></script>
+ <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
+
 
  </header>
  <body class="mybox">
@@ -103,20 +110,16 @@ $p = new Person();
               <form class="" action="" method="post">
                 <div class="form-group">
                   <label for="">ชื่อ</label>
-                  <select class="form-control" name="">
-                      <option >รศ.ดร. ภญ.ศิริวิภา ปิยะมงคล</option>
-                      <option >ผศ.ดร. ภก.ทรงวุฒิ ยศวิมลวัฒน์</option>
-                      <option >ผศ.ดร. ภญ.รัตนาภรณ์ อาวิพันธ์</option>
-                      <option >รศ.ดร. ภญ.หทัยกาญจน์ เชาวนพูนผล</option>
-                  </select>
+                  <input type="text" class="form-control " name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
                 </div>
                 <div class="form-group">
                   <label for="">ระยะเวลา</label>
-                  <input type="text" class="form-control" name="daterange" />
+                  <input type="text" class="form-control" name="daterange" id="daterange"/>
                 </div>
-                <input type="submit" class="btn btn-outline btn-warning" id="ค้นหา" value="มอบอำนาจ">
+                <input type="button" class="btn btn-outline btn-warning" value="มอบอำนาจ" onclick="checkValue()">
               </form>
            </div>
+           <div id="result"></div>
          </div>
        </div>
        </div>
@@ -125,13 +128,57 @@ $p = new Person();
  </div>
  </body>
  <script type="text/javascript">
+ function checkValue() {
+   var check = document.getElementById('TEACHERLEC_1').value;
+   var check2 = document.getElementById('daterange').value;
+   if (!check) {
+     swal({
+       type:"warning",
+       text: "กรุณากรอกข้อมูลให้ครบ",
+       confirmButtonText: "ตกลง!",
+     });
+     return false;
+   }else {
+     $.ajax({
+         url: '../../application/grant/approve_grant.php',
+         type: 'POST',
+         data:{teacher:check,date:check2,type:"add"},
+         success: function (data) {
+           console.log(data);
+         }
+     });
+   }
+ }
+ function cancelPermission(teacher){
+   var teacher = document.getElementById('').value
+ }
+
+ $('input[name="daterange"]').daterangepicker({
+   locale: {
+         format: 'DD/MM/YYYY',
+         locale: 'th'
+     }
+ });
+ function searchname(no,type) {
+   var name_s = $("#TEACHERLEC_"+no).val();
+     $("#dtl"+no).html('');
+     if(name_s.length > 3)
+     {
+       $.post("search_name.php", { name: name_s}, function(data) {
+             data = JSON.parse( data );
+             for(var i=0;i<data.length;i++)
+             {
+                 $("#dtl"+no).append('<option value="'+data[i]+'"></option>');
+             }
+
+           })
+           .fail(function() {
+               alert("error");
+           });
+     }
+   }
    $('select').select2();
-   $(function() {
-    $('input[name="daterange"]').daterangepicker({
-      locale: {
-            format: 'DD/MM/YYYY'
-        }
-    });
-  });
+
+
  </script>
  </html>

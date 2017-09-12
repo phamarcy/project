@@ -363,6 +363,29 @@ class Person
     }
     return $path;
   }
+
+  public function Get_Grant(){
+
+    $this->DB->Change_DB('pharmacy');
+    $sql = 'SELECT * FROM grant_approve';
+    $result = $this->DB->Query($sql);
+
+    if ($result) {
+      return count($result);
+      if (count($result)>0)
+      {
+        return $result;
+      }
+      else
+      {
+        return $result;
+      }
+    }
+
+  }
+  public function Check_Grant(){
+
+  }
   public function Close_connection()
   {
     $this->DB->Close_connection();

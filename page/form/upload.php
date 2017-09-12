@@ -41,7 +41,12 @@ $deadline->Close_connection();
     <script src="../dist/js/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
     <style>
-
+    i:hover {
+      font-size: 30px;
+      font-weight: bold;
+      color: red;
+    }
+    
     #statcf {
      color : #0e9d14;
     }
@@ -57,6 +62,7 @@ $deadline->Close_connection();
     #statal {
      color : #da9001;
     }
+
 
     </style>
 
@@ -120,7 +126,7 @@ $deadline->Close_connection();
                                 <input name="file"  id="grade_<?php echo $value["course_id"] ?>" type="file" accept=".xls, .xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
                                 <input name="course_id" value="<?php echo $value["course_id"] ?>" type="hidden" />
                               </td>
-                              <td><button type="submit" name="button" class="btn btn-primary" >อัพโหลด</button></td>
+                              <td><button type="button" name="button" class="btn btn-primary" onclick="uploadFile(<?php echo $value["course_id"]; ?>)">อัพโหลด</button></td>
                             </form>
                           </tr>
                   <?php endforeach; ?>
@@ -133,49 +139,49 @@ $deadline->Close_connection();
 </div>
 <script type="text/javascript">
 
-$("form#data").submit(function(){
+function uploadFile(course){
+  var text = "grade_"+course;
+  var checkfile = document.getElementById(text).value;
+  if (!checkfile) {
+    swal({
+      type:"warning",
+      text: "กรุณาเลือกไฟล์",
+      confirmButtonText: "ตกลง!",
+    });
+    return false;
+  }else {
+      var fileexcel = document.getElementById(text).files[0];
+      var formData = new FormData();
+      formData.append('file', fileexcel);
+      formData.append('course_id', course);
 
-    /*var file = document.forms['data']['file'].files[0];*/
-    var formData = new FormData(this);
-    /*console.log(file);*/
+      console.log(formData);
+      $.ajax({
+          url: '../../application/document/upload_grade.php',
+          type: 'POST',
+          processData: false,
+          contentType: false,
+          data:formData,
+          success: function (data) {
+            var msg=JSON.parse(data)
+            swal({
+              type:msg.status,
+              text: msg.msg,
+              timer: 2000,
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+            setTimeout(function() {
+              window.location.reload();
+            },2000);
 
-  /*  if (!file) {
-      swal({
-        type:"error",
-        text: "กรุณาเลือกไฟล์",
-        timer: 2000,
-        confirmButtonText: "Ok!"
+          }
       });
 
-    }*/
+  }
+}
 
-    $.ajax({
-        url: '../../application/document/upload_grade.php',
-        type: 'POST',
-        data: formData,
-        async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-          var msg=JSON.parse(data)
-          swal({
-            type:msg.status,
-            text: msg.msg,
-            timer: 2000,
-            confirmButtonText: "Ok!",
-          }, function(){
-            window.location.reload();
-          });
-          setTimeout(function() {
-            window.location.reload();
-          }, 1000);
-
-        }
-    });
-
-    return false;
-});
 </script>
 </body>
 

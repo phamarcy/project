@@ -16,9 +16,9 @@ $deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
 $semester = $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
-/*echo "<pre>";
+echo "<pre>";
 print_r($data_course);
-echo "</pre>";*/
+echo "</pre>";
 ?>
 	<html>
 

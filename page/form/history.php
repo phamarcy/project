@@ -8,9 +8,7 @@ require_once(__DIR__."/../../application/class/report.php");
 if (isset($_POST['subject'])) {
   $report = new Report();
   $history=$report->Get_Comment_History($_POST['subject']);
-  echo "<pre>";
-  print_r($history);
-  echo "</pre>";
+
 }
 
 ?>
@@ -73,6 +71,7 @@ div[class^="col-"] {
           </form>
           </center>
         </div>
+      <?php $i =1;if (isset($history)): ?>
         <div class="panel panel-default">
           <div class="panel-heading">
             <h5 class="panel-title">
@@ -94,16 +93,15 @@ div[class^="col-"] {
                           </tr>
                         </thead>
                         <tbody>
-                          <?php foreach ($history['comment'] as $key => $value): ?>
 
-                          <?php endforeach; ?>
-                          <tr>
-                            <td><?php echo $key+1 ?></td>
-                            <td ><?php echo $history['id'] ?></td>
-                            <td><?php echo $history['name'] ?></td>
-                            <td style="text-align:center;">1/2559</td>
-                            <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463681" class="accordion-toggle">ดูข้อมูล</button></td>
-                          </tr>
+                            <?php foreach ($history['comment'] as $key => $value): ?>
+                              <tr>
+                                <td><?php echo $i++; ?></td>
+                                <td ><?php echo $history['id'] ?></td>
+                                <td><?php echo $history['name'] ?></td>
+                                <td style="text-align:center;"><?php $x = array_keys($history['comment']); echo $x[0];?></td>
+                                <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463681" class="accordion-toggle">ดูข้อมูล</button></td>
+                              </tr>
                           <tr class="hiddenRow">
                             <td colspan="12">
                               <div class="accordian-body collapse" id="463681">
@@ -112,36 +110,32 @@ div[class^="col-"] {
                                     <b>ข้อเสนอแนะคณะกรรมการ</b>
                                   </div>
                                   <div class="panel-body">
-                                    <div class="panel-group" id="comment463681">
+                                    <div class="panel-group" id="comment<?php echo $x[0] ?> ">
                                       <div class="panel panel-default">
                                         <div class="panel-heading">
                                           <div class="panel-title" style="font-size:14px">
-                                            <a data-toggle="collapse" href="#comment463681-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</b></a>
+                                            <a data-toggle="collapse" href="#comment<?php echo $x[0] ?>-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</b></a>
                                           </div>
                                         </div>
-                                        <div id="comment463681-2" class="panel-collapse collapse in">
+                                        <div id="comment<?php echo $x[0] ?>-2" class="panel-collapse collapse in">
                                           <div class="panel-body">
-
                                             <table class="table " style="font-size:14px">
                                               <thead>
-                                                <?php if ($_SESSION['level'] > 4 ): ?>
+                                                <?php if ($_SESSION['level'] > 1 ): ?>
                                                 <th style="width:230px">คณะกรรมการ</th>
                                                 <?php endif; ?>
                                                 <th>ข้อเสนอแนะ</th>
                                               </thead>
                                               <tbody>
-                                                <tr>
-                                                  <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                  <?php endif; ?>
-                                                  <td>วิธีตัดเกรดในส่วนของการอิงเกณฑ์นั้นยังไม่ชัดเจน</td>
-                                                </tr>
-                                                <tr>
-                                                  <?php if ($_SESSION['level'] > 4 ): ?>
-                                                  <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                  <?php endif; ?>
-                                                  <td>ควรเพิ่มอาจารย์ปฏิบัติการ</td>
-                                                </tr>
+                                                <?php foreach ($value['evaluate'] as $key => $valueeva): ?>
+                                                  <tr>
+                                                    <?php if ($_SESSION['level'] > 1 ): ?>
+                                                    <td style="width:230px"><?php echo $valueeva['name'] ?></td>
+                                                    <?php endif; ?>
+                                                    <td><?php echo $valueeva['comment'] ?></td>
+                                                  </tr>
+                                                <?php endforeach; ?>
+
                                               </tbody>
                                             </table>
                                           </div>
@@ -150,114 +144,45 @@ div[class^="col-"] {
                                       <div class="panel panel-default">
                                         <div class="panel-heading ">
                                           <div class="panel-title" style="font-size:14px">
-                                                  <a data-toggle="collapse" href="#comment463681-3"><b>แบบเชิญอาจารย์พิเศษ</b></a>
+                                                  <a data-toggle="collapse" href="#commentsp<?php echo $x[0] ?>"><b>แบบเชิญอาจารย์พิเศษ</b></a>
                                               </div>
                                         </div>
-                                        <div id="comment463681-3" class="panel-collapse collapse in">
+                                        <div id="commentsp<?php echo $x[0] ?>" class="panel-collapse collapse in">
                                           <div class="panel-body">
-                                            <div class="panel-group" id="teachersp463681">
-                                              <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px">
-                                                      <a data-toggle="collapse" data-parent="#teachersp463681" href="#teachersp463681-1">ดร.พจมาน ชำนาญกิจ</a>
+                                            <div class="panel-group" id="teachersp<?php echo $x[0] ?>">
+                                              <?php foreach ($value['special'] as $keysp => $valuesp): ?>
+                                                <div class="panel panel-default">
+                                                  <div class="panel-heading">
+                                                    <div class="panel-title" style="font-size:14px">
+                                                        <a data-toggle="collapse" data-parent="#teachersp<?php echo $keysp ?>" href="#teachersp<?php echo $keysp ?>"><?php echo $valuesp['name'] ?></a>
+                                                    </div>
+                                                  </div>
+                                                  <div id="<?php echo $keysp ?>" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                      <table class="table " style="font-size:14px">
+                                                        <thead>
+                                                          <?php if ($_SESSION['level'] > 1 ): ?>
+                                                          <th style="width:230px">คณะกรรมการ</th>
+                                                          <?php endif; ?>
+                                                          <th>ข้อเสนอแนะ</th>
+                                                        </thead>
+                                                        <tbody>
+                                                          <?php foreach ($valuesp['name'] as $key => $valuespcomment): ?>
+                                                            <tr>
+                                                              <?php if ($_SESSION['level'] > 1 ): ?>
+                                                              <td style="width:230px"><?php echo $valuespcomment['name'] ?></td>
+                                                              <?php endif; ?>
+                                                              <td><?php echo $valuespcomment['comment'] ?></td>
+                                                            </tr>
+                                                            <?php endforeach; ?>
+                                                        </tbody>
+                                                      </table>
+                                                    </div>
                                                   </div>
                                                 </div>
-                                                <div id="teachersp463681-1" class="panel-collapse collapse">
-                                                  <div class="panel-body">
+                                              <?php endforeach; ?>
 
-                                                    <table class="table " style="font-size:14px">
-                                                      <thead>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <th style="width:230px">คณะกรรมการ</th>
-                                                        <?php endif; ?>
-                                                        <th>ข้อเสนอแนะ</th>
-                                                      </thead>
-                                                      <tbody>
-                                                        <tr>
-                                                          <?php if ($_SESSION['level'] > 4 ): ?>
-                                                          <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                          <?php endif; ?>
-                                                          <td>อาจารย์ไม่ยังไม่เหมาะกับวิชา</td>
-                                                        </tr>
-                                                        <tr>
-                                                          <?php if ($_SESSION['level'] > 4 ): ?>
-                                                          <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                          <?php endif; ?>
-                                                          <td>อาจารย์เคยมีประสบการณ์</td>
-                                                        </tr>
-                                                      </tbody>
-                                                    </table>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                              <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px">
-                                                      <a data-toggle="collapse" data-parent="#teachersp463681" href="#teachersp463681-2">ผศ.ดร.พนมพร จินดาสมุทร์</a>
-                                                  </div>
-                                                </div>
-                                                <div id="teachersp463681-2" class="panel-collapse collapse">
-                                                  <div class="panel-body">
 
-                                                    <table class="table " style="font-size:14px">
-                                                      <thead>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <th style="width:230px">คณะกรรมการ</th>
-                                                        <?php endif; ?>
-                                                        <th>ข้อเสนอแนะ</th>
-                                                      </thead>
-                                                      <tbody>
-                                                        <tr>
-                                                          <?php if ($_SESSION['level'] > 4 ): ?>
-                                                          <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                          <?php endif; ?>
-                                                          <td>อาจารย์ท่านนี้เหมาะสมกับวิชานี้</td>
-                                                        </tr>
-                                                        <tr>
-                                                          <?php if ($_SESSION['level'] > 4 ): ?>
-                                                          <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                          <?php endif; ?>
-                                                          <td>อาจารย์ท่านี้เป็นผู้มีประสบการณ์</td>
-                                                        </tr>
-                                                      </tbody>
-                                                    </table>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                              <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                  <div class="panel-title" style="font-size:14px">
-                                                      <a data-toggle="collapse" data-parent="#teachersp463681" href="#teachersp463681-3">อ.พรพิมล ศิวินา</a>
-                                                  </div>
-                                                </div>
-                                                <div id="teachersp463681-3" class="panel-collapse collapse">
-                                                  <div class="panel-body">
-
-                                                    <table class="table " style="font-size:14px">
-                                                      <thead>
-                                                        <?php if ($_SESSION['level'] > 4 ): ?>
-                                                        <th style="width:230px">คณะกรรมการ</th>
-                                                        <?php endif; ?>
-                                                        <th>ข้อเสนอแนะ</th>
-                                                      </thead>
-                                                      <tbody>
-                                                        <tr>
-                                                          <?php if ($_SESSION['level'] > 4 ): ?>
-                                                          <td style="width:230px">ศ.อรรคพล ธรรมฉันธะ</td>
-                                                          <?php endif; ?>
-                                                          <td>อาจารย์ท่านนี้ยังไม่มีประสบการณ์</td>
-                                                        </tr>
-                                                        <tr>
-                                                          <?php if ($_SESSION['level'] > 4 ): ?>
-                                                          <td style="width:230px">ดร.ชูศักดิ์ ธรรมฉันธะ</td>
-                                                          <?php endif; ?>
-                                                          <td>ควรทดลองให้อาจารย์มาสอนก่อน</td>
-                                                        </tr>
-                                                      </tbody>
-                                                    </table>
-                                                  </div>
-                                                </div>
-                                              </div>
                                             </div>
                                           </div>
                                         </div>
@@ -268,6 +193,7 @@ div[class^="col-"] {
                               </div>
                             </td>
                           </tr>
+                          <?php endforeach; ?>
                         </tbody>
                       </table>
                     </div>
@@ -275,6 +201,7 @@ div[class^="col-"] {
           <!-- .panel-body -->
         </div>
       </div>
+        <?php endif; ?>
     </div>
     </div>
 

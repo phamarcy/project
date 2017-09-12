@@ -411,17 +411,26 @@ function teacherGroup(group,type,department){
             },
             success: function (data) {
               var msg=JSON.parse(data)
-              swal({
-                type:msg.status,
-                text: msg.msg,
-                timer: 2000,
-                confirmButtonText: "Ok!",
-              }, function(){
-                window.location.reload();
-              });
-              setTimeout(function() {
-                window.location.reload();
-              }, 1000);
+              if (msg.status=="success") {
+                swal({
+                  type:msg.status,
+                  text: msg.msg,
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                }, function(){
+                  window.location.reload();
+                });
+                setTimeout(function() {
+                  window.location.reload();
+                }, 1000);
+              }else{
+                swal({
+                  type:msg.status,
+                  text: msg.msg,
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                });
+              }
             }
         });
   }
@@ -486,17 +495,26 @@ $("form#course").submit(function(){
         processData: false,
         success: function (data) {
           var msg=JSON.parse(data)
-          swal({
-            type:msg.status,
-            text: msg.msg,
-            timer: 2000,
-            confirmButtonText: "Ok!",
-          }, function(){
-            window.location.reload();
-          });
-          setTimeout(function() {
-            window.location.reload();
-          }, 1000);
+          if (msg.status=="success") {
+            swal({
+              type:msg.status,
+              text: msg.msg,
+              timer: 2000,
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 1000);
+          }else{
+            swal({
+              type:msg.status,
+              text: msg.msg,
+              timer: 2000,
+              confirmButtonText: "Ok!",
+            });
+          }
         }
     });
     return false;
