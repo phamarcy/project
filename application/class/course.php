@@ -422,16 +422,13 @@ class Course
             $files = explode("_",$file_name[$i]);
             if($type == 'special_instructor')
             {
-              $temp['id'] = $files[0];
+              $temp['id'] = $files[1];
               $temp['name'] = $this->PERSON->Get_Special_Instructor_Name($temp['id']);
-              $temp['semester'] = $files[1];
-              $temp['year'] = $files[2];
+
             }
-            else
-            {
               $temp['semester'] = $files[2];
               $temp['year'] = $files[3];
-            }
+
               $temp['year'] = str_replace(".txt","",$temp['year']);
 
             array_push($data,$temp);
