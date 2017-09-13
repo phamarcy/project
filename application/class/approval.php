@@ -210,6 +210,17 @@ class approval
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
+      if((int)$status == 1)
+      {
+        $sql = " DELETE FROM `approval_special`
+         WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."'
+         AND `level_approve` = '2' AND `semester_id` = ".$this->SEMESTER_ID;
+        $result_delete = $this->DB->Insert_Update_Delete($sql);
+        if(!$result_delete)
+        {
+          return false;
+        }
+      }
       $status_after = $this->Get_Instructor_Status($instructor_id);
       if($status_before != $status_after)
       {
@@ -509,6 +520,14 @@ class approval
 
   public function Append_Special_Instructor($course_id,$instructor_id)
   {
+      $sql = " DELETE FROM `approval_special`
+       WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."'
+       AND `level_approve` = '2' AND `semester_id` = ".$this->SEMESTER_ID;
+      $result_delete = $this->DB->Insert_Update_Delete($sql);
+      if(!$result_delete)
+      {
+        return false;
+      }
     $sql = "SELECT ga.`teacher_id` FROM `subject_assessor` sa, `group_assessor` ga
     WHERE sa.course_id = '".$course_id."' AND sa.assessor_group_num = ga.group_num";
     $result = $this->DB->Query($sql);
