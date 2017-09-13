@@ -311,6 +311,7 @@ class Report
     $mail->SetFrom($EMAIL['SETFROM']);
     $sendsubject = "=?utf-8?b?".base64_encode('ระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่')."?=";
     $mail->Subject = $sendsubject;
+    $mail->CharSet = "utf-8";
 
       if($type=='1')
         {
@@ -380,14 +381,13 @@ class Report
 
         $bodystring = $bodystring." เมื่อวันที่ ".$date." เวลา ".$time;
         $bodystring = $bodystring."<br><br>----อีเมล์นี้ส่งจากระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่----";
-
         $mail->Body = $bodystring;
 
         $debug = '';
         $mail->Debugoutput = function($str, $level) {
             $debug .= $level.": ".$str."\n";
         };
-        
+
         if($mail->AddAddress($idobj->Get_Teacher_Email($teacher_id)) == false)
         {
           $this->LOG->Write($debug);
