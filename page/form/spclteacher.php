@@ -343,6 +343,13 @@ $current = $dlobj->Get_Current_Semester();
                    processData: false,
                    data: file_data,
                    type: 'post',
+                   beforeSend: function() {
+                     swal(
+                       'กรุณารอสักครู่',
+                       'ระบบกำลังประมวลผล'
+                     )
+                     swal.showLoading()
+                   },
                    success: function (result) {
                      try {
                        var temp = $.parseJSON(result);
@@ -351,6 +358,7 @@ $current = $dlobj->Get_Current_Semester();
                      }
                      if(temp!=null)
                      {
+                       swal.hideLoading()
                        if(temp['status'] == 'success')
                        {
                          swal(
@@ -370,6 +378,7 @@ $current = $dlobj->Get_Current_Semester();
 
                      }
                      else {
+                       swal.hideLoading()
                        alert('error');
                      }
                    },
@@ -592,6 +601,13 @@ $current = $dlobj->Get_Current_Semester();
                   processData: false,
                   data: file_data,
                   type: 'post',
+                  beforeSend: function() {
+                    swal(
+                      'กรุณารอสักครู่',
+                      'ระบบกำลังประมวลผล'
+                    )
+                    swal.showLoading()
+                  },
                   success: function (result) {
                         try {
                           var temp = $.parseJSON(result);
@@ -600,6 +616,7 @@ $current = $dlobj->Get_Current_Semester();
                         }
                        if(temp["status"]=='success')
                        {
+                          swal.hideLoading()
                           swal({
                             title: 'สำเร็จ',
                             text: temp["msg"],
@@ -621,6 +638,7 @@ $current = $dlobj->Get_Current_Semester();
                          //alert(temp["msg"]);
                        }
                        else {
+                         swal.hideLoading()
                          swal({
                            title: 'เกิดข้อผิดพลาด',
                            text: temp["msg"],

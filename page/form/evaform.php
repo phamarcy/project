@@ -716,6 +716,13 @@ function checksubject(btntype,type){
                   processData: false,
                   data: file_data,
                   type: 'post',
+                  beforeSend: function() {
+                    swal(
+                      'กรุณารอสักครู่',
+                      'ระบบกำลังประมวลผล'
+                    )
+                    swal.showLoading()
+                  },
                   success: function (result) {
                     try {
                       var temp = $.parseJSON(result);
@@ -724,6 +731,7 @@ function checksubject(btntype,type){
                     }
                     if(temp!=null)
                     {
+                      swal.hideLoading()
                       swal(
                          'สำเร็จ!',
                          'ดึงข้อมูลสำเร็จ',
@@ -732,6 +740,7 @@ function checksubject(btntype,type){
                       getinfo(temp);
                     }
                     else {
+                      swal.hideLoading()
                       alert('error');
                     }
                   },
@@ -1022,6 +1031,7 @@ function senddata(data,file_data)
 
                    }
                    else {
+                     swal.hideLoading()
                      swal({
                        title: 'เกิดข้อผิดพลาด',
                        text: temp["msg"],
