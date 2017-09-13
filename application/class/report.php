@@ -175,6 +175,7 @@ class Report
           if(is_dir($this->FILE_PATH."/".$data['id']."/special_instructor"))
           {
             $file_name = scandir($this->FILE_PATH."/".$data['id']."/special_instructor");
+
             for($j=2;$j<count($file_name);$j++)
             {
               if($this->Check_File_Semester($semester,$year,$file_name[$j]))
@@ -194,13 +195,6 @@ class Report
         if(count($data['special']) != 0)
         {
           array_push($DATA,$data);
-          return $DATA;
-        }
-        else
-        {
-            $return['status'] = 'error';
-            $return['msg'] = 'ไม่พบข้อมูล';
-            return $return;
         }
       }
       return $DATA;
