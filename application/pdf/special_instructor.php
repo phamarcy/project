@@ -466,19 +466,27 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','สรุปค่า�
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$DATA["PAYMENT"]["TOTALCOST"]),0,"C");
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','บาท'))+2,7,iconv( 'UTF-8','TIS-620','บาท'),0,1);
 
+//get teacher name and signature
+$person = new Person();
+$signature_file = $person->Get_Teacher_Signature($DATA['USERID']);
+$teacher_name = $person->Get_Teacher_Name($DATA['USERID']);
+//end get
+
 $pdf->SetX(35);
 $pdf->SetFont('THSarabun','',14);
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','ลงชื่อ'),0);
-$image1 = "image1.jpg"; # signature
-$pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
+if($signature_file != null)
+{
+	$pdf->Cell( 40, 7, $pdf->Image($signature_file, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
+}
 $pdf->SetX($money_position-10);
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','ลงชื่อ'),0);
-$image1 = "image1.jpg"; # signature
-$pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
+if($signature_file != null)
+{
+	$pdf->Cell( 40, 7, $pdf->Image($signature_file, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
+}
 $pdf->Ln();
 
-$person = new Person();
-$teacher_name = $person->Get_Teacher_Name($DATA['USERID']);
 $pdf->SetXY(40,$pdf->GetY()+3);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','('.$teacher_name.')'),0);
 $pdf->SetX($money_position-5);
@@ -502,6 +510,7 @@ $pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.$DATA['DATE'].'   
 if(isset($DATA['APPROVED']))
 {
 	$approver_name = $person->Get_Teacher_Name($DATA['APPROVED']['ID']);
+	$signature_approver_file = $person->Get_Teacher_Signature($DATA['APPROVED']['ID']);
 
 $pdf->Ln();
 $pdf->SetX(20);
@@ -510,8 +519,11 @@ $pdf->Cell(0+5,7,iconv( 'UTF-8','TIS-620',' การขอเชิญอาจ
 $pdf->SetX($money_position-25);
 $pdf->SetFont('THSarabun','',14);
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','ลงชื่อ'),0);
-$image1 = "image1.jpg"; # signature
-$pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
+
+if($signature_approver_file != null)
+{
+	$pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
+}
 $pdf->Ln();
 
 $pdf->SetXY($money_position-15,$pdf->GetY()+3);
