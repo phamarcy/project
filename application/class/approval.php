@@ -671,7 +671,7 @@ class approval
   {
     //get all involved staff
     //send notification to resiponsible teacher
-    $sql = "SELECT `teacher_id` FROM `course_responsible` WHERE `course_id` = '".$course_id."'";
+    $sql = "SELECT DISTINCT `teacher_id` FROM `course_responsible` WHERE `course_id` = '".$course_id."'";
     $result = $this->DB->Query($sql);
     if($result)
     {
@@ -684,7 +684,7 @@ class approval
     }
 
     //send email to course assessor
-    $sql = "SELECT `teacher_id` FROM `group_assessor` ga, `subject_assessor` sa
+    $sql = "SELECT DISTINCT `teacher_id` FROM `group_assessor` ga, `subject_assessor` sa
     WHERE ga.`group_num` = sa.`assessor_group_num` AND sa.`course_id` = '".$course_id."'";
     $result = $this->DB->Query($sql);
     if($result)
