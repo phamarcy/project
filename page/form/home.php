@@ -210,6 +210,7 @@ echo "</pre>";*/
 																		<th style="width:250px">คณะกรรมการ</th>
 																		<?php endif; ?>
 																		<th>ข้อเสนอแนะ</th>
+                                    <th>วันที่และเวลา</th>
 																	</thead>
 																	<tbody>
 
@@ -225,8 +226,12 @@ echo "</pre>";*/
 																				} else {
 																					echo $comment['comment'];
 																				}
-
 																				?></td>
+                                        <td><?php if ($comment['date']=="") {
+                                          echo "-";
+                                        } else {
+                                          echo $comment['date'];
+                                        }  ?></td>
 																			</tr>
 																		<?php endforeach;  }?>
 																	</tbody>
@@ -304,6 +309,7 @@ echo "</pre>";*/
 																							<th style="width:250px">คณะกรรมการ</th>
 																							<?php endif; ?>
 																							<th>ข้อเสนอแนะ</th>
+                                              <th>วันที่และเวลา</th>
 																						</thead>
 																						<tbody>
 
@@ -322,8 +328,12 @@ echo "</pre>";*/
   																									} else {
   																										echo $comment['comment'];
   																									}
-
 																									?></td>
+                                                  <td><?php if ($comment['date']=="") {
+                                                    echo "-";
+                                                  }else {
+                                                    echo $comment['date'];
+                                                  } ?></td>
 																								</tr>
 																							<?php endforeach;
                                                 }  ?>
