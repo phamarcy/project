@@ -174,7 +174,7 @@ echo "</pre>";*/
                                         <th style="width:230px">คณะกรรมการ</th>
                                         <?php endif; ?>
                                         <th>ข้อเสนอแนะ</th>
-                                        <th>วันที่และเวลา</th>
+                                        <th>วัน/เวลา</th>
                                       </thead>
                                       <tbody>
                                         <?php foreach ($value['comment'] as $keycomment => $valuecomment): ?>
@@ -243,6 +243,7 @@ echo "</pre>";*/
                                                   <th style="width:230px">คณะกรรมการ</th>
                                                   <?php endif; ?>
                                                   <th>ข้อเสนอแนะ</th>
+                                                  <th>วัน/เวลา</th>
                                                 </thead>
                                                 <tbody>
                                                   <?php foreach ($valuesp['comment'] as $keycom => $valuecom): ?>
@@ -252,6 +253,11 @@ echo "</pre>";*/
                                                       <?php endif; ?>
                                                       <td><?php if (($valuecom['comment'])!="") {
                                                         echo $valuecom['comment'];
+                                                      }else {
+                                                        echo "-";
+                                                      } ?></td>
+                                                      <td><?php if (($valuecom['date'])!="") {
+                                                        echo $valuecom['date'];
                                                       }else {
                                                         echo "-";
                                                       } ?></td>

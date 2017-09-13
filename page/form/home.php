@@ -210,7 +210,7 @@ echo "</pre>";*/
 																		<th style="width:250px">คณะกรรมการ</th>
 																		<?php endif; ?>
 																		<th>ข้อเสนอแนะ</th>
-                                    <th>วันที่และเวลา</th>
+                                    <th>วัน/เวลา</th>
 																	</thead>
 																	<tbody>
 
@@ -309,7 +309,7 @@ echo "</pre>";*/
 																							<th style="width:250px">คณะกรรมการ</th>
 																							<?php endif; ?>
 																							<th>ข้อเสนอแนะ</th>
-                                              <th>วันที่และเวลา</th>
+                                              <th>วัน/เวลา</th>
 																						</thead>
 																						<tbody>
 
