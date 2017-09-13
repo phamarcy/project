@@ -301,10 +301,6 @@ class Report
     $mail = new PHPMailer();
     $mail->IsSMTP();
     //$mail->SMTPDebug = $EMAIL['SMTPDebug'];
-    $debug = '';
-    $mail->Debugoutput = function($str, $level) {
-        $debug .= "$level: $str\n";
-    }
     $mail->SMTPAuth = $EMAIL['SMTPAuth'];
     $mail->SMTPSecure = $EMAIL['SMTPSecure'];
     $mail->Host = $EMAIL['Host'];
@@ -386,6 +382,12 @@ class Report
         $bodystring = $bodystring."<br><br>----อีเมล์นี้ส่งจากระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่----";
 
         $mail->Body = $bodystring;
+
+        $debug = '';
+        $mail->Debugoutput = function($str, $level) {
+            $debug .= $level.": ".$str."\n";
+        };
+        
         if($mail->AddAddress($idobj->Get_Teacher_Email($teacher_id)) == false)
         {
           $this->LOG->Write($debug);
