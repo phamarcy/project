@@ -386,14 +386,48 @@ class Person
 
   public function Get_Grant(){
 
-    $this->DB->Change_DB('pharmacy');
+    $this->DB->Change_DB($this->DEFAULT_DB);
     $sql = 'SELECT * FROM grant_approve';
     $result = $this->DB->Query($sql);
     return $result;
   }
 
+  public function Get_Teacher_Signature($teacher_id)
+  {
+    global $SIGNATURE_PATH;
+    $this->DB->Change_DB('person');
+    $sql = "SELECT `files_sig` FROM `staff` WHERE `code` = '".$teacher_id."'";
+    $result = $this->DB->Query($sql);
+    $this->DB->Change_DB($this->DEFAULT_DB);
+    if($result)
+    {
+      $filename = $result[0]['files_sig'];
+      if($filename != '')
+      {
+        if(file_exists($SIGNATURE_PATH."/".$filename))
+        {
+          $file_path = $SIGNATURE_PATH."/".$filename;
+          return $file_path;
+        }
+        else
+        {
+          return null;
+        }
+      }
+      else
+      {
+        return null;
+      }
+
+    }
+    else
+    {
+      return null;
+    }
+
+  }
   public function Check_Grant($teacher){
-    $this->DB->Change_DB('pharmacy');
+    $this->DB->Change_DB($this->DEFAULT_DB);
     $sql = 'SELECT * FROM grant_approve WHERE teacher_id = '.$teacher.'';
     $result = $this->DB->Query($sql);
     if ($result) {

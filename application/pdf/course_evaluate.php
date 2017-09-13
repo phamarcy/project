@@ -490,12 +490,17 @@ $pdf->SetX(30);
 $pdf->Cell(0,7,iconv( 'UTF-8','cp874',$AB_F.' ให้ลำดับขั้น F    '.$AB_U.' ให้อักษร U   '.$AB_CAL.' นำคะแนนทั้งหมดที่นักศึกษาได้รับก่อนการสอบไล่มาประเมิน'),0,1);
 $pdf->SetX(25);
 
+
+$person = new Person();
+$signature_file = $person->Get_Teacher_Signature($DATA['USERID']);
 $pdf->Cell(10,7,iconv('UTF-8','cp874','ลงชื่อ'),0);
-$image1 = "image1.jpg"; # signature
-$pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
+if($signature_file != null)
+{
+	$pdf->Cell( 40, 7, $pdf->Image($signature_file, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
+}
 $pdf->Cell(0,7,iconv('UTF-8','cp874','วันที่  '.$DATA['DATE'].'   เดือน   '.$THAI_MONTH[(int)$DATA['MONTH']-1].'   พ.ศ.   '.$DATA['YEAR']),0);
 $pdf->Ln();
-$person = new Person();
+
 $teacher_name = $person->Get_Teacher_Name($DATA['USERID']);
 
 $pdf->SetX(35);
@@ -510,6 +515,7 @@ $pdf->Cell(0,7,iconv('UTF-8','cp874','(ผู้รับผิดชอบก�
 if(isset($DATA['APPROVED']))
 {
 	$approver_name = $person->Get_Teacher_Name($DATA['APPROVED']['ID']);
+	$signature_approver_file = $person->Get_Teacher_Signature($DATA['APPROVED']['ID']);
 //if approve
 	$pdf->Ln();
 	$pdf->SetFont('THSarabun_B','',14);
@@ -521,8 +527,10 @@ if(isset($DATA['APPROVED']))
 	$pdf->Ln();
 	$pdf->SetX(25);
 	$pdf->Cell(10,7,iconv('UTF-8','cp874','ลงชื่อ'),0);
-	$image1 = "image1.jpg"; # signature
-	$pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
+	if($signature_approver_file != null)
+	{
+		$pdf->Cell( 40, 7, $pdf->Image($signature_approver_file, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
+	}
 	$pdf->Cell(0,7,iconv('UTF-8','cp874','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[(int)date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
 	$pdf->Ln();
 

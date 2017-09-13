@@ -60,18 +60,26 @@
 		}).done(function(result) {
 			if(result != '')
 			{
-				var obj = jQuery.parseJSON(result);
-				if(obj != '')
+				try
 				{
-					$("#new_noti").text(obj.length);
-					if ($(".label-danger").css('display') == 'none'){}
-					{
-						$(".label-danger").show("fast");
-					}
-					append_noti(obj);
+				   var obj = jQuery.parseJSON(result);
+					 if(obj != '')
+	 				{
+	 					$("#new_noti").text(obj.length);
+	 					if ($(".label-danger").css('display') == 'none'){}
+	 					{
+	 						$(".label-danger").show("fast");
+	 					}
+	 					append_noti(obj);
+	 				}
+				}
+				catch(e)
+				{
+				   console.log(result);
 				}
 			}
-			else {
+			else
+			{
 				$(".label-danger").hide();
 			}
 
@@ -93,57 +101,63 @@
 		 $("#noti").html('');
 		for(var i=0;i<obj.length;i++)
 		{
-			var element = $(object).clone();
-			var data = jQuery.parseJSON(obj[i]);
-			var status = '';
-			var type = '';
-			if(data != '')
+			try
 			{
-				switch(data.STATUS) {
-					case '0':
-					status='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
-					break;
-				 case '1':
-				 	status='<b id="statwt">รอการพิจารณา <i class="fa  fa-clock-o fa-fw"></i></b>';
-					 break;
-				 case '2':
-				 	status='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
-					 break;
-				 case '3':
-				 	status='<b id="statal">มีการแก้ไขจากภาควิชา<i class="fa fa-pencil-square fa-fw"></i></b>';
-					 break;
-				 case '4':
-				 	status='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค<i class="fa fa-user fa-fw"></i></b>';
-					 break;
-				 case '5':
-				 	status='<b id="statwt">รอคณะอนุมัติ<i class="fa fa-user-plus fa-fw"></i></b>';
-					 break;
-				 case '6':
-				 	status='<b id="statal">มีการแก้ไขจากคณะ<i class="fa fa-check fa-fw"></i></b>';
-					 break;
-				 case '7':
-				 	status='<b id="statcf">ผ่าน<i class="fa fa-check fa-fw"></i></b>';
-					 break;
-	    	 default:
-	        status = '';
-					break;
-				}
+				var element = $(object).clone();
+				var data = jQuery.parseJSON(obj[i]);
+				var status = '';
+				var type = '';
+				if(data != '')
+				{
+					switch(data.STATUS) {
+						case '0':
+						status='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+						break;
+					 case '1':
+					 	status='<b id="statwt">รอการพิจารณา <i class="fa  fa-clock-o fa-fw"></i></b>';
+						 break;
+					 case '2':
+					 	status='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+						 break;
+					 case '3':
+					 	status='<b id="statal">มีการแก้ไขจากภาควิชา<i class="fa fa-pencil-square fa-fw"></i></b>';
+						 break;
+					 case '4':
+					 	status='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค<i class="fa fa-user fa-fw"></i></b>';
+						 break;
+					 case '5':
+					 	status='<b id="statwt">รอคณะอนุมัติ<i class="fa fa-user-plus fa-fw"></i></b>';
+						 break;
+					 case '6':
+					 	status='<b id="statal">มีการแก้ไขจากคณะ<i class="fa fa-check fa-fw"></i></b>';
+						 break;
+					 case '7':
+					 	status='<b id="statcf">ผ่าน<i class="fa fa-check fa-fw"></i></b>';
+						 break;
+		    	 default:
+		        status = '';
+						break;
+					}
 
-				$(element).find("#course_id").text(data.COURSE_ID);
-				$(element).find("#date").text("เมื่อวันที่ "+data.DATE_USER+" เวลา "+data.TIME_USER);
-				console.log(data.TYPE);
-				if(data.TYPE == '1')
-				{
-					type = "แบบวัดผลประเมินผล";
+					$(element).find("#course_id").text(data.COURSE_ID);
+					$(element).find("#date").text("เมื่อวันที่ "+data.DATE_USER+" เวลา "+data.TIME_USER);
+					if(data.TYPE == '1')
+					{
+						type = "แบบวัดผลประเมินผล";
+					}
+					else
+					{
+						type = "แบบเชิญอาจารย์พิเศษ <br> "+data.NAME;
+					}
+					$(element).find("#type").html(type);
+					$(element).find("#status").html(status);
+					$("#noti").prepend('<li class="divider"></li>');
+					$("#noti").prepend(element);
 				}
-				else
-				{
-					type = "แบบเชิญอาจารย์พิเศษ <br> "+data.NAME;
-				}
-				$(element).find("#type").html(type);
-				$(element).find("#status").html(status);
-				$("#noti").prepend('<li class="divider"></li>');
-				$("#noti").prepend(element);
+			}
+			catch(e)
+			{
+				 console.log(result);
 			}
 		}
 	}
