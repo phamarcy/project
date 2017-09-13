@@ -287,14 +287,12 @@ class Report
     global $EMAIL;
     $idobj = new Person;
     $type = $data['TYPE'];
-    if($type=='1')
+    if($type=='2')
     {
-
-    }
-    else {
       $name = $data['NAME'];
     }
 
+    $this->LOG->Write("Send email to ".$teacher_id);
     $course_id = $data['COURSE_ID'];
     $status = $data['STATUS'];
     $date = $data['DATE_USER'];
@@ -303,6 +301,10 @@ class Report
     $mail = new PHPMailer();
     $mail->IsSMTP();
     //$mail->SMTPDebug = $EMAIL['SMTPDebug'];
+    $debug = '';
+    $mail->Debugoutput = function($str, $level) {
+        $debug .= "$level: $str\n";
+    }
     $mail->SMTPAuth = $EMAIL['SMTPAuth'];
     $mail->SMTPSecure = $EMAIL['SMTPSecure'];
     $mail->Host = $EMAIL['Host'];
@@ -386,19 +388,18 @@ class Report
         $mail->Body = $bodystring;
         if($mail->AddAddress($idobj->Get_Teacher_Email($teacher_id)) == false)
         {
-          echo 'error: not found email';
+          $this->LOG->Write($debug);
         }
         else {
           $mail->AddAddress($idobj->Get_Teacher_Email($teacher_id));
         }
 
          if(!$mail->Send()) {
-            $email_status = 'sending error';
+            $this->LOG->Write($debug." Error: incomplete");
          } else {
-            $email_status = 'sent';
+            $this->LOG->Write($debug." Complete");
          }
 
-         echo "<br><br>".$email_status;
   } //end email
 
 }
