@@ -621,8 +621,12 @@ function checksubject(btntype,type){
                   data: file_data,
                   type: 'post',
                   success: function (result) {
-
-                       var temp = $.parseJSON(result);
+                        try {
+                          var temp = $.parseJSON(result);
+                        } catch (e) {
+                             console.log('Error#542-decode error');
+                        }
+                        
                        if(temp['info']!=false && temp[0]!=null)
                        {
                          document.getElementById('formdrpd').style.display = "";
@@ -713,7 +717,11 @@ function checksubject(btntype,type){
                   data: file_data,
                   type: 'post',
                   success: function (result) {
-                    var temp = $.parseJSON(result);
+                    try {
+                      var temp = $.parseJSON(result);
+                    } catch (e) {
+                         console.log('Error#542-decode error');
+                    }
                     if(temp!=null)
                     {
                       swal(
@@ -977,7 +985,12 @@ function senddata(data,file_data)
                  data: file_data,
                  type: 'post',
                  success: function (result) {
-                   var temp = $.parseJSON(result);
+                   try {
+                     var temp = $.parseJSON(result);
+                   } catch (e) {
+                        console.log('Error#542-decode error');
+                   }
+
                    if(temp["status"]=='success')
                    {
                      swal({

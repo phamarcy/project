@@ -239,7 +239,11 @@ $current = $dlobj->Get_Current_Semester();
                    type: 'post',
                    success: function (result) {
 
-                        var temp = $.parseJSON(result);
+                         try {
+                           var temp = $.parseJSON(result);
+                         } catch (e) {
+                              console.log('Error#542-decode error');
+                         }
                         //console.log(Object.keys(temp).length);
                         if(temp['info']!=false && temp[0]!=null)
                         {
@@ -340,7 +344,11 @@ $current = $dlobj->Get_Current_Semester();
                    data: file_data,
                    type: 'post',
                    success: function (result) {
-                     var temp = $.parseJSON(result);
+                     try {
+                       var temp = $.parseJSON(result);
+                     } catch (e) {
+                          console.log('Error#542-decode error');
+                     }
                      if(temp!=null)
                      {
                        if(temp['status'] == 'success')
@@ -585,7 +593,11 @@ $current = $dlobj->Get_Current_Semester();
                   data: file_data,
                   type: 'post',
                   success: function (result) {
-                       var temp = $.parseJSON(result);
+                        try {
+                          var temp = $.parseJSON(result);
+                        } catch (e) {
+                             console.log('Error#542-decode error');
+                        }
                        if(temp["status"]=='success')
                        {
                           swal({
