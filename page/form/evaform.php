@@ -626,7 +626,7 @@ function checksubject(btntype,type){
                         } catch (e) {
                              console.log('Error#542-decode error');
                         }
-                        
+
                        if(temp['info']!=false && temp[0]!=null)
                        {
                          document.getElementById('formdrpd').style.display = "";
@@ -984,6 +984,10 @@ function senddata(data,file_data)
                  processData: false,
                  data: file_data,
                  type: 'post',
+                 beforeSend: function() {
+                   swal({})
+                   swal.showLoading()
+                 },
                  success: function (result) {
                    try {
                      var temp = $.parseJSON(result);
@@ -993,6 +997,7 @@ function senddata(data,file_data)
 
                    if(temp["status"]=='success')
                    {
+                     swal.hideLoading()
                      swal({
                        title: 'สำเร็จ',
                        text: temp["msg"],
