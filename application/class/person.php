@@ -387,9 +387,13 @@ class Person
   public function Get_Grant(){
 
     $this->DB->Change_DB($this->DEFAULT_DB);
-    $sql = 'SELECT * FROM grant_approve';
+    $sql    = 'SELECT * FROM grant_approve';
     $result = $this->DB->Query($sql);
-    return $result;
+    if ($result) {
+      $name   = $this->Get_Teacher_Name($result[0]['user_id']);
+      $DATA   = array('user_id' => $result[0]["user_id"] ,'user_name' =>$name,'status'=>$result[0]['status'],'startdate'=>$result[0]['date_start'],'enddate'=>$result[0]['date_end'] );
+    }
+    return $DATA;
   }
 
   public function Get_Teacher_Signature($teacher_id)
@@ -431,7 +435,7 @@ class Person
     $sql = 'SELECT * FROM grant_approve WHERE teacher_id = '.$teacher.'';
     $result = $this->DB->Query($sql);
     if ($result) {
-      $_SESSION['id'] = 7;
+      $_SESSION['id'] = 6;
     }
     return $result;
   }

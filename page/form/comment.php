@@ -19,13 +19,15 @@ $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
 $data_forapproval=$approval->Get_Approval_data($_SESSION['id']);
+
+$check_permission=$person->Check_Grant($_SESSION['id']);
 //close db
 //$person->Close_connection();
 $deadline->Close_connection();
 $course->Close_connection();
 $approval->Close_connection();
 /*echo "<pre>";
-print_r($data_forapproval);
+print_r($check_permission);
 echo "</pre>";*/
  ?>
   <html>
@@ -127,7 +129,7 @@ echo "</pre>";*/
                       <?php endif; ?>
                     </td>
                     <td style="text-align:center;">
-                      <?php if (isset($value['evaluate']) ): ?>
+                      <?php if (isset($value['evaluate'])): ?>
                           <a href="<?php echo $value['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
                       <?php endif; ?>
 
@@ -172,6 +174,7 @@ echo "</pre>";*/
                                         <th style="width:230px">คณะกรรมการ</th>
                                         <?php endif; ?>
                                         <th>ข้อเสนอแนะ</th>
+                                        <th>วันที่และเวลา</th>
                                       </thead>
                                       <tbody>
                                         <?php foreach ($value['comment'] as $keycomment => $valuecomment): ?>
@@ -184,6 +187,11 @@ echo "</pre>";*/
                                             }else {
                                               echo "-";
                                             } ?></td>
+                                            <td>
+                                              <?php if ($valuecomment['comment']!=""): ?>
+                                                <?php echo $valuecomment['date'] ?>
+                                              <?php endif; ?>
+                                            </td>
                                           </tr>
                                         <?php endforeach; ?>
                                       </tbody>
@@ -307,19 +315,36 @@ echo "</pre>";*/
               teacher:id,
               comment:comment
             },
+            beforeSend: function() {
+              swal(
+               'กรุณารอสักครู่',
+               'ระบบกำลังประมวลผล'
+             )
+             swal.showLoading();
+            },
             success:function(data){
-              var msg=JSON.parse(data)
-              swal({
-                type:msg.status,
-                text: msg.msg,
-                timer: 2000,
-                confirmButtonText: "Ok!",
-              }, function(){
-                window.location.reload();
-              });
-              setTimeout(function() {
-                window.location.reload();
-              }, 1000);
+              swal.hideLoading();
+              try {
+                var msg=JSON.parse(data)
+                swal({
+                  type:msg.status,
+                  text: msg.msg,
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                }, function(){
+                  window.location.reload();
+                });
+                setTimeout(function() {
+                  window.location.reload();
+                }, 1000);
+              } catch (e) {
+                swal({
+                  type:"error",
+                  text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                });
+              }
             }
         });
       }, function (dismiss) {
@@ -353,7 +378,15 @@ echo "</pre>";*/
               teachersp:teacherSp,
               comment:comment
             },
+            beforeSend: function() {
+              swal(
+               'กรุณารอสักครู่',
+               'ระบบกำลังประมวลผล'
+             )
+             swal.showLoading();
+            },
             success:function(data){
+              swal.hideLoading();
               var msg=JSON.parse(data)
               swal({
                 type:msg.status,

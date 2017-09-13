@@ -16,7 +16,9 @@ $deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
 $semester = $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
-
+/*echo "<pre>";
+print_r($data_course);
+echo "</pre>";*/
 ?>
 	<html>
 
@@ -367,19 +369,33 @@ $data_course= json_decode($var, true);
           {
             course_id:course
           },
+          beforeSend: function() {
+            swal(
+             'กรุณารอสักครู่',
+             'ระบบกำลังประมวลผล'
+           )
+           swal.showLoading();
+          },
           success:function(data){
-            var msg=JSON.parse(data)
-            swal({
-              type:msg.status,
-              text: msg.msg,
-              timer: 2000,
-              confirmButtonText: "Ok!",
-            }, function(){
-              window.location.reload();
-            });
-            setTimeout(function() {
-              window.location.reload();
-            }, 1000);
+            swal.hideLoading();
+            try {
+              var msg=JSON.parse(data);
+              swal({
+                type:msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!",
+              }, function(){
+                window.location.reload();
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 1000);
+            } catch (e) {
+
+            } finally {
+
+            }
           }
       });
     }, function (dismiss) {
@@ -388,6 +404,7 @@ $data_course= json_decode($var, true);
 
   }
   function senttoheadSP(course,teachersp){
+
     swal({
       title: 'แน่ใจหรือไม่',
       text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
@@ -406,19 +423,32 @@ $data_course= json_decode($var, true);
             course_id:course,
             teachersp:teachersp
           },
+          beforeSend: function() {
+            swal(
+             'กรุณารอสักครู่',
+             'ระบบกำลังประมวลผล'
+           )
+           swal.showLoading();
+          },
           success:function(data){
-            var msg=JSON.parse(data)
-            swal({
-              type:msg.status,
-              text: msg.msg,
-              timer: 2000,
-              confirmButtonText: "Ok!",
-            }, function(){
-              window.location.reload();
-            });
-            setTimeout(function() {
-              window.location.reload();
-            }, 1000);
+            swal.hideLoading();
+            try {
+              var msg=JSON.parse(data)
+              swal({
+                type:msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!",
+              }, function(){
+                window.location.reload();
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 1000);
+            } catch (e) {
+
+            }
+
           }
       });
     }, function (dismiss) {

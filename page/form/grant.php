@@ -81,22 +81,24 @@ echo "</pre>";
            <div class="panel-body">
              <table class="table table-hover" style="font-size: 14px;">
                <thead>
-                 <th>ชื่อ</th>
-                 <th>นามสกุล</th>
+                 <th>ชื่อ-นามสกุล</th>
                  <th>สถานะผู้ใช้งาน</th>
                  <th>ระยะเวลา</th>
                  <th>สถานะการมอบอำนาจ</th>
                  <th></th>
                </thead>
                <tbody>
-                 <tr>
-                   <td>วิชัย</td>
-                   <td>ใจดี</td>
-                   <td>คณะกรรมการคณะ</td>
-                   <td>25/08/2560 - 30/08/2560 </td>
-                   <td>ได้รับมอบอำนาจการอนุมัติ</td>
-                   <td><input type="button" class="btn btn-outline btn-danger" id="cancelgrantbtn" value="ยกเลิกการมอบอำนาจ"></td>
-                 </tr>
+                 <?php if (isset($data)): ?>
+                   <tr>
+                     <td><?php echo $data['user_name'] ?></td>
+                     <td>คณะกรรมการคณะ</td>
+                     <td><?php echo date("d/m/Y", strtotime($data['startdate'])); ?> - <?php echo date("d/m/Y", strtotime($data['enddate']));?> </td>
+                     <td>ได้รับมอบอำนาจการอนุมัติ</td>
+                     <td>
+                       <input type="button" class="btn btn-outline btn-danger" onclick="cancelPermission(<?php echo $data['user_id'] ?>)" value="ยกเลิกการมอบอำนาจ">
+                     </td>
+                   </tr>
+                 <?php endif; ?>
                </tbody>
              </table>
            </div>
@@ -139,23 +141,110 @@ echo "</pre>";
      });
      return false;
    }else {
-     $.ajax({
-         url: '../../application/grant/approve_grant.php',
-         type: 'POST',
-         data:{teacher:check,date:check2,type:"add"},
-         success: function (data) {
-           console.log(data);
-         }
-     });
-   }
+     swal({
+       title: 'แน่ใจหรือไม่',
+       text: 'คุณต้องการมอบอำนาจให้แก่ '+check+' ใช่หรือไม่',
+       type: 'question',
+       showCancelButton: true,
+       confirmButtonColor: '#3085d6',
+       cancelButtonColor: '#d33',
+       confirmButtonText: 'ตกลง',
+       cancelButtonText: 'ยกเลิก'
+     }).then(function () {
+       $.ajax({
+           url: '../../application/grant/approve_grant.php',
+           type: 'POST',
+           data:
+           {
+             teacher:check,
+             date:check2,
+             type:"add"
+           },
+           success:function(data){
+             console.log(data);
+             try {
+               var msg=JSON.parse(data)
+               swal({
+                 type:msg.status,
+                 text: msg.msg,
+                 timer: 2000,
+                 confirmButtonText: "Ok!",
+               }, function(){
+                 window.location.reload();
+               });
+               setTimeout(function() {
+                 window.location.reload();
+               }, 1000);
+             } catch (e) {
+               swal({
+                 type:"error",
+                 text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                 timer: 2000,
+                 confirmButtonText: "Ok!",
+               });
+             }
+           }
+       });
+     }, function (dismiss) {
+     if (dismiss === 'cancel') {}
+   })
+
+ }//else
  }
  function cancelPermission(teacher){
-   var teacher = document.getElementById('').value
+
+   swal({
+     title: 'แน่ใจหรือไม่',
+     text: 'คุณต้องการยกเลิกสิทธิ์ใช่หรือไม่',
+     type: 'question',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'ตกลง',
+     cancelButtonText: 'ยกเลิก'
+   }).then(function () {
+     $.ajax({
+         url: '',
+         type: 'POST',
+         data:
+         {
+           user_id:teacher,
+           type:"remove"
+         },
+         success:function(data){
+           try {
+             var msg=JSON.parse(data)
+             swal({
+               type:msg.status,
+               text: msg.msg,
+               timer: 2000,
+               confirmButtonText: "Ok!",
+             }, function(){
+               window.location.reload();
+             });
+             setTimeout(function() {
+               window.location.reload();
+             }, 1000);
+           } catch (e) {
+             swal({
+               type:"error",
+               text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+               timer: 2000,
+               confirmButtonText: "Ok!",
+             });
+           }
+         }
+     });
+   }, function (dismiss) {
+   if (dismiss === 'cancel') {}
+ })
+
+
  }
 
  $('input[name="daterange"]').daterangepicker({
    locale: {
-         format: 'DD/MM/YYYY',
+         format: 'YYYY/MM/DD',
          locale: 'th'
      }
  });
