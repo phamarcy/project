@@ -344,10 +344,11 @@ $current = $dlobj->Get_Current_Semester();
                    data: file_data,
                    type: 'post',
                    beforeSend: function() {
-                     swal(
-                       'กรุณารอสักครู่',
-                       'ระบบกำลังประมวลผล'
-                     )
+                     swal({
+                       title: 'กรุณารอสักครู่',
+                       text: 'ระบบกำลังประมวลผล',
+                       allowOutsideClick: false
+                     })
                      swal.showLoading()
                    },
                    success: function (result) {
@@ -592,10 +593,11 @@ $current = $dlobj->Get_Current_Semester();
                   data: file_data,
                   type: 'post',
                   beforeSend: function() {
-                    swal(
-                      'กรุณารอสักครู่',
-                      'ระบบกำลังประมวลผล'
-                    )
+                    swal({
+                      title: 'กรุณารอสักครู่',
+                      text: 'ระบบกำลังประมวลผล',
+                      allowOutsideClick: false
+                    })
                     swal.showLoading()
                   },
                   success: function (result) {

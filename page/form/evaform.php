@@ -717,10 +717,11 @@ function checksubject(btntype,type){
                   data: file_data,
                   type: 'post',
                   beforeSend: function() {
-                    swal(
-                      'กรุณารอสักครู่',
-                      'ระบบกำลังประมวลผล'
-                    )
+                    swal({
+                      title: 'กรุณารอสักครู่',
+                      text: 'ระบบกำลังประมวลผล',
+                      allowOutsideClick: false
+                    })
                     swal.showLoading()
                   },
                   success: function (result) {
@@ -994,10 +995,11 @@ function senddata(data,file_data)
                  data: file_data,
                  type: 'post',
                  beforeSend: function() {
-                   swal(
-                     'กรุณารอสักครู่',
-                     'ระบบกำลังประมวลผล'
-                   )
+                   swal({
+                     title: 'กรุณารอสักครู่',
+                     text: 'ระบบกำลังประมวลผล',
+                     allowOutsideClick: false
+                   })
                    swal.showLoading()
                  },
                  success: function (result) {
