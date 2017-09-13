@@ -303,11 +303,12 @@ class approval
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
-      $noti['COURSE_ID'] = $course_id;
-      $noti['STATUS'] = $status;
-      $noti['DATE'] = date("d-m-Y h:i:sa");
-      $noti['TYPE'] = '1'; //1 evaluate , 2, special instructor
-      $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
+      // $noti['COURSE_ID'] = $course_id;
+      // $noti['STATUS'] = $status;
+      // $noti['DATE_USER'] = date("d-m-Y");
+      // $noti['TIME_USER'] = date("h:i:sa");
+      // $noti['TYPE'] = '1'; //1 evaluate , 2, special instructor
+      // $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       return true;
     }
     else
@@ -325,12 +326,13 @@ class approval
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
-      $noti['COURSE_ID'] = $course_id;
-      $noti['STATUS'] = $status;
-      $noti['NAME'] = $this->PERSON->Get_Special_Instructor_Name($instructor_id);
-      $noti['DATE'] = date("d-m-Y h:i:sa");
-      $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
-      $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
+      // $noti['COURSE_ID'] = $course_id;
+      // $noti['STATUS'] = $status;
+      // $noti['NAME'] = $this->PERSON->Get_Special_Instructor_Name($instructor_id);
+      // $noti['DATE_USER'] = date("d-m-Y");
+      // $noti['TIME_USER'] = date("h:i:sa");
+      // $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
+      // $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       return true;
     }
     else
