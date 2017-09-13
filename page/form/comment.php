@@ -19,7 +19,6 @@ $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
 $data_forapproval=$approval->Get_Approval_data($_SESSION['id']);
-
 $check_permission=$person->Check_Grant($_SESSION['id']);
 //close db
 //$person->Close_connection();
@@ -322,10 +321,11 @@ echo "</pre>";*/
               comment:comment
             },
             beforeSend: function() {
-              swal(
-               'กรุณารอสักครู่',
-               'ระบบกำลังประมวลผล'
-             )
+             swal({
+                     title: 'กรุณารอสักครู่',
+                     text: 'ระบบกำลังประมวลผล',
+                     allowOutsideClick: false
+                   })
              swal.showLoading();
             },
             success:function(data){
@@ -385,10 +385,11 @@ echo "</pre>";*/
               comment:comment
             },
             beforeSend: function() {
-              swal(
-               'กรุณารอสักครู่',
-               'ระบบกำลังประมวลผล'
-             )
+              swal({
+                title: 'กรุณารอสักครู่',
+                text: 'ระบบกำลังประมวลผล',
+                allowOutsideClick: false
+              })
              swal.showLoading();
             },
             success:function(data){

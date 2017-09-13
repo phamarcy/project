@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	require_once(__DIR__."/../application/class/person.php");
 	if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
 	{
 	    header('Location: login.php');
@@ -7,6 +8,10 @@
 	{
 		header('Location: admin.php');
 	}
+	$person = new Person();
+	$check_permission=$person->Check_Grant($_SESSION['id']);
+	//print_r($check_permission);exit();
+	$person->Close_connection();
  ?>
 
 <html>
@@ -393,7 +398,7 @@
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
 						<?php }else { ?>
-						<?php if ($_SESSION['level']<=1): ?>
+						<?php if ($_SESSION['level']<=1 || $_SESSION['permission']==1): ?>
 							<li>
 								<a href="#"><i class="fa fa-edit fa-fw"></i> กรอกข้อมูล<span class="fa arrow"></span></a>
 
@@ -416,9 +421,11 @@
 						if($_SESSION['level'] >= 4)
 						{
 							if ($_SESSION['level']==6) { ?>
+
 								<li>
 									<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> อนุมัติกระบวนวิชา</a>
 								</li>
+
 						<?php
 					} else { ?>
 								<li>
@@ -437,9 +444,11 @@
 						<?php
 							if($_SESSION['level']==6)
 							{ ?>
-								<li>
-									<a href="#" onclick="loadDoc('form/grant.php')"><i class="fa fa-users fa-fw"></i> มอบอำนาจการอนุมัติ</a>
-								</li>
+								<?php if (isset($_SESSION['permission'])!=1): ?>
+									<li>
+										<a href="#" onclick="loadDoc('form/grant.php')"><i class="fa fa-users fa-fw"></i> มอบอำนาจการอนุมัติ</a>
+									</li>
+								<?php endif; ?>
 								<?php
 							}
 

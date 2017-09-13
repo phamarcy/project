@@ -16,9 +16,9 @@ $deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
 $semester = $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
-/*echo "<pre>";
-print_r($data_course);
-echo "</pre>";*/
+echo "<pre>";
+print_r($_SESSION['level']);
+echo "</pre>";
 ?>
 	<html>
 
@@ -434,10 +434,11 @@ echo "</pre>";*/
             teachersp:teachersp
           },
           beforeSend: function() {
-            swal(
-             'กรุณารอสักครู่',
-             'ระบบกำลังประมวลผล'
-           )
+            swal({
+              title: 'กรุณารอสักครู่',
+              text: 'ระบบกำลังประมวลผล',
+              allowOutsideClick: false
+            })
            swal.showLoading();
           },
           success:function(data){

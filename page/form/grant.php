@@ -7,9 +7,9 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
 require_once(__DIR__."/../../application/class/person.php");
 $p = new Person();
 $data=$p->Get_Grant();
-echo "<pre>";
+/*echo "<pre>";
 print_r($data);
-echo "</pre>";
+echo "</pre>";*/
  ?>
 <html>
 <header>
@@ -82,20 +82,18 @@ echo "</pre>";
              <table class="table table-hover" style="font-size: 14px;">
                <thead>
                  <th>ชื่อ-นามสกุล</th>
-                 <th>สถานะผู้ใช้งาน</th>
                  <th>ระยะเวลา</th>
                  <th>สถานะการมอบอำนาจ</th>
                  <th></th>
                </thead>
                <tbody>
-                 <?php if (isset($data)): ?>
+                 <?php if (is_array($data) || is_object($data)): ?>
                    <tr>
                      <td><?php echo $data['user_name'] ?></td>
-                     <td>คณะกรรมการคณะ</td>
                      <td><?php echo date("d/m/Y", strtotime($data['startdate'])); ?> - <?php echo date("d/m/Y", strtotime($data['enddate']));?> </td>
                      <td>ได้รับมอบอำนาจการอนุมัติ</td>
                      <td>
-                       <input type="button" class="btn btn-outline btn-danger" onclick="cancelPermission(<?php echo $data['user_id'] ?>)" value="ยกเลิกการมอบอำนาจ">
+                       <input type="button" class="btn btn-outline btn-danger" onclick="cancelPermission('<?php echo $data['user_id'] ?>')" value="ยกเลิกการมอบอำนาจ">
                      </td>
                    </tr>
                  <?php endif; ?>
@@ -112,7 +110,9 @@ echo "</pre>";
               <form class="" action="" method="post">
                 <div class="form-group">
                   <label for="">ชื่อ</label>
-                  <input type="text" class="form-control " name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" >
+                    <input type="text" class="form-control " name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" required>
+                  <datalist id="dtl1"></datalist>
+
                 </div>
                 <div class="form-group">
                   <label for="">ระยะเวลา</label>
@@ -121,7 +121,7 @@ echo "</pre>";
                 <input type="button" class="btn btn-outline btn-warning" value="มอบอำนาจ" onclick="checkValue()">
               </form>
            </div>
-           <div id="result"></div>
+
          </div>
        </div>
        </div>
@@ -163,7 +163,16 @@ echo "</pre>";
            success:function(data){
              console.log(data);
              try {
-               var msg=JSON.parse(data)
+               var msg=JSON.parse(data);
+               if (msg.status=="error") {
+                 swal({
+                   type:msg.status,
+                   text: msg.msg,
+                   timer: 2000,
+                   confirmButtonText: "Ok!",
+                 });
+                 return false;
+               }
                swal({
                  type:msg.status,
                  text: msg.msg,
@@ -174,7 +183,7 @@ echo "</pre>";
                });
                setTimeout(function() {
                  window.location.reload();
-               }, 1000);
+               }, 2000);
              } catch (e) {
                swal({
                  type:"error",
@@ -192,7 +201,6 @@ echo "</pre>";
  }//else
  }
  function cancelPermission(teacher){
-
    swal({
      title: 'แน่ใจหรือไม่',
      text: 'คุณต้องการยกเลิกสิทธิ์ใช่หรือไม่',
@@ -204,16 +212,26 @@ echo "</pre>";
      cancelButtonText: 'ยกเลิก'
    }).then(function () {
      $.ajax({
-         url: '',
+         url: '../../application/grant/approve_grant.php',
          type: 'POST',
          data:
          {
-           user_id:teacher,
+           teacher:teacher,
            type:"remove"
          },
          success:function(data){
+           console.log(data);
            try {
              var msg=JSON.parse(data)
+             if (msg.status=="error") {
+               swal({
+                 type:msg.status,
+                 text: msg.msg,
+                 timer: 2000,
+                 confirmButtonText: "Ok!",
+               });
+               return false;
+             }
              swal({
                type:msg.status,
                text: msg.msg,
@@ -266,6 +284,7 @@ echo "</pre>";
            });
      }
    }
+
    $('select').select2();
 
 

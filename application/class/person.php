@@ -384,17 +384,6 @@ class Person
     return $path;
   }
 
-  public function Get_Grant(){
-
-    $this->DB->Change_DB($this->DEFAULT_DB);
-    $sql    = 'SELECT * FROM grant_approve';
-    $result = $this->DB->Query($sql);
-    if ($result) {
-      $name   = $this->Get_Teacher_Name($result[0]['user_id']);
-      $DATA   = array('user_id' => $result[0]["user_id"] ,'user_name' =>$name,'status'=>$result[0]['status'],'startdate'=>$result[0]['date_start'],'enddate'=>$result[0]['date_end'] );
-    }
-    return $DATA;
-  }
 
   public function Get_Teacher_Signature($teacher_id)
   {
@@ -430,14 +419,33 @@ class Person
     }
 
   }
-  public function Check_Grant($teacher){
+  public function Get_Grant(){
+    $DATA="";
     $this->DB->Change_DB($this->DEFAULT_DB);
-    $sql = 'SELECT * FROM grant_approve WHERE teacher_id = '.$teacher.'';
+    $sql    = 'SELECT * FROM grant_approve';
     $result = $this->DB->Query($sql);
     if ($result) {
-      $_SESSION['id'] = 6;
+      $name   = $this->Get_Teacher_Name($result[0]['user_id']);
+      $DATA   = array('user_id' => $result[0]["user_id"] ,'user_name' =>$name,'status'=>$result[0]['status'],'startdate'=>$result[0]['date_start'],'enddate'=>$result[0]['date_end'] );
     }
-    return $result;
+    return $DATA;
+  }
+
+  public function Check_Grant($teacher){
+
+    $this->DB->Change_DB('pharmacy');
+
+    $sql = 'SELECT * FROM grant_approve WHERE teacher_id = '.$teacher.'';
+    $result = $this->DB->Query($sql);
+    print_r($result);
+    if ($result) {
+
+      if (date("Y-m-d")>=$result[0]['startdate'] && date("Y-m-d")<=$result[0]['enddate'] ) {
+
+      }
+    }
+
+    return false;
   }
   public function Close_connection()
   {
