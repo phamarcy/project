@@ -359,23 +359,13 @@ $current = $dlobj->Get_Current_Semester();
                      if(temp!=null)
                      {
                        swal.hideLoading()
-                       if(temp['status'] == 'success')
-                       {
+
                          swal(
                             'สำเร็จ!',
                             'ดึงข้อมูลสำเร็จ',
                             'success'
                           )
                          getinfo(temp);
-                       }
-                       else {
-                         swal(
-                            'ผิดพลาด',
-                            temp['msg'],
-                            'error'
-                          )
-                       }
-
                      }
                      else {
                        swal.hideLoading()
