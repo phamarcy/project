@@ -550,7 +550,7 @@ class approval
     else
     {
       $sql = "SELECT DISTINCT `course_id` FROM `approval_course`
-      WHERE `status` >= '5' AND `semester_id` =".$this->SEMESTER_ID;
+      WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
     }
 
     $result = $this->DB->Query($sql);
