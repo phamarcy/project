@@ -183,7 +183,7 @@ class Report
                 $instructor_id = explode("_",$file_name[$j]);
                 $instructor['id'] = $instructor_id[1];
                 $instructor['name'] = $this->PERSON->Get_Special_Instructor_Name($instructor['id']);
-                $instructor['cv'] = '-';
+                $instructor['cv'] = $this->PERSON->Get_CV($instructor['id'],$data['id']);
                 $instructor['pdf'] =  $this->VIEW_URL."?course=".$data['id']."&id=".$instructor['id']."&type=complete&info=special&semester=".$semester."&year=".$year;
                 array_push($data['special'],$instructor);
               }

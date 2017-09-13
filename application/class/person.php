@@ -373,7 +373,7 @@ class Person
         $CV_file = $this->FILE_PATH."/cv/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".pdf";
         if (file_exists(realpath($CV_file)))
         {
-          $path = "/cv/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".docx";
+          $path = "/cv/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".pdf";
         }
         else
         {

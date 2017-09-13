@@ -207,10 +207,10 @@ $(function() {//<-- wrapped here
                                         <table class="table table-hover" style="font-size:14px">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>ชื่อ - สกุล</th>
-                                                    <th>CV</th>
-                                                    <th>PDF</th>
+                                                    <th width="10%">#</th>
+                                                    <th width="70%">ชื่อ - สกุล</th>
+                                                    <th width="10%">CV</th>
+                                                    <th width="10%">PDF</th>
                                                 </tr>
                                             </thead>
                                             <tbody>';
@@ -218,10 +218,10 @@ $(function() {//<-- wrapped here
                                             {
                                               $num_special = $j+1;
                                               echo '<tr>
-                                                  <td>'.$num_special.'</td>
-                                                  <td>'.$data_special[$i]['special'][$j]['name'].'</td>
-                                                  <td><a target="_blank" href="'.$data_special[$i]['special'][$j]['cv'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
-                                                  <td><a target="_blank" href="'.$data_special[$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                                                  <td width="10%">'.$num_special.'</td>
+                                                  <td width="70%">'.$data_special[$i]['special'][$j]['name'].'</td>
+                                                  <td width="10%"><a target="_blank" href="../../files'.$data_special[$i]['special'][$j]['cv'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                                                  <td width="10%"><a target="_blank" href="../../files'.$data_special[$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
                                                   </tr>';
                                             }
                                             echo '</tbody>
