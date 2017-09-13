@@ -380,7 +380,7 @@ class approval
             $course['name'] = $this->COURSE->Get_Course_Name($course['id']);
             //search evaluate form
             $course['evaluate']['status'] = $this->Get_Doc_Status($course['id']);
-            $sql_course = "SELECT `teacher_id`,`comment` FROM `approval_course` WHERE `course_id` ='".$course['id']."'
+            $sql_course = "SELECT `teacher_id`,`comment`,`date` FROM `approval_course` WHERE `course_id` ='".$course['id']."'
             AND `semester_id` =".$this->SEMESTER_ID;
             $comment_temp = $this->DB->Query($sql_course);
             if($comment_temp)
@@ -390,6 +390,7 @@ class approval
               {
                 $comment['name'] = $this->PERSON->Get_Teacher_Name($comment_temp[$j]['teacher_id']);
                 $comment['comment'] = $comment_temp[$j]['comment'];
+                $comment['date'] = $comment_temp[$j]['date'];
                 array_push($course['evaluate']['comment'],$comment);
               }
             }
@@ -444,7 +445,7 @@ class approval
   private function Get_Instructor_Data($course_id)
   {
     $DATA = array();
-    $sql = "SELECT DISTINCT firstname,lastname,sa.instructor_id FROM `approval_special` sa,`special_instructor` si
+    $sql = "SELECT DISTINCT `firstname`,`lastname`,sa.`instructor_id`,sa.`updated_date` FROM `approval_special` sa,`special_instructor` si
      WHERE `course_id` = '".$course_id."' AND sa.instructor_id = si.instructor_id  AND `semester_id` =".$this->SEMESTER_ID;
      $result = $this->DB->Query($sql);
      if($result)
@@ -466,6 +467,7 @@ class approval
              {
                 $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$j]['teacher_id']);
                 $comment['comment'] = $result_comment[$j]['comment'];
+                $comment['date'] = $result_comment[$j]['updated_date'];
                array_push($instructor['comment'],$comment);
              }
            }

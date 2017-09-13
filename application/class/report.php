@@ -221,8 +221,8 @@ class Report
     $course['comment'] = array();
     $course['id'] = $course_id;
     $course['name'] = $this->COURSE->Get_Course_Name($course_id);
-    $sql = "SELECT `teacher_id`,`comment`,`semester_num`,`year` FROM `comment_course` ac, `semester` s
-    WHERE ac.`semester_id` = s.`semester_id` AND ac.`course_id` = '".$course_id."' ORDER BY ac.`semester_id`";
+    $sql = "SELECT `teacher_id`,`comment`,`semester_num`,`year`,ac.`updated_date` FROM `comment_course` ac, `semester` s
+    WHERE ac.`semester_id` = s.`semester_id` AND ac.`course_id` = '".$course_id."' ORDER BY ac.`semester_id`,ac.`updated_date`";
     $result = $this->DB->Query($sql);
     if($result)
     {
@@ -237,11 +237,12 @@ class Report
         }
           $data['name'] = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
           $data['comment'] = $result[$i]['comment'];
+          $data['date'] = $result[$i]['updated_date'];
           array_push($course['comment'][$semester]['evaluate'],$data);
       }
     }
-    $sql = "SELECT `teacher_id`,`comment`,`instructor_id`,`semester_num`,`year` FROM `comment_special` sa, `semester` s
-    WHERE sa.`semester_id` = s.`semester_id` AND sa.`course_id` = '".$course_id."' ORDER BY sa.`semester_id`";
+    $sql = "SELECT `teacher_id`,`comment`,`instructor_id`,`semester_num`,`year`,`updated_date` FROM `comment_special` sa, `semester` s
+    WHERE sa.`semester_id` = s.`semester_id` AND sa.`course_id` = '".$course_id."' ORDER BY sa.`semester_id`,sa.`updated_date`";
     $result = $this->DB->Query($sql);
     if($result)
     {
@@ -263,6 +264,7 @@ class Report
         }
         $data['name'] = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
         $data['comment'] = $result[$i]['comment'];
+        $data['date'] = $result[$i]['updated_date'];
         array_push($course['comment'][$semester]['special'][$instructor_id],$data);
       }
     }
