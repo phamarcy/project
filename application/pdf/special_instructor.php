@@ -522,7 +522,7 @@ $pdf->Cell(10,7,iconv('UTF-8','TIS-620','ลงชื่อ'),0);
 
 if($signature_approver_file != null)
 {
-	$pdf->Cell( 40, 7, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
+	$pdf->Cell( 40, 7, $pdf->Image($signature_approver_file, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
 }
 $pdf->Ln();
 

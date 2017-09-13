@@ -455,7 +455,7 @@ class approval
          $instructor['id'] = $result[$i]['instructor_id'];
          $instructor['name'] = $result[$i]['firstname'].' '.$result[$i]['lastname'];
          $instructor['status'] = $this->Get_Instructor_Status($result[$i]['instructor_id']);
-         $sql = "SELECT teacher_id,comment FROM `approval_special`
+         $sql = "SELECT teacher_id,comment,`updated_date` FROM `approval_special`
          WHERE instructor_id = ".$result[$i]['instructor_id']." AND `semester_id` =".$this->SEMESTER_ID;
          $result_comment = $this->DB->Query($sql);
          $instructor['comment'] = array();
@@ -528,8 +528,10 @@ class approval
       $noti['COURSE_ID'] = $course_id;
       $noti['STATUS'] = '1';
       $noti['NAME'] = $this->PERSON->Get_Special_Instructor_Name($instructor_id);
-      $noti['DATE'] = date("d-m-Y h:i:sa");
+      $noti['DATE_USER'] = date("d-m-Y");
+      $noti['TIME_USER'] = date("h:i:sa");
       $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
+      $this->Sendemail($course_id,$noti);
       $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
     }
     return true;
@@ -566,6 +568,7 @@ class approval
         $course['evaluate'] = $url['evaluate'];
         $course['syllabus'] = $url['syllabus'];
         $course['comment'] = array();
+        $course['special'] = array();
         $sql = "SELECT `teacher_id`,`comment`,`status`,`date` FROM `approval_course` WHERE `course_id` = '".$course['id']."'
         AND `semester_id` =".$this->SEMESTER_ID;
         $result_comment = $this->DB->Query($sql);
@@ -596,62 +599,121 @@ class approval
             $comment['date'] = $result_comment[$j]['date'];
             array_push($course['comment'],$comment);
           }
-
         }
-        //search special instructor data
-        $course['special'] = array();
-        $instructor = $this->Get_Instructor_Data($course['id']);
-        $count_instructor = count($instructor);
-        for($j=0;$j<$count_instructor;$j++)
+        array_push($DATA,$course);
+
+      }
+    }
+      //search special instructor data
+      if($this->USER_LEVEL < 6)
+      {
+        $sql = "SELECT DISTINCT spe.`course_id` FROM `subject_assessor` sa,`group_assessor` ga,`approval_special` spe
+         WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
+         AND spe.`status` >= '1' AND spe.`course_id` = sa.`course_id` AND spe.`semester_id` =".$this->SEMESTER_ID;
+      }
+      else
+      {
+        $sql = "SELECT DISTINCT `course_id` FROM `approval_special`
+        WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
+      }
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        $count = count($result);
+        for($i=0;$i<$count;$i++)
         {
-          // if($instructor[$j]['status'] >= 5)
-          // {
-            $special = array();
-            $special['id'] = $instructor[$j]['id'];
-            $special['comment'] = array();
-            $special['name'] = $instructor[$j]['name'];
-            $special['status'] = '0';
-            $url = $this->Get_Special_Doc_Url($special['id'],$course['id'],'draft');
-            $special['pdf'] = $url['pdf'];
-            $special['cv'] = $url['cv'];
-            $sql = "SELECT `teacher_id`,`comment`,`status` FROM `approval_special` WHERE `course_id` = '".$course['id']."'
-            AND `instructor_id` = '".$special['id']."'AND `semester_id` =".$this->SEMESTER_ID;
-            $result_comment = $this->DB->Query($sql);
-            if($result_comment)
+          $course_id = $result[$i]['course_id'];
+          $sql = "SELECT `instructor_id`,`teacher_id`,`status`,`comment`,`updated_date`
+          FROM `approval_special` WHERE `course_id` = '".$course_id."' AND `status` IN ('1','5') ";
+          $result_special = $this->DB->Query($sql);
+          if($result_special)
+          {
+            $count_special = count($result_special);
+              $special = array();
+            for($j=0;$j<$count_special;$j++)
             {
-              $count = count($result_comment);
-              for($k=0;$k<$count;$k++)
+              $check = 0;
+              for($k=0;$k<count($special);$k++)
               {
-                $comment = array();
-                if($result_comment[$k]['teacher_id'] == $teacher_id)
+                if($result_special[$j]['teacher_id'] == $teacher_id)
                 {
                   if($this->USER_LEVEL < 6)
                   {
-                    if($result_comment[$k]['status'] != 1)
+                    if($result_special[$j]['status'] != 1)
                     {
-                      $special['status'] = '1';
+                      $special[$k]['status'] = '1';
                     }
                   }
                   else
                   {
-                    if($result_comment[$k]['status'] != 5)
+                    if($result_special[$j]['status'] != 5)
                     {
-                      $special['status'] = '1';
+                      $special[$k]['status'] = '1';
                     }
                   }
                 }
-                $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$k]['teacher_id']);
-                $comment['comment'] = $result_comment[$k]['comment'];
-                array_push($special['comment'],$comment);
+                if($special[$k]['id'] == $result_special[$j]['instructor_id'])
+                {
+                  $comment['name'] = $this->PERSON->Get_Teacher_Name($result_special[$j]['teacher_id']);
+                  $comment['comment'] = $result_special[$j]['comment'];
+                  $comment['date'] = $result_special[$j]['updated_date'];
+                  array_push($special[$k]['comment'],$comment);
+                  $check = 1;
+                }
+              }
+              if($check == 0)
+              {
+                $instructor['id'] = $result_special[$j]['instructor_id'];
+                $instructor['name'] = $this->PERSON->Get_Special_Instructor_Name($instructor['id']);
+                $instructor['cv'] = '';
+                $instructor['pdf'] = '';
+                $instructor['status'] = '0';
+                $instructor['comment'] = array();
+                $comment['name'] = $this->PERSON->Get_Teacher_Name($result_special[$j]['teacher_id']);
+                $comment['comment'] = $result_special[$j]['comment'];
+                $comment['date'] = $result_special[$j]['updated_date'];
+                array_push($instructor['comment'],$comment);
+                array_push($special,$instructor);
               }
             }
-            array_push($course['special'],$special);
-          // }
+            $check_special = 0;
+            for($j=0;$j<count($DATA);$j++)
+            {
+              if($DATA[$j]['id'] == $course_id)
+              {
+                $check_special = 1;
+                $DATA[$j]['special'] = $special;
+              }
+            }
+            if($check_special == 0)
+            {
+              $course = array();
+              $course['id'] = $course_id;
+              $course['name'] = $this->COURSE->Get_Course_Name($course['id']);
+              $status = $this->Get_Doc_Status($course_id);
+              if($status != 5 && $status != 1)
+              {
+                $course['status'] = '1'; //0 = ยังไม่ได้ลงความเห็น , 1 ลงความเห็นแล้ว
+              }
+              else
+              {
+                $course['status'] = '0';
+              }
+              $url = $this->Get_Doc_Url($course['id'],'draft');
+              $course['evaluate'] = $url['evaluate'];
+              $course['syllabus'] = $url['syllabus'];
+              $course['comment'] = array();
+              $course['special'] = $special;
+              array_push($DATA,$course);
+            }
+          }
+          else
+          {
+
+          }
         }
-          //check status in course
-          array_push($DATA,$course);
       }
-    }
+      //end search
     return $DATA;
   }
 

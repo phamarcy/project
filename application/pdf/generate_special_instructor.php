@@ -119,7 +119,7 @@ if(isset($_POST['DATA']))
 	{
 		$course_id = $DATA['COURSEDATA']['COURSE_ID'];
 		$instructor_id = $DATA['TEACHERDATA']['ID'];
-		$temp_data = $course->Get_Document('special',$course_id,$instructor_id,$semester['semester'],$semester['year']);
+		$temp_data = $course->Get_Document('special',$course_id,$instructor_id,null,$semester['semester'],$semester['year']);
 		$DATA = json_decode($temp_data,true);
 		switch (json_last_error()) {
 		        case JSON_ERROR_DEPTH:
