@@ -65,10 +65,18 @@ class approval
     if($teacher_id == 'all') //update all status with course_id
     {
       $sql = "UPDATE `approval_course` SET `status`= '".$status."'";
-      if($comment != null)
+      if((int)$status != 1)
       {
-        $sql .= ",`comment`= '".$comment."'";
+        if($comment != null)
+        {
+          $sql .= ",`comment`= '".$comment."'";
+        }
       }
+      else
+      {
+          $sql .= ",`comment`= null";
+      }
+
       $sql .= " WHERE `course_id` = '".$course_id."'";
       if((int)$status <= 4 )
       {
@@ -554,7 +562,7 @@ class approval
         $course['evaluate'] = $url['evaluate'];
         $course['syllabus'] = $url['syllabus'];
         $course['comment'] = array();
-        $sql = "SELECT `teacher_id`,`comment`,`status` FROM `approval_course` WHERE `course_id` = '".$course['id']."'
+        $sql = "SELECT `teacher_id`,`comment`,`status`,`date` FROM `approval_course` WHERE `course_id` = '".$course['id']."'
         AND `semester_id` =".$this->SEMESTER_ID;
         $result_comment = $this->DB->Query($sql);
         if($result_comment)
@@ -581,6 +589,7 @@ class approval
             }
             $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$j]['teacher_id']);
             $comment['comment'] = $result_comment[$j]['comment'];
+            $comment['date'] = $result_comment[$j]['date'];
             array_push($course['comment'],$comment);
           }
 
