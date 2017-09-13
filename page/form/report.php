@@ -221,7 +221,7 @@ $(function() {//<-- wrapped here
                                                   <td width="10%">'.$num_special.'</td>
                                                   <td width="70%">'.$data_special[$i]['special'][$j]['name'].'</td>
                                                   <td width="10%"><a target="_blank" href="../../files'.$data_special[$i]['special'][$j]['cv'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
-                                                  <td width="10%"><a target="_blank" href="../../files'.$data_special[$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                                                  <td width="10%"><a target="_blank" href="'.$data_special[$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
                                                   </tr>';
                                             }
                                             echo '</tbody>
