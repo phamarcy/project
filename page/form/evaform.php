@@ -986,8 +986,8 @@ function senddata(data,file_data)
                  type: 'post',
                  beforeSend: function() {
                    swal(
-                     'กรุณาอย่าปิดหน้าต่างนี้',
-                     'กรุณารอสักครู่ ระบบกำลังประมวลผล'
+                     'กรุณารอสักครู่',
+                     'ระบบกำลังประมวลผล'
                    )
                    swal.showLoading()
                  },
