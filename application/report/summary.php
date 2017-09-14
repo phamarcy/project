@@ -7,8 +7,18 @@ require_once(__DIR__."/../class/manage_deadline.php");
 $deadline = new Deadline();
 $database = new Database();
 $person = new Person();
-$semester = $deadline->Get_Current_Semester();
 $Excel = new PHPExcel();
+
+if(isset($_GET['semester']) && isset($_GET['year']))
+{
+  $semester['semester'] = $_GET['semester'];
+  $semester['year'] = $_GET['year'];
+  $semester['id'] = $deadline->Search_Semester_id($semester['semester'],$semester['year']);
+}
+else
+{
+  die("ข้อมูลไม่ถูกต้อง");
+}
 
 $styleArray = array(
     'font'  => array(
@@ -297,11 +307,20 @@ foreach(range('A','Z') as $columnID)
     $Excel->getActiveSheet()->getColumnDimension($columnID)->setAutoSize(true);
   }
 
-
+$summary_file = __DIR__.'/../../files/summary/summary_'.$semester['semester'].'_'.$semester['year'].'.xlsx';
 
 
 //save file
 $objWriter = PHPExcel_IOFactory::createWriter($Excel, 'Excel2007');
-$objWriter->save(__DIR__.'/../../files/summary/test_summary_data.xlsx');
+$objWriter->save($summary_file);
+
+header('Content-Description: File Transfer');
+header('Content-Type: application/octet-stream');
+header('Content-Disposition: attachment; filename="'.basename($summary_file).'"');
+header('Expires: 0');
+header('Cache-Control: must-revalidate');
+header('Pragma: public');
+header('Content-Length: ' . filesize($summary_file));
+readfile($summary_file);
 
  ?>

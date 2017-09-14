@@ -105,13 +105,14 @@ $(function() {//<-- wrapped here
                     </li>
                     <li class=""><a href="#special" data-toggle="tab" aria-expanded="false">แบบเชิญอาจารย์พิเศษ</a>
                     </li>
+                    <li class=""><a href="#summary" data-toggle="tab" aria-expanded="false">สรุปข้อมูล</a>
+                    </li>
                 </ul>
                 <br>
                 <!-- Tab panes -->
                 <div class="container">
                 <div class="tab-content">
                     <div class="tab-pane fade active in" id="course">
-
                         <div class="panel panel-info">
                             <div class="panel-heading">
                               <h5><b>
@@ -229,15 +230,25 @@ $(function() {//<-- wrapped here
                                         </div>
                                       </div>
                                     </div>
-                                </div>'; } ?>
+                                '; } ?>
                                 </div>
                               <?php } ?>
                             </div>
                           </div>
                       </div>
+                    <div class="tab-pane fade" id="summary">
+                      <div class="container">
+                        <div class="panel panel-info">
+                          <div class="panel-heading">
+                            <h5><b><?php echo "สรุปข้อมูล ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;?></b></h5>
+                          </div>
+                          <div class="panel-body">
+                              <center><a target="_blank" href="<?php echo "../../application/report/summary.php?semester=".$semester."&year=".$year?>"><button type="button" class="btn btn-success">ดาวน์โหลด ที่นี่</button></center>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                 </div>
-            </div>
           </div>
       <?php } ?>
 </body>
