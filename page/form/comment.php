@@ -158,7 +158,7 @@ echo "</pre>";
                                 <div id="comment<?php echo $value['id'] ?>-2" class="panel-collapse collapse">
                                   <div class="panel-body">
                                     <form id="approve_course" action="index.html" method="post">
-                                      <?php if ($value['status']!=1): $check++;?>
+                                      <?php if ($value['status']==0): $check++;?>
                                         <div class="form-group ">
                                           <label for="">ข้อเสนอแนะ</label>
                                           <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $value['id'] ?>"></textarea>
