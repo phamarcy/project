@@ -456,8 +456,8 @@ class approval
   private function Get_Instructor_Data($course_id)
   {
     $DATA = array();
-    $sql = "SELECT DISTINCT `firstname`,`lastname`,sa.`instructor_id`,sa.`updated_date` FROM `approval_special` sa,`special_instructor` si
-     WHERE `course_id` = '".$course_id."' AND sa.instructor_id = si.instructor_id  AND `semester_id` =".$this->SEMESTER_ID;
+    $sql = "SELECT `firstname`,`lastname`,`instructor_id` FROM `special_instructor` WHERE `instructor_id`
+    IN (SELECT DISTINCT `instructor_id` FROM `approval_special` WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->SEMESTER_ID.")";
      $result = $this->DB->Query($sql);
      if($result)
      {
@@ -643,15 +643,17 @@ class approval
         {
           $course_id = $result[$i]['course_id'];
           $sql = "SELECT `instructor_id`,`teacher_id`,`status`,`comment`,`updated_date`
-          FROM `approval_special` WHERE `course_id` = '".$course_id."' AND `status` IN ('1','5') ";
+          FROM `approval_special` WHERE `course_id` = '".$course_id."' AND `semester_id` =".$this->SEMESTER_ID;
           $result_special = $this->DB->Query($sql);
+          // var_dump($result_special);
           if($result_special)
           {
             $count_special = count($result_special);
-              $special = array();
+            $special = array();
             for($j=0;$j<$count_special;$j++)
             {
               $check = 0;
+              // echo $result_special[$j]['teacher_id']." ".$teacher_id."<br>";
               for($k=0;$k<count($special);$k++)
               {
                 if($result_special[$j]['teacher_id'] == $teacher_id)
@@ -684,13 +686,32 @@ class approval
               {
                 $instructor['id'] = $result_special[$j]['instructor_id'];
                 $instructor['name'] = $this->PERSON->Get_Special_Instructor_Name($instructor['id']);
-                $instructor['cv'] = '';
-                $instructor['pdf'] = '';
+                $file = $this->Get_Special_Doc_Url($instructor['id'],$course_id,'draft');
+                $instructor['cv'] = $file['cv'];
+                $instructor['pdf'] = $file['pdf'];
                 $instructor['status'] = '0';
                 $instructor['comment'] = array();
                 $comment['name'] = $this->PERSON->Get_Teacher_Name($result_special[$j]['teacher_id']);
                 $comment['comment'] = $result_special[$j]['comment'];
                 $comment['date'] = $result_special[$j]['updated_date'];
+                // echo $result_special[$j]['teacher_id']." ".$teacher_id."<br>";
+                if($result_special[$j]['teacher_id'] == $teacher_id)
+                {
+                  if($this->USER_LEVEL < 6)
+                  {
+                    if($result_special[$j]['status'] != 1)
+                    {
+                      $instructor['status'] = '1';
+                    }
+                  }
+                  else
+                  {
+                    if($result_special[$j]['status'] != 5)
+                    {
+                      $instructor['status'] = '1';
+                    }
+                  }
+                }
                 array_push($instructor['comment'],$comment);
                 array_push($special,$instructor);
               }
