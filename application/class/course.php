@@ -405,7 +405,7 @@ class Course
   }
 
 // search temp data
-  public function Search_Document($type,$id)
+  public function Search_Document($type,$id,$teacher_id)
   {
     if($type =='special')
     {
@@ -413,6 +413,15 @@ class Course
     }
     $doc_path = realpath($this->FILE_PATH."/temp/".$id."/".$type);
     $data = array();
+    if($teacher_id != null)
+    {
+      $check_access = $this->Check_Access($teacher_id,$id);
+    }
+    else
+    {
+      $check_access = null;
+    }
+    $data['ACCESS'] = $check_access;
     $data['info'] = $this->Get_Course_Info($id);
     if(is_dir($doc_path))
     {

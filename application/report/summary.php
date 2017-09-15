@@ -198,10 +198,9 @@ if($result)
       $committee = '';
       for($j=0;$j<$count_committee;$j++)
       {
-        $committee .= $data['EXAM']['FINAL']['COMMITTEE']['LAB'][$j]."\n";
+        $committee .= $data['EXAM']['FINAL']['COMMITTEE']['LEC'][$j]."\n";
       }
       $Excel->setActiveSheetIndex(1)->setCellValue('F'.$row,$committee);
-
       $count_committee = count($data['EXAM']['FINAL']['COMMITTEE']['LAB']);
       $committee = '';
       for($j=0;$j<$count_committee;$j++)
@@ -313,7 +312,6 @@ $summary_file = __DIR__.'/../../files/summary/summary_'.$semester['semester'].'_
 //save file
 $objWriter = PHPExcel_IOFactory::createWriter($Excel, 'Excel2007');
 $objWriter->save($summary_file);
-
 header('Content-Description: File Transfer');
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename="'.basename($summary_file).'"');

@@ -49,7 +49,7 @@ if(isset($_POST['course_id']) && isset($_POST['type']))
   }
   else
   {
-    $data = $course->Search_Document($type,$course_id);
+    $data = $course->Search_Document($type,$course_id,$_SESSION['id']);
     echo json_encode($data);
   }
 

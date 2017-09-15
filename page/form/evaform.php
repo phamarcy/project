@@ -627,6 +627,14 @@ function checksubject(btntype,type){
                              console.log('Error#542-decode error');
                         }
 
+                        //buttondiv
+                        if(temp['ACCESS'] == true)
+                        {
+                          $('#buttondiv').show();
+                        }else {
+                          $('#buttondiv').hide();
+                        }
+
                        if(temp['info']!=false && temp[0]!=null)
                        {
                          document.getElementById('formdrpd').style.display = "";
