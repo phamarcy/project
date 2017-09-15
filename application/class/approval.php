@@ -191,9 +191,16 @@ class approval
     if($teacher_id == 'all') //update all status with course_id
     {
       $sql = "UPDATE `approval_special` SET `status`= '".$status."'";
-      if($comment != null)
+      if((int)$status != 1)
       {
-        $sql .= ",`comment`= '".$comment."'";
+        if($comment != null)
+        {
+          $sql .= ",`comment`= '".$comment."'";
+        }
+      }
+      else
+      {
+          $sql .= ",`comment`= null";
       }
       $sql .= " WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."'";
 
@@ -466,13 +473,10 @@ class approval
          {
            for($j=0;$j<count($result_comment);$j++)
            {
-             if($result_comment[$j]['comment'] != null)
-             {
                 $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$j]['teacher_id']);
                 $comment['comment'] = $result_comment[$j]['comment'];
                 $comment['date'] = $result_comment[$j]['updated_date'];
-               array_push($instructor['comment'],$comment);
-             }
+               array_push($instructor['comment'],$comment);             
            }
          }
          array_push($DATA,$instructor);
@@ -530,7 +534,7 @@ class approval
       {
         $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`,`updated_date`)
         VALUES ('".$instructor_id."','".$result[$i]['teacher_id']."','".$course_id."',1,'1',".$this->SEMESTER_ID.",'".$updated_date."')
-        ON DUPLICATE KEY UPDATE `status` = '1'";
+        ON DUPLICATE KEY UPDATE `status` = '1',`comment` = null";
         $approve_result = $this->DB->Insert_Update_Delete($sql);
         if($approve_result == false)
         {
