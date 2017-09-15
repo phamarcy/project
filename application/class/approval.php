@@ -85,7 +85,8 @@ class approval
     }
     else //update specific teacher_id,course_id
     {
-      $sql = "UPDATE `approval_course` SET `status`= '".$status."'";
+      $updated_date = date("Y-m-d H:i:s");
+      $sql = "UPDATE `approval_course` SET `status`= '".$status."', `date` = '".$updated_date."'";
       if($comment != null)
       {
         $sql .= ",`comment`= '".$comment."'";
@@ -199,7 +200,8 @@ class approval
     }
     else //update specific teacher_id,course_id
     {
-      $sql = "UPDATE `approval_special` SET `status`= '".$status."'";
+      $updated_date = date("Y-m-d H:i:s");
+      $sql = "UPDATE `approval_special` SET `status`= '".$status."',`updated_date` = '".$updated_date."'";
       if($comment != null)
       {
         $sql .= ",`comment`= '".$comment."'";
@@ -279,8 +281,9 @@ class approval
       {
         for($i=0;$i<count($result);$i++)
         {
-          $sql = "INSERT INTO `approval_course`(`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`)
-          VALUES ('".$result[$i]['teacher_id']."','".$course_id."',1,'0',".$this->SEMESTER_ID.")";
+          $updated_date = date("Y-m-d H:i:s");
+          $sql = "INSERT INTO `approval_course`(`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`,`date`)
+          VALUES ('".$result[$i]['teacher_id']."','".$course_id."',1,'0',".$this->SEMESTER_ID.",'".$updated_date."')";
           $approve_result = $this->DB->Insert_Update_Delete($sql);
           if($approve_result == false)
           {
@@ -308,18 +311,13 @@ class approval
 
   public function Append_Board_Status_Evaluate($course_id,$status,$teacher_id,$comment)
   {
+    $updated_date = date("Y-m-d H:i:s");
     $level_approve = '2';
-    $sql = "INSERT INTO `approval_course`(`teacher_id`, `course_id`, `status`,`level_approve`, `comment`,`semester_id`)
-    VALUES ('".$teacher_id."','".$course_id."','".$status."','".$level_approve."','".$comment."','".$this->SEMESTER_ID."')";
+    $sql = "INSERT INTO `approval_course`(`teacher_id`, `course_id`, `status`,`level_approve`, `comment`,`semester_id`,`date`)
+    VALUES ('".$teacher_id."','".$course_id."','".$status."','".$level_approve."','".$comment."','".$this->SEMESTER_ID."','".$updated_date."')";
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
-      // $noti['COURSE_ID'] = $course_id;
-      // $noti['STATUS'] = $status;
-      // $noti['DATE_USER'] = date("d-m-Y");
-      // $noti['TIME_USER'] = date("h:i:sa");
-      // $noti['TYPE'] = '1'; //1 evaluate , 2, special instructor
-      // $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       return true;
     }
     else
@@ -330,20 +328,14 @@ class approval
 
   public function Append_Board_Status_Special($course_id,$instructor_id,$status,$teacher_id,$comment)
   {
+    $updated_date = date("Y-m-d H:i:s");
     $level_approve = '2';
-    $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`, `course_id`, `status`,`level_approve`, `comment`,`semester_id`)
-    VALUES ('".$instructor_id."','".$teacher_id."','".$course_id."','".$status."','".$level_approve."','".$comment."','".$this->SEMESTER_ID."')
+    $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`, `course_id`, `status`,`level_approve`, `comment`,`semester_id`,`updated_date`)
+    VALUES ('".$instructor_id."','".$teacher_id."','".$course_id."','".$status."','".$level_approve."','".$comment."','".$this->SEMESTER_ID."','".$updated_date."')
     ON DUPLICATE KEY UPDATE `status` = '".$status."'";
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
-      // $noti['COURSE_ID'] = $course_id;
-      // $noti['STATUS'] = $status;
-      // $noti['NAME'] = $this->PERSON->Get_Special_Instructor_Name($instructor_id);
-      // $noti['DATE_USER'] = date("d-m-Y");
-      // $noti['TIME_USER'] = date("h:i:sa");
-      // $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
-      // $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       return true;
     }
     else
@@ -533,10 +525,11 @@ class approval
     $result = $this->DB->Query($sql);
     if($result)
     {
+      $updated_date = date("Y-m-d H:i:s");
       for($i=0;$i<count($result);$i++)
       {
-        $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`)
-        VALUES ('".$instructor_id."','".$result[$i]['teacher_id']."','".$course_id."',1,'1',".$this->SEMESTER_ID.")
+        $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`,`updated_date`)
+        VALUES ('".$instructor_id."','".$result[$i]['teacher_id']."','".$course_id."',1,'1',".$this->SEMESTER_ID.",'".$updated_date."')
         ON DUPLICATE KEY UPDATE `status` = '1'";
         $approve_result = $this->DB->Insert_Update_Delete($sql);
         if($approve_result == false)
