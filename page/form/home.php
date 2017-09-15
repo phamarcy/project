@@ -196,7 +196,7 @@ echo "</pre>";*/
 														 		<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b><i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
                                 <?php if ($_SESSION['level']==3): ?>
                                   <?php if(($value_course['evaluate']['status'])==4){ ?>
-                                    <button class='btn btn-outline btn-success'  onclick='senttohead(<?php echo $value_course['id'] ?>);'>หัวหน้าภาคยืนยัน</button>
+                                    <button class='btn btn-outline btn-success'  onclick='senttohead(<?php echo $value_course['id'] ?>);'>คณะยืนยัน</button>
                                     <?php
                                   } ?>
                                 <?php endif; ?>
@@ -296,7 +296,7 @@ echo "</pre>";*/
 																						<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']."_".$keysp ?>"><?php echo $valuesp['name'].' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp ?> </a></b>
                                             <?php if ($_SESSION['level']==3): ?>
                                               <?php if($valuesp['status']==4){ ?>
-                                                <button class='btn btn-outline btn-success'  onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>หัวหน้าภาคยืนยัน</button>
+                                                <button class='btn btn-outline btn-success'  onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>คณะยืนยันภาคยืนยัน</button>
                                                 <?php
                                               } ?>
                                             <?php endif; ?>
