@@ -478,13 +478,16 @@ class Person
 
     $this->DB->Change_DB('pharmacy');
 
-    $sql = 'SELECT * FROM grant_approve WHERE teacher_id = '.$teacher.'';
+    $sql = 'SELECT * FROM grant_approve WHERE user_id = '.$teacher.'';
     $result = $this->DB->Query($sql);
-    print_r($result);
+
+    $now = strtotime(date("Y-m-d")) ;
+    $start = strtotime($result[0]['date_start']);
+    $end = strtotime($result[0]['date_end']);
+
     if ($result) {
-
-      if (date("Y-m-d")>=$result[0]['startdate'] && date("Y-m-d")<=$result[0]['enddate'] ) {
-
+      if ($now>=$start && $now<=$end ) {
+          $_SESSION['admission']=1;
       }
     }
 

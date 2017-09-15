@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	$_SESSION['admission'] =0;
 	require_once(__DIR__."/../application/class/person.php");
 	if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
 	{
@@ -10,8 +11,10 @@
 	}
 	$person = new Person();
 	$check_permission=$person->Check_Grant($_SESSION['id']);
-	//print_r($check_permission);exit();
 	$person->Close_connection();
+	if ($_SESSION['level']==4 || $_SESSION['level']==5) {
+	  $_SESSION['admission']=0;
+	}
  ?>
 
 <html>
@@ -398,7 +401,7 @@
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
 						<?php }else { ?>
-						<?php if ($_SESSION['level']<=1 || $_SESSION['permission']==1): ?>
+						<?php if ($_SESSION['level']<=1 ): ?>
 							<li>
 								<a href="#"><i class="fa fa-edit fa-fw"></i> กรอกข้อมูล<span class="fa arrow"></span></a>
 
@@ -415,40 +418,37 @@
 								</ul>
 							</li>
 						<?php endif; ?>
-
-
 						<?php }
-						if($_SESSION['level'] >= 4)
+						if($_SESSION['level'] >= 4 || $_SESSION['admission'] == 1)
 						{
-							if ($_SESSION['level']==6) { ?>
-
+							if ($_SESSION['level']==6 || $_SESSION['admission'] == 1) { ?>
 								<li>
 									<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> อนุมัติกระบวนวิชา</a>
 								</li>
-
 						<?php
-					} else { ?>
-								<li>
-									<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> ประเมินกระบวนวิชา</a>
-								</li>
-							<?php
-						} ?>
+							}
+							else { ?>
+
+										<li>
+											<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> ประเมินกระบวนวิชา</a>
+										</li>
+									<?php
+								} ?>
 						<li>
 							<a href="#" onclick="loadDoc('form/history.php')"><i class="fa fa-newspaper-o  fa-fw"></i> ประวัติข้อเสนอแนะ</a>
 						</li>
 						<?php
 
 						}
+
 						 ?>
 
 						<?php
 							if($_SESSION['level']==6)
 							{ ?>
-								<?php if (isset($_SESSION['permission'])!=1): ?>
 									<li>
 										<a href="#" onclick="loadDoc('form/grant.php')"><i class="fa fa-users fa-fw"></i> มอบอำนาจการอนุมัติ</a>
 									</li>
-								<?php endif; ?>
 								<?php
 							}
 

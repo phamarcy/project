@@ -26,8 +26,9 @@ $deadline->Close_connection();
 $course->Close_connection();
 $approval->Close_connection();
 /*echo "<pre>";
-print_r($check_permission);
+var_dump($_SESSION['level'],$_SESSION['admission']);
 echo "</pre>";*/
+
  ?>
   <html>
   <header>
@@ -83,7 +84,7 @@ echo "</pre>";*/
         <div class="row">
           <center>
             <?php $approve_text="";
-             if ($_SESSION['level']==6):
+             if ($_SESSION['level']==6 || $_SESSION['admission']==1):
             $approve_text="อนุมัติ";
             ?>
             <h3 class="page-header">อนุมัติกระบวนวิชา</h3>
@@ -117,7 +118,8 @@ echo "</pre>";*/
                 </thead>
                 <tbody>
                 <?php if (is_array($data_forapproval) || is_object($data_forapproval)): ?>
-                <?php foreach ($data_forapproval as $key => $value): ?>
+                <?php foreach ($data_forapproval as $key => $value):   $check = 0; ?>
+
                   <tr>
                     <td><?php echo $key+1 ?></td>
                     <td><?php echo $value['id'] ?></td>
@@ -133,7 +135,7 @@ echo "</pre>";*/
                       <?php endif; ?>
 
                     </td>
-                    <td align="center"><?php if($value['status']==0){echo '<i id="statn" class="fa fa-user-times fa-2x" aria-hidden="true"></i>';}else{echo '<i id="statcf" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>';}?></td>
+                    <td align="center"><?php if($value['status']!=0){echo '<i id="statn" class="fa fa-user-times fa-2x" aria-hidden="true"></i>';}else{echo '<i id="statcf" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>';}?></td>
                     <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#<?php echo $value['id'] ?>" class="accordion-toggle">ดูข้อมูล</button></td>
                   </tr>
                   <tr class="hiddenRow">
@@ -148,14 +150,16 @@ echo "</pre>";*/
                               <div class="panel panel-default">
                                 <div class="panel-heading" >
                                   <div class="panel-title" style="font-size:14px">
-                                      <a data-toggle="collapse" data-parent="#comment<?php echo $value['id'] ?>" href="#comment<?php echo $value['id'] ?>-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</b></a>
+                                      <a data-toggle="collapse" data-parent="#comment<?php echo $value['id'] ?>" href="#comment<?php echo $value['id'] ?>-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา  สถานะ :</b>
+                                        <?php if($check==0){echo '<i id="statn" class="fa fa-user-times fa-2x" aria-hidden="true"></i>';}else{echo '<i id="statcf" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>';}?>
+                                      </a>
 
                                   </div>
                                 </div>
                                 <div id="comment<?php echo $value['id'] ?>-2" class="panel-collapse collapse">
                                   <div class="panel-body">
                                     <form id="approve_course" action="index.html" method="post">
-                                      <?php if ($value['status']!=1): ?>
+                                      <?php if ($value['status']!=1): $check++;?>
                                         <div class="form-group ">
                                           <label for="">ข้อเสนอแนะ</label>
                                           <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $value['id'] ?>"></textarea>
@@ -169,7 +173,7 @@ echo "</pre>";*/
 
                                     <table class="table " style="font-size:14px">
                                       <thead>
-                                        <?php if ($_SESSION['level'] > 1 ): ?>
+                                        <?php if ($_SESSION['level'] > 1  || $_SESSION['admission']==1): ?>
                                         <th style="width:230px">คณะกรรมการ</th>
                                         <?php endif; ?>
                                         <th>ข้อเสนอแนะ</th>
@@ -178,7 +182,7 @@ echo "</pre>";*/
                                       <tbody>
                                         <?php foreach ($value['comment'] as $keycomment => $valuecomment): ?>
                                           <tr>
-                                            <?php if ($_SESSION['level'] > 1 ): ?>
+                                            <?php if ($_SESSION['level'] > 1 || $_SESSION['admission']==1): ?>
                                             <td style="width:230px"><?php echo $valuecomment['name'] ?></td>
                                             <?php endif; ?>
                                             <td><?php if (($valuecomment['comment'])!="") {
@@ -226,7 +230,7 @@ echo "</pre>";*/
                                           </div>
                                           <div id="teachersp<?php echo $value['id']."-".$keysp ?>" class="panel-collapse collapse">
                                             <div class="panel-body">
-                                              <?php if ($valuesp['status']==0): ?>
+                                              <?php if ($valuesp['status']==0): $check++;?>
                                                 <div class="form-group ">
                                                   <label for="">ข้อเสนอแนะ</label>
                                                   <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $valuesp['id'] ?>"></textarea>
@@ -238,7 +242,7 @@ echo "</pre>";*/
                                               <?php endif; ?>
                                               <table class="table " style="font-size:14px">
                                                 <thead>
-                                                  <?php if ($_SESSION['level'] > 1 ): ?>
+                                                  <?php if ($_SESSION['level'] > 1  || $_SESSION['admission']==1): ?>
                                                   <th style="width:230px">คณะกรรมการ</th>
                                                   <?php endif; ?>
                                                   <th>ข้อเสนอแนะ</th>
@@ -247,7 +251,7 @@ echo "</pre>";*/
                                                 <tbody>
                                                   <?php foreach ($valuesp['comment'] as $keycom => $valuecom): ?>
                                                     <tr>
-                                                      <?php if ($_SESSION['level'] > 1 ): ?>
+                                                      <?php if ($_SESSION['level'] > 1 || $_SESSION['admission']==1): ?>
                                                       <td style="width:230px"><?php echo $valuecom['name'] ?></td>
                                                       <?php endif; ?>
                                                       <td><?php if (($valuecom['comment'])!="") {

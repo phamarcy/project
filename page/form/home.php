@@ -3,6 +3,7 @@ require_once(__DIR__.'/../../application/class/curl.php');
 require_once(__DIR__.'/../../application/class/manage_deadline.php');
 require_once(__DIR__."/../../application/class/approval.php");
 session_start();
+
 if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
 {
     die('กรุณา Login ใหม่');
@@ -16,9 +17,10 @@ $deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
 $semester = $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
-echo "<pre>";
-print_r($_SESSION['level']);
-echo "</pre>";
+/*echo "<pre>";
+var_dump($_SESSION['level'],$_SESSION['admission']);
+echo "</pre>";*/
+
 ?>
 	<html>
 
@@ -206,7 +208,7 @@ echo "</pre>";
 															<div class="panel-body" style="font-size:14px;">
 																<table class="table " style="font-size:14px;">
 																	<thead >
-																		<?php if ($_SESSION['level'] >=2): ?>
+																		<?php if ($_SESSION['level'] >=2  || $_SESSION['admission']==1): ?>
 																		<th style="width:250px">คณะกรรมการ</th>
 																		<?php endif; ?>
 																		<th>ข้อเสนอแนะ</th>
@@ -305,7 +307,7 @@ echo "</pre>";
 
 																					<table class="table " style="font-size:14px;">
 																						<thead>
-																							<?php if ($_SESSION['level'] >=2): ?>
+																							<?php if ($_SESSION['level'] >=2  || $_SESSION['admission']==1): ?>
 																							<th style="width:250px">คณะกรรมการ</th>
 																							<?php endif; ?>
 																							<th>ข้อเสนอแนะ</th>
