@@ -296,7 +296,7 @@ echo "</pre>";*/
 																						<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']."_".$keysp ?>"><?php echo $valuesp['name'].' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp ?> </a></b>
                                             <?php if ($_SESSION['level']==3): ?>
                                               <?php if($valuesp['status']==4){ ?>
-                                                <button class='btn btn-outline btn-success'  onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>คณะยืนยันภาคยืนยัน</button>
+                                                <button class='btn btn-outline btn-success'  onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>คณะยืนยัน</button>
                                                 <?php
                                               } ?>
                                             <?php endif; ?>

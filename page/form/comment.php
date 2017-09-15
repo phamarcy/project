@@ -17,7 +17,6 @@ $department =$person->Get_Staff_Dep($_SESSION['id']);
 $dep_js=$department['code'];
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
-$history=$course->Get_History($department['code']);
 $data_forapproval=$approval->Get_Approval_data($_SESSION['id']);
 $check_permission=$person->Check_Grant($_SESSION['id']);
 //close db
@@ -25,9 +24,9 @@ $check_permission=$person->Check_Grant($_SESSION['id']);
 $deadline->Close_connection();
 $course->Close_connection();
 $approval->Close_connection();
-/*echo "<pre>";
-var_dump($_SESSION['level'],$_SESSION['admission']);
-echo "</pre>";*/
+echo "<pre>";
+var_dump($data_forapproval);
+echo "</pre>";
 
  ?>
   <html>
