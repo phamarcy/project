@@ -269,50 +269,93 @@ class Person
         {
           $group_num = '2'.$group_num;
         }
+        else
+        {
+          $return['status'] = 'error';
+          $return['msg'] = 'ไม่สามารถลบข้อมูลได้';
+          $this->LOG->Write("delete assessor failed : teacher is in department ".$department_id );
+          return $return;
+        }
         $this->DB->Change_DB($this->DEFAULT_DB);
         $sql = "DELETE FROM `group_assessor` WHERE `teacher_id` = '".$teacher_id."' AND `group_num` = '".$group_num."'";
         $result = $this->DB->Insert_Update_Delete($sql);
         if($result)
         {
-          $sql = "SELECT `course_id` FROM `subject_assessor` WHERE `assessor_group_num` = '".$group_num."'";
+          $sql = "SELECT `course_id` FROM `subject_assessor`
+          WHERE `assessor_group_num` = '".$group_num."'
+            AND `semester_id` = '".$this->DEADLINE['id']."'";
           $result = $this->DB->Query($sql);
-          if($result)
+          if($result || $result == null)
           {
             $count = count($result);
             for($i=0;$i<$count;$i++)
             {
               $sql = "DELETE FROM `approval_course`
-              WHERE `course_id` = '".$result[$i]['course_id']."' AND teacher_id = '".$teacher_id."'";
+              WHERE `course_id` = '".$result[$i]['course_id']."' AND teacher_id = '".$teacher_id."'
+              AND `semester_id` = '".$this->DEADLINE['id']."'";
               $result_remove_approval = $this->DB->Insert_Update_Delete($sql);
-              if(!$result_remove_approval)
+              if($result_remove_approval)
+              {
+                $sql = "DELETE FROM `approval_special`
+                WHERE `course_id` = '".$result[$i]['course_id']."' AND teacher_id = '".$teacher_id."'
+                AND `semester_id` = '".$this->DEADLINE['id']."'";
+                $result_remove_approval = $this->DB->Insert_Update_Delete($sql);
+                if($result_remove_approval)
+                {
+                  $return['status'] = 'success';
+                  $return['msg'] = 'ลบข้อมูลสำเร็จ';
+                  return $return;
+                }
+                else
+                {
+                  $return['status'] = 'error';
+                  $return['msg'] = 'ไม่สามารถลบข้อมูลได้';
+                  $this->LOG->Write("delete assessor failed : cannot delete approval_special table" );
+                  return $return;
+                }
+              }
+              else
               {
                 $return['status'] = 'error';
-                $return['msg'] = 'ไม่สามารถเพิ่มข้อมูลได้';
+                $return['msg'] = 'ไม่สามารถลบข้อมูลได้';
+                $this->LOG->Write("delete assessor failed : cannot delete approval_course table" );
+                return $return;
               }
             }
-
           }
-
-          $return['status'] = 'success';
-          $return['msg'] = 'ลบข้อมูลสำเร็จ';
+          else
+          {
+            $return['status'] = 'error';
+            $return['msg'] = 'ไม่สามารถลบข้อมูลได้';
+            $this->LOG->Write("delete assessor failed : cannot search course_id in subject_assessor table" );
+            return $return;
+          }
         }
         else
         {
           $return['status'] = 'error';
           $return['msg'] = 'ไม่สามารถลบข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+          $this->LOG->Write("delete assessor failed : cannot delete group_assessor table" );
+          return $return;
         }
       }
       else
       {
         $return['status'] = 'error';
         $return['msg'] = 'ภาควิชาผิดพลาด กรุณาติดต่อผู้ดูแลระบบ';
+        $this->LOG->Write("delete assessor failed : not found department id" );
+        return $return;
       }
     }
     else
     {
       $return['status'] = 'error';
       $return['msg'] = 'ไม่พบข้อมูลอาจารย์ท่านนี้ในฐานข้อมูล กรุณาติดต่อผู้ดูแลระบบ';
+      $this->LOG->Write("delete assessor failed : not found teacher id" );
+      return $return;
     }
+    $return['status'] = 'success';
+    $return['msg'] = 'ลบข้อมูลสำเร็จ';
     return $return;
   }
 
