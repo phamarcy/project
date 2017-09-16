@@ -269,21 +269,30 @@ class Course
   public function Add_Responsible_Staff($course_id,$teacher_name,$semester_id)
   {
     $teacher_id = $this->PERSON->Get_Teacher_Id($teacher_name);
-    $sql = "INSERT INTO `course_responsible`(`course_id`, `teacher_id`, `semester_id`)
-    VALUES ('".$course_id."','".$teacher_id."',".$semester_id.") ON DUPLICATE KEY
-    UPDATE `teacher_id` = '".$teacher_id."', `semester_id` = ".$semester_id;
-    $result = $this->DB->Insert_Update_Delete($sql);
-    if($result)
+    if($teacher_id != false)
     {
-      $return['status'] = 'success';
-      $return['msg'] = 'เพิ่มอาจารย์ผู้รับผิดชอบกระบวนวิชาสำเร็จ';
+      $sql = "INSERT INTO `course_responsible`(`course_id`, `teacher_id`, `semester_id`)
+      VALUES ('".$course_id."','".$teacher_id."',".$semester_id.") ON DUPLICATE KEY
+      UPDATE `teacher_id` = '".$teacher_id."', `semester_id` = ".$semester_id;
+      $result = $this->DB->Insert_Update_Delete($sql);
+      if($result)
+      {
+        $return['status'] = 'success';
+        $return['msg'] = 'เพิ่มอาจารย์ผู้รับผิดชอบกระบวนวิชาสำเร็จ';
+      }
+      else
+      {
+        $return['status'] = 'error';
+        $return['msg'] = 'ไม่สามารถเพิ่มข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+      }
+      return $return;
     }
     else
     {
       $return['status'] = 'error';
-      $return['msg'] = 'ไม่สามารถเพิ่มข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+      $return['msg'] = 'ไม่พบข้อมูลอาจารย์ท่านนี้ในฐานข้อมูล กรุณาติดต่อผู้ดูแลระบบ';
+      return $return;
     }
-    return $return;
   }
 
   public function Remove_Responsible_Staff($teacher_name,$course_id,$semester_id)
