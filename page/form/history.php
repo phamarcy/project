@@ -38,17 +38,6 @@ if (isset($_POST['subject'])) {
     <!--ใช้ตัวนี้-->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 
-
-    <style>
-      /*div[class="row"] {
-  border: 1px dotted rgba(0, 0, 0, 0.5);
-}
-
-div[class^="col-"] {
-  background-color: rgba(255, 0, 0, 0.2);
-}*/
-    </style>
-
   </header>
 
 
@@ -59,7 +48,7 @@ div[class^="col-"] {
           <center>
             <h3 class="page-header">ประวัติข้อเสนอแนะ</h3>
 
-          <form name="history" method="post" action"">
+          <form name="history" method="post" action"" data-toggle="validator" role="form">
             <div class="form-inline" style="font-size:16px;">
               <div class="form-group ">
                 ค้นหาวิชา
