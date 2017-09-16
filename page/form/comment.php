@@ -117,8 +117,8 @@ echo "</pre>";
                 </thead>
                 <tbody>
                 <?php if (is_array($data_forapproval) || is_object($data_forapproval)): ?>
-                <?php foreach ($data_forapproval as $key => $value):   $check = 0; ?>
-
+                <?php foreach ($data_forapproval as $key => $value):?>
+                  <?php $_SESSION['check']=0 ?>
                   <tr>
                     <td><?php echo $key+1 ?></td>
                     <td><?php echo $value['id'] ?></td>
@@ -126,7 +126,8 @@ echo "</pre>";
                     <td style="text-align:center;">
                       <?php if (isset($value['syllabus']) ): ?>
                           <a href="../../files<?php echo $value['syllabus'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
-                      <?php endif; ?>
+                      <?php 
+                      endif; ?>
                     </td>
                     <td style="text-align:center;">
                       <?php if (isset($value['evaluate'])): ?>
@@ -134,7 +135,7 @@ echo "</pre>";
                       <?php endif; ?>
 
                     </td>
-                    <td align="center"><?php if($check>0){echo '<i id="statn" class="fa fa-user-times fa-2x" aria-hidden="true"></i>';}else{echo '<i id="statcf" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>';}?></td>
+                    <td align="center"><?php if(isset($_SESSION['check'])>0){echo '<i id="statn" class="fa fa-user-times fa-2x" aria-hidden="true"></i>';}else{echo '<i id="statcf" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>';}?></td>
                     <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#<?php echo $value['id'] ?>" class="accordion-toggle">ดูข้อมูล</button></td>
                   </tr>
                   <tr class="hiddenRow">
@@ -158,7 +159,7 @@ echo "</pre>";
                                 <div id="comment<?php echo $value['id'] ?>-2" class="panel-collapse collapse">
                                   <div class="panel-body">
                                     <form id="approve_course" action="index.html" method="post">
-                                      <?php if ($value['status']==0): $check++;?>
+                                      <?php if ($value['status']==0): $_SESSION['check']++; ?>
                                         <div class="form-group ">
                                           <label for="">ข้อเสนอแนะ</label>
                                           <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $value['id'] ?>"></textarea>
@@ -229,7 +230,7 @@ echo "</pre>";
                                           </div>
                                           <div id="teachersp<?php echo $value['id']."-".$keysp ?>" class="panel-collapse collapse">
                                             <div class="panel-body">
-                                              <?php if ($valuesp['status']==0): $check++;?>
+                                              <?php if ($valuesp['status']==0): $_SESSION['check']++;?>
                                                 <div class="form-group ">
                                                   <label for="">ข้อเสนอแนะ</label>
                                                   <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $valuesp['id'] ?>"></textarea>
@@ -286,7 +287,9 @@ echo "</pre>";
                       </div>
                     </td>
                   </tr>
-                <?php endforeach; ?>
+                <?php 
+                unset($_SESSION['check']);
+                endforeach; ?>
                 <?php endif; ?>
                 </tbody>
               </table>
