@@ -275,7 +275,7 @@ echo "</pre>";
                   <?php if (isset($list_course)): ?>
 
                   <?php foreach ($list_course as $value_list): ?>
-                  <form id="course" method="post">
+                  <form id="remove" method="post">
                     <tr>
                       <td>
                         <?php echo $value_list['id']; ?>
@@ -323,7 +323,7 @@ echo "</pre>";
                                   <datalist id="dtl<?php echo $value_list['id'] ?>"></datalist>
                                   <?php 
                                   if ($value_list['teacher']!=NULL && $value_list['assessor']!=NULL) { ?>
-                                  <div class="col-md-5">
+                                  <div class="col-md-6">
                                       <br>
                                     <dl class="dl-horizontal">
                                       <dt>อาจารยผู้รับผิดชอบ</dt>
@@ -344,7 +344,7 @@ echo "</pre>";
                                      
                                     </dl>
                                   </div>
-                                  <div class="col-md-5">
+                                  <div class="col-md-6">
                                       <br>
                                       <button type="button" class="btn btn-outline btn-danger" onclick="removeStaffCourse('<?php echo $value_list['id'] ?>','<?php echo $dep_js ?>','<?php echo $semeter['id'] ?>');">ลบ</button>
                                   </div>
@@ -518,12 +518,12 @@ echo "</pre>";
                           return false;
                         } else {
                           $.ajax({
-                                url: '../../application/subject/group.php',
+                                url: '../../application/subject/responsible_staff.php',
                                 type: 'POST',
                                 cache: false,
                                 async: true,
                                 data: {
-                                  group: group,
+                                  course: course,
                                   semester_id:semester,
                                   type: "remove_assessor",
                                   
@@ -691,8 +691,17 @@ echo "</pre>";
           contentType: false,
           processData: false,
           success: function (data) {
-            var msg = JSON.parse(data)
-            if (msg.status == "success") {
+            try {
+            var msg = JSON.parse(data);
+            if (msg.status == "error") {
+              swal({
+                type: msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!"
+              });
+              return false;
+            } else {
               swal({
                 type: msg.status,
                 text: msg.msg,
@@ -704,14 +713,16 @@ echo "</pre>";
               setTimeout(function () {
                 window.location.reload();
               }, 1000);
-            } else {
-              swal({
-                type: msg.status,
-                text: msg.msg,
-                timer: 2000,
-                confirmButtonText: "Ok!",
-              });
             }
+          } catch (e) {
+            console.log(data);
+            swal({
+            type: "error",
+            text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+            timer: 2000,
+            confirmButtonText: "Ok!",
+          });
+          }
           }
         });
         return false;
@@ -719,6 +730,7 @@ echo "</pre>";
       
 
       $("form#remove").submit(function () {
+        var formData = new FormData(this);
         swal({
           title: 'แน่ใจหรือไม่',
           text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
@@ -729,7 +741,7 @@ echo "</pre>";
           confirmButtonText: 'ตกลง',
           cancelButtonText: 'ยกเลิก'
         }).then(function () {
-
+          
           $.ajax({
             url: '../../application/subject/responsible_course_department.php',
             type: 'POST',
@@ -739,27 +751,45 @@ echo "</pre>";
             contentType: false,
             processData: false,
             success: function (data) {
-              var msg = JSON.parse(data)
-              swal({
-                type: msg.status,
-                text: msg.msg,
+              try {
+                var msg = JSON.parse(data);
+                if (msg.status == "error") {
+                  swal({
+                    type: msg.status,
+                    text: msg.msg,
+                    timer: 2000,
+                    confirmButtonText: "Ok!"
+                  });
+                  return false;
+                } else {
+                  swal({
+                    type: msg.status,
+                    text: msg.msg,
+                    timer: 2000,
+                    confirmButtonText: "Ok!",
+                  }, function () {
+                    window.location.reload();
+                  });
+                  setTimeout(function () {
+                    window.location.reload();
+                  }, 1000);
+                }
+              } catch (e) {
+                console.log(data);
+                swal({
+                type: "error",
+                text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
                 timer: 2000,
                 confirmButtonText: "Ok!",
-              }, function () {
-                window.location.reload();
               });
-              setTimeout(function () {
-                window.location.reload();
-              }, 1000);
+              }
             }
           });
 
         }, function (dismiss) {
           if (dismiss === 'cancel') {}
         })
-        //var file = document.forms['data']['filexcel'].files[0];
-        var formData = new FormData(this);
-        //console.log(formData);
+
 
         return false;
       });
