@@ -110,7 +110,7 @@ class Course
       {
         $course['id'] = $result[$i]['course_id'];
         $course['name'] = $result[$i]['course_name_en'];
-        $staff = $this->Get_Responsible_Staff($course['id'],$semester_id);
+        $staff = $this->Get_Responsible_Teacher($course['id'],$semester_id);
         $course['teacher'] = $staff['teacher'];
         $course['assessor'] = $staff['assessor'];
         array_push($DATA,$course);
@@ -194,7 +194,7 @@ class Course
         $result = $this->Remove_Responsible_Assessor($course_id,$semester_id);
         if($result)
         {
-          $result = $this->Remove_Responsible_Staff('all',$course_id,$semester_id);
+          $result = $this->Remove_Responsible_Teacher('all',$course_id,$semester_id);
           if($result)
           {
             $return['status'] = 'success';
@@ -224,7 +224,7 @@ class Course
     return $return;
   }
 
-  private function Get_Responsible_Staff($course_id,$semester_id)
+  private function Get_Responsible_Teacher($course_id,$semester_id)
   {
     $DATA = array();
     $DATA['teacher'] = '';
@@ -266,7 +266,7 @@ class Course
     return $DATA;
   }
 
-  public function Add_Responsible_Staff($course_id,$teacher_name,$semester_id)
+  public function Add_Responsible_Teacher($course_id,$teacher_name,$semester_id)
   {
     $teacher_id = $this->PERSON->Get_Teacher_Id($teacher_name);
     if($teacher_id != false)
@@ -295,7 +295,7 @@ class Course
     }
   }
 
-  public function Remove_Responsible_Staff($teacher_name,$course_id,$semester_id)
+  public function Remove_Responsible_Teacher($teacher_name,$course_id,$semester_id)
   {
     if($teacher_name != 'all')
     {

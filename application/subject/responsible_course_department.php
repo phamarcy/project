@@ -58,7 +58,7 @@ if(isset($_POST['type']))
       {
         if($teacher_name != '')
         {
-          $result = $course->Add_Responsible_Staff($course_id,$teacher_name,$semester['id']);
+          $result = $course->Add_Responsible_Teacher($course_id,$teacher_name,$semester['id']);
           if($result['status'] == 'error')
           {
             break;

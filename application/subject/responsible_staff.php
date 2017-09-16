@@ -15,7 +15,7 @@ if(isset($_POST['type']))
       $course_id = $_POST['course'];
       $teacher_name = $_POST['teacher'];
       $semester_id = $_POST['semester_id'];
-      $result = $course->Add_Responsible_Staff($course_id,$teacher_name,$semester_id);
+      $result = $course->Add_Responsible_Teacher($course_id,$teacher_name,$semester_id);
     }
     else
     {
@@ -31,7 +31,7 @@ if(isset($_POST['type']))
       $course_id = $_POST['course'];
       $teacher_name = $_POST['teacher'];
       $semester_id = $_POST['semester_id'];
-      $result = $course->Remove_Responsible_Staff($teacher_name,$course_id,$semester_id);
+      $result = $course->Remove_Responsible_Teacher($teacher_name,$course_id,$semester_id);
     }
     else
     {
