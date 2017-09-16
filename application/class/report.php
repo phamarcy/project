@@ -255,11 +255,12 @@ class Report
         {
           $course['comment'][$semester]['special'][$instructor_id] = array();
           $course['comment'][$semester]['special'][$instructor_id]['name'] = $instructor_name;
+          $course['comment'][$semester]['special'][$instructor_id]['comment'] =array();
         }
         $data['name'] = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
         $data['comment'] = $result[$i]['comment'];
         $data['date'] = $result[$i]['updated_date'];
-        array_push($course['comment'][$semester]['special'][$instructor_id],$data);
+        array_push($course['comment'][$semester]['special'][$instructor_id]['comment'],$data);
       }
     }
 
