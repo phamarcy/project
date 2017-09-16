@@ -1,6 +1,6 @@
 <?php
 session_start();
-// var_dump($_POST);die;
+
 require_once(__DIR__.'/../class/course.php');
 require_once(__DIR__.'/../class/approval.php');
 if(isset($_POST['type']))
@@ -39,7 +39,7 @@ if(isset($_POST['type']))
       $result['msg'] = "ข้อมูลผิดพลาด";
     }
     echo json_encode($result);
-
+    var_dump(json_encode($result));die;
   }
   else if ($type == 'add_assessor')
   {

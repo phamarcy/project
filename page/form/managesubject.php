@@ -16,12 +16,13 @@ $dep_js=$department['code'];
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
-/*
+
 echo "<pre>";
-print_r($list_course);
-echo "</pre>";*/
+var_dump($assessor,$list_course);
+echo "</pre>";
  ?>
-<html>
+  <html>
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,14 +58,15 @@ echo "</pre>";*/
 
     <title></title>
     <style>
-    .panel-heading {
-      margin-top: 0px;
-      margin-bottom: 0px;
-    }
+      .panel-heading {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
 
       #statc {
         color: #0d4b9d;
       }
+
       #statcf {
         color: #0e9d14;
       }
@@ -80,43 +82,46 @@ echo "</pre>";*/
       #statal {
         color: #da9001;
       }
-
     </style>
   </head>
+
   <body>
 
-  <h3 class="page-header" style="margin-bottom: 0px;"><center><b>จัดการกระบวนวิชา</b></center></h3>
+    <h3 class="page-header" style="margin-bottom: 0px;">
+      <center><b>จัดการกระบวนวิชา</b></center>
+    </h3>
     <div class="container" style="margin-top:30px">
       <div class="panel panel-default">
         <div class="panel-heading">
           <b>ภาคเรียนที่ <?php echo $semeter['semester'];?> &nbsp;ปีการศึกษา <?php echo $semeter['year']." ";?><?php echo $department['name'] ?></b>
         </div>
         <div class="panel-body">
-        <div class="row">
-              <div class="col-md-12">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                      <b>คณะกรรมการผู้รับผิดชอบ</b>
-                  </div>
-                  <div class="panel-body">
-                    <div class="form-group">
-                      <div class="row">
-                          <div class="col-md-6">
-                            <div class="panel panel-info">
-                              <div class="panel-heading" style="font-size:14px;">
-                                  คณะกรรมการชุดที่ 1
-                              </div>
-                              <div class="panel-body" style="font-size:14px;">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <b>คณะกรรมการผู้รับผิดชอบ</b>
+                </div>
+                <div class="panel-body">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="panel panel-info">
+                          <div class="panel-heading" style="font-size:14px;">
+                            คณะกรรมการชุดที่ 1
+                          </div>
+                          <div class="panel-body" style="font-size:14px;">
                             <div class="form-group">
-                              <form role="form"  data-toggle="validator" id="data" >
+                              <form role="form" data-toggle="validator" id="data">
 
-                                  <label for="">เพิ่มคณะกรรมการ</label>
-                                  <div class="form-inline">
-                                    <input type="text" class="form-control " name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'committee');" required>
-                                    <button  type="button" class="btn btn-outline btn-primary" onclick="teacherGroup(1,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
-                                  </div>
-                                  <datalist id="dtl1"></datalist>
-                             </form>
+                                <label for="">เพิ่มคณะกรรมการ</label>
+                                <div class="form-inline">
+                                  <input type="text" class="form-control " name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35"
+                                    onkeydown="searchname(1,'committee');" required>
+                                  <button type="button" class="btn btn-outline btn-primary" onclick="teacherGroup(1,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
+                                </div>
+                                <datalist id="dtl1"></datalist>
+                              </form>
                             </div>
                             <hr>
                             <div class="form-group">
@@ -128,41 +133,45 @@ echo "</pre>";*/
                                 </thead>
                                 <tbody>
 
-                                      <?php foreach ($assessor[0]['assessor'] as $key_assessor => $assessor_name): ?>
-                                        <form >
-                                          <input type="hidden" name="teacher"  id="name_assessor1" value="<?php echo $assessor_name ?>">
-                                        <tr>
-                                            <td><?php echo $key_assessor+1; ?></td>
-                                            <td><?php echo $assessor_name ?></td>
-                                            <td><button type="button" name="button" class="btn btn-outline btn-danger" onclick="teacherGroup(1,'remove',<?php echo $department['code']  ?>,'<?php echo $assessor_name ?>')">ลบ</button></td>
-                                        </tr>
-                                        </form>
-                                      <?php endforeach; ?>
+                                  <?php foreach ($assessor[0]['assessor'] as $key_assessor => $assessor_name): ?>
+                                  <form>
+                                    <input type="hidden" name="teacher" id="name_assessor1" value="<?php echo $assessor_name ?>">
+                                    <tr>
+                                      <td>
+                                        <?php echo $key_assessor+1; ?>
+                                      </td>
+                                      <td>
+                                        <?php echo $assessor_name ?>
+                                      </td>
+                                      <td><button type="button" name="button" class="btn btn-outline btn-danger" onclick="teacherGroup(1,'remove',<?php echo $department['code']  ?>,'<?php echo $assessor_name ?>')">ลบ</button></td>
+                                    </tr>
+                                  </form>
+                                  <?php endforeach; ?>
 
                                 </tbody>
                               </table>
                             </div>
 
-                            </div>
                           </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="panel panel-info">
+                          <div class="panel-heading">
+                            คณะกรรมการชุดที่ 2
                           </div>
-                          <div class="col-md-6">
-                            <div class="panel panel-info">
-                              <div class="panel-heading">
-                                  คณะกรรมการชุดที่ 2
-                              </div>
-                              <div class="panel-body">
+                          <div class="panel-body">
                             <div class="form-group">
                               <div class="form-inline">
-
-                                <form role="form"  data-toggle="validator" id="data"  method="post" >
-                                    <label for="">เพิ่มคณะกรรมการ</label>
-                                    <div class="form-inline">
-                                      <input type="text" required class="form-control " name="teacher" id="TEACHERLEC_2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'committee');" >
-                                      <button  type="button" class="btn btn-outline btn-primary" onclick="teacherGroup(2,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
-                                    </div>
-                                    <datalist id="dtl2"></datalist>
-                               </form>
+                                <form role="form" data-toggle="validator" id="data" method="post">
+                                  <label for="">เพิ่มคณะกรรมการ</label>
+                                  <div class="form-inline">
+                                    <input type="text" required class="form-control " name="teacher" id="TEACHERLEC_2" list="dtl2" placeholder="ชื่อ-นามสกุล"
+                                      size="35" onkeydown="searchname(2,'committee');">
+                                    <button type="button" class="btn btn-outline btn-primary" onclick="teacherGroup(2,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
+                                  </div>
+                                  <datalist id="dtl2"></datalist>
+                                </form>
                               </div>
                             </div>
                             <hr>
@@ -174,484 +183,651 @@ echo "</pre>";*/
                                   <th></th>
                                 </thead>
                                 <tbody>
+                                  <?php foreach ($assessor[1]['assessor'] as $key_assessor => $assessor_name): ?>
+                                  <form>
+                                    <input type="hidden" name="teacher" id="name_assessor2" value="<?php echo $assessor_name ?>">
 
-                                      <?php foreach ($assessor[1]['assessor'] as $key_assessor => $assessor_name): ?>
-                                        <form >
-                                          <input type="hidden" name="teacher"  id="name_assessor2" value="<?php echo $assessor_name ?>">
-
-                                        <tr>
-                                            <td><?php echo $key_assessor+1; ?></td>
-                                            <td><?php echo $assessor_name ?></td>
-                                            <td><button type="button" name="button" class="btn btn-outline btn-danger" onclick="teacherGroup(2,'remove',<?php echo $department['code']  ?>,'<?php echo $assessor_name ?>')">ลบ</button></td>
-                                        </tr>
-                                        </form>
-                                      <?php endforeach; ?>
+                                    <tr>
+                                      <td>
+                                        <?php echo $key_assessor+1; ?>
+                                      </td>
+                                      <td>
+                                        <?php echo $assessor_name ?>
+                                      </td>
+                                      <td><button type="button" name="button" class="btn btn-outline btn-danger" onclick="teacherGroup(2,'remove',<?php echo $department['code']  ?>,'<?php echo $assessor_name ?>')">ลบ</button></td>
+                                    </tr>
+                                  </form>
+                                  <?php endforeach; ?>
 
                                 </tbody>
                               </table>
                             </div>
 
-                            </div>
                           </div>
-                          </div>
+                        </div>
                       </div>
+                    </div>
 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <b>ข้อมูลกระบวนวิชาในสังกัดย้อนหลัง</b>
+                    </div>
+                    <div class="panel-body">
+                      <div class="form-inline">
+                        <center>
+                          <?php foreach ($history as $key => $value): ?>
+                          <button type="button" name="semester_history" class="btn btn-outline btn-primary " onclick="submitForm('<?php echo $value['id']?>','<?php echo $value['semester'].'/'.$value['year'] ?>')"><b><?php echo $value['semester'].'/'.$value['year'] ?></b></button>
+                          <?php endforeach; ?>
+                        </center>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <b>ข้อมูลกระบวนวิชาในสังกัดย้อนหลัง</b>
-                        </div>
-                        <div class="panel-body">
-                          <div class="form-inline">
-                            <center>
-                                <?php foreach ($history as $key => $value): ?>
-                                  <button type="button" name="semester_history" class="btn btn-outline btn-primary " onclick="submitForm('<?php echo $value['id']?>','<?php echo $value['semester'].'/'.$value['year'] ?>')"><b><?php echo $value['semester'].'/'.$value['year'] ?></b></button>
-                                <?php endforeach; ?>
-                            </center>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
               </div>
-              </div>
+            </div>
           </div>
           <div id="show_old"></div>
 
           <div class="panel panel-info" id="course_now">
             <div class="panel-heading">
-            <b>กระบวนวิชาใน <?php echo $semeter['semester'] ?>/<?php echo $semeter['year'] ?></b>
+              <b>กระบวนวิชาใน <?php echo $semeter['semester'] ?>/<?php echo $semeter['year'] ?></b>
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-10">
-                    <form id="course" method="post">
-                      <div class="form-inline">
-                        <div class="form-group">
-                          <label for="">วิชา</label>
-                          <select class="form-control" name="course" id="search_course_id">
+                <div class="col-md-12">
+                  <form id="course" method="post">
+                    <div class="form-inline">
+                      <div class="form-group">
+                        <label for="">วิชา</label>
+                        <select class="form-control" name="course" id="search_course_id">
                             <?php foreach ($course->Get_All_Course() as $value_course): ?>
                               <option value="<?php echo $value_course['id'] ?>"><?php echo $value_course['id']." ".$value_course['name']['en']; ?></option>
                             <?php endforeach; ?>
                           </select>
-                        </div>
-                        <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
-                        <input type="hidden" name="semester_id" id="semester_id" value="<?php echo $semeter['id'] ?>">
-                        <input type="hidden" name="type" id="type" value="add">
-                        <button type="submit" class="btn btn-outline btn-primary " id="submit"  name="submit">เลือก</button>
                       </div>
-                    </form>
+                      <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
+                      <input type="hidden" name="semester_id" id="semester_id" value="<?php echo $semeter['id'] ?>">
+                      <input type="hidden" name="type" id="type" value="add">
+                      <button type="submit" class="btn btn-outline btn-primary " id="submit" name="submit">เลือก</button>
+                    </div>
+                  </form>
                 </div>
+
               </div>
 
               <hr>
               <table class="table table-hover" style="font-size:14px">
                 <thead>
-                    <tr>
-                        <th width="10%">รหัสวิชา</th>
-                        <th width="80%">ชื่อวิชา</th>
-                        <th width="7%">สถานะ</th>
-                        <th width="5%"></th>
-                        <th width="5%"></th>
-                    </tr>
+                  <tr>
+                    <th width="10%">รหัสวิชา</th>
+                    <th width="80%">ชื่อวิชา</th>
+                    <th width="7%">สถานะ</th>
+                    <th width="5%"></th>
+                    <th width="5%"></th>
+                  </tr>
                 </thead>
                 <tbody>
                   <?php if (isset($list_course)): ?>
 
-                      <?php foreach ($list_course as $value_list): ?>
-                        <form id="course" method="post">
-                          <tr>
-                              <td><?php echo $value_list['id']; ?></td>
-                              <td><?php echo $value_list['name']; ?></td>
-                              <td ><?php if($value_list['teacher']!= NULL and $value_list['assessor']!= NULL){echo '<i id="statcf" class=" fa fa-check-square-o fa-2x " aria-hidden="true"></i>';}else{echo '<i id="statn" class="fa fa-times fa-2x" aria-hidden="true"></i>';} ?></td>
-                              <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#<?php echo $value_list['id'] ?>" class="accordion-toggle">ผู้รับผิดชอบ</button></td>
-                              <td><button type="submit" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                              <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
-                              <input type="hidden" name="course"  value="<?php echo $value_list['id'] ?>">
-                              <input type="hidden" name="semester_id"  value="<?php echo $semeter['id'] ?>">
-                              <input type="hidden" name="type" value="remove">
-                          </tr>
-                        </form>
-                        <tr class="hiddenRow">
-                          <td colspan="12">
-                            <div class="accordian-body collapse" id="<?php echo $value_list['id'] ?>">
-                              <div class="panel panel-success">
-                                <div class="panel-heading">
-                                  <b><b>รายชื่ออาจารย์ผู้รับผิดชอบ</b></b>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="row">
-                                      <div class="col-md-6">
-                                        <div class="form-group">
-
-                                              <label for="">เพิ่มผู้รับผิดชอบ</label>
-                                              <div class="form-inline">
-                                                <form id="staff"  method="post">
-                                                  <input type="text" name="teacher" required class="form-control " name="teacher" id="TEACHERLEC_<?php echo $value_list['id'] ?>" list="dtl<?php echo $value_list['id'] ?>" placeholder="ชื่อ-นามสกุล" size="35"  onkeydown="searchname(<?php echo $value_list['id'] ?>,'responsible');" >
-                                                  <input type="hidden" name="type" value="add_teacher">
-                                                  <input type="hidden" name="course" value="<?php echo $value_list['id'] ?>">
-                                                  <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
-                                                  <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                                </form>
-                                              </div>
-
-                                              <datalist id="dtl<?php echo $value_list['id'] ?>"></datalist>
-                                              <table class="table" style="font-size:14px;">
-                                                <thead>
-                                                  <th>ลำดับ</th>
-                                                  <th>ชื่อ-นามสกุล</th>
-                                                  <th></th>
-                                                </thead>
-                                                <tbody>
-                                                  <form id="staff" method="post">
-                                                  <?php if ($value_list['teacher']!=NULL): ?>
-                                                    <tr>
-                                                      <td>1</td>
-                                                      <td><?php echo $value_list['teacher'] ?></td>
-                                                      <input type="hidden" name="type" value="remove_teacher">
-                                                      <input type="hidden" name="course" value="<?php echo $value_list['id'] ?>">
-                                                      <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
-                                                      <input type="hidden" name="teacher" value="<?php echo $value_list['teacher'] ?>">
-                                                      <td><button type="submit" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                    </tr>
-                                                  <?php endif; ?>
-                                                  </form>
-                                                </tbody>
-                                              </table>
-                                         </form>
-                                        </div>
-                                      </div>
-                                      <div class="col-md-6">
-
-                                          <label for="">เพิ่มชุดคณะกรรมการ</label>
-                                          <div class="form-inline">
-                                              <form id="staff"  method="post" data-toggle="validator" role="form">
-                                                <input type="hidden" name="type" value="add_assessor">
-                                                <input type="hidden" name="course" value="<?php echo $value_list['id'] ?>">
-                                                <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
-                                                <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
-
-                                                <select class="form-control" name="group" id="select">
-                                                  <option value="1">คณะกรรมการชุดที่ 1</option>
-                                                  <option value="2">คณะกรรมการชุดที่ 2</option>
-                                                </select>
-                                                <button type="submit" name="button" class="btn btn-outline btn-primary">เพิ่ม</button>
-                                              </form>
-                                          </div>
-                                          <table class="table" >
-                                            <thead>
-                                              <th>ลำดับ</th>
-                                              <th>ชื่อ-นามสกุล</th>
-                                              <th></th>
-                                            </thead>
-                                            <tbody>
-                                              <form id="staff" method="post">
-                                                <?php if ($value_list['assessor']!=NULL): ?>
-
-                                                <tr>
-                                                  <td>1</td>
-                                                  <td>
-                                                    <?php if ($value_list['assessor']==1):echo "คณะกรรมการชุดที่ 1"; ?>
-                                                    <?php else: echo "คณะกรรมการชุดที่ 2";  ?>
-                                                    <?php endif; ?>
-                                                  </td>
-                                                  <td><button type="submit" class="btn btn-outline btn-danger" id="delete"  name="delete" >ลบ</button></td>
-                                                  <input type="hidden" name="type" value="remove_assessor">
-                                                  <input type="hidden" name="course" value="<?php echo $value_list['id'] ?>">
-                                                  <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
-                                                  <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
-                                                </tr>
-                                                <?php endif; ?>
-                                              </form>
-                                            </tbody>
-                                          </table>
-
-                                      </div>
+                  <?php foreach ($list_course as $value_list): ?>
+                  <form id="course" method="post">
+                    <tr>
+                      <td>
+                        <?php echo $value_list['id']; ?>
+                      </td>
+                      <td>
+                        <?php echo $value_list['name']; ?>
+                      </td>
+                      <td>
+                        <?php if($value_list['teacher']!= NULL and $value_list['assessor']!= NULL){echo '<i id="statcf" class=" fa fa-check-square-o fa-2x " aria-hidden="true"></i>';}else{echo '<i id="statn" class="fa fa-times fa-2x" aria-hidden="true"></i>';} ?></td>
+                      <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#<?php echo $value_list['id'] ?>"
+                          class="accordion-toggle">ผู้รับผิดชอบ</button></td>
+                      <td><button type="submit" class="btn btn-outline btn-danger" id="delete" name="delete">ลบ</button></td>
+                      <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
+                      <input type="hidden" name="course" value="<?php echo $value_list['id'] ?>">
+                      <input type="hidden" name="semester_id" value="<?php echo $semeter['id'] ?>">
+                      <input type="hidden" name="type" value="remove">
+                    </tr>
+                  </form>
+                  <tr class="hiddenRow">
+                    <td colspan="12">
+                      <div class="accordian-body collapse" id="<?php echo $value_list['id'] ?>">
+                        <div class="panel panel-success">
+                          <div class="panel-heading">
+                            <b>รายชื่ออาจารย์ผู้รับผิดชอบ</b>
+                          </div>
+                          <div class="panel-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <div class="col-md-12">
+                                    <div class="form-inline">
+                                      <label for="">ผู้รับผิดชอบ</label>
+                                      <input type="text" name="teacher" class="form-control " name="teacher" id="TEACHERLEC_<?php echo $value_list['id'] ?>" list="dtl<?php echo $value_list['id'] ?>"
+                                        placeholder="ชื่อ-นามสกุล" size="27" onkeydown="searchname(<?php echo $value_list['id'] ?>,'responsible');">
+                                      <label for="">คณะกรรมการ</label>
+                                      <input type="hidden" name="type" value="add_assessor">
+                                      <select class="form-control" id="group<?php echo $value_list['id'] ?>">
+                                        <option value="1">คณะกรรมการชุดที่ 1</option>
+                                        <option value="2">คณะกรรมการชุดที่ 2</option>
+                                      </select>
+                                      <button type="button" name="button" class="btn btn-outline btn-primary" onclick="addStaffCourse('<?php echo $value_list['id'] ?>','<?php echo $dep_js ?>','<?php echo $semeter['id'] ?>')">เพิ่ม</button>
                                     </div>
+                                  </div>
+
+                                  <datalist id="dtl<?php echo $value_list['id'] ?>"></datalist>
+                                  <?php 
+                                  if ($value_list['teacher']!=NULL && $value_list['assessor']!=NULL) { ?>
+                                  <div class="col-md-5">
+                                      <br>
+                                    <dl class="dl-horizontal">
+                                      <dt>อาจารยผู้รับผิดชอบ</dt>
+                                      <dd style="font-size:14px;">
+                                      <?php if ($value_list['teacher']!=NULL): ?>
+                                      <?php echo $value_list['teacher'] ?>
+                                      <input type="hidden" id="hiddenteacher<?php echo $value_list['id'] ?>" value="<?php echo $value_list['teacher'] ?>">
+                                      <?php endif; ?>  
+                                      </dd>
+                                      <dt>คณะกรรมการ</dt>
+                                      <dd> 
+                                        <?php if ($value_list['assessor']!=NULL): ?>
+                                          <?php if ($value_list['assessor']==1):echo "คณะกรรมการชุดที่ 1"; ?><?php endif; ?>  
+                                          <?php if ($value_list['assessor']==2):echo "คณะกรรมการชุดที่ 2"; ?><?php endif; ?> 
+                                          <input type="hidden" id="hiddengroup<?php echo $value_list['id'] ?>" value="<?php echo $value_list['assessor'] ?>">
+                                        <?php endif; ?>
+                                      </dd>
+                                     
+                                    </dl>
+                                  </div>
+                                  <div class="col-md-5">
+                                      <br>
+                                      <button type="button" class="btn btn-outline btn-danger" onclick="removeStaffCourse('<?php echo $value_list['id'] ?>','<?php echo $dep_js ?>','<?php echo $semeter['id'] ?>');">ลบ</button>
+                                  </div>
+                                  <?php
+                                  }
+                                  ?>
+
                                 </div>
                               </div>
+
                             </div>
-                          </td>
-                        </tr>
-                    <?php endforeach; ?>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <?php endforeach; ?>
                   <?php endif; ?>
                 </tbody>
-            </table>
+              </table>
+            </div>
           </div>
-        </div>
         </div>
       </div>
 
     </div>
-<script type="text/javascript">
-function teacherGroup(group,type,department){
-  if (type=='add') {
-    var text = "TEACHERLEC_"+group;
-    var element = document.getElementById(text).value;
-      if (!element) {
-        swal({
-          type:"warning",
-          text: "กรุณากรอกข้อมูลให้ครบ",
-          confirmButtonText: "ตกลง!",
-        });
-        return false;
-      }
+    <script type="text/javascript">
+      function addStaffCourse(course, department, semester) {
+        var text = "TEACHERLEC_" + course;
+        var textgroup = "group" + course;
+        var teacher = document.getElementById(text).value;
+        var group = document.getElementById(textgroup).value;
+
+        if (!teacher) {
+          swal({
+            type: "warning",
+            text: "กรุณากรอกข้อมูลให้ครบ",
+            confirmButtonText: "ตกลง!",
+          });
+          return false;
+        }
 
         $.ajax({
+          url: '../../application/subject/responsible_staff.php',
+          type: 'POST',
+          cache: false,
+          async: true,
+          data: {
+            type: "add_teacher",
+            department: department,
+            course: course,
+            semester_id: semester,
+            teacher: teacher
+          },
+          success: function (data) {
+            try {
+              var msg = JSON.parse(data);
+              console.log(msg);
+              if (msg.status == "error") {
+                swal({
+                  type: msg.status,
+                  text: msg.msg,
+                  timer: 2000,
+                  confirmButtonText: "Ok!"
+                });
+                return false;
+              } else {
+                $.ajax({
+                  url: '../../application/subject/responsible_staff.php',
+                  type: 'POST',
+                  cache: false,
+                  async: true,
+                  data: {
+                    type: "add_assessor",
+                    course: course,
+                    semester_id: semester,
+                    dep_id: department,
+                    group: group
+                  },
+                  success: function (data) {
+                    try {
+                      var msg = JSON.parse(data);
+                      if (msg.status == "error") {
+                        swal({
+                          type: msg.status,
+                          text: msg.msg,
+                          timer: 2000,
+                          confirmButtonText: "Ok!"
+                        });
+                        return false;
+                      } else {
+                        swal({
+                          type: msg.status,
+                          text: msg.msg,
+                          timer: 2000,
+                          confirmButtonText: "Ok!",
+                        }, function () {
+                          window.location.reload();
+                        });
+                        setTimeout(function () {
+                          window.location.reload();
+                        }, 1000);
+                      }
+
+                    } catch (e) {
+                      console.log(data);
+                      swal({
+                        type: "error",
+                        text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                        timer: 2000,
+                        confirmButtonText: "Ok!",
+                      });
+                    }
+                  }
+                });
+              }
+
+
+            } catch (e) {
+              //console.log(data);
+              swal({
+                type: "error",
+                text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                timer: 2000,
+                confirmButtonText: "Ok!",
+              });
+            }
+
+          }
+        });
+
+      }
+
+      function removeStaffCourse(course,deaprtment,semester) {
+        swal({
+          title: 'แน่ใจหรือไม่',
+          text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'ตกลง',
+          cancelButtonText: 'ยกเลิก'
+        }).then(function () {
+          var textteacher = "hiddenteacher"+course;
+          var textgroup   = "hiddengroup"+course;
+          var teacher     = document.getElementById(textteacher).value;
+          var group       = document.getElementById(textgroup).value;
+          console.log(teacher,group);
+          $.ajax({
+                    url:   '../../application/subject/responsible_staff.php',
+                    type:  'POST',
+                    cache: false,
+                    async: true,
+                    data: {
+                      course: course,
+                      teacher: teacher,
+                      semester_id:semester,
+                      type: "remove_teacher",
+                    },
+                    success: function (data) {
+                      try {
+                        var msg = JSON.parse(data);
+                        if (msg.status == "error") {
+                          swal({
+                            type: msg.status,
+                            text: msg.msg,
+                            timer: 2000,
+                            confirmButtonText: "Ok!"
+                          });
+                          return false;
+                        } else {
+                          $.ajax({
+                                url: '../../application/subject/group.php',
+                                type: 'POST',
+                                cache: false,
+                                async: true,
+                                data: {
+                                  group: group,
+                                  semester_id:semester,
+                                  type: "remove_assessor",
+                                  
+                                },
+                                success: function (data) {
+                                  try {
+                                    var msg = JSON.parse(data);
+                                    if (msg.status == "error") {
+                                      swal({
+                                        type: msg.status,
+                                        text: msg.msg,
+                                        timer: 2000,
+                                        confirmButtonText: "Ok!"
+                                      });
+                                      return false;
+                                    } else {
+                                      swal({
+                                        type: msg.status,
+                                        text: msg.msg,
+                                        timer: 2000,
+                                        confirmButtonText: "Ok!",
+                                      }, function () {
+                                        window.location.reload();
+                                      });
+                                      setTimeout(function () {
+                                        window.location.reload();
+                                      }, 1000);
+                                    }
+                                  } catch (e) {
+                                    console.log(data);
+                                    swal({
+                                    type: "error",
+                                    text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                                    timer: 2000,
+                                    confirmButtonText: "Ok!",
+                                  });
+                                  }
+                                }
+                              });
+
+                        }
+                        
+                      } catch (e) {
+                        console.log(data);
+                        swal({
+                        type: "error",
+                        text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                        timer: 2000,
+                        confirmButtonText: "Ok!",
+                      });
+                      }
+                    }
+                  });
+
+        }, function (dismiss) {
+          if (dismiss === 'cancel') {}
+        })
+      }
+
+
+      function teacherGroup(group, type, department) {
+        if (type == 'add') {
+          var text = "TEACHERLEC_" + group;
+          var element = document.getElementById(text).value;
+          if (!element) {
+            swal({
+              type: "warning",
+              text: "กรุณากรอกข้อมูลให้ครบ",
+              confirmButtonText: "ตกลง!",
+            });
+            return false;
+          }
+
+          $.ajax({
             url: '../../application/subject/group.php',
             type: 'POST',
             data: {
-              group:group,
-              teacher:element,
-              type:type,
-              department:department,
+              group: group,
+              teacher: element,
+              type: type,
+              department: department,
             },
             success: function (data) {
-              var msg=JSON.parse(data)
-              if (msg.status=="success") {
+              var msg = JSON.parse(data)
+              if (msg.status == "success") {
                 swal({
-                  type:msg.status,
+                  type: msg.status,
                   text: msg.msg,
                   timer: 2000,
                   confirmButtonText: "Ok!",
-                }, function(){
+                }, function () {
                   window.location.reload();
                 });
-                setTimeout(function() {
+                setTimeout(function () {
                   window.location.reload();
                 }, 1000);
-              }else{
+              } else {
                 swal({
-                  type:msg.status,
+                  type: msg.status,
                   text: msg.msg,
                   timer: 2000,
                   confirmButtonText: "Ok!",
                 });
               }
             }
-        });
-  }
-  if(type=='remove'){
-    var text = "name_assessor"+group;
-    var element = document.getElementById(text).value;
-    swal({
-      title: 'แน่ใจหรือไม่',
-      text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
-      type: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'ตกลง',
-      cancelButtonText: 'ยกเลิก'
-    }).then(function () {
+          });
+        }
+        if (type == 'remove') {
+          var text = "name_assessor" + group;
+          var element = document.getElementById(text).value;
+          swal({
+            title: 'แน่ใจหรือไม่',
+            text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ตกลง',
+            cancelButtonText: 'ยกเลิก'
+          }).then(function () {
 
+            $.ajax({
+              url: '../../application/subject/group.php',
+              type: 'POST',
+              data: {
+                group: group,
+                teacher: element,
+                type: type,
+                department: department,
+              },
+              success: function (data) {
+                var msg = JSON.parse(data)
+                swal({
+                  type: msg.status,
+                  text: msg.msg,
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                }, function () {
+                  window.location.reload();
+                });
+                setTimeout(function () {
+                  window.location.reload();
+                }, 1000);
+              }
+            });
+
+          }, function (dismiss) {
+            if (dismiss === 'cancel') {}
+          })
+        }
+
+
+      }
+
+      $("form#course").submit(function () {
+        //var file = document.forms['data']['filexcel'].files[0];
+        var formData = new FormData(this);
+        //console.log(formData);
         $.ajax({
-            url: '../../application/subject/group.php',
-            type: 'POST',
-            data: {
-              group:group,
-              teacher:element,
-              type:type,
-              department:department,
-            },
-            success: function (data) {
-              var msg=JSON.parse(data)
+          url: '../../application/subject/responsible_course_department.php',
+          type: 'POST',
+          data: formData,
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+            var msg = JSON.parse(data)
+            if (msg.status == "success") {
               swal({
-                type:msg.status,
+                type: msg.status,
                 text: msg.msg,
                 timer: 2000,
                 confirmButtonText: "Ok!",
-              }, function(){
+              }, function () {
                 window.location.reload();
               });
-              setTimeout(function() {
+              setTimeout(function () {
+                window.location.reload();
+              }, 1000);
+            } else {
+              swal({
+                type: msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!",
+              });
+            }
+          }
+        });
+        return false;
+      });
+      
+
+      $("form#remove").submit(function () {
+        swal({
+          title: 'แน่ใจหรือไม่',
+          text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'ตกลง',
+          cancelButtonText: 'ยกเลิก'
+        }).then(function () {
+
+          $.ajax({
+            url: '../../application/subject/responsible_course_department.php',
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+              var msg = JSON.parse(data)
+              swal({
+                type: msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!",
+              }, function () {
+                window.location.reload();
+              });
+              setTimeout(function () {
                 window.location.reload();
               }, 1000);
             }
-        });
+          });
 
-    }, function (dismiss) {
-    if (dismiss === 'cancel') {}
-  })
-  }
+        }, function (dismiss) {
+          if (dismiss === 'cancel') {}
+        })
+        //var file = document.forms['data']['filexcel'].files[0];
+        var formData = new FormData(this);
+        //console.log(formData);
 
+        return false;
+      });
 
-}
+      function add() {
 
-$("form#course").submit(function(){
-    //var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
-    //console.log(formData);
-    $.ajax({
-        url: '../../application/subject/responsible_course_department.php',
-        type: 'POST',
-        data: formData,
-        async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-          var msg=JSON.parse(data)
-          if (msg.status=="success") {
+        var hidden = document.getElementById('hidden').value;
+        var type = "add_oldcourse";
+        var dep = <?php echo $dep_js ?>;
+        //console.log(dep);
+        $.ajax({
+          url: '../../application/subject/responsible_course_department.php',
+          type: 'POST',
+          data: {
+            course: hidden,
+            type: type,
+            dep: dep
+          },
+          contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+          success: function (data) {
+            var msg = JSON.parse(data)
             swal({
-              type:msg.status,
+              type: msg.status,
               text: msg.msg,
               timer: 2000,
               confirmButtonText: "Ok!",
-            }, function(){
+            }, function () {
               window.location.reload();
             });
-            setTimeout(function() {
+            setTimeout(function () {
               window.location.reload();
             }, 1000);
-          }else{
-            swal({
-              type:msg.status,
-              text: msg.msg,
-              timer: 2000,
-              confirmButtonText: "Ok!",
-            });
+          },
+          error: function () {
+            alert("error");
           }
-        }
-    });
-    return false;
-});
-$("form#staff").submit(function(){
-    //var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
-    //console.log(formData);
-    $.ajax({
-        url: '../../application/subject/responsible_staff.php',
-        type: 'POST',
-        data: formData,
-        async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-          var msg=JSON.parse(data)
-          swal({
-            type:msg.status,
-            text: msg.msg,
-            timer: 2000,
-            confirmButtonText: "Ok!",
-          }, function(){
-            window.location.reload();
-          });
-          setTimeout(function() {
-            window.location.reload();
-          }, 1000);
-        }
-    });
-    return false;
-});
-
-$("form#remove").submit(function(){
-  swal({
-    title: 'แน่ใจหรือไม่',
-    text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
-    type: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'ตกลง',
-    cancelButtonText: 'ยกเลิก'
-  }).then(function () {
-
-    $.ajax({
-        url: '../../application/subject/responsible_course_department.php',
-        type: 'POST',
-        data: formData,
-        async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-          var msg=JSON.parse(data)
-          swal({
-            type:msg.status,
-            text: msg.msg,
-            timer: 2000,
-            confirmButtonText: "Ok!",
-          }, function(){
-            window.location.reload();
-          });
-          setTimeout(function() {
-            window.location.reload();
-          }, 1000);
-        }
-    });
-
-  }, function (dismiss) {
-  if (dismiss === 'cancel') {}
-})
-    //var file = document.forms['data']['filexcel'].files[0];
-    var formData = new FormData(this);
-    //console.log(formData);
-
-    return false;
-});
-function add(){
-
-  var hidden = document.getElementById('hidden').value;
-  var type ="add_oldcourse";
-  var dep = <?php echo $dep_js ?>;
-  //console.log(dep);
-  $.ajax({
-      url: '../../application/subject/responsible_course_department.php',
-      type: 'POST',
-      data: { course : hidden, type : type, dep:dep} ,
-      contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-      success: function (data) {
-        var msg=JSON.parse(data)
-        swal({
-          type:msg.status,
-          text: msg.msg,
-          timer: 2000,
-          confirmButtonText: "Ok!",
-        }, function(){
-          window.location.reload();
         });
-        setTimeout(function() {
-          window.location.reload();
-        }, 1000);
-      },
-      error: function () {
-          alert("error");
+
+        return false;
       }
-  });
 
-  return false;
-}
-function submitForm(num,text){
+      function submitForm(num, text) {
 
-  var data = new FormData;
-  var dep_id =<?php echo $dep_js ?>;
-  JSON.stringify(num);
-  JSON.stringify(dep_id);
-  data.append("semester_id",num);
-  data.append("department_id",dep_id);
+        var data = new FormData;
+        var dep_id = <?php echo $dep_js ?>;
+        JSON.stringify(num);
+        JSON.stringify(dep_id);
+        data.append("semester_id", num);
+        data.append("department_id", dep_id);
 
-    $.ajax({
-        url: '../../application/subject/responsible_history.php',
-        type: 'POST',
-        data: data,
-        async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-          var obj = JSON.parse(data);
+        $.ajax({
+          url: '../../application/subject/responsible_history.php',
+          type: 'POST',
+          data: data,
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+            var obj = JSON.parse(data);
 
-          if (typeof obj.msg == 'undefined') {
-            var count=$('#show_old').children().length;
+            if (typeof obj.msg == 'undefined') {
+              var count = $('#show_old').children().length;
 
-            if (count==0) {
-              $('#table_old')
-              $('#show_old').append(`
+              if (count == 0) {
+                $('#table_old')
+                $('#show_old').append(
+                  `
 
         <div class="panel panel-info">
         <div class="panel-heading" role="tab" id="heading">
@@ -664,7 +840,9 @@ function submitForm(num,text){
         <div class="panel-collapse collapse in" id="collapse" role="tabpanel" aria-labelledbyzz="heading">
           <div class="panel-body">
 
-          <input type="hidden" id="hidden" name="hidden" value='`+data+`'>
+          <input type="hidden" id="hidden" name="hidden" value='` +
+                  data +
+                  `'>
           <button onclick="add()" class="btn btn-outline btn-primary">นำข้อมูลไปใช้</button>
 
           <table class="table" style="font-size:14px">
@@ -674,34 +852,38 @@ function submitForm(num,text){
           </div>
         </div>
         </div>
-      `);
-            }
-            var k = '<tbody>'
-              for(i = 0;i < obj.length; i++){
-                  if (obj[i].teacher==1) {
-                    var text_group = "คณะกรรมการชุดที่ 1" ;
-                  }
-                  else if (obj[i].teacher==1) {
-                    var text_group = "คณะกรรมการชุดที่ 2" ;
-                  }else {
-                    var text_group = "-" ;
-                  }
-                  if (obj[i].teacher==1) {
-                    var text_group = "คณะกรรมการชุดที่ 1" ;
-                  }
-                  else if (obj[i].teacher==1) {
-                    var text_group = "คณะกรรมการชุดที่ 2" ;
-                  }else {
-                    var text_group = "-" ;
-                  }
-                  k+= '<tr>';
-                  k+= '<td>' + obj[i].id + '</td>';
-                  k+= '<td>' + obj[i].name + '</td>';
-                  k+='<td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#old'+obj[i].id+'" class="accordion-toggle">ผู้รับผิดชอบ</button></td>';
-                  k+= '</tr>';
-                  k+=`<tr class="hiddenRow">
+      `
+                );
+              }
+              var k = '<tbody>'
+              for (i = 0; i < obj.length; i++) {
+                if (obj[i].teacher == 1) {
+                  var text_group = "คณะกรรมการชุดที่ 1";
+                } else if (obj[i].teacher == 1) {
+                  var text_group = "คณะกรรมการชุดที่ 2";
+                } else {
+                  var text_group = "-";
+                }
+                if (obj[i].teacher == 1) {
+                  var text_group = "คณะกรรมการชุดที่ 1";
+                } else if (obj[i].teacher == 1) {
+                  var text_group = "คณะกรรมการชุดที่ 2";
+                } else {
+                  var text_group = "-";
+                }
+                k += '<tr>';
+                k += '<td>' + obj[i].id + '</td>';
+                k += '<td>' + obj[i].name + '</td>';
+                k +=
+                  '<td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#old' +
+                  obj[i].id + '" class="accordion-toggle">ผู้รับผิดชอบ</button></td>';
+                k += '</tr>';
+                k +=
+                  `<tr class="hiddenRow">
                     <td colspan="12">
-                      <div class="accordian-body collapse" id="old`+obj[i].id+`">
+                      <div class="accordian-body collapse" id="old` +
+                  obj[i].id +
+                  `">
                         <div class="panel panel-success">
                           <div class="panel-heading">
                             <b><b>รายชื่ออาจารย์ผู้รับผิดชอบ</b></b>
@@ -710,11 +892,15 @@ function submitForm(num,text){
                               <div class="row">
                                 <div class="col-md-6 ">
                                 <b >อาจารย์ผู้รับผิดชอบกระบวนวิชา</b>
-                                  <p>`+obj[i].teacher+`</p>
+                                  <p>` +
+                  obj[i].teacher +
+                  `</p>
                                 </div>
                                 <div class="col-md-6">
                                     <b >ชุดคณะกรรมการประเมินกระบวนวิชา</b>
-                                    <p>`+text_group+`</p>
+                                    <p>` +
+                  text_group +
+                  `</p>
                                 </div>
                               </div>
                           </div>
@@ -723,45 +909,48 @@ function submitForm(num,text){
                     </td>
                   </tr>`;
               }
-              k+='</tbody>';
+              k += '</tbody>';
               document.getElementById('tbody').innerHTML = k;
 
-          }else {
-            swal({
-              type:obj.status,
-              text: obj.msg,
-              timer: 5000,
-              confirmButtonText: "Ok!",
-            }, function(){
-              window.location.reload();
-            });
-          }
-          //alert(msg.msg);
-        }
-    });
-    return false;
-}
-
-    function searchname(no,type) {
-      var name_s = $("#TEACHERLEC_"+no).val();
-        $("#dtl"+no).html('');
-        if(name_s.length > 3)
-        {
-          $.post("search_name.php", { name: name_s}, function(data) {
-                data = JSON.parse( data );
-                for(var i=0;i<data.length;i++)
-                {
-                    $("#dtl"+no).append('<option value="'+data[i]+'"></option>');
-                }
-
-              })
-              .fail(function() {
-                  alert("error");
+            } else {
+              swal({
+                type: obj.status,
+                text: obj.msg,
+                timer: 5000,
+                confirmButtonText: "Ok!",
+              }, function () {
+                window.location.reload();
               });
+            }
+            //alert(msg.msg);
+          }
+        });
+        return false;
+      }
+
+      function searchname(no, type) {
+        var name_s = $("#TEACHERLEC_" + no).val();
+        $("#dtl" + no).html('');
+        if (name_s.length > 3) {
+          $.post("search_name.php", {
+              name: name_s
+            }, function (data) {
+              data = JSON.parse(data);
+              for (var i = 0; i < data.length; i++) {
+                $("#dtl" + no).append('<option value="' + data[i] + '"></option>');
+              }
+
+            })
+            .fail(function () {
+              alert("error");
+            });
         }
       }
-$('#select').select2({ width: '70%' });
-$('#search_course_id').select2();
-</script>
+      $('#select').select2({
+        width: '70%'
+      });
+      $('#search_course_id').select2();
+    </script>
   </body>
-</html>
+
+  </html>

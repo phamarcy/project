@@ -488,6 +488,7 @@ class Person
     if ($result) {
       if ($now>=$start && $now<=$end ) {
           $_SESSION['admission']=1;
+          $_SESSION['level']=6;
       }
     }
 
