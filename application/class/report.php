@@ -82,19 +82,37 @@ class Report
         {
             $data['id'] = $course[$i];
             $data['name'] = $this->COURSE->Get_Course_Name($data['id']);
-            $data['syllabus'] = $this->COURSE->Get_Course_Syllabus($data['id']);
-            $data['pdf'] = $this->DOWNLOAD_URL."?course=".$data['id']."&info=evaluate&semester=".$semester."&year=".$year;
-            $grade_file = $FILE_PATH."/grade/".$data['id']."_grade_".$this->SEMESTER."_".$this->YEAR.".xls";
-            if (file_exists(realpath($grade_file)))
+            $syllabus_file = $FILE_PATH."/syllabus/".$data['id']."_".$semester."_".$year.".doc";
+            if (file_exists(realpath($syllabus_file)))
             {
-                $data['grade'] = "/grade/".$data['id']."_grade_".$this->SEMESTER."_".$this->YEAR.".xls";
+                $syllabus_path = "/syllabus/".$data['id']."_".$semester."_".$year.".doc";
             }
             else
             {
-              $grade_file = $FILE_PATH."/grade/".$data['id']."_grade_".$this->SEMESTER."_".$this->YEAR.".xlsx";
+              $syllabus_file = $FILE_PATH."/syllabus/".$data['id']."_".$semester."_".$year.".docx";
+              if (file_exists(realpath($syllabus_file)))
+              {
+
+                  $syllabus_path = "/syllabus/".$data['id']."_".$semester."_".$year.".docx";
+              }
+              else
+              {
+                $syllabus_path = null;
+              }
+            }
+            $data['syllabus'] = $syllabus_path;
+            $data['pdf'] = $this->DOWNLOAD_URL."?course=".$data['id']."&info=evaluate&semester=".$semester."&year=".$year;
+            $grade_file = $FILE_PATH."/grade/".$data['id']."_grade_".$semester."_".$year.".xls";
+            if (file_exists(realpath($grade_file)))
+            {
+                $data['grade'] = "/grade/".$data['id']."_grade_".$semester."_".$year.".xls";
+            }
+            else
+            {
+              $grade_file = $FILE_PATH."/grade/".$data['id']."_grade_".$semester."_".$year.".xlsx";
               if (file_exists(realpath($grade_file)))
               {
-                  $data['grade'] = "/grade/".$data['id']."_grade_".$this->SEMESTER."_".$this->YEAR.".xlsx";
+                  $data['grade'] = "/grade/".$data['id']."_grade_".$semester."_".$year.".xlsx";
               }
               else
               {
