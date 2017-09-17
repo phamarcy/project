@@ -476,7 +476,7 @@ class approval
                 $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$j]['teacher_id']);
                 $comment['comment'] = $result_comment[$j]['comment'];
                 $comment['date'] = $result_comment[$j]['updated_date'];
-               array_push($instructor['comment'],$comment);             
+               array_push($instructor['comment'],$comment);
            }
          }
          array_push($DATA,$instructor);
@@ -604,7 +604,7 @@ class approval
               }
               else
               {
-                if($result_comment[$j]['status'] != 5)
+                if($result_comment[$j]['status'] != 5 )
                 {
                   $course['status'] = '1';
                 }
@@ -642,7 +642,6 @@ class approval
           $sql = "SELECT `instructor_id`,`teacher_id`,`status`,`comment`,`updated_date`
           FROM `approval_special` WHERE `course_id` = '".$course_id."' AND `semester_id` =".$this->SEMESTER_ID;
           $result_special = $this->DB->Query($sql);
-          // var_dump($result_special);
           if($result_special)
           {
             $count_special = count($result_special);
@@ -650,10 +649,9 @@ class approval
             for($j=0;$j<$count_special;$j++)
             {
               $check = 0;
-              // echo $result_special[$j]['teacher_id']." ".$teacher_id."<br>";
               for($k=0;$k<count($special);$k++)
               {
-                if($result_special[$j]['teacher_id'] == $teacher_id)
+                if($result_special[$j]['teacher_id'] == $teacher_id && $result_special[$j]['instructor_id'] == $special[$k]['id'])
                 {
                   if($this->USER_LEVEL < 6)
                   {
@@ -691,7 +689,6 @@ class approval
                 $comment['name'] = $this->PERSON->Get_Teacher_Name($result_special[$j]['teacher_id']);
                 $comment['comment'] = $result_special[$j]['comment'];
                 $comment['date'] = $result_special[$j]['updated_date'];
-                // echo $result_special[$j]['teacher_id']." ".$teacher_id."<br>";
                 if($result_special[$j]['teacher_id'] == $teacher_id)
                 {
                   if($this->USER_LEVEL < 6)
@@ -728,7 +725,11 @@ class approval
               $course['id'] = $course_id;
               $course['name'] = $this->COURSE->Get_Course_Name($course['id']);
               $status = $this->Get_Doc_Status($course_id);
-              if($status != 5 && $status != 1)
+              if($status == 0 )
+              {
+                  $course['status'] = '-1';
+              }
+              else if($status != 5 && $status != 1)
               {
                 $course['status'] = '1'; //0 = ยังไม่ได้ลงความเห็น , 1 ลงความเห็นแล้ว
               }
