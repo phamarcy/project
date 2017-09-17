@@ -145,30 +145,35 @@ public function Update($data,$type)
           $data['measure']['day'] = $day;
           $data['measure']['month'] = $month;
           $data['measure']['year'] = $year;
+          $data['measure']['format'] = $result[$i]['last_date'];
         }
         else if ($type == 2)
         {
           $data['syllabus']['day'] = $day;
           $data['syllabus']['month'] = $month;
           $data['syllabus']['year'] = $year;
+          $data['syllabus']['format'] = $result[$i]['last_date'];
         }
         else if ($type == 3)
         {
           $data['special']['day'] = $day;
           $data['special']['month'] = $month;
           $data['special']['year'] = $year;
+          $data['special']['format'] = $result[$i]['last_date'];
         }
         else if ($type == 4)
         {
           $data['evaluate']['day'] = $day;
           $data['evaluate']['month'] = $month;
           $data['evaluate']['year'] = $year;
+          $data['evaluate']['format'] = $result[$i]['last_date'];
         }
         else if($type == 5)
         {
           $data['approve']['day'] = $day;
           $data['approve']['month'] = $month;
           $data['approve']['year'] = $year;
+          $data['approve']['format'] = $result[$i]['last_date'];
         }
         // array_push($DATA,$data);
       }

@@ -12,6 +12,7 @@ $person = new Person();
 $deadline = new Deadline();
 $course = new course();
 $approval = new approval($_SESSION['level']);
+$deadline_approve =$deadline->Get_Current_Deadline($_SESSION['level']);
 $semeter= $deadline->Get_Current_Semester();
 $department =$person->Get_Staff_Dep($_SESSION['id']);
 $dep_js=$department['code'];
@@ -25,8 +26,10 @@ $deadline->Close_connection();
 $course->Close_connection();
 $approval->Close_connection();
 //echo "<pre>";
-//var_dump($data_forapproval);
+//var_dump($deadline_approve);
 //echo "</pre>";
+$now = strtotime(date("Y-m-d")) ;
+$end = strtotime($deadline_approve['approve']['format']);
 
  ?>
   <html>
@@ -80,8 +83,13 @@ $approval->Close_connection();
 
     <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
       <div class="container">
+    
         <div class="row">
           <center>
+          <?php if ($now>=$end) {
+            echo  '<div class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการประเมินและการอนุมัติ <!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
+            exit();
+          }?>
             <?php $approve_text="";
              if ($_SESSION['level']==6 || $_SESSION['admission']==1):
             $approve_text="อนุมัติ";

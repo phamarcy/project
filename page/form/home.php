@@ -17,9 +17,9 @@ $deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
 $semester = $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
-/*echo "<pre>";
-var_dump($_SESSION['level'],$_SESSION['admission']);
-echo "</pre>";*/
+echo "<pre>";
+var_dump($data_course);
+echo "</pre>";
 
 ?>
 	<html>
@@ -64,6 +64,14 @@ echo "</pre>";*/
     <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
 		<title></title>
 		<style>
+		#hover i:hover {
+	
+      font-size: 30px;
+      font-weight: bold;
+      color: red;
+
+		}
+		
 			#statc {
 				color: #0d4b9d;
 			}
@@ -193,8 +201,13 @@ echo "</pre>";*/
 														<div class="panel-heading">
 															<h3 class="panel-title" style="font-size:14px;">
 																<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']."_".$key ?>">
-														 		<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b><i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
-                                <?php if ($_SESSION['level']==3): ?>
+														 		<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b>
+																<?php if (isset($value_course['pdf'])): ?>
+																		<a id="hover" href="<?php echo $value_course['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+																<?php endif; ?>
+																<i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
+																 
+																<?php if ($_SESSION['level']==3): ?>
                                   <?php if(($value_course['evaluate']['status'])==4){ ?>
                                     <button class='btn btn-outline btn-success'  onclick='senttohead(<?php echo $value_course['id'] ?>);'>คณะยืนยัน</button>
                                     <?php
@@ -293,8 +306,12 @@ echo "</pre>";*/
 																			<div class="panel-heading">
 																				<h3 class="panel-title" style="font-size:14px;">
 
-																						<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']."_".$keysp ?>"><?php echo $valuesp['name'].' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp ?> </a></b>
-                                            <?php if ($_SESSION['level']==3): ?>
+																						<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']."_".$keysp ?>"><?php echo $valuesp['name'] ?> </a></b>
+																						<?php if (isset($valuesp['pdf'])): ?>
+																						<a id="hover" href="<?php echo $valuesp['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+																							<?php endif; ?>
+																						
+																						<?php echo ' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp; if ($_SESSION['level']==3): ?>
                                               <?php if($valuesp['status']==4){ ?>
                                                 <button class='btn btn-outline btn-success'  onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>คณะยืนยัน</button>
                                                 <?php
