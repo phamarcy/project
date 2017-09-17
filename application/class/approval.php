@@ -318,6 +318,16 @@ class approval
 
   public function Append_Board_Status_Evaluate($course_id,$status,$teacher_id,$comment)
   {
+    if($comment != null && $comment != '' && $teacher_id != 'all')
+    {
+      $sql = "INSERT INTO `comment_course`(`teacher_id`, `comment`, `semester_id`,`course_id`)
+      VALUES ('".$teacher_id."','".$comment."','".$this->SEMESTER_ID."','".$course_id."')";
+      $result = $this->DB->Insert_Update_Delete($sql);
+      if(!$result)
+      {
+        $this->LOG->Write("Insert comment history error");
+      }
+    }
     $updated_date = date("Y-m-d H:i:s");
     $level_approve = '2';
     $sql = "INSERT INTO `approval_course`(`teacher_id`, `course_id`, `status`,`level_approve`, `comment`,`semester_id`,`date`)
@@ -335,6 +345,16 @@ class approval
 
   public function Append_Board_Status_Special($course_id,$instructor_id,$status,$teacher_id,$comment)
   {
+    if($comment != null && $comment != '' && $teacher_id != 'all')
+    {
+      $sql = "INSERT INTO `comment_special`(`teacher_id`, `instructor_id`, `comment`, `semester_id`, `course_id`)
+      VALUES ('".$teacher_id."','".$instructor_id."','".$comment."','".$this->SEMESTER_ID."','".$course_id."')";
+      $result = $this->DB->Insert_Update_Delete($sql);
+      if(!$result)
+      {
+        $this->LOG->Write("Insert comment history error");
+      }
+    }
     $updated_date = date("Y-m-d H:i:s");
     $level_approve = '2';
     $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`, `course_id`, `status`,`level_approve`, `comment`,`semester_id`,`updated_date`)
@@ -388,6 +408,8 @@ class approval
         {
             $course['id'] = $result[$i]['course_id'];
             $course['name'] = $this->COURSE->Get_Course_Name($course['id']);
+            $pdf = $this->Get_Doc_Url($course['id'],'draft');
+            $course['pdf'] = $pdf['evaluate'];
             //search evaluate form
             $course['evaluate']['status'] = $this->Get_Doc_Status($course['id']);
             $sql_course = "SELECT `teacher_id`,`comment`,`date` FROM `approval_course` WHERE `course_id` ='".$course['id']."'
@@ -465,6 +487,8 @@ class approval
          $instructor['id'] = $result[$i]['instructor_id'];
          $instructor['name'] = $result[$i]['firstname'].' '.$result[$i]['lastname'];
          $instructor['status'] = $this->Get_Instructor_Status($result[$i]['instructor_id']);
+         $pdf = $this->Get_Special_Doc_Url($instructor['id'],$course_id,'draft');
+         $instructor['pdf'] = $pdf['pdf'];
          $sql = "SELECT teacher_id,comment,`updated_date` FROM `approval_special`
          WHERE instructor_id = ".$result[$i]['instructor_id']." AND `semester_id` =".$this->SEMESTER_ID;
          $result_comment = $this->DB->Query($sql);
