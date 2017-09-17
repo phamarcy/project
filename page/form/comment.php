@@ -20,16 +20,24 @@ $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $data_forapproval=$approval->Get_Approval_data($_SESSION['id']);
 $check_permission=$person->Check_Grant($_SESSION['id']);
+
+if ($_SESSION['level']==4 || $_SESSION['level'] ==5 ) {
+  $type_deadline = 4;
+}else {
+  $type_deadline = 5;
+}
+$before_deadline =$deadline->Search_all($type_deadline);
 //close db
 //$person->Close_connection();
 $deadline->Close_connection();
 $course->Close_connection();
 $approval->Close_connection();
-//echo "<pre>";
-//var_dump($deadline_approve);
-//echo "</pre>";
-$now = strtotime(date("Y-m-d")) ;
-$end = strtotime($deadline_approve['approve']['format']);
+echo "<pre>";
+var_dump($before_deadline);
+echo "</pre>";
+$now = strtotime(date("Y-m-d"));
+$start = strtotime($before_deadline[0]['open_date']);
+$end = strtotime($before_deadline[0]['last_date']);
 
  ?>
   <html>
@@ -86,11 +94,7 @@ $end = strtotime($deadline_approve['approve']['format']);
     
         <div class="row">
           <center>
-          <?php if ($now>=$end) {
-            echo  '<div class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการประเมินและการอนุมัติ <!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
-            exit();
-          }?>
-            <?php $approve_text="";
+          <?php $approve_text="";
              if ($_SESSION['level']==6 || $_SESSION['admission']==1):
             $approve_text="อนุมัติ";
             ?>
@@ -99,6 +103,15 @@ $end = strtotime($deadline_approve['approve']['format']);
             $approve_text="เห็นชอบ";?>
             <h3 class="page-header">ประเมินกระบวนวิชา</h3>
             <?php endif; ?>
+          <?php  
+          if ($now>=$end) {
+            echo  '<div class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาใน'.$approve_text.'<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
+            exit();
+          }elseif ($now<$start) {
+            echo  '<div class="alert alert-warning"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> ยังไม่ถึงเวลาใน'.$approve_text.'<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
+            exit();
+          }
+           ?>
           </center>
         </div>
         <div class="panel panel-default">
