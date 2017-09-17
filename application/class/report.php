@@ -253,7 +253,16 @@ class Report
           array_push($DATA,$data);
         }
       }
-      return $DATA;
+      if(count($DATA) == 0)
+      {
+        $return['status'] = 'error';
+        $return['msg'] = 'ไม่พบข้อมูล';
+        return $return;
+      }
+      else
+      {
+        return $DATA;
+      }
     }
     else
     {

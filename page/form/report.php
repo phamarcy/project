@@ -91,11 +91,6 @@ $(function() {//<-- wrapped here
         $report = new Report();
         $data_eva = $report->Get_Evaluate_Report($semester,$year);
         $data_special = $report->Get_Special_Report($semester,$year);
-        // echo "<pre>";
-        // print_r($data_eva);
-        // print_r($data_special);
-        // echo "</pre>";
-
         //end search
       ?>
             <div class="panel-body">
