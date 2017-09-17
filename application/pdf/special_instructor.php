@@ -2,10 +2,12 @@
 require_once(__DIR__.'/../class/manage_deadline.php');
 require_once(__DIR__.'/../class/approval.php');
 require_once(__DIR__.'/../class/person.php');
+require_once(__DIR__.'/../class/manage_deadline.php');
 require_once('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
 define('FPDF_FONTPATH','font/');
-
+$deadline = new Deadline();
+$semester = $deadline->Get_Current_Semester();
 $file_path = '';
 // var_dump($_POST);
 if(isset($_POST['DATA']))
@@ -50,11 +52,11 @@ $pdf->SetX(60);
 $pdf->SetFont('THSarabun_B','',14);
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620','ภาคการศึกษาที่'),0,"C");
 $pdf->SetFont('THSarabun','',14);
-$pdf->Cell(15,7,iconv( 'UTF-8','TIS-620','        '.'2'.'         '),0,"C");
+$pdf->Cell(15,7,iconv( 'UTF-8','TIS-620','        '.$semester['semester'].'         '),0,"C");
 $pdf->SetFont('THSarabun_B','',14);
 $pdf->Cell(15,7,iconv( 'UTF-8','TIS-620','ปีการศึกษา'),0,"C");
 $pdf->SetFont('THSarabun','',14);
-$pdf->Cell(10,7,iconv( 'UTF-8','TIS-620','        '.'2559'.'         '),0,"C");
+$pdf->Cell(10,7,iconv( 'UTF-8','TIS-620','        '.$semester['year'].'         '),0,"C");
 $pdf->Ln();
 #1
 $pdf->SetFont('THSarabun_B','',14);

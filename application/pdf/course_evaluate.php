@@ -2,10 +2,12 @@
 require_once(__DIR__.'/../config/configuration_variable.php');
 require_once(__DIR__.'/../class/approval.php');
 require_once(__DIR__.'/../class/person.php');
+require_once(__DIR__.'/../class/manage_deadline.php');
 require_once('example_data.php');
 require('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
-
+$deadline = new Deadline();
+$semester = $deadline->Get_Current_Semester();
 $file_path = '';
 if(isset($_POST['DATA']))
 {
@@ -44,7 +46,7 @@ $pdf->SetFont('THSarabun_B','',20);
 $pdf->SetX(25);
 $pdf->Cell(0,10,iconv( 'UTF-8','cp874','แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์'),0,1,"C");
 //$pdf->SetFont('THSarabun','',20);
-$pdf->Cell(0,10,iconv( 'UTF-8','cp874','ภาคการศึกษาที่ 2 ปีการศึกษา 2560'),0,1,"C");
+$pdf->Cell(0,10,iconv( 'UTF-8','cp874','ภาคการศึกษาที่ '.$semester['semester'].' ปีการศึกษา '.$semester['year']),0,1,"C");
 
 $pdf->SetX(20);
 $pdf->SetFont('THSarabun_B','',14);
