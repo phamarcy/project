@@ -171,6 +171,7 @@ class Report
   }
   public function Get_Special_Report($semester,$year)
   {
+    global $FILE_PATH;
     $semester_id = $this->DEADLINE->Search_Semester_id($semester,$year);
     if($semester_id)
     {
@@ -184,8 +185,6 @@ class Report
           array_push($dept_course,$temp_course[$i]['id']);
         }
       }
-    if($semester_id)
-    {
       $DATA = array();
       $course = scandir($this->FILE_PATH);
       if(count($course)<= 2)
@@ -217,24 +216,24 @@ class Report
                 $instructor_id = explode("_",$file_name[$j]);
                 $instructor['id'] = $instructor_id[1];
                 $instructor['name'] = $this->PERSON->Get_Special_Instructor_Name($instructor['id']);
-                $CV_file = $FILE_PATH."/cv/".$course_id."_".$instructor_id."_".$semester."_".$year.".doc";
+                $CV_file = $FILE_PATH."/cv/".$data['id']."_".$instructor['id']."_".$semester."_".$year.".doc";
                 if (file_exists(realpath($CV_file)))
                 {
-                    $path = "/cv/".$course_id."_".$instructor_id."_".$semester."_".$year.".doc";
+                    $path = "/cv/".$data['id']."_".$instructor['id']."_".$semester."_".$year.".doc";
                 }
                 else
                 {
-                  $CV_file = $this->FILE_PATH."/cv/".$course_id."_".$instructor_id."_".$semester."_".$year.".docx";
+                  $CV_file = $FILE_PATH."/cv/".$data['id']."_".$instructor['id']."_".$semester."_".$year.".docx";
                   if (file_exists(realpath($CV_file)))
                   {
-                      $path = "/cv/".$course_id."_".$instructor_id."_".$semester."_".$year.".docx";
+                      $path = "/cv/".$data['id']."_".$instructor['id']."_".$semester."_".$year.".docx";
                   }
                   else
                   {
-                    $CV_file = $this->FILE_PATH."/cv/".$course_id."_".$instructor_id."_".$semester."_".$year.".pdf";
+                    $CV_file = $FILE_PATH."/cv/".$data['id']."_".$instructor['id']."_".$semester."_".$year.".pdf";
                     if (file_exists(realpath($CV_file)))
                     {
-                      $path = "/cv/".$course_id."_".$instructor_id."_".$semester."_".$year.".pdf";
+                      $path = "/cv/".$data['id']."_".$instructor['id']."_".$semester."_".$year.".pdf";
                     }
                     else
                     {
@@ -248,9 +247,7 @@ class Report
               }
             }
           }
-
         }
-
         if(count($data['special']) != 0)
         {
           array_push($DATA,$data);
@@ -264,7 +261,6 @@ class Report
       $return['msg'] = 'ไม่พบข้อมูล';
       return $return;
     }
-
   }
 
   //search comment history
