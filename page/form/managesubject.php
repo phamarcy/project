@@ -551,6 +551,7 @@ $history=$course->Get_History($department['code']);
                                     }
                                   } catch (e) {
                                     console.log(data);
+                                    
                                     swal({
                                     type: "error",
                                     text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",

@@ -39,7 +39,6 @@ if(isset($_POST['type']))
       $result['msg'] = "ข้อมูลผิดพลาด";
     }
     echo json_encode($result);
-    var_dump(json_encode($result));die;
   }
   else if ($type == 'add_assessor')
   {
