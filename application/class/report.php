@@ -174,6 +174,18 @@ class Report
     $semester_id = $this->DEADLINE->Search_Semester_id($semester,$year);
     if($semester_id)
     {
+      $dept_id = $this->PERSON->Get_Staff_Dep($_SESSION['id']);
+      $temp_course = $this->COURSE->Get_Dept_Course($dept_id['code'],$semester_id);
+      $dept_course = array();
+      if(!isset($temp_course['status']))
+      {
+        for($i=0;$i<count($temp_course);$i++)
+        {
+          array_push($dept_course,$temp_course[$i]['id']);
+        }
+      }
+    if($semester_id)
+    {
       $DATA = array();
       $course = scandir($this->FILE_PATH);
       if(count($course)<= 2)
@@ -185,6 +197,10 @@ class Report
 
       for($i=2;$i<count($course);$i++)
       {
+        if($_SESSION['level'] == 2 && !in_array($course[$i],$dept_course))
+        {
+          continue;
+        }
         $data['id'] = $course[$i];
         $data['name'] = $this->COURSE->Get_Course_Name($data['id']);
         $data['special'] = array();
@@ -201,6 +217,31 @@ class Report
                 $instructor_id = explode("_",$file_name[$j]);
                 $instructor['id'] = $instructor_id[1];
                 $instructor['name'] = $this->PERSON->Get_Special_Instructor_Name($instructor['id']);
+                $CV_file = $FILE_PATH."/cv/".$course_id."_".$instructor_id."_".$semester."_".$year.".doc";
+                if (file_exists(realpath($CV_file)))
+                {
+                    $path = "/cv/".$course_id."_".$instructor_id."_".$semester."_".$year.".doc";
+                }
+                else
+                {
+                  $CV_file = $this->FILE_PATH."/cv/".$course_id."_".$instructor_id."_".$semester."_".$year.".docx";
+                  if (file_exists(realpath($CV_file)))
+                  {
+                      $path = "/cv/".$course_id."_".$instructor_id."_".$semester."_".$year.".docx";
+                  }
+                  else
+                  {
+                    $CV_file = $this->FILE_PATH."/cv/".$course_id."_".$instructor_id."_".$semester."_".$year.".pdf";
+                    if (file_exists(realpath($CV_file)))
+                    {
+                      $path = "/cv/".$course_id."_".$instructor_id."_".$semester."_".$year.".pdf";
+                    }
+                    else
+                    {
+                        $path = null;
+                    }
+                  }
+                }
                 $instructor['cv'] = $this->PERSON->Get_CV($instructor['id'],$data['id']);
                 $instructor['pdf'] =  $this->VIEW_URL."?course=".$data['id']."&id=".$instructor['id']."&type=complete&info=special&semester=".$semester."&year=".$year;
                 array_push($data['special'],$instructor);
