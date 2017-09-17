@@ -119,7 +119,7 @@ $(function() {//<-- wrapped here
                               <?php echo "แบบแจ้งวิธีการวัดผลและประเมินผล ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
                               $download_all = '../../application/download/download.php?course=all&info=evaluate&semester='.$semester.'&year='.$year;
                               ?>
-                              <a target="_blank" href="<?php echo $download_all; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดทั้งหมด</button></a>
+                              <a target="_blank" href="<?php echo $download_all; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ pdf ทั้งหมด</button></a>
                               </b></h5>
                             </div>
                             <div class="panel-body">
@@ -180,7 +180,7 @@ $(function() {//<-- wrapped here
                             <?php echo "แบบเชิญอาจารย์พิเศษ ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
                             $download_all_special =  '../../application/download/download.php?course=all&info=special&semester='.$semester.'&year='.$year;
                             ?>
-                            <a target="_blank" href="<?php echo $download_all_special; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดทั้งหมด</button></a>
+                            <a target="_blank" href="<?php echo $download_all_special; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ pdf ทั้งหมด</button></a>
                           </b></h5>
                           </div>
                           <div class="panel-body">
