@@ -1109,6 +1109,7 @@ $(document).ready(function(){
   <?php
     (int)$flagcor = 0;
     (int)$flageva = 0;
+    
     $dd = date('d');
     $mm = date('m');
     $yy = date('Y');
