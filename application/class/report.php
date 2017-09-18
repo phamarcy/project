@@ -275,6 +275,20 @@ class Report
   //search comment history
   public function Get_Comment_History($course_id)
   {
+    if($_SESSION['level'] == 4)
+    {
+      $teacher_id = $_SESSION['id'];
+      $this->PERSON->Get_Staff_Dep($teacher_id);
+      $sql = "SELECT `respon_id` FROM `department_course_responsible` WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->SEMESTER_ID;
+      $result = $this->DB->Query($sql);
+      if($result == null)
+      {
+        $return['status'] = 'error';
+        $return['msg'] = 'ไม่พบกระบวนวิชานี้ในภาควิชา';
+        return $return;
+      }
+    }
+    //search comment in course evaluate
     $course = array();
     $course['comment'] = array();
     $course['id'] = $course_id;
@@ -299,6 +313,7 @@ class Report
           array_push($course['comment'][$semester]['evaluate'],$data);
       }
     }
+    //search comment in special instructor
     $sql = "SELECT `teacher_id`,`comment`,`instructor_id`,`semester_num`,`year`,`updated_date` FROM `comment_special` sa, `semester` s
     WHERE sa.`semester_id` = s.`semester_id` AND sa.`course_id` = '".$course_id."' ORDER BY sa.`semester_id`,sa.`updated_date`";
     $result = $this->DB->Query($sql);
@@ -327,7 +342,6 @@ class Report
         array_push($course['comment'][$semester]['special'][$instructor_id]['comment'],$data);
       }
     }
-
     return $course;
   }
 
