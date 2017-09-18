@@ -220,6 +220,11 @@ $current = $dlobj->Get_Current_Semester();
 
  }
 
+ function checkstate(btntype,type)
+ {
+
+ }
+
  function checksubject(btntype,type){
    if(btntype==1)
    {
@@ -249,24 +254,49 @@ $current = $dlobj->Get_Current_Semester();
                         //console.log(Object.keys(temp).length);
                         if(temp['info']!=false && temp[0]!=null)
                         {
-                          var course_id = document.getElementById('id').value;
-                          document.getElementById('formdrpd').style.display = "";
-                          //cleardatalist
-                          var selectobject = document.getElementById('teachername');
-                          var long = selectobject.length;
-                          if(long!=0 && long!=null)
-                          {
-                            for (var i=0; i<=long; i++){
-                              document.getElementsByName("teachername")[0].remove(0);
+                          swal({
+                            title: '',
+                            text: "อาจารย์พิเศษที่เชิญเคยเชิญมาสอนหรือไม่?",
+                            type: 'question',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'เคยเชิญมาสอน',
+                            cancelButtonText: 'ยังไม่เคยเชิญมาสอน',
+                            confirmButtonClass: 'btn btn-success',
+                            cancelButtonClass: 'btn btn-danger',
+                            allowOutsideClick: false
+                          }).then(function () {
+                            
+                            var course_id = document.getElementById('id').value;
+                            document.getElementById('formdrpd').style.display = "";
+                            //cleardatalist
+                            var selectobject = document.getElementById('teachername');
+                            var long = selectobject.length;
+                            if(long!=0 && long!=null)
+                            {
+                              for (var i=0; i<=long; i++){
+                                document.getElementsByName("teachername")[0].remove(0);
+                              }
                             }
-                          }
-                          for(var i=0;i<(Object.keys(temp).length-1);i++)
-                          {
-                            var opt = document.createElement('option');
-                            opt.value = temp[i].id +"_"+ course_id + "_" + temp[i].semester + "_" + temp[i].year +"_"+ temp[i].name;
-                            opt.innerHTML = "คุณ"+temp[i].name+" ภาคการศึกษาที่ "+temp[i].semester+" ปีการศึกษา "+temp[i].year;
-                            document.getElementById('teachername').appendChild(opt);
-                          }
+                            for(var i=0;i<(Object.keys(temp).length-1);i++)
+                            {
+                              var opt = document.createElement('option');
+                              opt.value = temp[i].id +"_"+ course_id + "_" + temp[i].semester + "_" + temp[i].year +"_"+ temp[i].name;
+                              opt.innerHTML = "คุณ"+temp[i].name+" ภาคการศึกษาที่ "+temp[i].semester+" ปีการศึกษา "+temp[i].year;
+                              document.getElementById('teachername').appendChild(opt);
+                            }
+                          }, function (dismiss) {
+                            if (dismiss === 'cancel') {
+                              swal(
+                                '',
+                                'สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
+                                'success'
+                              )
+                              document.getElementById('course').value = temp['info']['course_id'];
+                            }
+                          })
+
                         }
                         else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
                           swal(
@@ -281,7 +311,7 @@ $current = $dlobj->Get_Current_Semester();
                            swal(
                               '',
                               'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
-                              ''
+                              'info'
                             )
                            //alert('ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้\nสามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง');
                            document.getElementById('course').value = temp['info']['course_id'];

@@ -670,7 +670,7 @@ function checksubject(btntype,type){
                           swal(
                              '',
                              'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
-                             ''
+                             'info'
                            )
                           document.getElementById('COURSE_ID').value = temp['info']['course_id'];
                           document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
