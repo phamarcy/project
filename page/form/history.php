@@ -152,9 +152,7 @@ if (isset($_POST['subject'])) {
                                                     <div class="panel-body">
                                                       <table class="table " style="font-size:14px">
                                                         <thead>
-                                                          <?php if ($_SESSION['level'] > 1 ): ?>
                                                           <th style="width:230px">คณะกรรมการ</th>
-                                                          <?php endif; ?>
                                                           <th>ข้อเสนอแนะ</th>
                                                           <th>วัน/เวลา</th>
                                                         </thead>
@@ -162,14 +160,9 @@ if (isset($_POST['subject'])) {
                                                           <?php foreach ($valuesp['comment'] as  $valuespcomment):
                                                             ?>
                                                             <tr>
-                                                
-                                                                <?php if ($_SESSION['level'] > 1 ): ?>
                                                                 <td style="width:230px"><?php echo $valuespcomment['name'] ?></td>
-                                                                <?php endif; ?>
                                                                 <td><?php echo $valuespcomment['comment'] ?></td>
-                                                                <td><?php echo $valuespcomment['date'] ?></td>
-                                                            
-                                                              
+                                                                <td><?php echo $valuespcomment['date'] ?></td>  
                                                             </tr>
                                                             <?php endforeach; ?>
                                                         </tbody>

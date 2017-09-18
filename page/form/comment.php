@@ -32,9 +32,7 @@ $before_deadline =$deadline->Search_all($type_deadline);
 $deadline->Close_connection();
 $course->Close_connection();
 $approval->Close_connection();
-echo "<pre>";
-var_dump($before_deadline);
-echo "</pre>";
+
 $now = strtotime(date("Y-m-d"));
 $start = strtotime($before_deadline[0]['open_date']);
 $end = strtotime($before_deadline[0]['last_date']);
