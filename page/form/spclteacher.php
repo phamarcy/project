@@ -679,6 +679,7 @@ $current = $dlobj->Get_Current_Semester();
    //deadline
    <?php
      $flagspcl = 0;
+     $typedeadline = '';
      $dd = date('d');
      $mm = date('m');
      $yy = date('Y');
@@ -698,19 +699,33 @@ $current = $dlobj->Get_Current_Semester();
            if($deadlinestart<=$today && $today<=$deadlineend)
            {
                $flagspcl = $flagspcl + 1;
+               $typedeadline = 'ontime';
            }
+       }
+
+       if($deadlinestart>$today && $deadlineend>$today)
+       {
+            $typedeadline = 'early';
+       }else if($deadlinestart<$today && $deadlineend<$today){
+            $typedeadline = 'late';
        }
 
      }
 
      if($flagspcl>0)
      {
-       echo "$('#overtimemsg').hide();";
-
-     }else {
+       echo "$('#overtimemsg').hide();
+       $('#overtimemsg2').hide();";
+     }else if($typedeadline == 'late'){
          echo "$('#dlhide').hide();
          $('#formheader').hide();
-         $('#overtimemsg').show();";
+         $('#overtimemsg').show();
+         $('#overtimemsg2').hide();";
+     }else if($typedeadline == 'early'){
+         echo "$('#dlhide').hide();
+         $('#formheader').hide();
+         $('#overtimemsg2').show();
+         $('#overtimemsg').hide();";
      }
 
     ?>
@@ -1188,7 +1203,8 @@ function lastcal() {
   <div class="row">
     <center>
       <h3 class="page-header">แบบขออนุมัติเชิญอาจารย์พิเศษ คณะเภสัชศาสตร์</h3>
-      <div id="overtimemsg" class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการกรอกแบบขออนุมัติเชิญอาจารย์พิเศษแล้ว !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg2"></p></b> </div>
+      <div id="overtimemsg" class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการกรอกแบบขออนุมัติเชิญอาจารย์พิเศษแล้ว !</b></div> </div>
+      <div id="overtimemsg2" class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> ยังไม่ถึงเวลาที่กำหนดให้กรอกแบบขออนุมัติเชิญอาจารย์พิเศษ !</b></div> </div>
       <form id="formheader" data-toggle="validator" role="form">
         <div id="formchecksj" class="form-inline" style="font-size:16px;">
                   <div class="form-group ">
