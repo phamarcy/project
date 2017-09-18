@@ -1188,7 +1188,7 @@ function lastcal() {
   <div class="row">
     <center>
       <h3 class="page-header">แบบขออนุมัติเชิญอาจารย์พิเศษ คณะเภสัชศาสตร์</h3>
-      <div id="overtimemsg" class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการกรอกแบบขออนุมัติเชิญอาจารย์พิเศษแล้ว !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg2"></p></b> </div>
+      <div id="overtimemsg" class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> ไม่สามารถกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ <br><br> เนื่องจากช่วงเวลาที่ทำการยังไม่เปิดให้บริการหรือสิ้นสุดลง !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg2"></p></b> </div>
       <form id="formheader" data-toggle="validator" role="form">
         <div id="formchecksj" class="form-inline" style="font-size:16px;">
                   <div class="form-group ">
