@@ -30,16 +30,19 @@ $styleArray = array(
          'wrap' => true,
          'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
          'vertical' => PHPExcel_Style_Alignment::VERTICAL_TOP
-     ),'
-     borders' => array(
-  		'inside' => array(
-  			'style' => PHPExcel_Style_Border::BORDER_THICK,
-  			'color' => array('argb' => 'FFFF0000'),
-  		)
-    )
+     ),
     );
+$border = array(
+      'borders' => array(
+          'allborders' => array(
+              'style' => PHPExcel_Style_Border::BORDER_THIN
+          )
+      )
+  );
 $Excel->getDefaultStyle()
     ->applyFromArray($styleArray);
+$sheet1 = $Excel->setActiveSheetIndex(0);
+
 
 $Excel->setActiveSheetIndex(0)
             ->setCellValue('A1', 'รายงานสรุปแบบวัดผลประเมินผล')
@@ -65,6 +68,12 @@ $Excel->setActiveSheetIndex(0)
             ->setCellValue('R3', 'วิธีการตัดเกรด')
             ->setCellValue('S3', 'การให้ลำดับขั้นถ้านักศึกษาขาดสอบ');
 
+//bold heading
+$Excel->getActiveSheet(0)->getStyle("A1:S3")->getFont()->setBold(true);
+//cell border
+$sheet1->getStyle('A1')->applyFromArray($border);
+$sheet1->getStyle('A2:B2')->applyFromArray($border);
+$sheet1->getStyle('A3:S3')->applyFromArray($border);
 $Excel->getActiveSheet(0)
         ->setTitle('เกณฑ์การประเมินผล');
         foreach(range('A','Z') as $columnID)
@@ -72,6 +81,7 @@ $Excel->getActiveSheet(0)
           $Excel->getActiveSheet()->getColumnDimension($columnID)->setAutoSize(true);
         }
 $Excel->createSheet();
+$sheet2 = $Excel->setActiveSheetIndex(1);
 $Excel->getDefaultStyle()
     ->applyFromArray($styleArray);
         $Excel->setActiveSheetIndex(1)
@@ -85,6 +95,12 @@ $Excel->getDefaultStyle()
                             ->setCellValue('E3', 'สอบกลางภาคครั้งที่ 2 (lab)')
                             ->setCellValue('F3', 'สอบไล่ (บรรยาย)')
                             ->setCellValue('G3', 'สอบไล่ (lab)');
+//bold heading
+$sheet2->getStyle("A1:G3")->getFont()->setBold(true);
+//border
+$sheet2->getStyle('A1')->applyFromArray($border);
+$sheet2->getStyle('A2:B2')->applyFromArray($border);
+$sheet2->getStyle('A3:G3')->applyFromArray($border);
 $Excel->getActiveSheet(1)
     ->setTitle('กรรมการคุมสอบ');
     foreach(range('A','Z') as $columnID)
@@ -215,12 +231,14 @@ if($result)
     {
       echo "not found ".$temp_file;
     }
-
-
   }
+  $row--;
+  $sheet1->getStyle('A4:S'.$row)->applyFromArray($border);
+  $sheet2->getStyle('A4:G'.$row)->applyFromArray($border);
 }
 
 $Excel->createSheet();
+$sheet3 = $Excel->setActiveSheetIndex(2);
 $Excel->getDefaultStyle()
     ->applyFromArray($styleArray);
 $Excel->setActiveSheetIndex(2)
@@ -238,6 +256,12 @@ $Excel->setActiveSheetIndex(2)
             ->setCellValue('I3', 'ค่าเดินทาง')
             ->setCellValue('J3', 'ค่าที่พัก')
             ->setCellValue('K3', 'รวมค่าใช้จ่าย');
+//bold heading
+$Excel->getActiveSheet(2)->getStyle("A1:K3")->getFont()->setBold(true);
+//cell border
+$sheet3->getStyle('A1')->applyFromArray($border); 
+$sheet3->getStyle('A2:B2')->applyFromArray($border);
+$sheet3->getStyle('A3:K3')->applyFromArray($border);
 $Excel->getActiveSheet(2)
         ->setTitle('อาจารย์พิเศษ');
 
@@ -298,6 +322,8 @@ $file_path = $FILE_PATH.'/temp';
         $row++;
       }
     }
+    $row--;
+    $sheet3->getStyle('A4:K'.$row)->applyFromArray($border);
   }
 
 
@@ -312,6 +338,7 @@ $summary_file = __DIR__.'/../../files/summary/summary_'.$semester['semester'].'_
 //save file
 $objWriter = PHPExcel_IOFactory::createWriter($Excel, 'Excel2007');
 $objWriter->save($summary_file);
+die;
 header('Content-Description: File Transfer');
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename="'.basename($summary_file).'"');
