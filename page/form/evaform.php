@@ -670,7 +670,7 @@ function checksubject(btntype,type){
                           swal(
                              '',
                              'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
-                             'error'
+                             ''
                            )
                           document.getElementById('COURSE_ID').value = temp['info']['course_id'];
                           document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
@@ -1109,7 +1109,7 @@ $(document).ready(function(){
   <?php
     (int)$flagcor = 0;
     (int)$flageva = 0;
-    
+
     $dd = date('d');
     $mm = date('m');
     $yy = date('Y');
