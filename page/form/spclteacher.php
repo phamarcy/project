@@ -107,10 +107,12 @@ $current = $dlobj->Get_Current_Semester();
      {
        $('#cvlist').hide();
        $('input[name=cv]').prop('required', false);
+       $('#course').attr('readonly', true);
      }
      else {
        $('#cvlist').show();
        $('input[name=cv]').prop('required', true);
+       $('#course').attr('readonly', false);
      }
 
 
@@ -697,7 +699,7 @@ $current = $dlobj->Get_Current_Semester();
            {
                $flagspcl = $flagspcl + 1;
            }
-        }
+       }
 
      }
 
@@ -966,12 +968,14 @@ $current = $dlobj->Get_Current_Semester();
           $('#cvdanger').removeClass("has-danger");
           $('#submitbtn2').show();
           $('#submitbtn').hide();
+          $('#course').attr('readonly', true);
         }
         else {
           $('#cvlist').show();
           $('input[name=cv]').prop('required', true);
           $('#submitbtn2').hide();
           $('#submitbtn').show();
+          $('#course').attr('readonly', false);
 
         }
       });
@@ -1292,7 +1296,7 @@ function lastcal() {
           <div class="row">
             <ul>
               <div class="form-inline">
-                <li>รหัสกระบวนวิชาที่สอน &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="" id="course" size="6" maxlength="6" required ></div></li>
+                <li>รหัสกระบวนวิชาที่สอน &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="" id="course" size="6" maxlength="6" required readonly ></div></li>
               </div>
               <div class="form-inline">
                 <li>จำนวนนักศึกษา &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="" id="numstudent" size="6" maxlength="6"  required ></div> คน</li>
