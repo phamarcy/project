@@ -216,24 +216,24 @@ class Report
                 $instructor_id = explode("_",$file_name[$j]);
                 $instructor['id'] = $instructor_id[1];
                 $instructor['name'] = $this->PERSON->Get_Special_Instructor_Name($instructor['id']);
-                $CV_file = $FILE_PATH."/cv/".$data['id']."_".$instructor['id']."_".$semester."_".$year.".doc";
+                $CV_file = $FILE_PATH."/cv/".$instructor['id'].".doc";
                 if (file_exists(realpath($CV_file)))
                 {
-                    $path = "/cv/".$data['id']."_".$instructor['id']."_".$semester."_".$year.".doc";
+                    $path = "/cv/".$instructor['id'].".doc";
                 }
                 else
                 {
-                  $CV_file = $FILE_PATH."/cv/".$data['id']."_".$instructor['id']."_".$semester."_".$year.".docx";
+                  $CV_file = $FILE_PATH."/cv/".$instructor['id'].".docx";
                   if (file_exists(realpath($CV_file)))
                   {
-                      $path = "/cv/".$data['id']."_".$instructor['id']."_".$semester."_".$year.".docx";
+                      $path = "/cv/".$instructor['id'].".docx";
                   }
                   else
                   {
-                    $CV_file = $FILE_PATH."/cv/".$data['id']."_".$instructor['id']."_".$semester."_".$year.".pdf";
+                    $CV_file = $FILE_PATH."/cv/".$instructor['id'].".pdf";
                     if (file_exists(realpath($CV_file)))
                     {
-                      $path = "/cv/".$data['id']."_".$instructor['id']."_".$semester."_".$year.".pdf";
+                      $path = "/cv/".$instructor['id'].".pdf";
                     }
                     else
                     {

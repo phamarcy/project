@@ -186,7 +186,7 @@ function Upload($file,$course_id,$instructor_id)
 	}
 	$filename = $file['name'];
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-	$uploadfile = $path."/".$course_id.'_'.$instructor_id."_".$semester['semester']."_".$semester['year'].'.'.$ext;
+	$uploadfile = $path."/".$instructor_id.'.'.$ext;
 	if (!move_uploaded_file($file['tmp_name'], $uploadfile))
 	{
     $err_status = $file['error'];

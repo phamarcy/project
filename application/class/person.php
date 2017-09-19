@@ -399,24 +399,24 @@ class Person
   }
   public function Get_CV($instructor_id,$course_id)
   {
-    $CV_file = $this->FILE_PATH."/cv/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".doc";
+    $CV_file = $this->FILE_PATH."/cv/".$instructor_id.".doc";
     if (file_exists(realpath($CV_file)))
     {
-        $path = "/cv/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".doc";
+        $path = "/cv/".$instructor_id.".doc";
     }
     else
     {
-      $CV_file = $this->FILE_PATH."/cv/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".docx";
+      $CV_file = $this->FILE_PATH."/cv/".$instructor_id.".docx";
       if (file_exists(realpath($CV_file)))
       {
-          $path = "/cv/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".docx";
+          $path = "/cv/".$instructor_id.".docx";
       }
       else
       {
-        $CV_file = $this->FILE_PATH."/cv/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".pdf";
+        $CV_file = $this->FILE_PATH."/cv/".$instructor_id.".pdf";
         if (file_exists(realpath($CV_file)))
         {
-          $path = "/cv/".$course_id."_".$instructor_id."_".$this->DEADLINE['semester']."_".$this->DEADLINE['year'].".pdf";
+          $path = "/cv/".$instructor_id.".pdf";
         }
         else
         {
