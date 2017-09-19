@@ -549,7 +549,7 @@ class approval
         return false;
       }
     $sql = "SELECT ga.`teacher_id` FROM `subject_assessor` sa, `group_assessor` ga
-    WHERE sa.course_id = '".$course_id."' AND sa.assessor_group_num = ga.group_num";
+    WHERE sa.course_id = '".$course_id."' AND sa.assessor_group_num = ga.group_num AND sa.`semester_id` = ".$this->SEMESTER_ID;
     $result = $this->DB->Query($sql);
     if($result)
     {
