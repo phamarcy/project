@@ -9,6 +9,10 @@ if (isset($_POST['subject'])) {
   $report = new Report();
   $history=$report->Get_Comment_History($_POST['subject']);
 
+  if (isset($history["status"])) {
+    $status =json_encode($history["status"]);
+    $msg =json_encode($history["msg"]);
+  }
 }
 
 ?>
@@ -33,11 +37,25 @@ if (isset($_POST['subject'])) {
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
-
-
+    <script src="../dist/js/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
     <!--ใช้ตัวนี้-->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+    <script>
+    var status = <?php echo $status; ?>; 
+    var msg = <?php echo $msg; ?>; 
+    console.log(status );
+    if (status=="error") {
+      swal({
+          type:"error",
+          text: msg,
+          timer: 2000,
+          confirmButtonText: "Ok!",
+        });
 
+    }
+    
+  </script>
   </header>
 
 
@@ -60,7 +78,9 @@ if (isset($_POST['subject'])) {
           </form>
           </center>
         </div>
-      <?php $i =1;if (isset($history)):
+      <?php 
+
+      $i =1;if (isset($history['comment'])):
         if (is_array($history['comment']) || is_object($history['comment'])) {
 
         

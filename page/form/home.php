@@ -17,9 +17,6 @@ $deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
 $semester = $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
-//echo "<pre>";
-//var_dump($data_course);
-//echo "</pre>";
 
 ?>
 	<html>
@@ -202,7 +199,7 @@ $data_course= json_decode($var, true);
 															<h3 class="panel-title" style="font-size:14px;">
 																<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']."_".$key ?>">
 														 		<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b>
-																<?php if (isset($value_course['pdf'])): ?>
+																<?php if (isset($value_course['pdf']) && $_SESSION['level']==3): ?>
 																		<a id="hover" href="<?php echo $value_course['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
 																<?php endif; ?>
 																<i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
@@ -307,7 +304,7 @@ $data_course= json_decode($var, true);
 																				<h3 class="panel-title" style="font-size:14px;">
 
 																						<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']."_".$keysp ?>"><?php echo $valuesp['name'] ?> </a></b>
-																						<?php if (isset($valuesp['pdf'])): ?>
+																						<?php if (isset($valuesp['pdf']) && $_SESSION['level']==3): ?>
 																						<a id="hover" href="<?php echo $valuesp['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
 																							<?php endif; ?>
 																						

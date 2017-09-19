@@ -124,7 +124,19 @@ $end = strtotime($current_semester[0]['last_date']);
           </div>
           <!-- .panel-heading -->
           <div class="panel-body">
-
+          <?php
+          if($_SESSION['level'] == 4 || $_SESSION['level'] == 5  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3) {  ?>
+              <?php if (isset($deadline_form['evaluate'])): ?>
+                <div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับประเมินกระบวนวิชา <?php echo $deadline_form['evaluate']['day'].' '.$deadline_form['evaluate']['month'].' '.$deadline_form['evaluate']['year']."<br>"; ?> </b>
+              <?php endif; ?>
+          <?php }
+          if($_SESSION['level'] == 6  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3)
+          { ?>
+            <?php if (isset($deadline_form['approve'])): ?>
+              <div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline_form['approve']['day'].' '.$deadline_form['approve']['month'].' '.$deadline_form['approve']['year']."<br>"; ?> </b>
+            <?php endif; ?>
+              <?php	} ?>
+              
             <div class="table-responsive">
               <table class="table " style="font-size:14px;">
                 <thead>
