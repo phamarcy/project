@@ -259,7 +259,7 @@ $Excel->setActiveSheetIndex(2)
 //bold heading
 $Excel->getActiveSheet(2)->getStyle("A1:K3")->getFont()->setBold(true);
 //cell border
-$sheet3->getStyle('A1')->applyFromArray($border); 
+$sheet3->getStyle('A1')->applyFromArray($border);
 $sheet3->getStyle('A2:B2')->applyFromArray($border);
 $sheet3->getStyle('A3:K3')->applyFromArray($border);
 $Excel->getActiveSheet(2)
@@ -338,7 +338,6 @@ $summary_file = __DIR__.'/../../files/summary/summary_'.$semester['semester'].'_
 //save file
 $objWriter = PHPExcel_IOFactory::createWriter($Excel, 'Excel2007');
 $objWriter->save($summary_file);
-die;
 header('Content-Description: File Transfer');
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename="'.basename($summary_file).'"');
