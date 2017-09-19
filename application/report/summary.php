@@ -312,13 +312,14 @@ $file_path = $FILE_PATH.'/temp';
           $topic .= $data["COURSEDATA"]["DETAIL"]["TOPICLEC"][$j]."\n";
         }
         $Excel->setActiveSheetIndex(2)->setCellValue('G'.$row, $topic);
+        $Excel->setActiveSheetIndex(2)->setCellValue('H'.$row, $data["PAYMENT"]["COSTSPEC"]["COST"]);
 
         $cost_trans = (float)$data["PAYMENT"]["COSTTRANS"]["TRANSPLANE"]["COST"] + (float)$data["PAYMENT"]["COSTTRANS"]["TRANSTAXI"]["COST"] + (float)$data["PAYMENT"]["COSTTRANS"]["TRANSSELFCAR"]["COST"];
-        $Excel->setActiveSheetIndex(2)->setCellValue('H'.$row, $cost_trans);
+        $Excel->setActiveSheetIndex(2)->setCellValue('I'.$row, $cost_trans);
 
 
-        $Excel->setActiveSheetIndex(2)->setCellValue('I'.$row, $data["PAYMENT"]["COSTHOTEL"]["PERNIGHT"]);
-        $Excel->setActiveSheetIndex(2)->setCellValue('J'.$row, $data["PAYMENT"]["TOTALCOST"]);
+        $Excel->setActiveSheetIndex(2)->setCellValue('J'.$row, $data["PAYMENT"]["COSTHOTEL"]["PERNIGHT"]);
+        $Excel->setActiveSheetIndex(2)->setCellValue('K'.$row, $data["PAYMENT"]["TOTALCOST"]);
         $row++;
       }
     }

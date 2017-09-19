@@ -266,8 +266,10 @@ $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, $pro, 1,"C");
 $pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ข้าราชการระดับ'))+1,7,iconv( 'UTF-8','TIS-620',' ข้าราชการระดับ'),0,"C");
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ชำนาญการ '))+5,7,iconv( 'UTF-8','TIS-620',' '.$level_pro),0,"C");
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620',' '.$level_pro))+5,7,iconv( 'UTF-8','TIS-620',' '.$level_pro),0,"C");
 
+$pdf->Ln();
+$pdf->SetX(56);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, $norm, 1,"C");
 $pdf->SetFont('THSarabun','',14);
