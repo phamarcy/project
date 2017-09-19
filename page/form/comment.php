@@ -26,7 +26,8 @@ if ($_SESSION['level']==4 || $_SESSION['level'] ==5 ) {
 }else {
   $type_deadline = 5;
 }
-$before_deadline =$deadline->Search_all($type_deadline);
+$current_semester = $deadline->Search_all_current($type_deadline);
+
 //close db
 //$person->Close_connection();
 $deadline->Close_connection();
@@ -34,8 +35,11 @@ $course->Close_connection();
 $approval->Close_connection();
 
 $now = strtotime(date("Y-m-d"));
-$start = strtotime($before_deadline[0]['open_date']);
-$end = strtotime($before_deadline[0]['last_date']);
+$start = strtotime($current_semester[0]['open_date']);
+$end = strtotime($current_semester[0]['last_date']);
+
+
+
 
  ?>
   <html>
@@ -102,11 +106,11 @@ $end = strtotime($before_deadline[0]['last_date']);
             <h3 class="page-header">ประเมินกระบวนวิชา</h3>
             <?php endif; ?>
           <?php  
-          if ($now>=$end) {
-            echo  '<div class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาใน'.$approve_text.'<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
+          if ($now>$end) {
+            echo  '<div class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการ'.$approve_text.'<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
             exit();
           }elseif ($now<$start) {
-            echo  '<div class="alert alert-warning"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> ยังไม่ถึงเวลาใน'.$approve_text.'<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
+            echo  '<div class="alert alert-warning"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> ยังไม่ถึงเวลาในการ'.$approve_text.'<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
             exit();
           }
            ?>

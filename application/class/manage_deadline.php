@@ -33,6 +33,24 @@ Class Deadline
         return false;
       }
   }
+  public  function Search_all_current($type)
+  {
+    $semester = $this->Get_Current_Semester();
+    
+    $sql = "SELECT s.`semester_num`,s.`year`,d.`last_date`,d.`open_date`
+    FROM `deadline` d,`semester` s
+   WHERE d.`semester_id` = s.`semester_id` and  s.`year`='".$semester['year']."' and s.`semester_num`='".$semester['semester']."' and d.`deadline_type` = ".$type;
+
+    $result = $this->DB->Query($sql);
+    if($result != null)
+    {
+      return $result;
+    }
+    else
+    {
+      return false;
+    }
+  }
 
 //update data in Database
 //require array : data, string : type

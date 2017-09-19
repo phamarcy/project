@@ -60,7 +60,11 @@ if (isset($_POST['subject'])) {
           </form>
           </center>
         </div>
-      <?php $i =1;if (isset($history)): ?>
+      <?php $i =1;if (isset($history)):
+        if (is_array($history['comment']) || is_object($history['comment'])) {
+
+        
+        ?>
         <div class="panel panel-default">
           <div class="panel-heading">
             <h5 class="panel-title">
@@ -82,8 +86,10 @@ if (isset($_POST['subject'])) {
                           </tr>
                         </thead>
                         <tbody>
-
-                            <?php foreach ($history['comment'] as $key => $value): ?>
+                     
+                            <?php 
+                          
+                            foreach ($history['comment'] as $key => $value): ?>
                               <tr>
                                 <td><?php echo $i++; ?></td>
                                 <td ><?php echo $history['id'] ?></td>
@@ -191,7 +197,7 @@ if (isset($_POST['subject'])) {
           <!-- .panel-body -->
         </div>
       </div>
-        <?php endif; ?>
+        <?php } endif; ?>
     </div>
     </div>
 
