@@ -107,7 +107,7 @@ class approval
         }
       }
       $status_after = $this->Get_Doc_Status($course_id);
-      if($status_before != $status_after)
+      if($status_before != $status_after || ($teacher_id == 'all' && (int)$status == 1))
       {
         $noti['COURSE_ID'] = $course_id;
         $noti['STATUS'] = (string)$status_after;
@@ -280,7 +280,7 @@ class approval
 //add new approval status
   public function Append_Status_Evaluate($course_id)
   {
-   //default status 1 = waiting for create
+   //default status 0 = waiting for create
       $sql = "SELECT ga.`teacher_id` FROM `subject_assessor` sa, `group_assessor` ga
       WHERE sa.course_id = '".$course_id."' AND sa.assessor_group_num = ga.group_num AND `semester_id` = '".$this->SEMESTER_ID."'";
       $result = $this->DB->Query($sql);
