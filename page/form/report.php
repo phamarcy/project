@@ -195,7 +195,7 @@ $(function() {//<-- wrapped here
                                 echo '<div class="panel panel-default">
                                     <div class="panel-heading">
                                         <div class="panel-title" style="font-size:14px">
-                                        <a data-toggle="collapse" href="#460100">'.$data_special[$i]['id'].' '.$data_special[$i]['name'].'</a>
+                                        <a data-toggle="collapse" href="#'.$data_special[$i]['id'].'">'.$data_special[$i]['id'].' '.$data_special[$i]['name'].'</a>
                                       </div>
                                     </div>
                                     <div id="'.$data_special[$i]['id'].'" class="panel-collapse collapse in">
