@@ -256,7 +256,7 @@ $current = $dlobj->Get_Current_Semester();
                         {
                           swal({
                             title: '',
-                            text: "อาจารย์พิเศษที่เชิญเคยเชิญมาสอนหรือไม่?",
+                            text: "กระบวนวิชานี้เคยเชิญอาจารย์พิเศษที่เชิญมาสอนหรือไม่?",
                             type: 'question',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
@@ -267,7 +267,7 @@ $current = $dlobj->Get_Current_Semester();
                             cancelButtonClass: 'btn btn-danger',
                             allowOutsideClick: false
                           }).then(function () {
-                            
+
                             var course_id = document.getElementById('id').value;
                             document.getElementById('formdrpd').style.display = "";
                             //cleardatalist
@@ -986,6 +986,7 @@ $current = $dlobj->Get_Current_Semester();
       $("#callist").hide();
 
       //cvlist
+      $('#cvlist').hide();
       $("input[name='topic']").change(function(){
         if($(this).val()=="already")
         {
