@@ -1,9 +1,12 @@
 <?php
+session_start();
 require_once(__DIR__.'/../class/course.php');
 require_once(__DIR__.'/../class/manage_deadline.php');
+require_once(__DIR__.'/../class/approval.php');
 $deadline = new Deadline();
 $semester = $deadline->Get_Current_Semester();
 $course = new Course();
+$approval = new approval($_SESSION['level']);
 if(isset($_POST['type']))
 {
   $type = $_POST['type'];
@@ -67,7 +70,15 @@ if(isset($_POST['type']))
         if($assessor_group != '')
         {
           $result = $course->Add_Responsible_Assessor($course_id,$assessor_group,$semester['id'],$department_id);
-          if($result['status'] == 'error')
+          if($result['status'] == "success")
+          {
+            $result = $approval->Append_Status_Evaluate($course_id);
+            if($result['status'] == 'error')
+            {
+              break;
+            }
+          }
+          else
           {
             break;
           }
