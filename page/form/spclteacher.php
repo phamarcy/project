@@ -263,6 +263,23 @@ $current = $dlobj->Get_Current_Semester();
                           }
                         }
 
+                        var rowtr = ($('#detailteaching tr').length)-2
+                        for (var i = 1; i <=rowtr; i++) {
+                          var row = document.getElementById('row' + i);
+                          row.parentNode.removeChild(row);
+                        }
+
+                        var course_id = document.getElementById('id').value;
+                        //cleardatalist
+                        var selectobject = document.getElementById('teachername');
+                        var long = selectobject.length;
+                        if(long!=0 && long!=null)
+                        {
+                          for (var i=0; i<=long; i++){
+                            document.getElementsByName("teachername")[0].remove(0);
+                          }
+                        }
+
                         if(temp['info']!=false && temp[0]!=null)
                         {
                           swal({
@@ -305,11 +322,12 @@ $current = $dlobj->Get_Current_Semester();
                                 'success'
                               )
                               document.getElementById('course').value = temp['info']['course_id'];
+                              document.getElementById('formdrpd').style.display = "none";
+
                               $('#topic1')[0].checked = false;
                               $('#topic2')[0].checked = true;
                               $('#cvlist').show();
                               $('input[name=cv]').prop('required', true);
-                              $('#course').attr('readonly', false);
                             }
                           })
 
@@ -320,7 +338,7 @@ $current = $dlobj->Get_Current_Semester();
                              'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
                              'error'
                            )
-                          //alert('กระบวนวิชาที่ค้นหาไม่พบในระบบ\nกรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด');
+                          document.getElementById('formdrpd').style.display = "none";
                           document.getElementById('id').value = "";
                          }
                          else if(temp['info']!=false && temp[0]==null){
@@ -329,13 +347,12 @@ $current = $dlobj->Get_Current_Semester();
                               'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
                               'info'
                             )
-                           //alert('ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้\nสามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง');
+                          document.getElementById('formdrpd').style.display = "none";
                            document.getElementById('course').value = temp['info']['course_id'];
                            $('#topic1')[0].checked = false;
                            $('#topic2')[0].checked = true;
                            $('#cvlist').show();
                            $('input[name=cv]').prop('required', true);
-                           $('#course').attr('readonly', false);
                           }
                           else {
                             if($('#id').val()=="" ||$('#id').val()==null )
@@ -345,6 +362,8 @@ $current = $dlobj->Get_Current_Semester();
                                  'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
                                  'error'
                                )
+                               document.getElementById('formdrpd').style.display = "none";
+
                             }
                           }
                    },
@@ -360,12 +379,6 @@ $current = $dlobj->Get_Current_Semester();
         });
    }
    else if (btntype==2) {
-     var rowtr = ($('#detailteaching tr').length)-2
-     for (var i = 1; i <=rowtr; i++) {
-       var row = document.getElementById('row' + i);
-       row.parentNode.removeChild(row);
-     }
-
      var file_data = new FormData;
      var teachername_temp = document.getElementById('teachername').value;
      var stringspl = teachername_temp.split("_");
