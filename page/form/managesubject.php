@@ -885,20 +885,14 @@ $history=$course->Get_History($department['code']);
               }
               var k = '<tbody>'
               for (i = 0; i < obj.length; i++) {
-                if (obj[i].teacher == 1) {
+                if (obj[i].assessor == 1) {
                   var text_group = "คณะกรรมการชุดที่ 1";
-                } else if (obj[i].teacher == 2) {
+                } else if (obj[i].assessor == 2) {
                   var text_group = "คณะกรรมการชุดที่ 2";
                 } else {
                   var text_group = "-";
                 }
-                if (obj[i].teacher == 1) {
-                  var text_group = "คณะกรรมการชุดที่ 1";
-                } else if (obj[i].teacher == 2) {
-                  var text_group = "คณะกรรมการชุดที่ 2";
-                } else {
-                  var text_group = "-";
-                }
+
                 k += '<tr>';
                 k += '<td>' + obj[i].id + '</td>';
                 k += '<td>' + obj[i].name + '</td>';
