@@ -887,14 +887,14 @@ $history=$course->Get_History($department['code']);
               for (i = 0; i < obj.length; i++) {
                 if (obj[i].teacher == 1) {
                   var text_group = "คณะกรรมการชุดที่ 1";
-                } else if (obj[i].teacher == 1) {
+                } else if (obj[i].teacher == 2) {
                   var text_group = "คณะกรรมการชุดที่ 2";
                 } else {
                   var text_group = "-";
                 }
                 if (obj[i].teacher == 1) {
                   var text_group = "คณะกรรมการชุดที่ 1";
-                } else if (obj[i].teacher == 1) {
+                } else if (obj[i].teacher == 2) {
                   var text_group = "คณะกรรมการชุดที่ 2";
                 } else {
                   var text_group = "-";
