@@ -101,8 +101,8 @@ $current = $dlobj->Get_Current_Semester();
    document.getElementById('subtel').value = temp['TEACHERDATA']['TELEPHONE']['SUB'];
    document.getElementById('mobile').value = temp['TEACHERDATA']['MOBILE'];
    document.getElementById('email').value = temp['TEACHERDATA']['EMAIL'];
-   var choice1 = temp['TEACHERDATA']['HISTORY'];
-   $('input[name="topic"][value=' + choice1 + ']').prop('checked', true);
+   //var choice1 = temp['TEACHERDATA']['HISTORY'];
+   $('input[name="topic"][value="already"]').prop('checked', true);
    if(document.querySelector("input[name='topic']:checked").value=="already")
      {
        $('#cvlist').hide();
@@ -305,6 +305,11 @@ $current = $dlobj->Get_Current_Semester();
                                 'success'
                               )
                               document.getElementById('course').value = temp['info']['course_id'];
+                              $('#topic1')[0].checked = false;
+                              $('#topic2')[0].checked = true;
+                              $('#cvlist').show();
+                              $('input[name=cv]').prop('required', true);
+                              $('#course').attr('readonly', false);
                             }
                           })
 
@@ -326,6 +331,11 @@ $current = $dlobj->Get_Current_Semester();
                             )
                            //alert('ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้\nสามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง');
                            document.getElementById('course').value = temp['info']['course_id'];
+                           $('#topic1')[0].checked = false;
+                           $('#topic2')[0].checked = true;
+                           $('#cvlist').show();
+                           $('input[name=cv]').prop('required', true);
+                           $('#course').attr('readonly', false);
                           }
                           else {
                             if($('#id').val()=="" ||$('#id').val()==null )
@@ -471,15 +481,55 @@ $current = $dlobj->Get_Current_Semester();
   //costspec
   if(document.querySelector("input[name='costspec']:checked").value=="choice1")
   {
+    if( document.getElementById('choice1num').value == '')
+    {
+      var num = "0";
+    }
+    else {
       var num = document.getElementById('choice1num').value;
+    }
+
+    if( document.getElementById('choice1hour').value == '')
+    {
+      var hour = "0";
+    }
+    else {
       var hour = document.getElementById('choice1hour').value;
+    }
+
+    if( document.getElementById('choice1cost').value == '')
+    {
+      var cost = "0.00";
+    }
+    else {
       var cost = document.getElementById('choice1cost').value;
+    }
   }
   else if(document.querySelector("input[name='costspec']:checked").value=="choice2")
   {
+    if( document.getElementById('choice2num').value == '')
+    {
+      var num = "0";
+    }
+    else {
       var num = document.getElementById('choice2num').value;
+    }
+
+    if( document.getElementById('choice2hour').value == '')
+    {
+      var hour = "0";
+    }
+    else {
       var hour = document.getElementById('choice2hour').value;
+    }
+
+    if( document.getElementById('choice2cost').value == '')
+    {
+      var cost = "0.00";
+    }
+    else {
       var cost = document.getElementById('choice2cost').value;
+    }
   }
 
   //trans
@@ -507,13 +557,65 @@ $current = $dlobj->Get_Current_Semester();
     var selfcarcheck = "false";
   }
 
+  if( document.getElementById('SELF_DISTANCT').value == '')
+  {
+    var selfdis = "0";
+  }
+  else {
+    var selfdis = document.getElementById('SELF_DISTANCT').value;
+  }
+
+  if( document.getElementById('selfunit').value == '')
+  {
+    var selfunit = "0";
+  }
+  else {
+    var selfunit = document.getElementById('selfunit').value;
+  }
+
+  if( document.getElementById('selfcost').value == '')
+  {
+    var selfcost = "0.00";
+  }
+  else {
+    var selfcost = document.getElementById('selfcost').value;
+  }
+
   // hotelunit
   if(document.querySelector("input[name='hotelchoice']:checked").value=="way1")
   {
-    var hotelunit = document.getElementById('way1unit').value;
+    if( document.getElementById('way1unit').value == '')
+    {
+      var hotelunit = "0";
+    }
+    else {
+      var hotelunit = document.getElementById('way1unit').value;
+    }
   }
   else if (document.querySelector("input[name='hotelchoice']:checked").value=="way2") {
-    var hotelunit = document.getElementById('way2unit').value;
+    if( document.getElementById('way2unit').value == '')
+    {
+      var hotelunit = "0";
+    }
+    else {
+      var hotelunit = document.getElementById('way2unit').value;
+    }
+  }
+
+  if( document.getElementById('numnight').value == '')
+  {
+    var numnight = "0";
+  }
+  else {
+    var numnight = document.getElementById('numnight').value;
+  }
+
+  if( document.getElementById('pernight').value == '')
+  {
+    var pernight = "0.00";
+  }
+  else {
+    var pernight = document.getElementById('pernight').value;
   }
 
   //split fname / lname
@@ -530,6 +632,7 @@ $current = $dlobj->Get_Current_Semester();
   var costtaxi = fixedcosttaxi.toFixed(2);
   var fixedcosttotal = parseFloat(document.getElementById('totalcost').value);
   var costtotal = fixedcosttotal.toFixed(2);
+
 
    var data = {
      'TEACHERDATA' : {
@@ -590,16 +693,16 @@ $current = $dlobj->Get_Current_Semester();
          },
          'TRANSSELFCAR' : {
            'CHECKED' : selfcarcheck,
-           'DISTANCT' : document.getElementById('SELF_DISTANCT').value,
-           'UNIT' : document.getElementById('selfunit').value,
-           'COST' : document.getElementById('selfcost').value
+           'DISTANCT' : selfdis,
+           'UNIT' : selfunit,
+           'COST' : selfcost
          }
        },
        'COSTHOTEL' : {
          'CHOICE' : document.querySelector("input[name='hotelchoice']:checked").value,
          'UNIT' : hotelunit,
-         'NUMBER' : document.getElementById('numnight').value,
-         'PERNIGHT' : document.getElementById('pernight').value
+         'NUMBER' : numnight,
+         'PERNIGHT' : pernight
        },
        'TOTALCOST' : costtotal
     },
@@ -1433,8 +1536,8 @@ function lastcal() {
           <li>ประวัติการเชิญมาสอน <br>
               <div class="form-group">
                 <div class="radio">
-                <input type="radio" name="topic" id="topic" value="already" required checked> &nbsp;เคยเชิญมาสอน
-                &nbsp;<input type="radio" name="topic" id="topic" value="yet"> &nbsp;ไม่เคยเชิญมาสอน
+                <input type="radio" name="topic" id="topic1" value="already" required checked> &nbsp;เคยเชิญมาสอน
+                &nbsp;<input type="radio" name="topic" id="topic2" value="yet"> &nbsp;ไม่เคยเชิญมาสอน
               </div>
             </div>
             </li>
