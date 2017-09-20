@@ -487,8 +487,27 @@ class Person
 
     if ($result) {
       if ($now>=$start && $now<=$end ) {
-          $_SESSION['admission']=1;
-          $_SESSION['level']=6;
+          
+          if ($_SESSION['level']==1) {
+            $_SESSION['admission']=1;//permission teacher
+          }elseif ($_SESSION['level']==2) {
+            $_SESSION['admission']=2;//permission staff department
+          }elseif($_SESSION['level']==3){
+            $_SESSION['admission']=3;//permission staff faculty
+          }
+          else {
+            $_SESSION['admission']=0;
+          }
+
+          //check assessor
+          if ($_SESSION['level']==4) {
+            $_SESSION['level']==4;
+          }elseif ($_SESSION['level']==5) {
+            $_SESSION['level']==5;
+          }else {
+            $_SESSION['level']=6;
+          }
+         
       }
     }
 

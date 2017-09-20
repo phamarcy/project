@@ -14,9 +14,6 @@ if (isset($_POST['subject'])) {
     $status =json_encode($history["status"]);
     $msg =json_encode($history["msg"]);
   }
-  echo  "<pre>";
-  var_dump($history);
-  echo  "</pre>";
 }
 
 ?>
@@ -114,7 +111,6 @@ if (isset($_POST['subject'])) {
                             <?php 
                              $year = 0;
                             foreach ($history['comment'] as $key => $value):?>
-                                  
                               <tr>
                                 <td><?php  echo $i++; ?></td>
                                 <td ><?php echo $history['id'] ?></td>

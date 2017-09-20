@@ -384,7 +384,7 @@
 						<li>
 							<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
 						</li>
-						<?php if($_SESSION['level'] == 2) { ?>
+						<?php if($_SESSION['level'] == 2 || $_SESSION['admission']==2 ) { ?>
 
 							<li>
 								<a href="#" onclick="loadDoc('form/managesubject.php')"><i class="fa fa-user-md fa-fw"></i> จัดการกระบวนวิชา</a>
@@ -392,11 +392,11 @@
 							<li>
 								<a href="#" onclick="loadDoc('form/addsubject.php')"><i class="fa fa-plus-circle fa-fw"></i> เพิ่มกระบวนวิชา</a>
 							</li>
-						<?php }if($_SESSION['level'] == 3){?>
+						<?php }if($_SESSION['level'] == 3 || $_SESSION['admission']==3){?>
 							<li>
 								<a href="#" onclick="loadDoc('form/deadline.php')"><i class="fa fa-list-alt fa-fw"></i> กำหนดช่วงเวลา</a>
 							</li>
-						<?php }if($_SESSION['level'] == 3 || $_SESSION['level'] == 2){ ?>
+						<?php }if($_SESSION['level'] == 3 || $_SESSION['level'] == 2 || $_SESSION['admission']==2 || $_SESSION['admission']==3){ ?>
 						<li>
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
@@ -446,16 +446,14 @@
 						<?php
 							if($_SESSION['level']==6)
 							{ 
-								if ($_SESSION['level']==6 && $_SESSION['admission']==1) {
-									
-								}
-								else { ?>
+								if ($_SESSION['level']==6 && (!$_SESSION['admission'])) { ?>
 									<li>
 										<a href="#" onclick="loadDoc('form/grant.php')"><i class="fa fa-users fa-fw"></i> มอบอำนาจการอนุมัติ</a>
 									</li>
-								<?php
+								<?php	
 								}
-								?>
+								 ?>
+							
 									
 								<?php
 							}
