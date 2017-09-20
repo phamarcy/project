@@ -252,6 +252,17 @@ $current = $dlobj->Get_Current_Semester();
                               console.log('Error#542-decode error');
                          }
                         //console.log(Object.keys(temp).length);
+
+                        if(temp!=null)
+                        {
+                          if(temp['ACCESS'] == true)
+                          {
+                            $('#buttondiv').show();
+                          }else {
+                            $('#buttondiv').hide();
+                          }
+                        }
+
                         if(temp['info']!=false && temp[0]!=null)
                         {
                           swal({
@@ -999,14 +1010,12 @@ $current = $dlobj->Get_Current_Semester();
           $('#cvdanger').removeClass("has-danger");
           $('#submitbtn2').show();
           $('#submitbtn').hide();
-          $('#course').attr('readonly', true);
         }
         else {
           $('#cvlist').show();
           $('input[name=cv]').prop('required', true);
           $('#submitbtn2').hide();
           $('#submitbtn').show();
-          $('#course').attr('readonly', false);
 
         }
       });
@@ -1410,8 +1419,8 @@ function lastcal() {
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน <input type="text" class="form-control numonly" name="way1unit" id="way1unit" size="4" > บาท/คน/คืน&nbsp;&nbsp;<br>
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน <input type="text" class="form-control numonly" name="way2unit" id="way2unit" size="4" > บาท/คน/คืน &nbsp;&nbsp;
             </div></div>
-            <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999"  >&nbsp;&nbsp;คืน
-            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" min="0" max="99999" READONLY  >&nbsp;&nbsp;บาท
+            <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999" value="0"  >&nbsp;&nbsp;คืน
+            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" min="0" max="99999" value="0" READONLY  >&nbsp;&nbsp;บาท
           </div>
           </div>
           <br>
