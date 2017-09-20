@@ -36,6 +36,11 @@ if (isset($_POST["type"]) && isset($_POST["teacher"])) {
       $datebase      = date('Y-m-d',strtotime($datesplit[0]));
       $dateplus      = date('Y-m-d',strtotime($datesplit[1]));
       $teacher_id    = $person->Get_Teacher_Id($teacher);
+      if (!$teacher_id) {
+        $DATA          = array('status'=>'error','msg' => "ไม่มีรายชื่อนี้ในระบบ");
+        echo json_encode($DATA);
+        return $DATA;
+      }
       $sqlcheck      = "SELECT count(*) as item FROM grant_approve WHERE user_id = ".$teacher_id."";
       $check_teacher = $DB->Query($sqlcheck);
       
