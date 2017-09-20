@@ -8,11 +8,15 @@ require_once(__DIR__."/../../application/class/report.php");
 if (isset($_POST['subject'])) {
   $report = new Report();
   $history=$report->Get_Comment_History($_POST['subject']);
-
+  $status="";
+  $msg="";
   if (isset($history["status"])) {
     $status =json_encode($history["status"]);
     $msg =json_encode($history["msg"]);
   }
+  echo  "<pre>";
+  var_dump($history);
+  echo  "</pre>";
 }
 
 ?>
@@ -108,31 +112,32 @@ if (isset($_POST['subject'])) {
                         <tbody>
                      
                             <?php 
-                          
-                            foreach ($history['comment'] as $key => $value): ?>
+                             $year = 0;
+                            foreach ($history['comment'] as $key => $value):?>
+                                  
                               <tr>
-                                <td><?php echo $i++; ?></td>
+                                <td><?php  echo $i++; ?></td>
                                 <td ><?php echo $history['id'] ?></td>
                                 <td><?php echo $history['name'] ?></td>
-                                <td style="text-align:center;"><?php $x = array_keys($history['comment']); echo $x[0];?></td>
-                                <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#463681" class="accordion-toggle">ดูข้อมูล</button></td>
+                                <td style="text-align:center;"><?php $x = array_keys($history['comment']); echo $x[$year];?></td>
+                                <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#course<?php echo $year;?>" class="accordion-toggle">ดูข้อมูล</button></td>
                               </tr>
                           <tr class="hiddenRow">
                             <td colspan="12">
-                              <div class="accordian-body collapse" id="463681">
+                              <div class="accordian-body collapse" id="course<?php echo $year;?>">
                                 <div class="panel panel-success">
                                   <div class="panel-heading">
                                     <b>ข้อเสนอแนะคณะกรรมการ</b>
                                   </div>
                                   <div class="panel-body">
-                                    <div class="panel-group" id="comment<?php echo $x[0] ?> ">
+                                    <div class="panel-group" id="comment<?php echo $x[$year] ?> ">
                                       <div class="panel panel-default">
                                         <div class="panel-heading">
                                           <div class="panel-title" style="font-size:14px">
-                                            <a data-toggle="collapse" href="#comment<?php echo $x[0] ?>-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</b></a>
+                                            <a data-toggle="collapse" href="#comment<?php echo $x[$year] ?>-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</b></a>
                                           </div>
                                         </div>
-                                        <div id="comment<?php echo $x[0] ?>-2" class="panel-collapse collapse in">
+                                        <div id="comment<?php echo $x[$year] ?>-2" class="panel-collapse collapse in">
                                           <div class="panel-body">
                                             <table class="table " style="font-size:14px">
                                               <thead>
@@ -161,20 +166,20 @@ if (isset($_POST['subject'])) {
                                       <div class="panel panel-default">
                                         <div class="panel-heading ">
                                           <div class="panel-title" style="font-size:14px">
-                                                  <a data-toggle="collapse" href="#commentsp<?php echo $x[0] ?>"><b>แบบเชิญอาจารย์พิเศษ</b></a>
+                                                  <a data-toggle="collapse" href="#commentsp<?php echo $x[$year] ?>"><b>แบบเชิญอาจารย์พิเศษ</b></a>
                                               </div>
                                         </div>
-                                        <div id="commentsp<?php echo $x[0] ?>" class="panel-collapse collapse in">
+                                        <div id="commentsp<?php echo $x[$year] ?>" class="panel-collapse collapse in">
                                           <div class="panel-body">
-                                            <div class="panel-group" id="teachersp<?php echo $x[0] ?>">
+                                            <div class="panel-group" id="teachersp<?php echo $x[$year] ?>">
                                               <?php foreach ($value['special'] as $keysp => $valuesp): ?>
                                                 <div class="panel panel-default">
                                                   <div class="panel-heading">
                                                     <div class="panel-title" style="font-size:14px">
-                                                        <a data-toggle="collapse" data-parent="#teachersp<?php echo $keysp ?>" href="#teachersp<?php echo $keysp ?>"><?php echo $valuesp['name'] ?></a>
+                                                        <a data-toggle="collapse" data-parent="#teachersp<?php echo $keysp.$year ?>" href="#teachersp<?php echo $keysp.$year ?>"><?php echo $valuesp['name'] ?></a>
                                                     </div>
                                                   </div>
-                                                  <div id="teachersp<?php echo $keysp ?>" class="panel-collapse collapse">
+                                                  <div id="teachersp<?php echo $keysp.$year ?>" class="panel-collapse collapse">
                                                     <div class="panel-body">
                                                       <table class="table " style="font-size:14px">
                                                         <thead>
@@ -196,7 +201,7 @@ if (isset($_POST['subject'])) {
                                                     </div>
                                                   </div>
                                                 </div>
-                                              <?php endforeach; ?>
+                                              <?php  endforeach; ?>
 
 
                                             </div>
@@ -209,7 +214,8 @@ if (isset($_POST['subject'])) {
                               </div>
                             </td>
                           </tr>
-                          <?php endforeach; ?>
+
+                          <?php $year++;  endforeach; ?>
                         </tbody>
                       </table>
                     </div>
