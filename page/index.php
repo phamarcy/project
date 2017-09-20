@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	$_SESSION['admission'] =0;
 	require_once(__DIR__."/../application/class/person.php");
 	if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
 	{
@@ -9,12 +8,13 @@
 	{
 		header('Location: admin.php');
 	}
+	$_SESSION['admission']=0;
 	$person = new Person();
 	$check_permission=$person->Check_Grant($_SESSION['id']);
 	$person->Close_connection();
-	if ($_SESSION['level']==4 || $_SESSION['level']==5) {
-	  $_SESSION['admission']=0;
-	}
+
+	
+	
  ?>
 
 <html>
@@ -401,7 +401,7 @@
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
 						<?php }else { ?>
-						<?php if ($_SESSION['level']<=1 || $_SESSION['admission']==1): ?>
+						<?php if ($_SESSION['level']<=1 ||  $_SESSION['admission']==1): ?>
 							<li>
 								<a href="#"><i class="fa fa-edit fa-fw"></i> กรอกข้อมูล<span class="fa arrow"></span></a>
 

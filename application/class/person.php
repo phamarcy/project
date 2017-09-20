@@ -490,14 +490,14 @@ class Person
           
           if ($_SESSION['level']==1) {
             $_SESSION['admission']=1;//permission teacher
-          }elseif ($_SESSION['level']==2) {
+          }
+          if ($_SESSION['level']==2) {
             $_SESSION['admission']=2;//permission staff department
-          }elseif($_SESSION['level']==3){
+          }
+          if($_SESSION['level']==3){
             $_SESSION['admission']=3;//permission staff faculty
           }
-          else {
-            $_SESSION['admission']=0;
-          }
+
 
           //check assessor
           if ($_SESSION['level']==4) {

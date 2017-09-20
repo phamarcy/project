@@ -184,9 +184,9 @@ $end = strtotime($current_semester[0]['last_date']);
                   </tr>
                   <tr class="hiddenRow">
                     <td colspan="12">
-                      <div class="accordian-body collapse" id="<?php echo $value['id'] ?>">
+                      <div class=" collapse" id="<?php echo $value['id'] ?>">
                         <div class="panel panel-success">
-                          <div class="panel-heading" style="font-size:14px;">
+                          <div class="panel-heading collapsed" style="font-size:14px;">
                             <b>ข้อเสนอแนะคณะกรรมการ</b>
                           </div>
                           <div class="panel-body">
@@ -194,7 +194,7 @@ $end = strtotime($current_semester[0]['last_date']);
                               <div class="panel panel-default">
                                 <div class="panel-heading" >
                                   <div class="panel-title" style="font-size:14px">
-                                      <a data-toggle="collapse" data-parent="#comment<?php echo $value['id'] ?>" href="#comment<?php echo $value['id'] ?>-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา  สถานะ :</b>
+                                      <a data-toggle="collapse"  href="#comment<?php echo $value['id'] ?>-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา  สถานะ :</b>
                                         <?php if($value['status']==0){echo '<i id="statn" class="fa fa-user-times fa-2x" aria-hidden="true"></i>';}else{echo '<i id="statcf" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>';}?>
                                       </a>
 
@@ -251,7 +251,7 @@ $end = strtotime($current_semester[0]['last_date']);
                                 <div class="panel panel-default">
                                   <div class="panel-heading ">
                                     <div class="panel-title" style="font-size:14px">
-                                        <a data-toggle="collapse" data-parent="#commentsp<?php echo $value['id'] ?>" href="#commentsp<?php echo $value['id'] ?>"><b>แบบเชิญอาจารย์พิเศษ</b></a>
+                                        <a data-toggle="collapse"  href="#commentsp<?php echo $value['id'] ?>"><b>แบบเชิญอาจารย์พิเศษ</b></a>
                                     </div>
                                   </div>
 
@@ -262,7 +262,7 @@ $end = strtotime($current_semester[0]['last_date']);
                                         <div class="panel panel-default">
                                           <div class="panel-heading" >
                                             <div class="panel-title" style="font-size:14px">
-                                                <a data-toggle="collapse" data-parent="#teachersp<?php echo $value['id'] ?>" href="#teachersp<?php echo $value['id']."-".$keysp ?>"><?php echo $valuesp['name'] ?></a>&nbsp;&nbsp;
+                                                <a data-toggle="collapse"  href="#teachersp<?php echo $value['id']."-".$keysp ?>"><?php echo $valuesp['name'] ?></a>&nbsp;&nbsp;
                                                 <?php if ($valuesp['pdf']!=""): ?>
                                                   <b>PDF : </b><a href="<?php echo $valuesp['pdf'] ?>" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>&nbsp;&nbsp;
                                                 <?php endif; ?>
