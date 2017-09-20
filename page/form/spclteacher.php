@@ -818,8 +818,8 @@ $current = $dlobj->Get_Current_Semester();
         else
         {
           $("#SELF_DISTANCT").prop('required',false);
-          $("#SELF_DISTANCT").val("");
-          $("#selfunit").val("");
+          $("#SELF_DISTANCT").val("0");
+          $("#selfunit").val("0");
           $("#selfcost").val("0");
 
         }
@@ -828,12 +828,12 @@ $current = $dlobj->Get_Current_Semester();
     // CALCULATE
     if(document.querySelector("input[name='costspec']:checked").value=="choice1")
     {
-      $('#choice1hour').val("");
-      $('#choice1cost').val("");
+      $('#choice1hour').val("0");
+      $('#choice1cost').val("0");
       $('#choice1num').val("400");
-      $('#choice2hour').val("");
-      $('#choice2cost').val("");
-      $('#choice2num').val("");
+      $('#choice2hour').val("0");
+      $('#choice2cost').val("0");
+      $('#choice2num').val("0");
       $('#choice1hour').keyup(function(){
           var textone;
           var texttwo;
@@ -855,52 +855,75 @@ $current = $dlobj->Get_Current_Semester();
     $("input[name='costspec']").change(function(){
       if($(this).val()=="choice1")
       {
-        $('#choice1hour').val("");
-        $('#choice1cost').val("");
+        $('#choice1hour').val("0");
+        $('#choice1cost').val("0");
         $('#choice1num').val("400");
-        $('#choice2hour').val("");
-        $('#choice2cost').val("");
-        $('#choice2num').val("");
+        $('#choice2hour').val("0");
+        $('#choice2cost').val("0");
+        $('#choice2num').val("0");
         $('#choice1hour').keyup(function(){
+          if($('#choice1hour').val()=='')
+          {
+            $('#choice1cost').val("0");
+          }else {
             var textone;
             var texttwo;
             textone = parseFloat($('#choice1hour').val());
             texttwo = parseFloat($('#choice1num').val());
             var result = textone*texttwo;
             $('#choice1cost').val(result.toFixed(2));
+          }
+
         });
         $('#choice1num').keyup(function(){
-            var textone;
-            var texttwo;
-            textone = parseFloat($('#choice1hour').val());
-            texttwo = parseFloat($('#choice1num').val());
-            var result = textone*texttwo;
-            $('#choice1cost').val(result.toFixed(2));
+          if($('#choice1num').val()=='')
+          {
+            $('#choice1cost').val("0");
+          }else {
+              var textone;
+              var texttwo;
+              textone = parseFloat($('#choice1hour').val());
+              texttwo = parseFloat($('#choice1num').val());
+              var result = textone*texttwo;
+              $('#choice1cost').val(result.toFixed(2));
+          }
         });
       }
       else
       {
-        $('#choice1hour').val("");
-        $('#choice1cost').val("");
-        $('#choice1num').val("");
-        $('#choice2hour').val("");
-        $('#choice2cost').val("");
+        $('#choice1hour').val("0");
+        $('#choice1cost').val("0");
+        $('#choice1num').val("0");
+        $('#choice2hour').val("0");
+        $('#choice2cost').val("0");
         $('#choice2num').val("200");
         $('#choice2hour').keyup(function(){
+          if($('#choice2hour').val()=='')
+          {
+            $('#choice2cost').val("0");
+          }else {
             var textone;
             var texttwo;
             textone = parseFloat($('#choice2hour').val());
             texttwo = parseFloat($('#choice2num').val());
             var result = textone*texttwo;
             $('#choice2cost').val(result.toFixed(2));
+          }
+
         });
         $('#choice2num').keyup(function(){
+          if($('#choice2num').val()=='')
+          {
+            $('#choice2cost').val("0");
+          }else {
             var textone;
             var texttwo;
             textone = parseFloat($('#choice2hour').val());
             texttwo = parseFloat($('#choice2num').val());
             var result = textone*texttwo;
             $('#choice2cost').val(result.toFixed(2));
+          }
+
         });
       }
       });
@@ -924,70 +947,100 @@ $current = $dlobj->Get_Current_Semester();
         $('#selfcost').val(result.toFixed(2));
     });
 
+    $('#SELF_DISTANCT').val("0");
+    $('#selfunit').val("0");
+    $('#selfcost').val("0");
+
     if(document.querySelector("input[name='hotelchoice']:checked").value=="way3")
     {
       $('#numnight').prop('required',false);
       $('#numnight').val("0");
       $('#pernight').val("0");
-      $('#way1unit').val("");
-      $('#way2unit').val("");
+      $('#way1unit').val("0");
+      $('#way2unit').val("0 ");
     }
 
     $("input[name='hotelchoice']").change(function(){
       if($(this).val()=="way1")
       {
-        $('#numnight').val("");
-        $('#pernight').val("");
+        $('#numnight').val("0");
+        $('#pernight').val("0");
         $('#way1unit').val("1500");
-        $('#way2unit').val("");
+        $('#way2unit').val("0");
         $('#numnight').prop('required',true);
         $('#numnight').keyup(function(){
+          if($('#numnight').val()=='')
+          {
+            $('#pernight').val("0");
+          }
+          else {
             var textone;
             var texttwo;
             textone = parseFloat($('#numnight').val());
             texttwo = parseFloat($('#way1unit').val());
             var result = textone*texttwo;
             $('#pernight').val(result.toFixed(2));
+          }
         });
         $('#way1unit').keyup(function(){
+          if($('#numnight').val()=='')
+          {
+            $('#pernight').val("0");
+          }
+          else {
             var textone;
             var texttwo;
             textone = parseFloat($('#numnight').val());
             texttwo = parseFloat($('#way1unit').val());
             var result = textone*texttwo;
             $('#pernight').val(result.toFixed(2));
+          }
+
         });
       }
       else if($(this).val()=="way2")
       {
-        $('#numnight').val("");
-        $('#pernight').val("");
+        $('#numnight').val("0");
+        $('#pernight').val("0");
         $('#way2unit').val("800");
-        $('#way1unit').val("");
+        $('#way1unit').val("0");
         $('#numnight').prop('required',true);
         $('#numnight').keyup(function(){
+          if($('#numnight').val()=='')
+          {
+            $('#pernight').val("0");
+          }
+          else {
             var textone;
             var texttwo;
             textone = parseFloat($('#numnight').val());
             texttwo = parseFloat($('#way2unit').val());
             var result = textone*texttwo;
             $('#pernight').val(result.toFixed(2));
+          }
+
         });
         $('#way2unit').keyup(function(){
+          if($('#way2unit').val()=='')
+          {
+            $('#pernight').val("0");
+          }else {
             var textone;
             var texttwo;
             textone = parseFloat($('#numnight').val());
             texttwo = parseFloat($('#way2unit').val());
             var result = textone*texttwo;
             $('#pernight').val(result.toFixed(2));
+          }
+
         });
       }
       else {
         $('#numnight').prop('required',false);
         $('#numnight').val("0");
         $('#pernight').val("0");
-        $('#way1unit').val("");
-        $('#way2unit').val("");
+        $('#way1unit').val("0");
+        $('#way2unit').val("0");
       }
 
       });
@@ -1019,6 +1072,65 @@ $current = $dlobj->Get_Current_Semester();
 
         }
       });
+
+      //Nan
+      $('#choice1hour').keyup(function() {
+        if($('#choice1hour').val()=='')
+        {
+          $('#choice1cost').val("0");
+
+        }
+      });
+
+      $('#choice2hour').keyup(function() {
+        if($('#choice2hour').val()=='')
+        {
+          $('#choice2cost').val("0");
+
+        }
+      });
+
+      $('#SELF_DISTANCT').keyup(function() {
+        if($('#SELF_DISTANCT').val()=='')
+        {
+          $('#selfcost').val("0");
+
+        }
+      });
+
+      $('#selfunit').keyup(function() {
+        if($('#selfunit').val()=='')
+        {
+          $('#selfcost').val("0");
+
+        }
+      });
+
+      $('#numnight').keyup(function() {
+        if($('#numnight').val()=='')
+        {
+          $('#pernight').val("0");
+
+        }
+      });
+
+      $('#way2unit').keyup(function() {
+        if($('#way2unit').val()=='')
+        {
+          $('#pernight').val("0");
+
+        }
+      });
+
+      $('#way1unit').keyup(function() {
+        if($('#way1unit').val()=='')
+        {
+          $('#pernight').val("0");
+
+        }
+      });
+
+
 
 
       //submitfunction
@@ -1391,10 +1503,12 @@ function lastcal() {
             <div class="radio">
               <div class="form-group">
                 <input type="radio"  name="costspec" id="costspec" value="choice1" required checked>&nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control numonly" name="choice1num" id="choice1num"  size="5" value="400"> ต่อชม.&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1hour" size="5" data-minlength="1" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999" READONLY>&nbsp;&nbsp;บาท
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1hour" size="5" data-minlength="1" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
+              <input type="text" class="form-control numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999" READONLY>&nbsp;&nbsp;บาท
               </div><br>
               <div class="form-group"><input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ <input type="text" class="form-control numonly" name="choice2num" id="choice2num" size="5"> ต่อชม.&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2hour" size="5" data-minlength="1" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2cost" size="5" data-minlength="5" min="0" max="99999" READONLY>&nbsp;&nbsp;บาท
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2hour" size="5" data-minlength="1" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
+              <input type="text" class="form-control numonly" id="choice2cost" size="5" data-minlength="5" min="0" max="99999" READONLY>&nbsp;&nbsp;บาท
               </div>
             </div>
           </div>
@@ -1416,8 +1530,8 @@ function lastcal() {
             <li>ค่าที่พัก</li>
             <div class="form-group"><div class="radio">
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way3" required checked>&nbsp;&nbsp; ไม่เบิกค่าที่พัก&nbsp;&nbsp;<br>
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน <input type="text" class="form-control numonly" name="way1unit" id="way1unit" size="4" > บาท/คน/คืน&nbsp;&nbsp;<br>
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน <input type="text" class="form-control numonly" name="way2unit" id="way2unit" size="4" > บาท/คน/คืน &nbsp;&nbsp;
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน <input type="text" class="form-control numonly" name="way1unit" id="way1unit" size="4" value="0" > บาท/คน/คืน&nbsp;&nbsp;<br>
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน <input type="text" class="form-control numonly" name="way2unit" id="way2unit" size="4" value="0" > บาท/คน/คืน &nbsp;&nbsp;
             </div></div>
             <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999" value="0"  >&nbsp;&nbsp;คืน
             &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" min="0" max="99999" value="0" READONLY  >&nbsp;&nbsp;บาท
