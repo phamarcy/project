@@ -13,13 +13,6 @@ if (isset($_POST["type"]) && isset($_POST["teacher"])) {
     $date            = $_POST["date"];
   }
 
-  $teacher_id    = $person->Get_Teacher_Id($teacher);
-  if (!$teacher_id) {
-    $DATA          = array('status'=>'error','msg' => "ไม่มีรายชื่อนี้ในระบบ");
-    echo json_encode($DATA);
-    return $DATA;
-  }
-    
   if ($type=="add") {
 
     $checkperson     = "SELECT count(*) as item FROM grant_approve WHERE status = '1'";
