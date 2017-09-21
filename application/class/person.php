@@ -478,9 +478,8 @@ class Person
 
     $this->DB->Change_DB('pharmacy');
 
-    $sql = 'SELECT * FROM grant_approve WHERE user_id = '.$teacher.'';
+    $sql = 'SELECT * FROM grant_approve WHERE user_id = "'.$teacher.'"';
     $result = $this->DB->Query($sql);
-
     $now = strtotime(date("Y-m-d")) ;
     $start = strtotime($result[0]['date_start']);
     $end = strtotime($result[0]['date_end']);
