@@ -4,6 +4,8 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
 {
     die('กรุณา Login ใหม่');
 }
+require_once(__DIR__.'/../../application/class/manage_deadline.php');
+$deadline = new Deadline();
 ?>
 <html>
 <header>
@@ -43,59 +45,6 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
 </style>
 <script type="text/javascript">
 
-//show loading gif
-function loaddataAll()
-{
-    $('#loading').html("<center><img src='../../application/picture/loading_icon.gif'></center>");
-    $(".container").hide();
-    loaddata('course');
-    loaddata('syllabus');
-    loaddata('special');
-    loaddata('evaluate');
-    loaddata('approve');
-}
-
-//get deadline data
-function loaddata(type) {
-
-    url = "../../application/deadline/update_deadline.php?type="+type+"&query=search";
-    var data;
-    var object;
-    $.getJSON(url, function(result) {
-    }).done(function(result) {
-        if (typeof result.data === 'undefined' || result.data === null ) {
-            if(typeof result.error === 'undefined' || result.error === null)
-            {
-              $("#loading").html('<div class="alert alert-danger">Error : Loding failed </div>');
-            }
-            else
-            {
-              $("#loading").html('<div class="alert alert-danger">Error : ' + result.error + '</div>');
-            }
-        } else {
-            render(result.data,type);
-        }
-      }).fail(function() {
-          $("#loading").html('<div class="alert alert-danger">Error : Cannot load data, please contact admin</div>');
-        });
-}
-
-// render data boxes
-function render(data,type) {
-    var count = data.length;
-    for (var i = 0; i < count; i++) {
-        object = document.getElementById("group_"+type).cloneNode(true);
-        $(object).find("#year").val(data[i].year);
-        $(object).find("#semester").val(data[i].semester_num);
-        $(object).find("#opendate").val(data[i].open_date);
-        $(object).find("#lastdate").val(data[i].last_date);
-        $(object).find("#delete").prop('disabled', false);
-        lock(object,true);
-        $(object).appendTo("#body_"+type);
-    }
-    $("#loading").html("");
-    $(".container").fadeIn();
-}
 
 //lock,unlock all input
 function lock(object,type)
@@ -139,19 +88,6 @@ function reset_date(object)
     $(object).find("#lastdate").css("border-color","rgb(204, 204, 204)");
 }
 $(document).ready(function() {
-  //add more data button
-    $("#addbtn_course, #addbtn_syllabus, #addbtn_special, #addbtn_evaluate, #addbtn_approve").click(function() {
-        var id = $(this).attr('id');
-        var type = id.split("_");
-        type = type[1];
-        var i = 0;
-        var object = document.getElementById("group_"+type);
-        var object_clone = $(object).clone();
-        reset_object(object_clone);
-        $(object_clone).find("#delete").prop('disabled', false);
-        lock(object_clone,false);
-        $(object_clone).find("input").val("").end().prependTo("#body_"+type);
-    });
 
 });
 
@@ -252,25 +188,38 @@ $(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_specia
     $(form).find("#warning").html("<img src='../../application/picture/loading_icon.gif' height='60'> ");
     $.post(url, { 'DATA': formData }).done(function(data) {
         $(form).find("#warning").html("");
-        console.log(data);
-        var result = JSON.parse(data);
-        if (typeof result.success === 'undefined' || result.success === null ) {
+        try {
+          var result = JSON.parse(data);
+          if (typeof result.success === 'undefined' || result.success === null ) {
+            swal({
+              type:'error',
+              text: result.error,
+              timer: 2000,
+              confirmButtonText: "Ok!",
+            });
+          }
+          else {
+            swal({
+              type:'success',
+              text: result.success,
+              timer: 2000,
+              confirmButtonText: "Ok!",
+            }, function(){
+              window.location.reload();
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 2000);
+          }
+        } catch (e) {
           swal(
               '',
-                result.error,
+              'ไม่สามารถเพิ่มข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ',
               'error'
             )
-            // alert(result.error);
-        }
-        else {
-          swal(
-            '',
-            result.success,
-            'success'
-          )
-          // alert(result.success);
-          reset_object(form);
-          lock(form,true);
+          console.log(e);
+        } finally {
+
         }
     }).fail(function() {
       $(form).find("#warning").html("");
@@ -279,8 +228,6 @@ $(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_specia
           "ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่",
           'error'
         )
-      // alert("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่");
-
       });
 
     }
@@ -309,20 +256,20 @@ $(document).on('click', "#edit", function() {
 });
 </script>
 
-<body onload="loaddataAll()" id="mainbody">
+<body id="mainbody">
     <h3 class="page-header" style="margin-bottom: 0px;"><center>กำหนดช่วงเวลา</center></h3>
     <div class="panel-body" style="padding-top: 0px;">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#course" data-toggle="tab">กำหนดช่วงเวลาในการกรอกข้อมูลวิธีการวัดผลและประเมินผล</a>
+            <li class="active"><a href="#course" data-toggle="tab">การกรอกข้อมูลวิธีการวัดผลและประเมินผล</a>
             </li>
-            <li><a href="#syllabus" data-toggle="tab">กำหนดช่วงเวลาในการอัพโหลดไฟล์ course syllabus</a>
+            <li><a href="#syllabus" data-toggle="tab">การอัพโหลดไฟล์ course syllabus</a>
             </li>
-            <li><a href="#special" data-toggle="tab">กำหนดช่วงเวลาในการกรอกข้อมูลอาจารพิเศษ</a>
+            <li><a href="#special" data-toggle="tab">การกรอกข้อมูลอาจารพิเศษ</a>
             </li>
-            <li><a href="#evaluate" data-toggle="tab">กำหนดเวลาประเมินกระบวนวิชา</a>
+            <li><a href="#evaluate" data-toggle="tab">การประเมินกระบวนวิชา</a>
             </li>
-            <li><a href="#approve" data-toggle="tab">กำหนดเวลาอนุมัติกระบวนวิชา</a>
+            <li><a href="#approve" data-toggle="tab">การพิจารณาเห็นชอบกระบวนวิชา</a>
             </li>
         </ul>
         <!-- loading tab -->
@@ -334,14 +281,13 @@ $(document).on('click', "#edit", function() {
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
                             <div class="form-inline">
-                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดเวลากรอกข้อมูลวิธีการวัดผลและประเมินผล
-                                    <button type="button" class="btn btn-default" id="addbtn_course">เพิ่ม</button>
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กรอกข้อมูลวิธีการวัดผลและประเมินผล
                                  </h5>
                             </div>
                         </div>
                             <div class="panel-body" id="body_course">
                                 <div class="well" style="position: relative;" id="group_course">
-                                <br>
+                                  <br>
                                     <form>
                                         <div class="form-inline">
                                             <h style="width: 100px;  ">ภาคการศึกษาที่ </h>
@@ -366,6 +312,38 @@ $(document).on('click', "#edit", function() {
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
                                 </div>
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th width="20%">ภาคการศึกษา</th>
+                                            <th width="20%">ปีการศึกษา</th>
+                                            <th>วันเริ่มต้น</th>
+                                            <th>วันสุดท้าย</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <?php
+                                        $result = $deadline->Search_all('1');
+                                        if($result)
+                                        {
+                                          for($i=0;$i<count($result);$i++)
+                                          {
+                                            $opendate = date( 'd/m/Y', strtotime($result[$i]['open_date']));
+                                            $lastdata = date( 'd/m/Y', strtotime($result[$i]['last_date']));
+                                            echo '<tr>
+                                                  <td>'.($i+1).'</td>
+                                                  <td>'.$result[$i]['semester_num'].'</td>
+                                                  <td>'.$result[$i]['year'].'</td>
+                                                  <td>'.$opendate.'</td>
+                                                  <td>'.$lastdata.'</td>
+                                                  </tr>';
+                                          }
+                                        }
+                                       ?>
+                                    </tbody>
+                                </table>
                             </div>
                     </div>
                 </div>
@@ -375,14 +353,13 @@ $(document).on('click', "#edit", function() {
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
                             <div class="form-inline">
-                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดช่วงเวลาในการอัพโหลดไฟล์ course syllabus
-                                    <button type="button" class="btn btn-default" id="addbtn_syllabus">เพิ่ม</button>
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">อัพโหลดไฟล์ course syllabus
                                  </h5>
                             </div>
                         </div>
                             <div class="panel-body" id="body_syllabus">
                                 <div class="well" style="position: relative;" id="group_syllabus">
-                                <br>
+                                    <br>
                                     <form>
                                         <div class="form-inline">
                                             <h style="width: 100px;  ">ภาคการศึกษาที่ </h>
@@ -407,6 +384,37 @@ $(document).on('click', "#edit", function() {
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
                                 </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th width="20%">ภาคการศึกษา</th>
+                                            <th width="20%">ปีการศึกษา</th>
+                                            <th>วันเริ่มต้น</th>
+                                            <th>วันสุดท้าย</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <?php
+                                        $result = $deadline->Search_all('2');
+                                        if($result)
+                                        {
+                                          for($i=0;$i<count($result);$i++)
+                                          {
+                                            $opendate = date( 'd/m/Y', strtotime($result[$i]['open_date']));
+                                            $lastdata = date( 'd/m/Y', strtotime($result[$i]['last_date']));
+                                            echo '<tr>
+                                                  <td>'.($i+1).'</td>
+                                                  <td>'.$result[$i]['semester_num'].'</td>
+                                                  <td>'.$result[$i]['year'].'</td>
+                                                  <td>'.$opendate.'</td>
+                                                  <td>'.$lastdata.'</td>
+                                                  </tr>';
+                                          }
+                                        }
+                                       ?>
+                                    </tbody>
+                                </table>
                             </div>
                     </div>
                 </div>
@@ -416,14 +424,13 @@ $(document).on('click', "#edit", function() {
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
                             <div class="form-inline">
-                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดช่วงเวลาในการกรอกข้อมูลอาจารพิเศษ
-                                    <button type="button" class="btn btn-default" id="addbtn_special">เพิ่ม</button>
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กรอกข้อมูลอาจารพิเศษ
                                  </h5>
                             </div>
                         </div>
                             <div class="panel-body" id="body_special">
                                 <div class="well" style="position: relative;" id="group_special">
-                                <br>
+                                  <br>
                                     <form>
                                         <div class="form-inline">
                                             <h style="width: 100px;  ">ภาคการศึกษาที่ </h>
@@ -448,6 +455,37 @@ $(document).on('click', "#edit", function() {
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
                                 </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th width="20%">ภาคการศึกษา</th>
+                                            <th width="20%">ปีการศึกษา</th>
+                                            <th>วันเริ่มต้น</th>
+                                            <th>วันสุดท้าย</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <?php
+                                        $result = $deadline->Search_all('3');
+                                        if($result)
+                                        {
+                                          for($i=0;$i<count($result);$i++)
+                                          {
+                                            $opendate = date( 'd/m/Y', strtotime($result[$i]['open_date']));
+                                            $lastdata = date( 'd/m/Y', strtotime($result[$i]['last_date']));
+                                            echo '<tr>
+                                                  <td>'.($i+1).'</td>
+                                                  <td>'.$result[$i]['semester_num'].'</td>
+                                                  <td>'.$result[$i]['year'].'</td>
+                                                  <td>'.$opendate.'</td>
+                                                  <td>'.$lastdata.'</td>
+                                                  </tr>';
+                                          }
+                                        }
+                                       ?>
+                                    </tbody>
+                                </table>
                             </div>
                     </div>
                 </div>
@@ -458,14 +496,13 @@ $(document).on('click', "#edit", function() {
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
                             <div class="form-inline">
-                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดเวลาอนุมัติกระบวนวิชา
-                                    <button type="button" class="btn btn-default" id="addbtn_approve">เพิ่ม</button>
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">พิจารณาเห็นชอบกระบวนวิชา
                                  </h5>
                             </div>
                         </div>
                             <div class="panel-body" id="body_approve">
                                 <div class="well" style="position: relative;" id="group_approve">
-                                <br>
+                                    <br>
                                     <form>
                                         <div class="form-inline">
                                             <h style="width: 100px;">ภาคการศึกษาที่ </h>
@@ -481,8 +518,8 @@ $(document).on('click', "#edit", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการอนุมัติกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการอนุมัติกระบวนวิชา <input class="form-control" type="date" id="lastdate">
+                                            วันเปิดการพิจารณาเห็นชอบกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
+                                            วันสุดท้ายของการพิจารณาเห็นชอบกระบวนวิชา <input class="form-control" type="date" id="lastdate">
                                             <div id="warning"></div>
                                         </div>
                                         <br>
@@ -491,6 +528,37 @@ $(document).on('click', "#edit", function() {
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
                                 </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th width="20%">ภาคการศึกษา</th>
+                                            <th width="20%">ปีการศึกษา</th>
+                                            <th>วันเริ่มต้น</th>
+                                            <th>วันสุดท้าย</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <?php
+                                        $result = $deadline->Search_all('5');
+                                        if($result)
+                                        {
+                                          for($i=0;$i<count($result);$i++)
+                                          {
+                                            $opendate = date( 'd/m/Y', strtotime($result[$i]['open_date']));
+                                            $lastdata = date( 'd/m/Y', strtotime($result[$i]['last_date']));
+                                            echo '<tr>
+                                                  <td>'.($i+1).'</td>
+                                                  <td>'.$result[$i]['semester_num'].'</td>
+                                                  <td>'.$result[$i]['year'].'</td>
+                                                  <td>'.$opendate.'</td>
+                                                  <td>'.$lastdata.'</td>
+                                                  </tr>';
+                                          }
+                                        }
+                                       ?>
+                                    </tbody>
+                                </table>
                             </div>
                     </div>
                 </div>
@@ -500,14 +568,13 @@ $(document).on('click', "#edit", function() {
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
                             <div class="form-inline">
-                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กำหนดเวลาประเมินกระบวนวิชา
-                                    <button type="button" class="btn btn-default" id="addbtn_evaluate">เพิ่ม</button>
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">ประเมินกระบวนวิชา
                                  </h5>
                             </div>
                         </div>
                             <div class="panel-body" id="body_evaluate">
                                 <div class="well" style="position: relative;" id="group_evaluate">
-                                <br>
+                                    <br>
                                     <form>
                                         <div class="form-inline">
                                             <h style="width: 100px;">ภาคการศึกษาที่ </h>
@@ -533,6 +600,37 @@ $(document).on('click', "#edit", function() {
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
                                 </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th width="20%">ภาคการศึกษา</th>
+                                            <th width="20%">ปีการศึกษา</th>
+                                            <th>วันเริ่มต้น</th>
+                                            <th>วันสุดท้าย</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <?php
+                                        $result = $deadline->Search_all('4');
+                                        if($result)
+                                        {
+                                          for($i=0;$i<count($result);$i++)
+                                          {
+                                            $opendate = date( 'd/m/Y', strtotime($result[$i]['open_date']));
+                                            $lastdata = date( 'd/m/Y', strtotime($result[$i]['last_date']));
+                                            echo '<tr>
+                                                  <td>'.($i+1).'</td>
+                                                  <td>'.$result[$i]['semester_num'].'</td>
+                                                  <td>'.$result[$i]['year'].'</td>
+                                                  <td>'.$opendate.'</td>
+                                                  <td>'.$lastdata.'</td>
+                                                  </tr>';
+                                          }
+                                        }
+                                       ?>
+                                    </tbody>
+                                </table>
                             </div>
                     </div>
                 </div>

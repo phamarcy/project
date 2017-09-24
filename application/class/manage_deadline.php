@@ -22,7 +22,8 @@ Class Deadline
   {
       $sql = "SELECT s.`semester_num`,s.`year`,d.`last_date`,d.`open_date`
         FROM `deadline` d,`semester` s
-       WHERE d.`semester_id` = s.`semester_id` and d.`deadline_type` = ".$type;
+       WHERE d.`semester_id` = s.`semester_id` and d.`deadline_type` = ".$type."
+       ORDER BY s.`year` DESC,s.`semester_num` DESC LIMIT 0,10";
       $result = $this->DB->Query($sql);
       if($result != null)
       {
@@ -36,7 +37,7 @@ Class Deadline
   public  function Search_all_current($type)
   {
     $semester = $this->Get_Current_Semester();
-    
+
     $sql = "SELECT s.`semester_num`,s.`year`,d.`last_date`,d.`open_date`
     FROM `deadline` d,`semester` s
    WHERE d.`semester_id` = s.`semester_id` and  s.`year`='".$semester['year']."' and s.`semester_num`='".$semester['semester']."' and d.`deadline_type` = ".$type;
@@ -56,12 +57,16 @@ Class Deadline
 //require array : data, string : type
 public function Update($data,$type)
 {
-    $semester_id = $this->Get_Semester_id($data['semester'],$data['year']);
+    $semester_id = $this->Search_Semester_id($data['semester'],$data['year']);
+    if(!$semester_id)
+    {
+      $this->Add_Semester($data['semester'],$data['year']);
+      $semester_id = $this->Search_Semester_id($data['semester'],$data['year']);
+    }
     $sql = "INSERT INTO `deadline`(`semester_id`, `deadline_type`, `open_date`, `last_date`)
     VALUES (".$semester_id.",'".$type."','".$data['opendate']."','".$data['lastdate']."')
     ON DUPLICATE KEY UPDATE `open_date` = '".$data['opendate']."', last_date = '".$data['lastdate']."'";
     $result = $this->DB->Insert_Update_Delete($sql);
-
     if($result == true)
     {
       $return['success'] = 'บันทึกเรียบร้อยแล้ว';
@@ -112,22 +117,7 @@ public function Update($data,$type)
       return true;
     }
   }
-  public function Get_Semester_id($semester,$year)
-  {
-    //Search semester id form semester table
-    $sql = "SELECT `semester_id` FROM `semester` WHERE `semester_num` = ".$semester." AND `year` = '".$year."'";
-    $result = $this->DB->Query($sql);
-    if($result != null)
-    {
-      $semester_id = $result[0]['semester_id'];
-      return $semester_id;
-    }
-    else
-    {
-      $this->LOG->Write("Error : search semester id failed");
-      return false;
-    }
-  }
+
 
   public function Get_Current_Deadline($level)
   {
@@ -215,7 +205,7 @@ public function Update($data,$type)
 
     $data['semester'] = $file_data[0];
     $data['year'] = $file_data[1];
-    $data['id'] = $this->Get_Semester_id($data['semester'],$data['year']);
+    $data['id'] = $this->Search_Semester_id($data['semester'],$data['year']);
     return $data;
   }
 
