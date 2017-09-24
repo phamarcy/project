@@ -4,3 +4,7 @@ application/config/*
 *.pdf
 *.doc
 *.zip
+*.docx
+*.xlsx
+*.docx
+*.txt
