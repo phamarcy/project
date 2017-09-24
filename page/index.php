@@ -13,8 +13,8 @@
 	$check_permission=$person->Check_Grant($_SESSION['id']);
 	$person->Close_connection();
 
-	
-	
+
+
  ?>
 
 <html>
@@ -396,6 +396,9 @@
 							<li>
 								<a href="#" onclick="loadDoc('form/deadline.php')"><i class="fa fa-list-alt fa-fw"></i> กำหนดช่วงเวลา</a>
 							</li>
+							<li>
+								<a href="#" onclick="loadDoc('form/config_term.php')"><i class="fa fa-user-md fa-fw"></i> กำหนดภาคการศึกษาปัจจุบัน</a>
+							</li>
 						<?php }if($_SESSION['level'] == 3 || $_SESSION['level'] == 2 || $_SESSION['admission']==2 || $_SESSION['admission']==3){ ?>
 						<li>
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
@@ -445,16 +448,16 @@
 
 						<?php
 							if($_SESSION['level']==6)
-							{ 
+							{
 								if ($_SESSION['level']==6 && (!$_SESSION['admission'])) { ?>
 									<li>
 										<a href="#" onclick="loadDoc('form/grant.php')"><i class="fa fa-users fa-fw"></i> มอบอำนาจการอนุมัติ</a>
 									</li>
-								<?php	
+								<?php
 								}
 								 ?>
-							
-									
+
+
 								<?php
 							}
 
