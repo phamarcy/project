@@ -27,31 +27,22 @@ class Course
 
   public function Add_New_Course($data)
   {
-    $sql = "SELECT * FROM `course` WHERE `course_id` = '".$data["COURSE_ID"]."'";
-    $result = $this->DB->Query($sql);
-    if($result == null)
-    {
       $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`, `hr_lec`, `hr_lab`, `hr_self`)
-      VALUES ('".$data["COURSE_ID"]."','".$data["NAMETH"]."','".$data["NAMETH"]."','".$data["CREDIT"]["TOTAL"]."','".$data["CREDIT"]["LEC"]."','".$data["CREDIT"]["LAB"]."','".$data["CREDIT"]["SELF"]."')";
+      VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]["TOTAL"]."','".$data["CREDIT"]["LEC"]."','".$data["CREDIT"]["LAB"]."','".$data["CREDIT"]["SELF"]."')";
+      $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]["TOTAL"]."',`hr_lec` = '".$data["CREDIT"]["LEC"]."'
+        ,`hr_lab` = '".$data["CREDIT"]["LAB"]."' , `hr_self` = '".$data["CREDIT"]["SELF"]."'";
       $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
       {
         $return['status'] = 'success';
-        $return['msg'] = 'เพิ่มกระบวนวิชาสำเร็จ';
+        $return['msg'] = 'บันทึกข้อมูลสำเร็จ';
       }
       else
       {
         $return['status'] = 'error';
-        $return['msg'] = 'ไม่สามารถเพิ่มกระบวนวิชาได้ กรุณาติดต่อผู้ดูแลระบบ';
+        $return['msg'] = 'ไม่สามารถบันทึกข้อมูล กรุณาติดต่อผู้ดูแลระบบ';
       }
-    }
-    else
-    {
-      $return['status'] = 'error';
-      $return['msg'] = 'รหัสวิชานี้มีอยู่ในระบบแล้ว';
-    }
     return $return;
-
   }
 
 
@@ -598,7 +589,7 @@ class Course
     }
 
   }
-  private function Get_Course_Info($course_id)
+  public function Get_Course_Info($course_id)
   {
     $sql = "SELECT `course_id`,`course_name_en`,`course_name_th`,`credit`,`hr_lec`,`hr_lab`,`hr_self`
     FROM `course` WHERE `course_id` ='".$course_id."'";
@@ -613,6 +604,24 @@ class Course
       return false;
     }
 
+  }
+
+  public function Remove_Course($course_id)
+  {
+    $sql = "DELETE FROM `course` WHERE `course_id` = '.$course_id.'";
+    $result = $this->DB->Insert_Update_Delete($sql);
+    if(!$result)
+    {
+      $this->LOG->Write("Error sql :".$sql);
+      $return['status'] = 'error';
+      $return['msg'] = 'ไม่สามารถลบข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+    }
+    else
+    {
+      $return['status'] = 'success';
+      $return['msg'] = 'ลบข้อมูลสำเร็จ';
+    }
+    return $return;
   }
   public function Close_connection()
   {
