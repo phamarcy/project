@@ -922,7 +922,8 @@ function submitfunc(casesubmit) {
           'TOTAL' : {
             'LEC' : document.getElementById("MEASURE_TOTALLEC").value,
             'LAB' : document.getElementById("MEASURE_TOTALLAB").value
-          }
+          },
+          'MSG' : document.getElementById("psmeasure").value
         },
         'CALCULATE' : {
           'TYPE' : document.querySelector("input[name='CALCULATE']:checked").value,
@@ -1768,8 +1769,13 @@ function confreset(casereset) {
             </table>
             </div>
           </div>
+          <div class="form-inline">
+            หมายเหตุ
+            <br> <textarea class="form-control" id="psmeasure" rows="4" cols="125"></textarea>
+          </div>
           </li>
 
+          <br>
           <li style="font-size: 14px">
             <div class="form-inline"><b> การสอบ โปรดระบุให้ชัดเจน และครบถ้วน เพื่อใช้เป็นข้อมูลการจัดตารางสอบ </b>(กรุณาระบุชื่ออาจารย์ที่ร่วมสอนในกระบวนวิชา และจำนวนกรรมการคุมสอบอาจระบุอย่างน้อย 3 คน) </div>
 
