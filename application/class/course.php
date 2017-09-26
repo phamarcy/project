@@ -608,7 +608,7 @@ class Course
 
   public function Remove_Course($course_id)
   {
-    $sql = "DELETE FROM `course` WHERE `course_id` = '.$course_id.'";
+    $sql = "DELETE FROM `course` WHERE `course_id` = '".$course_id."'";
     $result = $this->DB->Insert_Update_Delete($sql);
     if(!$result)
     {
