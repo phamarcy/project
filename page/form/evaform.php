@@ -658,16 +658,18 @@ function checksubject(btntype,type){
                             'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
                             'error'
                           )
-                         //alert('กระบวนวิชาที่ค้นหาไม่พบในระบบ\nกรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด');
+                          $('#dlhide').hide();
                          document.getElementById('id').value = "";
+                         document.getElementById('formdrpd').style.display = "none";
                        }
                        else if(temp['info']!=false && temp[0]==null){
-                          //alert('ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้\nสามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง');
                           swal(
                              '',
                              'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
                              'info'
                            )
+                           document.getElementById('formdrpd').style.display = "none";
+                           $('#dlhide').show();
                           document.getElementById('COURSE_ID').value = temp['info']['course_id'];
                           document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
                           document.getElementById('NAME_TH_COURSE').value = temp['info']['course_name_th'];
@@ -676,6 +678,8 @@ function checksubject(btntype,type){
                         else {
                           if($('#id').val()=="" ||$('#id').val()==null )
                           {
+                            $('#dlhide').hide();
+                            document.getElementById('formdrpd').style.display = "none";
                             swal(
                                '',
                                'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
@@ -743,6 +747,8 @@ function checksubject(btntype,type){
                          'success'
                        )
                       getinfo(temp);
+                      $('#dlhide').show();
+
                     }
                     else {
                       swal.hideLoading()
@@ -1101,6 +1107,7 @@ $(function() {//<-- wrapped here
 
 $(document).ready(function(){
 
+  $('#dlhide').hide();
   //deadline
   <?php
     (int)$flagcor = 0;
