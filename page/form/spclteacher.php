@@ -220,12 +220,8 @@ $current = $dlobj->Get_Current_Semester();
 
  }
 
- function checkstate(btntype,type)
- {
-
- }
-
  function checksubject(btntype,type){
+   $('#dlhide').hide();
    if(btntype==1)
    {
      document.getElementById("form1").reset();
@@ -324,6 +320,7 @@ $current = $dlobj->Get_Current_Semester();
                               document.getElementById('course').value = temp['info']['course_id'];
                               document.getElementById('formdrpd').style.display = "none";
 
+                              $('#dlhide').show();
                               $('#topic1')[0].checked = false;
                               $('#topic2')[0].checked = true;
                               $('#cvlist').show();
@@ -333,6 +330,7 @@ $current = $dlobj->Get_Current_Semester();
 
                         }
                         else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
+                          $('#dlhide').hide();
                           swal(
                              '',
                              'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
@@ -347,6 +345,7 @@ $current = $dlobj->Get_Current_Semester();
                               'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
                               'info'
                             )
+                            $('#dlhide').show();
                           document.getElementById('formdrpd').style.display = "none";
                            document.getElementById('course').value = temp['info']['course_id'];
                            $('#topic1')[0].checked = false;
@@ -362,6 +361,7 @@ $current = $dlobj->Get_Current_Semester();
                                  'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
                                  'error'
                                )
+                               $('#dlhide').hide();
                                document.getElementById('formdrpd').style.display = "none";
 
                             }
@@ -432,6 +432,7 @@ $current = $dlobj->Get_Current_Semester();
                             'ดึงข้อมูลสำเร็จ',
                             'success'
                           )
+                        $('#dlhide').show();
                          getinfo(temp);
                      }
                      else {
@@ -832,6 +833,7 @@ $current = $dlobj->Get_Current_Semester();
  }
 
  $(document).ready(function(){
+   $('#dlhide').hide();
 
    //deadline
    <?php
