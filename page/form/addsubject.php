@@ -100,8 +100,11 @@ function checksubject() {
   else {
   var file_data = new FormData;
   var course_id = document.getElementById('COURSE_ID').value;
+  var submittype = '1';
   JSON.stringify(course_id);
+  JSON.stringify(submittype);
   file_data.append("course_id",course_id);
+  file_data.append("type",submittype);
   var URL = '../../application/document/search_document.php';
   $.ajax({
                 url: URL,
@@ -118,11 +121,11 @@ function checksubject() {
                            console.log('Error#542-decode error');
                       }
 
-                    if(temp['info']==false && temp[0]==null){
+                    if(temp['info']==false){
 
                         swal({
-                          title: '',
-                          text: 'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> ท่านต้องการที่จะเพิ่มกระบวนวิชาใหม่หรือไม่?',
+                          title: 'กระบวนวิชาที่ค้นหาไม่พบในระบบ',
+                          text: 'ท่านต้องการที่จะเพิ่มกระบวนวิชาใหม่หรือไม่?',
                           type: 'question',
                           showCancelButton: true,
                           confirmButtonColor: '#3085d6',
@@ -144,13 +147,13 @@ function checksubject() {
                         }
                       })
                      }
-                     else if(temp['info']!=false && temp[0]!=null){
+                     else if(temp['info']!=false){
                         swal(
                            'สำเร็จ',
                            'ดึงข้อมูลสำเร็จ <br>สามารถแก้ไขรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
                            'success'
                          )
-                        $('#typesubmit').val("edit");
+                        $('#typesubmit').val('edit');
                         $('#deletebtn').prop('disabled', false);
                         document.getElementById('COURSE_ID').value = temp['info']['course_id'];
                         document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
@@ -192,11 +195,12 @@ function submitfunc() {
       'LEC' : lec,
       'LAB' : lab,
       'SELF' : self
-    }
+    },
+    'SUBMIT_TYPE' : '1'
   };
 
   //console.log(JSON.stringify(data),JSON.stringify(typesubmit));
-  senddata(JSON.stringify(data),JSON.stringify(typesubmit));
+  senddata(JSON.stringify(data),typesubmit);
 
 }
 function senddata(data,typesubmit)
@@ -527,7 +531,7 @@ function confreset(casereset) {
             <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="7" maxlength="10" required pattern=".{8,10}" placeholder="e.g. 3(3-0-6)" >&nbsp; หน่วยกิต
             </div>
           </div>
-          <input type="hidden" id="typesubmit" name="typesubmit" value="">
+          <input type="hidden" id="typesubmit" name="typesubmit">
         </div>
       </li>
       <br>
