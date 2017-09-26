@@ -13,6 +13,7 @@ if(isset($_POST['DATA']) && isset($_POST['TYPE']))
   }
   else if($type == 'delete')
   {
+    $course_id = $_POST['DATA']['COURSE_ID'];
     $result = $course->Remove_Course($course_id);
   }
   else
