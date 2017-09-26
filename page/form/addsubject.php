@@ -109,7 +109,7 @@ function delsubj() {
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Ok'
                       }).then(function () {
-
+                        location.reload();
                       }, function (dismiss) {
                       // dismiss can be 'cancel', 'overlay',
                       // 'close', and 'timer'
@@ -309,6 +309,7 @@ function senddata(data,typesubmit)
                        cancelButtonColor: '#d33',
                        confirmButtonText: 'Ok'
                      }).then(function () {
+                       location.reload();
 
                      }, function (dismiss) {
                      // dismiss can be 'cancel', 'overlay',
