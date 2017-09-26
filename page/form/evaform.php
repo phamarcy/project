@@ -1159,7 +1159,7 @@ $(document).ready(function(){
       $('#bottomform').hide();
       $('#overtimemsg5').hide();
       $('#listcor').hide();
-      $('#syllabus').prop('required', true);
+      $('#syllabus').prop('required', false);
       $('#syllabus_2').prop('required', false);
       $('#COURSE_ID_2').prop('required', false);";
     }else if ($flageva==0 && $flagcor>0) {
