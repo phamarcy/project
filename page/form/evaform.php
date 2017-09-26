@@ -540,7 +540,6 @@ function getinfo(temp) {
   var choice3 = temp['CALCULATE']['TYPE'];
   $('input[name="CALCULATE"][value=' + choice3 + ']').prop('checked', true);
   document.getElementById('EXPLAINATION').value = temp['CALCULATE']['EXPLAINATION'];
-  document.getElementById("CALOTHER").value = temp['CALCULATE']['OTHERGRADE'];
 
   //fucntion for disabled
   if($("input[name='CALCULATE']:checked").val()=="GROUP")
@@ -551,12 +550,10 @@ function getinfo(temp) {
     $('.stou').prop('disabled',true);
     $('.atof').prop('required',false);
     $('.stou').prop('required',false);
-    $('#CALOTHER').prop('disabled',true);
   }
   else if ($("input[name='CALCULATE']:checked").val()=="CRITERIA")
   {
     $('#EXPLAINATION').prop('disabled',true);
-    $('#CALOTHER').prop('disabled',false);
     $('.stou').prop('disabled',true);
     $('.atof').prop('required',true);
     $('.atof').prop('disabled',false);
@@ -578,7 +575,6 @@ function getinfo(temp) {
   }else {
     $('.atof').val("");
     $('#EXPLAINATION').prop('disabled',true);
-    $('#CALOTHER').prop('disabled',true);
     $('.atof').prop('disabled',true);
     $('.stou').prop('disabled',false);
     $('.atof').prop('required',false);
@@ -966,8 +962,7 @@ function submitfunc(casesubmit) {
           },
           'U' : {
             'MAX' : document.getElementById("CALCULATE_U_MAX").value
-          },
-          'OTHERGRADE' : document.getElementById("CALOTHER").value
+          }
         },
         'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,
         'SUBMIT_TYPE' : casesubmit,
@@ -1205,8 +1200,6 @@ $(document).ready(function(){
         $('#EXPLAINATION').prop('disabled', false);
         $('#EXPLAINATION').prop('required', true);
         $('#EXPLAINATION').val("");
-        $('#CALOTHER').prop('disabled', true);
-        $('#CALOTHER').val("");
       }
       else if ($(this).val()=="CRITERIA")
       {
@@ -1230,8 +1223,6 @@ $(document).ready(function(){
         $('.stou').prop('required',false);
         $('.stou').prop('disabled',true);
         $('#EXPLAINATION').val("");
-        $('#CALOTHER').prop('disabled', false);
-        $('#CALOTHER').val("");
       }
       else {
         $('.atof').val("");
@@ -1240,9 +1231,7 @@ $(document).ready(function(){
         $('.atof').prop('required',false);
         $('.stou').prop('required',true);
         $('.stou').prop('disabled',false);
-        $('#CALOTHER').prop('disabled', true);
         $('#EXPLAINATION').val("");
-        $('#CALOTHER').val("");
       }
     });
 
@@ -1746,12 +1735,12 @@ function confreset(casereset) {
                 <th style="text-align: center;">ภาคปฏิบัติ </th>
               </tr>
               <tr>
-                <td colspan="2">1. สอบกลางภาคฯครั้งที่ 1</td>
+                <td colspan="2">1. สอบกลางภาคครั้งที่ 1</td>
                 <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC1" id="MEASURE_MIDLEC1" size="10" value="0"></div></td>
                 <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB1" id="MEASURE_MIDLAB1" size="10" value="0"></div></td>
               </tr>
               <tr>
-                <td colspan="2">2. สอบกลางภาคฯครั้งที่ 2</td>
+                <td colspan="2">2. สอบกลางภาคครั้งที่ 2</td>
                 <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC2" id="MEASURE_MIDLEC2" size="10" value="0"></div></td>
                 <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB2" id="MEASURE_MIDLAB2" size="10" value="0"></div></td>
               </tr>
@@ -1788,7 +1777,7 @@ function confreset(casereset) {
               <br>
               <li style="font-size: 14px">
 
-                <b>สอบกลางภาคฯครั้งที่ 1</b>
+                <b>สอบกลางภาคครั้งที่ 1</b>
                 <ul>
                   <div class="form-inline">
                     <li style="font-size: 14px">
@@ -1854,7 +1843,7 @@ function confreset(casereset) {
 
               <li style="font-size: 14px">
 
-                <b>สอบกลางภาคฯครั้งที่ 2</b>
+                <b>สอบกลางภาคครั้งที่ 2</b>
                 <ul>
                   <div class="form-inline">
                     <li style="font-size: 14px">
@@ -2078,15 +2067,10 @@ function confreset(casereset) {
               </table>
             </div>
           </div>
-          <div class="row" style="margin-left: 10px;">
-            <b>อื่นๆ</b><br>
-            <textarea class="form-control" name="CALOTHER" id="CALOTHER" rows="4" cols="125" ></textarea>
-          </div>
         </div>
-            <br>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม &nbsp;
               <div style="margin-left:35px;">
-                <input type="text" class="form-control" name="EXPLAINATION" id="EXPLAINATION" placeholder="โปรดระบุ">
+                <textarea class="form-control" name="EXPLAINATION" id="EXPLAINATION" rows="4" cols="125" placeholder="โปรดระบุ" ></textarea>
               </div>
               <br>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE3" value="SU"> ให้อักษร S หรือ U
@@ -2120,7 +2104,7 @@ function confreset(casereset) {
           </div>
           </li>
           <li style="font-size: 14px;">
-            <b>นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย</b> &nbsp;&nbsp;โดยไม่ได้รับอนุญาตให้เลื่อนการสอบตามข้อบังคับฯ ของมหาวิทยาลัยเชียงใหม่ ว่าด้วยการศึกษาชั้นปริญญาตรี อาจารย์ผู้สอนจะประเมินดังนี้
+            <b>นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย</b> &nbsp;&nbsp;โดยไม่ได้รับอนุญาตให้เลื่อนการสอบตามข้อบังคับ ของมหาวิทยาลัยเชียงใหม่ ว่าด้วยการศึกษาชั้นปริญญาตรี อาจารย์ผู้สอนจะประเมินดังนี้
             <br>
             <div class="form-inline"><div class="form-group"><div class="radio">
             <input type="radio" name="ABSENT" id="ABSENT1" value="F" required checked>&nbsp;ให้ลำดับขั้น F &nbsp;&nbsp; <br>
