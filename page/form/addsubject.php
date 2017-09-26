@@ -77,15 +77,16 @@ function delsubj() {
     cancelButtonText: 'Cancel'
   }).then(function () {
 
-    var data = {
-      'COURSE_ID' : document.getElementById('COURSE_ID').value
+    var deldata = {
+      'COURSE_ID' : document.getElementById("COURSE_ID").value
     };
-    var file_data = new FormData;
-    JSON.stringify(data);
+
+    var data = JSON.stringify(deldata);
+
     var type = 'delete';
+    var file_data = new FormData;
     file_data.append("DATA",data);
     file_data.append("TYPE",type);
-    console.log(data);
     var URL = '../../application/subject/add_course.php';
     $.ajax({
                   url: URL,
@@ -265,7 +266,7 @@ function submitfunc() {
   var lab = splitor.charAt(4);
   var self = splitor.charAt(6);
   var data = {
-    'COURSE_ID': document.getElementById("COURSE_ID").value,
+    'COURSE_ID' : document.getElementById("COURSE_ID").value,
     'NAMETH' : document.getElementById("NAME_TH_COURSE").value,
     'NAMEENG' : document.getElementById("NAME_ENG_COURSE").value,
     'CREDIT' : {
@@ -277,7 +278,7 @@ function submitfunc() {
     'SUBMIT_TYPE' : '1'
   };
 
-  //console.log(JSON.stringify(data),JSON.stringify(typesubmit));
+  console.log(JSON.stringify(data),JSON.stringify(typesubmit));
   senddata(JSON.stringify(data),typesubmit);
 
 }
