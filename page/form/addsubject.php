@@ -77,6 +77,79 @@ function delsubj() {
     cancelButtonText: 'Cancel'
   }).then(function () {
 
+    var data = {
+      'COURSE_ID' : document.getElementById('COURSE_ID').value
+    };
+    var file_data = new FormData;
+    JSON.stringify(data);
+    var type = 'delete';
+    file_data.append("DATA",data);
+    file_data.append("TYPE",type);
+    console.log(data);
+    var URL = '../../application/subject/add_course.php';
+    $.ajax({
+                  url: URL,
+                  dataType: 'text',
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: file_data,
+                  type: 'post',
+                  success: function (result) {
+                    var temp = $.parseJSON(result);
+                    if(temp["status"]=='success')
+                    {
+                      swal({
+                        title: 'สำเร็จ',
+                        text: temp["msg"],
+                        type: 'success',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ok'
+                      }).then(function () {
+
+                      }, function (dismiss) {
+                      // dismiss can be 'cancel', 'overlay',
+                      // 'close', and 'timer'
+                      if (dismiss === 'cancel') {
+
+                      }
+                    })
+
+                    }
+                    else {
+                      swal({
+                        title: 'เกิดข้อผิดพลาด',
+                        text: temp["msg"],
+                        type: 'error',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ok'
+                      }).then(function () {
+
+                      }, function (dismiss) {
+                      // dismiss can be 'cancel', 'overlay',
+                      // 'close', and 'timer'
+                      if (dismiss === 'cancel') {
+
+                      }
+                    })
+                      //alert(temp["msg"]);
+                    }
+
+                  },
+                  failure: function (result) {
+                       alert(result);
+                  },
+                  error: function (xhr, status, p3, p4) {
+                       var err = "Error " + " " + status + " " + p3 + " " + p4;
+                       if (xhr.responseText && xhr.responseText[0] == "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                       console.log(err);
+                  }
+       });
 
   }, function (dismiss) {
   // dismiss can be 'cancel', 'overlay',
@@ -91,6 +164,7 @@ function checksubject() {
 
   if($('#COURSE_ID').val()=="" ||$('#COURSE_ID').val()==null || $('#COURSE_ID').val().length != 6 )
   {
+    $('#submitbtn').hide();
     swal(
        '',
        'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
@@ -138,11 +212,14 @@ function checksubject() {
                           document.getElementById('NAME_ENG_COURSE').value = '';
                           document.getElementById('NAME_TH_COURSE').value = '';
                           document.getElementById('TOTAL').value = '';
+                          $('#submitbtn').show();
 
                         }, function (dismiss) {
                         // dismiss can be 'cancel', 'overlay',
                         // 'close', and 'timer'
                         if (dismiss === 'cancel') {
+                          document.getElementById('COURSE_ID').value = '';
+                          $('#submitbtn').hide();
 
                         }
                       })
@@ -153,6 +230,7 @@ function checksubject() {
                            'ดึงข้อมูลสำเร็จ <br>สามารถแก้ไขรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
                            'success'
                          )
+                        $('#submitbtn').show();
                         $('#typesubmit').val('edit');
                         $('#deletebtn').prop('disabled', false);
                         document.getElementById('COURSE_ID').value = temp['info']['course_id'];
@@ -287,6 +365,9 @@ $(function() {//<-- wrapped here
 
 $(document).ready(function(){
 
+
+  //hide
+  $('#submitbtn').hide();
   //radio
   $("input[name='EVALUATE_TYPE']").change(function(){
     if($(this).val()=="SU")
