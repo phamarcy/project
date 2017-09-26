@@ -25,7 +25,7 @@ class Course
     $this->SEMESTER  = $this->DEADLINE->Get_Current_Semester();
   }
 
-  public function Add_New_Course($data)
+  public function Add_Course($data)
   {
       $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`, `hr_lec`, `hr_lab`, `hr_self`)
       VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]["TOTAL"]."','".$data["CREDIT"]["LEC"]."','".$data["CREDIT"]["LAB"]."','".$data["CREDIT"]["SELF"]."')";

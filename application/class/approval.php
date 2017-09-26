@@ -117,9 +117,9 @@ class approval
         $this->Sendemail($course_id,$noti);
         $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       }
-      if($status_after == 7)
+      if($status_after == 5)
       {
-        $pdf_complete = $this->Send_Complete_Evaluate($course_id);
+        $pdf_complete = $this->Send_Complete_Evaluate($course_id,'3');
         $pdf_result = json_decode($pdf_complete,true);
         if($pdf_result != null)
         {
@@ -127,7 +127,21 @@ class approval
         }
         else
         {
-            $this->LOG->Write("Completing file error : ".$pdf_complete);
+            $this->LOG->Write("Completing agree file error : ".$pdf_complete);
+            return false;
+        }
+      }
+      else if($status_after == 7)
+      {
+        $pdf_complete = $this->Send_Complete_Evaluate($course_id,'4');
+        $pdf_result = json_decode($pdf_complete,true);
+        if($pdf_result != null)
+        {
+          return true;
+        }
+        else
+        {
+            $this->LOG->Write("Completing approve file error : ".$pdf_complete);
             return false;
         }
       }
@@ -143,12 +157,11 @@ class approval
 
   }
 
-  private function Send_Complete_Evaluate($course_id)
+  private function Send_Complete_Evaluate($course_id,$type)
   {
-    $data['SUBMIT_TYPE'] = '3';
+    $data['SUBMIT_TYPE'] = $type;
     $data['COURSE_ID'] = $course_id;
     $DATA['DATA'] = json_encode($data);
-    $DATA['APPROVER_ID'] = $_SESSION['id'];
     $url = "application/pdf/generate_evaluate.php";
     $result = $this->CURL->Request($DATA,$url);
     return $result;
@@ -156,7 +169,7 @@ class approval
 
   private function Send_Complete_Special($course_id,$instructor_id)
   {
-    $data['SUBMIT_TYPE'] = '3';
+    $data['SUBMIT_TYPE'] = '4';
     $data['COURSEDATA']['COURSE_ID'] = $course_id;
     $data['TEACHERDATA']['ID'] = $instructor_id;
     $DATA['DATA'] = json_encode($data);

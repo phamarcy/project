@@ -4,6 +4,7 @@ require_once(__DIR__.'/../config/configuration_variable.php');
 require_once(__DIR__.'/../class/manage_deadline.php');
 require_once(__DIR__.'/../class/approval.php');
 require_once(__DIR__.'/../class/course.php');
+require_once(__DIR__.'/../class/person.php');
 require_once(__DIR__.'/../class/curl.php');
 require_once(__DIR__.'/../lib/thai_date.php');
 require_once(__DIR__.'/../class/log.php');
@@ -12,7 +13,9 @@ $deadline = new Deadline();
 $semester = $deadline->Get_Current_Semester();
 $curl = new CURL();
 $course = new Course();
+$person = new Person();
 $file_path = '';
+//submit type 1 = draft, 2 = temporary save,3 = assessor agree,4 = approve
 if(isset($_POST['DATA']))
 {
 	$data = $_POST['DATA'];
@@ -30,7 +33,7 @@ if(isset($_POST['DATA']))
 		Close_connection();
 		die;
 	}
-	if($DATA['SUBMIT_TYPE'] != '0' && $DATA['SUBMIT_TYPE'] != '3')
+	if($DATA['SUBMIT_TYPE'] != '0' && $DATA['SUBMIT_TYPE'] != '4' && $DATA['SUBMIT_TYPE'] != '3')
 	{
 		Write_temp_data($data); //create txt file
 	}
@@ -44,7 +47,7 @@ if(isset($_POST['DATA']))
 		die;
 			// Write_temp_data($data);
 	}
-	else if($DATA['SUBMIT_TYPE'] == '1')
+	else if($DATA['SUBMIT_TYPE'] == '1' || $DATA['SUBMIT_TYPE'] == '3')
 	{
 		$file_path = $FILE_PATH."/draft/".$DATA['COURSE_ID'];
 		if(!file_exists($file_path))
@@ -56,29 +59,50 @@ if(isset($_POST['DATA']))
 		{
 			mkdir($file_path);
 		}
+
     $data = array();
+		if($DATA['SUBMIT_TYPE'] == '3')
+		{
+			$DATA = $course->Get_Document('evaluate',$DATA['COURSE_ID'],null,null,$semester['semester'],$semester['year']);
+			$DATA = json_decode($DATA,true);
+			$DATA['SUBMIT_TYPE'] = '3';
+		}
     $DATA["SECTION"] = '1';
     $DATA["STUDENT"] = $DATA["STUDENT"][0];
     $DATA["FILE_PATH"] = $file_path;
     $DATA['SEMESTER'] = $semester;
+		if($DATA['SUBMIT_TYPE'] == '3')
+		{
+			$DATA['APPROVED'] = array();
+			$DATA['APPROVED']['ID'] = $person->Get_Head_Department(null,$DATA['COURSE_ID']);
+			$DATA['APPROVED']['TYPE'] = '3';
+		}
     $data['DATA'] = json_encode($DATA);
     $gen_result =  Generate($data);
     $gen_result = json_decode($gen_result,true);
 
     if($gen_result['status'] == 'success')
     {
-      $approve = new approval('1');
-      $result = $approve->Update_Status_Evaluate($DATA['COURSE_ID'],'1','all','');
-      if($result)
-      {
-        $return['status'] = "success";
-        $return['msg'] = "บันทึกสำเร็จ";
-      }
-      else
-      {
-        $return['status'] = "error";
-        $return['msg'] = 'ไม่สามารถอัพเดทข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
-      }
+			if($DATA['SUBMIT_TYPE'] == '1')
+			{
+	      $approve = new approval('1');
+	      $result = $approve->Update_Status_Evaluate($DATA['COURSE_ID'],'1','all','');
+	      if($result)
+	      {
+	        $return['status'] = "success";
+	        $return['msg'] = "บันทึกสำเร็จ";
+	      }
+	      else
+	      {
+	        $return['status'] = "error";
+	        $return['msg'] = 'ไม่สามารถอัพเดทข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+	      }
+			}
+			else
+			{
+				$return['status'] = "success";
+				$return['msg'] = "บันทึกสำเร็จ";
+			}
     }
     else
     {
@@ -89,7 +113,7 @@ if(isset($_POST['DATA']))
 		 Close_connection();
     die;
 	}
-	else if($DATA['SUBMIT_TYPE'] == '3')
+	else if($DATA['SUBMIT_TYPE'] == '4') //approve
 	{
 		$course_id = $DATA['COURSE_ID'];
 		$DATA = $course->Get_Document('evaluate',$course_id,null,null,$semester['semester'],$semester['year']);
@@ -109,7 +133,8 @@ if(isset($_POST['DATA']))
     $DATA['SEMESTER'] = $semester;
     $DATA['FILE_PATH'] = $file_path;
     $DATA['APPROVED'] = array();
-		$DATA['APPROVED']['ID'] = $_POST['APPROVER_ID'];
+		$DATA['APPROVED']['ID'] = $person->Get_Head_Department(null,$DATA['COURSE_ID']);
+		$DATA['APPROVED']['TYPE'] = '4';
     for($i=0;$i<$num_section;$i++)
     {
       $data = array();

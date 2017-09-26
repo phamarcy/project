@@ -462,6 +462,44 @@ class Person
     }
 
   }
+
+  public function Get_Head_Department($dept_id,$course_id)
+  {
+    if($dept_id == null)
+    {
+      $this->DB->Change_DB($this->DEFAULT_DB);
+      $sql = "SELECT `department_id` FROM `department_course_responsible` WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->DEADLINE['id'];
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        $dept_id = $result[0]['department_id'];
+      }
+    }
+    //1203,X011 = science, 1202,X012 = care
+    if($dept_id == '1202')
+    {
+      $position_dean = 'X012';
+    }
+    else if ($dept_id == '1203')
+    {
+      $position_dean = 'X011';
+    }
+    else
+    {
+      return false;
+    }
+    $this->DB->Change_DB('person');
+    $sql = "SELECT `code` FROM `staff` WHERE `position_dean` = '".$position_dean."'";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      return $result[0]['code'];
+    }
+    else
+    {
+      return false;
+    }
+  }
   public function Get_Grant(){
     $DATA="";
     $this->DB->Change_DB($this->DEFAULT_DB);
@@ -486,7 +524,7 @@ class Person
 
     if ($result) {
       if ($now>=$start && $now<=$end ) {
-          
+
           if ($_SESSION['level']==1) {
             $_SESSION['admission']=1;//permission teacher
           }
@@ -506,7 +544,7 @@ class Person
           }else {
             $_SESSION['level']=6;
           }
-         
+
       }
     }
 

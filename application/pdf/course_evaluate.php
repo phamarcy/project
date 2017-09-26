@@ -539,9 +539,16 @@ if(isset($DATA['APPROVED']))
 	$pdf->SetX(35);
 	$pdf->Cell(0,7,iconv('UTF-8','cp874','('.$approver_name.')'),0,1);
 	$pdf->SetX(35);
-	$pdf->Cell(0,7,iconv('UTF-8','cp874','(หัวหน้า/ผู้แทนหัวหน้าภาควิชา)'),0,1);
+	$pdf->Cell(0,7,iconv('UTF-8','cp874','(หัวหน้าภาควิชา)'),0,1);
 	$person->Close_connection();
-	$pdf->Output($file_path."/".$DATA['COURSE_ID']."_".$SECTION."_evaluate_".$semester['semester']."_".$semester['year'].".pdf","F");
+	if($DATA['APPROVED']['TYPE'] == '4')
+	{
+		$pdf->Output($file_path."/".$DATA['COURSE_ID']."_".$SECTION."_evaluate_".$semester['semester']."_".$semester['year'].".pdf","F");
+	}
+	else if($DATA['APPROVED']['TYPE'] == '3')
+	{
+		$pdf->Output($file_path."/".$DATA['COURSE_ID']."_evaluate_".$semester['semester']."_".$semester['year'].".pdf","F");
+	}
 }
 else
 {

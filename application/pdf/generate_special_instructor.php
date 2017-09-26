@@ -17,11 +17,11 @@ if(isset($_POST['DATA']))
 {
 	$data = $_POST['DATA'];
 	$DATA = json_decode($data,true);
-	if($DATA['SUBMIT_TYPE'] == '3')
+	if($DATA['SUBMIT_TYPE'] == '4')
 	{
 		$instructor_id = $DATA['TEACHERDATA']['ID'];
 	}
-	else if($DATA['SUBMIT_TYPE'] != '3')
+	else if($DATA['SUBMIT_TYPE'] != '4')
 	{
 		$fname = $DATA['TEACHERDATA']['FNAME'];
 		$lname = $DATA['TEACHERDATA']['LNAME'];
@@ -115,7 +115,7 @@ if(isset($_POST['DATA']))
 		Close_connection();
     die;
 	}
-	else if($DATA['SUBMIT_TYPE'] == '3')
+	else if($DATA['SUBMIT_TYPE'] == '4')
 	{
 		$course_id = $DATA['COURSEDATA']['COURSE_ID'];
 		$instructor_id = $DATA['TEACHERDATA']['ID'];
