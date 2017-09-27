@@ -146,7 +146,7 @@ $end = strtotime($current_semester[0]['last_date']);
                     <th>ชื่อวิชา</th>
                     <th style="text-align:center;">Course</th>
                     <th style="text-align:center;">Evaluate</th>
-                    <th style="text-align:center;">สถานะการ<?php echo $approve_text ?></th>
+                    <th style="text-align:center;">สถานะการพิจารณา</th>
                     <th></th>
                   </tr>
                 </thead>
