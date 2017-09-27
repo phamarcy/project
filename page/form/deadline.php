@@ -6,6 +6,10 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
 }
 require_once(__DIR__.'/../../application/class/manage_deadline.php');
 $deadline = new Deadline();
+if(!isset($_POST['tab']))
+{
+  $_POST['tab'] = 'course';
+}
 ?>
 <html>
 <header>
@@ -133,6 +137,24 @@ $(document).on('change', '#opendate', function() {
     }
 });
 
+function Load_Page(tab) {
+    var form = document.createElement("form");
+    var element1 = document.createElement("input");
+
+    form.method = "POST";
+    form.action = "#";
+
+    var type = tab.split("_");
+    type = type[1];
+    element1.value=type;
+    element1.name="tab";
+    form.appendChild(element1);
+
+    document.body.appendChild(form);
+
+    form.submit();
+}
+
 //submit data to database
 $(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_special,#submitbtn_approve, #submitbtn_evaluate", function() {
   var button_object = $(this)
@@ -205,10 +227,10 @@ $(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_specia
               timer: 2000,
               confirmButtonText: "Ok!",
             }, function(){
-              window.location.reload();
+              Load_Page(id);
             });
             setTimeout(function() {
-              window.location.reload();
+                Load_Page(id);
             }, 2000);
           }
         } catch (e) {
@@ -250,10 +272,10 @@ $(document).on('click', "#delete", function() {
 });
 
 //edit data
-$(document).on('click', "#edit", function() {
-    var object = $(this).parent();
-    lock(object,false);
-});
+// $(document).on('click', "#edit", function() {
+//     var object = $(this).parent();
+//     lock(object,false);
+// });
 </script>
 
 <body id="mainbody">
@@ -261,22 +283,22 @@ $(document).on('click', "#edit", function() {
     <div class="panel-body" style="padding-top: 0px;">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#course" data-toggle="tab">การกรอกข้อมูลวิธีการวัดผลและประเมินผล</a>
+            <li <?php echo ($_POST['tab'] == 'course')? 'class="active"' : '' ?>><a href="#course" data-toggle="tab">การกรอกข้อมูลวิธีการวัดผลและประเมินผล</a>
             </li>
-            <li><a href="#syllabus" data-toggle="tab">การอัพโหลดไฟล์ course syllabus</a>
+            <li <?php echo ($_POST['tab'] == 'syllabus')? 'class="active"' : '' ?>><a href="#syllabus" data-toggle="tab">การอัพโหลดไฟล์ course syllabus</a>
             </li>
-            <li><a href="#special" data-toggle="tab">การกรอกข้อมูลอาจารพิเศษ</a>
+            <li <?php echo ($_POST['tab'] == 'special')? 'class="active"' : '' ?>><a href="#special" data-toggle="tab">การกรอกข้อมูลอาจารพิเศษ</a>
             </li>
-            <li><a href="#evaluate" data-toggle="tab">การประเมินกระบวนวิชา</a>
+            <li <?php echo ($_POST['tab'] == 'evaluate')? 'class="active"' : '' ?>><a href="#evaluate" data-toggle="tab">การประเมินกระบวนวิชา</a>
             </li>
-            <li><a href="#approve" data-toggle="tab">การพิจารณาเห็นชอบกระบวนวิชา</a>
+            <li <?php echo ($_POST['tab'] == 'approve')? 'class="active"' : '' ?>><a href="#approve" data-toggle="tab">การพิจารณาเห็นชอบกระบวนวิชา</a>
             </li>
         </ul>
         <!-- loading tab -->
         <div id="loading"></div>
         <!-- Tab panes -->
         <div class="tab-content">
-            <div class="tab-pane fade in active" id="course">
+            <div class="tab-pane fade  <?php echo ($_POST['tab'] == 'course')? ' in active' : '' ?>" id="course">
                 <div class="container">
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
@@ -307,7 +329,7 @@ $(document).on('click', "#edit", function() {
                                             วันสุดท้ายของการกรอกข้อมูลวิธีการวัดผลและประเมินผล <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
                                         </div>
                                         <br>
-                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
+                                        <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_course"  name="submit">บันทึก</button>
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
@@ -348,7 +370,7 @@ $(document).on('click', "#edit", function() {
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="syllabus">
+            <div class="tab-pane fade <?php echo ($_POST['tab'] == 'syllabus')? ' in active' : '' ?>" id="syllabus">
                 <div class="container">
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
@@ -379,7 +401,7 @@ $(document).on('click', "#edit", function() {
                                             วันสุดท้ายของการอัพโหลดไฟล์ course syllabus <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
                                         </div>
                                         <br>
-                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
+                                        <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_syllabus"  name="submit">บันทึก</button>
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
@@ -419,7 +441,7 @@ $(document).on('click', "#edit", function() {
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="special">
+            <div class="tab-pane fade <?php echo ($_POST['tab'] == 'special')? ' in active' : '' ?>" id="special">
                 <div class="container">
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
@@ -450,7 +472,7 @@ $(document).on('click', "#edit", function() {
                                             วันสุดท้ายของการกรอกข้อมูลอาจารพิเศษ <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
                                         </div>
                                         <br>
-                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
+                                        <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_special"  name="submit">บันทึก</button>
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
@@ -491,7 +513,7 @@ $(document).on('click', "#edit", function() {
                 </div>
             </div>
 
-            <div class="tab-pane fade" id="approve">
+            <div class="tab-pane fade <?php echo ($_POST['tab'] == 'approve')? ' in active' : '' ?>" id="approve">
                 <div class="container">
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
@@ -523,7 +545,7 @@ $(document).on('click', "#edit", function() {
                                             <div id="warning"></div>
                                         </div>
                                         <br>
-                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
+                                        <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_approve" name="submit">บันทึก</button>
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
@@ -563,7 +585,7 @@ $(document).on('click', "#edit", function() {
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="evaluate">
+            <div class="tab-pane fade <?php echo ($_POST['tab'] == 'evaluate')? ' in active' : '' ?>" id="evaluate">
                 <div class="container">
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
@@ -595,7 +617,7 @@ $(document).on('click', "#edit", function() {
                                             <div id="warning"></div>
                                         </div>
                                         <br>
-                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button>
+                                        <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
                                         <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_evaluate" name="submit">บันทึก</button>
                                         <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
                                     </form>
