@@ -338,7 +338,7 @@ $(document).on('click', "#delete", function() {
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>ลำดับ</th>
                                             <th width="20%">ภาคการศึกษา</th>
                                             <th width="20%">ปีการศึกษา</th>
                                             <th>วันเริ่มต้น</th>
@@ -409,7 +409,7 @@ $(document).on('click', "#delete", function() {
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>ลำดับ</th>
                                             <th width="20%">ภาคการศึกษา</th>
                                             <th width="20%">ปีการศึกษา</th>
                                             <th>วันเริ่มต้น</th>
@@ -480,7 +480,7 @@ $(document).on('click', "#delete", function() {
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>ลำดับ</th>
                                             <th width="20%">ภาคการศึกษา</th>
                                             <th width="20%">ปีการศึกษา</th>
                                             <th>วันเริ่มต้น</th>
@@ -553,7 +553,7 @@ $(document).on('click', "#delete", function() {
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>ลำดับ</th>
                                             <th width="20%">ภาคการศึกษา</th>
                                             <th width="20%">ปีการศึกษา</th>
                                             <th>วันเริ่มต้น</th>
@@ -625,7 +625,7 @@ $(document).on('click', "#delete", function() {
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>ลำดับ</th>
                                             <th width="20%">ภาคการศึกษา</th>
                                             <th width="20%">ปีการศึกษา</th>
                                             <th>วันเริ่มต้น</th>
