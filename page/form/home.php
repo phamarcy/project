@@ -206,7 +206,7 @@ $data_course= json_decode($var, true);
 																 
 																<?php if ($_SESSION['level']==3): ?>
                                   <?php if(($value_course['evaluate']['status'])==4){ ?>
-                                    <button class='btn btn-outline btn-success'  onclick='senttohead(<?php echo $value_course['id'] ?>);'>คณะยืนยัน</button>
+                                    <button class='btn btn-outline btn-success'  onclick='senttohead(<?php echo $value_course['id'] ?>);'>ยืนยัน</button>
                                     <?php
                                   } ?>
                                 <?php endif; ?>
@@ -310,7 +310,7 @@ $data_course= json_decode($var, true);
 																						
 																						<?php echo ' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp; if ($_SESSION['level']==3): ?>
                                               <?php if($valuesp['status']==4){ ?>
-                                                <button class='btn btn-outline btn-success'  onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>คณะยืนยัน</button>
+                                                <button class='btn btn-outline btn-success'  onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>ยืนยัน</button>
                                                 <?php
                                               } ?>
                                             <?php endif; ?>

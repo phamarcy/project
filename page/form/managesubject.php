@@ -212,7 +212,7 @@ $history=$course->Get_History($department['code']);
                 <div class="col-md-4">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <b>ข้อมูลกระบวนวิชาในสังกัดย้อนหลัง</b>
+                      <b>ข้อมูลกระบวนวิชาย้อนหลัง</b>
                     </div>
                     <div class="panel-body">
                       <div class="form-inline">
