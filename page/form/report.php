@@ -5,6 +5,8 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
     die('กรุณา Login ใหม่');
 }
 require_once(__DIR__."/../../application/class/report.php");
+require_once(__DIR__."/../../application/class/person.php");
+$person = new Person();
  ?>
 <html>
 <header>
@@ -76,8 +78,14 @@ $(function() {//<-- wrapped here
                             ปีการศึกษา
                           <input type="text" class="form-control numonly" placeholder="e.g. 2560" style="width: 100px;" pattern=".{4,4}" name="year" required > &nbsp;
                         </div>
+                        <?php  if($_SESSION['level'] == '3'){ ?>
+                          ภาควิชา
+                          <select class="form-control" name="department">
+                            <option value="1202">บริบาลเภสัชกรรม</option>
+                            <option value="1203">วิทยาศาสตร์เภสัชกรรม</option>
+                          </select>
+                        <?php  } ?>
                         <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
-
                     </h>
                 </center>
             </div>
@@ -87,10 +95,20 @@ $(function() {//<-- wrapped here
       {
         $semester = $_POST['semester'];
         $year = $_POST['year'];
+        if(isset($_POST['department']))
+        {
+          $dept_id = $_POST['department'];
+
+        }
+        else
+        {
+          $dept_id = $person->Get_Staff_Dep($_SESSION['id']);
+          $dept_id = $dept_id['code'];
+        }
         //start Search
         $report = new Report();
-        $data_eva = $report->Get_Evaluate_Report($semester,$year);
-        $data_special = $report->Get_Special_Report($semester,$year);
+        $data_eva = $report->Get_Evaluate_Report($semester,$year,$dept_id);
+        $data_special = $report->Get_Special_Report($semester,$year,$dept_id);
         //end search
       ?>
             <div class="panel-body">
@@ -111,7 +129,7 @@ $(function() {//<-- wrapped here
                         <div class="panel panel-info">
                             <div class="panel-heading">
                               <h5><b>
-                              <?php echo "แบบแจ้งวิธีการวัดผลและประเมินผล ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
+                              <?php echo "แบบแจ้งวิธีการวัดผลและประเมินผล ภาควิชา ". ($dept_id == '1202'? 'บริบาลเภสัชกรรม': ($dept_id == '1203'? 'วิทยาศาสตร์เภสัชกรรม' : 'unknow' )). " ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
                               $download_all = '../../application/download/download.php?course=all&info=evaluate&semester='.$semester.'&year='.$year;
                               ?>
                               <a target="_blank" href="<?php echo $download_all; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ pdf ทั้งหมด</button></a>
@@ -172,7 +190,7 @@ $(function() {//<-- wrapped here
                       <div class="panel panel-info">
                           <div class="panel-heading">
                             <h5><b>
-                            <?php echo "แบบเชิญอาจารย์พิเศษ ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
+                            <?php echo "แบบเชิญอาจารย์พิเศษ ภาควิชา ".($dept_id == '1202'? 'บริบาลเภสัชกรรม': ($dept_id == '1203'? 'วิทยาศาสตร์เภสัชกรรม' : 'unknow' ))." ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
                             $download_all_special =  '../../application/download/download.php?course=all&info=special&semester='.$semester.'&year='.$year;
                             ?>
                             <a target="_blank" href="<?php echo $download_all_special; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ pdf ทั้งหมด</button></a>
@@ -235,10 +253,10 @@ $(function() {//<-- wrapped here
                       <div class="container">
                         <div class="panel panel-info">
                           <div class="panel-heading">
-                            <h5><b><?php echo "สรุปข้อมูล ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;?></b></h5>
+                            <h5><b><?php echo "สรุปข้อมูล ภาควิชา ".($dept_id == '1202'? 'บริบาลเภสัชกรรม': ($dept_id == '1203'? 'วิทยาศาสตร์เภสัชกรรม' : 'unknow' ))." ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;?></b></h5>
                           </div>
                           <div class="panel-body">
-                              <center><a target="_blank" href="<?php echo "../../application/report/summary.php?semester=".$semester."&year=".$year?>"><button type="button" class="btn btn-success">ดาวน์โหลด ที่นี่</button></center>
+                              <center><a target="_blank" href="<?php echo "../../application/report/summary.php?dept=".$dept_id."&semester=".$semester."&year=".$year?>"><button type="button" class="btn btn-success">ดาวน์โหลด ที่นี่</button></center>
                           </div>
                         </div>
                       </div>

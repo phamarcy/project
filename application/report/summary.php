@@ -3,16 +3,19 @@ require_once(__DIR__."/../config/configuration_variable.php");
 require_once(__DIR__."/../lib/PHPExcel/Classes/PHPExcel.php");
 require_once(__DIR__."/../class/database.php");
 require_once(__DIR__."/../class/person.php");
+require_once(__DIR__."/../class/course.php");
 require_once(__DIR__."/../class/manage_deadline.php");
 $deadline = new Deadline();
 $database = new Database();
 $person = new Person();
+$course = new Course();
 $Excel = new PHPExcel();
 
-if(isset($_GET['semester']) && isset($_GET['year']))
+if(isset($_GET['semester']) && isset($_GET['year']) && isset($_GET['dept']))
 {
   $semester['semester'] = $_GET['semester'];
   $semester['year'] = $_GET['year'];
+  $dept_id = $_GET['dept'];
   $semester['id'] = $deadline->Search_Semester_id($semester['semester'],$semester['year']);
 }
 else
@@ -107,9 +110,15 @@ $Excel->getActiveSheet(1)
     {
       $Excel->getActiveSheet()->getColumnDimension($columnID)->setAutoSize(true);
     }
-
-
-
+    $temp_course = $course->Get_Dept_Course($dept_id,$semester['id']);
+    $dept_course = array();
+    if(!isset($temp_course['status']))
+    {
+      for($i=0;$i<count($temp_course);$i++)
+      {
+        array_push($dept_course,$temp_course[$i]['id']);
+      }
+    }
 $file_path = $FILE_PATH.'/temp';
 
 $sql = "SELECT DISTINCT `course_id` FROM `approval_course` WHERE `status` = '7' AND `semester_id` = ".$semester['id'];
@@ -122,6 +131,12 @@ if($result)
   for($i=0;$i<$count;$i++)
   {
     $course_id = $result[$i]['course_id'];
+    var_dump($course_id);
+    if(!in_array($course_id,$dept_course))
+    {
+      continue;
+    }
+    var_dump($dept_course);
     $temp_file = $file_path.'/'.$course_id."/evaluate/".$course_id."_evaluate_".$semester['semester']."_".$semester['year'].".txt";
     if(file_exists($temp_file))
     {
@@ -279,6 +294,10 @@ $file_path = $FILE_PATH.'/temp';
     {
       $instructor_id = $result[$i]['instructor_id'];
       $course_id = $result[$i]['course_id'];
+      if(!in_array($course_id,$dept_course))
+      {
+        continue;
+      }
       $temp_file = $file_path.'/'.$course_id."/special_instructor/".$course_id."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".txt";
 
       if(file_exists($temp_file))
@@ -333,7 +352,7 @@ foreach(range('A','Z') as $columnID)
     $Excel->getActiveSheet()->getColumnDimension($columnID)->setAutoSize(true);
   }
 
-$summary_file = __DIR__.'/../../files/summary/summary_'.$semester['semester'].'_'.$semester['year'].'.xlsx';
+$summary_file = __DIR__.'/../../files/summary/summary_'.$dept_id.'_'.$semester['semester'].'_'.$semester['year'].'.xlsx';
 
 
 //save file
