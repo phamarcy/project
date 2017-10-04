@@ -3,9 +3,11 @@ require_once(__DIR__."/database.php");
 require_once(__DIR__."/approval.php");
 require_once(__DIR__."/manage_deadline.php");
 require_once(__DIR__."/../config/configuration_variable.php");
-/**
- *
- */
+/** This class serves manage staff,teacher,all person who involve in this system
+*
+* @author  Adiluck Chooprateep
+* @since   4/10/2017
+*/
 class Person
 {
 
@@ -26,7 +28,7 @@ class Person
     $this->DEADLINE = $deadline->Get_Current_Semester();
     $this->FILE_PATH = $FILE_PATH;
   }
-
+// search all staff,teacher data
   public function Get_All_Teacher()
   {
     $sql = "SELECT s.`code` as code,p.`name` as prefix,s.`fname`,s.`lname`
@@ -72,7 +74,7 @@ class Person
       return false;
     }
   }
-
+//search special instructor name
   public function Get_Special_Instructor_Name($id)
   {
     $this->DB->Change_DB($this->DEFAULT_DB);
@@ -89,6 +91,7 @@ class Person
     }
   }
 
+//get all prifix that exist in database
   public function Get_All_Prefix()
   {
     $this->DB->Change_DB('person');
@@ -112,6 +115,8 @@ class Person
     }
 
   }
+
+  //search teacher id
   public function Get_Teacher_Id($teacher_name)
   {
     $name = explode(" ",$teacher_name);
@@ -139,7 +144,7 @@ class Person
       return false;
     }
   }
-
+//search teacher email
   public function Get_Teacher_Email($teacher_id)
   {
     $sql = "SELECT `email` FROM `staff` WHERE `code` = '".$teacher_id."'";
@@ -155,7 +160,7 @@ class Person
       return false;
     }
   }
-
+//search staff's department
   public function Get_Staff_Dep($staff_id)
   {
     $sql = "SELECT s.`dep_code`,dep.`name` FROM `staff`s,`department` dep
@@ -176,10 +181,7 @@ class Person
     }
   }
 
-  public function Get_Board_Data()
-  {
-
-  }
+// add assessor to group assessor
   public function Add_Assessor($group_num,$teacher_name,$department_id)
   {
     $teacher_id = $this->Get_Teacher_Id($teacher_name);
@@ -254,6 +256,8 @@ class Person
     }
 
   }
+
+// delete assessor in group
   public function Delete_Assessor($group_num,$teacher_name,$department_id)
   {
     $teacher_id = $this->Get_Teacher_Id($teacher_name);
@@ -359,6 +363,7 @@ class Person
     return $return;
   }
 
+//search assessor data
   public function Search_Assessor($department_id)
   {
     $DATA = array();
@@ -397,6 +402,7 @@ class Person
     }
     return $DATA;
   }
+// get CV file path
   public function Get_CV($instructor_id,$course_id)
   {
     $CV_file = $this->FILE_PATH."/cv/".$instructor_id.".doc";
@@ -427,7 +433,7 @@ class Person
     return $path;
   }
 
-
+//search teacher signature file
   public function Get_Teacher_Signature($teacher_id)
   {
     global $SIGNATURE_PATH;
@@ -463,6 +469,7 @@ class Person
 
   }
 
+//get head of department id
   public function Get_Head_Department($dept_id,$course_id)
   {
     if($dept_id == null)
@@ -550,6 +557,9 @@ class Person
 
     return false;
   }
+
+
+  //close database connection
   public function Close_connection()
   {
     $this->DB->Close_connection();

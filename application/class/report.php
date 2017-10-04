@@ -9,9 +9,11 @@ require_once(__DIR__."/../../page/vendor/PHPMailer/PHPMailerAutoload.php");
 require_once(__DIR__."/../../page/vendor/autoload.php");
 
 use Mailgun\Mailgun;
-/**
- *
- */
+/** This class serves report all new changing status,document
+*
+* @author  Adiluck Chooprateep
+* @since   4/10/2017
+*/
 class Report
 {
   private $LOG;
@@ -45,6 +47,7 @@ class Report
     $this->Get_URL();
   }
 
+//get download and view url to use in this class
   private function Get_URL()
   {
     $url = $this->CURL->GET_SERVER_URL();
@@ -54,6 +57,7 @@ class Report
     $this->VIEW_URL = $view_url;
   }
 
+//get course evaluate,course syllabus, course grade url
   public function Get_Evaluate_Report($semester,$year,$dept_id)
   {
     global $FILE_PATH;
@@ -153,7 +157,7 @@ class Report
     }
 
   }
-
+//check if file is in current semester
   private function Check_File_Semester($semester,$year,$file_name)
   {
     $file_name = substr($file_name, 0, -4);
@@ -168,6 +172,8 @@ class Report
       return false;
     }
   }
+
+  //get special instructor CV and pdf
   public function Get_Special_Report($semester,$year,$dept_id)
   {
     global $FILE_PATH;
@@ -343,6 +349,8 @@ class Report
     return $course;
   }
 
+
+//add new notification to database to show in index page
   public function Append_Notification($user_id,$msg)
   {
     $status = '0';
@@ -355,6 +363,7 @@ class Report
     $this->DB->Close_connection();
   }
 
+//send email
   public function Sendemail($teacher_id,$data)
   {
     global $EMAIL;

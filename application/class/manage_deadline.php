@@ -17,7 +17,7 @@ Class Deadline
       $this->DB = new Database();
   }
 //Search all data from database
-//require string type : course,approve
+//require string type : 1 = course evaluate,2 = course syllabus  ,3 = special instructor,4 = evaluate,5 = approval
   public function Search_all($type)
   {
       $sql = "SELECT s.`semester_num`,s.`year`,d.`last_date`,d.`open_date`
@@ -34,6 +34,9 @@ Class Deadline
         return false;
       }
   }
+
+  //Search all data from database in current semester
+  //require string type : 1 = course evaluate,2 = course syllabus  ,3 = special instructor,4 = evaluate,5 = approval
   public  function Search_all_current($type)
   {
     $semester = $this->Get_Current_Semester();
@@ -79,6 +82,7 @@ public function Update($data,$type)
     }
 
   }
+  //get current semester id
   public function Search_Semester_id($semester,$year)
   {
     $sql = "SELECT `semester_id` FROM `semester` WHERE `semester_num` = ".$semester." AND `year` = '".$year."'";
@@ -94,6 +98,7 @@ public function Update($data,$type)
     }
   }
 
+// add new semester
   public function Add_Semester($semester,$year)
   {
     $sql = "SELECT `semester_id` FROM `semester` WHERE `semester_num` = ".$semester." AND `year` = '".$year."'";
@@ -118,7 +123,7 @@ public function Update($data,$type)
     }
   }
 
-
+//get specific current deadline from role
   public function Get_Current_Deadline($level)
   {
     global $THAI_MONTH,$BUDDHA_YEAR ;
@@ -188,6 +193,8 @@ public function Update($data,$type)
     }
     return $data;
   }
+
+  //get current semester data in system file
   public function Get_Current_Semester()
   {
     global $CONFIG_PATH;
@@ -209,6 +216,7 @@ public function Update($data,$type)
     return $data;
   }
 
+//close database connection
   public function Close_connection()
   {
     $this->DB->Close_connection();

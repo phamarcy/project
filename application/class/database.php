@@ -1,8 +1,10 @@
 <?php
 require_once(__DIR__."/../config/configuration_variable.php");
 require_once(__DIR__."/log.php");
-/**
+/** This class serves database connection
 *
+* @author  Adiluck Chooprateep
+* @since   4/10/2017
 */
 class Database
 {
@@ -26,6 +28,7 @@ class Database
 			mysqli_set_charset($this->connection,"utf8");
     }
 
+//change database
 		public function Change_DB($DB_NAME)
 		{
 			$result = mysqli_select_db($this->connection, $DB_NAME);
@@ -39,6 +42,7 @@ class Database
 				return false;
 			}
 		}
+		// select data in database using sql command **( SELECT only )**
     public function Query($sql)
     {
     	$data = array();
@@ -69,7 +73,7 @@ class Database
 		}
 
     }
-
+//query data using sql command ***(INSERT,UPDATE,DELETE,TRUNCATE,ETC except SELECT )***
     public function Insert_Update_Delete($sql)
     {
 			if ($this->connection->query($sql) === TRUE)
@@ -83,7 +87,7 @@ class Database
 				return false;
 			}
     }
-
+//close database connection
     public function Close_connection()
     {
 			if ($this->connected)

@@ -1,4 +1,11 @@
 <?php
+/**
+* This class serves approval such as update,append,check status
+*
+* @author  Adiluck Chooprateep
+* @since   4/10/2017
+*/
+
 require_once(__DIR__."/database.php");
 require_once(__DIR__."/manage_deadline.php");
 require_once(__DIR__.'/curl.php');
@@ -40,7 +47,7 @@ class approval
     $this->REPORT = new Report();
   }
 
-  //evaluate course evaluate document
+  //update course evaluate status
   public function Update_Status_Evaluate($course_id,$status,$teacher_id,$comment)
   {
     if($comment != null && $comment != '' && $teacher_id != 'all')
@@ -160,6 +167,7 @@ class approval
 
   }
 
+  //update complete version of course evaluate to generate new pdf
   private function Send_Complete_Evaluate($course_id,$type)
   {
     $data['SUBMIT_TYPE'] = $type;
@@ -170,6 +178,7 @@ class approval
     return $result;
   }
 
+  //update complete version of special instructor to generate new pdf
   private function Send_Complete_Special($course_id,$instructor_id)
   {
     $data['SUBMIT_TYPE'] = '4';
@@ -181,7 +190,7 @@ class approval
     $result = $this->CURL->Request($DATA,$url);
     return $result;
   }
-//evaluate special instructor
+//update special instructor status
   public function Update_Status_Special($instructor_id,$teacher_id,$course_id,$status,$comment)
   {
     if($comment != null && $comment != '' && $teacher_id != 'all')
@@ -332,6 +341,7 @@ class approval
 
   }
 
+// add new board's evaluate status
   public function Append_Board_Status_Evaluate($course_id,$status,$teacher_id,$comment)
   {
     if($comment != null && $comment != '' && $teacher_id != 'all')
@@ -359,6 +369,7 @@ class approval
     }
   }
 
+// add new board's evaluate special instructor status
   public function Append_Board_Status_Special($course_id,$instructor_id,$status,$teacher_id,$comment)
   {
     if($comment != null && $comment != '' && $teacher_id != 'all')
@@ -465,7 +476,7 @@ class approval
 
 
   }
-  //type = evaluate
+  //get document approval status
   private function Get_Doc_Status($course_id)
   {
       $status = 7;
@@ -490,6 +501,8 @@ class approval
         return "0";
       }
   }
+
+  //get special instructor data and approval status
   private function Get_Instructor_Data($course_id)
   {
     $DATA = array();
@@ -553,7 +566,7 @@ class approval
   }
 
 
-
+//add new special instructor status to approve
   public function Append_Special_Instructor($course_id,$instructor_id)
   {
       $sql = " DELETE FROM `approval_special`
@@ -795,6 +808,7 @@ class approval
     return $DATA;
   }
 
+  //get document pdf url include course evaluate, special instructor
   private function Get_Doc_Url($course_id,$type)
   {
     $url = $this->CURL->GET_SERVER_URL();
@@ -803,6 +817,8 @@ class approval
     $return_url['syllabus'] = $this->COURSE->Get_Course_Syllabus($course_id);
     return $return_url;
   }
+
+  //get special instructor pdf url
   private function Get_Special_Doc_Url($instructor_id,$course_id,$type)
   {
     $url = $this->CURL->GET_SERVER_URL();
@@ -811,6 +827,9 @@ class approval
     $return_url['cv'] = $this->PERSON->Get_CV($instructor_id,$course_id);
     return $return_url;
   }
+
+
+  //send email to involve assessor and teacher
   private function Sendemail($course_id,$data)
   {
     //get all involved staff
@@ -841,6 +860,8 @@ class approval
       }
     }
   }
+
+  // send notification to involve assessor and teacher
   private function Send_Noti($course_id,$msg)
   {
     //get all involved staff
@@ -870,6 +891,8 @@ class approval
       }
     }
   }
+
+//close database connection
   public function Close_connection()
   {
     $this->DB->Close_connection();

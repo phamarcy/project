@@ -1,8 +1,10 @@
 <?php
 require_once(__DIR__."/../config/configuration_variable.php");
 date_default_timezone_set("Asia/Bangkok");
-/**
+/** This class serves logging
 *
+* @author  Adiluck Chooprateep
+* @since   4/10/2017
 */
 class Log
 {
@@ -15,6 +17,7 @@ class Log
 		$this->log_path = $LOG_PATH;
 	}
 
+//write log
 	public function Write($txt)
 	{
 		$this->Check_folder();
@@ -35,6 +38,7 @@ class Log
 		}
 	}
 
+//check if log folder exist, create if not
 	private function Check_folder()
 	{
 		$year = date("Y");

@@ -1,10 +1,12 @@
 <?php
 require_once(__DIR__.'/database.php');
 require_once(__DIR__."/../config/configuration_variable.php");
-
 /**
- *
- */
+* This class serves authentication person who login into this system
+*
+* @author  Adiluck Chooprateep
+* @since   4/10/2017
+*/
 class Authentication
 {
 
@@ -20,6 +22,7 @@ class Authentication
       $this->DEFAULT_DB = $DATABASE['NAME'];
   }
 
+//authorize staff,teacher in database from username,password
   public function Authorize($username,$password)
   {
     $sql = "SELECT `code`,`fname`,`lname` FROM `staff` WHERE `username` = '".$username."'";
@@ -49,6 +52,7 @@ class Authentication
     }
   }
 
+//check staff,teacher level(role)
   private function Check_level($code)
   {
     $sql = "SELECT `education` as level FROM `staff_mis` WHERE `code`='".$code."'";

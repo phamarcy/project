@@ -1,9 +1,11 @@
 <?php
 require_once(__DIR__."/../config/configuration_variable.php");
 require_once(__DIR__."/log.php");
-/**
- *
- */
+/** This class serves curl connection
+*
+* @author  Adiluck Chooprateep
+* @since   4/10/2017
+*/
 class CURL
 {
   private $PROTOCOL;
@@ -17,6 +19,8 @@ class CURL
     $this->URL = $this->GET_SERVER_URL();
     $this->LOG = new Log();
   }
+
+  //send request
   public function Request($data,$path)
   {
     $url = $this->URL."/".$path;
@@ -42,6 +46,7 @@ class CURL
   	curl_close($ch);
   }
 
+//get server url
   public function GET_SERVER_URL()
   {
     $PROTOCOL = isset($_SERVER['HTTPS']) ? "https:" : "http:";
