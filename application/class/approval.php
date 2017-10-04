@@ -107,14 +107,17 @@ class approval
         }
       }
       $status_after = $this->Get_Doc_Status($course_id);
-      if($status_before != $status_after || ($teacher_id == 'all' && (int)$status == 1))
+      if($status_before != $status_after)
       {
         $noti['COURSE_ID'] = $course_id;
         $noti['STATUS'] = (string)$status_after;
         $noti['DATE_USER'] = date("d-m-Y");
         $noti['TIME_USER'] = date("h:i:sa");
         $noti['TYPE'] = '1'; //1 evaluate , 2, special instructor
-        $this->Sendemail($course_id,$noti);
+        if($status_after != '1' && $status_after != '5')
+        {
+          $this->Sendemail($course_id,$noti);
+        }
         $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       }
       if($status_after == 5)
