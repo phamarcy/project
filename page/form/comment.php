@@ -18,7 +18,10 @@ $department =$person->Get_Staff_Dep($_SESSION['id']);
 $dep_js=$department['code'];
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
-$data_forapproval=$approval->Get_Approval_data($_SESSION['id']);
+
+$data_forapproval=$approval->Get_Approval_Evaluate($_SESSION['id']);
+$data_forapprovalsp=$approval->Get_Approval_Special($_SESSION['id']);
+
 $check_permission=$person->Check_Grant($_SESSION['id']);
 
 if ($_SESSION['level']==4 || $_SESSION['level'] ==5 ) {
@@ -40,6 +43,9 @@ $end = strtotime($current_semester[0]['last_date']);
 
 
 
+echo  "<pre>";
+var_dump($data_forapprovalsp);
+echo "</pre>";
 
  ?>
   <html>
@@ -64,27 +70,28 @@ $end = strtotime($current_semester[0]['last_date']);
     <script type="text/javascript" src="../js/function.js"></script>
     <script src="../dist/js/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
-    <style >
-    i:hover {
-      font-size: 30px;
-      font-weight: bold;
-      color: red;
-    }
-    #statcf {
-     color : #0e9d14;
-    }
+    <style>
+      i:hover {
+        font-size: 30px;
+        font-weight: bold;
+        color: red;
+      }
 
-    #statn {
-     color : #ec2c2c;
-    }
+      #statcf {
+        color: #0e9d14;
+      }
 
-    #statwt {
-     color : #acb500;
-    }
+      #statn {
+        color: #ec2c2c;
+      }
 
-    #statal {
-     color : #da9001;
-    }
+      #statwt {
+        color: #acb500;
+      }
+
+      #statal {
+        color: #da9001;
+      }
     </style>
   </header>
 
@@ -93,10 +100,9 @@ $end = strtotime($current_semester[0]['last_date']);
 
     <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
       <div class="container">
-    
         <div class="row">
           <center>
-          <?php $approve_text="";
+            <?php $approve_text="";
              if ($_SESSION['level']==6 || $_SESSION['admission']==1):
             $approve_text="อนุมัติ";
             ?>
@@ -105,7 +111,7 @@ $end = strtotime($current_semester[0]['last_date']);
             $approve_text="เห็นชอบ";?>
             <h3 class="page-header">ประเมินกระบวนวิชา</h3>
             <?php endif; ?>
-          <?php  
+            <?php
           if ($now>$end) {
             echo  '<div class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการ'.$approve_text.'<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
             exit();
@@ -115,104 +121,154 @@ $end = strtotime($current_semester[0]['last_date']);
           }
            ?>
           </center>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h5 class="panel-title" style="font-size:14px">
-              <b>ภาคการศึกษาที่ <?php echo $semeter['semester'] ?> ปีการศึกษา <?php echo $semeter['year'] ?></b>
-          </h5>
-          </div>
-          <!-- .panel-heading -->
-          <div class="panel-body">
-          <?php
-          if($_SESSION['level'] == 4 || $_SESSION['level'] == 5  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3) {  ?>
-              <?php if (isset($deadline_form['evaluate'])): ?>
-                <div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับประเมินกระบวนวิชา <?php echo $deadline_form['evaluate']['day'].' '.$deadline_form['evaluate']['month'].' '.$deadline_form['evaluate']['year']."<br>"; ?> </b>
-              <?php endif; ?>
-          <?php }
-          if($_SESSION['level'] == 6  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3)
-          { ?>
-            <?php if (isset($deadline_form['approve'])): ?>
-              <div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline_form['approve']['day'].' '.$deadline_form['approve']['month'].' '.$deadline_form['approve']['year']."<br>"; ?> </b>
-            <?php endif; ?>
-              <?php	} ?>
-              
-            <div class="table-responsive">
-              <table class="table " style="font-size:14px;">
-                <thead>
-                  <tr>
-                    <th>ลำดับ</th>
-                    <th>รหัสวิชา</th>
-                    <th>ชื่อวิชา</th>
-                    <th style="text-align:center;">Course</th>
-                    <th style="text-align:center;">Evaluate</th>
-                    <th style="text-align:center;">สถานะการพิจารณา</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                <?php if (is_array($data_forapproval) || is_object($data_forapproval)): ?>
-                <?php foreach ($data_forapproval as $key => $value): $check=0; ?>
-                  <?php 
-                    foreach ($value['special'] as $check_sp) {
-                      if ($check_sp['status']==0) {
-                        $check++;
-                      }
-                    }
-                    if ($value['status']==0 ) {
-                      $check++;
-                    } 
-                  ?>
-                  <tr>
-                    <td><?php echo $key+1 ?></td>
-                    <td><?php echo $value['id'] ?></td>
-                    <td><?php echo $value['name'] ?></td>
-                    <td style="text-align:center;">
-                      <?php if (isset($value['syllabus']) ): ?>
-                          <a href="../../files<?php echo $value['syllabus'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
-                      <?php 
-                      endif; ?>
-                    </td>
-                    <td style="text-align:center;">
-                      <?php if (isset($value['evaluate'])): ?>
-                          <a href="<?php echo $value['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
-                      <?php endif; ?>
 
-                    </td>
-                    <td align="center"><?php if($check>0){echo '<i id="statn" class="fa fa-user-times fa-2x" aria-hidden="true"></i>';}else{echo '<i id="statcf" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>';}?></td>
-                    <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#<?php echo $value['id'] ?>" class="accordion-toggle">ดูข้อมูล</button></td>
-                  </tr>
-                  <tr class="hiddenRow">
-                    <td colspan="12">
-                      <div class=" collapse" id="<?php echo $value['id'] ?>">
-                        <div class="panel panel-success">
-                          <div class="panel-heading collapsed" style="font-size:14px;">
-                            <b>ข้อเสนอแนะคณะกรรมการ</b>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h5 class="panel-title" style="font-size:14px">
+                <b>ภาคการศึกษาที่ <?php echo $semeter['semester'] ?> ปีการศึกษา <?php echo $semeter['year'] ?></b>
+              </h5>
+            </div>
+            <!-- .panel-heading -->
+            <div class="panel-body">
+              <?php
+          if($_SESSION['level'] == 4 || $_SESSION['level'] == 5  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3) {  ?>
+                <?php if (isset($deadline_form['evaluate'])): ?>
+                <div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับประเมินกระบวนวิชา <?php echo $deadline_form['evaluate']['day'].' '.$deadline_form['evaluate']['month'].' '.$deadline_form['evaluate']['year']."<br>"; ?> </b>
+                <?php endif; ?>
+                <?php } ?>
+                <div class="container col-md-12">
+                  <ul class="nav nav-tabs" style="font-size:14px">
+                    <li class="active"><a data-toggle="tab" href="#subject">กระบวนวิชา</a></li>
+                    <li><a data-toggle="tab" href="#sp">อาจารย์พิเศษ</a></li>
+                  </ul>
+                  <div class="tab-content col-md-12">
+                    <div id="subject" class="tab-pane fade in active">
+                      <br>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="pull-right">
+                          <button type="button" class="btn btn-primary btn-outline" onclick="select_all(this)">เลือกทั้งหมด</button>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="col-md-12 ">
+                        <?php
+                        foreach ($data_forapproval as $key => $eva) { ?>
+                          <div class="panel-group">
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h5 class="panel-title" style="font-size:14px">
+                                  <a data-toggle="collapse" href="#collapse<?php echo $eva['id']?>">
+                                    <?php echo $eva['id']."  ".$eva['name']; ?>
+                                  </a>
+
+                                  <?php if (isset($eva['syllabus']) ): ?> &nbsp;&nbsp;
+                                  <b>Syllabus:</b>
+                                  <a href="../../files<?php echo $eva['syllabus'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                                  <?php endif; ?>
+                                  <?php if (isset($eva['evaluate'])): ?> &nbsp;&nbsp;
+                                  <b>Evaluate:</b>
+                                  <a href="<?php echo $eva['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                                  <?php endif; ?>
+                                  <div class="pull-right">
+                                    <input type="checkbox" id="subject<?php echo $eva['id']?>" value="<?php echo $eva['id']?>"></input>
+                                  </div>
+                                </h5>
+
+                              </div>
+                              <div id="collapse<?php echo $eva['id']?>" class="panel-collapse collapse " style="font-size:14px">
+                                <div class="panel-body">
+                                  <form id="approve_course" method="post">
+
+                                    <div class="form-group ">
+                                      <label for="">ข้อเสนอแนะ</label>
+                                      <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $eva['id'] ?>"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                      <button type="button" class="btn btn-outline btn-success " onclick="approve_course(<?php echo $eva['id'] ?>,'approve')"><?php echo $approve_text; ?></button>&nbsp;
+                                      <button type="button" class="btn btn-outline btn-danger " onclick="approve_course(<?php echo $eva['id'] ?>,'edit')">มีการแก้ไข</button>
+                                    </div>
+
+                                  </form>
+
+                                  <table class="table " style="font-size:14px">
+                                    <thead>
+                                      <?php if ($_SESSION['level'] > 1  || $_SESSION['admission']==1): ?>
+                                      <th style="width:230px">คณะกรรมการ</th>
+                                      <?php endif; ?>
+                                      <th>ข้อเสนอแนะ</th>
+                                      <th>วัน/เวลา</th>
+                                    </thead>
+                                    <tbody>
+                                      <?php foreach ($eva['comment'] as $key => $commenteva) { ?>
+                                      <td>
+                                        <?php echo $key+1; ?>
+                                      </td>
+                                      <td>
+                                        <?php echo $commenteva['name']; ?>
+                                      </td>
+                                      <td>
+                                        <?php echo $commenteva['date']; ?>
+                                      </td>
+                                      <?php } ?>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <?php
+                        }
+                        ?>
+                        <div class="pull-right">
+                          <button type="button" class="btn btn-success btn-outline " onclick="">ยืนยัน</button>
+                        </div>
+                      </div>
+                      <!-- col 12-->
+
+                    </div>
+                    <div id="sp" class="tab-pane fade">
+                      <br>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="pull-right">
+                        <button type="button" class="btn btn-primary btn-outline" onclick="">เลือกทั้งหมด</button>
+                      </div>
+                    </div>
+                      <hr>
+
+                      <div class="col-md-12 ">
+                        <?php foreach ($data_forapprovalsp as $keysp => $sp) {  ?>
+                        <div class="panel panel-info">
+                          <div class="panel-heading">
+                            <h5 class="panel-title" style="font-size:14px">
+                              <?php echo $sp['id']." ".$sp['name'] ?>
+                            </h5>
                           </div>
                           <div class="panel-body">
-                            <div class="panel-group" id="comment<?php echo $value['id'] ?>">
+                            <?php foreach ($sp['instructor'] as $keycom => $spcomment) { ?>
+                            <div class="panel-group">
                               <div class="panel panel-default">
-                                <div class="panel-heading" >
-                                  <div class="panel-title" style="font-size:14px">
-                                      <a data-toggle="collapse"  href="#comment<?php echo $value['id'] ?>-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา  สถานะ :</b>
-                                        <?php if($value['status']==0){echo '<i id="statn" class="fa fa-user-times fa-2x" aria-hidden="true"></i>';}else{echo '<i id="statcf" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>';}?>
-                                      </a>
+                                <div class="panel-heading">
+                                  <h5 class="panel-title" style="font-size:14px">
+                                    <input type="checkbox" value=""> </input>
+                                    <a data-toggle="collapse" href="#collapsesp<?php echo $sp['id'] ?>">
+                                      <?php echo $spcomment['name'] ?>
+                                    </a>
+                                  </h5>
 
-                                  </div>
                                 </div>
-                                <div id="comment<?php echo $value['id'] ?>-2" class="panel-collapse collapse">
+                                <div id="collapsesp<?php echo $sp['id'] ?>" class="panel-collapse collapse " style="font-size:14px">
                                   <div class="panel-body">
-                                    <form id="approve_course" action="index.html" method="post">
-                                      <?php if ($value['status']==0): $check++; ?>
-                                        <div class="form-group ">
-                                          <label for="">ข้อเสนอแนะ</label>
-                                          <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $value['id'] ?>"></textarea>
-                                        </div>
-                                      <div class="form-group">
-                                        <button type="button" class="btn btn-outline btn-success " onclick="approve_course(<?php echo $value['id'] ?>,'approve')"><?php echo $approve_text; ?></button> &nbsp;
-                                        <button type="button" class="btn btn-outline btn-danger " onclick="approve_course(<?php echo $value['id'] ?>,'edit')">มีการแก้ไข</button>
+                                    <form id="approve_course" method="post">
+                                      <div class="form-group ">
+                                        <label for="">ข้อเสนอแนะ</label>
+                                        <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $sp['id'] ?>"></textarea>
                                       </div>
-                                      <?php endif; ?>
+                                      <div class="form-group">
+                                        <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(<?php echo $sp['id'] ?>,'approve')"><?php echo $approve_text; ?></button>&nbsp;
+                                        <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(<?php echo $sp['id'] ?>,'edit')">มีการแก้ไข</button>
+                                      </div>
+
                                     </form>
 
                                     <table class="table " style="font-size:14px">
@@ -224,247 +280,157 @@ $end = strtotime($current_semester[0]['last_date']);
                                         <th>วัน/เวลา</th>
                                       </thead>
                                       <tbody>
-                                        <?php foreach ($value['comment'] as $keycomment => $valuecomment): ?>
-                                          <tr>
-                                            <?php if ($_SESSION['level'] > 1 || $_SESSION['admission']==1): ?>
-                                            <td style="width:230px"><?php echo $valuecomment['name'] ?></td>
-                                            <?php endif; ?>
-                                            <td><?php if (($valuecomment['comment'])!="") {
-                                              echo $valuecomment['comment'];
-                                            }else {
-                                              echo "-";
-                                            } ?></td>
-                                            <td>
-                                              <?php if ($valuecomment['comment']!=""): ?>
-                                                <?php echo $valuecomment['date'] ?>
-                                              <?php endif; ?>
-                                            </td>
-                                          </tr>
-                                        <?php endforeach; ?>
+
                                       </tbody>
                                     </table>
                                   </div>
                                 </div>
                               </div>
-                              <?php if (isset($value['special'])): ?>
-
-                                <div class="panel panel-default">
-                                  <div class="panel-heading ">
-                                    <div class="panel-title" style="font-size:14px">
-                                        <a data-toggle="collapse"  href="#commentsp<?php echo $value['id'] ?>"><b>แบบเชิญอาจารย์พิเศษ</b></a>
-                                    </div>
-                                  </div>
-
-                                  <div id="commentsp<?php echo $value['id'] ?>" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                      <div class="panel-group" id="teachersp<?php echo $value['id'] ?>">
-                                        <?php foreach ($value['special']as $keysp => $valuesp): ?>
-                                        <div class="panel panel-default">
-                                          <div class="panel-heading" >
-                                            <div class="panel-title" style="font-size:14px">
-                                                <a data-toggle="collapse"  href="#teachersp<?php echo $value['id']."-".$keysp ?>"><?php echo $valuesp['name'] ?></a>&nbsp;&nbsp;
-                                                <?php if ($valuesp['pdf']!=""): ?>
-                                                  <b>PDF : </b><a href="<?php echo $valuesp['pdf'] ?>" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>&nbsp;&nbsp;
-                                                <?php endif; ?>
-                                                <?php if ($valuesp['cv']!=""): ?>
-                                                  <b>CV : </b><a href="../../files<?php echo $valuesp['cv'] ?>" target="_blank"><i type="button" class="fa fa-file-pdf-o fa-2x  " ></i></a>&nbsp;&nbsp;
-                                                <?php endif; ?>
-                                                <b>สถานะข้อเสนอแนะ : </b> <?php if($valuesp['status']==0){echo '<i id="statn" class="fa fa-user-times fa-2x" aria-hidden="true"></i>';}else{echo '<i id="statcf" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>';}?>
-                                            </div>
-                                          </div>
-                                          <div id="teachersp<?php echo $value['id']."-".$keysp ?>" class="panel-collapse collapse">
-                                            <div class="panel-body">
-                                              <?php if ($valuesp['status']==0): $check++;?>
-                                                <div class="form-group ">
-                                                  <label for="">ข้อเสนอแนะ</label>
-                                                  <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $valuesp['id'] ?>"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                  <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(<?php echo $value['id'] ?>,'<?php echo $valuesp['id'] ?>','approve_sp')"><?php echo $approve_text; ?></button> &nbsp;
-                                                  <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(<?php echo $value['id'] ?>,'<?php echo $valuesp['id'] ?>','edit_sp')">มีการแก้ไข</button>
-                                                </div>
-                                              <?php endif; ?>
-                                              <table class="table " style="font-size:14px">
-                                                <thead>
-                                                  <?php if ($_SESSION['level'] > 1  || $_SESSION['admission']==1): ?>
-                                                  <th style="width:230px">คณะกรรมการ</th>
-                                                  <?php endif; ?>
-                                                  <th>ข้อเสนอแนะ</th>
-                                                  <th>วัน/เวลา</th>
-                                                </thead>
-                                                <tbody>
-                                                  <?php foreach ($valuesp['comment'] as $keycom => $valuecom): ?>
-                                                    <tr>
-                                                      <?php if ($_SESSION['level'] > 1 || $_SESSION['admission']==1): ?>
-                                                      <td style="width:230px"><?php echo $valuecom['name'] ?></td>
-                                                      <?php endif; ?>
-                                                      <td><?php if (($valuecom['comment'])!="") {
-                                                        echo $valuecom['comment'];
-                                                      }else {
-                                                        echo "-";
-                                                      } ?></td>
-                                                      <td><?php if (($valuecom['date'])!="") {
-                                                        echo $valuecom['date'];
-                                                      }else {
-                                                        echo "-";
-                                                      } ?></td>
-                                                    </tr>
-                                                  <?php endforeach; ?>
-
-
-                                                </tbody>
-                                              </table>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <?php endforeach; ?>
-
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                              <?php endif; ?>
                             </div>
+                            <?php }  ?>
                           </div>
                         </div>
+                        <?php } ?>
                       </div>
-                    </td>
-                  </tr>
-                <?php 
-                endforeach; ?>
-                <?php endif; ?>
-                </tbody>
-              </table>
+                      <!--col 12-->
+                    </div>
+                  </div>
+                </div>
+
+
 
             </div>
+            <!-- .panel-body -->
           </div>
-          <!-- .panel-body -->
         </div>
       </div>
     </div>
     </div>
     <script type="text/javascript">
-    function approve_course(course,type){
-      var id = "<?php echo $_SESSION['id'] ?>";
-      var text ="comment_"+course;
-      var comment = document.getElementById(text).value;
-      swal({
-        title: 'แน่ใจหรือไม่',
-        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'ตกลง',
-        cancelButtonText: 'ยกเลิก'
-      }).then(function () {
-        $.ajax({
+    function select_all(source) {
+      checkboxes = document.getElementsByName('foo');
+      for(var i=0, n=checkboxes.length;i<n;i++) {
+        checkboxes[i].checked = source.checked;
+      }
+    }
+      function approve_course(course, type) {
+        var id = "<?php echo $_SESSION['id'] ?>";
+        var text = "comment_" + course;
+        var comment = document.getElementById(text).value;
+        swal({
+          title: 'แน่ใจหรือไม่',
+          text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'ตกลง',
+          cancelButtonText: 'ยกเลิก'
+        }).then(function () {
+          $.ajax({
             url: '../../application/approval/approve.php',
             type: 'POST',
-            data:
-            {
-              course_id:course,
-              status:type,
-              teacher:id,
-              comment:comment
+            data: {
+              course_id: course,
+              status: type,
+              teacher: id,
+              comment: comment
             },
-            beforeSend: function() {
-             swal({
-                     title: 'กรุณารอสักครู่',
-                     text: 'ระบบกำลังประมวลผล',
-                     allowOutsideClick: false
-                   })
-             swal.showLoading();
+            beforeSend: function () {
+              swal({
+                title: 'กรุณารอสักครู่',
+                text: 'ระบบกำลังประมวลผล',
+                allowOutsideClick: false
+              })
+              swal.showLoading();
             },
-            success:function(data){
+            success: function (data) {
               swal.hideLoading();
               try {
-                var msg=JSON.parse(data)
+                var msg = JSON.parse(data)
                 swal({
-                  type:msg.status,
+                  type: msg.status,
                   text: msg.msg,
                   timer: 2000,
                   confirmButtonText: "Ok!",
-                }, function(){
+                }, function () {
                   window.location.reload();
                 });
-                setTimeout(function() {
+                setTimeout(function () {
                   window.location.reload();
                 }, 1000);
               } catch (e) {
                 swal({
-                  type:"error",
+                  type: "error",
                   text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
                   timer: 2000,
                   confirmButtonText: "Ok!",
                 });
               }
             }
-        });
-      }, function (dismiss) {
-      if (dismiss === 'cancel') {}
-    })
+          });
+        }, function (dismiss) {
+          if (dismiss === 'cancel') {}
+        })
 
-    }
-    function approve_sp(course,teacherSp,type){
+      }
 
-      var id = "<?php echo $_SESSION['id'] ?>";
-      var text ="comment_sp_"+teacherSp;
-      var comment = document.getElementById(text).value;
-      swal({
-        title: 'แน่ใจหรือไม่',
-        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'ตกลง',
-        cancelButtonText: 'ยกเลิก'
-      }).then(function () {
-        $.ajax({
+      function approve_sp(course, teacherSp, type) {
+
+        var id = "<?php echo $_SESSION['id'] ?>";
+        var text = "comment_sp_" + teacherSp;
+        var comment = document.getElementById(text).value;
+        swal({
+          title: 'แน่ใจหรือไม่',
+          text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'ตกลง',
+          cancelButtonText: 'ยกเลิก'
+        }).then(function () {
+          $.ajax({
             url: '../../application/approval/approve.php',
             type: 'POST',
-            data:
-            {
-              course_id:course,
-              status:type,
-              teacher:id,
-              teachersp:teacherSp,
-              comment:comment
+            data: {
+              course_id: course,
+              status: type,
+              teacher: id,
+              teachersp: teacherSp,
+              comment: comment
             },
-            beforeSend: function() {
+            beforeSend: function () {
               swal({
                 title: 'กรุณารอสักครู่',
                 text: 'ระบบกำลังประมวลผล',
                 allowOutsideClick: false
               })
-             swal.showLoading();
+              swal.showLoading();
             },
-            success:function(data){
+            success: function (data) {
               swal.hideLoading();
-              var msg=JSON.parse(data)
+              var msg = JSON.parse(data)
               swal({
-                type:msg.status,
+                type: msg.status,
                 text: msg.msg,
                 timer: 2000,
                 confirmButtonText: "Ok!",
-              }, function(){
+              }, function () {
                 window.location.reload();
               });
-              setTimeout(function() {
+              setTimeout(function () {
                 window.location.reload();
               }, 1000);
             }
-        });
-      }, function (dismiss) {
-      if (dismiss === 'cancel') {}
-    })
+          });
+        }, function (dismiss) {
+          if (dismiss === 'cancel') {}
+        })
 
 
 
-    }
-
+      }
     </script>
   </body>
 

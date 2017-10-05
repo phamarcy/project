@@ -152,7 +152,7 @@ echo "</pre>";
 
                                 <?php foreach ($assessor[$i-1]['assessor'] as $key_assessor => $assessor_name): ?>
                                 <form>
-                                  <input type="hidden" name="teacher" id="name_assessor1" value="<?php echo $assessor_name ?>">
+                                  <input type="hidden" name="teacher" id="name_assessor<?php echo $i.$key_assessor ?>" value="<?php echo $assessor_name ?>">
                                   <tr>
                                     <td>
                                       <?php echo $key_assessor+1; ?>
@@ -160,7 +160,7 @@ echo "</pre>";
                                     <td>
                                       <?php echo $assessor_name ?>
                                     </td>
-                                    <td><button type="button" name="button" class="btn btn-outline btn-danger" onclick="teacherGroup(<?php echo$i+1;?>,'remove',<?php echo $department['code']  ?>,'<?php echo $assessor_name ?>')">ลบ</button></td>
+                                    <td><button type="button" name="button" class="btn btn-outline btn-danger" onclick="teacherGroupremove(<?php echo $i;?>,'remove',<?php echo $department['code']  ?>,'<?php echo $i.$key_assessor ?>')">ลบ</button></td>
                                   </tr>
                                 </form>
                                 <?php endforeach; ?>
@@ -368,10 +368,7 @@ echo "</pre>";
                     cache: false,
                     async: true,
                     data: {
-                      course: course,
-                      teacher: teacher,
-                      semester_id:semester,
-                      type: "remove_teacher",
+                      type:"addgroup"
                     },
                     success: function (data) {
                       try {
@@ -666,53 +663,6 @@ echo "</pre>";
 
 
       function teacherGroup(group, type, department) {
-        if (type == 'add') {
-          var text = "TEACHERLEC_" + group;
-          var element = document.getElementById(text).value;
-          if (!element) {
-            swal({
-              type: "warning",
-              text: "กรุณากรอกข้อมูลให้ครบ",
-              confirmButtonText: "ตกลง!",
-            });
-            return false;
-          }
-
-          $.ajax({
-            url: '../../application/subject/group.php',
-            type: 'POST',
-            data: {
-              group: group,
-              teacher: element,
-              type: type,
-              department: department,
-            },
-            success: function (data) {
-              var msg = JSON.parse(data)
-              if (msg.status == "success") {
-                swal({
-                  type: msg.status,
-                  text: msg.msg,
-                  timer: 2000,
-                  confirmButtonText: "Ok!",
-                }, function () {
-                  window.location.reload();
-                });
-                setTimeout(function () {
-                  window.location.reload();
-                }, 1000);
-              } else {
-                swal({
-                  type: msg.status,
-                  text: msg.msg,
-                  timer: 2000,
-                  confirmButtonText: "Ok!",
-                });
-              }
-            }
-          });
-        }
-        if (type == 'remove') {
           var text = "name_assessor" + group;
           var element = document.getElementById(text).value;
           swal({
@@ -754,9 +704,51 @@ echo "</pre>";
           }, function (dismiss) {
             if (dismiss === 'cancel') {}
           })
-        }
+      }
+      function teacherGroupremove(group, type, department,assessor) {
+        
+       
+          var text = "name_assessor" + assessor;
+          var element = document.getElementById(text).value;
+          swal({
+            title: 'แน่ใจหรือไม่',
+            text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ตกลง',
+            cancelButtonText: 'ยกเลิก'
+          }).then(function () {
 
+            $.ajax({
+              url: '../../application/subject/group.php',
+              type: 'POST',
+              data: {
+                group: group,
+                teacher: element,
+                type: type,
+                department: department,
+              },
+              success: function (data) {
+                var msg = JSON.parse(data)
+                swal({
+                  type: msg.status,
+                  text: msg.msg,
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                }, function () {
+                  window.location.reload();
+                });
+                setTimeout(function () {
+                  window.location.reload();
+                }, 1000);
+              }
+            });
 
+          }, function (dismiss) {
+            if (dismiss === 'cancel') {}
+          })
       }
 
       $("form#course").submit(function () {

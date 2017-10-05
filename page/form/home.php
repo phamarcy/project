@@ -17,7 +17,9 @@ $deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
 $semester = $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
 $data_course= json_decode($var, true);
-
+echo  "<pre>";
+var_dump($data_course);
+echo "</pre>";
 ?>
 	<html>
 
@@ -55,23 +57,23 @@ $data_course= json_decode($var, true);
 		<script src="../dist/js/sb-admin-2.js"></script>
 
 		<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 		<link rel="stylesheet" href="../dist/css/scrollbar.css">
-    <script src="../dist/js/sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
+		<script src="../dist/js/sweetalert2.min.js"></script>
+		<link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
 		<title></title>
 		<style>
-		#hover i:hover {
-	
-      font-size: 30px;
-      font-weight: bold;
-      color: red;
+			#hover i:hover {
 
-		}
-		
+				font-size: 30px;
+				font-weight: bold;
+				color: red;
+			}
+
 			#statc {
 				color: #0d4b9d;
 			}
+
 			#statcf {
 				color: #0e9d14;
 			}
@@ -91,7 +93,7 @@ $data_course= json_decode($var, true);
 	</head>
 
 	<body class="mybox">
-    <?php if($semester['id'] == false)
+		<?php if($semester['id'] == false)
           {
               echo '<div class="alert alert-danger"><center>ระบบยังไม่มีภาค และปีการศึกษาปัจจุบัน กรุณาติดต่อเจ้าหน้าที่ </center></div>';
                 die();
@@ -105,54 +107,54 @@ $data_course= json_decode($var, true);
 					</center>
 				</div>
 				<br>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h5 class="panel-title" style="font-size:14px;">
-								<?php
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h5 class="panel-title" style="font-size:14px;">
+							<?php
 								if ($_SESSION['level']==1) {
 									echo "<b>รายชื่อวิชาที่รับผิดชอบ</b>";
 								}else {
 									echo "<b>รายชื่อวิชา</b>";
 								}
 								?>
-	          </h5>
-						</div>
-						<!-- .panel-heading -->
-						<div class="panel-body" >
+						</h5>
+					</div>
+					<!-- .panel-heading -->
+					<div class="panel-body">
 
-							<?php if ($_SESSION['level'] == 1 || $_SESSION['level'] == 2 || $_SESSION['level'] == 3):?>
-                 <?php if (isset($deadline_form['measure'])): ?>
-				           <div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;" ></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา <?php echo $deadline_form['measure']['day'].' '.$deadline_form['measure']['month'].' '.$deadline_form['measure']['year']."<br>"; ?> </b>
-                 <?php endif; ?>
-                 <?php if (isset($deadline_form['syllabus'])): ?>
-                   <div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;" ></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอัพโหลดไฟล์ course syllabus <?php echo $deadline_form['syllabus']['day'].' '.$deadline_form['syllabus']['month'].' '.$deadline_form['syllabus']['year']."<br>"; ?> </b>
-                 <?php endif; ?>
-                 <?php if (isset($deadline_form['special'])): ?>
-                   <div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;" ></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ <?php echo $deadline_form['special']['day'].' '.$deadline_form['special']['month'].' '.$deadline_form['special']['year']."<br>"; ?> </b>
-                 <?php endif; ?>
+						<?php if ($_SESSION['level'] == 1 || $_SESSION['level'] == 2 || $_SESSION['level'] == 3):?>
+						<?php if (isset($deadline_form['measure'])): ?>
+						<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา <?php echo $deadline_form['measure']['day'].' '.$deadline_form['measure']['month'].' '.$deadline_form['measure']['year']."<br>"; ?> </b>
+						<?php endif; ?>
+						<?php if (isset($deadline_form['syllabus'])): ?>
+						<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอัพโหลดไฟล์ course syllabus <?php echo $deadline_form['syllabus']['day'].' '.$deadline_form['syllabus']['month'].' '.$deadline_form['syllabus']['year']."<br>"; ?> </b>
+						<?php endif; ?>
+						<?php if (isset($deadline_form['special'])): ?>
+						<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ <?php echo $deadline_form['special']['day'].' '.$deadline_form['special']['month'].' '.$deadline_form['special']['year']."<br>"; ?> </b>
+						<?php endif; ?>
 
 
-							<?php endif; ?>
-							<?php
+						<?php endif; ?>
+						<?php
   					if($_SESSION['level'] == 4 || $_SESSION['level'] == 5  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3) {  ?>
-                <?php if (isset($deadline_form['evaluate'])): ?>
-                  <div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับประเมินกระบวนวิชา <?php echo $deadline_form['evaluate']['day'].' '.$deadline_form['evaluate']['month'].' '.$deadline_form['evaluate']['year']."<br>"; ?> </b>
-                <?php endif; ?>
-            <?php }
+							<?php if (isset($deadline_form['evaluate'])): ?>
+							<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับประเมินกระบวนวิชา <?php echo $deadline_form['evaluate']['day'].' '.$deadline_form['evaluate']['month'].' '.$deadline_form['evaluate']['year']."<br>"; ?> </b>
+							<?php endif; ?>
+							<?php }
 						if($_SESSION['level'] == 6  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3)
 						{ ?>
-              <?php if (isset($deadline_form['approve'])): ?>
-                <div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline_form['approve']['day'].' '.$deadline_form['approve']['month'].' '.$deadline_form['approve']['year']."<br>"; ?> </b>
-              <?php endif; ?>
-								<?php	} ?>
-									<br>
+							<?php if (isset($deadline_form['approve'])): ?>
+							<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline_form['approve']['day'].' '.$deadline_form['approve']['month'].' '.$deadline_form['approve']['year']."<br>"; ?> </b>
+							<?php endif; ?>
+							<?php	} ?>
+								<br>
 
-									<?php if (is_array($data_course) || is_object($data_course)){ ?>
+								<?php if (is_array($data_course) || is_object($data_course)){ ?>
 
-									<?php foreach ($data_course as $key => $value_course):
+								<?php foreach ($data_course as $key => $value_course):
 									?>
 
-									<?php
+								<?php
 										$status_text="";
 										switch ($value_course['evaluate']['status']) {
 											case '0':
@@ -188,8 +190,9 @@ $data_course= json_decode($var, true);
 										<div class="panel panel-success">
 											<div class="panel-heading">
 												<h3 class="panel-title" style="font-size:14px;">
-											<li><b><u>กระบวนวิชา</u></b> : <?php echo $value_course['id']." ".$value_course['name']?> </li>
-										    </h3>
+													<li><b><u>กระบวนวิชา</u></b> :
+														<?php echo $value_course['id']." ".$value_course['name']?> </li>
+												</h3>
 											</div>
 											<div class="panel-body" style="font-size:14px;">
 
@@ -197,39 +200,40 @@ $data_course= json_decode($var, true);
 													<div class="panel panel-default">
 														<div class="panel-heading">
 															<h3 class="panel-title" style="font-size:14px;">
-																<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']."_".$key ?>">
+																<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']." _ ".$key ?>">
 														 		<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b>
 																<?php if (isset($value_course['pdf']) && $_SESSION['level']==3 && $value_course['evaluate']['status']!=0 ): ?>
 																		<a id="hover" href="<?php echo $value_course['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
 																<?php endif; ?>
-																<i class="fa fa-long-arrow-right fa-fw"></i><?php echo $status_text ?></a>
-																 
+																<i class="fa fa-long-arrow-right fa-fw"></i>
+																<?php echo $status_text ?>
+																</a>
 																<?php if ($_SESSION['level']==3): ?>
-                                  <?php if(($value_course['evaluate']['status'])==4){ ?>
-                                    <button class='btn btn-outline btn-success'  onclick='senttohead(<?php echo $value_course['id'] ?>);'>ยืนยัน</button>
-                                    <?php
+																<?php if(($value_course['evaluate']['status'])==4){ ?>
+																<button class='btn btn-outline btn-success' onclick='senttohead(<?php echo $value_course[' id '] ?>);'>ยืนยัน</button>
+																<?php
                                   } ?>
-                                <?php endif; ?>
+																	<?php endif; ?>
 
-																<?php if ($_SESSION['level']==2): ?>
-																<?php if(($value_course['evaluate']['status'])==1){ ?>
-																	<button class='btn btn-outline btn-success'  onclick='pass(<?php echo $value_course['id'] ?>);'>ผ่าน</button>
+																	<?php if ($_SESSION['level']==2): ?>
+																	<?php if(($value_course['evaluate']['status'])>1 ){ ?>
+																	<button class='btn btn-outline btn-success' onclick='sendtoboard(<?php echo $value_course[' id '] ?>);'>ผ่าน</button>
 																	<?php
 																} ?>
-															<?php endif; ?>
+																		<?php endif; ?>
 
 															</h3>
 														</div>
 														<?php if (isset($_SESSION['level'])) { ?>
-														<div id="evaluate<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse">
+														<div id="evaluate<?php echo $value_course['id']." _ ".$key ?>" class="panel-collapse collapse">
 															<div class="panel-body" style="font-size:14px;">
 																<table class="table " style="font-size:14px;">
-																	<thead >
+																	<thead>
 																		<?php if ($_SESSION['level'] >=2  || $_SESSION['admission']==1): ?>
 																		<th style="width:250px">คณะกรรมการ</th>
 																		<?php endif; ?>
 																		<th>ข้อเสนอแนะ</th>
-                                    <th>วัน/เวลา</th>
+																		<th>วัน/เวลา</th>
 																	</thead>
 																	<tbody>
 
@@ -238,21 +242,27 @@ $data_course= json_decode($var, true);
                                     foreach ($value_course['evaluate']['comment'] as $comment): ?>
 																			<tr>
 																				<?php if ($_SESSION['level'] >=2): ?>
-																				<td style="width:250px"><?php echo $comment['name'] ?></td>
+																				<td style="width:250px">
+																					<?php echo $comment['name'] ?>
+																				</td>
 																				<?php endif; ?>
-																				<td><?php if ($comment['comment']=="" or $comment['comment'] ==NULL) {
+																				<td>
+																					<?php if ($comment['comment']=="" or $comment['comment'] ==NULL) {
 																					echo "-";
 																				} else {
 																					echo $comment['comment'];
 																				}
-																				?></td>
-                                        <td><?php if ($comment['date']=="") {
+																				?>
+																				</td>
+																				<td>
+																					<?php if ($comment['date']=="") {
                                           echo "-";
                                         } else {
                                           echo $comment['date'];
-                                        }  ?></td>
+                                        }  ?>
+																				</td>
 																			</tr>
-																		<?php endforeach;  }?>
+																			<?php endforeach;  }?>
 																	</tbody>
 																</table>
 															</div>
@@ -266,12 +276,12 @@ $data_course= json_decode($var, true);
 													<div class="panel panel-default">
 														<div class="panel-heading">
 															<h3 class="panel-title" style="font-size:14px;">
-      													<a data-toggle="collapse" href="#special<?php echo $value_course['id']."_".$key ?>" disabled="disabled">
+																<a data-toggle="collapse" href="#special<?php echo $value_course['id']." _ ".$key ?>" disabled="disabled">
       													<i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></b></a>
-      												</h3>
+															</h3>
 														</div>
 														<?php if (isset($_SESSION['level'])) { ?>
-														<div id="special<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse  in">
+														<div id="special<?php echo $value_course['id']." _ ".$key ?>" class="panel-collapse collapse  in">
 															<div class="panel-body" style="font-size:14px;">
 																<div class="panel-group" id="accordion">
 
@@ -306,65 +316,77 @@ $data_course= json_decode($var, true);
 																		 }
 																		 ?>
 
-																		<div class="panel panel-default">
-																			<div class="panel-heading">
-																				<h3 class="panel-title" style="font-size:14px;">
+																	<div class="panel panel-default">
+																		<div class="panel-heading">
+																			<h3 class="panel-title" style="font-size:14px;">
 
-																						<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']."_".$keysp ?>"><?php echo $valuesp['name'] ?> </a></b>
-																						<?php if (isset($valuesp['pdf']) && $_SESSION['level']==3 && $valuesp['status']!=0 ): ?>
-																						<a id="hover" href="<?php echo $valuesp['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
-																							<?php endif; ?>
-																						
-																						<?php echo ' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp; if ($_SESSION['level']==3): ?>
-                                              <?php if($valuesp['status']==4){ ?>
-                                                <button class='btn btn-outline btn-success'  onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>ยืนยัน</button>
-                                                <?php
+																				<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']." _ ".$keysp ?>">
+																					<?php echo $valuesp['name'] ?> </a>
+																				</b>
+																				<?php if (isset($valuesp['pdf']) && $_SESSION['level']==3 && $valuesp['status']!=0 ): ?>
+																				<a id="hover" href="<?php echo $valuesp['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+																				<?php endif; ?>
+																				<?php echo ' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp; if ($_SESSION['level']==3): ?>
+																				<?php if($valuesp['status']==4){ ?>
+																				<button class='btn btn-outline btn-success' onclick='senttoheadSP(<?php echo $value_course[' id
+																				  '] ?>,"<?php echo $valuesp['id '] ?>");'>ยืนยัน</button>
+																				<?php
                                               } ?>
-                                            <?php endif; ?>
-																				</h3>
-																			</div>
-																			<div id="special_<?php echo $value_course['id']."_".$keysp ?>" class="panel-collapse collapse">
-																				<div class="panel-body">
+																					<?php endif; ?>
+																					<?php if(($valuesp['status'])>1 && $_SESSION['level']==2){ ?>
+																					<button class='btn btn-outline btn-success' onclick='sendtoboardsp(<?php echo $value_course['id'] ?>);'>ผ่าน</button>
+																					<?php
+																						} ?>
+																			</h3>
+																		</div>
+																		<div id="special_<?php echo $value_course['id']." _ ".$keysp ?>" class="panel-collapse collapse">
+																			<div class="panel-body">
 
-																					<table class="table " style="font-size:14px;">
-																						<thead>
-																							<?php if ($_SESSION['level'] >=2  || $_SESSION['admission']==1): ?>
-																							<th style="width:250px">คณะกรรมการ</th>
-																							<?php endif; ?>
-																							<th>ข้อเสนอแนะ</th>
-                                              <th>วัน/เวลา</th>
-																						</thead>
-																						<tbody>
+																				<table class="table " style="font-size:14px;">
+																					<thead>
+																						<?php if ($_SESSION['level'] >=2  || $_SESSION['admission']==1): ?>
+																						<th style="width:250px">คณะกรรมการ</th>
+																						<?php endif; ?>
+																						<th>ข้อเสนอแนะ</th>
+																						<th>วัน/เวลา</th>
+																					</thead>
+																					<tbody>
 
-																							<?php
+																						<?php
 
                                                 # code...
                                                 if (!empty($valuesp['comment'])) {
                                                   # code...
                                                 foreach ($valuesp['comment'] as $comment): ?>
-																								<tr>
-  																									<?php if ($_SESSION['level'] >=2): ?>
-  																									<td style="width:250px"><?php echo $comment['name'] ?></td>
-  																									<?php endif; ?>
-  																									<td><?php if ($comment['comment']=="" or $comment['comment'] ==NULL) {
+																							<tr>
+																								<?php if ($_SESSION['level'] >=2): ?>
+																								<td style="width:250px">
+																									<?php echo $comment['name'] ?>
+																								</td>
+																								<?php endif; ?>
+																								<td>
+																									<?php if ($comment['comment']=="" or $comment['comment'] ==NULL) {
   																										echo "-";
   																									} else {
   																										echo $comment['comment'];
   																									}
-																									?></td>
-                                                  <td><?php if ($comment['date']=="") {
+																									?>
+																								</td>
+																								<td>
+																									<?php if ($comment['date']=="") {
                                                     echo "-";
                                                   }else {
                                                     echo $comment['date'];
-                                                  } ?></td>
-																								</tr>
+                                                  } ?>
+																								</td>
+																							</tr>
 																							<?php endforeach;
                                                 }  ?>
-																						</tbody>
-																					</table>
-																				</div>
+																					</tbody>
+																				</table>
 																			</div>
 																		</div>
+																	</div>
 																	<?php endforeach; ?>
 																</div>
 															</div>
@@ -377,172 +399,223 @@ $data_course= json_decode($var, true);
 										</div>
 									</div>
 									<?php endforeach; ?>
-								<?php } ?>
+									<?php } ?>
 
-						</div>
 					</div>
+				</div>
 			</div>
 		</div>
-<script>
-  function senttohead(course){
-    swal({
-      title: 'แน่ใจหรือไม่',
-      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
-      type: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'ตกลง',
-      cancelButtonText: 'ยกเลิก'
-    }).then(function () {
-      $.ajax({
-          url: '../../application/approval/send_board.php',
-          type: 'POST',
-          data:
-          {
-            course_id:course
-          },
-          beforeSend: function() {
-            swal(
-             'กรุณารอสักครู่',
-             'ระบบกำลังประมวลผล'
-           )
-           swal.showLoading();
-          },
-          success:function(data){
-            swal.hideLoading();
-            try {
-              var msg=JSON.parse(data);
-              swal({
-                type:msg.status,
-                text: msg.msg,
-                timer: 2000,
-                confirmButtonText: "Ok!",
-              }, function(){
-                window.location.reload();
-              });
-              setTimeout(function() {
-                window.location.reload();
-              }, 1000);
-            } catch (e) {
+		<script>
+			function senttohead(course) {
+				swal({
+					title: 'แน่ใจหรือไม่',
+					text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+					type: 'question',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'ตกลง',
+					cancelButtonText: 'ยกเลิก'
+				}).then(function () {
+					$.ajax({
+						url: '../../application/approval/send_board.php',
+						type: 'POST',
+						data: {
+							course_id: course
+						},
+						beforeSend: function () {
+							swal(
+								'กรุณารอสักครู่',
+								'ระบบกำลังประมวลผล'
+							)
+							swal.showLoading();
+						},
+						success: function (data) {
+							swal.hideLoading();
+							try {
+								var msg = JSON.parse(data);
+								swal({
+									type: msg.status,
+									text: msg.msg,
+									timer: 2000,
+									confirmButtonText: "Ok!",
+								}, function () {
+									window.location.reload();
+								});
+								setTimeout(function () {
+									window.location.reload();
+								}, 1000);
+							} catch (e) {
 
-            } finally {
+							} finally {
 
-            }
-          }
-      });
-    }, function (dismiss) {
-    if (dismiss === 'cancel') {}
-  })
+							}
+						}
+					});
+				}, function (dismiss) {
+					if (dismiss === 'cancel') {}
+				})
 
-  }
-  function senttoheadSP(course,teachersp){
+			}
 
-    swal({
-      title: 'แน่ใจหรือไม่',
-      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
-      type: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'ตกลง',
-      cancelButtonText: 'ยกเลิก'
-    }).then(function () {
-      $.ajax({
-          url: '../../application/approval/send_board.php',
-          type: 'POST',
-          data:
-          {
-            course_id:course,
-            teachersp:teachersp
-          },
-          beforeSend: function() {
-            swal({
-              title: 'กรุณารอสักครู่',
-              text: 'ระบบกำลังประมวลผล',
-              allowOutsideClick: false
-            })
-           swal.showLoading();
-          },
-          success:function(data){
-            swal.hideLoading();
-            try {
-              var msg=JSON.parse(data)
-              swal({
-                type:msg.status,
-                text: msg.msg,
-                timer: 2000,
-                confirmButtonText: "Ok!",
-              }, function(){
-                window.location.reload();
-              });
-              setTimeout(function() {
-                window.location.reload();
-              }, 1000);
-            } catch (e) {
+			function senttoheadSP(course, teachersp) {
 
-            }
+				swal({
+					title: 'แน่ใจหรือไม่',
+					text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+					type: 'question',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'ตกลง',
+					cancelButtonText: 'ยกเลิก'
+				}).then(function () {
+					$.ajax({
+						url: '../../application/approval/send_board.php',
+						type: 'POST',
+						data: {
+							course_id: course,
+							teachersp: teachersp
+						},
+						beforeSend: function () {
+							swal({
+								title: 'กรุณารอสักครู่',
+								text: 'ระบบกำลังประมวลผล',
+								allowOutsideClick: false
+							})
+							swal.showLoading();
+						},
+						success: function (data) {
+							swal.hideLoading();
+							try {
+								var msg = JSON.parse(data)
+								swal({
+									type: msg.status,
+									text: msg.msg,
+									timer: 2000,
+									confirmButtonText: "Ok!",
+								}, function () {
+									window.location.reload();
+								});
+								setTimeout(function () {
+									window.location.reload();
+								}, 1000);
+							} catch (e) {
 
-          }
-      });
-    }, function (dismiss) {
-    if (dismiss === 'cancel') {}
-  })
-  }
-	function pass(course){
+							}
 
-    swal({
-      title: 'แน่ใจหรือไม่',
-      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
-      type: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'ตกลง',
-      cancelButtonText: 'ยกเลิก'
-    }).then(function () {
-      $.ajax({
-          url: '../../application/approval/send_board.php',
-          type: 'POST',
-          data:
-          {
-            course_id:course,
-						type:"pass"
-          },
-          beforeSend: function() {
-            swal({
-              title: 'กรุณารอสักครู่',
-              text: 'ระบบกำลังประมวลผล',
-              allowOutsideClick: false
-            })
-           swal.showLoading();
-          },
-          success:function(data){
-            swal.hideLoading();
-            try {
-              var msg=JSON.parse(data)
-              swal({
-                type:msg.status,
-                text: msg.msg,
-                timer: 2000,
-                confirmButtonText: "Ok!",
-              }, function(){
-                window.location.reload();
-              });
-              setTimeout(function() {
-                window.location.reload();
-              }, 1000);
-            } catch (e) {
+						}
+					});
+				}, function (dismiss) {
+					if (dismiss === 'cancel') {}
+				})
+			}
 
-            }
+			function sendtoboard(course) {
 
-          }
-      });
-    }, function (dismiss) {
-    if (dismiss === 'cancel') {}
-  })
-  }
-</script>
+				swal({
+					title: 'แน่ใจหรือไม่',
+					text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+					type: 'question',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'ตกลง',
+					cancelButtonText: 'ยกเลิก'
+				}).then(function () {
+					$.ajax({
+						url: '../../application/approval/send_staff_dept.php',
+						type: 'POST',
+						data: {
+							course_id: course,
+						},
+						beforeSend: function () {
+							swal({
+								title: 'กรุณารอสักครู่',
+								text: 'ระบบกำลังประมวลผล',
+								allowOutsideClick: false
+							})
+							swal.showLoading();
+						},
+						success: function (data) {
+							swal.hideLoading();
+							try {
+								var msg = JSON.parse(data)
+								swal({
+									type: msg.status,
+									text: msg.msg,
+									timer: 2000,
+									confirmButtonText: "Ok!",
+								}, function () {
+									window.location.reload();
+								});
+								setTimeout(function () {
+									window.location.reload();
+								}, 1000);
+							} catch (e) {
+
+							}
+
+						}
+					});
+				}, function (dismiss) {
+					if (dismiss === 'cancel') {}
+				})
+			}
+
+			function sendtoboardsp(course, teachersp) {
+
+				swal({
+					title: 'แน่ใจหรือไม่',
+					text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+					type: 'question',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'ตกลง',
+					cancelButtonText: 'ยกเลิก'
+				}).then(function () {
+					$.ajax({
+						url: '../../application/approval/send_staff_dept.php',
+						type: 'POST',
+						data: {
+							course_id: course,
+							teachersp: teachersp
+						},
+						beforeSend: function () {
+							swal({
+								title: 'กรุณารอสักครู่',
+								text: 'ระบบกำลังประมวลผล',
+								allowOutsideClick: false
+							})
+							swal.showLoading();
+						},
+						success: function (data) {
+							swal.hideLoading();
+							try {
+								var msg = JSON.parse(data)
+								swal({
+									type: msg.status,
+									text: msg.msg,
+									timer: 2000,
+									confirmButtonText: "Ok!",
+								}, function () {
+									window.location.reload();
+								});
+								setTimeout(function () {
+									window.location.reload();
+								}, 1000);
+							} catch (e) {
+
+							}
+
+						}
+					});
+				}, function (dismiss) {
+					if (dismiss === 'cancel') {}
+				})
+			}
+		</script>
 	</body>
 
 	</html>

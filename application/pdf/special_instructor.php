@@ -160,9 +160,14 @@ if($DATA['COURSEDATA']['TYPE_COURSE'] == "require")
 	$type['require'] = 3;
 	$type['choose'] = '';
 }
-else if($DATA['COURSEDATA']['TYPE_COURSE'] == "require")
+else if($DATA['COURSEDATA']['TYPE_COURSE'] == "choose")
 {
 	$type['choose'] = 3;
+	$type['require'] = '';
+}
+else
+{
+	$type['choose'] = '';
 	$type['require'] = '';
 }
 
