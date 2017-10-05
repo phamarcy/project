@@ -608,7 +608,7 @@ class approval
 
 
   //get approval data to approval page
-  public function Get_Approval_data($teacher_id)
+  public function Get_Approval_Evaluate($teacher_id)
   {
     $DATA = array();
     //search data of document to approve
@@ -637,7 +637,6 @@ class approval
         $course['evaluate'] = $url['evaluate'];
         $course['syllabus'] = $url['syllabus'];
         $course['comment'] = array();
-        $course['special'] = array();
         $sql = "SELECT `teacher_id`,`comment`,`status`,`date` FROM `approval_course` WHERE `course_id` = '".$course['id']."'
         AND `semester_id` =".$this->SEMESTER_ID;
         $result_comment = $this->DB->Query($sql);
@@ -673,138 +672,72 @@ class approval
 
       }
     }
-      //search special instructor data
-      if($this->USER_LEVEL < 6)
-      {
-        $sql = "SELECT DISTINCT spe.`course_id` FROM `subject_assessor` sa,`group_assessor` ga,`approval_special` spe
-         WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
-         AND spe.`status` >= '1' AND spe.`course_id` = sa.`course_id` AND spe.`semester_id` =".$this->SEMESTER_ID;
-      }
-      else
-      {
-        $sql = "SELECT DISTINCT `course_id` FROM `approval_special`
-        WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
-      }
-      $result = $this->DB->Query($sql);
-      if($result)
-      {
-        $count = count($result);
-        for($i=0;$i<$count;$i++)
-        {
-          $course_id = $result[$i]['course_id'];
-          $sql = "SELECT `instructor_id`,`teacher_id`,`status`,`comment`,`updated_date`
-          FROM `approval_special` WHERE `course_id` = '".$course_id."' AND `semester_id` =".$this->SEMESTER_ID;
-          $result_special = $this->DB->Query($sql);
-          if($result_special)
-          {
-            $count_special = count($result_special);
-            $special = array();
-            for($j=0;$j<$count_special;$j++)
-            {
-              $check = 0;
-              for($k=0;$k<count($special);$k++)
-              {
-                if($result_special[$j]['teacher_id'] == $teacher_id && $result_special[$j]['instructor_id'] == $special[$k]['id'])
-                {
-                  if($this->USER_LEVEL < 6)
-                  {
-                    if($result_special[$j]['status'] != 1)
-                    {
-                      $special[$k]['status'] = '1';
-                    }
-                  }
-                  else
-                  {
-                    if($result_special[$j]['status'] != 5)
-                    {
-                      $special[$k]['status'] = '1';
-                    }
-                  }
-                }
-                if($special[$k]['id'] == $result_special[$j]['instructor_id'])
-                {
-                  $comment['name'] = $this->PERSON->Get_Teacher_Name($result_special[$j]['teacher_id']);
-                  $comment['comment'] = $result_special[$j]['comment'];
-                  $comment['date'] = $result_special[$j]['updated_date'];
-                  array_push($special[$k]['comment'],$comment);
-                  $check = 1;
-                }
-              }
-              if($check == 0)
-              {
-                $instructor['id'] = $result_special[$j]['instructor_id'];
-                $instructor['name'] = $this->PERSON->Get_Special_Instructor_Name($instructor['id']);
-                $file = $this->Get_Special_Doc_Url($instructor['id'],$course_id,'draft');
-                $instructor['cv'] = $file['cv'];
-                $instructor['pdf'] = $file['pdf'];
-                $instructor['status'] = '0';
-                $instructor['comment'] = array();
-                $comment['name'] = $this->PERSON->Get_Teacher_Name($result_special[$j]['teacher_id']);
-                $comment['comment'] = $result_special[$j]['comment'];
-                $comment['date'] = $result_special[$j]['updated_date'];
-                if($result_special[$j]['teacher_id'] == $teacher_id)
-                {
-                  if($this->USER_LEVEL < 6)
-                  {
-                    if($result_special[$j]['status'] != 1)
-                    {
-                      $instructor['status'] = '1';
-                    }
-                  }
-                  else
-                  {
-                    if($result_special[$j]['status'] != 5)
-                    {
-                      $instructor['status'] = '1';
-                    }
-                  }
-                }
-                array_push($instructor['comment'],$comment);
-                array_push($special,$instructor);
-              }
-            }
-            $check_special = 0;
-            for($j=0;$j<count($DATA);$j++)
-            {
-              if($DATA[$j]['id'] == $course_id)
-              {
-                $check_special = 1;
-                $DATA[$j]['special'] = $special;
-              }
-            }
-            if($check_special == 0)
-            {
-              $course = array();
-              $course['id'] = $course_id;
-              $course['name'] = $this->COURSE->Get_Course_Name($course['id']);
-              $status = $this->Get_Doc_Status($course_id);
-              if($status == 0 )
-              {
-                  $course['status'] = '-1';
-              }
-              else if($status != 5 && $status != 1)
-              {
-                $course['status'] = '1'; //0 = ยังไม่ได้ลงความเห็น , 1 ลงความเห็นแล้ว
-              }
-              else
-              {
-                $course['status'] = '0';
-              }
-              $url = $this->Get_Doc_Url($course['id'],'draft');
-              $course['evaluate'] = $url['evaluate'];
-              $course['syllabus'] = $url['syllabus'];
-              $course['comment'] = array();
-              $course['special'] = $special;
-              array_push($DATA,$course);
-            }
-          }
-          else
-          {
+      //end search
+    return $DATA;
+  }
 
+
+  public function Get_Approval_Special($teacher_id)
+  {
+    $DATA = array();
+    //search data of document to special instructor
+    if($this->USER_LEVEL < 6)
+    {
+      $sql = "SELECT DISTINCT sa.`course_id` FROM `subject_assessor` sa,`group_assessor` ga,`approval_special` ac
+       WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
+       AND ac.`status` >= '1' AND ac.`course_id` = sa.`course_id` AND ac.`semester_id` =".$this->SEMESTER_ID;
+    }
+    else
+    {
+      $sql = "SELECT DISTINCT `course_id` FROM `approval_special`
+      WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
+    }
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      for($i=0;$i<count($result);$i++)
+      {
+        $course['id'] = $result[$i]['course_id'];
+        $course['name'] = $this->COURSE->Get_Course_Name($course['id']);
+        $course['instructor'] = $this->Get_Instructor_Data($course['id']);
+        for($j=0;$j<count($course['instructor']);$j++)
+        {
+          $instructor_id = $course['instructor'][$j]['id'];
+          $course['instructor'][$j]['status'] = '0';
+          $sql = "SELECT `teacher_id`,`comment`,`status`,`updated_date` FROM `approval_special` WHERE `instructor_id` = '".$instructor_id."'
+          AND `semester_id` = ".$this->SEMESTER_ID;
+          $result_comment = $this->DB->Query($sql);
+          if($result_comment)
+          {
+            $count = count($result_comment);
+            for($k=0;$k<$count;$k++)
+            {
+              if($result_comment[$k]['teacher_id'] == $teacher_id)
+              {
+                if($this->USER_LEVEL < 6)
+                {
+                  if($result_comment[$k]['status'] != 1)
+                  {
+                    $course['instructor'][$k]['status'] = '1';
+                  }
+                }
+                else
+                {
+                  if($result_comment[$k]['status'] != 5 )
+                  {
+                    $course['instructor'][$k]['status'] = '1';
+                  }
+                }
+              }
+            }
           }
         }
+        if (!empty($course['instructor']))
+        {
+          array_push($DATA,$course);
+        }
       }
-      //end search
+    }
     return $DATA;
   }
 
