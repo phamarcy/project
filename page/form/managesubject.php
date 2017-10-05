@@ -17,6 +17,9 @@ $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
 
+echo  "<pre>";
+var_dump($assessor);
+echo "</pre>";
  ?>
   <html>
 
@@ -79,6 +82,16 @@ $history=$course->Get_History($department['code']);
       #statal {
         color: #da9001;
       }
+
+
+      .clickable{
+          cursor: pointer;   
+      }
+
+      .panel-heading span {
+        margin-top: -20px;
+        font-size: 15px;
+      }
     </style>
   </head>
 
@@ -102,109 +115,74 @@ $history=$course->Get_History($department['code']);
                 <div class="panel-body">
                   <div class="form-group">
                     <div class="row">
-                      <div class="col-md-6">
-                        <div class="panel panel-info">
-                          <div class="panel-heading" style="font-size:14px;">
-                            คณะกรรมการชุดที่ 1
+
+                      <?php for ($i=1; $i <= count($assessor) ; $i++) { ?>
+                        <div class="col-md-6">
+                      <div class="panel panel-info">
+                          <div class="panel-heading" role="tab" id="heading1"  style="font-size:14px;">
+                            <div class="panel-title" style="font-size:14px;">
+                       
+                              <a role="button" data-toggle="collapse" href="#collapse<?php echo$i;?>" aria-expanded="true" aria-controls="collapse<?php echo$i+1;?>" class="trigger collapsed">
+                              คณะกรรมการชุดที่ <?php echo$i ;?>
+                              </a>
+                            </div>
                           </div>
+                          <div id="collapse<?php echo$i;?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
                           <div class="panel-body" style="font-size:14px;">
-                            <div class="form-group">
-                              <form role="form" data-toggle="validator" id="data">
-
-                                <label for="">เพิ่มคณะกรรมการ</label>
-                                <div class="form-inline">
-                                  <input type="text" class="form-control " name="teacher" id="TEACHERLEC_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35"
-                                    onkeydown="searchname(1,'committee');" required>
-                                  <button type="button" class="btn btn-outline btn-primary" onclick="teacherGroup(1,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
-                                </div>
-                                <datalist id="dtl1"></datalist>
-                              </form>
-                            </div>
-                            <hr>
-                            <div class="form-group">
-                              <table class="table" style="font-size:14px">
-                                <thead>
-                                  <th>ลำดับ</th>
-                                  <th>ชื่อ-นามสกุล</th>
-                                  <th></th>
-                                </thead>
-                                <tbody>
-
-                                  <?php foreach ($assessor[0]['assessor'] as $key_assessor => $assessor_name): ?>
-                                  <form>
-                                    <input type="hidden" name="teacher" id="name_assessor1" value="<?php echo $assessor_name ?>">
-                                    <tr>
-                                      <td>
-                                        <?php echo $key_assessor+1; ?>
-                                      </td>
-                                      <td>
-                                        <?php echo $assessor_name ?>
-                                      </td>
-                                      <td><button type="button" name="button" class="btn btn-outline btn-danger" onclick="teacherGroup(1,'remove',<?php echo $department['code']  ?>,'<?php echo $assessor_name ?>')">ลบ</button></td>
-                                    </tr>
-                                  </form>
-                                  <?php endforeach; ?>
-
-                                </tbody>
-                              </table>
-                            </div>
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="panel panel-info">
-                          <div class="panel-heading">
-                            คณะกรรมการชุดที่ 2
-                          </div>
-                          <div class="panel-body">
-                            <div class="form-group">
+                          <div class="form-group">
+                            <form role="form" data-toggle="validator" id="data">
+                              <label for="">เพิ่มคณะกรรมการ</label>
                               <div class="form-inline">
-                                <form role="form" data-toggle="validator" id="data" method="post">
-                                  <label for="">เพิ่มคณะกรรมการ</label>
-                                  <div class="form-inline">
-                                    <input type="text" required class="form-control " name="teacher" id="TEACHERLEC_2" list="dtl2" placeholder="ชื่อ-นามสกุล"
-                                      size="35" onkeydown="searchname(2,'committee');">
-                                    <button type="button" class="btn btn-outline btn-primary" onclick="teacherGroup(2,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
-                                  </div>
-                                  <datalist id="dtl2"></datalist>
-                                </form>
+                                <input type="text" class="form-control " name="teacher" id="TEACHERLEC_<?php echo$i;?>" list="dtl<?php echo$i;?>" placeholder="ชื่อ-นามสกุล" size="35"
+                                  onkeydown="searchname(<?php echo$i;?>,'committee');" required>
+                                <button type="button" class="btn btn-outline btn-primary" onclick="teacherGroup(<?php echo$i;?>,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
                               </div>
-                            </div>
-                            <hr>
-                            <div class="form-group">
-                              <table class="table" style="font-size:14px;">
-                                <thead>
-                                  <th>ลำดับ</th>
-                                  <th>ชื่อ-นามสกุล</th>
-                                  <th></th>
-                                </thead>
-                                <tbody>
-                                  <?php foreach ($assessor[1]['assessor'] as $key_assessor => $assessor_name): ?>
-                                  <form>
-                                    <input type="hidden" name="teacher" id="name_assessor2" value="<?php echo $assessor_name ?>">
+                              <datalist id="dtl<?php echo$i;?>"></datalist>
+                            </form>
+                          </div>
+                          <hr>
+                          <div class="form-group">
+                            <table class="table" style="font-size:14px">
+                              <thead>
+                                <th>ลำดับ</th>
+                                <th>ชื่อ-นามสกุล</th>
+                                <th></th>
+                              </thead>
+                              <tbody>
 
-                                    <tr>
-                                      <td>
-                                        <?php echo $key_assessor+1; ?>
-                                      </td>
-                                      <td>
-                                        <?php echo $assessor_name ?>
-                                      </td>
-                                      <td><button type="button" name="button" class="btn btn-outline btn-danger" onclick="teacherGroup(2,'remove',<?php echo $department['code']  ?>,'<?php echo $assessor_name ?>')">ลบ</button></td>
-                                    </tr>
-                                  </form>
-                                  <?php endforeach; ?>
+                                <?php foreach ($assessor[$i-1]['assessor'] as $key_assessor => $assessor_name): ?>
+                                <form>
+                                  <input type="hidden" name="teacher" id="name_assessor1" value="<?php echo $assessor_name ?>">
+                                  <tr>
+                                    <td>
+                                      <?php echo $key_assessor+1; ?>
+                                    </td>
+                                    <td>
+                                      <?php echo $assessor_name ?>
+                                    </td>
+                                    <td><button type="button" name="button" class="btn btn-outline btn-danger" onclick="teacherGroup(<?php echo$i+1;?>,'remove',<?php echo $department['code']  ?>,'<?php echo $assessor_name ?>')">ลบ</button></td>
+                                  </tr>
+                                </form>
+                                <?php endforeach; ?>
 
-                                </tbody>
-                              </table>
-                            </div>
+                              </tbody>
+                            </table>
+                          </div>
 
+                        </div>
                           </div>
                         </div>
                       </div>
+                      <?php
+                      }
+                      ?>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <button class="btn  btn-primary btn-add-panel" onclick="addgroupstaff()">
+                          <i class="glyphicon glyphicon-plus"></i> เพื่มชุดคณะกรรมการ
+                      </button>
+                      </div>
+                      
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -310,8 +288,11 @@ $history=$course->Get_History($department['code']);
                                       <label for="">คณะกรรมการ</label>
                                       <input type="hidden" name="type" value="add_assessor">
                                       <select class="form-control" id="group<?php echo $value_list['id'] ?>">
-                                        <option value="1">คณะกรรมการชุดที่ 1</option>
-                                        <option value="2">คณะกรรมการชุดที่ 2</option>
+                                        <?php 
+                                        for ($i=1; $i <= count($assessor) ; $i++) { 
+                                          echo "<option value='$i'>คณะกรรมการชุดที่ $i</option>";
+                                        }
+                                        ?>
                                       </select>
                                       <button type="button" name="button" class="btn btn-outline btn-primary" onclick="addStaffCourse('<?php echo $value_list['id'] ?>','<?php echo $dep_js ?>','<?php echo $semeter['id'] ?>')">เพิ่ม</button>
                                     </div>
@@ -369,6 +350,108 @@ $history=$course->Get_History($department['code']);
 
     </div>
     <script type="text/javascript">
+
+    function addgroupstaff() {
+      swal({
+          title: 'แน่ใจหรือไม่',
+          text: 'คุณต้องเพิ่มชุดคณะกรรมการใช่หรือไม่',
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'ตกลง',
+          cancelButtonText: 'ยกเลิก'
+        }).then(function () {
+          $.ajax({
+                    url:   '../../application/subject/responsible_staff.php',
+                    type:  'POST',
+                    cache: false,
+                    async: true,
+                    data: {
+                      course: course,
+                      teacher: teacher,
+                      semester_id:semester,
+                      type: "remove_teacher",
+                    },
+                    success: function (data) {
+                      try {
+                        var msg = JSON.parse(data);
+                        if (msg.status == "error") {
+                          swal({
+                            type: msg.status,
+                            text: msg.msg,
+                            timer: 2000,
+                            confirmButtonText: "Ok!"
+                          });
+                          return false;
+                        } else {
+                          $.ajax({
+                                url: '../../application/subject/responsible_staff.php',
+                                type: 'POST',
+                                cache: false,
+                                async: true,
+                                data: {
+                                  course: course,
+                                  semester_id:semester,
+                                  type: "remove_assessor",
+                                  
+                                },
+                                success: function (data) {
+                                  try {
+                                    var msg = JSON.parse(data);
+                                    if (msg.status == "error") {
+                                      swal({
+                                        type: msg.status,
+                                        text: msg.msg,
+                                        timer: 2000,
+                                        confirmButtonText: "Ok!"
+                                      });
+                                      return false;
+                                    } else {
+                                      swal({
+                                        type: msg.status,
+                                        text: msg.msg,
+                                        timer: 2000,
+                                        confirmButtonText: "Ok!",
+                                      }, function () {
+                                        window.location.reload();
+                                      });
+                                      setTimeout(function () {
+                                        window.location.reload();
+                                      }, 1000);
+                                    }
+                                  } catch (e) {
+                                    console.log(data);
+                                    
+                                    swal({
+                                    type: "error",
+                                    text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                                    timer: 2000,
+                                    confirmButtonText: "Ok!",
+                                  });
+                                  }
+                                }
+                              });
+
+                        }
+                        
+                      } catch (e) {
+                        console.log(data);
+                        swal({
+                        type: "error",
+                        text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                        timer: 2000,
+                        confirmButtonText: "Ok!",
+                      });
+                      }
+                    }
+                  });
+
+        }, function (dismiss) {
+          if (dismiss === 'cancel') {}
+        })
+    }
+
       function addStaffCourse(course, department, semester) {
         var text = "TEACHERLEC_" + course;
         var textgroup = "group" + course;

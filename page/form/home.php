@@ -211,6 +211,13 @@ $data_course= json_decode($var, true);
                                   } ?>
                                 <?php endif; ?>
 
+																<?php if ($_SESSION['level']==2): ?>
+																<?php if(($value_course['evaluate']['status'])==1){ ?>
+																	<button class='btn btn-outline btn-success'  onclick='pass(<?php echo $value_course['id'] ?>);'>ผ่าน</button>
+																	<?php
+																} ?>
+															<?php endif; ?>
+
 															</h3>
 														</div>
 														<?php if (isset($_SESSION['level'])) { ?>
@@ -448,6 +455,59 @@ $data_course= json_decode($var, true);
           {
             course_id:course,
             teachersp:teachersp
+          },
+          beforeSend: function() {
+            swal({
+              title: 'กรุณารอสักครู่',
+              text: 'ระบบกำลังประมวลผล',
+              allowOutsideClick: false
+            })
+           swal.showLoading();
+          },
+          success:function(data){
+            swal.hideLoading();
+            try {
+              var msg=JSON.parse(data)
+              swal({
+                type:msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!",
+              }, function(){
+                window.location.reload();
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 1000);
+            } catch (e) {
+
+            }
+
+          }
+      });
+    }, function (dismiss) {
+    if (dismiss === 'cancel') {}
+  })
+  }
+	function pass(course){
+
+    swal({
+      title: 'แน่ใจหรือไม่',
+      text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก'
+    }).then(function () {
+      $.ajax({
+          url: '../../application/approval/send_board.php',
+          type: 'POST',
+          data:
+          {
+            course_id:course,
+						type:"pass"
           },
           beforeSend: function() {
             swal({

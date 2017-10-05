@@ -64,27 +64,28 @@ $end = strtotime($current_semester[0]['last_date']);
     <script type="text/javascript" src="../js/function.js"></script>
     <script src="../dist/js/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
-    <style >
-    i:hover {
-      font-size: 30px;
-      font-weight: bold;
-      color: red;
-    }
-    #statcf {
-     color : #0e9d14;
-    }
+    <style>
+      i:hover {
+        font-size: 30px;
+        font-weight: bold;
+        color: red;
+      }
 
-    #statn {
-     color : #ec2c2c;
-    }
+      #statcf {
+        color: #0e9d14;
+      }
 
-    #statwt {
-     color : #acb500;
-    }
+      #statn {
+        color: #ec2c2c;
+      }
 
-    #statal {
-     color : #da9001;
-    }
+      #statwt {
+        color: #acb500;
+      }
+
+      #statal {
+        color: #da9001;
+      }
     </style>
   </header>
 
@@ -93,10 +94,9 @@ $end = strtotime($current_semester[0]['last_date']);
 
     <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
       <div class="container">
-    
         <div class="row">
           <center>
-          <?php $approve_text="";
+            <?php $approve_text="";
              if ($_SESSION['level']==6 || $_SESSION['admission']==1):
             $approve_text="อนุมัติ";
             ?>
@@ -105,7 +105,7 @@ $end = strtotime($current_semester[0]['last_date']);
             $approve_text="เห็นชอบ";?>
             <h3 class="page-header">ประเมินกระบวนวิชา</h3>
             <?php endif; ?>
-          <?php  
+            <?php  
           if ($now>$end) {
             echo  '<div class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการ'.$approve_text.'<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
             exit();
@@ -115,156 +115,303 @@ $end = strtotime($current_semester[0]['last_date']);
           }
            ?>
           </center>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h5 class="panel-title" style="font-size:14px">
-              <b>ภาคการศึกษาที่ <?php echo $semeter['semester'] ?> ปีการศึกษา <?php echo $semeter['year'] ?></b>
-          </h5>
-          </div>
-          <!-- .panel-heading -->
-          <div class="panel-body">
-          <?php
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h5 class="panel-title" style="font-size:14px">
+                <b>ภาคการศึกษาที่ <?php echo $semeter['semester'] ?> ปีการศึกษา <?php echo $semeter['year'] ?></b>
+              </h5>
+            </div>
+            <!-- .panel-heading -->
+            <div class="panel-body">
+              <?php
           if($_SESSION['level'] == 4 || $_SESSION['level'] == 5  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3) {  ?>
-              <?php if (isset($deadline_form['evaluate'])): ?>
+                <?php if (isset($deadline_form['evaluate'])): ?>
                 <div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับประเมินกระบวนวิชา <?php echo $deadline_form['evaluate']['day'].' '.$deadline_form['evaluate']['month'].' '.$deadline_form['evaluate']['year']."<br>"; ?> </b>
-              <?php endif; ?>
-          <?php }
-          if($_SESSION['level'] == 6  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3)
-          { ?>
-            <?php if (isset($deadline_form['approve'])): ?>
-              <div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline_form['approve']['day'].' '.$deadline_form['approve']['month'].' '.$deadline_form['approve']['year']."<br>"; ?> </b>
-            <?php endif; ?>
-              <?php	} ?>
-           
-           
+                <?php endif; ?>
+                <?php } ?>
+                <div class="container col-md-12">
+                  <ul class="nav nav-tabs" style="font-size:14px">
+                    <li class="active"><a data-toggle="tab" href="#subject">Home</a></li>
+                    <li><a data-toggle="tab" href="#sp">Menu 1</a></li>
+
+                  </ul>
+
+                  <div class="tab-content col-md-12">
+                    <div id="subject" class="tab-pane fade in active">
+                      <br>
+                      <div class="col-md-12 ">
+                        <button type="button" class="btn btn-primary">ยืนยัน</button>
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h5 class="panel-title" style="font-size:14px">
+                                <input type="checkbox" value=""> </input><a data-toggle="collapse" href="#collapse1">Collapsible Group 1</a>
+                              </h5>
+
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse " style="font-size:14px">
+                              <div class="panel-body">
+                                <form id="approve_course" action="index.html" method="post">
+
+                                  <div class="form-group ">
+                                    <label for="">ข้อเสนอแนะ</label>
+                                    <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $value['id'] ?>"></textarea>
+                                  </div>
+                                  <div class="form-group">
+                                    <button type="button" class="btn btn-outline btn-success " onclick="approve_course(<?php echo $value['id'] ?>,'approve')"><?php echo $approve_text; ?></button>                                    &nbsp;
+                                    <button type="button" class="btn btn-outline btn-danger " onclick="approve_course(<?php echo $value['id'] ?>,'edit')">มีการแก้ไข</button>
+                                  </div>
+
+                                </form>
+
+                                <table class="table " style="font-size:14px">
+                                  <thead>
+                                    <?php if ($_SESSION['level'] > 1  || $_SESSION['admission']==1): ?>
+                                    <th style="width:230px">คณะกรรมการ</th>
+                                    <?php endif; ?>
+                                    <th>ข้อเสนอแนะ</th>
+                                    <th>วัน/เวลา</th>
+                                  </thead>
+                                  <tbody>
+
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h5 class="panel-title" style="font-size:14px">
+                                <input type="checkbox" value=""> </input><a data-toggle="collapse" data-parent="#accordion"
+                                  href="#collapse2">Collapsible Group 2</a>
+                              </h5>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse" style="font-size:14px">
+                              <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo consequat.</div>
+                            </div>
+                          </div>
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h5 class="panel-title" style="font-size:14px">
+                                <input type="checkbox" value=""> </input><a data-toggle="collapse" data-parent="#accordion"
+                                  href="#collapse3">Collapsible Group 3</a>
+                              </h5>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse" style="font-size:14px">
+                              <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo consequat.</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div id="sp" class="tab-pane fade">
+                    <br>
+                      <div class="col-md-12 ">
+                        <button type="button" class="btn btn-primary">ยืนยัน</button>
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h5 class="panel-title" style="font-size:14px">
+                                <input type="checkbox" value=""> </input><a data-toggle="collapse" href="#collapsesp1">Collapsible Group 1</a>
+                              </h5>
+
+                            </div>
+                            <div id="collapsesp1" class="panel-collapse collapse " style="font-size:14px">
+                              <div class="panel-body">
+                                <form id="approve_course" action="index.html" method="post">
+
+                                  <div class="form-group ">
+                                    <label for="">ข้อเสนอแนะ</label>
+                                    <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $value['id'] ?>"></textarea>
+                                  </div>
+                                  <div class="form-group">
+                                    <button type="button" class="btn btn-outline btn-success " onclick="approve_course(<?php echo $value['id'] ?>,'approve')"><?php echo $approve_text; ?></button>                                    &nbsp;
+                                    <button type="button" class="btn btn-outline btn-danger " onclick="approve_course(<?php echo $value['id'] ?>,'edit')">มีการแก้ไข</button>
+                                  </div>
+
+                                </form>
+
+                                <table class="table " style="font-size:14px">
+                                  <thead>
+                                    <?php if ($_SESSION['level'] > 1  || $_SESSION['admission']==1): ?>
+                                    <th style="width:230px">คณะกรรมการ</th>
+                                    <?php endif; ?>
+                                    <th>ข้อเสนอแนะ</th>
+                                    <th>วัน/เวลา</th>
+                                  </thead>
+                                  <tbody>
+
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h5 class="panel-title" style="font-size:14px">
+                                <input type="checkbox" value=""> </input><a data-toggle="collapse" data-parent="#accordion"
+                                  href="#collapsesp2">Collapsible Group 2</a>
+                              </h5>
+                            </div>
+                            <div id="collapsesp2" class="panel-collapse collapse" style="font-size:14px">
+                              <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo consequat.</div>
+                            </div>
+                          </div>
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h5 class="panel-title" style="font-size:14px">
+                                <input type="checkbox" value=""> </input><a data-toggle="collapse" data-parent="#accordion"
+                                  href="#collapsesp3">Collapsible Group 3</a>
+                              </h5>
+                            </div>
+                            <div id="collapsesp3" class="panel-collapse collapse" style="font-size:14px">
+                              <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo consequat.</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+            </div>
+            <!-- .panel-body -->
           </div>
-          <!-- .panel-body -->
         </div>
       </div>
     </div>
     </div>
     <script type="text/javascript">
-    function approve_course(course,type){
-      var id = "<?php echo $_SESSION['id'] ?>";
-      var text ="comment_"+course;
-      var comment = document.getElementById(text).value;
-      swal({
-        title: 'แน่ใจหรือไม่',
-        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'ตกลง',
-        cancelButtonText: 'ยกเลิก'
-      }).then(function () {
-        $.ajax({
+      function approve_course(course, type) {
+        var id = "<?php echo $_SESSION['id'] ?>";
+        var text = "comment_" + course;
+        var comment = document.getElementById(text).value;
+        swal({
+          title: 'แน่ใจหรือไม่',
+          text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'ตกลง',
+          cancelButtonText: 'ยกเลิก'
+        }).then(function () {
+          $.ajax({
             url: '../../application/approval/approve.php',
             type: 'POST',
-            data:
-            {
-              course_id:course,
-              status:type,
-              teacher:id,
-              comment:comment
+            data: {
+              course_id: course,
+              status: type,
+              teacher: id,
+              comment: comment
             },
-            beforeSend: function() {
-             swal({
-                     title: 'กรุณารอสักครู่',
-                     text: 'ระบบกำลังประมวลผล',
-                     allowOutsideClick: false
-                   })
-             swal.showLoading();
+            beforeSend: function () {
+              swal({
+                title: 'กรุณารอสักครู่',
+                text: 'ระบบกำลังประมวลผล',
+                allowOutsideClick: false
+              })
+              swal.showLoading();
             },
-            success:function(data){
+            success: function (data) {
               swal.hideLoading();
               try {
-                var msg=JSON.parse(data)
+                var msg = JSON.parse(data)
                 swal({
-                  type:msg.status,
+                  type: msg.status,
                   text: msg.msg,
                   timer: 2000,
                   confirmButtonText: "Ok!",
-                }, function(){
+                }, function () {
                   window.location.reload();
                 });
-                setTimeout(function() {
+                setTimeout(function () {
                   window.location.reload();
                 }, 1000);
               } catch (e) {
                 swal({
-                  type:"error",
+                  type: "error",
                   text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
                   timer: 2000,
                   confirmButtonText: "Ok!",
                 });
               }
             }
-        });
-      }, function (dismiss) {
-      if (dismiss === 'cancel') {}
-    })
+          });
+        }, function (dismiss) {
+          if (dismiss === 'cancel') {}
+        })
 
-    }
-    function approve_sp(course,teacherSp,type){
+      }
 
-      var id = "<?php echo $_SESSION['id'] ?>";
-      var text ="comment_sp_"+teacherSp;
-      var comment = document.getElementById(text).value;
-      swal({
-        title: 'แน่ใจหรือไม่',
-        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'ตกลง',
-        cancelButtonText: 'ยกเลิก'
-      }).then(function () {
-        $.ajax({
+      function approve_sp(course, teacherSp, type) {
+
+        var id = "<?php echo $_SESSION['id'] ?>";
+        var text = "comment_sp_" + teacherSp;
+        var comment = document.getElementById(text).value;
+        swal({
+          title: 'แน่ใจหรือไม่',
+          text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'ตกลง',
+          cancelButtonText: 'ยกเลิก'
+        }).then(function () {
+          $.ajax({
             url: '../../application/approval/approve.php',
             type: 'POST',
-            data:
-            {
-              course_id:course,
-              status:type,
-              teacher:id,
-              teachersp:teacherSp,
-              comment:comment
+            data: {
+              course_id: course,
+              status: type,
+              teacher: id,
+              teachersp: teacherSp,
+              comment: comment
             },
-            beforeSend: function() {
+            beforeSend: function () {
               swal({
                 title: 'กรุณารอสักครู่',
                 text: 'ระบบกำลังประมวลผล',
                 allowOutsideClick: false
               })
-             swal.showLoading();
+              swal.showLoading();
             },
-            success:function(data){
+            success: function (data) {
               swal.hideLoading();
-              var msg=JSON.parse(data)
+              var msg = JSON.parse(data)
               swal({
-                type:msg.status,
+                type: msg.status,
                 text: msg.msg,
                 timer: 2000,
                 confirmButtonText: "Ok!",
-              }, function(){
+              }, function () {
                 window.location.reload();
               });
-              setTimeout(function() {
+              setTimeout(function () {
                 window.location.reload();
               }, 1000);
             }
-        });
-      }, function (dismiss) {
-      if (dismiss === 'cancel') {}
-    })
+          });
+        }, function (dismiss) {
+          if (dismiss === 'cancel') {}
+        })
 
 
 
-    }
-
+      }
     </script>
   </body>
 

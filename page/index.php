@@ -426,7 +426,7 @@
 						{
 							if ($_SESSION['level']==6 || $_SESSION['admission'] == 1) { ?>
 								<li>
-									<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> อนุมัติกระบวนวิชา</a>
+									<a href="#" onclick="loadDoc('form/commentboard.php')"><i class="fa fa-pencil-square fa-fw"></i> อนุมัติกระบวนวิชา</a>
 								</li>
 						<?php
 							}
