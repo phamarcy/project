@@ -89,8 +89,8 @@ if(isset($_POST['DATA']))
     $DATA["FILE_PATH"] = $file_path;
     $DATA['SEMESTER'] = $semester;
     $data['DATA'] = json_encode($DATA);
-    $gen_result = Generate($data);
-    $gen_result = json_decode($gen_result,true);
+    $gen_result_payload = Generate($data);
+    $gen_result = json_decode($gen_result_payload,true);
     if($gen_result['status'] == 'success')
     {
       $approve = new approval('1');
@@ -103,11 +103,12 @@ if(isset($_POST['DATA']))
       else
       {
         $return['status'] = "error";
-        $return['msg'] = 'ไม่สามารถบัทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+        $return['msg'] = 'ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
       }
     }
     else
     {
+			$log->Write($gen_result_payload);
       $return['status'] = "error";
       $return['msg'] = 'ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
     }
