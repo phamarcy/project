@@ -78,8 +78,8 @@ if(isset($_POST['DATA']))
 			$DATA['APPROVED']['TYPE'] = '3';
 		}
     $data['DATA'] = json_encode($DATA);
-    $gen_result =  Generate($data);
-    $gen_result = json_decode($gen_result,true);
+    $gen_result_payload =  Generate($data);
+    $gen_result = json_decode($gen_result_payload,true);
 
     if($gen_result['status'] == 'success')
     {
@@ -108,6 +108,7 @@ if(isset($_POST['DATA']))
     {
       $return['status'] = "error";
       $return['msg'] = 'ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+			$log->Write($gen_result_payload);
     }
     echo json_encode($return);
 		 Close_connection();

@@ -369,36 +369,49 @@ class Person
     $DATA = array();
     if($department_id == '1202')
     {
-      $group_num = '1';
+      $dept_group = '1';
     }
     else if($department_id == '1203')
     {
-      $group_num = '2';
+      $dept_group = '2';
     }
     else
     {
-      $group_num = '0';
+      $dept_group = '0';
     }
-    for($j=1;$j<=2;$j++)
+    $sql = "SELECT `teacher_id`,`group_num` FROM `group_assessor` WHERE group_num LIKE '".$dept_group."%'";
+    $this->DB->Change_DB($this->DEFAULT_DB);
+    $result = $this->DB->Query($sql);
+    if($result)
     {
-      $group['group'] = $j;
-      $group['assessor'] = array();
-      $sql = "SELECT `teacher_id`
-      FROM `group_assessor` WHERE `group_num` = '".$group_num.$j."'";
-      $this->DB->Change_DB($this->DEFAULT_DB);
-      $result = $this->DB->Query($sql);
-      if($result)
+      for($i=0;$i<count($result);$i++)
       {
-        for($i=0;$i<count($result);$i++)
-        {
-            $teacher_name = $this->Get_Teacher_Name($result[$i]['teacher_id']);
-            array_push($group['assessor'],$teacher_name);
-        }
-
+          $group_num = substr($result[$i]['group_num'], - 1);
+          $teacher_name = $this->Get_Teacher_Name($result[$i]['teacher_id']);
+          $check = 0;
+          for($j=0;$j<count($DATA);$j++)
+          {
+            if($DATA[$j]['group'] == $group_num)
+            {
+              array_push($DATA[$j]['assessor'],$teacher_name);
+              $check = 1;
+              break;
+            }
+            unset($data);
+          }
+          if($check == 0)
+          {
+            $data['group'] = $group_num;
+            $data['assessor'] = array();
+            array_push($data['assessor'],$teacher_name);
+            array_push($DATA,$data);
+          }
       }
-
-      array_push($DATA,$group);
-      unset($group);
+    }
+    else
+    {
+      $DATA['status'] = 'error';
+      $DATA['msg'] = 'เกิดข้อผิดพลาด กรุณาติดต่อผู้ดูแลระบบ';
     }
     return $DATA;
   }
