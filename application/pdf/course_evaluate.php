@@ -372,7 +372,10 @@ $pdf->SetFont('THSarabun_B','',14);
 $pdf->SetX(20);
 $pdf->Cell(0,7,iconv( 'UTF-8','cp874','6. วิธีการตัดเกรด'),0,1,"L");
 $pdf->SetX(25);
-$pdf->Cell(0,7,iconv('UTF-8','cp874',' '.$CAL_GROUP.' อิงกลุ่ม     '.$DATA['CALCULATE']["EXPLAINATION"]),0,1);
+$pdf->Cell(0,7,iconv('UTF-8','cp874',' '.$CAL_GROUP.' อิงกลุ่ม'),0,1);
+$pdf->SetX(35);
+$pdf->Write( 7 , iconv( 'UTF-8','cp874' ,'คำอธิบาย '.$DATA['CALCULATE']['EXPLAINATION']));
+$pdf->Ln();
 $pdf->SetX(25);
 $pdf->Cell(30,7,iconv('UTF-8','cp874',' '.$CAL_CRITERIA.' อิงเกณฑ์'),0,1);
 $pdf->SetX(25);
@@ -458,10 +461,7 @@ else if($DATA['CALCULATE']['TYPE'] == 'CRITERIA')
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 	$pdf->Ln();
 }
-	$pdf->Cell(20,7,iconv('UTF-8','cp874','อื่นๆ '),0,1);
-	$pdf->SetX(25);
-	$pdf->Write( 7 , iconv( 'UTF-8','cp874' ,$DATA['CALCULATE']['OTHERGRADE']) );
-	$pdf->Ln();
+
 $pdf->Ln();
 // Topic 7
 $AB_F = $AB_U = $AB_CAL = '[   ]';
