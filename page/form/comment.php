@@ -146,7 +146,8 @@ echo "</pre>";
                       <br>
                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="pull-right">
-                          <button type="button" class="btn btn-primary btn-outline" onclick="select_all(this)">เลือกทั้งหมด</button>
+                        <label style="font-size:14px"><input type="checkbox" name="checkedAll" id="checkedAll" >ทั้งหมด</label>
+                        
                         </div>
                       </div>
                       <hr>
@@ -170,7 +171,7 @@ echo "</pre>";
                                   <a href="<?php echo $eva['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
                                   <?php endif; ?>
                                   <div class="pull-right">
-                                    <input type="checkbox" id="subject<?php echo $eva['id']?>" value="<?php echo $eva['id']?>"></input>
+                                    <input type="checkbox" name="coursecheck" id="checkedAll" class="checkSingle" value="<?php echo $eva['id']?>"></input>
                                   </div>
                                 </h5>
 
@@ -221,7 +222,7 @@ echo "</pre>";
                         }
                         ?>
                         <div class="pull-right">
-                          <button type="button" class="btn btn-success btn-outline " onclick="">ยืนยัน</button>
+                          <button type="button" class="btn btn-success btn-outline " onclick="get_selectall()">ยืนยัน</button>
                         </div>
                       </div>
                       <!-- col 12-->
@@ -307,12 +308,65 @@ echo "</pre>";
     </div>
     </div>
     <script type="text/javascript">
-    function select_all(source) {
-      checkboxes = document.getElementsByName('foo');
-      for(var i=0, n=checkboxes.length;i<n;i++) {
-        checkboxes[i].checked = source.checked;
+      $(document).ready(function() {
+        $("#checkedAll").change(function(){
+          if(this.checked){
+            $(".checkSingle").each(function(){
+              this.checked=true;
+            })              
+          }else{
+            $(".checkSingle").each(function(){
+              this.checked=false;
+            })              
+          }
+        });
+      
+        $(".checkSingle").click(function () {
+          if ($(this).is(":checked")){
+            var isAllChecked = 0;
+            $(".checkSingle").each(function(){
+              if(!this.checked)
+                 isAllChecked = 1;
+            })              
+            if(isAllChecked == 0){ $("#checkedAll").prop("checked", true); }     
+          }else {
+            $("#checkedAll").prop("checked", false);
+          }
+        });
+      });
+      function get_selectall(params) {
+        var course = [];
+        $.each($("input[name='coursecheck']:checked"), function(){            
+            course.push($(this).val());
+        });
+        swal({
+          title: 'แน่ใจหรือไม่',
+          text: 'คุณต้องการทั้งหมดใช่หรือไม่',
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'ตกลง',
+          cancelButtonText: 'ยกเลิก'
+        }).then(function () {
+          for (var i=0; i < course.length ; i++) { 
+          approve_courseAll(course[i],"edit");
+        }
+
+        }, function (dismiss) {
+          if (dismiss === 'cancel') {}
+        })
       }
-    }
+      function approve_courseAll(){
+
+      }
+
+
+
+
+
+
+
       function approve_course(course, type) {
         var id = "<?php echo $_SESSION['id'] ?>";
         var text = "comment_" + course;
@@ -330,6 +384,7 @@ echo "</pre>";
           $.ajax({
             url: '../../application/approval/approve.php',
             type: 'POST',
+            async: true,
             data: {
               course_id: course,
               status: type,
