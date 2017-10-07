@@ -78,5 +78,19 @@ if(isset($_POST['type']))
     }
     echo json_encode($result);
   }
+  else if ($type == 'addgroup')
+  {
+    var_dump($_POST);exit();
+
+    $group_num = $_POST['groupnext'];
+    $course_id = $_POST['course'];
+    $department_id = $_POST['dep_id'];
+    $semester_id = $_POST['semester_id'];
+    $result = $course->Add_Responsible_Assessor($course_id,$group_num,$semester_id,$department_id);
+    if($result['status'] == "success")
+    {
+      $result = $approval->Append_Status_Evaluate($course_id);
+    }
+  }
 }
 ?>

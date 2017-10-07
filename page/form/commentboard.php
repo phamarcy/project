@@ -42,11 +42,6 @@ $start = strtotime($current_semester[0]['open_date']);
 $end = strtotime($current_semester[0]['last_date']);
 
 
-
-echo  "<pre>";
-var_dump($data_forapprovalsp);
-echo "</pre>";
-
  ?>
   <html>
   <header>
@@ -147,7 +142,6 @@ echo "</pre>";
                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="pull-right">
                         <label style="font-size:14px"><input type="checkbox" name="checkedAll" id="checkedAll" >ทั้งหมด</label>
-                        
                         </div>
                       </div>
                       <hr>
@@ -171,6 +165,7 @@ echo "</pre>";
                                   <a href="<?php echo $eva['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
                                   <?php endif; ?>
                                   <div class="pull-right">
+                                  <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapse<?php echo $eva['id'] ?>">อนุมัติ</a>&nbsp;
                                     <input type="checkbox" name="coursecheck" id="checkedAll" class="checkSingle" value="<?php echo $eva['id']?>"></input>
                                   </div>
                                 </h5>
@@ -201,15 +196,21 @@ echo "</pre>";
                                     </thead>
                                     <tbody>
                                       <?php foreach ($eva['comment'] as $key => $commenteva) { ?>
-                                      <td>
-                                        <?php echo $key+1; ?>
-                                      </td>
-                                      <td>
-                                        <?php echo $commenteva['name']; ?>
-                                      </td>
-                                      <td>
-                                        <?php echo $commenteva['date']; ?>
-                                      </td>
+                                        <tr>
+                                            <td>
+                                              <?php echo $commenteva['name']; ?>
+                                            </td>
+                                            <td>
+                                              <?php if ($commenteva['comment']==null) {
+                                                echo "-";
+                                              }else {
+                                                echo $commenteva['comment'];
+                                              } ?>
+                                            </td>
+                                            <td>
+                                              <?php echo $commenteva['date']; ?>
+                                            </td>
+                                        </tr>
                                       <?php } ?>
                                     </tbody>
                                   </table>
@@ -231,10 +232,10 @@ echo "</pre>";
                     <div id="sp" class="tab-pane fade">
                       <br>
                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                      <div class="pull-right">
-                        <button type="button" class="btn btn-primary btn-outline" onclick="">เลือกทั้งหมด</button>
+                        <div class="pull-right">
+                          <label style="font-size:14px"><input type="checkbox" name="checkedAllsp" id="checkedAllsp" >ทั้งหมด</label>
+                        </div>
                       </div>
-                    </div>
                       <hr>
 
                       <div class="col-md-12 ">
@@ -244,6 +245,7 @@ echo "</pre>";
                             <h5 class="panel-title" style="font-size:14px">
                               <?php echo $sp['id']." ".$sp['name'] ?>
                             </h5>
+                            
                           </div>
                           <div class="panel-body">
                             <?php foreach ($sp['instructor'] as $keycom => $spcomment) { ?>
@@ -251,12 +253,18 @@ echo "</pre>";
                               <div class="panel panel-default">
                                 <div class="panel-heading">
                                   <h5 class="panel-title" style="font-size:14px">
-                                    <input type="checkbox" value=""> </input>
                                     <a data-toggle="collapse" href="#collapsesp<?php echo $sp['id'] ?>">
                                       <?php echo $spcomment['name'] ?>
                                     </a>
+                                    <?php if (isset($spcomment['pdf']) ): ?> &nbsp;&nbsp;
+                                      <b>CV: </b>
+                                      <a href="<?php echo $spcomment['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                                    <?php endif; ?>
+                                    <div class="pull-right">
+                                    <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapsesp<?php echo $sp['id'] ?>">อนุมัติ</a>&nbsp;
+                                    <input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $sp['id']?>,<?php echo $spcomment['id']?>"></input>
+                                  </div>
                                   </h5>
-
                                 </div>
                                 <div id="collapsesp<?php echo $sp['id'] ?>" class="panel-collapse collapse " style="font-size:14px">
                                   <div class="panel-body">
@@ -266,8 +274,8 @@ echo "</pre>";
                                         <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $sp['id'] ?>"></textarea>
                                       </div>
                                       <div class="form-group">
-                                        <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(<?php echo $sp['id'] ?>,'approve')"><?php echo $approve_text; ?></button>&nbsp;
-                                        <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(<?php echo $sp['id'] ?>,'edit')">มีการแก้ไข</button>
+                                        <button type="button" class="btn btn-outline btn-success " onclick="approve_sp(<?php echo $sp['id'] ?>,'approve_sp')"><?php echo $approve_text; ?></button>&nbsp;
+                                        <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp(<?php echo $sp['id'] ?>,'edit_sp')">มีการแก้ไข</button>
                                       </div>
 
                                     </form>
@@ -281,7 +289,23 @@ echo "</pre>";
                                         <th>วัน/เวลา</th>
                                       </thead>
                                       <tbody>
-
+                                      <?php foreach ($spcomment['comment'] as $key => $commentsp) { ?>
+                                        <tr>
+                                            <td>
+                                              <?php echo $commentsp['name']; ?>
+                                            </td>
+                                            <td>
+                                              <?php if ($commentsp['comment']==null) {
+                                                echo "-";
+                                              }else {
+                                                echo $commentsp['comment'];
+                                              } ?>
+                                            </td>
+                                            <td>
+                                              <?php echo $commentsp['date']; ?>
+                                            </td>
+                                        </tr>
+                                      <?php } ?>
                                       </tbody>
                                     </table>
                                   </div>
@@ -292,6 +316,9 @@ echo "</pre>";
                           </div>
                         </div>
                         <?php } ?>
+                        <div class="pull-right">
+                          <button type="button" class="btn btn-success btn-outline " onclick="get_selectallsp()">ยืนยัน</button>
+                        </div>
                       </div>
                       <!--col 12-->
                     </div>
@@ -313,32 +340,71 @@ echo "</pre>";
           if(this.checked){
             $(".checkSingle").each(function(){
               this.checked=true;
-            })              
+            })
           }else{
             $(".checkSingle").each(function(){
               this.checked=false;
-            })              
+            })
           }
         });
-      
+
         $(".checkSingle").click(function () {
           if ($(this).is(":checked")){
             var isAllChecked = 0;
             $(".checkSingle").each(function(){
               if(!this.checked)
                  isAllChecked = 1;
-            })              
-            if(isAllChecked == 0){ $("#checkedAll").prop("checked", true); }     
+            })
+            if(isAllChecked == 0){ $("#checkedAll").prop("checked", true); }
           }else {
             $("#checkedAll").prop("checked", false);
           }
         });
       });
-      function get_selectall(params) {
+
+      $(document).ready(function() {
+        $("#checkedAllsp").change(function(){
+          if(this.checked){
+            $(".checkSinglesp").each(function(){
+              this.checked=true;
+            })
+          }else{
+            $(".checkSinglesp").each(function(){
+              this.checked=false;
+            })
+          }
+        });
+
+        $(".checkSinglesp").click(function () {
+          if ($(this).is(":checked")){
+            var isAllChecked = 0;
+            $(".checkSinglesp").each(function(){
+              if(!this.checked)
+                 isAllChecked = 1;
+            })
+            if(isAllChecked == 0){ $("#checkedAllsp").prop("checked", true); }
+          }else {
+            $("#checkedAllsp").prop("checked", false);
+          }
+        });
+      });
+
+      function get_selectall() {
         var course = [];
-        $.each($("input[name='coursecheck']:checked"), function(){            
+        $.each($("input[name='coursecheck']:checked"), function(){
             course.push($(this).val());
         });
+
+        if (course.length==0) {
+         swal({
+          title: 'ผิดพลาด',
+          text: 'กรุณาเลือกวิชา',
+          type: 'error',
+
+        })
+        return;
+        }
+
         swal({
           title: 'แน่ใจหรือไม่',
           text: 'คุณต้องการทั้งหมดใช่หรือไม่',
@@ -349,23 +415,182 @@ echo "</pre>";
           confirmButtonText: 'ตกลง',
           cancelButtonText: 'ยกเลิก'
         }).then(function () {
-          for (var i=0; i < course.length ; i++) { 
-          approve_courseAll(course[i],"edit");
-        }
+
+          var async_request=[];
+          var responses=[];
+          var comment="-";
+          var type ="approve" ;
+          var id = "<?php echo $_SESSION['id'] ?>";
+
+          for(i in course)
+          {
+              async_request.push( $.ajax({
+                url: '../../application/approval/approve.php',
+                type: 'POST',
+                async: true,
+                data: {
+                  course_id: course[i],
+                  status: type,
+                  teacher: id,
+                  comment: comment
+                },
+                success: function (data) {
+                  try {
+                    var msg = JSON.parse(data)
+                    console.log(msg);
+                    console.log('success of ajax response')
+                    responses.push(data);
+                  } catch (e) {
+                    swal({
+                      type: "error",
+                      text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                      timer: 2000,
+                      confirmButtonText: "Ok!",
+                    });
+                    console.log(data);
+                  }
+                }
+              }));
+          }
+
+          $.when.apply(null, async_request).done( function(){
+            try {
+                var msg = JSON.parse(responses[0])
+                swal({
+                  type: msg.status,
+                  text: msg.msg,
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                }, function () {
+                  window.location.reload();
+                });
+                setTimeout(function () {
+                  window.location.reload();
+                }, 1000);
+              } catch (e) {
+                swal({
+                  type: "error",
+                  text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                });
+                console.log(responses);
+              }
+              console.log('all request completed')
+              console.log(responses);
+          });
 
         }, function (dismiss) {
           if (dismiss === 'cancel') {}
         })
       }
-      function approve_courseAll(){
 
+      function get_selectallsp() {
+        var course = [];
+ 
+        var tempcourseAndName=[];
+
+        var purecourse=[];
+        var purenamesp=[];
+        $.each($("input[name='coursechecksp']:checked"), function(){
+            course.push($(this).val());
+        });
+
+        for (var i=0; i < course.length ; i++) {
+          tempcourseAndName[i]=course[i].split(",");
+          purecourse.push(tempcourseAndName[i][0]);
+          purenamesp.push(tempcourseAndName[i][1]);
+        }
+
+        if (course.length==0) {
+         swal({
+          title: 'ผิดพลาด',
+          text: 'กรุณาเลือกอาจารย์พิเศษ',
+          type: 'error',
+
+        })
+        return;
+        }
+
+        swal({
+          title: 'แน่ใจหรือไม่',
+          text: 'คุณต้องการยืนยันข้อมูลที่เลือกใช่หรือไม่',
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'ตกลง',
+          cancelButtonText: 'ยกเลิก'
+        }).then(function () {
+
+          var async_request=[];
+          var responses=[];
+          var comment="-";
+          var type ="approve_sp" ;
+          var id = "<?php echo $_SESSION['id'] ?>";
+
+          for(i in purecourse)
+          {
+              async_request.push( $.ajax({
+                url: '../../application/approval/approve.php',
+                type: 'POST',
+                async: true,
+                data: {
+                  course_id: purecourse[i],
+                  status: type,
+                  teacher: id,
+                  teachersp:purenamesp[i],
+                  comment: comment
+                },
+                success: function (data) {
+                  try {
+                    var msg = JSON.parse(data)
+                    console.log(msg);
+                    console.log('success of ajax response')
+                    responses.push(data);
+                  } catch (e) {
+                    swal({
+                        type: "error",
+                        text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                        timer: 2000,
+                        confirmButtonText: "Ok!",
+                      });
+                    console.log(data);
+                  }
+                }
+              }));
+          }
+
+          $.when.apply(null, async_request).done( function(){
+            try {
+                var msg = JSON.parse(responses[0])
+                swal({
+                  type: msg.status,
+                  text: msg.msg,
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                }, function () {
+                  window.location.reload();
+                });
+                setTimeout(function () {
+                  window.location.reload();
+                }, 1000);
+              } catch (e) {
+                swal({
+                  type: "error",
+                  text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                });
+              }
+              console.log('all request completed')
+              console.log(responses);
+          });
+
+        }, function (dismiss) {
+          if (dismiss === 'cancel') {}
+        })
       }
-
-
-
-
-
-
 
       function approve_course(course, type) {
         var id = "<?php echo $_SESSION['id'] ?>";

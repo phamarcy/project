@@ -18,7 +18,7 @@ $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
 
 echo  "<pre>";
-var_dump($assessor);
+var_dump($list_course,$assessor);
 echo "</pre>";
  ?>
   <html>
@@ -127,7 +127,7 @@ echo "</pre>";
                               </a>
                             </div>
                           </div>
-                          <div id="collapse<?php echo$i;?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+                          <div id="collapse<?php echo$i;?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
                           <div class="panel-body" style="font-size:14px;">
                           <div class="form-group">
                             <form role="form" data-toggle="validator" id="data">
@@ -314,8 +314,9 @@ echo "</pre>";
                                       <dt>คณะกรรมการ</dt>
                                       <dd> 
                                         <?php if ($value_list['assessor']!=NULL): ?>
-                                          <?php if ($value_list['assessor']==1):echo "คณะกรรมการชุดที่ 1"; ?><?php endif; ?>  
-                                          <?php if ($value_list['assessor']==2):echo "คณะกรรมการชุดที่ 2"; ?><?php endif; ?> 
+                                         
+                                          <?php if ($value_list['assessor']):echo "คณะกรรมการชุดที่ ".$value_list['assessor']; ?><?php endif; ?>  
+                      
                                           <input type="hidden" id="hiddengroup<?php echo $value_list['id'] ?>" value="<?php echo $value_list['assessor'] ?>">
                                         <?php endif; ?>
                                       </dd>
@@ -352,6 +353,8 @@ echo "</pre>";
     <script type="text/javascript">
 
     function addgroupstaff() {
+
+      var numgroup=<?php echo count($assessor)+1 ?>;
       swal({
           title: 'แน่ใจหรือไม่',
           text: 'คุณต้องเพิ่มชุดคณะกรรมการใช่หรือไม่',
@@ -368,79 +371,12 @@ echo "</pre>";
                     cache: false,
                     async: true,
                     data: {
-                      type:"addgroup"
+                      type:"addgroup",
+                      groupnext : numgroup
                     },
                     success: function (data) {
-                      try {
-                        var msg = JSON.parse(data);
-                        if (msg.status == "error") {
-                          swal({
-                            type: msg.status,
-                            text: msg.msg,
-                            timer: 2000,
-                            confirmButtonText: "Ok!"
-                          });
-                          return false;
-                        } else {
-                          $.ajax({
-                                url: '../../application/subject/responsible_staff.php',
-                                type: 'POST',
-                                cache: false,
-                                async: true,
-                                data: {
-                                  course: course,
-                                  semester_id:semester,
-                                  type: "remove_assessor",
-                                  
-                                },
-                                success: function (data) {
-                                  try {
-                                    var msg = JSON.parse(data);
-                                    if (msg.status == "error") {
-                                      swal({
-                                        type: msg.status,
-                                        text: msg.msg,
-                                        timer: 2000,
-                                        confirmButtonText: "Ok!"
-                                      });
-                                      return false;
-                                    } else {
-                                      swal({
-                                        type: msg.status,
-                                        text: msg.msg,
-                                        timer: 2000,
-                                        confirmButtonText: "Ok!",
-                                      }, function () {
-                                        window.location.reload();
-                                      });
-                                      setTimeout(function () {
-                                        window.location.reload();
-                                      }, 1000);
-                                    }
-                                  } catch (e) {
-                                    console.log(data);
-                                    
-                                    swal({
-                                    type: "error",
-                                    text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
-                                    timer: 2000,
-                                    confirmButtonText: "Ok!",
-                                  });
-                                  }
-                                }
-                              });
-
-                        }
-                        
-                      } catch (e) {
-                        console.log(data);
-                        swal({
-                        type: "error",
-                        text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
-                        timer: 2000,
-                        confirmButtonText: "Ok!",
-                      });
-                      }
+                      console.log(data);
+                      
                     }
                   });
 
