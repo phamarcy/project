@@ -72,7 +72,7 @@ if(isset($_POST['DATA']))
 		Close_connection();
 		die;
 	}
-	else if($DATA['SUBMIT_TYPE'] == '1')
+	else if($DATA['SUBMIT_TYPE'] == '1' || $DATA['SUBMIT_TYPE'] == '3')
 	{
 		$file_path = $FILE_PATH."/draft/".$course_id;
 		if(!file_exists($file_path))
@@ -84,27 +84,47 @@ if(isset($_POST['DATA']))
 		{
 			mkdir($file_path);
 		}
+		if($DATA['SUBMIT_TYPE'] == '3')
+		{
+			$DATA = $course->Get_Document('special',$course_id,$instructor_id,null,$semester['semester'],$semester['year']);
+			$DATA = json_decode($DATA,true);
+			$DATA['SUBMIT_TYPE'] = '3';
+		}
     $data = array();
     $DATA['ID'] = $instructor_id;
     $DATA["FILE_PATH"] = $file_path;
     $DATA['SEMESTER'] = $semester;
+		if($DATA['SUBMIT_TYPE'] == '3')
+		{
+			$DATA['APPROVED'] = array();
+			$DATA['APPROVED']['ID'] = $person->Get_Head_Department(null,$DATA['COURSE_ID']);
+			$DATA['APPROVED']['TYPE'] = '3';
+		}
     $data['DATA'] = json_encode($DATA);
     $gen_result_payload = Generate($data);
     $gen_result = json_decode($gen_result_payload,true);
     if($gen_result['status'] == 'success')
     {
-      $approve = new approval('1');
-      $result = $approve->Append_Special_Instructor($DATA['COURSEDATA']['COURSE_ID'],$instructor_id);
-      if($result)
-      {
-        $return['status'] = "success";
-        $return['msg'] = "บันทึกสำเร็จ";
-      }
-      else
-      {
-        $return['status'] = "error";
-        $return['msg'] = 'ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
-      }
+			if($DATA['SUBMIT_TYPE'] == '1')
+			{
+				$approve = new approval('1');
+	      $result = $approve->Append_Special_Instructor($DATA['COURSEDATA']['COURSE_ID'],$instructor_id);
+	      if($result)
+	      {
+	        $return['status'] = "success";
+	        $return['msg'] = "บันทึกสำเร็จ";
+	      }
+	      else
+	      {
+	        $return['status'] = "error";
+	        $return['msg'] = 'ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+	      }
+			}
+			else
+			{
+				$return['status'] = "success";
+				$return['msg'] = "บันทึกสำเร็จ";
+			}
     }
     else
     {

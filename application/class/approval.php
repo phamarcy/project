@@ -127,7 +127,7 @@ class approval
         }
         $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       }
-      if($status_after == 5)
+      if((int)$status_after == 4)
       {
         $pdf_complete = $this->Send_Complete_Evaluate($course_id,'3');
         $pdf_result = json_decode($pdf_complete,true);
@@ -141,7 +141,7 @@ class approval
             return false;
         }
       }
-      else if($status_after == 7)
+      else if((int)$status_after == 7)
       {
         $pdf_complete = $this->Send_Complete_Evaluate($course_id,'4');
         $pdf_result = json_decode($pdf_complete,true);
@@ -264,10 +264,27 @@ class approval
         $noti['DATE_USER'] = date("d-m-Y");
         $noti['TIME_USER'] = date("h:i:sa");
         $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
-        $this->Sendemail($course_id,$noti);
+        if($status_after != '1' && $status_after != '5')
+        {
+          $this->Sendemail($course_id,$noti);
+        }
         $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
       }
-      if($status_after == 7)
+      if((int)$status_after == 4)
+      {
+        $pdf_complete = $this->Send_Complete_Special($course_id,$instructor_id,'3');
+        $pdf_result = json_decode($pdf_complete,true);
+        if($pdf_result != null)
+        {
+          return true;
+        }
+        else
+        {
+            $this->LOG->Write("Completing agree file error : ".$pdf_complete);
+            return false;
+        }
+      }
+      else if((int)$status_after == 7)
       {
         //save instructor to database
         $sql = "INSERT INTO `course_hire`(`course_id`, `instructor_id`, `semester_id`)
