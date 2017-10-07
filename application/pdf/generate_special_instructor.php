@@ -6,22 +6,25 @@ require_once(__DIR__.'/../class/course.php');
 require_once(__DIR__.'/../class/approval.php');
 require_once(__DIR__.'/../class/curl.php');
 require_once(__DIR__.'/../class/log.php');
+require_once(__DIR__.'/../class/person.php');
 $log = new Log();
 $curl = new CURL();
 $db = new Database();
 $deadline = new Deadline();
 $course = new Course();
+$person = new Person();
 $semester = $deadline->Get_Current_Semester();
 $instructor_id = '';
 if(isset($_POST['DATA']))
 {
 	$data = $_POST['DATA'];
 	$DATA = json_decode($data,true);
-	if($DATA['SUBMIT_TYPE'] == '4')
+	if($DATA['SUBMIT_TYPE'] == '4' || $DATA['SUBMIT_TYPE'] == '3')
 	{
 		$instructor_id = $DATA['TEACHERDATA']['ID'];
+		$course_id  = $DATA['COURSEDATA']['COURSE_ID'];
 	}
-	else if($DATA['SUBMIT_TYPE'] != '4')
+	else if($DATA['SUBMIT_TYPE'] != '4' && $DATA['SUBMIT_TYPE'] != '3')
 	{
 		$fname = $DATA['TEACHERDATA']['FNAME'];
 		$lname = $DATA['TEACHERDATA']['LNAME'];
@@ -60,7 +63,7 @@ if(isset($_POST['DATA']))
   	$file = $_FILES['file'];
 		Upload($file,$course_id,$instructor_id);
 	}
-	if($DATA['SUBMIT_TYPE'] != '0' && $DATA['SUBMIT_TYPE'] != '3')
+	if($DATA['SUBMIT_TYPE'] != '0' && $DATA['SUBMIT_TYPE'] != '4' && $DATA['SUBMIT_TYPE'] != '3')
 	{
 		Write_temp_data($data,$instructor_id,$course_id); //create txt file
 	}
@@ -74,6 +77,12 @@ if(isset($_POST['DATA']))
 	}
 	else if($DATA['SUBMIT_TYPE'] == '1' || $DATA['SUBMIT_TYPE'] == '3')
 	{
+		if($DATA['SUBMIT_TYPE'] == '3')
+		{
+			$DATA = $course->Get_Document('special',$course_id,$instructor_id,null,$semester['semester'],$semester['year']);
+			$DATA = json_decode($DATA,true);
+			$DATA['SUBMIT_TYPE'] = '3';
+		}
 		$file_path = $FILE_PATH."/draft/".$course_id;
 		if(!file_exists($file_path))
 		{
@@ -84,12 +93,6 @@ if(isset($_POST['DATA']))
 		{
 			mkdir($file_path);
 		}
-		if($DATA['SUBMIT_TYPE'] == '3')
-		{
-			$DATA = $course->Get_Document('special',$course_id,$instructor_id,null,$semester['semester'],$semester['year']);
-			$DATA = json_decode($DATA,true);
-			$DATA['SUBMIT_TYPE'] = '3';
-		}
     $data = array();
     $DATA['ID'] = $instructor_id;
     $DATA["FILE_PATH"] = $file_path;
@@ -97,7 +100,7 @@ if(isset($_POST['DATA']))
 		if($DATA['SUBMIT_TYPE'] == '3')
 		{
 			$DATA['APPROVED'] = array();
-			$DATA['APPROVED']['ID'] = $person->Get_Head_Department(null,$DATA['COURSE_ID']);
+			$DATA['APPROVED']['ID'] = $person->Get_Head_Department(null,$DATA['COURSEDATA']['COURSE_ID']);
 			$DATA['APPROVED']['TYPE'] = '3';
 		}
     $data['DATA'] = json_encode($DATA);

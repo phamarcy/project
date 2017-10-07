@@ -179,9 +179,9 @@ class approval
   }
 
   //update complete version of special instructor to generate new pdf
-  private function Send_Complete_Special($course_id,$instructor_id)
+  private function Send_Complete_Special($course_id,$instructor_id,$type)
   {
-    $data['SUBMIT_TYPE'] = '4';
+    $data['SUBMIT_TYPE'] = $type;
     $data['COURSEDATA']['COURSE_ID'] = $course_id;
     $data['TEACHERDATA']['ID'] = $instructor_id;
     $DATA['DATA'] = json_encode($data);
@@ -296,7 +296,7 @@ class approval
         }
 
         //starting generate pdf
-        $pdf_complete = $this->Send_Complete_Special($course_id,$instructor_id);
+        $pdf_complete = $this->Send_Complete_Special($course_id,$instructor_id,'4');
         $pdf_result = json_decode($pdf_complete,true);
         if($pdf_result != null)
         {
