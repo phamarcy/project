@@ -332,7 +332,7 @@ echo "</pre>";
 																					} ?>
 																				<?php endif; ?>
 																				<?php if(($valuesp['status'])==1 && $_SESSION['level']==2){ ?>
-																				<button class='btn btn-outline btn-success' onclick='sendtoboard(<?php echo $value_course['id'] ?>);'>ผ่าน</button>
+																				<button class='btn btn-outline btn-success' onclick='sendtoboardsp(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>ผ่าน</button>
 																				<?php
 																					} ?>
 																		</h3>
