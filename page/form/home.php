@@ -198,7 +198,7 @@ $data_course= json_decode($var, true);
 												<div class="panel panel-default">
 													<div class="panel-heading">
 														<h3 class="panel-title" style="font-size:14px;">
-															<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']." _ ".$key ?>">
+															<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']."_".$key ?>">
 															<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b>
 															<?php if (isset($value_course['pdf']) && $_SESSION['level']==3 && $value_course['evaluate']['status']!=0 ): ?>
 																	<a id="hover" href="<?php echo $value_course['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
@@ -223,7 +223,7 @@ $data_course= json_decode($var, true);
 														</h3>
 													</div>
 													<?php if (isset($_SESSION['level'])) { ?>
-													<div id="evaluate<?php echo $value_course['id']." _ ".$key ?>" class="panel-collapse collapse">
+													<div id="evaluate<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse">
 														<div class="panel-body" style="font-size:14px;">
 															<table class="table " style="font-size:14px;">
 																<thead>
@@ -274,12 +274,12 @@ $data_course= json_decode($var, true);
 												<div class="panel panel-default">
 													<div class="panel-heading">
 														<h3 class="panel-title" style="font-size:14px;">
-															<a data-toggle="collapse" href="#special<?php echo $value_course['id']." _ ".$key ?>" disabled="disabled">
+															<a data-toggle="collapse" href="#special<?php echo $value_course['id']."_".$key ?>" disabled="disabled">
 													<i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></b></a>
 														</h3>
 													</div>
 													<?php if (isset($_SESSION['level'])) { ?>
-													<div id="special<?php echo $value_course['id']." _ ".$key ?>" class="panel-collapse collapse  in">
+													<div id="special<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse  in">
 														<div class="panel-body" style="font-size:14px;">
 															<div class="panel-group" id="accordion">
 
@@ -317,7 +317,7 @@ $data_course= json_decode($var, true);
 																	<div class="panel-heading">
 																		<h3 class="panel-title" style="font-size:14px;">
 
-																			<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']." _ ".$keysp ?>">
+																			<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']."_".$keysp ?>">
 																				<?php echo $valuesp['name'] ?> </a>
 																			</b>
 																			<?php if (isset($valuesp['pdf']) && $_SESSION['level']==3 && $valuesp['status']!=0 ): ?>
@@ -335,7 +335,7 @@ $data_course= json_decode($var, true);
 																					} ?>
 																		</h3>
 																	</div>
-																	<div id="special_<?php echo $value_course['id']." _ ".$keysp ?>" class="panel-collapse collapse">
+																	<div id="special_<?php echo $value_course['id']."_".$keysp ?>" class="panel-collapse collapse">
 																		<div class="panel-body">
 
 																			<table class="table " style="font-size:14px;">
