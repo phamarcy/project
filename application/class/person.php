@@ -197,6 +197,7 @@ class Person
         {
           $group_num = '2'.$group_num;
         }
+
         //check if teacher is already exist in group
         $this->DB->Change_DB($this->DEFAULT_DB);
         $sql = "SELECT * FROM `group_assessor` WHERE `teacher_id` = '".$teacher_id."' AND `group_num` = '".$group_num."'";
@@ -379,7 +380,7 @@ class Person
     {
       $dept_group = '0';
     }
-    $sql = "SELECT `teacher_id`,`group_num` FROM `group_assessor` WHERE group_num LIKE '".$dept_group."%'";
+    $sql = "SELECT `teacher_id`,`group_num` FROM `group_assessor` WHERE group_num LIKE '".$dept_group."%' ORDER BY group_num ASC ";
     $this->DB->Change_DB($this->DEFAULT_DB);
     $result = $this->DB->Query($sql);
     if($result)

@@ -92,6 +92,10 @@ echo "</pre>";
         margin-top: -20px;
         font-size: 15px;
       }
+      .mypanel {
+          height: 250px;
+          overflow-y: scroll;
+      }
     </style>
   </head>
 
@@ -112,7 +116,7 @@ echo "</pre>";
                 <div class="panel-heading">
                   <b>คณะกรรมการผู้รับผิดชอบ</b>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body ">
                   <div class="form-group">
                     <div class="row">
 
@@ -121,14 +125,13 @@ echo "</pre>";
                       <div class="panel panel-info">
                           <div class="panel-heading" role="tab" id="heading1"  style="font-size:14px;">
                             <div class="panel-title" style="font-size:14px;">
-                       
                               <a role="button" data-toggle="collapse" href="#collapse<?php echo$i;?>" aria-expanded="true" aria-controls="collapse<?php echo$i+1;?>" class="trigger collapsed">
-                              คณะกรรมการชุดที่ <?php echo$i ;?>
+                              คณะกรรมการชุดที่ <?php echo $assessor[$i-1]['group'] ;?>
                               </a>
                             </div>
                           </div>
                           <div id="collapse<?php echo$i;?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
-                          <div class="panel-body" style="font-size:14px;">
+                          <div class="panel-body mypanel " style="font-size:14px;">
                           <div class="form-group">
                             <form role="form" data-toggle="validator" id="data">
                               <label for="">เพิ่มคณะกรรมการ</label>
@@ -172,10 +175,13 @@ echo "</pre>";
                         </div>
                           </div>
                         </div>
+                        </ul>
                       </div>
+                      
                       <?php
                       }
                       ?>
+                      <div id="new_group"></div>
                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                       <button class="btn  btn-primary btn-add-panel" onclick="addgroupstaff()">
                           <i class="glyphicon glyphicon-plus"></i> เพื่มชุดคณะกรรมการ
@@ -351,10 +357,10 @@ echo "</pre>";
 
     </div>
     <script type="text/javascript">
-
+    var numgroup=<?php echo count($assessor)+1 ?>;
     function addgroupstaff() {
-
-      var numgroup=<?php echo count($assessor)+1 ?>;
+      
+      console.log(numgroup);
       swal({
           title: 'แน่ใจหรือไม่',
           text: 'คุณต้องเพิ่มชุดคณะกรรมการใช่หรือไม่',
@@ -365,21 +371,52 @@ echo "</pre>";
           confirmButtonText: 'ตกลง',
           cancelButtonText: 'ยกเลิก'
         }).then(function () {
-          $.ajax({
-                    url:   '../../application/subject/responsible_staff.php',
-                    type:  'POST',
-                    cache: false,
-                    async: true,
-                    data: {
-                      type:"addgroup",
-                      groupnext : numgroup
-                    },
-                    success: function (data) {
-                      console.log(data);
-                      
-                    }
-                  });
+          $('#new_group').append(
+        ` <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading" role="tab" id="heading1"  style="font-size:14px;">
+              <div class="panel-title" style="font-size:14px;">
+                <a role="button" data-toggle="collapse" href="#collapse=" aria-expanded="true" aria-controls="collapse${numgroup}" class="trigger collapsed">
+                คณะกรรมการชุดที่ ${numgroup} 
+                </a>
+              </div>
+            </div>
+            <div id="collapse${numgroup}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+            <div class="panel-body mypanel" style="font-size:14px;">
+            <div class="form-group">
+              <form role="form" data-toggle="validator" id="data">
+                <label for="">เพิ่มคณะกรรมการ</label>
+                <div class="form-inline">
+                  <input type="text" class="form-control " name="teacher" id="TEACHERLEC_${numgroup}" list="dtl${numgroup}" placeholder="ชื่อ-นามสกุล" size="35"
+                    onkeydown="searchname(${numgroup},'committee');" required>
+                  <button type="button" class="btn btn-outline btn-primary" onclick="teacherGroup(${numgroup},'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
+                </div>
+                <datalist id="dtl${numgroup}"></datalist>
+              </form>
+            </div>
+            <hr>
+            <div class="form-group">
+              <table class="table" style="font-size:14px">
+                <thead>
+                  <th>ลำดับ</th>
+                  <th>ชื่อ-นามสกุล</th>
+                  <th></th>
+                </thead>
+                <tbody>
 
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+            </div>
+          </div>
+        </div>
+      `
+                );
+               
+                numgroup++;
         }, function (dismiss) {
           if (dismiss === 'cancel') {}
         })
@@ -599,11 +636,12 @@ echo "</pre>";
 
 
       function teacherGroup(group, type, department) {
-          var text = "name_assessor" + group;
-          var element = document.getElementById(text).value;
+          var teacher = "TEACHERLEC_" +group;
+          var element = document.getElementById(teacher).value;
+
           swal({
             title: 'แน่ใจหรือไม่',
-            text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
+            text: 'คุณต้องการเพิ่มข้อมูลใช่หรือไม่',
             type: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -622,18 +660,38 @@ echo "</pre>";
                 department: department,
               },
               success: function (data) {
-                var msg = JSON.parse(data)
-                swal({
-                  type: msg.status,
-                  text: msg.msg,
+                try {
+                  var msg = JSON.parse(data);
+                  if (msg.status == "error") {
+                    swal({
+                      type: msg.status,
+                      text: msg.msg,
+                      timer: 2000,
+                      confirmButtonText: "Ok!"
+                    });
+                    return false;
+                  } else {
+                    swal({
+                      type: msg.status,
+                      text: msg.msg,
+                      timer: 2000,
+                      confirmButtonText: "Ok!",
+                    }, function () {
+                      window.location.reload();
+                    });
+                    setTimeout(function () {
+                      window.location.reload();
+                    }, 1000);
+                  }
+                } catch (e) {
+                  console.log(data);
+                  swal({
+                  type: "error",
+                  text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
                   timer: 2000,
                   confirmButtonText: "Ok!",
-                }, function () {
-                  window.location.reload();
                 });
-                setTimeout(function () {
-                  window.location.reload();
-                }, 1000);
+                }
               }
             });
 
@@ -667,18 +725,38 @@ echo "</pre>";
                 department: department,
               },
               success: function (data) {
-                var msg = JSON.parse(data)
-                swal({
-                  type: msg.status,
-                  text: msg.msg,
-                  timer: 2000,
-                  confirmButtonText: "Ok!",
-                }, function () {
-                  window.location.reload();
-                });
-                setTimeout(function () {
-                  window.location.reload();
-                }, 1000);
+                try {
+            var msg = JSON.parse(data);
+            if (msg.status == "error") {
+              swal({
+                type: msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!"
+              });
+              return false;
+            } else {
+              swal({
+                type: msg.status,
+                text: msg.msg,
+                timer: 2000,
+                confirmButtonText: "Ok!",
+              }, function () {
+                window.location.reload();
+              });
+              setTimeout(function () {
+                window.location.reload();
+              }, 1000);
+            }
+          } catch (e) {
+            console.log(data);
+            swal({
+            type: "error",
+            text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+            timer: 2000,
+            confirmButtonText: "Ok!",
+          });
+          }
               }
             });
 
@@ -896,11 +974,9 @@ echo "</pre>";
               }
               var k = '<tbody>'
               for (i = 0; i < obj.length; i++) {
-                if (obj[i].assessor == 1) {
-                  var text_group = "คณะกรรมการชุดที่ 1";
-                } else if (obj[i].assessor == 2) {
-                  var text_group = "คณะกรรมการชุดที่ 2";
-                } else {
+                if (obj[i].assessor) {
+                  var text_group = "คณะกรรมการชุดที่ "+obj[i].assessor;
+                }  else {
                   var text_group = "-";
                 }
 
