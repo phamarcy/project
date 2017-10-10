@@ -415,7 +415,12 @@ $end = strtotime($current_semester[0]['last_date']);
           confirmButtonText: 'ตกลง',
           cancelButtonText: 'ยกเลิก'
         }).then(function () {
-
+          swal({
+                title: 'กรุณารอสักครู่',
+                text: 'ระบบกำลังประมวลผล',
+                allowOutsideClick: false
+              })
+          swal.showLoading();
           var async_request=[];
           var responses=[];
           var comment="-";
@@ -454,6 +459,7 @@ $end = strtotime($current_semester[0]['last_date']);
           }
 
           $.when.apply(null, async_request).done( function(){
+            swal.hideLoading();
             try {
                 var msg = JSON.parse(responses[0])
                 swal({
@@ -466,7 +472,7 @@ $end = strtotime($current_semester[0]['last_date']);
                 });
                 setTimeout(function () {
                   window.location.reload();
-                }, 1000);
+                }, 2000);
               } catch (e) {
                 swal({
                   type: "error",
@@ -486,10 +492,9 @@ $end = strtotime($current_semester[0]['last_date']);
       }
 
       function get_selectallsp() {
-        var course = [];
- 
-        var tempcourseAndName=[];
 
+        var course = [];
+        var tempcourseAndName=[];
         var purecourse=[];
         var purenamesp=[];
         $.each($("input[name='coursechecksp']:checked"), function(){
@@ -522,7 +527,12 @@ $end = strtotime($current_semester[0]['last_date']);
           confirmButtonText: 'ตกลง',
           cancelButtonText: 'ยกเลิก'
         }).then(function () {
-
+          swal({
+                title: 'กรุณารอสักครู่',
+                text: 'ระบบกำลังประมวลผล',
+                allowOutsideClick: false
+              })
+          swal.showLoading();
           var async_request=[];
           var responses=[];
           var comment="-";
@@ -562,6 +572,7 @@ $end = strtotime($current_semester[0]['last_date']);
           }
 
           $.when.apply(null, async_request).done( function(){
+            swal.hideLoading();
             try {
                 var msg = JSON.parse(responses[0])
                 swal({
@@ -574,7 +585,7 @@ $end = strtotime($current_semester[0]['last_date']);
                 });
                 setTimeout(function () {
                   window.location.reload();
-                }, 1000);
+                }, 1500);
               } catch (e) {
                 swal({
                   type: "error",
@@ -638,7 +649,7 @@ $end = strtotime($current_semester[0]['last_date']);
                 });
                 setTimeout(function () {
                   window.location.reload();
-                }, 1000);
+                }, 1500);
               } catch (e) {
                 swal({
                   type: "error",
@@ -701,7 +712,7 @@ $end = strtotime($current_semester[0]['last_date']);
               });
               setTimeout(function () {
                 window.location.reload();
-              }, 1000);
+              }, 1500);
             }
           });
         }, function (dismiss) {

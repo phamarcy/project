@@ -18,7 +18,7 @@ $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
 
 echo  "<pre>";
-var_dump($list_course,$assessor);
+var_dump($assessor);
 echo "</pre>";
  ?>
   <html>
@@ -163,7 +163,7 @@ echo "</pre>";
                                     <td>
                                       <?php echo $assessor_name ?>
                                     </td>
-                                    <td><button type="button" name="button" class="btn btn-outline btn-danger" onclick="teacherGroupremove(<?php echo $i;?>,'remove',<?php echo $department['code']  ?>,'<?php echo $i.$key_assessor ?>')">ลบ</button></td>
+                                    <td><button type="button" name="button" class="btn btn-outline btn-danger" <?php if(count($assessor[$i-1]['assessor'])==1 && $i==1){echo "disabled"; }  ?>   onclick="teacherGroupremove(<?php echo $i;?>,'remove',<?php echo $department['code']  ?>,'<?php echo $i.$key_assessor ?>')">ลบ</button></td>
                                   </tr>
                                 </form>
                                 <?php endforeach; ?>
@@ -295,8 +295,8 @@ echo "</pre>";
                                       <input type="hidden" name="type" value="add_assessor">
                                       <select class="form-control" id="group<?php echo $value_list['id'] ?>">
                                         <?php 
-                                        for ($i=1; $i <= count($assessor) ; $i++) { 
-                                          echo "<option value='$i'>คณะกรรมการชุดที่ $i</option>";
+                                        for ($i=0; $i < count($assessor) ; $i++) { 
+                                          echo "<option value='".$assessor[$i]['group']."'>คณะกรรมการชุดที่ ".$assessor[$i]['group']." </option>";
                                         }
                                         ?>
                                       </select>
@@ -357,9 +357,10 @@ echo "</pre>";
 
     </div>
     <script type="text/javascript">
-    var numgroup=<?php echo count($assessor)+1 ?>;
+    var numgroup=<?php echo $assessor[count($assessor)-1]['group'] ?>;
+
     function addgroupstaff() {
-      
+      numgroup++;
       console.log(numgroup);
       swal({
           title: 'แน่ใจหรือไม่',
@@ -415,8 +416,6 @@ echo "</pre>";
         </div>
       `
                 );
-               
-                numgroup++;
         }, function (dismiss) {
           if (dismiss === 'cancel') {}
         })
