@@ -540,8 +540,8 @@ $pdf->Cell(0,7,iconv('UTF-8','TIS-620',$approver_name),0,1);
 $pdf->SetXY($money_position-15,$pdf->GetY()+3);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','หัวหน้า/ผู้แทนหัวหน้าภาควิชา'),0,1);
 
-$pdf->SetX($money_position-20);
-$pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[(int)date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
+// $pdf->SetX($money_position-20);
+// $pdf->Cell(0,7,iconv('UTF-8','TIS-620','วันที่  '.date(" d ").'   เดือน   '.$THAI_MONTH[(int)date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
 }
 $person->Close_connection();
 $pdf->Output($file_path."/".$DATA['COURSEDATA']['COURSE_ID']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");

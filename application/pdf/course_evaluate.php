@@ -533,7 +533,7 @@ if(isset($DATA['APPROVED']))
 	{
 		$pdf->Cell( 40, 7, $pdf->Image($signature_approver_file, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
 	}
-	$pdf->Cell(0,7,iconv('UTF-8','cp874','วันที่  '.date(" j ").'   เดือน   '.$THAI_MONTH[(int)date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
+	// $pdf->Cell(0,7,iconv('UTF-8','cp874','วันที่  '.date(" d ").'   เดือน   '.$THAI_MONTH[(int)date(" m ")-1].'   พ.ศ.   '.$BUDDHA_YEAR),0);
 	$pdf->Ln();
 
 	$pdf->SetX(35);
