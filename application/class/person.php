@@ -215,10 +215,11 @@ class Person
               if($result)
               {
                 $count = count($result);
+                $updated_date = date("Y-m-d H:i:s");
                 for($i=0;$i<$count;$i++)
                 {
-                  $sql = "INSERT INTO `approval_course`(`teacher_id`, `course_id`, `status`, `level_approve`, `comment`, `semester_id`)
-                  VALUES ('".$teacher_id."','".$result[$i]['course_id']."','1','1',null,".$this->DEADLINE['id'].")";
+                  $sql = "INSERT INTO `approval_course`(`teacher_id`, `course_id`, `status`, `level_approve`, `comment`, `semester_id`,`date`)
+                  VALUES ('".$teacher_id."','".$result[$i]['course_id']."','1','1',null,".$this->DEADLINE['id'].",'".$updated_date."')";
                     $result_add_new_approval = $this->DB->Insert_Update_Delete($sql);
                     if(!$result_add_new_approval)
                     {
