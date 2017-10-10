@@ -16,10 +16,6 @@ $dep_js=$department['code'];
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
-
-echo  "<pre>";
-var_dump($assessor);
-echo "</pre>";
  ?>
   <html>
 

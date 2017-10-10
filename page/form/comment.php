@@ -41,7 +41,6 @@ $now = strtotime(date("Y-m-d"));
 $start = strtotime($current_semester[0]['open_date']);
 $end = strtotime($current_semester[0]['last_date']);
 
-
  ?>
   <html>
   <header>
@@ -160,7 +159,11 @@ $end = strtotime($current_semester[0]['last_date']);
                                   <a href="<?php echo $eva['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
                                   <?php endif; ?>
                                   <div class="pull-right">
-                                    <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapse<?php echo $eva['id']?>">ประเมิน</a>
+                                    <?php if ($eva['status']==0) { ?>
+                                      <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapse<?php echo $eva['id']?>">ประเมิน</a>
+                                    <?php
+                                    }
+                                    ?>
                                   </div>
                                 </h5>
 
@@ -245,8 +248,14 @@ $end = strtotime($current_semester[0]['last_date']);
                                       <b>CV: </b>
                                       <a href="<?php echo $spcomment['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
                                     <?php endif; ?>
+
                                     <div class="pull-right">
+                                    <?php if ($eva['status']==0) { ?>
                                       <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapsesp<?php echo $sp['id'] ?>">ประเมิน</a>
+                                    <?php
+                                    }
+                                    ?>
+                                      
                                     </div>
                                   </h5>
                                 </div>
