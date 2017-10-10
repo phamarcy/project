@@ -1629,7 +1629,7 @@ function confreset(casereset) {
       <li style="font-size: 14px">
         <div class="form-inline">
           <div class="form-group">
-          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID" id="COURSE_ID"   maxlength="6" required pattern=".{6,6}" >
+          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID" id="COURSE_ID"   maxlength="6" required pattern=".{6,6}" readonly>
           </div>
           <div class="form-group">
             &nbsp;จำนวนตอน (ทั้งหมด) &nbsp;
@@ -1649,14 +1649,14 @@ function confreset(casereset) {
           </div></div>
           <br>
           <div class="form-group">
-          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   maxlength="50" required >
+          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   maxlength="50" required readonly>
           </div>
           <br>
           <div class="form-group">
-          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   maxlength="50" required >
+          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   maxlength="50" required readonly>
           </div>
           <div class="row">
-            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="5" maxlength="10" required pattern=".{8,10}" >&nbsp; หน่วยกิต
+            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="5" maxlength="10" required pattern=".{8,10}" readonly>&nbsp; หน่วยกิต
             </div></div>
           </div>
           <div class="form-group"><div class="form-inline" id="secdiv1">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ 1 จำนวน&nbsp;<input style="width: 70px;" type="text" class="form-control numonly" name="ENROLL1" id="ENROLL1" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>
