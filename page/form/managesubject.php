@@ -13,9 +13,18 @@ $course = new course();
 $semeter= $deadline->Get_Current_Semester();
 $department =$person->Get_Staff_Dep($_SESSION['id']);
 $dep_js=$department['code'];
+
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
+
+if ($assessor['status']) {
+  $checknumgroup=0;
+}else {
+  $checknumgroup=$assessor[count($assessor)-1]['group'];
+}
+
+echo '<pre>$assessor<br />'; var_dump($assessor); echo '</pre>';
  ?>
   <html>
 
@@ -116,65 +125,77 @@ $history=$course->Get_History($department['code']);
                   <div class="form-group">
                     <div class="row">
 
-                      <?php for ($i=1; $i <= count($assessor) ; $i++) { ?>
-                        <div class="col-md-6">
-                      <div class="panel panel-info">
-                          <div class="panel-heading" role="tab" id="heading1"  style="font-size:14px;">
-                            <div class="panel-title" style="font-size:14px;">
-                              <a role="button" data-toggle="collapse" href="#collapse<?php echo$i;?>" aria-expanded="true" aria-controls="collapse<?php echo$i+1;?>" class="trigger collapsed">
-                              คณะกรรมการชุดที่ <?php echo $assessor[$i-1]['group'] ;?>
-                              </a>
+                      <?php if ($checknumgroup>0) {
+                        for ($i=1; $i <= count($assessor) ; $i++) { ?>
+                          <div class="col-md-6">
+                        <div class="panel panel-info">
+                            <div class="panel-heading" role="tab" id="heading1"  style="font-size:14px;">
+                              <div class="panel-title" style="font-size:14px;">
+                                <a role="button" data-toggle="collapse" href="#collapse<?php echo$i;?>" aria-expanded="true" aria-controls="collapse<?php echo$i+1;?>" class="trigger collapsed">
+                                คณะกรรมการชุดที่ <?php echo $assessor[$i-1]['group'] ;?>
+                                </a>
+                              </div>
+                            </div>
+                            <div id="collapse<?php echo$i;?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+                            <div class="panel-body mypanel " style="font-size:14px;">
+                            <div class="form-group">
+                              <form role="form" data-toggle="validator" id="data">
+                                <label for="">เพิ่มคณะกรรมการ</label>
+                                <div class="form-inline">
+                                  <input type="text" class="form-control " name="teacher" id="TEACHERLEC_<?php echo$assessor[$i-1]['group'];?>" list="dtl<?php echo$assessor[$i-1]['group'];?>" placeholder="ชื่อ-นามสกุล" size="35"
+                                    onkeydown="searchname(<?php echo $assessor[$i-1]['group'];?>,'committee');" required>
+                                  <button type="button" class="btn btn-outline btn-primary" onclick="teacherGroup(<?php echo $assessor[$i-1]['group'];?>,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
+                                </div>
+                                <datalist id="dtl<?php echo$assessor[$i-1]['group'];?>"></datalist>
+                              </form>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                              <table class="table" style="font-size:14px">
+                                <thead>
+                                  <th>ลำดับ</th>
+                                  <th>ชื่อ-นามสกุล</th>
+                                  <th></th>
+                                </thead>
+                                <tbody>
+  
+                                  <?php foreach ($assessor[$i-1]['assessor'] as $key_assessor => $assessor_name): ?>
+                                  <form>
+                                    <input type="hidden" name="teacher" id="name_assessor<?php echo $assessor[$i-1]['group'].$key_assessor ?>" value="<?php echo $assessor_name ?>">
+                                    <tr>
+                                      <td>
+  
+                                        <?php echo $key_assessor+1;  ?>
+                                      </td>
+                                      <td>
+                                        <?php echo $assessor_name ?>
+                                      </td>
+                                      <td>
+                                        <button type="button" name="button" class="btn btn-outline btn-danger" 
+                                        <?php 
+                                        foreach ($list_course as $checkassesor) {
+                                          if ($checkassesor['assessor']==$assessor[$i-1]['group']) {
+                                            echo "disabled";
+                                          }
+                                        }
+                                         ?>   
+                                        onclick="teacherGroupremove('<?php echo $assessor[$i-1]['group'];?>','remove',<?php echo $department['code']  ?>,'<?php echo $assessor[$i-1]['group'].$key_assessor ?>')">ลบ</button></td>
+                                    </tr>
+                                  </form>
+                                  <?php endforeach; ?>
+  
+                                </tbody>
+                              </table>
+                            </div>
+  
+                          </div>
                             </div>
                           </div>
-                          <div id="collapse<?php echo$i;?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
-                          <div class="panel-body mypanel " style="font-size:14px;">
-                          <div class="form-group">
-                            <form role="form" data-toggle="validator" id="data">
-                              <label for="">เพิ่มคณะกรรมการ</label>
-                              <div class="form-inline">
-                                <input type="text" class="form-control " name="teacher" id="TEACHERLEC_<?php echo$i;?>" list="dtl<?php echo$i;?>" placeholder="ชื่อ-นามสกุล" size="35"
-                                  onkeydown="searchname(<?php echo$i;?>,'committee');" required>
-                                <button type="button" class="btn btn-outline btn-primary" onclick="teacherGroup(<?php echo$i;?>,'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
-                              </div>
-                              <datalist id="dtl<?php echo$i;?>"></datalist>
-                            </form>
-                          </div>
-                          <hr>
-                          <div class="form-group">
-                            <table class="table" style="font-size:14px">
-                              <thead>
-                                <th>ลำดับ</th>
-                                <th>ชื่อ-นามสกุล</th>
-                                <th></th>
-                              </thead>
-                              <tbody>
-
-                                <?php foreach ($assessor[$i-1]['assessor'] as $key_assessor => $assessor_name): ?>
-                                <form>
-                                  <input type="hidden" name="teacher" id="name_assessor<?php echo $i.$key_assessor ?>" value="<?php echo $assessor_name ?>">
-                                  <tr>
-                                    <td>
-                                      <?php echo $key_assessor+1; ?>
-                                    </td>
-                                    <td>
-                                      <?php echo $assessor_name ?>
-                                    </td>
-                                    <td><button type="button" name="button" class="btn btn-outline btn-danger" <?php if(count($assessor[$i-1]['assessor'])==1 && $i==1){echo "disabled"; }  ?>   onclick="teacherGroupremove(<?php echo $i;?>,'remove',<?php echo $department['code']  ?>,'<?php echo $i.$key_assessor ?>')">ลบ</button></td>
-                                  </tr>
-                                </form>
-                                <?php endforeach; ?>
-
-                              </tbody>
-                            </table>
-                          </div>
-
+                          </ul>
                         </div>
-                          </div>
-                        </div>
-                        </ul>
-                      </div>
-                      
-                      <?php
+                        
+                        <?php
+                        }
                       }
                       ?>
                       <div id="new_group"></div>
@@ -353,7 +374,7 @@ $history=$course->Get_History($department['code']);
 
     </div>
     <script type="text/javascript">
-    var numgroup=<?php echo $assessor[count($assessor)-1]['group'] ?>;
+    var numgroup=<?php echo $checknumgroup; ?>;
 
     function addgroupstaff() {
       numgroup++;
