@@ -172,13 +172,6 @@ echo '<pre>$assessor<br />'; var_dump($assessor); echo '</pre>';
                                       </td>
                                       <td>
                                         <button type="button" name="button" class="btn btn-outline btn-danger" 
-                                        <?php 
-                                        foreach ($list_course as $checkassesor) {
-                                          if ($checkassesor['assessor']==$assessor[$i-1]['group']) {
-                                            echo "disabled";
-                                          }
-                                        }
-                                         ?>   
                                         onclick="teacherGroupremove('<?php echo $assessor[$i-1]['group'];?>','remove',<?php echo $department['code']  ?>,'<?php echo $assessor[$i-1]['group'].$key_assessor ?>')">ลบ</button></td>
                                     </tr>
                                   </form>
