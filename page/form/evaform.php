@@ -432,12 +432,9 @@ function finexam_hour_lab() {
 
 function getinfo(temp) {
   // part1
-  document.getElementById('COURSE_ID').value = temp['COURSE_ID'];
   document.getElementById('SECTION').value = temp['SECTION'];
   var choice1 = temp['NORORSPE'];
   $('input[name="NORORSPE"][value=' + choice1 + ']').prop('checked', true);
-  document.getElementById('NAME_ENG_COURSE').value = temp['NAMEENG'];
-  document.getElementById('NAME_TH_COURSE').value = temp['NAMETH'];
 
   for (var i = 0; i <temp['SECTION']; i++) {
     document.getElementById("secdiv" + (i+1)).style.display = "";
@@ -445,7 +442,6 @@ function getinfo(temp) {
     document.getElementById('ENROLL'+(i+1)).style.display = "";
     document.getElementById('ENROLL'+(i+1)).value = temp['STUDENT'][i];
   }
-  document.getElementById('TOTAL').value = temp['CREDIT']['TOTAL'];
 
   //part2
   var choice2 = temp['TYPE_TEACHING'];
