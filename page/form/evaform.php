@@ -651,6 +651,11 @@ function checksubject(btntype,type){
                            opt.innerHTML = "ภาคการศึกษาที่ " +temp[i].semester +" ปีการศึกษา "+ temp[i].year;
                            document.getElementById('semester').appendChild(opt);
                          }
+
+                         document.getElementById('COURSE_ID').value = temp['info']['course_id'];
+                         document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
+                         document.getElementById('NAME_TH_COURSE').value = temp['info']['course_name_th'];
+                         document.getElementById('TOTAL').value = temp['info']['credit']+"("+temp['info']['hr_lec']+"-"+temp['info']['hr_lab']+"-"+temp['info']['hr_self']+")";
                        }
                        else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
                          swal(
