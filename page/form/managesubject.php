@@ -17,7 +17,6 @@ $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
 
-
 $missing =array();
 if (isset($assessor['status'])) {
   if ($assessor['status']=='error') {
@@ -46,8 +45,6 @@ else {
  }
 
 }
-
-echo '<pre>'; var_dump($checknumgroup,$missing,$assessor); echo '</pre>';
 
 ?>
   <html>
