@@ -47,8 +47,6 @@ else {
 
 }
 
-echo '<pre>$checknumgroup<br />'; var_dump($checknumgroup); echo '</pre>';
-
 ?>
   <html>
 
