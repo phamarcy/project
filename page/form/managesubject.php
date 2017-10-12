@@ -13,19 +13,43 @@ $course = new course();
 $semeter= $deadline->Get_Current_Semester();
 $department =$person->Get_Staff_Dep($_SESSION['id']);
 $dep_js=$department['code'];
-
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
 
-if ($assessor['status']) {
-  $checknumgroup=0;
-}else {
-  $checknumgroup=$assessor[count($assessor)-1]['group'];
+
+$missing =array();
+if (isset($assessor['status'])) {
+  if ($assessor['status']=='error') {
+    $checknumgroup=0;
+  }
+}
+else {
+ if (count($assessor)>0) {
+  $stacknum=array();
+  for ($i=1; $i <= $assessor[count($assessor)-1]['group'] ; $i++) { 
+      for ($j=0; $j < count($assessor); $j++) {
+        if ($assessor[$j]['group']==$i) {
+          array_push($stacknum,$i);
+        }
+      }
+  }
+  $stacknum=array_unique($stacknum);
+  $arr2 = range(1,max($stacknum));                                                    
+  $missing = array_diff($arr2,$stacknum);
+  if (!empty($missing)) {
+    $checknumgroup=array_shift($missing);
+
+  }else {
+    $checknumgroup=$assessor[count($assessor)-1]['group']+1;
+  }
+ }
+
 }
 
-echo '<pre>$assessor<br />'; var_dump($assessor); echo '</pre>';
- ?>
+echo '<pre>'; var_dump($checknumgroup,$missing,$assessor); echo '</pre>';
+
+?>
   <html>
 
   <head>
@@ -368,10 +392,12 @@ echo '<pre>$assessor<br />'; var_dump($assessor); echo '</pre>';
     </div>
     <script type="text/javascript">
     var numgroup=<?php echo $checknumgroup; ?>;
-
+    var countgroup =0;
     function addgroupstaff() {
-      numgroup++;
+      var checkdup=<?php echo count($assessor); ?>;
+
       console.log(numgroup);
+      if (countgroup == 0) {
       swal({
           title: 'แน่ใจหรือไม่',
           text: 'คุณต้องเพิ่มชุดคณะกรรมการใช่หรือไม่',
@@ -381,7 +407,7 @@ echo '<pre>$assessor<br />'; var_dump($assessor); echo '</pre>';
           cancelButtonColor: '#d33',
           confirmButtonText: 'ตกลง',
           cancelButtonText: 'ยกเลิก'
-        }).then(function () {
+        }).then(function () {   
           $('#new_group').append(
         ` <div class="col-md-6">
         <div class="panel panel-info">
@@ -425,10 +451,14 @@ echo '<pre>$assessor<br />'; var_dump($assessor); echo '</pre>';
           </div>
         </div>
       `
-                );
+        ); 
+        countgroup++;
         }, function (dismiss) {
           if (dismiss === 'cancel') {}
         })
+        
+          }
+
     }
 
       function addStaffCourse(course, department, semester) {
