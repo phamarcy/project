@@ -41,10 +41,13 @@ else {
 
   }else {
     $checknumgroup=$assessor[count($assessor)-1]['group']+1;
+    
   }
  }
 
 }
+
+echo '<pre>$checknumgroup<br />'; var_dump($checknumgroup); echo '</pre>';
 
 ?>
   <html>
@@ -389,6 +392,9 @@ else {
     </div>
     <script type="text/javascript">
     var numgroup=<?php echo $checknumgroup; ?>;
+    if (numgroup==0) {
+      numgroup++;
+    }
     var countgroup =0;
     function addgroupstaff() {
       var checkdup=<?php echo count($assessor); ?>;
