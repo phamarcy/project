@@ -388,7 +388,7 @@ class Person
     {
       for($i=0;$i<count($result);$i++)
       {
-          $group_num = substr($result[$i]['group_num'], - 1);
+          $group_num = substr($result[$i]['group_num'], 1);
           $teacher_name = $this->Get_Teacher_Name($result[$i]['teacher_id']);
           $check = 0;
           for($j=0;$j<count($DATA);$j++)

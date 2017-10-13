@@ -246,7 +246,7 @@ class Course
       $group_num = $result[0]['assessor_group_num'];
       if($group_num != null)
       {
-        $group_num = substr($group_num,-1);
+        $group_num = substr($group_num,1);
         $DATA['assessor'] = $group_num;
       }
       else
