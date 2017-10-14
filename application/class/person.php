@@ -381,7 +381,7 @@ class Person
     {
       $dept_group = '0';
     }
-    $sql = "SELECT `teacher_id`,`group_num` FROM `group_assessor` WHERE group_num LIKE '".$dept_group."%' ORDER BY group_num ASC ";
+    $sql = "SELECT `teacher_id`,`group_num` FROM `group_assessor` WHERE group_num LIKE '".$dept_group."%' ORDER BY cast(group_num as unsigned) ASC ";
     $this->DB->Change_DB($this->DEFAULT_DB);
     $result = $this->DB->Query($sql);
     if($result)

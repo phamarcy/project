@@ -41,7 +41,6 @@ else {
 
   }else {
     $checknumgroup=$assessor[count($assessor)-1]['group']+1;
-    
   }
  }
 
