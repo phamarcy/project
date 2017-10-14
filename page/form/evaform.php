@@ -623,6 +623,11 @@ function checksubject(btntype,type){
                         if(temp['ACCESS'] == true)
                         {
                           $('#buttondiv').show();
+                          swal(
+                             '',
+                             'ทดสอบอิดอก',
+                             'warning'
+                           )
                         }else {
                           swal(
                              '',
