@@ -626,8 +626,8 @@ function checksubject(btntype,type){
                         }else {
                           swal(
                              '',
-                             '"กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
-                             'error'
+                             'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
+                             'warning'
                            )
                           $('#buttondiv').hide();
                         }
