@@ -627,9 +627,7 @@ function checksubject(btntype,type){
                           $('#buttondiv').hide();
                         }
 
-                        if(temp['ACCESS'] == true)
-                        {
-                       if(temp['info']!=false && temp[0]!=null)
+                       if(temp['info']!=false && temp[0]!=null && temp['ACCESS'] == true)
                        {
                          document.getElementById('COURSE_ID').value = temp['info']['course_id'];
                          document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
@@ -656,7 +654,7 @@ function checksubject(btntype,type){
 
 
                        }
-                       else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
+                       else if(temp['info']==false && temp[0]==null && $('#id').val()!="" && temp['ACCESS'] == true){
                          swal(
                             '',
                             'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
@@ -666,7 +664,7 @@ function checksubject(btntype,type){
                          document.getElementById('id').value = "";
                          document.getElementById('formdrpd').style.display = "none";
                        }
-                       else if(temp['info']!=false && temp[0]==null){
+                       else if(temp['info']!=false && temp[0]==null && temp['ACCESS'] == true){
                           swal(
                              '',
                              'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
@@ -684,69 +682,23 @@ function checksubject(btntype,type){
                           {
                             $('#dlhide').hide();
                             document.getElementById('formdrpd').style.display = "none";
-                            swal(
-                               '',
-                               'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
-                               'error'
-                             )
-                          }
-                        }
-                      }else { // NO ACCESS
-                        swal(
-                           '',
-                           'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
-                           'error'
-                         )
-                        if(temp['info']!=false && temp[0]!=null)
-                        {
-                          document.getElementById('COURSE_ID').value = temp['info']['course_id'];
-                          document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
-                          document.getElementById('NAME_TH_COURSE').value = temp['info']['course_name_th'];
-                          document.getElementById('TOTAL').value = temp['info']['credit']+"("+temp['info']['hr_lec']+"-"+temp['info']['hr_lab']+"-"+temp['info']['hr_self']+")";
-                          document.getElementById('formdrpd').style.display = "";
-                          //cleardatalist
-                          var selectobject = document.getElementById('semester');
-                          var long = selectobject.length;
-                          if(long!=0 && long!=null)
-                          {
-                            for (var i=0; i<=long; i++){
-                              document.getElementsByName("semester")[0].remove(0);
+                            if(&& temp['ACCESS'] == true)
+                            {
+                              swal(
+                                 '',
+                                 'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
+                                 'error'
+                               )
+                            }else {
+                              swal(
+                                 '',
+                                 'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
+                                 'error'
+                               )
                             }
+
                           }
-
-                          for(var i=0;i<(Object.keys(temp).length - 1);i++)
-                          {
-                            var opt = document.createElement('option');
-                            opt.value = temp[i].semester +"_"+ temp[i].year;
-                            opt.innerHTML = "ภาคการศึกษาที่ " +temp[i].semester +" ปีการศึกษา "+ temp[i].year;
-                            document.getElementById('semester').appendChild(opt);
-                          }
-
-
                         }
-                        else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
-                           $('#dlhide').hide();
-                          document.getElementById('id').value = "";
-                          document.getElementById('formdrpd').style.display = "none";
-                        }
-                        else if(temp['info']!=false && temp[0]==null){
-                            document.getElementById('formdrpd').style.display = "none";
-                            $('#dlhide').show();
-                           document.getElementById('COURSE_ID').value = temp['info']['course_id'];
-                           document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
-                           document.getElementById('NAME_TH_COURSE').value = temp['info']['course_name_th'];
-                           document.getElementById('TOTAL').value = temp['info']['credit']+"("+temp['info']['hr_lec']+"-"+temp['info']['hr_lab']+"-"+temp['info']['hr_self']+")";
-                         }
-                         else {
-                           if($('#id').val()=="" ||$('#id').val()==null )
-                           {
-                             $('#dlhide').hide();
-                             document.getElementById('formdrpd').style.display = "none";
-
-                           }
-                         }
-                      }
-                    }
 
                   },
                   failure: function (result) {
