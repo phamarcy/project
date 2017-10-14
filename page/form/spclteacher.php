@@ -249,18 +249,6 @@ $current = $dlobj->Get_Current_Semester();
                          }
                         //console.log(Object.keys(temp).length);
 
-                          if(temp['ACCESS'] == true)
-                          {
-                            $('#buttondiv').show();
-                          }else {
-                            swal(
-                               '',
-                               'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
-                               'warning'
-                             )
-                            $('#buttondiv').hide();
-                          }
-
 
                         var rowtr = ($('#detailteaching tr').length)-2
                         for (var i = 1; i <=rowtr; i++) {
@@ -277,6 +265,18 @@ $current = $dlobj->Get_Current_Semester();
                           for (var i=0; i<=long; i++){
                             document.getElementsByName("teachername")[0].remove(0);
                           }
+                        }
+                        
+                        if(temp['ACCESS'] == true)
+                        {
+                          $('#buttondiv').show();
+                        }else {
+                          swal(
+                             '',
+                             'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
+                             'warning'
+                           )
+                          $('#buttondiv').hide();
                         }
 
                         if(temp['info']!=false && temp[0]!=null)
