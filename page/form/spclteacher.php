@@ -255,6 +255,11 @@ $current = $dlobj->Get_Current_Semester();
                           {
                             $('#buttondiv').show();
                           }else {
+                            swal(
+                               '',
+                               'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
+                               'warning'
+                             )
                             $('#buttondiv').hide();
                           }
                         }
