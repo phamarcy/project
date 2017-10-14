@@ -249,8 +249,6 @@ $current = $dlobj->Get_Current_Semester();
                          }
                         //console.log(Object.keys(temp).length);
 
-                        if(temp!=null)
-                        {
                           if(temp['ACCESS'] == true)
                           {
                             $('#buttondiv').show();
@@ -262,7 +260,7 @@ $current = $dlobj->Get_Current_Semester();
                              )
                             $('#buttondiv').hide();
                           }
-                        }
+
 
                         var rowtr = ($('#detailteaching tr').length)-2
                         for (var i = 1; i <=rowtr; i++) {
