@@ -627,6 +627,8 @@ function checksubject(btntype,type){
                           $('#buttondiv').hide();
                         }
 
+                        if(temp['ACCESS'] == true)
+                        {
                        if(temp['info']!=false && temp[0]!=null)
                        {
                          document.getElementById('COURSE_ID').value = temp['info']['course_id'];
@@ -689,6 +691,62 @@ function checksubject(btntype,type){
                              )
                           }
                         }
+                      }else { // NO ACCESS
+                        swal(
+                           '',
+                           'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
+                           'error'
+                         )
+                        if(temp['info']!=false && temp[0]!=null)
+                        {
+                          document.getElementById('COURSE_ID').value = temp['info']['course_id'];
+                          document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
+                          document.getElementById('NAME_TH_COURSE').value = temp['info']['course_name_th'];
+                          document.getElementById('TOTAL').value = temp['info']['credit']+"("+temp['info']['hr_lec']+"-"+temp['info']['hr_lab']+"-"+temp['info']['hr_self']+")";
+                          document.getElementById('formdrpd').style.display = "";
+                          //cleardatalist
+                          var selectobject = document.getElementById('semester');
+                          var long = selectobject.length;
+                          if(long!=0 && long!=null)
+                          {
+                            for (var i=0; i<=long; i++){
+                              document.getElementsByName("semester")[0].remove(0);
+                            }
+                          }
+
+                          for(var i=0;i<(Object.keys(temp).length - 1);i++)
+                          {
+                            var opt = document.createElement('option');
+                            opt.value = temp[i].semester +"_"+ temp[i].year;
+                            opt.innerHTML = "ภาคการศึกษาที่ " +temp[i].semester +" ปีการศึกษา "+ temp[i].year;
+                            document.getElementById('semester').appendChild(opt);
+                          }
+
+
+                        }
+                        else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
+                           $('#dlhide').hide();
+                          document.getElementById('id').value = "";
+                          document.getElementById('formdrpd').style.display = "none";
+                        }
+                        else if(temp['info']!=false && temp[0]==null){
+                            document.getElementById('formdrpd').style.display = "none";
+                            $('#dlhide').show();
+                           document.getElementById('COURSE_ID').value = temp['info']['course_id'];
+                           document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
+                           document.getElementById('NAME_TH_COURSE').value = temp['info']['course_name_th'];
+                           document.getElementById('TOTAL').value = temp['info']['credit']+"("+temp['info']['hr_lec']+"-"+temp['info']['hr_lab']+"-"+temp['info']['hr_self']+")";
+                         }
+                         else {
+                           if($('#id').val()=="" ||$('#id').val()==null )
+                           {
+                             $('#dlhide').hide();
+                             document.getElementById('formdrpd').style.display = "none";
+
+                           }
+                         }
+                      }
+                    }
 
                   },
                   failure: function (result) {
@@ -1034,7 +1092,7 @@ function senddata(data,file_data)
                        timer: 2000,
                        confirmButtonText: 'Ok'
                      }).then(function () {
-                       window.location.reload();
+                       location.reload();
                      }, function (dismiss) {
                      // dismiss can be 'cancel', 'overlay',
                      // 'close', and 'timer'
