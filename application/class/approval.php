@@ -617,7 +617,6 @@ class approval
       $noti['DATE_USER'] = date("d-m-Y");
       $noti['TIME_USER'] = date("h:i:sa");
       $noti['TYPE'] = '2'; //1 evaluate , 2, special instructor
-      $this->Sendemail($course_id,$noti);
       $this->Send_Noti($course_id,json_encode($noti,JSON_UNESCAPED_UNICODE));
     }
     return true;
