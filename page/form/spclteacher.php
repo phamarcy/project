@@ -244,127 +244,128 @@ $current = $dlobj->Get_Current_Semester();
 
                          try {
                            var temp = $.parseJSON(result);
+                           var rowtr = ($('#detailteaching tr').length)-2
+                           for (var i = 1; i <=rowtr; i++) {
+                             var row = document.getElementById('row' + i);
+                             row.parentNode.removeChild(row);
+                           }
+
+                           var course_id = document.getElementById('id').value;
+                           //cleardatalist
+                           var selectobject = document.getElementById('teachername');
+                           var long = selectobject.length;
+                           if(long!=0 && long!=null)
+                           {
+                             for (var i=0; i<=long; i++){
+                               document.getElementsByName("teachername")[0].remove(0);
+                             }
+                           }
+
+                           if(temp['ACCESS'] == true)
+                           {
+                             $('#buttondiv').show();
+                           }else {
+
+                             $('#buttondiv').hide();
+                           }
+
+                           if(temp['info']!=false && temp[0]!=null)
+                           {
+                             swal({
+                               title: '',
+                               text: "กระบวนวิชานี้เคยเชิญอาจารย์พิเศษที่เชิญมาสอนหรือไม่?",
+                               type: 'question',
+                               showCancelButton: true,
+                               confirmButtonColor: '#3085d6',
+                               cancelButtonColor: '#d33',
+                               confirmButtonText: 'เคยเชิญมาสอน',
+                               cancelButtonText: 'ยังไม่เคยเชิญมาสอน',
+                               confirmButtonClass: 'btn btn-success',
+                               cancelButtonClass: 'btn btn-danger',
+                               allowOutsideClick: false
+                             }).then(function () {
+
+                               var course_id = document.getElementById('id').value;
+                               document.getElementById('formdrpd').style.display = "";
+                               //cleardatalist
+                               var selectobject = document.getElementById('teachername');
+                               var long = selectobject.length;
+                               if(long!=0 && long!=null)
+                               {
+                                 for (var i=0; i<=long; i++){
+                                   document.getElementsByName("teachername")[0].remove(0);
+                                 }
+                               }
+                               for(var i=0;i<(Object.keys(temp).length-1);i++)
+                               {
+                                 var opt = document.createElement('option');
+                                 opt.value = temp[i].id +"_"+ course_id + "_" + temp[i].semester + "_" + temp[i].year +"_"+ temp[i].name;
+                                 opt.innerHTML = "คุณ"+temp[i].name+" ภาคการศึกษาที่ "+temp[i].semester+" ปีการศึกษา "+temp[i].year;
+                                 document.getElementById('teachername').appendChild(opt);
+                               }
+                             }, function (dismiss) {
+                               if (dismiss === 'cancel') {
+                                 swal(
+                                   '',
+                                   'สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
+                                   'success'
+                                 )
+                                 document.getElementById('course').value = temp['info']['course_id'];
+                                 document.getElementById('formdrpd').style.display = "none";
+
+                                 $('#dlhide').show();
+                                 $('#topic1')[0].checked = false;
+                                 $('#topic2')[0].checked = true;
+                                 $('#cvlist').show();
+                                 $('input[name=cv]').prop('required', true);
+                               }
+                             })
+
+                           }
+                           else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
+                             $('#dlhide').hide();
+                             swal(
+                                '',
+                                'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
+                                'error'
+                              )
+                             document.getElementById('formdrpd').style.display = "none";
+                             document.getElementById('id').value = "";
+                            }
+                            else if(temp['info']!=false && temp[0]==null){
+                              swal(
+                                 '',
+                                 'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
+                                 'info'
+                               )
+                               $('#dlhide').show();
+                             document.getElementById('formdrpd').style.display = "none";
+                              document.getElementById('course').value = temp['info']['course_id'];
+                              $('#topic1')[0].checked = false;
+                              $('#topic2')[0].checked = true;
+                              $('#cvlist').show();
+                              $('input[name=cv]').prop('required', true);
+                             }
+                             else {
+                               if($('#id').val()=="" ||$('#id').val()==null )
+                               {
+                                 swal(
+                                    '',
+                                    'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
+                                    'error'
+                                  )
+                                  $('#dlhide').hide();
+                                  document.getElementById('formdrpd').style.display = "none";
+
+                               }
+                             }
                          } catch (e) {
                               console.log('Error#542-decode error');
                          }
                         //console.log(Object.keys(temp).length);
 
 
-                        var rowtr = ($('#detailteaching tr').length)-2
-                        for (var i = 1; i <=rowtr; i++) {
-                          var row = document.getElementById('row' + i);
-                          row.parentNode.removeChild(row);
-                        }
 
-                        var course_id = document.getElementById('id').value;
-                        //cleardatalist
-                        var selectobject = document.getElementById('teachername');
-                        var long = selectobject.length;
-                        if(long!=0 && long!=null)
-                        {
-                          for (var i=0; i<=long; i++){
-                            document.getElementsByName("teachername")[0].remove(0);
-                          }
-                        }
-
-                        if(temp['ACCESS'] == true)
-                        {
-                          $('#buttondiv').show();
-                        }else {
-                          
-                          $('#buttondiv').hide();
-                        }
-
-                        if(temp['info']!=false && temp[0]!=null)
-                        {
-                          swal({
-                            title: '',
-                            text: "กระบวนวิชานี้เคยเชิญอาจารย์พิเศษที่เชิญมาสอนหรือไม่?",
-                            type: 'question',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'เคยเชิญมาสอน',
-                            cancelButtonText: 'ยังไม่เคยเชิญมาสอน',
-                            confirmButtonClass: 'btn btn-success',
-                            cancelButtonClass: 'btn btn-danger',
-                            allowOutsideClick: false
-                          }).then(function () {
-
-                            var course_id = document.getElementById('id').value;
-                            document.getElementById('formdrpd').style.display = "";
-                            //cleardatalist
-                            var selectobject = document.getElementById('teachername');
-                            var long = selectobject.length;
-                            if(long!=0 && long!=null)
-                            {
-                              for (var i=0; i<=long; i++){
-                                document.getElementsByName("teachername")[0].remove(0);
-                              }
-                            }
-                            for(var i=0;i<(Object.keys(temp).length-1);i++)
-                            {
-                              var opt = document.createElement('option');
-                              opt.value = temp[i].id +"_"+ course_id + "_" + temp[i].semester + "_" + temp[i].year +"_"+ temp[i].name;
-                              opt.innerHTML = "คุณ"+temp[i].name+" ภาคการศึกษาที่ "+temp[i].semester+" ปีการศึกษา "+temp[i].year;
-                              document.getElementById('teachername').appendChild(opt);
-                            }
-                          }, function (dismiss) {
-                            if (dismiss === 'cancel') {
-                              swal(
-                                '',
-                                'สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
-                                'success'
-                              )
-                              document.getElementById('course').value = temp['info']['course_id'];
-                              document.getElementById('formdrpd').style.display = "none";
-
-                              $('#dlhide').show();
-                              $('#topic1')[0].checked = false;
-                              $('#topic2')[0].checked = true;
-                              $('#cvlist').show();
-                              $('input[name=cv]').prop('required', true);
-                            }
-                          })
-
-                        }
-                        else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
-                          $('#dlhide').hide();
-                          swal(
-                             '',
-                             'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
-                             'error'
-                           )
-                          document.getElementById('formdrpd').style.display = "none";
-                          document.getElementById('id').value = "";
-                         }
-                         else if(temp['info']!=false && temp[0]==null){
-                           swal(
-                              '',
-                              'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
-                              'info'
-                            )
-                            $('#dlhide').show();
-                          document.getElementById('formdrpd').style.display = "none";
-                           document.getElementById('course').value = temp['info']['course_id'];
-                           $('#topic1')[0].checked = false;
-                           $('#topic2')[0].checked = true;
-                           $('#cvlist').show();
-                           $('input[name=cv]').prop('required', true);
-                          }
-                          else {
-                            if($('#id').val()=="" ||$('#id').val()==null )
-                            {
-                              swal(
-                                 '',
-                                 'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
-                                 'error'
-                               )
-                               $('#dlhide').hide();
-                               document.getElementById('formdrpd').style.display = "none";
-
-                            }
-                          }
                    },
                    failure: function (result) {
                         alert(result);
@@ -419,25 +420,26 @@ $current = $dlobj->Get_Current_Semester();
                    success: function (result) {
                      try {
                        var temp = $.parseJSON(result);
+                       if(temp!=null)
+                       {
+                         swal.hideLoading()
+
+                           swal(
+                              'สำเร็จ!',
+                              'ดึงข้อมูลสำเร็จ',
+                              'success'
+                            )
+                          $('#dlhide').show();
+                           getinfo(temp);
+                       }
+                       else {
+                         swal.hideLoading()
+                         alert('error');
+                       }
                      } catch (e) {
                           console.log('Error#542-decode error');
                      }
-                     if(temp!=null)
-                     {
-                       swal.hideLoading()
 
-                         swal(
-                            'สำเร็จ!',
-                            'ดึงข้อมูลสำเร็จ',
-                            'success'
-                          )
-                        $('#dlhide').show();
-                         getinfo(temp);
-                     }
-                     else {
-                       swal.hideLoading()
-                       alert('error');
-                     }
                    },
                    failure: function (result) {
                         alert(result);
@@ -762,53 +764,54 @@ $current = $dlobj->Get_Current_Semester();
                   success: function (result) {
                         try {
                           var temp = $.parseJSON(result);
+                          if(temp["status"]=='success')
+                          {
+                             swal.hideLoading()
+                             swal({
+                               title: 'สำเร็จ',
+                               text: temp["msg"],
+                               type: 'success',
+                               showCancelButton: false,
+                               confirmButtonColor: '#3085d6',
+                               cancelButtonColor: '#d33',
+                               confirmButtonText: 'Ok'
+                             }).then(function () {
+                               location.reload();
+                             }, function (dismiss) {
+                             // dismiss can be 'cancel', 'overlay',
+                             // 'close', and 'timer'
+                             if (dismiss === 'cancel') {
+
+                             }
+                           })
+
+                            //alert(temp["msg"]);
+                          }
+                          else {
+                            swal.hideLoading()
+                            swal({
+                              title: 'เกิดข้อผิดพลาด',
+                              text: temp["msg"],
+                              type: 'error',
+                              showCancelButton: false,
+                              confirmButtonColor: '#3085d6',
+                              cancelButtonColor: '#d33',
+                              confirmButtonText: 'Ok'
+                            }).then(function () {
+
+                            }, function (dismiss) {
+                            // dismiss can be 'cancel', 'overlay',
+                            // 'close', and 'timer'
+                            if (dismiss === 'cancel') {
+
+                            }
+                          })
+                            //alert(temp["msg"]);
+                          }
                         } catch (e) {
                              console.log('Error#542-decode error');
                         }
-                       if(temp["status"]=='success')
-                       {
-                          swal.hideLoading()
-                          swal({
-                            title: 'สำเร็จ',
-                            text: temp["msg"],
-                            type: 'success',
-                            showCancelButton: false,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ok'
-                          }).then(function () {
-                            location.reload();
-                          }, function (dismiss) {
-                          // dismiss can be 'cancel', 'overlay',
-                          // 'close', and 'timer'
-                          if (dismiss === 'cancel') {
 
-                          }
-                        })
-
-                         //alert(temp["msg"]);
-                       }
-                       else {
-                         swal.hideLoading()
-                         swal({
-                           title: 'เกิดข้อผิดพลาด',
-                           text: temp["msg"],
-                           type: 'error',
-                           showCancelButton: false,
-                           confirmButtonColor: '#3085d6',
-                           cancelButtonColor: '#d33',
-                           confirmButtonText: 'Ok'
-                         }).then(function () {
-
-                         }, function (dismiss) {
-                         // dismiss can be 'cancel', 'overlay',
-                         // 'close', and 'timer'
-                         if (dismiss === 'cancel') {
-
-                         }
-                       })
-                         //alert(temp["msg"]);
-                       }
 
                   },
                   failure: function (result) {
