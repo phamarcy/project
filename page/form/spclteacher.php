@@ -271,19 +271,12 @@ $current = $dlobj->Get_Current_Semester();
                         {
                           $('#buttondiv').show();
                         }else {
+                          
                           $('#buttondiv').hide();
                         }
 
                         if(temp['info']!=false && temp[0]!=null)
                         {
-                          if(temp['ACCESS'] == false)
-                          {
-                            swal(
-                               '',
-                               'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
-                               'warning'
-                             )
-                          }
                           swal({
                             title: '',
                             text: "กระบวนวิชานี้เคยเชิญอาจารย์พิเศษที่เชิญมาสอนหรือไม่?",
@@ -336,15 +329,6 @@ $current = $dlobj->Get_Current_Semester();
 
                         }
                         else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
-
-                          if(temp['ACCESS'] == false)
-                          {
-                            swal(
-                               '',
-                               'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
-                               'warning'
-                             )
-                          }
                           $('#dlhide').hide();
                           swal(
                              '',
@@ -355,15 +339,6 @@ $current = $dlobj->Get_Current_Semester();
                           document.getElementById('id').value = "";
                          }
                          else if(temp['info']!=false && temp[0]==null){
-                           if(temp['ACCESS'] == false)
-                           {
-                             swal(
-                                '',
-                                'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
-                                'warning'
-                              )
-                           }
-
                            swal(
                               '',
                               'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
@@ -380,14 +355,6 @@ $current = $dlobj->Get_Current_Semester();
                           else {
                             if($('#id').val()=="" ||$('#id').val()==null )
                             {
-                              if(temp['ACCESS'] == false)
-                              {
-                                swal(
-                                   '',
-                                   'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
-                                   'warning'
-                                 )
-                              }
                               swal(
                                  '',
                                  'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
