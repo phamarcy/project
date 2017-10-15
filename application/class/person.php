@@ -226,6 +226,24 @@ class Person
                       $return['status'] = 'error';
                       $return['msg'] = 'ไม่สามารถเพิ่มข้อมูลได้';
                     }
+                    $sql = "SELECT `instructor_id` FROM `approval_special`
+                    WHERE `course_id` = '".$result[$i]['course_id']."' AND `semester_id` = ".$this->DEADLINE['id'];
+                    $result_instructor = $this->DB->Query($sql);
+                    if($result_instructor)
+                    {
+                      $count_instructor = count($result_instructor);
+                      for($j=0;$j<$count_instructor;$j++)
+                      {
+                        $sql ="INSERT INTO `approval_special`(`instructor_id`,`teacher_id`,`course_id`,`level_approve`, `status`, `comment`, `semester_id`, `updated_date`)
+                        VALUES ('".$result_instructor[$j]['instructor_id']."','".$teacher_id."','".$result[$i]['course_id']."','1','1',null,".$this->DEADLINE['id'].",'".$updated_date."')";
+                        $result_add_new_instructor = $this->DB->Insert_Update_Delete($sql);
+                        if(!$result_add_new_instructor)
+                        {
+                          $return['status'] = 'error';
+                          $return['msg'] = 'ไม่สามารถเพิ่มข้อมูลได้';
+                        }
+                      }
+                    }
                 }
               }
               $return['status'] = 'success';
