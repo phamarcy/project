@@ -41,7 +41,6 @@ $now = strtotime(date("Y-m-d"));
 $start = strtotime($current_semester[0]['open_date']);
 $end = strtotime($current_semester[0]['last_date']);
 
-echo '<pre>'; var_dump($data_forapproval,$data_forapprovalsp); echo '</pre>';
  ?>
   <html>
   <header>
