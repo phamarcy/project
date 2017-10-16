@@ -490,7 +490,7 @@ $current = $dlobj->Get_Current_Semester();
                           }
                         })
                         }
-                     }
+
 
                    },
                    failure: function (result) {
