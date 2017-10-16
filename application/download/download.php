@@ -82,6 +82,7 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
   else
   {
     $zip->close();
+    session_write_close();
     header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
     header('Content-Disposition: attachment; filename="'.basename($zip_file).'"');
