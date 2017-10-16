@@ -215,7 +215,7 @@ class Course
     return $return;
   }
 
-  private function Get_Responsible_Teacher($course_id,$semester_id)
+  public function Get_Responsible_Teacher($course_id,$semester_id)
   {
     $DATA = array();
     $DATA['teacher'] = '';

@@ -719,6 +719,11 @@ class approval
         $course['instructor'] = $this->Get_Instructor_Data($course['id']);
         for($j=0;$j<count($course['instructor']);$j++)
         {
+          if((int)$course['instructor'][$j]['status'] < 5)
+          {
+            unset($course['instructor'][$j]);
+            continue;
+          }
           $instructor_id = $course['instructor'][$j]['id'];
           $course['instructor'][$j]['status'] = '0';
           $sql = "SELECT `teacher_id`,`comment`,`status`,`updated_date` FROM `approval_special` WHERE `instructor_id` = '".$instructor_id."'

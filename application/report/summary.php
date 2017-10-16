@@ -4,13 +4,14 @@ require_once(__DIR__."/../lib/PHPExcel/Classes/PHPExcel.php");
 require_once(__DIR__."/../class/database.php");
 require_once(__DIR__."/../class/person.php");
 require_once(__DIR__."/../class/course.php");
+require_once(__DIR__."/../class/log.php");
 require_once(__DIR__."/../class/manage_deadline.php");
 $deadline = new Deadline();
 $database = new Database();
 $person = new Person();
 $course = new Course();
 $Excel = new PHPExcel();
-
+$log = new Log();
 if(isset($_GET['semester']) && isset($_GET['year']) && isset($_GET['dept']))
 {
   $semester['semester'] = $_GET['semester'];
@@ -49,8 +50,8 @@ $sheet1 = $Excel->setActiveSheetIndex(0);
 
 $Excel->setActiveSheetIndex(0)
             ->setCellValue('A1', 'รายงานสรุปแบบวัดผลประเมินผล')
-            ->setCellValue('A2', 'ภาคการศึกษาที่ 1')
-            ->setCellValue('B2', 'ปีการศึกษา 2560')
+            ->setCellValue('A2', 'ภาคการศึกษาที่ '.$semester['semester'])
+            ->setCellValue('B2', 'ปีการศึกษา '.$semester['year'])
             ->setCellValue('A3', 'กระบวนวิชา (รหัส)')
             ->setCellValue('B3', 'ผู้รับผิดชอบกระบวนวิชา 1')
             ->setCellValue('C3', 'ผู้รับผิดชอบกระบวนวิชา 2')
@@ -89,8 +90,8 @@ $Excel->getDefaultStyle()
     ->applyFromArray($styleArray);
         $Excel->setActiveSheetIndex(1)
                             ->setCellValue('A1', 'รายชื่อกรรมการคุมสอบ')
-                            ->setCellValue('A2', 'ภาคการศึกษาที่ 1')
-                            ->setCellValue('B2', 'ปีการศึกษา 2560')
+                            ->setCellValue('A2', 'ภาคการศึกษาที่ '.$semester['semester'])
+                            ->setCellValue('B2', 'ปีการศึกษา '.$semester['year'])
                             ->setCellValue('A3', 'กระบวนวิชา (รหัส)')
                             ->setCellValue('B3', 'สอบกลางภาคครั้งที่ 1 (บรรยาย)')
                             ->setCellValue('C3', 'สอบกลางภาคครั้งที่ 1 (lab)')
@@ -131,21 +132,18 @@ if($result)
   for($i=0;$i<$count;$i++)
   {
     $course_id = $result[$i]['course_id'];
-    var_dump($course_id);
     if(!in_array($course_id,$dept_course))
     {
       continue;
     }
-    var_dump($dept_course);
     $temp_file = $file_path.'/'.$course_id."/evaluate/".$course_id."_evaluate_".$semester['semester']."_".$semester['year'].".txt";
     if(file_exists($temp_file))
     {
       $data = file_get_contents($temp_file);
       $data = json_decode($data,true);
       $Excel->setActiveSheetIndex(0)->setCellValue('A'.$row, $data['COURSE_ID']);
-
-      $teacher_name = $person->Get_Teacher_Name($data['USERID']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('B'.$row, $teacher_name);
+      $teacher = $course->Get_Responsible_Teacher($data['COURSE_ID'],$semester['id']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('B'.$row, $teacher['teacher']);
       $Excel->setActiveSheetIndex(0)->setCellValue('C'.$row, '');
       $Excel->setActiveSheetIndex(0)->setCellValue('D'.$row, $data['MEASURE']['MID1']['LEC']);
       $Excel->setActiveSheetIndex(0)->setCellValue('E'.$row, $data['MEASURE']['MID1']['LAB']);
@@ -244,7 +242,7 @@ if($result)
     }
     else
     {
-      echo "not found ".$temp_file;
+      $log->Write("not found ".$temp_file);
     }
   }
   $row--;
@@ -258,8 +256,8 @@ $Excel->getDefaultStyle()
     ->applyFromArray($styleArray);
 $Excel->setActiveSheetIndex(2)
             ->setCellValue('A1', 'รายงานสรุปการเชิญอาจารย์พิเศษ')
-            ->setCellValue('A2', 'ภาคการศึกษาที่ 1')
-            ->setCellValue('B2', 'ปีการศึกษา 2560')
+            ->setCellValue('A2', 'ภาคการศึกษาที่ '.$semester['semester'])
+            ->setCellValue('B2', 'ปีการศึกษา '.$semester['year'])
             ->setCellValue('A3', 'กระบวนวิชา (รหัส)')
             ->setCellValue('B3', 'ชื่อ-สกุลอาจารย์พิเศษ')
             ->setCellValue('C3', 'ตำแหน่ง')
