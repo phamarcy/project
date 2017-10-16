@@ -701,7 +701,7 @@ class approval
     {
       $sql = "SELECT DISTINCT sa.`course_id` FROM `subject_assessor` sa,`group_assessor` ga,`approval_special` ac
        WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
-       AND ac.`status` >= '1' AND ac.`course_id` = sa.`course_id` AND ac.`semester_id` =".$this->SEMESTER_ID;
+       AND ac.`status` >= '1' AND ac.`course_id` = sa.`course_id` AND ac.`semester_id` = ".$this->SEMESTER_ID;
     }
     else
     {
@@ -734,14 +734,14 @@ class approval
                 {
                   if($result_comment[$k]['status'] != 1)
                   {
-                    $course['instructor'][$k]['status'] = '1';
+                    $course['instructor'][$j]['status'] = '1';
                   }
                 }
                 else
                 {
                   if($result_comment[$k]['status'] != 5 )
                   {
-                    $course['instructor'][$k]['status'] = '1';
+                    $course['instructor'][$j]['status'] = '1';
                   }
                 }
               }
