@@ -22,7 +22,6 @@ $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $data_forapproval=$approval->Get_Approval_Evaluate($_SESSION['id']);
 $data_forapprovalsp=$approval->Get_Approval_Special($_SESSION['id']);
 
-echo '<pre>'; var_dump($data_forapprovalsp); echo '</pre>';
 $check_permission=$person->Check_Grant($_SESSION['id']);
 
 if ($_SESSION['level']==4 || $_SESSION['level'] ==5 ) {
@@ -133,9 +132,9 @@ $end = strtotime($current_semester[0]['last_date']);
                 <?php endif; ?>
                 <?php } ?>
                 <div class="container col-md-12">
-                  <ul class="nav nav-tabs" style="font-size:14px">
-                    <li class="active"><a data-toggle="tab" href="#subject">กระบวนวิชา</a></li>
-                    <li><a data-toggle="tab" href="#sp">อาจารย์พิเศษ</a></li>
+                  <ul class="nav nav-tabs" id="myTab" style="font-size:14px">
+                    <li class="active"><a data-toggle="tab" data-target="#subject" >กระบวนวิชา</a></li>
+                    <li><a data-toggle="tab" data-target="#sp" >อาจารย์พิเศษ</a></li>
                   </ul>
                   <div class="tab-content col-md-12">
                     <div id="subject" class="tab-pane fade in active">
@@ -334,6 +333,17 @@ $end = strtotime($current_semester[0]['last_date']);
     </div>
     </div>
     <script type="text/javascript">
+    $(function() {
+      var lastTab = localStorage.getItem('lastTab');
+      $('.container, .tab-content').removeClass('hidden');
+      if (lastTab) {
+        $('[data-target="' + lastTab + '"]').tab('show');
+      }
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        localStorage.setItem('lastTab', $(this).data('target'));
+      });
+    });
+
       $(document).ready(function() {
         $("#checkedAll").change(function(){
           if(this.checked){
