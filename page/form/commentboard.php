@@ -256,9 +256,13 @@ $end = strtotime($current_semester[0]['last_date']);
                                       <?php echo $spcomment['name'] ?>
                                     </a>
                                     <?php if (isset($spcomment['pdf']) ): ?> &nbsp;&nbsp;
-                                      <b>CV: </b>
-                                      <a href="<?php echo $spcomment['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
-                                    <?php endif; ?>
+                                    <b>PDF: </b>
+                                    <a href="<?php echo $spcomment['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                                  <?php endif; ?>
+                                  <?php if (isset($spcomment['cv']) ): ?> &nbsp;&nbsp;
+                                    <b>CV: </b>
+                                    <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                                  <?php endif; ?>
                                     <div class="pull-right">
                                     <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapsesp<?php echo $spcomment['id'] ?>">อนุมัติ</a>&nbsp;
                                     <input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $sp['id']?>,<?php echo $spcomment['id']?>"></input>

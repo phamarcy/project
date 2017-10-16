@@ -22,6 +22,7 @@ $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $data_forapproval=$approval->Get_Approval_Evaluate($_SESSION['id']);
 $data_forapprovalsp=$approval->Get_Approval_Special($_SESSION['id']);
 
+echo '<pre>'; var_dump($data_forapprovalsp); echo '</pre>';
 $check_permission=$person->Check_Grant($_SESSION['id']);
 
 if ($_SESSION['level']==4 || $_SESSION['level'] ==5 ) {
@@ -246,10 +247,13 @@ $end = strtotime($current_semester[0]['last_date']);
                                       <?php echo $spcomment['name'] ?>
                                     </a>
                                     <?php if (isset($spcomment['pdf']) ): ?> &nbsp;&nbsp;
-                                      <b>CV: </b>
+                                      <b>PDF: </b>
                                       <a href="<?php echo $spcomment['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
                                     <?php endif; ?>
-
+                                    <?php if (isset($spcomment['cv']) ): ?> &nbsp;&nbsp;
+                                      <b>CV: </b>
+                                      <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                                    <?php endif; ?>
                                     <div class="pull-right">
                                     <?php if ($spcomment['status']==0) { ?>
                                       <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapsesp<?php echo $spcomment['id'] ?>">ประเมิน</a>
