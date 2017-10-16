@@ -317,7 +317,7 @@ $data_course= json_decode($var, true);
 																	<div class="panel-heading">
 																		<h3 class="panel-title" style="font-size:14px;">
 
-																			<a data-toggle="collapse" data-parent="#accordion" href="#special_<?php echo $value_course['id']."_".$keysp ?>">
+																			<a data-toggle="collapse"  href="#special_<?php echo $value_course['id']."_".$keysp ?>">
 																				<?php echo $valuesp['name'] ?> </a>
 																			</b>
 																			<?php if (isset($valuesp['pdf']) && $_SESSION['level']==3 && $valuesp['status']!=0 ): ?>
