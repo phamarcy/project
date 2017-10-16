@@ -243,7 +243,7 @@ echo '<pre>'; var_dump($data_forapproval,$data_forapprovalsp); echo '</pre>';
                               <div class="panel panel-default">
                                 <div class="panel-heading">
                                   <h5 class="panel-title" style="font-size:14px">
-                                    <a data-toggle="collapse" href="#collapsesp<?php echo $sp['id'] ?>">
+                                    <a data-toggle="collapse" href="#collapsesp<?php echo $spcomment['id'] ?>">
                                       <?php echo $spcomment['name'] ?>
                                     </a>
                                     <?php if (isset($spcomment['pdf']) ): ?> &nbsp;&nbsp;
