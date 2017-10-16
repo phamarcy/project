@@ -535,6 +535,7 @@ class approval
          $instructor['status'] = $this->Get_Instructor_Status($result[$i]['instructor_id']);
          $pdf = $this->Get_Special_Doc_Url($instructor['id'],$course_id,'draft');
          $instructor['pdf'] = $pdf['pdf'];
+         $instructor['cv'] = $pdf['cv'];
          $sql = "SELECT teacher_id,comment,`updated_date` FROM `approval_special`
          WHERE instructor_id = ".$result[$i]['instructor_id']." AND `semester_id` =".$this->SEMESTER_ID;
          $result_comment = $this->DB->Query($sql);
