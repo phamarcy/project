@@ -20,8 +20,9 @@ $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 
 $data_forapproval=$approval->Get_Approval_Evaluate($_SESSION['id']);
-$data_forapprovalsp=$approval->Get_Approval_Special($_SESSION['id']);
 
+$data_forapprovalsp=$approval->Get_Approval_Special($_SESSION['id']);
+echo '<pre>$data_forapprovalsp<br />'; var_dump($data_forapprovalsp); echo '</pre>';
 $check_permission=$person->Check_Grant($_SESSION['id']);
 
 if ($_SESSION['level']==4 || $_SESSION['level'] ==5 ) {
@@ -263,10 +264,12 @@ $end = strtotime($current_semester[0]['last_date']);
                                     <b>CV: </b>
                                     <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
                                   <?php endif; ?>
+                                  <?php if ($spcomment['status']==0): ?>
                                     <div class="pull-right">
-                                    <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapsesp<?php echo $spcomment['id'] ?>">อนุมัติ</a>&nbsp;
-                                    <input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $sp['id']?>,<?php echo $spcomment['id']?>"></input>
-                                  </div>
+                                      <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapsesp<?php echo $spcomment['id'] ?>">อนุมัติ</a>&nbsp;
+                                      <input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $sp['id']?>,<?php echo $spcomment['id']?>"></input>
+                                    </div>
+                                  <?php endif; ?>
                                   </h5>
                                 </div>
                                 <div id="collapsesp<?php echo $spcomment['id'] ?>" class="panel-collapse collapse " style="font-size:14px">
