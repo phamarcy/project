@@ -3,7 +3,6 @@ require_once(__DIR__.'/../config/configuration_variable.php');
 require_once(__DIR__.'/../class/approval.php');
 require_once(__DIR__.'/../class/person.php');
 require_once(__DIR__.'/../class/manage_deadline.php');
-require_once('example_data.php');
 require('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
 $deadline = new Deadline();

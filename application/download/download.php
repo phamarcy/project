@@ -17,10 +17,7 @@ function add_zip($zip,$course,$type)
   {
     $doc_file = scandir($doc_path);
     $count = count($doc_file);
-    if($count>2)
-    {
-        $zip->addEmptyDir($course);
-    }
+
     for($i=2;$i<$count;$i++)
     {
       $doc_file_name = substr($doc_file[$i],0,-4);
@@ -28,6 +25,7 @@ function add_zip($zip,$course,$type)
       $count_prefix = count($prefix);
       if($prefix[0] == $course && $prefix[$count_prefix-2] == $semester && $prefix[$count_prefix-1] == $year)
       {
+         $zip->addEmptyDir($course);
          $zip->addFile($doc_path."/".$doc_file[$i],$course."/".$doc_file[$i]);
       }
     }
