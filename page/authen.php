@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__.'/../application/class/authen.php');
-if(isset($_POST['level']) && isset($_POST['username']) && isset($_POST['password']))
+if(isset($_POST['username']) && isset($_POST['password']))
 {
   $authen = new Authentication();
   $result = $authen->Authorize(trim($_POST['username']),trim($_POST['password']));
