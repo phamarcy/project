@@ -719,7 +719,7 @@ class approval
         $course['instructor'] = $this->Get_Instructor_Data($course['id']);
         for($j=0;$j<count($course['instructor']);$j++)
         {
-          if((int)$course['instructor'][$j]['status'] < 5)
+          if((int)$course['instructor'][$j]['status'] < 5 && ($this->USER_LEVEL >= 6))
           {
             unset($course['instructor'][$j]);
             continue;
