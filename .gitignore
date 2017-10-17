@@ -8,3 +8,4 @@ application/config/*
 *.xlsx
 *.docx
 *.txt
+application/test_config.php
