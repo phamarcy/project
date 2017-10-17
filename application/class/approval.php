@@ -693,7 +693,7 @@ class approval
     return $DATA;
   }
 
-
+//get special instructor approval data to approval page
   public function Get_Approval_Special($teacher_id)
   {
     $DATA = array();
