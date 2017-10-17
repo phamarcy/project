@@ -313,7 +313,9 @@ class Report
         }
           $data['name'] = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
           $data['comment'] = $result[$i]['comment'];
-          $data['date'] = $result[$i]['updated_date'];
+          $originalDate = $result[$i]['updated_date'];
+          $update_date = date("d-m-Y H:i:s", strtotime($originalDate));
+          $data['date'] = $update_date;
           array_push($course['comment'][$semester]['evaluate'],$data);
       }
     }
@@ -342,7 +344,9 @@ class Report
         }
         $data['name'] = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
         $data['comment'] = $result[$i]['comment'];
-        $data['date'] = $result[$i]['updated_date'];
+        $originalDate = $result[$i]['updated_date'];
+        $update_date = date("d-m-Y H:i:s", strtotime($originalDate));
+        $data['date'] = $update_date;
         array_push($course['comment'][$semester]['special'][$instructor_id]['comment'],$data);
       }
     }
