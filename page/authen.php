@@ -10,8 +10,7 @@ if(isset($_POST['level']) && isset($_POST['username']) && isset($_POST['password
     $_SESSION['id'] = $result['id'];
     $_SESSION['fname'] = $result['fname'];
     $_SESSION['lname'] = $result['lname'];
-    // $_SESSION['level'] = $result['level'];
-    $_SESSION['level'] = $_POST['level'];
+    $_SESSION['level'] = $result['level'];
     header('Location: index.php');
   }
   else

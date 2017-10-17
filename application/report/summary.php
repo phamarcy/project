@@ -349,8 +349,12 @@ foreach(range('A','Z') as $columnID)
   {
     $Excel->getActiveSheet()->getColumnDimension($columnID)->setAutoSize(true);
   }
-
-$summary_file = __DIR__.'/../../files/summary/summary_'.$dept_id.'_'.$semester['semester'].'_'.$semester['year'].'.xlsx';
+$SUMMARY_PATH = $FILE_PATH."/summary";
+if (!is_dir($SUMMARY_PATH))
+{
+    mkdir($SUMMARY_PATH);
+}
+$summary_file = $SUMMARY_PATH.'/summary_'.$dept_id.'_'.$semester['semester'].'_'.$semester['year'].'.xlsx';
 
 
 //save file
