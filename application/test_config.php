@@ -11,5 +11,8 @@ require_once(__DIR__."/class/course.php");
 // var_dump($data);
 // $db->Close_connection();
 
-$p = new Course();
-echo json_encode($p->Get_Document('evaluate','204111ss','2','2559'));
+// $p = new Course();
+// echo json_encode($p->Get_Document('evaluate','204111ss','2','2559'));
+
+$a = new approval('6');
+echo json_encode($a->Get_Approval_Special('011'));
