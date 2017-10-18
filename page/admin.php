@@ -2,7 +2,7 @@
 	session_start();
   if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
 	{
-	    header('Location: login.php');
+	    die("กรุณา login ใหม่");
 	}
   else
   {

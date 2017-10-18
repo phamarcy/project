@@ -3,7 +3,7 @@
 	require_once(__DIR__."/../application/class/person.php");
 	if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
 	{
-	    header('Location: login.php');
+	    die('กรุณา Login ใหม่');
 	}else if($_SESSION['level'] == 7)
 	{
 		header('Location: admin.php');
