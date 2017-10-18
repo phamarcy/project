@@ -273,13 +273,13 @@ $current = $dlobj->Get_Current_Semester();
                            {
                              swal({
                                title: '',
-                               text: "กระบวนวิชานี้เคยเชิญอาจารย์พิเศษที่เชิญมาสอนหรือไม่?",
+                               text: "อาจารย์พิเศษที่ท่านต้องการจะกรอกข้อมูล เคยถูกเชิญในกระบวนวิชานี้หรือไม่?",
                                type: 'question',
                                showCancelButton: true,
                                confirmButtonColor: '#3085d6',
                                cancelButtonColor: '#d33',
-                               confirmButtonText: 'เคยเชิญมาสอน',
-                               cancelButtonText: 'ยังไม่เคยเชิญมาสอน',
+                               confirmButtonText: 'เคย',
+                               cancelButtonText: 'ไม่เคย (เพิ่มรายละเอียดอาจารย์)',
                                confirmButtonClass: 'btn btn-success',
                                cancelButtonClass: 'btn btn-danger',
                                allowOutsideClick: false
