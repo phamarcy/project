@@ -1734,7 +1734,6 @@ function confreset(casereset) {
           <datalist id="dtl5">
           </datalist>
         </div>
-        <br>
         <div class="form-inline">
           <div id="text"><b>อาจารย์ผู้ร่วมสอน</b>
           </div>
