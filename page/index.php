@@ -433,7 +433,7 @@
 							else { ?>
 
 										<li>
-											<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> ประเมินกระบวนวิชา</a>
+											<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> การพิจารณากระบวนวิชา</a>
 										</li>
 									<?php
 								} ?>

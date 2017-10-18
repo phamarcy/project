@@ -103,7 +103,7 @@ $end = strtotime($current_semester[0]['last_date']);
             <h3 class="page-header">อนุมัติกระบวนวิชา</h3>
             <?php else:
             $approve_text="เห็นชอบ";?>
-            <h3 class="page-header">ประเมินกระบวนวิชา</h3>
+            <h3 class="page-header">พิจารณาให้ความเห็นชอบกระบวนวิชา</h3>
             <?php endif; ?>
             <?php
           if ($now>$end) {
@@ -160,7 +160,7 @@ $end = strtotime($current_semester[0]['last_date']);
                                   <a href="../../files<?php echo $eva['syllabus'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
                                   <?php endif; ?>
                                   <?php if (isset($eva['evaluate'])): ?> &nbsp;&nbsp;
-                                  <b>Evaluate:</b>
+                                  <b>Evaluation Form:</b>
                                   <a href="<?php echo $eva['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
                                   <?php endif; ?>
                                   <div class="pull-right">
@@ -256,7 +256,7 @@ $end = strtotime($current_semester[0]['last_date']);
                                       <?php echo $spcomment['name'] ?>
                                     </a>
                                     <?php if (isset($spcomment['pdf']) ): ?> &nbsp;&nbsp;
-                                    <b>PDF: </b>
+                                    <b>Instructor Form: </b>
                                     <a href="<?php echo $spcomment['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
                                   <?php endif; ?>
                                   <?php if (isset($spcomment['cv']) ): ?> &nbsp;&nbsp;
