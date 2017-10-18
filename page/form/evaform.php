@@ -458,7 +458,7 @@ function getinfo(temp) {
   {
     document.getElementById('TEACHERLEC_F'+(i+1)).value = temp['TEACHER'][i];
   }
-  document.getElementById('tcho').value = temp['TEACHER-CO'];
+  //document.getElementById('tcho').value = temp['TEACHER-CO'];
 
   //part4
   document.getElementById('MEASURE_MIDLEC1').value = temp['MEASURE']['MID1']['LEC'];
@@ -988,6 +988,7 @@ function submitfunc(casesubmit) {
         'YEAR' : '<?php echo date('Y')+543; ?>'
       };
 
+    console.log(JSON.stringify(data));
     senddata(JSON.stringify(data),getfile('1'));
   }
   else if(casesubmit=='0')
@@ -1618,7 +1619,7 @@ function confreset(casereset) {
   <div id="formdrpd" style="display: none;">
     <div class="form-inline">
       <div class="form-group " style="font-size:16px;">
-         ภาคการศึกษาและปีการศึกษา
+         ดึงข้อมูลย้อนหลัง
         <select class="form-control required" id="semester" name="semester" style="width: 300px;" required >
         </select>
        </div>
