@@ -130,9 +130,8 @@ $data_course= json_decode($var, true);
 					<?php if (isset($deadline_form['special'])): ?>
 					<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ <?php echo $deadline_form['special']['day'].' '.$deadline_form['special']['month'].' '.$deadline_form['special']['year']."<br>"; ?> </b>
 					<?php endif; ?>
-
-
 					<?php endif; ?>
+				
 					<?php
 				if($_SESSION['level'] == 4 || $_SESSION['level'] == 5  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3) {  ?>
 						<?php if (isset($deadline_form['evaluate'])): ?>
@@ -145,7 +144,26 @@ $data_course= json_decode($var, true);
 						<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline_form['approve']['day'].' '.$deadline_form['approve']['month'].' '.$deadline_form['approve']['year']."<br>"; ?> </b>
 						<?php endif; ?>
 						<?php	} ?>
-							<br>
+						<br>
+						
+
+						<?php if ($_SESSION['level']==3): ?>
+						<div class="row">
+							<div class="col-md-10 col-md-offset-3">
+								<button class='btn btn-outline btn-success' onclick='selectall();'>ยืนยันการเลือกวิชา</button>
+								<button class='btn btn-outline btn-primary' onclick='selectallsp();'>ยืนยันการเลือกอาจารย์พิเศษ</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-10 col-md-offset-3">
+								<label style="font-size:14px"><input type="checkbox" name="checkedAll" id="checkedAll" >เลือกวิชาทั้งหมด</label>&nbsp;&nbsp;
+								<label style="font-size:14px"><input type="checkbox" name="checkedAllsp" id="checkedAllsp" >เลือกอาจารย์พิเศษทั้งหมด</label>
+							</div>
+						</div>
+						
+						<hr>
+						<?php endif; ?>
+							
 
 							<?php if (is_array($data_course) || is_object($data_course)){ ?>
 
@@ -212,14 +230,17 @@ $data_course= json_decode($var, true);
 															<?php
 															} ?>
 																<?php endif; ?>
-
 																<?php if ($_SESSION['level']==2): ?>
 																<?php if(($value_course['evaluate']['status'])==1 ){ ?>
 																<button class='btn btn-outline btn-success' onclick='sendtoboard(<?php echo $value_course['id'] ?>);'>ผ่าน</button>
 																<?php
 															} ?>
 																	<?php endif; ?>
-
+															<div class="pull-right">
+															<?php if ($_SESSION['level']==3 && ($value_course['evaluate']['status'])==4): ?>
+																<label style="font-size:14px"><input type="checkbox" name="coursecheck" id="checkedAll" class="checkSingle" value="<?php echo $value_course['id'] ?>"></input></label>
+															<?php endif; ?>
+															</div>
 														</h3>
 													</div>
 													<?php if (isset($_SESSION['level'])) { ?>
@@ -286,29 +307,29 @@ $data_course= json_decode($var, true);
 																<?php foreach ($value_course['special'] as $keysp => $valuesp):
 
 																	switch ($valuesp['status']) {
-														case '0':
-														$status_sp='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
-														break;
-														case '1':
-														$status_sp='<b id="statwt">รอการพิจารณา <i class="fa  fa-clock-o fa-fw"></i></b>';
-															break;
-														case '2':
-														$status_sp='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
-															break;
-														case '3':
-														$status_sp='<b id="statal">มีการแก้ไขจากคณะกรรมการภาค <i class="fa fa-pencil-square fa-fw"></i></b>';
-															break;
-														case '4':
-														$status_sp='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค <i class="fa fa-user fa-fw"></i></b>';
-															break;
-														case '5':
-														$status_sp='<b id="statwt">รอคณะอนุมัติ <i class="fa fa-user-plus fa-fw"></i></b>';
-															break;
-														case '6':
-														$status_sp='<b id="statal">มีการแก้ไขจากผู้บริหาร <i class="fa fa-check fa-fw"></i></b>';
-															break;
-													case '7': $status_sp='
-													<b id="statcf">ผ่าน <i class="fa fa-check fa-fw"></i></b>'; break;
+																		case '0':
+																		$status_sp='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+																		break;
+																		case '1':
+																		$status_sp='<b id="statwt">รอการพิจารณา <i class="fa  fa-clock-o fa-fw"></i></b>';
+																			break;
+																		case '2':
+																		$status_sp='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+																			break;
+																		case '3':
+																		$status_sp='<b id="statal">มีการแก้ไขจากคณะกรรมการภาค <i class="fa fa-pencil-square fa-fw"></i></b>';
+																			break;
+																		case '4':
+																		$status_sp='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค <i class="fa fa-user fa-fw"></i></b>';
+																			break;
+																		case '5':
+																		$status_sp='<b id="statwt">รอคณะอนุมัติ <i class="fa fa-user-plus fa-fw"></i></b>';
+																			break;
+																		case '6':
+																		$status_sp='<b id="statal">มีการแก้ไขจากผู้บริหาร <i class="fa fa-check fa-fw"></i></b>';
+																			break;
+																	case '7': $status_sp='
+																	<b id="statcf">ผ่าน <i class="fa fa-check fa-fw"></i></b>'; break;
 
 																		}
 																		?>
@@ -326,13 +347,16 @@ $data_course= json_decode($var, true);
 																			<?php echo ' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp; if ($_SESSION['level']==3): ?>
 																			<?php if($valuesp['status']==4){ ?>
 																			<button class='btn btn-outline btn-success' onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>ยืนยัน</button>
-																			<?php
-																					} ?>
+																			<?php } ?>
 																				<?php endif; ?>
 																				<?php if(($valuesp['status'])==1 && $_SESSION['level']==2){ ?>
 																				<button class='btn btn-outline btn-success' onclick='sendtoboardsp(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>ผ่าน</button>
-																				<?php
-																					} ?>
+																				<?php } ?>
+																			<div class="pull-right">
+																				<?php if ($_SESSION['level']==3 && $valuesp['status']==4): ?>
+																					<label style="font-size:14px"><input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $value_course['id']?>,<?php echo $valuesp['id']?>"></input></label>
+																				<?php endif; ?>
+																			</div>
 																		</h3>
 																	</div>
 																	<div id="special_<?php echo $value_course['id']."_".$keysp ?>" class="panel-collapse collapse">
@@ -400,6 +424,266 @@ $data_course= json_decode($var, true);
 		</div>
 	</div>
 	<script>
+	$(document).ready(function() {
+        $("#checkedAll").change(function(){
+          if(this.checked){
+            $(".checkSingle").each(function(){
+              this.checked=true;
+            })
+          }else{
+            $(".checkSingle").each(function(){
+              this.checked=false;
+            })
+          }
+        });
+
+        $(".checkSingle").click(function () {
+          if ($(this).is(":checked")){
+            var isAllChecked = 0;
+            $(".checkSingle").each(function(){
+              if(!this.checked)
+                 isAllChecked = 1;
+            })
+            if(isAllChecked == 0){ $("#checkedAll").prop("checked", true); }
+          }else {
+            $("#checkedAll").prop("checked", false);
+          }
+        });
+      });
+
+	  $(document).ready(function() {
+        $("#checkedAllsp").change(function(){
+          if(this.checked){
+            $(".checkSinglesp").each(function(){
+              this.checked=true;
+            })
+          }else{
+            $(".checkSinglesp").each(function(){
+              this.checked=false;
+            })
+          }
+        });
+
+        $(".checkSinglesp").click(function () {
+          if ($(this).is(":checked")){
+            var isAllChecked = 0;
+            $(".checkSinglesp").each(function(){
+              if(!this.checked)
+                 isAllChecked = 1;
+            })
+            if(isAllChecked == 0){ $("#checkedAllsp").prop("checked", true); }
+          }else {
+            $("#checkedAllsp").prop("checked", false);
+          }
+        });
+      });
+
+
+	  function selectall() {
+        var course = [];
+        $.each($("input[name='coursecheck']:checked"), function(){
+            course.push($(this).val());
+        });
+
+        if (course.length==0) {
+         swal({
+          title: 'ผิดพลาด',
+          text: 'กรุณาเลือกวิชา',
+          type: 'error',
+
+        })
+        return;
+        }
+
+        swal({
+          title: 'แน่ใจหรือไม่',
+          text: 'คุณต้องการยืนยันวิชาที่เลือกใช่หรือไม่ใช่หรือไม่',
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'ตกลง',
+          cancelButtonText: 'ยกเลิก'
+        }).then(function () {
+          swal({
+                title: 'กรุณารอสักครู่',
+                text: 'ระบบกำลังประมวลผล',
+                allowOutsideClick: false
+              })
+          swal.showLoading();
+          var async_request=[];
+          var responses=[];
+
+			
+		  for(i in course)
+          {
+              async_request.push( $.ajax({
+                url: '../../application/approval/send_board.php',
+                type: 'POST',
+                async: true,
+                data: {
+                  course_id: course[i],
+                },
+                success: function (data) {
+                  try {
+                    var msg = JSON.parse(data)
+                    console.log(msg);
+                    console.log('success of ajax response')
+                    responses.push(data);
+                  } catch (e) {
+                    swal({
+                      type: "error",
+                      text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                      timer: 2000,
+                      confirmButtonText: "Ok!",
+                    });
+                    console.log(data);
+                  }
+                }
+              }));
+          }
+
+          $.when.apply(null, async_request).done( function(){
+            swal.hideLoading();
+            try {
+                var msg = JSON.parse(responses[0])
+                swal({
+                  type: msg.status,
+                  text: msg.msg,
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                }, function () {
+                  window.location.reload();
+                });
+                setTimeout(function () {
+                  window.location.reload();
+                }, 2000);
+              } catch (e) {
+                swal({
+                  type: "error",
+                  text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                });
+                console.log(responses);
+              }
+              console.log('all request completed')
+              console.log(responses);
+          });
+
+        }, function (dismiss) {
+          if (dismiss === 'cancel') {}
+        })
+      }
+
+      function selectallsp() {
+
+        var course = [];
+        var tempcourseAndName=[];
+        var purecourse=[];
+        var purenamesp=[];
+        $.each($("input[name='coursechecksp']:checked"), function(){
+            course.push($(this).val());
+        });
+
+        for (var i=0; i < course.length ; i++) {
+          tempcourseAndName[i]=course[i].split(",");
+          purecourse.push(tempcourseAndName[i][0]);
+          purenamesp.push(tempcourseAndName[i][1]);
+        }
+
+        if (course.length==0) {
+			swal({
+			title: 'ผิดพลาด',
+			text: 'กรุณาเลือกอาจารย์พิเศษ',
+			type: 'error',
+			})
+			return;
+        }
+
+        swal({
+          title: 'แน่ใจหรือไม่',
+          text: 'คุณต้องการยืนยันอาจารย์พิเศษที่เลือกใช่หรือไม่ใช่หรือไม่',
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'ตกลง',
+          cancelButtonText: 'ยกเลิก'
+        }).then(function () {
+          swal({
+                title: 'กรุณารอสักครู่',
+                text: 'ระบบกำลังประมวลผล',
+                allowOutsideClick: false
+              })
+          swal.showLoading();
+          var async_request=[];
+          var responses=[];
+
+          for(i in purecourse)
+          {
+              async_request.push( $.ajax({
+                url: '../../application/approval/send_board.php',
+                type: 'POST',
+                async: true,
+                data: {
+                  course_id: purecourse[i],
+                  teachersp: purenamesp[i],
+                },
+                success: function (data) {
+                  try {
+                    var msg = JSON.parse(data)
+                    console.log(msg);
+                    console.log('success of ajax response')
+                    responses.push(data);
+                  } catch (e) {
+                    swal({
+                        type: "error",
+                        text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                        timer: 2000,
+                        confirmButtonText: "Ok!",
+                      });
+                    console.log(data);
+                  }
+                }
+              }));
+          }
+
+          $.when.apply(null, async_request).done( function(){
+            swal.hideLoading();
+            try {
+                var msg = JSON.parse(responses[0])
+                swal({
+                  type: msg.status,
+                  text: msg.msg,
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                }, function () {
+                  window.location.reload();
+                });
+                setTimeout(function () {
+                  window.location.reload();
+                }, 1500);
+              } catch (e) {
+                swal({
+                  type: "error",
+                  text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
+                  timer: 2000,
+                  confirmButtonText: "Ok!",
+                });
+              }
+              console.log('all request completed')
+              console.log(responses);
+          });
+
+        }, function (dismiss) {
+          if (dismiss === 'cancel') {}
+        })
+      }
+
+
+
+
 		function senttohead(course) {
 			swal({
 				title: 'แน่ใจหรือไม่',
