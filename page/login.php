@@ -43,10 +43,10 @@
                         <form role="form" method="post" action="authen.php">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Username" name="username" autofocus>
+                                    <input class="form-control" placeholder="Username" name="r_username" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" name="r_password" type="password" value="">
                                 </div>
                                 <div class="checkbox">
                                     <label>

@@ -1,12 +1,13 @@
 <?php
 require_once(__DIR__.'/../application/class/authen.php');
-if(isset($_POST['username']) && isset($_POST['password']))
+session_start();
+if(isset($_POST['r_username']) && isset($_POST['r_password']))
 {
   $authen = new Authentication();
-  $result = $authen->Authorize(trim($_POST['username']),trim($_POST['password']));
+  $result = $authen->Authorize(trim($_POST['r_username']),trim($_POST['r_password']));
   if($result)
   {
-    session_start();
+
     $_SESSION['id'] = $result['id'];
     $_SESSION['fname'] = $result['fname'];
     $_SESSION['lname'] = $result['lname'];
@@ -17,6 +18,10 @@ if(isset($_POST['username']) && isset($_POST['password']))
   {
     die("ไม่พบข้อมูลในระบบ กรุณาตรวจสอบ username และ password อีกครั้ง");
   }
+}
+else
+{
+  die("กรุณา Login ใหม่");
 }
 // trim($words);
  ?>
