@@ -866,7 +866,7 @@ function submitfunc(casesubmit) {
         'TYPE_TEACHING' : document.querySelector("input[name='TYPE_TEACHING']:checked").value,
         'TYPE_TEACHING_NAME' : document.getElementById('TYPE_TEACHING_NAME').value,
         'TEACHER' : teacher_lec,
-        'TEACHER-CO' : document.getElementById('tcho').value,
+        'TEACHER-CO' : document.getElementById('tchco').value,
         'EXAM': {
           'MID1' : {
             'HOUR' : {
