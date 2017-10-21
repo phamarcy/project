@@ -561,7 +561,7 @@ class approval
   private function Get_Instructor_Status($instructor_id)
   {
     $sql = "SELECT status FROM `approval_special`
-    WHERE instructor_id = ".$instructor_id;
+    WHERE instructor_id = ".$instructor_id." AND `semester_id` = ".$this->SEMESTER_ID;
     $status = 7;
     $result = $this->DB->Query($sql);
         if($result)

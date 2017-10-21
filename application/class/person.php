@@ -181,6 +181,59 @@ class Person
     }
   }
 
+  //get document approval status
+  private function Get_Doc_Status($course_id)
+  {
+      $status = 7;
+      $sql = "SELECT `status` FROM `approval_course`
+      WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->DEADLINE['id'];
+      $this->DB->Change_DB($this->DEFAULT_DB);
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        for($i=0;$i<count($result);$i++)
+        {
+          $temp_status = $result[$i]['status'];
+          if($temp_status < $status)
+          {
+            $status = $temp_status;
+          }
+        }
+        return $status;
+      }
+      else
+      {
+        //not found on database, assume not creating
+        return "0";
+      }
+  }
+
+  //search special instructor approval status and comment
+  private function Get_Instructor_Status($instructor_id)
+  {
+    $sql = "SELECT status FROM `approval_special`
+    WHERE instructor_id = ".$instructor_id. " AND `semester_id` = ".$this->DEADLINE['id'];
+    $status = 7;
+    $this->DB->Change_DB($this->DEFAULT_DB);
+    $result = $this->DB->Query($sql);
+        if($result)
+        {
+          for($i=0;$i<count($result);$i++)
+          {
+            $temp_status = $result[$i]['status'];
+            if($temp_status < $status)
+            {
+              $status = $temp_status;
+            }
+          }
+          return $status;
+        }
+        else
+        {
+          return false;
+        }
+
+  }
 // add assessor to group assessor
   public function Add_Assessor($group_num,$teacher_name,$department_id)
   {
@@ -218,8 +271,17 @@ class Person
                 $updated_date = date("Y-m-d H:i:s");
                 for($i=0;$i<$count;$i++)
                 {
+                  $status = $this->Get_Doc_Status($result[$i]['course_id']);
+                  if((int)$status > 0)
+                  {
+                    $status = 1;
+                  }
+                  else
+                  {
+                    $status = 0;
+                  }
                   $sql = "INSERT INTO `approval_course`(`teacher_id`, `course_id`, `status`, `level_approve`, `comment`, `semester_id`,`date`)
-                  VALUES ('".$teacher_id."','".$result[$i]['course_id']."','1','1',null,".$this->DEADLINE['id'].",'".$updated_date."')";
+                  VALUES ('".$teacher_id."','".$result[$i]['course_id']."','".$status."','1',null,".$this->DEADLINE['id'].",'".$updated_date."')";
                     $result_add_new_approval = $this->DB->Insert_Update_Delete($sql);
                     if(!$result_add_new_approval)
                     {
@@ -234,8 +296,17 @@ class Person
                       $count_instructor = count($result_instructor);
                       for($j=0;$j<$count_instructor;$j++)
                       {
+                        $status_instructor = $this->Get_Instructor_Status($result_instructor[$j]['instructor_id']);
+                        if((int)$status_instructor > 0)
+                        {
+                          $status_instructor = 1;
+                        }
+                        else
+                        {
+                          $status_instructor = 0;
+                        }
                         $sql ="INSERT INTO `approval_special`(`instructor_id`,`teacher_id`,`course_id`,`level_approve`, `status`, `comment`, `semester_id`, `updated_date`)
-                        VALUES ('".$result_instructor[$j]['instructor_id']."','".$teacher_id."','".$result[$i]['course_id']."','1','1',null,".$this->DEADLINE['id'].",'".$updated_date."')";
+                        VALUES ('".$result_instructor[$j]['instructor_id']."','".$teacher_id."','".$result[$i]['course_id']."','1','".$status_instructor."',null,".$this->DEADLINE['id'].",'".$updated_date."')";
                         $result_add_new_instructor = $this->DB->Insert_Update_Delete($sql);
                         if(!$result_add_new_instructor)
                         {
@@ -316,13 +387,13 @@ class Person
             {
               $sql = "DELETE FROM `approval_course`
               WHERE `course_id` = '".$result[$i]['course_id']."' AND teacher_id = '".$teacher_id."'
-              AND `semester_id` = '".$this->DEADLINE['id']."'";
+              AND `semester_id` = ".$this->DEADLINE['id'];
               $result_remove_approval = $this->DB->Insert_Update_Delete($sql);
               if($result_remove_approval)
               {
                 $sql = "DELETE FROM `approval_special`
                 WHERE `course_id` = '".$result[$i]['course_id']."' AND teacher_id = '".$teacher_id."'
-                AND `semester_id` = '".$this->DEADLINE['id']."'";
+                AND `semester_id` = ".$this->DEADLINE['id'];
                 $result_remove_approval = $this->DB->Insert_Update_Delete($sql);
                 if($result_remove_approval)
                 {
