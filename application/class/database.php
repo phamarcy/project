@@ -8,37 +8,63 @@ require_once(__DIR__."/log.php");
 */
 class Database
 {
-	private $connection;
+	private $connection_current;
+	private $connection_main;
+	private $connection_person;
 	private $log;
 	public $connected;
+	public $connected_person;
 	function __construct()
 	{
-		global $DATABASE;
+		global $DATABASE,$PERSON_DATABASE;
 		$this->log = new Log();
-    $this->connection  = new mysqli($DATABASE['HOST'], $DATABASE['USERNAME'], $DATABASE['PASSWORD'],$DATABASE['NAME']);
-	    if ($this->connection->connect_error)
-	    {
-	    	$this->log->Write("Connection to database failed: " . $this->connection->connect_error);
-	    	die("Connection failed: " . $this->connection->connect_error);
+
+		$this->connection_person  = new mysqli($PERSON_DATABASE['HOST'], $PERSON_DATABASE['USERNAME'], $PERSON_DATABASE['PASSWORD'],$PERSON_DATABASE['NAME']);
+			if ($this->connection_person->connect_error)
+			{
+				$this->log->Write("Connection to database failed: " . $this->connection_person->connect_error);
+				die("Connection failed: " . $this->connection_person->connect_error);
 			}
 			else
 			{
-				$this->connected = true;
+				$this->connected_person = true;
 			}
-			mysqli_set_charset($this->connection,"utf8");
+
+    $this->connection_main  = new mysqli($DATABASE['HOST'], $DATABASE['USERNAME'], $DATABASE['PASSWORD'],$DATABASE['NAME']);
+	    if ($this->connection_main->connect_error)
+	    {
+	    	$this->log->Write("Connection to database failed: " . $this->connection_main->connect_error);
+	    	die("Connection failed: " . $this->connection_main->connect_error);
+			}
+			else
+			{
+				$this->connected_main = true;
+			}
+			mysqli_set_charset($this->connection_main,"utf8");
+			mysqli_set_charset($this->connection_person,"utf8");
+			$this->connection_current = $this->connection_main;
     }
 
 //change database
 		public function Change_DB($DB_NAME)
 		{
-			$result = mysqli_select_db($this->connection, $DB_NAME);
+			global $DATABASE,$PERSON_DATABASE;
+			if($DB_NAME == $DATABASE['NAME'])
+			{
+				$this->connection_current = $this->connection_main;
+			}
+			else if($DB_NAME == $PERSON_DATABASE['NAME'])
+			{
+				$this->connection_current = $this->connection_person;
+			}
+			$result = mysqli_select_db($this->connection_current, $DB_NAME);
 			if($result == true)
 			{
 				return true;
 			}
 			else
 			{
-				$this->log->Write("Database error : " . mysqli_error($this->connection));
+				$this->log->Write("Database error : " . mysqli_error($this->connection_current));
 				return false;
 			}
 		}
@@ -46,7 +72,7 @@ class Database
     public function Query($sql)
     {
     	$data = array();
-    	$result = $this->connection->query($sql);
+    	$result = $this->connection_current->query($sql);
     	if ($result)
 	    {
 	    	if ($result->num_rows > 0)
@@ -65,9 +91,9 @@ class Database
 		}
 		else
 		{
-			// echo $this->connection->connect_error;
+			// echo $this->connection_current->connect_error;
 			$this->log->Write("sql error : " . $sql);
-			$this->log->Write("Query error : " . mysqli_error($this->connection));
+			$this->log->Write("Query error : " . mysqli_error($this->connection_current));
 
 	    return false;
 		}
@@ -76,24 +102,29 @@ class Database
 //query data using sql command ***(INSERT,UPDATE,DELETE,TRUNCATE,ETC except SELECT )***
     public function Insert_Update_Delete($sql)
     {
-			if ($this->connection->query($sql) === TRUE)
+			if ($this->connection_current->query($sql) === TRUE)
 	    	{
 			    return true;
 			}
 			else
 			{
 				$this->log->Write("sql error : " . $sql);
-				$this->log->Write("Query error : " . mysqli_error($this->connection));
+				$this->log->Write("Query error : " . mysqli_error($this->connection_current));
 				return false;
 			}
     }
 //close database connection
     public function Close_connection()
     {
-			if ($this->connected)
+			if ($this->connected_person)
 			{
-      $this->connection->close();
-      $this->connected = false;
+				$this->connection_person->close();
+	      $this->connected_person = false;
+    	}
+			if ($this->connected_main)
+			{
+	      $this->connection_main->close();
+	      $this->connected_main = false;
     	}
     }
 }

@@ -55,29 +55,30 @@ $Excel->setActiveSheetIndex(0)
             ->setCellValue('A3', 'กระบวนวิชา (รหัส)')
             ->setCellValue('B3', 'ผู้รับผิดชอบกระบวนวิชา 1')
             ->setCellValue('C3', 'ผู้รับผิดชอบกระบวนวิชา 2')
-            ->setCellValue('D3', 'คะแนนสอบกลางภาคครั้งที่ 1 (บรรยาย)')
-            ->setCellValue('E3', 'คะแนนสอบกลางภาคครั้งที่ 1 (lab)')
-            ->setCellValue('F3', 'คะแนนสอบกลางภาคครั้งที่ 2 (บรรยาย)')
-            ->setCellValue('G3', 'คะแนนสอบกลางภาคครั้งที่ 2 (lab)')
-            ->setCellValue('H3', 'คะแนนสอบไล่ (บรรยาย)')
-            ->setCellValue('I3', 'คะแนนสอบไล่ (lab)')
-            ->setCellValue('J3', 'คะแนนงานมอบหมาย')
-            ->setCellValue('K3', 'คะแนนอื่นๆ')
-            ->setCellValue('L3', 'ชม.สอบกลางภาคครั้งที่ 1 (บรรยาย)')
-            ->setCellValue('M3', 'ชม.สอบกลางภาคครั้งที่ 1 (lab)')
-            ->setCellValue('N3', 'ชม.สอบกลางภาคครั้งที่ 2 (บรรยาย)')
-            ->setCellValue('O3', 'ชม.สอบกลางภาคครั้งที่ 2 (lab)')
-            ->setCellValue('P3', 'ชม.สอบไล่ (บรรยาย)')
-            ->setCellValue('Q3', 'ชม.สอบไล่ (lab)')
-            ->setCellValue('R3', 'วิธีการตัดเกรด')
-            ->setCellValue('S3', 'การให้ลำดับขั้นถ้านักศึกษาขาดสอบ');
+            ->setCellValue('D3', 'อาจารย์ผู้ร่วมสอน')
+            ->setCellValue('E3', 'คะแนนสอบกลางภาคครั้งที่ 1 (บรรยาย)')
+            ->setCellValue('F3', 'คะแนนสอบกลางภาคครั้งที่ 1 (lab)')
+            ->setCellValue('G3', 'คะแนนสอบกลางภาคครั้งที่ 2 (บรรยาย)')
+            ->setCellValue('H3', 'คะแนนสอบกลางภาคครั้งที่ 2 (lab)')
+            ->setCellValue('I3', 'คะแนนสอบไล่ (บรรยาย)')
+            ->setCellValue('J3', 'คะแนนสอบไล่ (lab)')
+            ->setCellValue('K3', 'คะแนนงานมอบหมาย')
+            ->setCellValue('L3', 'คะแนนอื่นๆ')
+            ->setCellValue('M3', 'ชม.สอบกลางภาคครั้งที่ 1 (บรรยาย)')
+            ->setCellValue('N3', 'ชม.สอบกลางภาคครั้งที่ 1 (lab)')
+            ->setCellValue('O3', 'ชม.สอบกลางภาคครั้งที่ 2 (บรรยาย)')
+            ->setCellValue('P3', 'ชม.สอบกลางภาคครั้งที่ 2 (lab)')
+            ->setCellValue('Q3', 'ชม.สอบไล่ (บรรยาย)')
+            ->setCellValue('R3', 'ชม.สอบไล่ (lab)')
+            ->setCellValue('S3', 'วิธีการตัดเกรด')
+            ->setCellValue('T3', 'การให้ลำดับขั้นถ้านักศึกษาขาดสอบ');
 
 //bold heading
-$Excel->getActiveSheet(0)->getStyle("A1:S3")->getFont()->setBold(true);
+$Excel->getActiveSheet(0)->getStyle("A1:T3")->getFont()->setBold(true);
 //cell border
 $sheet1->getStyle('A1')->applyFromArray($border);
 $sheet1->getStyle('A2:B2')->applyFromArray($border);
-$sheet1->getStyle('A3:S3')->applyFromArray($border);
+$sheet1->getStyle('A3:T3')->applyFromArray($border);
 $Excel->getActiveSheet(0)
         ->setTitle('เกณฑ์การประเมินผล');
         foreach(range('A','Z') as $columnID)
@@ -145,20 +146,21 @@ if($result)
       $teacher = $course->Get_Responsible_Teacher($data['COURSE_ID'],$semester['id']);
       $Excel->setActiveSheetIndex(0)->setCellValue('B'.$row, $teacher['teacher']);
       $Excel->setActiveSheetIndex(0)->setCellValue('C'.$row, '');
-      $Excel->setActiveSheetIndex(0)->setCellValue('D'.$row, $data['MEASURE']['MID1']['LEC']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('E'.$row, $data['MEASURE']['MID1']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('F'.$row, $data['MEASURE']['MID2']['LEC']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('G'.$row, $data['MEASURE']['MID2']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('H'.$row, $data['MEASURE']['FINAL']['LEC']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('I'.$row, $data['MEASURE']['FINAL']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('J'.$row, $data['MEASURE']['WORK']['LEC'] + $data['MEASURE']['WORK']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('K'.$row, $data['MEASURE']['OTHER']['LEC'] + $data['MEASURE']['OTHER']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('L'.$row, $data['EXAM']['MID1']['HOUR']['LEC']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('M'.$row, $data['EXAM']['MID1']['HOUR']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('N'.$row, $data['EXAM']['MID2']['HOUR']['LEC']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('O'.$row, $data['EXAM']['MID2']['HOUR']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('P'.$row, $data['EXAM']['FINAL']['HOUR']['LEC']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('Q'.$row, $data['EXAM']['FINAL']['HOUR']['LAB']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('D'.$row, $data['TEACHER-CO']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('E'.$row, $data['MEASURE']['MID1']['LEC']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('F'.$row, $data['MEASURE']['MID1']['LAB']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('G'.$row, $data['MEASURE']['MID2']['LEC']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('H'.$row, $data['MEASURE']['MID2']['LAB']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('I'.$row, $data['MEASURE']['FINAL']['LEC']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('J'.$row, $data['MEASURE']['FINAL']['LAB']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('K'.$row, $data['MEASURE']['WORK']['LEC'] + $data['MEASURE']['WORK']['LAB']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('L'.$row, $data['MEASURE']['OTHER']['LEC'] + $data['MEASURE']['OTHER']['LAB']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('M'.$row, $data['EXAM']['MID1']['HOUR']['LEC']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('N'.$row, $data['EXAM']['MID1']['HOUR']['LAB']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('O'.$row, $data['EXAM']['MID2']['HOUR']['LEC']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('P'.$row, $data['EXAM']['MID2']['HOUR']['LAB']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('Q'.$row, $data['EXAM']['FINAL']['HOUR']['LEC']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('R'.$row, $data['EXAM']['FINAL']['HOUR']['LAB']);
       $calculate = '';
       if($data['CALCULATE']['TYPE'] == "GROUP")
       {
@@ -172,7 +174,7 @@ if($result)
       {
       	$calculate = 'ให้อักษร S U';
       }
-      $Excel->setActiveSheetIndex(0)->setCellValue('R'.$row, $calculate);
+      $Excel->setActiveSheetIndex(0)->setCellValue('S'.$row, $calculate);
 
       $absent = '';
       if($data['ABSENT'] == 'F')
@@ -187,7 +189,7 @@ if($result)
       {
       	$absent = 'นำคะแนนทั้งหมดมาประเมิน';
       }
-      $Excel->setActiveSheetIndex(0)->setCellValue('S'.$row,$absent);
+      $Excel->setActiveSheetIndex(0)->setCellValue('T'.$row,$absent);
       $Excel->setActiveSheetIndex(1)->setCellValue('A'.$row,$data['COURSE_ID']);
       $count_committee = count($data['EXAM']['MID1']['COMMITTEE']['LEC']);
       $committee = '';
