@@ -248,7 +248,7 @@ if($result)
     }
   }
   $row--;
-  $sheet1->getStyle('A4:S'.$row)->applyFromArray($border);
+  $sheet1->getStyle('A4:T'.$row)->applyFromArray($border);
   $sheet2->getStyle('A4:G'.$row)->applyFromArray($border);
 }
 
