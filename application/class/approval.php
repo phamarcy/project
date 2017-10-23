@@ -746,16 +746,16 @@ class approval
             {
               if($result_comment[$k]['teacher_id'] == $teacher_id)
               {
-                if($this->USER_LEVEL < 6)
+                if($_SESSION['admission'] > 0 || $this->USER_LEVEL = 6)
                 {
-                  if($result_comment[$k]['status'] != 1)
+                  if($result_comment[$k]['status'] != 5 )
                   {
                     $course['instructor'][$j]['status'] = '1';
                   }
                 }
-                else
+                else if($this->USER_LEVEL < 6)
                 {
-                  if($result_comment[$k]['status'] != 5 )
+                  if($result_comment[$k]['status'] != 1)
                   {
                     $course['instructor'][$j]['status'] = '1';
                   }
