@@ -125,13 +125,13 @@ $data_course= json_decode($var, true);
 					<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา <?php echo $deadline_form['measure']['day'].' '.$deadline_form['measure']['month'].' '.$deadline_form['measure']['year']."<br>"; ?> </b>
 					<?php endif; ?>
 					<?php if (isset($deadline_form['syllabus'])): ?>
-					<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอัพโหลดไฟล์ course syllabus <?php echo $deadline_form['syllabus']['day'].' '.$deadline_form['syllabus']['month'].' '.$deadline_form['syllabus']['year']."<br>"; ?> </b>
+					<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอัปโหลดไฟล์ course syllabus <?php echo $deadline_form['syllabus']['day'].' '.$deadline_form['syllabus']['month'].' '.$deadline_form['syllabus']['year']."<br>"; ?> </b>
 					<?php endif; ?>
 					<?php if (isset($deadline_form['special'])): ?>
 					<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ <?php echo $deadline_form['special']['day'].' '.$deadline_form['special']['month'].' '.$deadline_form['special']['year']."<br>"; ?> </b>
 					<?php endif; ?>
 					<?php endif; ?>
-				
+
 					<?php
 				if($_SESSION['level'] == 4 || $_SESSION['level'] == 5  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3) {  ?>
 						<?php if (isset($deadline_form['evaluate'])): ?>
@@ -145,7 +145,7 @@ $data_course= json_decode($var, true);
 						<?php endif; ?>
 						<?php	} ?>
 						<br>
-						
+
 
 						<?php if ($_SESSION['level']==3): ?>
 						<div class="row">
@@ -160,10 +160,10 @@ $data_course= json_decode($var, true);
 								<label style="font-size:14px"><input type="checkbox" name="checkedAllsp" id="checkedAllsp" >เลือกอาจารย์พิเศษทั้งหมด</label>
 							</div>
 						</div>
-						
+
 						<hr>
 						<?php endif; ?>
-							
+
 
 							<?php if (is_array($data_course) || is_object($data_course)){ ?>
 
@@ -514,7 +514,7 @@ $data_course= json_decode($var, true);
           var async_request=[];
           var responses=[];
 
-			
+
 		  for(i in course)
           {
               async_request.push( $.ajax({

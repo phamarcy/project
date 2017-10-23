@@ -285,7 +285,7 @@ $(document).on('click', "#delete", function() {
         <ul class="nav nav-tabs">
             <li <?php echo ($_POST['tab'] == 'course')? 'class="active"' : '' ?>><a href="#course" data-toggle="tab">การกรอกข้อมูลวิธีการวัดผลและประเมินผล</a>
             </li>
-            <li <?php echo ($_POST['tab'] == 'syllabus')? 'class="active"' : '' ?>><a href="#syllabus" data-toggle="tab">การอัพโหลดไฟล์ course syllabus</a>
+            <li <?php echo ($_POST['tab'] == 'syllabus')? 'class="active"' : '' ?>><a href="#syllabus" data-toggle="tab">การอัปโหลดไฟล์ course syllabus</a>
             </li>
             <li <?php echo ($_POST['tab'] == 'special')? 'class="active"' : '' ?>><a href="#special" data-toggle="tab">การกรอกข้อมูลอาจารพิเศษ</a>
             </li>
@@ -375,7 +375,7 @@ $(document).on('click', "#delete", function() {
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
                             <div class="form-inline">
-                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">อัพโหลดไฟล์ course syllabus
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">อัปโหลดไฟล์ course syllabus
                                  </h5>
                             </div>
                         </div>
@@ -397,8 +397,8 @@ $(document).on('click', "#delete", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการอัพโหลดไฟล์ course syllabus <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการอัพโหลดไฟล์ course syllabus <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
+                                            วันเปิดการอัปโหลดไฟล์ course syllabus <input class="form-control" type="date" id="opendate"> <br><br>
+                                            วันสุดท้ายของการอัปโหลดไฟล์ course syllabus <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
                                         </div>
                                         <br>
                                         <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
