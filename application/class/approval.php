@@ -629,7 +629,7 @@ class approval
   {
     $DATA = array();
     //search data of document to approve
-    if($_SESSION['admission'] == 1 || $this->USER_LEVEL = 6)
+    if($_SESSION['admission'] > 0 || $this->USER_LEVEL = 6)
     {
       $sql = "SELECT DISTINCT `course_id` FROM `approval_course`
       WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
@@ -698,7 +698,7 @@ class approval
   {
     $DATA = array();
     //search data of document to special instructor
-    if($_SESSION['admission'] == 1 || $this->USER_LEVEL = 6)
+    if($_SESSION['admission'] > 0 || $this->USER_LEVEL = 6)
     {
       $sql = "SELECT DISTINCT `course_id` FROM `approval_special`
       WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
