@@ -132,7 +132,7 @@ $(function() {//<-- wrapped here
                               <?php echo "แบบแจ้งวิธีการวัดผลและประเมินผล ภาควิชา ". ($dept_id == '1202'? 'บริบาลเภสัชกรรม': ($dept_id == '1203'? 'วิทยาศาสตร์เภสัชกรรม' : 'unknow' )). " ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
                               $download_all = '../../application/download/download.php?course=all&info=evaluate&semester='.$semester.'&year='.$year;
                               ?>
-                              <a target="_blank" href="<?php echo $download_all; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ pdf ทั้งหมด</button></a>
+                              <a target="_blank" href="<?php echo $download_all; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ Evaluation Form ทั้งหมด</button></a>
                               </b></h5>
                             </div>
                             <div class="panel-body">
@@ -193,7 +193,7 @@ $(function() {//<-- wrapped here
                             <?php echo "แบบเชิญอาจารย์พิเศษ ภาควิชา ".($dept_id == '1202'? 'บริบาลเภสัชกรรม': ($dept_id == '1203'? 'วิทยาศาสตร์เภสัชกรรม' : 'unknow' ))." ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
                             $download_all_special =  '../../application/download/download.php?course=all&info=special&semester='.$semester.'&year='.$year;
                             ?>
-                            <a target="_blank" href="<?php echo $download_all_special; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ pdf ทั้งหมด</button></a>
+                            <a target="_blank" href="<?php echo $download_all_special; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ Instructor Form ทั้งหมด</button></a>
                           </b></h5>
                           </div>
                           <div class="panel-body">
@@ -222,9 +222,9 @@ $(function() {//<-- wrapped here
                                             <thead>
                                                 <tr>
                                                     <th width="10%">#</th>
-                                                    <th width="70%">ชื่อ - สกุล</th>
+                                                    <th width="60%">ชื่อ - สกุล</th>
                                                     <th width="10%">CV</th>
-                                                    <th width="10%">Instructor Form</th>
+                                                    <th width="20%">Instructor Form</th>
                                                 </tr>
                                             </thead>
                                             <tbody>';
@@ -233,9 +233,9 @@ $(function() {//<-- wrapped here
                                               $num_special = $j+1;
                                               echo '<tr>
                                                   <td width="10%">'.$num_special.'</td>
-                                                  <td width="70%">'.$data_special[$i]['special'][$j]['name'].'</td>
+                                                  <td width="60%">'.$data_special[$i]['special'][$j]['name'].'</td>
                                                   <td width="10%"><a target="_blank" href="../../files'.$data_special[$i]['special'][$j]['cv'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
-                                                  <td width="10%"><a target="_blank" href="'.$data_special[$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                                                  <td width="20%"><a target="_blank" href="'.$data_special[$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
                                                   </tr>';
                                             }
                                             echo '</tbody>

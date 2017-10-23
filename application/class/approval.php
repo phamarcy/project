@@ -635,7 +635,7 @@ class approval
        WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
        AND ac.`status` >= '1' AND ac.`course_id` = sa.`course_id` AND ac.`semester_id` =".$this->SEMESTER_ID;
     }
-    else
+    else if($_SESSION['admission'] == 1 || $this->USER_LEVEL = 6)
     {
       $sql = "SELECT DISTINCT `course_id` FROM `approval_course`
       WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
@@ -704,7 +704,7 @@ class approval
        WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
        AND ac.`status` >= '1' AND ac.`course_id` = sa.`course_id` AND ac.`semester_id` = ".$this->SEMESTER_ID;
     }
-    else
+    else if($_SESSION['admission'] == 1 || $this->USER_LEVEL = 6)
     {
       $sql = "SELECT DISTINCT `course_id` FROM `approval_special`
       WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
