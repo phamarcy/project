@@ -189,7 +189,7 @@ $data_course= json_decode($var, true);
 										$status_text='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค <i class="fa fa-user fa-fw"></i></b>';
 											break;
 										case '5':
-										$status_text='<b id="statwt">รอคณะอนุมัติ <i class="fa fa-user-plus fa-fw"></i></b>';
+										$status_text='<b id="statwt">รอผู้บริหารอนุมัติ <i class="fa fa-user-plus fa-fw"></i></b>';
 											break;
 										case '6':
 										$status_text='<b id="statal">มีการแก้ไขจากผู้บริหาร <i class="fa fa-check fa-fw"></i></b>';
@@ -323,7 +323,7 @@ $data_course= json_decode($var, true);
 																		$status_sp='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค <i class="fa fa-user fa-fw"></i></b>';
 																			break;
 																		case '5':
-																		$status_sp='<b id="statwt">รอคณะอนุมัติ <i class="fa fa-user-plus fa-fw"></i></b>';
+																		$status_sp='<b id="statwt">รอผู้บริหารอนุมัติ <i class="fa fa-user-plus fa-fw"></i></b>';
 																			break;
 																		case '6':
 																		$status_sp='<b id="statal">มีการแก้ไขจากผู้บริหาร <i class="fa fa-check fa-fw"></i></b>';

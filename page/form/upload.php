@@ -74,7 +74,7 @@ $deadline->Close_connection();
       <div class="container">
         <div class="row">
             <center>
-              <h3 class="page-header">อัพโหลดไฟล์เกรด</h3>
+              <h3 class="page-header">อัปโหลดไฟล์เกรด</h3>
             </center>
         </div>
       <br>
@@ -126,7 +126,7 @@ $deadline->Close_connection();
                                 <input name="file"  id="grade_<?php echo $value["course_id"] ?>" type="file" accept=".xls, .xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
                                 <input name="course_id" value="<?php echo $value["course_id"] ?>" type="hidden" />
                               </td>
-                              <td><button type="button" name="button" class="btn btn-primary" onclick="uploadFile(<?php echo $value["course_id"]; ?>)">อัพโหลด</button></td>
+                              <td><button type="button" name="button" class="btn btn-primary" onclick="uploadFile(<?php echo $value["course_id"]; ?>)">อัปโหลด</button></td>
                             </form>
                           </tr>
                   <?php endforeach; ?>
