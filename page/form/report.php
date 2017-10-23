@@ -155,7 +155,7 @@ $(function() {//<-- wrapped here
                                           <th>ชื่อวิชา</th>
                                           <th>Grade</th>
                                           <th>Syllabus</th>
-                                          <th>PDF</th>
+                                          <th>Evaluation Form</th>
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -224,7 +224,7 @@ $(function() {//<-- wrapped here
                                                     <th width="10%">#</th>
                                                     <th width="70%">ชื่อ - สกุล</th>
                                                     <th width="10%">CV</th>
-                                                    <th width="10%">PDF</th>
+                                                    <th width="10%">Instructor Form</th>
                                                 </tr>
                                             </thead>
                                             <tbody>';
