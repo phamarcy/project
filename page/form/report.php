@@ -132,7 +132,7 @@ $(function() {//<-- wrapped here
                               <?php echo "แบบแจ้งวิธีการวัดผลและประเมินผล ภาควิชา ". ($dept_id == '1202'? 'บริบาลเภสัชกรรม': ($dept_id == '1203'? 'วิทยาศาสตร์เภสัชกรรม' : 'unknow' )). " ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
                               $download_all = '../../application/download/download.php?course=all&info=evaluate&semester='.$semester.'&year='.$year;
                               ?>
-                              <a target="_blank" href="<?php echo $download_all; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ pdf ทั้งหมด</button></a>
+                              <a target="_blank" href="<?php echo $download_all; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ Evaluation Form ทั้งหมด</button></a>
                               </b></h5>
                             </div>
                             <div class="panel-body">
@@ -193,7 +193,7 @@ $(function() {//<-- wrapped here
                             <?php echo "แบบเชิญอาจารย์พิเศษ ภาควิชา ".($dept_id == '1202'? 'บริบาลเภสัชกรรม': ($dept_id == '1203'? 'วิทยาศาสตร์เภสัชกรรม' : 'unknow' ))." ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
                             $download_all_special =  '../../application/download/download.php?course=all&info=special&semester='.$semester.'&year='.$year;
                             ?>
-                            <a target="_blank" href="<?php echo $download_all_special; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ pdf ทั้งหมด</button></a>
+                            <a target="_blank" href="<?php echo $download_all_special; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ Instructor Form ทั้งหมด</button></a>
                           </b></h5>
                           </div>
                           <div class="panel-body">
