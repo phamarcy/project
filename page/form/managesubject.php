@@ -46,6 +46,15 @@ else {
 
 }
 
+if ($_SESSION['level']==7) {
+  if(isset($_POST['department'])){
+    $person->Update_department($_SESSION['id'],$_POST['department']);
+    header("Refresh:0");
+  }
+}
+
+
+
 ?>
   <html>
 
@@ -126,11 +135,32 @@ else {
   </head>
 
   <body>
-
+      
     <h3 class="page-header" style="margin-bottom: 0px;">
       <center><b>จัดการกระบวนวิชา</b></center>
-    </h3>
+    </h3>    
     <div class="container" style="margin-top:30px">
+    <?php
+    if ($_SESSION['level']==7 ){ ?>
+    <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">สำหรับผู้ดูแลระบบ</h3>
+          </div>
+          <div class="panel-body">
+            <form action="managesubject.php" method="post">
+            <div class="form-inline">
+              <p><b>ภาควิชาปัจจุบัน : </b>
+                <select name="department" class="form-control">
+                <option value="1202" <?php if ($dep_js=="1202") { echo "selected";} ?>>ภาควิชาบริบาลเภสัชกรรม</option>
+                <option value="1203" <?php if ($dep_js=="1203") { echo "selected";} ?>>ภาควิชาวิทยาศาสตร์เภสัชกรรม</option>
+                </select>&nbsp;&nbsp;<input type="submit" value="บันทึก" class="btn btn-outline btn-primary" ></p> 
+            </div>
+            </form>
+          </div>
+      </div>
+    <?php
+    }
+    ?>
       <div class="panel panel-default">
         <div class="panel-heading">
           <b>ภาคเรียนที่ <?php echo $semeter['semester'];?> &nbsp;ปีการศึกษา <?php echo $semeter['year']." ";?><?php echo $department['name'] ?></b>
@@ -385,7 +415,6 @@ else {
           </div>
         </div>
       </div>
-
     </div>
     <script type="text/javascript">
     var numgroup=<?php echo $checknumgroup; ?>;

@@ -662,7 +662,11 @@ class Person
     return false;
   }
 
-
+  public function Update_department($id,$department){
+    $this->DB->Change_DB('person');
+    $sql = 'UPDATE `staff` SET `dep_code`="'.$department.'" WHERE code="'.$id.'"';
+    $result = $this->DB->Insert_Update_Delete($sql);
+  }
   //close database connection
   public function Close_connection()
   {
