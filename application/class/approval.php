@@ -37,6 +37,10 @@ class approval
     $this->SEMESTER = $data['semester'];
     $this->YEAR = $data['year'];
     $this->USER_LEVEL = $level;
+    if($_SESSION['admission'] > 0)
+    {
+      $this->USER_LEVEL = 6;
+    }
     $this->CURL = new CURL();
     $this->COURSE = new Course();
     if (class_exists('Database'))
@@ -629,7 +633,7 @@ class approval
   {
     $DATA = array();
     //search data of document to approve
-    if($_SESSION['admission'] > 0 || $this->USER_LEVEL = 6)
+    if($this->USER_LEVEL == 6)
     {
       $sql = "SELECT DISTINCT `course_id` FROM `approval_course`
       WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
@@ -640,14 +644,6 @@ class approval
        WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
        AND ac.`status` >= '1' AND ac.`course_id` = sa.`course_id` AND ac.`semester_id` =".$this->SEMESTER_ID;
     }
-<<<<<<< HEAD
-=======
-    else
-    {
-      $sql = "SELECT DISTINCT `course_id` FROM `approval_course`
-      WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
-    }
->>>>>>> parent of 8ece242... แก้บัคมอบอำาจ
 
     $result = $this->DB->Query($sql);
     if($result)
@@ -706,7 +702,7 @@ class approval
   {
     $DATA = array();
     //search data of document to special instructor
-    if($_SESSION['admission'] > 0 || $this->USER_LEVEL = 6)
+    if($this->USER_LEVEL == 6)
     {
       $sql = "SELECT DISTINCT `course_id` FROM `approval_special`
       WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
@@ -717,14 +713,6 @@ class approval
        WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
        AND ac.`status` >= '1' AND ac.`course_id` = sa.`course_id` AND ac.`semester_id` = ".$this->SEMESTER_ID;
     }
-<<<<<<< HEAD
-=======
-    else
-    {
-      $sql = "SELECT DISTINCT `course_id` FROM `approval_special`
-      WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
-    }
->>>>>>> parent of 8ece242... แก้บัคมอบอำาจ
     $result = $this->DB->Query($sql);
     if($result)
     {
@@ -737,15 +725,21 @@ class approval
         $count = count($temp_instructor);
         for($j=0;$j<$count;$j++)
         {
-          if((int)$temp_instructor[$j]['status'] >= 5 || ($this->USER_LEVEL < 6))
+          if($this->USER_LEVEL < 6)
           {
             array_push($course['instructor'],$temp_instructor[$j]);
           }
+          else
+          {
+            if((int)$temp_instructor[$j]['status'] == 5)
+            {
+              array_push($course['instructor'],$temp_instructor[$j]);
+            }
+          }
         }
-
         for($j=0;$j<count($course['instructor']);$j++)
         {
-          if((int)$course['instructor'][$j]['status'] < 5 && ($this->USER_LEVEL >= 6))
+          if((int)$course['instructor'][$j]['status'] < 5 && ($this->USER_LEVEL == 6))
           {
             unset($course['instructor'][$j]);
             continue;
@@ -762,7 +756,7 @@ class approval
             {
               if($result_comment[$k]['teacher_id'] == $teacher_id)
               {
-                if($_SESSION['admission'] > 0 || $this->USER_LEVEL = 6)
+                if($this->USER_LEVEL == 6)
                 {
                   if($result_comment[$k]['status'] != 5 )
                   {
