@@ -78,7 +78,7 @@ $(function() {//<-- wrapped here
                             ปีการศึกษา
                           <input type="text" class="form-control numonly" placeholder="e.g. 2560" style="width: 100px;" pattern=".{4,4}" name="year" required > &nbsp;
                         </div>
-                        <?php  if($_SESSION['level'] == '3'){ ?>
+                        <?php  if($_SESSION['level'] == '3' || $_SESSION['level'] == '6'){ ?>
                           ภาควิชา
                           <select class="form-control" name="department">
                             <option value="1202">บริบาลเภสัชกรรม</option>
