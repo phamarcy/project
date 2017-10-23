@@ -12,6 +12,15 @@ $deadline = new Deadline();
 $course = new course();
 $semeter= $deadline->Get_Current_Semester();
 $department =$person->Get_Staff_Dep($_SESSION['id']);
+if ($_SESSION['level']==7) {
+  if(isset($_POST['department'])){
+    $_SESSION['department']=$_POST['department'];
+  }
+  if (isset($_SESSION['department'])) {
+    $department['code']=$_SESSION['department'];
+    $dep_js=$_SESSION['department'];
+  }
+}
 $dep_js=$department['code'];
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
@@ -45,15 +54,6 @@ else {
  }
 
 }
-
-if ($_SESSION['level']==7) {
-  if(isset($_POST['department'])){
-    $person->Update_department($_SESSION['id'],$_POST['department']);
-    header("Refresh:0");
-  }
-}
-
-
 
 ?>
   <html>
@@ -163,7 +163,7 @@ if ($_SESSION['level']==7) {
     ?>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <b>ภาคเรียนที่ <?php echo $semeter['semester'];?> &nbsp;ปีการศึกษา <?php echo $semeter['year']." ";?><?php echo $department['name'] ?></b>
+          <b>ภาคเรียนที่ <?php echo $semeter['semester'];?> &nbsp;ปีการศึกษา <?php echo $semeter['year']." ";?><?php if ($dep_js=="1202") { echo "ภาควิชาบริบาลเภสัชกรรม";} elseif($dep_js=="1203") {echo "ภาควิชาวิทยาศาสตร์เภสัชกรรม";} ?></b>
         </div>
         <div class="panel-body">
           <div class="row">
