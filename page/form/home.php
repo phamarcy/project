@@ -237,7 +237,7 @@ echo '<pre>'; var_dump($_SESSION); echo '</pre>';
 															} ?>
 																	<?php endif; ?>
 															<div class="pull-right">
-															<?php if ($_SESSION['level']==3 && ($value_course['evaluate']['status'])==4 || $_SESSION['admission']==3): ?>
+															<?php if ($_SESSION['level']==3 && ($value_course['evaluate']['status'])==4 || ($_SESSION['admission']==3 && $value_course['evaluate']['status']==4)): ?>
 																<label style="font-size:14px"><input type="checkbox" name="coursecheck" id="checkedAll" class="checkSingle" value="<?php echo $value_course['id'] ?>"></input></label>
 															<?php endif; ?>
 															</div>
@@ -355,7 +355,7 @@ echo '<pre>'; var_dump($_SESSION); echo '</pre>';
 																				<?php }
 																					} ?>
 																			<div class="pull-right">
-																				<?php if ($_SESSION['level']==3 && $valuesp['status']==4 || $_SESSION['admission']==3): ?>
+																				<?php if ($_SESSION['level']==3 && $valuesp['status']==4 || ($_SESSION['admission']==3 && $valuesp['status']==4)): ?>
 																					<label style="font-size:14px"><input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $value_course['id']?>,<?php echo $valuesp['id']?>"></input></label>
 																				<?php endif; ?>
 																			</div>
