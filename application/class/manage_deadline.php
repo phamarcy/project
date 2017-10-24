@@ -124,7 +124,7 @@ public function Update($data,$type)
   }
 
 //get specific current deadline from role
-  public function Get_Current_Deadline($level,$grant)
+  public function Get_Current_Deadline($level)
   {
     global $THAI_MONTH,$BUDDHA_YEAR ;
     $data = array();
@@ -135,7 +135,7 @@ public function Update($data,$type)
     {
       $sql .= " AND `deadline_type` = '4'";
     }
-    else if($level == 1 || $grant == 1)
+    else if($level == 1 || $_SESSION['admission'] == 1)
     {
       $sql .= " AND (`deadline_type` = '1' OR `deadline_type` = '2' OR `deadline_type` = '3')";
     }

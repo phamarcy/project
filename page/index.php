@@ -8,15 +8,14 @@
 	{
 		header('Location: admin.php');
 	}
-	$_SESSION['admission']=0;
+	if (empty($_SESSION['admission'])) {
+		$_SESSION['admission']=0;
+	}
+	
 	$person = new Person();
 	$check_permission=$person->Check_Grant($_SESSION['id']);
 	$person->Close_connection();
-
-
-
  ?>
-
 <html>
 <header>
 	<meta charset="utf-8">
@@ -404,7 +403,7 @@
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
 						<?php }else { ?>
-						<?php if ($_SESSION['level']<=1 ||  $_SESSION['admission']==1): ?>
+						<?php if ($_SESSION['level']<=1 ||  $_SESSION['admission']==1 ): ?>
 							<li>
 								<a href="#"><i class="fa fa-edit fa-fw"></i> กรอกข้อมูล<span class="fa arrow"></span></a>
 

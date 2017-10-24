@@ -626,7 +626,6 @@ class Person
   public function Check_Grant($teacher){
 
     $this->DB->Change_DB('pharmacy');
-
     $sql = 'SELECT * FROM grant_approve WHERE user_id = "'.$teacher.'"';
     $result = $this->DB->Query($sql);
     $now = strtotime(date("Y-m-d")) ;
@@ -646,7 +645,6 @@ class Person
             $_SESSION['admission']=3;//permission staff faculty
           }
 
-
           //check assessor
           if ($_SESSION['level']==4) {
             $_SESSION['level']==4;
@@ -658,7 +656,6 @@ class Person
 
       }
     }
-
     return false;
   }
 
