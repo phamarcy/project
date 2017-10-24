@@ -5,11 +5,11 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
     die('กรุณา Login ใหม่');
 }
 require_once(__DIR__."/../../application/class/report.php");
+$status="undefined";
+$msg="undefined";
 if (isset($_POST['subject'])) {
   $report = new Report();
   $history=$report->Get_Comment_History($_POST['subject']);
-  $status="";
-  $msg="";
   if (isset($history["status"])) {
     $status =json_encode($history["status"]);
     $msg =json_encode($history["msg"]);
@@ -43,9 +43,9 @@ if (isset($_POST['subject'])) {
     <!--ใช้ตัวนี้-->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
     <script>
-    var status = <?php echo $status; ?>; 
-    var msg = <?php echo $msg; ?>; 
-    console.log(status );
+    var status = <?php echo $status; ?>;
+    var msg = <?php echo $msg; ?>;
+    console.log(status);
     if (status=="error") {
       swal({
           type:"error",
@@ -55,7 +55,6 @@ if (isset($_POST['subject'])) {
         });
 
     }
-    
   </script>
   </header>
 
