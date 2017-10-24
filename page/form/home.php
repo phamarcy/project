@@ -16,7 +16,10 @@ $data['level'] = $_SESSION['level'];
 $deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
 $semester = $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
+
 $data_course= json_decode($var, true);
+echo '<pre>'; var_dump($_SESSION); echo '</pre>';
+
 
 ?>
 <html>
@@ -147,7 +150,7 @@ $data_course= json_decode($var, true);
 						<br>
 
 
-						<?php if ($_SESSION['level']==3): ?>
+						<?php if ($_SESSION['level']==3 || $_SESSION['admission']==3): ?>
 						<div class="row">
 							<div class="col-md-10 col-md-offset-3">
 								<button class='btn btn-outline btn-success' onclick='selectall();'>ยืนยันการเลือกวิชา</button>
@@ -197,11 +200,8 @@ $data_course= json_decode($var, true);
 									case '7':
 									$status_text='<b id="statcf">ผ่าน <i class="fa fa-check fa-fw"></i></b>';
 									break;
-
 										}
-
-
-								/*echo "<pre>"; var_export($value_course);echo "</pre>";*/ ?>
+?>
 								<div class="panel-group" id="accordione1">
 									<div class="panel panel-success">
 										<div class="panel-heading">
@@ -237,7 +237,7 @@ $data_course= json_decode($var, true);
 															} ?>
 																	<?php endif; ?>
 															<div class="pull-right">
-															<?php if ($_SESSION['level']==3 && ($value_course['evaluate']['status'])==4): ?>
+															<?php if ($_SESSION['level']==3 && ($value_course['evaluate']['status'])==4 || $_SESSION['admission']==3): ?>
 																<label style="font-size:14px"><input type="checkbox" name="coursecheck" id="checkedAll" class="checkSingle" value="<?php echo $value_course['id'] ?>"></input></label>
 															<?php endif; ?>
 															</div>
@@ -355,7 +355,7 @@ $data_course= json_decode($var, true);
 																				<?php }
 																					} ?>
 																			<div class="pull-right">
-																				<?php if ($_SESSION['level']==3 && $valuesp['status']==4): ?>
+																				<?php if ($_SESSION['level']==3 && $valuesp['status']==4 || $_SESSION['admission']==3): ?>
 																					<label style="font-size:14px"><input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $value_course['id']?>,<?php echo $valuesp['id']?>"></input></label>
 																				<?php endif; ?>
 																			</div>
