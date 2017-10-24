@@ -19,8 +19,6 @@ $var=$approve->Check_Status($_SESSION['id']);
 
 $data_course= json_decode($var, true);
 
-
-
 ?>
 <html>
 
@@ -123,7 +121,7 @@ $data_course= json_decode($var, true);
 				<!-- .panel-heading -->
 				<div class="panel-body">
 
-					<?php if ($_SESSION['level'] == 1 || $_SESSION['level'] == 2 || $_SESSION['level'] == 3):?>
+					<?php if ($_SESSION['level'] == 1 || $_SESSION['level'] == 2 || $_SESSION['level'] == 3 || $_SESSION['admission'] == 1 || $_SESSION['admission'] == 2 || $_SESSION['admission'] == 3):?>
 					<?php if (isset($deadline_form['measure'])): ?>
 					<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา <?php echo $deadline_form['measure']['day'].' '.$deadline_form['measure']['month'].' '.$deadline_form['measure']['year']."<br>"; ?> </b>
 					<?php endif; ?>
@@ -136,12 +134,12 @@ $data_course= json_decode($var, true);
 					<?php endif; ?>
 
 					<?php
-				if($_SESSION['level'] == 4 || $_SESSION['level'] == 5  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3) {  ?>
+				if($_SESSION['level'] == 4 || $_SESSION['level'] == 5  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3  || $_SESSION['admission'] == 2 || $_SESSION['admission'] == 3) {  ?>
 						<?php if (isset($deadline_form['evaluate'])): ?>
 						<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับประเมินกระบวนวิชา <?php echo $deadline_form['evaluate']['day'].' '.$deadline_form['evaluate']['month'].' '.$deadline_form['evaluate']['year']."<br>"; ?> </b>
 						<?php endif; ?>
 						<?php }
-					if($_SESSION['level'] == 6  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3)
+					if($_SESSION['level'] == 6  || $_SESSION['level'] == 2 || $_SESSION['level'] == 3  || $_SESSION['admission'] == 3)
 					{ ?>
 						<?php if (isset($deadline_form['approve'])): ?>
 						<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอนุมัติกระบวนวิชา <?php echo $deadline_form['approve']['day'].' '.$deadline_form['approve']['month'].' '.$deadline_form['approve']['year']."<br>"; ?> </b>
