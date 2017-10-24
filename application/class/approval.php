@@ -56,7 +56,7 @@ class approval
   {
     if($teacher_id != 'all')
     {
-      if($comment == null || $comment == '-')
+      if($comment == null || $comment == '')
       {
         $comment = '-';
       }
