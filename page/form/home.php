@@ -3,7 +3,6 @@ require_once(__DIR__.'/../../application/class/curl.php');
 require_once(__DIR__.'/../../application/class/manage_deadline.php');
 require_once(__DIR__."/../../application/class/approval.php");
 session_start();
-
 if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
 {
     die('กรุณา Login ใหม่');
@@ -13,7 +12,7 @@ $curl = new CURL();
 $deadline = new Deadline;
 $approve = new approval($_SESSION['level']);
 $data['level'] = $_SESSION['level'];
-$deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
+$deadline_form = $deadline->Get_Current_Deadline($_SESSION['level'],$_SESSION['admission']);
 $semester = $deadline->Get_Current_Semester();
 $var=$approve->Check_Status($_SESSION['id']);
 
@@ -347,7 +346,7 @@ $data_course= json_decode($var, true);
 																			<button class='btn btn-outline btn-success' onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>ยืนยัน</button>
 																			<?php } ?>
 																				<?php endif; ?>
-																				<?php if($_SESSION['level']==2 || $_SESSION['admission']==2){ 
+																				<?php if($_SESSION['level']==2 || $_SESSION['admission']==2){
 																					if ($valuesp['status']==1) {?>
 																				<button class='btn btn-outline btn-success' onclick='sendtoboardsp(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>ผ่าน</button>
 																				<?php }
