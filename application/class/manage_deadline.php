@@ -131,15 +131,15 @@ public function Update($data,$type)
     $semester = $this->Get_Current_Semester();
     $sql = "SELECT `deadline_type`,`open_date`,`last_date` FROM `deadline`
     WHERE `semester_id` = ".$semester['id'];
-    if($level == 4 || $level == 5)
+    if($level == 4 || $level == 5 )
     {
       $sql .= " AND `deadline_type` = '4'";
     }
-    else if($level == 1 || $_SESSION['admission'] == 1)
+    else if($level == 1 || $_SESSION['admission'] == 1 )
     {
       $sql .= " AND (`deadline_type` = '1' OR `deadline_type` = '2' OR `deadline_type` = '3')";
     }
-    else if($level == 6)
+    else if($level == 6 && $_SESSION['admission']==0)
     {
         $sql .= " AND `deadline_type` = '5'";
     }
