@@ -11,15 +11,6 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
 }
 else
 {
-  if($_SESSION['level'] != 3)
-  {
-    $return['status'] = 'error';
-    $return['msg'] = "สิทธิ์ไม่ถูกต้อง";
-    echo json_encode($return);
-    return ;
-  }
-  else
-  {
     if(isset($_POST['course_id']))
     {
       $course_id = $_POST['course_id'];
@@ -52,9 +43,6 @@ else
       echo json_encode($return);
       return ;
     }
-
-  }
-
 }
 
  ?>
