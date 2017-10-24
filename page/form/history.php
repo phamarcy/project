@@ -45,7 +45,6 @@ if (isset($_POST['subject'])) {
     <script>
     var status = <?php echo $status; ?>;
     var msg = <?php echo $msg; ?>;
-    console.log(status);
     if (status=="error") {
       swal({
           type:"error",
