@@ -54,8 +54,12 @@ class approval
   //update course evaluate status
   public function Update_Status_Evaluate($course_id,$status,$teacher_id,$comment)
   {
-    if($comment != null && $comment != '' && $teacher_id != 'all')
+    if($teacher_id != 'all')
     {
+      if($comment == null || $comment == '-')
+      {
+        $comment = '-';
+      }
       $sql = "INSERT INTO `comment_course`(`teacher_id`, `comment`, `semester_id`,`course_id`)
       VALUES ('".$teacher_id."','".$comment."','".$this->SEMESTER_ID."','".$course_id."')";
       $result = $this->DB->Insert_Update_Delete($sql);
