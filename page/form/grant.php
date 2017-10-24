@@ -5,11 +5,11 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
     die('กรุณา Login ใหม่');
 }
 require_once(__DIR__."/../../application/class/person.php");
+require_once(__DIR__.'/../../application/class/manage_deadline.php');
 $p = new Person();
+$deadline = new Deadline;
 $data=$p->Get_Grant();
-/*echo "<pre>";
-print_r($data);
-echo "</pre>";*/
+$semester = $deadline->Get_Current_Semester();
  ?>
 <html>
 <header>
@@ -68,9 +68,9 @@ echo "</pre>";*/
    </div>
    <div class="panel panel-default">
        <div class="panel-heading">
-         <h5 class="panel-title">
-             <b>ภาคการศึกษาที่ 2 ปีการศึกษา 2560</b>
-         </h5>
+        <h5 class="panel-title" style="font-size:14px">
+          <b>ภาคการศึกษาที่ <?php echo $semester['semester'] ?> ปีการศึกษา <?php echo $semester['year'] ?></b>
+        </h5>
        </div>
        <!-- .panel-heading -->
        <div class="panel-body">
