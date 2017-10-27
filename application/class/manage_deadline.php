@@ -198,24 +198,36 @@ public function Update($data,$type)
   public function Get_Current_Semester()
   {
     global $CONFIG_PATH;
-    $system_path = $CONFIG_PATH."/system/";
-    $current_semester_path = $system_path."current_semester.txt";
-    if(!file_exists($current_semester_path))
+    $sql = "SELECT `semester`,`year` FROM `current_semester`";
+    $result = $this->DB->Query($sql);
+    if($result)
     {
-      $return['status'] = "error";
-      $return['msg'] = "ไม่พบไฟล์ system";
+      $data['semester'] = $result[0]['semester'];
+      $data['year'] = $result[0]['year'];
+      $data['id'] = $this->Search_Semester_id($data['semester'],$data['year']);
+      return $data;
     }
-    $file = fopen($current_semester_path,"r");
-    $file_data = fread($file,filesize($current_semester_path));
-    $file_data = explode("/",$file_data);
-
-
-    $data['semester'] = $file_data[0];
-    $data['year'] = $file_data[1];
-    $data['id'] = $this->Search_Semester_id($data['semester'],$data['year']);
-    return $data;
+    else
+    {
+      return false;
+    }
   }
 
+  public function Add_Current_Semester($semester,$year)
+  {
+    $sql = "TRUNCATE TABLE `current_semester`";
+    $result = $this->DB->Insert_Update_Delete($sql);
+    if($result)
+    {
+      $sql = "INSERT INTO `current_semester`(`semester`, `year`) VALUES ('".$semester."','".$year."')";
+      $result = $this->DB->Insert_Update_Delete($sql);
+      if($result)
+      {
+        return true;
+      }
+    }
+    return false;
+  }
 //close database connection
   public function Close_connection()
   {

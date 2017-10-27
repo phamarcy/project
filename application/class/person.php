@@ -625,7 +625,7 @@ class Person
 
   public function Check_Grant($teacher){
 
-    $this->DB->Change_DB('pharmacy');
+    $this->DB->Change_DB($this->DEFAULT_DB);
     $sql = 'SELECT * FROM grant_approve WHERE user_id = "'.$teacher.'"';
     $result = $this->DB->Query($sql);
     $now = strtotime(date("Y-m-d")) ;
