@@ -409,7 +409,6 @@ class Course
   {
     if($type =='special')
     {
-      $type = "special_instructor";
       $sql = "SELECT `instructor_id`,`firstname`,`lastname`,`semester_num`,`year` FROM `special_instructor` si,`semester` s
       WHERE si.`course_id` = '".$course_id."' AND si.`semester_id` = s.`semester_id`" ;
     }
