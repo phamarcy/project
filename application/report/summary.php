@@ -137,6 +137,8 @@ if($result)
     {
       continue;
     }
+    // $sql = "SELECT * FROM `evaluate` WHERE `course_id` = '".$course_id."' `semester_id` = ".$semester['id'];
+    // $result = $database->Query($sql);
     $temp_file = $file_path.'/'.$course_id."/evaluate/".$course_id."_evaluate_".$semester['semester']."_".$semester['year'].".txt";
     if(file_exists($temp_file))
     {
