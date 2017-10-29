@@ -37,10 +37,14 @@ class approval
     $this->SEMESTER = $data['semester'];
     $this->YEAR = $data['year'];
     $this->USER_LEVEL = $level;
-    if($_SESSION['admission'] > 0)
+    if(isset($_SESSION['admission']))
     {
-      $this->USER_LEVEL = 6;
+      if($_SESSION['admission'] > 0)
+      {
+        $this->USER_LEVEL = 6;
+      }
     }
+
     $this->CURL = new CURL();
     $this->COURSE = new Course();
     if (class_exists('Database'))
