@@ -43,7 +43,7 @@ if(isset($_POST['course_id']) && isset($_POST['type']))
     }
     else
     {
-      echo $data;
+      echo json_encode($data);
     }
 
   }

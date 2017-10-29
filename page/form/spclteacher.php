@@ -82,25 +82,25 @@ $current = $dlobj->Get_Current_Semester();
 
  function getinfo(temp) {
    //part1
-   if(temp['TEACHERDATA']['DEPARTMENT']=="1")
+   /*if(temp['department']=="ภาควิชาวิทยาศาสตร์เภสัชกรรม")
    {
      document.getElementById('department').value = "ภาควิชาวิทยาศาสตร์เภสัชกรรม";
    }else {
      document.getElementById('department').value = "ภาควิชาบริบาลเภสัชกรรม";
    }
-
-   document.getElementById('pre').value = temp['TEACHERDATA']['PREFIX'];
-   var constring = temp['TEACHERDATA']['FNAME'];
-   var constring2 = temp['TEACHERDATA']['LNAME'];
+*/
+   document.getElementById('pre').value = temp['prefix'];
+   var constring = temp['firstname'];
+   var constring2 = temp['lastname'];
    document.getElementById('fname').value = constring;
    document.getElementById('lname').value = constring2;
-   document.getElementById('position').value = temp['TEACHERDATA']['POSITION'];
-   document.getElementById('qualification').value = temp['TEACHERDATA']['QUALIFICATION'];
-   document.getElementById('workplace').value = temp['TEACHERDATA']['WORKPLACE'];
-   document.getElementById('tel').value = temp['TEACHERDATA']['TELEPHONE']['NUMBER'];
-   document.getElementById('subtel').value = temp['TEACHERDATA']['TELEPHONE']['SUB'];
-   document.getElementById('mobile').value = temp['TEACHERDATA']['MOBILE'];
-   document.getElementById('email').value = temp['TEACHERDATA']['EMAIL'];
+   document.getElementById('position').value = temp['position'];
+   document.getElementById('qualification').value = temp['qualification'];
+   document.getElementById('workplace').value = temp['work_place'];
+   document.getElementById('tel').value = temp['phone'];
+   document.getElementById('subtel').value = temp['phone_sub'];
+   document.getElementById('mobile').value = temp['phone_mobile'];
+   document.getElementById('email').value = temp['email'];
    //var choice1 = temp['TEACHERDATA']['HISTORY'];
    $('input[name="topic"][value="already"]').prop('checked', true);
    if(document.querySelector("input[name='topic']:checked").value=="already")
@@ -117,14 +117,25 @@ $current = $dlobj->Get_Current_Semester();
 
 
    //part2
-   document.getElementById('course').value = temp['COURSEDATA']['COURSE_ID'];
-   document.getElementById('numstudent').value = temp['COURSEDATA']['NOSTUDENT'];
-   var choice2 = temp['COURSEDATA']['TYPE_COURSE'];
+   document.getElementById('course').value = temp['course_id'];
+   document.getElementById('numstudent').value = temp['num_student'];
+   var choice2 = temp['type_course'];
    $('input[name="type_course"][value=' + choice2 + ']').prop('checked', true);
-   document.getElementById('reason').value = temp['COURSEDATA']['REASON'];
-   document.getElementById('hour').value = temp['COURSEDATA']['HOUR'];
+   document.getElementById('reason').value = temp['reason'];
+   document.getElementById('hour').value = temp['lecture_hour'];
    //table
-   for(var tr=1;tr<=temp['NUMTABLE'];tr++)
+   var strlec = temp['lecture_topic'];
+   var cutlec = strlec.split("|");
+   var strdate = temp['lecture_date'];
+   var cutdate = strdate.split("|");
+   var strtimes = temp['lecture_time_start'];
+   var cuttimes = strtimes.split("|");
+   var strtimee = temp['lecture_time_end'];
+   var cuttimee = strtimee.split("|");
+   var strroom = temp['lecture_room'];
+   var cutroom = strroom.split("|");
+
+   for(var tr=1;tr<=temp['numtable'];tr++)
    {
      var table = $('#detailteaching').closest('table');
      if (table.find('input:text').length < 100) {
@@ -135,9 +146,9 @@ $current = $dlobj->Get_Current_Semester();
        });
        table.append('<tr class="warning" name="addtr" id="row' + tr + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + tr + '" id="delbtn' + tr +
          '" value="ลบ" onclick="deleteRow(' + tr + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="detail_topic' + tr + '" id="detail_topic' + tr +
-         '" size="30" value="'+temp['COURSEDATA']['DETAIL']['TOPICLEC'][tr-1]+'"></div></td><td><input type="date" class="form-control" name="dateteach' + tr + '" id="dateteach' + tr +
-         '" size="2" value="'+temp['COURSEDATA']['DETAIL']['DATE'][tr-1]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + tr + '" id="timebegin' + tr + '" size="2" value="'+temp['COURSEDATA']['DETAIL']['TIME']['BEGIN'][tr-1]+'" >  ถึง  <input type="time" class="form-control" name="timeend'
-          + tr + '" id="timeend' + tr + '" size="2" value="'+temp['COURSEDATA']['DETAIL']['TIME']['END'][tr-1]+'"></div></td><td><input type="text" class="form-control" id="room' + tr + '" value="'+temp['COURSEDATA']['DETAIL']['ROOM'][tr-1]+
+         '" size="30" value="'+cutlec[tr-1]+'"></div></td><td><input type="date" class="form-control" name="dateteach' + tr + '" id="dateteach' + tr +
+         '" size="2" value="'+cutdate[tr-1]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + tr + '" id="timebegin' + tr + '" size="2" value="'+cuttimes[tr-1]+'" >  ถึง  <input type="time" class="form-control" name="timeend'
+          + tr + '" id="timeend' + tr + '" size="2" value="'+cuttimee[tr-1]+'"></div></td><td><input type="text" class="form-control" id="room' + tr + '" value="'+cutroom[tr-1]+
           '"></td></tr>');
        $.each(x, function(i, val) {
          table.append(val);
@@ -146,68 +157,89 @@ $current = $dlobj->Get_Current_Semester();
    }
 
    //part3
-   var choice3 = temp['PAYMENT']['LVLTEACHER']['CHOICE'];
+   var choice3 = temp['level_teacher'];
+   if(choice3 == "official")
+   {
+     choice3 = "pro";
+   }
+   else {
+     choice3 = "norm";
+   }
    $('input[name="levelteacher"][value=' + choice3 + ']').prop('checked', true);
    if(choice3=="pro")
    {
-     document.getElementById('GOV_LEVEL').value = temp['PAYMENT']['LVLTEACHER']['DESCRIPT'];
+     document.getElementById('GOV_LEVEL').value = temp['level_descript'];
    }else {
-     document.getElementById('NORM_LEVEL').value = temp['PAYMENT']['LVLTEACHER']['DESCRIPT'];
+     document.getElementById('NORM_LEVEL').value = temp['level_descript'];
    }
 
-   var choice4 = temp['PAYMENT']['COSTSPEC']['CHOICE'];
+   var choice4 = temp['cost_lec_choice'];
+   if(choice4==1)
+   {
+     choice4 = "choice1";
+   }else {
+     choice4 = "choice2";
+   }
    $('input[name="costspec"][value=' + choice4 + ']').prop('checked', true);
    if(choice4=="choice1")
    {
-     document.getElementById('choice1num').value = temp['PAYMENT']['COSTSPEC']['NUMBER'];
-     document.getElementById('choice1hour').value = temp['PAYMENT']['COSTSPEC']['HOUR'];
-     document.getElementById('choice1cost').value = temp['PAYMENT']['COSTSPEC']['COST'];
+     document.getElementById('choice1num').value = temp['cost_lec_number'];
+     document.getElementById('choice1hour').value = temp['cost_lec_hour'];
+     document.getElementById('choice1cost').value = temp['cost_lec_cost'];
    }else {
-     document.getElementById('choice2num').value = temp['PAYMENT']['COSTSPEC']['NUMBER'];
-     document.getElementById('choice2hour').value = temp['PAYMENT']['COSTSPEC']['HOUR'];
-     document.getElementById('choice2cost').value = temp['PAYMENT']['COSTSPEC']['COST'];
+     document.getElementById('choice2num').value = temp['cost_lec_number'];
+     document.getElementById('choice2hour').value = temp['cost_lec_hour'];
+     document.getElementById('choice2cost').value = temp['cost_lec_cost'];
    }
 
-   if(temp['PAYMENT']['COSTTRANS']['TRANSPLANE']['CHECKED'] == "true")
+   if(temp['cost_plane_check'] == 1)
    {
      document.getElementById('transplane').checked = true;
-     document.getElementById('AIR_DEPART').value = temp['PAYMENT']['COSTTRANS']['TRANSPLANE']['DEPART'];
-     document.getElementById('AIR_ARRIVE').value = temp['PAYMENT']['COSTTRANS']['TRANSPLANE']['ARRIVE'];
-     document.getElementById('planecost').value = temp['PAYMENT']['COSTTRANS']['TRANSPLANE']['COST'];
+     document.getElementById('AIR_DEPART').value = temp['cost_plane_depart'];
+     document.getElementById('AIR_ARRIVE').value = temp['cost_plane_arrive'];
+     document.getElementById('planecost').value = temp['cost_plane_cost'];
    }
 
-   if(temp['PAYMENT']['COSTTRANS']['TRANSTAXI']['CHECKED'] == "true")
+   if(temp['cost_taxi_check'] == 1)
    {
      document.getElementById('transtaxi').checked = true;
-     document.getElementById('TAXI_DEPART').value = temp['PAYMENT']['COSTTRANS']['TRANSTAXI']['DEPART'];
-     document.getElementById('TAXI_ARRIVE').value = temp['PAYMENT']['COSTTRANS']['TRANSTAXI']['ARRIVE'];
-     document.getElementById('taxicost').value = temp['PAYMENT']['COSTTRANS']['TRANSTAXI']['COST'];
+     document.getElementById('TAXI_DEPART').value = temp['cost_taxi_depart'];
+     document.getElementById('TAXI_ARRIVE').value = temp['cost_taxi_arrive'];
+     document.getElementById('taxicost').value = temp['cost_taxi_cost'];
    }
 
-   if(temp['PAYMENT']['COSTTRANS']['TRANSSELFCAR']['CHECKED'] == "true")
+   if(temp['cost_car_check'] == 1)
    {
      document.getElementById('transselfcar').checked = true;
-     document.getElementById('SELF_DISTANCT').value = temp['PAYMENT']['COSTTRANS']['TRANSSELFCAR']['DISTANCT'];
-     document.getElementById('selfunit').value = temp['PAYMENT']['COSTTRANS']['TRANSSELFCAR']['UNIT'];
-     document.getElementById('selfcost').value = temp['PAYMENT']['COSTTRANS']['TRANSSELFCAR']['COST'];
+     document.getElementById('SELF_DISTANCT').value = temp['cost_car_distance'];
+     document.getElementById('selfunit').value = temp['cost_car_unit'];
+     document.getElementById('selfcost').value = temp['cost_car_cost'];
    }
 
-   var choice5 = temp['PAYMENT']['COSTHOTEL']['CHOICE'];
+   var choice5 = temp['cost_hotel_choice'];
+   if(choice5 == 1)
+   {
+     choice5 = "way1";
+   }else if (choice5 == 2) {
+     choice5 = "way2";
+   }else{
+     choice5 = "way3"
+   }
    $('input[name="hotelchoice"][value=' + choice5 + ']').prop('checked', true);
    if(choice5=="way3")
    {
-     document.getElementById('numnight').value = temp['PAYMENT']['COSTHOTEL']['NUMBER'];
-     document.getElementById('pernight').value = temp['PAYMENT']['COSTHOTEL']['PERNIGHT'];
+     document.getElementById('numnight').value = temp['cost_hotel_number'];
+     document.getElementById('pernight').value = temp['cost_hotel_per_night'];
    }else if (choice5=="way1") {
-     document.getElementById('way1unit').value = temp['PAYMENT']['COSTHOTEL']['UNIT'];
-     document.getElementById('numnight').value = temp['PAYMENT']['COSTHOTEL']['NUMBER'];
-     document.getElementById('pernight').value = temp['PAYMENT']['COSTHOTEL']['PERNIGHT'];
+     document.getElementById('way1unit').value = temp['cost_hotel_cost'];
+     document.getElementById('numnight').value = temp['cost_hotel_number'];
+     document.getElementById('pernight').value = temp['cost_hotel_per_night'];
    }else {
-     document.getElementById('way2unit').value = temp['PAYMENT']['COSTHOTEL']['UNIT'];
-     document.getElementById('numnight').value = temp['PAYMENT']['COSTHOTEL']['NUMBER'];
-     document.getElementById('pernight').value = temp['PAYMENT']['COSTHOTEL']['PERNIGHT'];
+     document.getElementById('way2unit').value = temp['cost_hotel_cost'];
+     document.getElementById('numnight').value = temp['cost_hotel_number'];
+     document.getElementById('pernight').value = temp['cost_hotel_per_night'];
    }
-   document.getElementById('totalcost').value = temp['PAYMENT']['TOTALCOST'];
+   document.getElementById('totalcost').value = temp['cost_total'];
    $('#callist').show();
 
    //buttondiv
@@ -473,7 +505,7 @@ $current = $dlobj->Get_Current_Semester();
                           console.log('Error#542-decode error');
                           swal.hideLoading()
                           swal({
-                            title: 'เกิดข้อผิดพลาด',
+                            title: 'เกิดข้อผิดพลาด-01',
                             text: '',
                             type: 'error',
                             showCancelButton: false,
