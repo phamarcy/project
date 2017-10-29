@@ -82,13 +82,13 @@ $current = $dlobj->Get_Current_Semester();
 
  function getinfo(temp) {
    //part1
-   /*if(temp['department']=="ภาควิชาวิทยาศาสตร์เภสัชกรรม")
+   if(temp['department']=="ภาควิชาวิทยาศาสตร์เภสัชกรรม")
    {
      document.getElementById('department').value = "ภาควิชาวิทยาศาสตร์เภสัชกรรม";
    }else {
      document.getElementById('department').value = "ภาควิชาบริบาลเภสัชกรรม";
    }
-*/
+
    document.getElementById('pre').value = temp['prefix'];
    var constring = temp['firstname'];
    var constring2 = temp['lastname'];
