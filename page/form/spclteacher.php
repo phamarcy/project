@@ -541,45 +541,51 @@ $current = $dlobj->Get_Current_Semester();
  function submitfunc(casesubmit) {
 
    // pack table
-   var topiclec = {};
-   var date = {};
-   var datebegin = {};
-   var dateend = {};
-   var room = {};
-   var arrtopiclec = [];
-   var arrdate = [];
-   var arrtimebegin = [];
-   var arrtimeend = [];
-   var arrroom = [];
+   var topiclec = '';
+   var date = '';
+   var timebegin = '';
+   var timeend = '';
+   var room = '';
 
    for(var i=1;i<=(($('#detailteaching tr').length)-2);i++)
    {
-      arrtopiclec[i-1] = document.getElementById('detail_topic'+i).value;
-      arrdate[i-1] = document.getElementById('dateteach'+i).value;
-      arrtimebegin[i-1] = document.getElementById('timebegin'+i).value;
-      arrtimeend[i-1] = document.getElementById('timeend'+i).value;
-      arrroom[i-1] = document.getElementById('room'+i).value;
+      topiclec += document.getElementById('detail_topic'+i).value;
+      date += document.getElementById('dateteach'+i).value;
+      timebegin += document.getElementById('timebegin'+i).value;
+      timeend += document.getElementById('timeend'+i).value;
+      room += document.getElementById('room'+i).value;
+      if(i!=(($('#detailteaching tr').length)-2))
+      {
+        topiclec += '|';
+        date += '|';
+        timebegin += '|';
+        timeend += '|';
+        room += '|';
+      }
    }
-
-  topiclec = arrtopiclec;
-  date = arrdate;
-  timebegin = arrtimebegin;
-  timeend = arrtimeend;
-  room = arrroom;
-
+   //type_teacher
+   if(document.querySelector("input[name='type_course']:checked").value=="require")
+   {
+     type_course_choice = "require";
+   }else {
+     type_course_choice = "not";
+   }
   // levelteacher
   if(document.querySelector("input[name='levelteacher']:checked").value=="pro")
   {
+      var lvchoice = "official";
       var lvteacher = document.getElementById('GOV_LEVEL').value;
   }
   else
   {
+      var lvchoice = "equivalent";
       var lvteacher = document.getElementById('NORM_LEVEL').value;
   }
 
   //costspec
   if(document.querySelector("input[name='costspec']:checked").value=="choice1")
   {
+    var costspecchoice = 1;
     if( document.getElementById('choice1num').value == '')
     {
       var num = "0";
@@ -606,6 +612,7 @@ $current = $dlobj->Get_Current_Semester();
   }
   else if(document.querySelector("input[name='costspec']:checked").value=="choice2")
   {
+    var costspecchoice = 2;
     if( document.getElementById('choice2num').value == '')
     {
       var num = "0";
@@ -634,26 +641,26 @@ $current = $dlobj->Get_Current_Semester();
   //trans
   if(document.getElementById('transplane').checked == true)
   {
-    var planecheck = "true";
+    var planecheck = 1;
   }
   else {
-    var planecheck = "false";
+    var planecheck = 0;
   }
 
   if(document.getElementById('transtaxi').checked == true)
   {
-    var taxicheck = "true";
+    var taxicheck = 1;
   }
   else {
-    var taxicheck = "false";
+    var taxicheck = 0;
   }
 
   if(document.getElementById('transselfcar').checked == true)
   {
-    var selfcarcheck = "true";
+    var selfcarcheck = 1;
   }
   else {
-    var selfcarcheck = "false";
+    var selfcarcheck = 0;
   }
 
   if( document.getElementById('SELF_DISTANCT').value == '')
@@ -683,6 +690,7 @@ $current = $dlobj->Get_Current_Semester();
   // hotelunit
   if(document.querySelector("input[name='hotelchoice']:checked").value=="way1")
   {
+    var hotelchoice = 1;
     if( document.getElementById('way1unit').value == '')
     {
       var hotelunit = "0";
@@ -692,6 +700,7 @@ $current = $dlobj->Get_Current_Semester();
     }
   }
   else if (document.querySelector("input[name='hotelchoice']:checked").value=="way2") {
+    var hotelchoice = 2;
     if( document.getElementById('way2unit').value == '')
     {
       var hotelunit = "0";
@@ -699,6 +708,8 @@ $current = $dlobj->Get_Current_Semester();
     else {
       var hotelunit = document.getElementById('way2unit').value;
     }
+  }else {
+    var hotelchoice = 3;
   }
 
   if( document.getElementById('numnight').value == '')
@@ -732,7 +743,6 @@ $current = $dlobj->Get_Current_Semester();
   var fixedcosttotal = parseFloat(document.getElementById('totalcost').value);
   var costtotal = fixedcosttotal.toFixed(2);
 
-
    var data = {
      'TEACHERDATA' : {
        'DEPARTMENT' : document.getElementById('department').value,
@@ -753,7 +763,7 @@ $current = $dlobj->Get_Current_Semester();
      'COURSEDATA' : {
        'COURSE_ID' : document.getElementById('course').value,
        'NOSTUDENT' : document.getElementById('numstudent').value,
-       'TYPE_COURSE' : document.querySelector("input[name='type_course']:checked").value,
+       'TYPE_COURSE' : type_course_choice,
        'REASON' : document.getElementById('reason').value,
        'DETAIL' : {
          'TOPICLEC' : topiclec,
@@ -768,11 +778,11 @@ $current = $dlobj->Get_Current_Semester();
      },
      'PAYMENT' : {
        'LVLTEACHER' : {
-         'CHOICE' : document.querySelector("input[name='levelteacher']:checked").value,
+         'CHOICE' : lvchoice,
          'DESCRIPT' : lvteacher
        },
        'COSTSPEC' : {
-         'CHOICE' : document.querySelector("input[name='costspec']:checked").value,
+         'CHOICE' : costspecchoice,
          'NUMBER' : num,
          'HOUR' : hour,
          'COST' : cost
@@ -798,7 +808,7 @@ $current = $dlobj->Get_Current_Semester();
          }
        },
        'COSTHOTEL' : {
-         'CHOICE' : document.querySelector("input[name='hotelchoice']:checked").value,
+         'CHOICE' : hotelchoice,
          'UNIT' : hotelunit,
          'NUMBER' : numnight,
          'PERNIGHT' : pernight
