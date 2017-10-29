@@ -405,69 +405,52 @@ class Course
   }
 
 // search temp data
-  public function Search_Document($type,$id,$teacher_id)
+  public function Search_Document($type,$course_id,$teacher_id)
   {
     if($type =='special')
     {
       $type = "special_instructor";
+      $sql = "SELECT `instructor_id`,`firstname`,`lastname`,`semester_num`,`year` FROM `special_instructor` si,`semester` s
+      WHERE si.`course_id` = '".$course_id."' AND si.`semester_id` = s.`semester_id`" ;
     }
-    $doc_path = realpath($this->FILE_PATH."/temp/".$id."/".$type);
+    else if ($type == 'evaluate')
+    {
+      $sql = "SELECT `semester_num`,`year` FROM `evaluate` e,`semester` s
+      WHERE e.`course_id` = '".$course_id."' AND e.`semester_id` = s.`semester_id`" ;
+    }
     $data = array();
     if($teacher_id != null)
     {
-      $check_access = $this->Check_Access($teacher_id,$id);
+      $check_access = $this->Check_Access($teacher_id,$course_id);
     }
     else
     {
       $check_access = null;
     }
-    $data['ACCESS'] = $check_access;
-    $data['info'] = $this->Get_Course_Info($id);
-    if(is_dir($doc_path))
+    $result = $this->DB->Query($sql);
+    if($result)
     {
-        $file_name = scandir($doc_path);
-        for($i=2;$i<count($file_name);$i++)
+      for($i=0;$i<count($result);$i++)
+      {
+        if($type == 'special')
         {
-            $files = explode("_",$file_name[$i]);
-            if($type == 'special_instructor')
-            {
-              $temp['id'] = $files[1];
-              $temp['name'] = $this->PERSON->Get_Special_Instructor_Name($temp['id']);
-
-            }
-              $temp['semester'] = $files[2];
-              $temp['year'] = $files[3];
-
-              $temp['year'] = str_replace(".txt","",$temp['year']);
-
-            array_push($data,$temp);
+          $data[$i]['id'] = $result[$i]['instructor_id'];
+          $data[$i]['name'] = $result[$i]['firstname'].' '.$result[0]['lastname'];
         }
+        $data[$i]['semester'] = $result[$i]['semester_num'];
+        $data[$i]['year'] = $result[$i]['year'];
+      }
+
     }
+    $data['ACCESS'] = $check_access;
+    $data['info'] = $this->Get_Course_Info($course_id);
+    //id,name,semester,year
       return $data;
   }
-  private function Search_Special_Instructor($course_id)
-  {
-    $doc_path = realpath($this->FILE_PATH."/temp/".$course_id."/special_instructor");
-    $data = array();
-    if(is_dir($doc_path))
-    {
-        $file_name = scandir($doc_path);
-        for($i=2;$i<count($file_name);$i++)
-        {
-            $files = explode("_",$file_name[$i]);
-            $id = $files[1];
-            $temp['id'] = $files[0];
-            $temp['name'] = $this->PERSON->Get_Special_Instructor_Name($id);
-            $temp['semester'] = $files[1];
-            $temp['year'] = $files[2];
-            $temp['year'] = str_replace(".txt","",$temp['year']);
-            array_push($data,$temp);
-        }
-    }
-    return $data;
-  }
+
   public function Get_Document($type,$course_id,$instructor_id,$teacher_id,$semester,$year)
   {
+    $semester_id = $this->DEADLINE->Search_Semester_id($semester,$year);
     //check responsible
     if($teacher_id != null)
     {
@@ -479,27 +462,22 @@ class Course
     }
     if($type == 'evaluate')
     {
-      $file_name = $course_id."_".$type."_".$semester."_".$year.".txt";
+      $sql = "SELECT * FROM `evaluate` WHERE `course_id` =  '".$course_id."' AND `semester_id` = ".$semester_id;
     }
     else if ($type == 'special')
     {
-      $type = "special_instructor";
-      $file_name = $course_id."_".$instructor_id."_".$semester."_".$year.".txt";
-
+      $sql = "SELECT * FROM `special_instructor` WHERE `instructor_id` =  '".$instructor_id."' AND `semester_id` = ".$semester_id;
     }
     else
     {
       die("รูปแบบข้อมูลผิดพลาด กรุณาติดต่อผู้ดูแลระบบ");
     }
 
-    $doc_path = realpath($this->FILE_PATH."/temp/".$course_id."/".$type);
-    $file_path = $doc_path."/".$file_name;
-    if (file_exists($file_path))
+    $result = $this->DB->Query($sql);
+    if($result)
     {
-      $data = file_get_contents($file_path);
-      $data = json_decode($data,true);
+      $data = $result[0];
       $data['ACCESS'] = $check_access;
-      $data = json_encode($data);
     }
     else
     {
