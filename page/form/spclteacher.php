@@ -229,15 +229,15 @@ $current = $dlobj->Get_Current_Semester();
    if(choice5=="way3")
    {
      document.getElementById('numnight').value = temp['cost_hotel_number'];
-     document.getElementById('pernight').value = temp['cost_hotel_per_night'];
+     document.getElementById('pernight').value = temp['cost_hotel_cost'];
    }else if (choice5=="way1") {
-     document.getElementById('way1unit').value = temp['cost_hotel_cost'];
+     document.getElementById('way1unit').value = temp['cost_hotel_per_night'];
      document.getElementById('numnight').value = temp['cost_hotel_number'];
-     document.getElementById('pernight').value = temp['cost_hotel_per_night'];
+     document.getElementById('pernight').value = temp['cost_hotel_cost'];
    }else {
-     document.getElementById('way2unit').value = temp['cost_hotel_cost'];
+     document.getElementById('way2unit').value = temp['cost_hotel_per_night'];
      document.getElementById('numnight').value = temp['cost_hotel_number'];
-     document.getElementById('pernight').value = temp['cost_hotel_per_night'];
+     document.getElementById('pernight').value = temp['cost_hotel_cost'];
    }
    document.getElementById('totalcost').value = temp['cost_total'];
    $('#callist').show();
@@ -743,6 +743,14 @@ $current = $dlobj->Get_Current_Semester();
   var fixedcosttotal = parseFloat(document.getElementById('totalcost').value);
   var costtotal = fixedcosttotal.toFixed(2);
 
+  //HISTORY
+  if(document.querySelector("input[name='topic']:checked").value == "already")
+  {
+    var historyteacher = 1;
+  }else {
+    var historyteacher = 0;
+  }
+
    var data = {
      'TEACHERDATA' : {
        'DEPARTMENT' : document.getElementById('department').value,
@@ -758,7 +766,7 @@ $current = $dlobj->Get_Current_Semester();
        },
        'MOBILE' : document.getElementById('mobile').value,
        'EMAIL' : document.getElementById('email').value,
-       'HISTORY' : document.querySelector("input[name='topic']:checked").value
+       'HISTORY' : historyteacher
      },
      'COURSEDATA' : {
        'COURSE_ID' : document.getElementById('course').value,
