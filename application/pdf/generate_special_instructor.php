@@ -141,7 +141,7 @@ if($data_pdf == false)
 	$return['msg'] = "ไม่สามารถดึงข้อมูลได้" ;
 	die;
 }
-var_dump($data_pdf);
+echo json_encode($data_pdf);
 die;
 //start generate pdf
 // $pdf=new FPDF();
