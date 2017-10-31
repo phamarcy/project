@@ -86,40 +86,71 @@ function Close_connection()
 if(isset($_POST['DATA']))
 {
 	$data = $_POST['DATA'];
+	// $data = '{"TEACHERDATA_DEPARTMENT":"ภาควิชาวิทยาศาสตร์เภสัชกรรม","TEACHERDATA_PREFIX":"นาย","TEACHERDATA_FNAME":"a","TEACHERDATA_LNAME":"b","TEACHERDATA_POSITION":"dsa","TEACHERDATA_QUALIFICATION":"asd","TEACHERDATA_WORKPLACE":"dsa","TEACHERDATA_TELEPHONE_NUMBER":"4565465465","TEACHERDATA_TELEPHONE_SUB":"55","TEACHERDATA_MOBILE":"5465465465","TEACHERDATA_EMAIL":"a@a.com","TEACHERDATA_HISTORY":1,"COURSEDATA_COURSE_ID":"460100","COURSEDATA_NOSTUDENT":"50","COURSEDATA_TYPE_COURSE":"require","COURSEDATA_REASON":"56545","COURSEDATA_DETAIL":{"TOPICLEC":["1.asdasddsada","2.545454"],"DATE":["2017-10-31","2017-11-01"],"TIME_BEGIN":["01:00","02:00"],"TIME_END":["12:00","11:00"],"ROOM":["123","456"]},"COURSEDATA_HOUR":"50","PAYMENT_LVLTEACHER_CHOICE":"official","PAYMENT_LVLTEACHER_DESCRIPT":"สกลนคร","PAYMENT_COSTSPEC_CHOICE":1,"PAYMENT_COSTSPEC_NUMBER":"400","PAYMENT_COSTSPEC_HOUR":"1","PAYMENT_COSTSPEC_COST":"400.00","PAYMENT_COSTTRANS_TRANSPLANE_CHECKED":1,"PAYMENT_COSTTRANS_TRANSPLANE_DEPART":"1","PAYMENT_COSTTRANS_TRANSPLANE_ARRIVE":"2","PAYMENT_COSTTRANS_TRANSPLANE_COST":"100.00","PAYMENT_COSTTRANS_TRANSTAXI_CHECKED":0,"PAYMENT_COSTTRANS_TRANSTAXI_DEPART":"","PAYMENT_COSTTRANS_TRANSTAXI_ARRIVE":"","PAYMENT_COSTTRANS_TRANSTAXI_COST":"0.00","PAYMENT_COSTTRANS_TRANSSELFCAR_CHECKED":0,"PAYMENT_COSTTRANS_TRANSSELFCAR_DISTANCE":"0","PAYMENT_COSTTRANS_TRANSSELFCAR_UNIT":"0","PAYMENT_COSTTRANS_TRANSSELFCAR_COST":"0","PAYMENT_COSTHOTEL_CHOICE":1,"PAYMENT_COSTHOTEL_PERNIGHT":"1500","PAYMENT_COSTHOTEL_NUMBER":"1","PAYMENT_COSTHOTEL_COST":"1500.00","PAYMENT_TOTALCOST":"2000.00","NUMTABLE":2,"SUBMIT_TYPE":"2","USERID":"011","DATE":"31","MONTH":"10","YEAR":"2560"}';
 	$DATA = json_decode($data,true);
+	$DATA = array_map(function($DATA) {
+   return $DATA === "" ? 'null' : $DATA;
+	}, $DATA);
 	$DATA['PAYMENT']["COSTHOTEL"]['COST'] = '111';
 	if($DATA['SUBMIT_TYPE'] != 3 && $DATA['SUBMIT_TYPE'] != 4)
 	{
-		$course_id  = $DATA['COURSEDATA']['COURSE_ID'];
-		$fname = $DATA['TEACHERDATA']['FNAME'];
-		$lname = $DATA['TEACHERDATA']['LNAME'];
+		// $course_id  = $DATA['COURSEDATA']['COURSE_ID'];
+		// $fname = $DATA['TEACHERDATA']['FNAME'];
+		// $lname = $DATA['TEACHERDATA']['LNAME'];
 			//insert data into database
-			$DATA["TEACHERDATA"]["HISTORY"] = '1';
-			$sql="INSERT INTO `special_instructor`( `department_name`,`prefix`, `firstname`, `lastname`, `position`, `qualification`, `work_place`, `phone`, `phone_sub`, `phone_mobile`, `email`, `invited`, `course_id`, `num_student`, `type_course`, `reason`, `lecture_topic`, `lecture_date`, `lecture_time_start`,`lecture_time_end`, `lecture_room`, `lecture_hour`, `level_teacher`, `level_descript`, `cost_lec_choice`, `cost_lec_number`, `cost_lec_hour`, `cost_lec_cost`,`cost_plane_check`, `cost_plane_depart`, `cost_plane_arrive`, `cost_plane_cost`,`cost_taxi_check` ,`cost_taxi_depart`, `cost_taxi_arrive`, `cost_taxi_cost`,`cost_car_check`, `cost_car_distance`, `cost_car_unit`, `cost_car_cost`, `cost_hotel_choice`, `cost_hotel_per_night`, `cost_hotel_number`,`cost_hotel_cost`, `cost_total`,`submit_user_id`,`semester_id`,`num_topic`)";
-			$sql .= "VALUES ('".$DATA["TEACHERDATA"]['DEPARTMENT']."','".$DATA['TEACHERDATA']['PREFIX']."','".$DATA['TEACHERDATA']['FNAME']."','".$DATA['TEACHERDATA']['LNAME']."','".$DATA['TEACHERDATA']['POSITION']."','".$DATA['TEACHERDATA']['QUALIFICATION']."','".$DATA['TEACHERDATA']['WORKPLACE']."','".$DATA['TEACHERDATA']['TELEPHONE']['NUMBER']."','".$DATA['TEACHERDATA']['TELEPHONE']['SUB']."','".$DATA['TEACHERDATA']['MOBILE']."','".$DATA['TEACHERDATA']['EMAIL']."','".$DATA["TEACHERDATA"]["HISTORY"]."','".$DATA['COURSEDATA']['COURSE_ID']."',".$DATA['COURSEDATA']["NOSTUDENT"].",'".$DATA['COURSEDATA']['TYPE_COURSE']."','".$DATA['COURSEDATA']['REASON']."','".$DATA['COURSEDATA']['DETAIL']['TOPICLEC']."','".$DATA['COURSEDATA']['DETAIL']['DATE']."','".$DATA['COURSEDATA']['DETAIL']['TIME']['BEGIN']."','".$DATA['COURSEDATA']['DETAIL']['TIME']['END']."','".$DATA['COURSEDATA']['DETAIL']['ROOM']."',".$DATA['COURSEDATA']['HOUR'].",'".$DATA['PAYMENT']["LVLTEACHER"]["CHOICE"]."','".$DATA['PAYMENT']['LVLTEACHER']['DESCRIPT']."','".$DATA["PAYMENT"]["COSTSPEC"]['CHOICE']."','".$DATA['PAYMENT']['COSTSPEC']['NUMBER']."','".$DATA['PAYMENT']['COSTSPEC']['HOUR']."','".$DATA['PAYMENT']['COSTSPEC']['COST']."',".$DATA['PAYMENT']['COSTTRANS']["TRANSPLANE"]["CHECKED"].",'".$DATA['PAYMENT']['COSTTRANS']["TRANSPLANE"]['DEPART']."','".$DATA['PAYMENT']['COSTTRANS']["TRANSPLANE"]['ARRIVE']."','".$DATA['PAYMENT']['COSTTRANS']["TRANSPLANE"]['COST']."',".$DATA['PAYMENT']['COSTTRANS']["TRANSTAXI"]['CHECKED'].",'".$DATA['PAYMENT']['COSTTRANS']["TRANSTAXI"]['DEPART']."','".$DATA['PAYMENT']['COSTTRANS']["TRANSTAXI"]['ARRIVE']."','".$DATA['PAYMENT']['COSTTRANS']["TRANSTAXI"]['COST']."',".$DATA['PAYMENT']['COSTTRANS']["TRANSSELFCAR"]['CHECKED'].",'".$DATA['PAYMENT']['COSTTRANS']["TRANSSELFCAR"]['DISTANCT']."','".$DATA['PAYMENT']['COSTTRANS']["TRANSSELFCAR"]['UNIT']."','".$DATA['PAYMENT']['COSTTRANS']["TRANSSELFCAR"]['COST']."','".$DATA['PAYMENT']["COSTHOTEL"]['CHOICE']."',".$DATA['PAYMENT']["COSTHOTEL"]['PERNIGHT'].",".$DATA['PAYMENT']["COSTHOTEL"]['NUMBER'].",".$DATA['PAYMENT']["COSTHOTEL"]['COST'].",".$DATA['PAYMENT']["TOTALCOST"].",'".$DATA['USERID']."',".$semester['id'].",".$DATA['NUMTABLE'].")";
+			// $DATA["TEACHERDATA"]["HISTORY"] = '1';
 
-			$sql .= "  ON DUPLICATE KEY UPDATE `department_name` = '".$DATA["TEACHERDATA"]['DEPARTMENT']."',`prefix` = '".$DATA['TEACHERDATA']['PREFIX']."',`firstname` = '".$DATA['TEACHERDATA']['FNAME']."',`lastname` = '".$DATA['TEACHERDATA']['LNAME']."',`position` = '".$DATA['TEACHERDATA']['POSITION']."', `qualification` = '".$DATA['TEACHERDATA']['QUALIFICATION']."', `work_place` = '".$DATA['TEACHERDATA']['WORKPLACE']."',`phone` = '".$DATA['TEACHERDATA']['TELEPHONE']['NUMBER']."',`phone_sub` = '".$DATA['TEACHERDATA']['TELEPHONE']['SUB']."',`phone_mobile` =  '".$DATA['TEACHERDATA']['MOBILE']."',`email` = '".$DATA['TEACHERDATA']['EMAIL']."',`invited` = '".$DATA["TEACHERDATA"]["HISTORY"]."', `course_id` = '".$DATA['COURSEDATA']['COURSE_ID']."',`num_student` = ".$DATA['COURSEDATA']["NOSTUDENT"].",`type_course` = '".$DATA['COURSEDATA']['TYPE_COURSE']."',`reason` = '".$DATA['COURSEDATA']['REASON']."',`lecture_topic` =  '".$DATA['COURSEDATA']['DETAIL']['TOPICLEC']."',`lecture_date` = '".$DATA['COURSEDATA']['DETAIL']['DATE']."',`lecture_time_start` = '".$DATA['COURSEDATA']['DETAIL']['TIME']['BEGIN']."',`lecture_time_end` = '".$DATA['COURSEDATA']['DETAIL']['TIME']['END']."',`lecture_room` = '".$DATA['COURSEDATA']['DETAIL']['ROOM']."',`lecture_hour` = ".$DATA['COURSEDATA']['HOUR'].",`level_teacher` = '".$DATA['PAYMENT']["LVLTEACHER"]["CHOICE"]."',`level_descript` = '".$DATA['PAYMENT']['LVLTEACHER']['DESCRIPT']."',`cost_lec_choice` = '".$DATA["PAYMENT"]["COSTSPEC"]['CHOICE']."', `cost_lec_number` = '".$DATA['PAYMENT']['COSTSPEC']['NUMBER']."',`cost_lec_hour` = '".$DATA['PAYMENT']['COSTSPEC']['HOUR']."',`cost_lec_cost` = '".$DATA['PAYMENT']['COSTSPEC']['COST']."',`cost_plane_depart` = '".$DATA['PAYMENT']['COSTTRANS']["TRANSPLANE"]['DEPART']."',`cost_plane_arrive` = '".$DATA['PAYMENT']['COSTTRANS']["TRANSPLANE"]['ARRIVE']."',`cost_plane_cost` = '".$DATA['PAYMENT']['COSTTRANS']["TRANSPLANE"]['COST']."',`cost_taxi_depart` = '".$DATA['PAYMENT']['COSTTRANS']["TRANSTAXI"]['DEPART']."',`cost_taxi_arrive` = '".$DATA['PAYMENT']['COSTTRANS']["TRANSTAXI"]['ARRIVE']."',`cost_taxi_cost` = '".$DATA['PAYMENT']['COSTTRANS']["TRANSTAXI"]['COST']."',`cost_car_distance`= '".$DATA['PAYMENT']['COSTTRANS']["TRANSSELFCAR"]['DISTANCT']."',`cost_car_unit` = '".$DATA['PAYMENT']['COSTTRANS']["TRANSSELFCAR"]['UNIT']."',`cost_car_cost` = '".$DATA['PAYMENT']['COSTTRANS']["TRANSSELFCAR"]['COST']."',`cost_hotel_choice` = '".$DATA['PAYMENT']["COSTHOTEL"]['CHOICE']."',`cost_hotel_per_night` = ".$DATA['PAYMENT']["COSTHOTEL"]['PERNIGHT'].",`cost_hotel_number` = ".$DATA['PAYMENT']["COSTHOTEL"]['NUMBER'].",`cost_hotel_cost` = ".$DATA['PAYMENT']["COSTHOTEL"]['COST'].",`cost_total` = ".$DATA['PAYMENT']["TOTALCOST"].",`submit_user_id` = '".$DATA['USERID']."',`semester_id` = ".$semester['id'].",`cost_car_check` = ".$DATA['PAYMENT']['COSTTRANS']["TRANSSELFCAR"]['CHECKED'].",`cost_taxi_check` = ".$DATA['PAYMENT']['COSTTRANS']["TRANSTAXI"]['CHECKED'].",`cost_plane_check` = ".$DATA['PAYMENT']['COSTTRANS']["TRANSPLANE"]["CHECKED"].",`num_topic` =  ".$DATA['NUMTABLE']." ;";
+			$sql = "INSERT INTO `expense_special_instructor`(`expense_lec_choice`, `expense_lec_number`, `expense_lec_hour`, `expense_lec_cost`, `expense_plane_check`, `expense_plane_depart`, `expense_plane_arrive`, `expense_plane_cost`, `expense_taxi_check`, `expense_taxi_depart`, `expense_taxi_arrive`, `expense_taxi_cost`, `expense_car_check`, `expense_car_distance`, `expense_car_unit`, `expense_car_cost`, `expense_hotel_choice`, `cost_hotel_per_night`, `expense_hotel_number`, `expense_hotel_cost`, `cost_total`) VALUES ('".$DATA["PAYMENT_COSTSPEC_CHOICE"]."',".$DATA["PAYMENT_COSTSPEC_NUMBER"].",".$DATA["PAYMENT_COSTSPEC_HOUR"].",".$DATA["PAYMENT_COSTSPEC_COST"].",'".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_CHECKED"]."',".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_DEPART"].",".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_ARRIVE"].",".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_COST"].",'".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_CHECKED"]."',".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_DEPART"].",".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_ARRIVE"].",".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_COST"].",'".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_CHECKED"]."','".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_DISTANCE"]."',".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_UNIT"].",".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_COST"].",'".$DATA["PAYMENT_COSTHOTEL_CHOICE"]."',".$DATA["PAYMENT_COSTHOTEL_NUMBER"].",".$DATA["PAYMENT_COSTHOTEL_PERNIGHT"].",".$DATA["PAYMENT_COSTHOTEL_COST"].",".$DATA["PAYMENT_TOTALCOST"].")";
 
 			$result = $db->Insert_Update_Delete($sql);
+
 			if($result)
 			{
-				$sql = "SELECT `instructor_id` FROM `special_instructor` WHERE `firstname` = '".$fname."' AND `lastname` = '".$lname."' AND `semester_id` = ".$semester['id'];
-				$temp_id = $db->Query($sql);
-				if($temp_id)
+				$sql = "SELECT max(`expense_id`) as `expense_id` FROM `expense_special_instructor`";
+				$result = $db->Query($sql);
+				if($result)
 				{
-					$instructor_id = $temp_id[0]['instructor_id'];
+					$expense_id = $result[0]['expense_id'];
+
+					$sql = "INSERT INTO `special_instructor`(`prefix`, `firstname`, `lastname`, `position`, `qualification`, `work_place`, `phone`, `phone_sub`, `phone_mobile`, `email`, `expense_id`)VALUES ('".$DATA["TEACHERDATA_PREFIX"]."','".$DATA["TEACHERDATA_FNAME"]."','".$DATA["TEACHERDATA_LNAME"]."','".$DATA["TEACHERDATA_POSITION"]."','".$DATA["TEACHERDATA_QUALIFICATION"]."','".$DATA["TEACHERDATA_WORKPLACE"]."','".$DATA["TEACHERDATA_TELEPHONE_NUMBER"]."','".$DATA['TEACHERDATA_TELEPHONE_SUB']."','".$DATA["TEACHERDATA_MOBILE"]."','".$DATA["TEACHERDATA_EMAIL"]."',".$expense_id.")";
+					// die($sql);
+					$result = $db->Insert_Update_Delete($sql);
+					if($result)
+					{
+						$sql = "SELECT LPAD( LAST_INSERT_ID(),11,'0') as id";
+						$temp_id = $db->Query($sql);
+						if($temp_id)
+						{
+							$instructor_id = $temp_id[0]['id'];
+							for ($i=0; $i <$DATA["NUMTABLE"] ; $i++)
+							{
+								$sql = "INSERT INTO `special_lecture_teach`(`topic_name`, `teaching_date`,`teaching_time_start`, `teaching_time_end`, `teaching_room`, `instructor_id`) VALUES ('".$DATA["COURSEDATA_DETAIL"]["TOPICLEC"][$i]."','".$DATA["COURSEDATA_DETAIL"]["DATE"][$i]."','".$DATA["COURSEDATA_DETAIL"]["TIME_BEGIN"][$i]."','".$DATA["COURSEDATA_DETAIL"]["TIME_END"][$i]."','".$DATA["COURSEDATA_DETAIL"]["ROOM"][$i]."','".$instructor_id."')";
+								$result = $db->Insert_Update_Delete($sql);
+							}
+								$sql = "INSERT INTO `course_hire_special_instructor`(`course_id`, `instructor_id`, `num_student`, `type_course`, `semester_id`, `status`,`reason`) VALUES ('".$DATA["COURSEDATA_COURSE_ID"]."','".$instructor_id."',".$DATA["COURSEDATA_NOSTUDENT"].",'".$DATA["COURSEDATA_TYPE_COURSE"]."',".$semester['id'].",'0','".$DATA["COURSEDATA_REASON"]."')";
+								$result = $db->Insert_Update_Delete($sql);
+						}
+						else
+						{
+							die("error");
+						}
+					}
+					else
+					{
+
+					}
 				}
 				else
 				{
-					die("error");
+
 				}
 			}
-			else
-			{
-				die("error");
-			}
-	}
 
+	}
+	$return['status'] = "success";
+	$return['msg'] = "บันทึกสำเร็จ";
+	echo json_encode($return);
+die;
 	if(isset($_FILES['file']))
 	{
   	$file = $_FILES['file'];

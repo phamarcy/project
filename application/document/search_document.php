@@ -28,23 +28,30 @@ if(isset($_POST['course_id']) && isset($_POST['type']))
   {
     die("Invalid type");
   }
-  if(isset($_POST['semester']) && isset($_POST['year']))
+  else if(isset($_POST['semester']) && isset($_POST['year']))
   {
     $semester = $_POST['semester'];
     $year = $_POST['year'];
+    if($type == 'evaluate')
+    {
+      $data = $course->Get_Document($type,$course_id,$instructor_id,$_SESSION['id'],$semester,$year);
+      if($data == false)
+      {
+        $data['status'] = 'error';
+        $data['msg'] = "ไม่พบข้อมูล กรุณาติดต่อผู้ดูแลระบบ";
+        echo json_encode($data);
+        die;
+      }
+      else
+      {
+        echo json_encode($data);
+      }
+    }
+    else if ($type == 'special')
+    {
+      
+    }
 
-    $data = $course->Get_Document($type,$course_id,$instructor_id,$_SESSION['id'],$semester,$year);
-    if($data == false)
-    {
-      $data['status'] = 'error';
-      $data['msg'] = "ไม่พบข้อมูล กรุณาติดต่อผู้ดูแลระบบ";
-      echo json_encode($data);
-      die;
-    }
-    else
-    {
-      echo json_encode($data);
-    }
 
   }
   else

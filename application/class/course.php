@@ -404,14 +404,13 @@ class Course
     return $return;
   }
 
-// search temp data
+// search course evaluate, special instructor data
   public function Search_Document($type,$course_id,$teacher_id)
   {
     if($type =='special')
     {
       $sql = "SELECT si.`instructor_id`,`firstname`,`lastname` FROM `special_instructor` si,`course_hire_special_instructor` ci
       WHERE ci.`course_id` = '".$course_id."' AND ci.`instructor_id` = si.`instructor_id` ORDER BY `ci`.`updated_date` DESC LIMIT 1" ;
-      // die($sql);
     }
     else if ($type == 'evaluate')
     {
@@ -451,6 +450,9 @@ class Course
       return $data;
   }
 
+
+
+  // get course evaluate, special instructor data
   public function Get_Document($type,$course_id,$instructor_id,$teacher_id,$semester,$year)
   {
     $semester_id = $this->DEADLINE->Search_Semester_id($semester,$year);
@@ -466,10 +468,6 @@ class Course
     if($type == 'evaluate')
     {
       $sql = "SELECT * FROM `evaluate` WHERE `course_id` =  '".$course_id."' AND `semester_id` = ".$semester_id;
-    }
-    else if ($type == 'special')
-    {
-      $sql = "SELECT * FROM `special_instructor` WHERE `instructor_id` =  '".$instructor_id."' AND `semester_id` = ".$semester_id;
     }
     else
     {
