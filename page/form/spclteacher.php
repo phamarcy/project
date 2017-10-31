@@ -303,56 +303,25 @@ $current = $dlobj->Get_Current_Semester();
 
                            if(temp['info']!=false && temp[0]!=null)
                            {
-                             swal({
-                               title: '',
-                               text: "อาจารย์พิเศษที่ท่านต้องการจะกรอกข้อมูล เคยถูกเชิญในกระบวนวิชานี้หรือไม่?",
-                               type: 'question',
-                               showCancelButton: true,
-                               confirmButtonColor: '#3085d6',
-                               cancelButtonColor: '#d33',
-                               confirmButtonText: 'เคย',
-                               cancelButtonText: 'ไม่เคย (เพิ่มรายละเอียดอาจารย์)',
-                               confirmButtonClass: 'btn btn-success',
-                               cancelButtonClass: 'btn btn-danger',
-                               allowOutsideClick: false
-                             }).then(function () {
-
-                               var course_id = document.getElementById('id').value;
-                               document.getElementById('formdrpd').style.display = "";
-                               //cleardatalist
-                               var selectobject = document.getElementById('teachername');
-                               var long = selectobject.length;
-                               if(long!=0 && long!=null)
-                               {
-                                 for (var i=0; i<=long; i++){
-                                   document.getElementsByName("teachername")[0].remove(0);
-                                 }
+                             var course_id = document.getElementById('id').value;
+                             document.getElementById('formdrpd').style.display = "";
+                             //cleardatalist
+                             var selectobject = document.getElementById('teachername');
+                             var long = selectobject.length;
+                             if(long!=0 && long!=null)
+                             {
+                               for (var i=0; i<=long; i++){
+                                 document.getElementsByName("teachername")[0].remove(0);
                                }
-                               for(var i=0;i<(Object.keys(temp).length-1);i++)
-                               {
-                                 var opt = document.createElement('option');
-                                 opt.value = temp[i].id +"_"+ course_id + "_" + temp[i].semester + "_" + temp[i].year +"_"+ temp[i].name;
-                                 opt.innerHTML = "คุณ"+temp[i].name+" ภาคการศึกษาที่ "+temp[i].semester+" ปีการศึกษา "+temp[i].year;
-                                 document.getElementById('teachername').appendChild(opt);
-                               }
-                             }, function (dismiss) {
-                               if (dismiss === 'cancel') {
-                                 swal(
-                                   '',
-                                   'สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
-                                   'success'
-                                 )
-                                 document.getElementById('course').value = temp['info']['course_id'];
-                                 document.getElementById('formdrpd').style.display = "none";
+                             }
 
-                                 $('#dlhide').show();
-                                 $('#topic1')[0].checked = false;
-                                 $('#topic2')[0].checked = true;
-                                 $('#cvlist').show();
-                                 $('input[name=cv]').prop('required', true);
-                               }
-                             })
-
+                             for(var i=0;i<(Object.keys(temp).length-1);i++)
+                             {
+                               var opt = document.createElement('option');
+                               opt.value = temp[i].id +"_"+ temp[i].name;
+                               opt.innerHTML = "คุณ"+temp[i].name;
+                               document.getElementById('teachername').appendChild(opt);
+                             }
                            }
                            else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
                              $('#dlhide').hide();
@@ -364,20 +333,6 @@ $current = $dlobj->Get_Current_Semester();
                              document.getElementById('formdrpd').style.display = "none";
                              document.getElementById('id').value = "";
                             }
-                            else if(temp['info']!=false && temp[0]==null){
-                              swal(
-                                 '',
-                                 'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
-                                 'info'
-                               )
-                               $('#dlhide').show();
-                             document.getElementById('formdrpd').style.display = "none";
-                              document.getElementById('course').value = temp['info']['course_id'];
-                              $('#topic1')[0].checked = false;
-                              $('#topic2')[0].checked = true;
-                              $('#cvlist').show();
-                              $('input[name=cv]').prop('required', true);
-                             }
                              else {
                                if($('#id').val()=="" ||$('#id').val()==null )
                                {
@@ -391,6 +346,7 @@ $current = $dlobj->Get_Current_Semester();
 
                                }
                              }
+
                          } catch (e) {
                               console.log('Error#542-decode error');
                               swal({
@@ -535,6 +491,15 @@ $current = $dlobj->Get_Current_Semester();
                         console.log(err);
                    }
         });
+   }else {
+     document.getElementById('course').value = $('#id').val();
+     document.getElementById('formdrpd').style.display = "none";
+
+     $('#dlhide').show();
+     $('#topic1')[0].checked = false;
+     $('#topic2')[0].checked = true;
+     $('#cvlist').show();
+     $('input[name=cv]').prop('required', true);
    }
  }
 
@@ -752,83 +717,59 @@ $current = $dlobj->Get_Current_Semester();
   }
 
    var data = {
-     'TEACHERDATA' : {
-       'DEPARTMENT' : document.getElementById('department').value,
-       'PREFIX' : document.getElementById('pre').value,
-       'FNAME' : fname,
-       'LNAME' : lname,
-       'POSITION' : document.getElementById('position').value,
-       'QUALIFICATION' : document.getElementById('qualification').value,
-       'WORKPLACE' : document.getElementById('workplace').value,
-       'TELEPHONE' : {
-         'NUMBER' : document.getElementById('tel').value,
-         'SUB' : document.getElementById('subtel').value
-       },
-       'MOBILE' : document.getElementById('mobile').value,
-       'EMAIL' : document.getElementById('email').value,
-       'HISTORY' : historyteacher
+     'TEACHERDATA_DEPARTMENT' : document.getElementById('department').value,
+     'TEACHERDATA_PREFIX' : document.getElementById('pre').value,
+     'TEACHERDATA_FNAME' : fname,
+     'TEACHERDATA_LNAME' : lname,
+     'TEACHERDATA_POSITION' : document.getElementById('position').value,
+     'TEACHERDATA_QUALIFICATION' : document.getElementById('qualification').value,
+     'TEACHERDATA_WORKPLACE' : document.getElementById('workplace').value,
+     'TEACHERDATA_TELEPHONE_NUMBER' : document.getElementById('tel').value,
+     'TEACHERDATA_TELEPHONE_SUB' : document.getElementById('subtel').value,
+     'TEACHERDATA_MOBILE' : document.getElementById('mobile').value,
+     'TEACHERDATA_EMAIL' : document.getElementById('email').value,
+     'TEACHERDATA_HISTORY' : historyteacher,
+     'COURSEDATA_COURSE_ID' : document.getElementById('course').value,
+     'COURSEDATA_NOSTUDENT' : document.getElementById('numstudent').value,
+     'COURSEDATA_TYPE_COURSE' : type_course_choice,
+     'COURSEDATA_REASON' : document.getElementById('reason').value,
+     'COURSEDATA_DETAIL' : {
+       'TOPICLEC' : topiclec,
+       'DATE' : date,
+       'TIME_BEGIN' : timebegin,
+       'TIME_END' : timeend,
+       'ROOM' : room
      },
-     'COURSEDATA' : {
-       'COURSE_ID' : document.getElementById('course').value,
-       'NOSTUDENT' : document.getElementById('numstudent').value,
-       'TYPE_COURSE' : type_course_choice,
-       'REASON' : document.getElementById('reason').value,
-       'DETAIL' : {
-         'TOPICLEC' : topiclec,
-         'DATE' : date,
-         'TIME' : {
-           'BEGIN' : timebegin,
-           'END' : timeend
-         },
-         'ROOM' : room
-       },
-       'HOUR' : document.getElementById('hour').value
-     },
-     'PAYMENT' : {
-       'LVLTEACHER' : {
-         'CHOICE' : lvchoice,
-         'DESCRIPT' : lvteacher
-       },
-       'COSTSPEC' : {
-         'CHOICE' : costspecchoice,
-         'NUMBER' : num,
-         'HOUR' : hour,
-         'COST' : cost
-       },
-       'COSTTRANS' : {
-         'TRANSPLANE' : {
-           'CHECKED' : planecheck,
-           'DEPART' : document.getElementById('AIR_DEPART').value,
-           'ARRIVE' : document.getElementById('AIR_ARRIVE').value,
-           'COST' : costplane
-         },
-         'TRANSTAXI' : {
-           'CHECKED' : taxicheck,
-           'DEPART' : document.getElementById('TAXI_DEPART').value,
-           'ARRIVE' : document.getElementById('TAXI_ARRIVE').value,
-           'COST' : costtaxi
-         },
-         'TRANSSELFCAR' : {
-           'CHECKED' : selfcarcheck,
-           'DISTANCT' : selfdis,
-           'UNIT' : selfunit,
-           'COST' : selfcost
-         }
-       },
-       'COSTHOTEL' : {
-         'CHOICE' : hotelchoice,
-         'UNIT' : hotelunit,
-         'NUMBER' : numnight,
-         'PERNIGHT' : pernight
-       },
-       'TOTALCOST' : costtotal
-    },
-    'NUMTABLE' : rowtr,
-    'SUBMIT_TYPE' : casesubmit,
-    'USERID' : '<?php echo $_SESSION['id']; ?>',
-    'DATE' : '<?php echo date('d'); ?>',
-    'MONTH' : '<?php echo date('m'); ?>',
-    'YEAR' : '<?php echo date('Y')+543; ?>'
+     'COURSEDATA_HOUR' : document.getElementById('hour').value,
+     'PAYMENT_LVLTEACHER_CHOICE' : lvchoice,
+     'PAYMENT_LVLTEACHER_DESCRIPT' : lvteacher,
+     'PAYMENT_COSTSPEC_CHOICE' : costspecchoice,
+     'PAYMENT_COSTSPEC_NUMBER' : num,
+     'PAYMENT_COSTSPEC_HOUR' : hour,
+     'PAYMENT_COSTSPEC_COST' : cost,
+     'PAYMENT_COSTTRANS_TRANSPLANE_CHECKED' : planecheck,
+     'PAYMENT_COSTTRANS_TRANSPLANE_DEPART' : document.getElementById('AIR_DEPART').value,
+     'PAYMENT_COSTTRANS_TRANSPLANE_ARRIVE' : document.getElementById('AIR_ARRIVE').value,
+     'PAYMENT_COSTTRANS_TRANSPLANE_COST' : costplane,
+     'PAYMENT_COSTTRANS_TRANSTAXI_CHECKED' : taxicheck,
+     'PAYMENT_COSTTRANS_TRANSTAXI_DEPART' : document.getElementById('TAXI_DEPART').value,
+     'PAYMENT_COSTTRANS_TRANSTAXI_ARRIVE' : document.getElementById('TAXI_ARRIVE').value,
+     'PAYMENT_COSTTRANS_TRANSTAXI_COST' : costtaxi,
+     'PAYMENT_COSTTRANS_TRANSSELFCAR_CHECKED' : selfcarcheck,
+     'PAYMENT_COSTTRANS_TRANSSELFCAR_DISTANCT' : selfdis,
+     'PAYMENT_COSTTRANS_TRANSSELFCAR_UNIT' : selfunit,
+     'PAYMENT_COSTTRANS_TRANSSELFCAR_COST' : selfcost,
+     'PAYMENT_COSTHOTEL_CHOICE' : hotelchoice,
+     'PAYMENT_COSTHOTEL_UNIT' : hotelunit,
+     'PAYMENT_COSTHOTEL_NUMBER' : numnight,
+     'PAYMENT_COSTHOTEL_PERNIGHT' : pernight,
+     'PAYMENT_TOTALCOST' : costtotal,
+     'NUMTABLE' : rowtr,
+     'SUBMIT_TYPE' : casesubmit,
+     'USERID' : '<?php echo $_SESSION['id']; ?>',
+     'DATE' : '<?php echo date('d'); ?>',
+     'MONTH' : '<?php echo date('m'); ?>',
+     'YEAR' : '<?php echo date('Y')+543; ?>'
    };
 
    if(casesubmit=='1')
@@ -1594,11 +1535,12 @@ function lastcal() {
     <div id="formdrpd" style="display: none;">
       <div class="form-inline">
         <div class="form-group " style="font-size:16px;">
-           ชื่อ-นามสกุลของอาจารย์พิเศษ
+           ค้นหารายชื่ออาจารย์พิเศษ
           <select class="form-control required" id="teachername" name="teachername" style="width: 400px;" required >
           </select>
          </div>
          <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,2);">
+         <input type="button" class="btn btn-outline btn-primary" name="subhead2" id="subhead2" value="เพิ่มรายชื่อ" onclick="checksubject(3,2);">
        </div>
      </div>
          </form>
@@ -1606,6 +1548,11 @@ function lastcal() {
 
       <div id="dlhide" class="panel panel-default"> <br>
       <form name="form1" id="form1" data-toggle="validator" role="form"  method="post">
+      <div id="searchtab">
+        ชื่อ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="fname" size="20"></div>&nbsp;
+        นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="lname" size="20"></div>&nbsp;
+        <input type="button" name="searchname" id="searchname" value="ค้นหา">
+      </div>
       <div class="row form-inline" style="font-size:16px;">
         <center><div class="form-group">
       ภาควิชา
@@ -1631,6 +1578,7 @@ function lastcal() {
             <li>คำนำหน้า &nbsp;&nbsp;<div class="form-group">
               <select class="form-control" name="pre" id="pre" required>
                 <?php
+                      echo '<option value="0">----</option>';
                     for($i=0;$i<count($prefix);$i++)
                     {
                       echo '<option value="'.$prefix[$i]["prefix"].'">'.$prefix[$i]["prefix"].'</option>';
