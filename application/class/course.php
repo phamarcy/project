@@ -409,8 +409,9 @@ class Course
   {
     if($type =='special')
     {
-      $sql = "SELECT `instructor_id`,`firstname`,`lastname`,`semester_num`,`year` FROM `special_instructor` si,`semester` s
-      WHERE si.`course_id` = '".$course_id."' AND si.`semester_id` = s.`semester_id`" ;
+      $sql = "SELECT si.`instructor_id`,`firstname`,`lastname` FROM `special_instructor` si,`course_hire_special_instructor` ci
+      WHERE ci.`course_id` = '".$course_id."' AND ci.`instructor_id` = si.`instructor_id` ORDER BY `ci`.`updated_date` DESC LIMIT 1" ;
+      // die($sql);
     }
     else if ($type == 'evaluate')
     {
@@ -436,8 +437,11 @@ class Course
           $data[$i]['id'] = $result[$i]['instructor_id'];
           $data[$i]['name'] = $result[$i]['firstname'].' '.$result[0]['lastname'];
         }
-        $data[$i]['semester'] = $result[$i]['semester_num'];
-        $data[$i]['year'] = $result[$i]['year'];
+        else
+        {
+          $data[$i]['semester'] = $result[$i]['semester_num'];
+          $data[$i]['year'] = $result[$i]['year'];
+        }
       }
 
     }
