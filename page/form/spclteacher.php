@@ -252,6 +252,42 @@ $current = $dlobj->Get_Current_Semester();
 
  }
 
+ function getinfo2(temp) {
+   //part1
+   if(temp['department']=="ภาควิชาวิทยาศาสตร์เภสัชกรรม")
+   {
+     document.getElementById('department').value = "ภาควิชาวิทยาศาสตร์เภสัชกรรม";
+   }else {
+     document.getElementById('department').value = "ภาควิชาบริบาลเภสัชกรรม";
+   }
+
+   document.getElementById('pre').value = temp['prefix'];
+   var constring = temp['firstname'];
+   var constring2 = temp['lastname'];
+   document.getElementById('fname').value = constring;
+   document.getElementById('lname').value = constring2;
+   document.getElementById('position').value = temp['position'];
+   document.getElementById('qualification').value = temp['qualification'];
+   document.getElementById('workplace').value = temp['work_place'];
+   document.getElementById('tel').value = temp['phone'];
+   document.getElementById('subtel').value = temp['phone_sub'];
+   document.getElementById('mobile').value = temp['phone_mobile'];
+   document.getElementById('email').value = temp['email'];
+   //var choice1 = temp['TEACHERDATA']['HISTORY'];
+   $('input[name="topic"][value="already"]').prop('checked', true);
+   if(document.querySelector("input[name='topic']:checked").value=="already")
+     {
+       $('#cvlist').hide();
+       $('input[name=cv]').prop('required', false);
+       $('#course').attr('readonly', true);
+     }
+     else {
+       $('#cvlist').show();
+       $('input[name=cv]').prop('required', true);
+       $('#course').attr('readonly', false);
+     }
+}
+
  function checksubject(btntype,type){
    $('#dlhide').hide();
    if(btntype==1)
@@ -303,6 +339,7 @@ $current = $dlobj->Get_Current_Semester();
 
                            if(temp['info']!=false && temp[0]!=null)
                            {
+                             console.log(temp);
                              var course_id = document.getElementById('id').value;
                              document.getElementById('formdrpd').style.display = "";
                              //cleardatalist
@@ -332,8 +369,7 @@ $current = $dlobj->Get_Current_Semester();
                               )
                              document.getElementById('formdrpd').style.display = "none";
                              document.getElementById('id').value = "";
-                            }
-                             else {
+                            }else {
                                if($('#id').val()=="" ||$('#id').val()==null )
                                {
                                  swal(
@@ -491,7 +527,7 @@ $current = $dlobj->Get_Current_Semester();
                         console.log(err);
                    }
         });
-   }else {
+   }else if(btntype==3) {
      document.getElementById('course').value = $('#id').val();
      document.getElementById('formdrpd').style.display = "none";
 
@@ -500,34 +536,135 @@ $current = $dlobj->Get_Current_Semester();
      $('#topic2')[0].checked = true;
      $('#cvlist').show();
      $('input[name=cv]').prop('required', true);
+   }else {
+     var fname = $('#fname').val();
+     var lname = $('#lname').val();
+
+     var file_data = new FormData;
+     JSON.stringify(name);
+     JSON.stringify(lname);
+     JSON.stringify(type);
+    file_data.append("type",type);
+     file_data.append("name",name);
+     file_data.append("lname",lname);
+     var URL = '../../application/document/search_document.php';
+     $.ajax({
+                   url: URL,
+                   dataType: 'text',
+                   cache: false,
+                   contentType: false,
+                   processData: false,
+                   data: file_data,
+                   type: 'post',
+                   beforeSend: function() {
+                     swal({
+                       title: 'กรุณารอสักครู่',
+                       text: 'ระบบกำลังประมวลผล',
+                       allowOutsideClick: false
+                     })
+                     swal.showLoading()
+                   },
+                   success: function (result) {
+                     try {
+                       var temp = $.parseJSON(result);
+                       if(temp!=false)
+                       {
+                         swal.hideLoading()
+
+                           swal(
+                              'สำเร็จ!',
+                              'ดึงข้อมูลสำเร็จ',
+                              'success'
+                            )
+                           getinfo2(temp);
+                       }
+                       else {
+                         swal.hideLoading()
+                         swal({
+                           title: 'ไม่พบรายชื่อในระบบ',
+                           text: 'ท่านสามารถกรอกรายละเอียดตามแบบฟอร์มข้างล่าง',
+                           type: 'warning',
+                           showCancelButton: false,
+                           confirmButtonColor: '#3085d6',
+                           cancelButtonColor: '#d33',
+                           confirmButtonText: 'Ok'
+                         }).then(function () {
+
+                         }, function (dismiss) {
+                         // dismiss can be 'cancel', 'overlay',
+                         // 'close', and 'timer'
+                         if (dismiss === 'cancel') {
+
+                         }
+                       })
+                       }
+                     } catch (e) {
+                          console.log('Error#542-decode error');
+                          swal.hideLoading()
+                          swal({
+                            title: 'เกิดข้อผิดพลาด-01',
+                            text: '',
+                            type: 'error',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ok'
+                          }).then(function () {
+
+                          }, function (dismiss) {
+                          // dismiss can be 'cancel', 'overlay',
+                          // 'close', and 'timer'
+                          if (dismiss === 'cancel') {
+
+                          }
+                        })
+                        }
+
+
+                   },
+                   failure: function (result) {
+                        alert(result);
+                   },
+                   error: function (xhr, status, p3, p4) {
+                        var err = "Error " + " " + status + " " + p3 + " " + p4;
+                        if (xhr.responseText && xhr.responseText[0] == "{")
+                             err = JSON.parse(xhr.responseText).Message;
+                        console.log(err);
+                   }
+        });
    }
  }
 
  function submitfunc(casesubmit) {
 
    // pack table
-   var topiclec = '';
-   var date = '';
-   var timebegin = '';
-   var timeend = '';
-   var room = '';
+   var topiclec0 = [];
+   var date0 = [];
+   var timebegin0 = [];
+   var timeend0 = [];
+   var room0 = [];
+
+   var topiclec = {};
+   var date = {};
+   var timebegin = {};
+   var timeend = {};
+   var room = {};
 
    for(var i=1;i<=(($('#detailteaching tr').length)-2);i++)
    {
-      topiclec += document.getElementById('detail_topic'+i).value;
-      date += document.getElementById('dateteach'+i).value;
-      timebegin += document.getElementById('timebegin'+i).value;
-      timeend += document.getElementById('timeend'+i).value;
-      room += document.getElementById('room'+i).value;
-      if(i!=(($('#detailteaching tr').length)-2))
-      {
-        topiclec += '|';
-        date += '|';
-        timebegin += '|';
-        timeend += '|';
-        room += '|';
-      }
+      topiclec0[i-1] = document.getElementById('detail_topic'+i).value;
+      date0[i-1] = document.getElementById('dateteach'+i).value;
+      timebegin0[i-1] = document.getElementById('timebegin'+i).value;
+      timeend0[i-1] = document.getElementById('timeend'+i).value;
+      room0[i-1] = document.getElementById('room'+i).value;
    }
+
+   topiclec = topiclec0;
+   date = date0;
+   timebegin = timebegin0;
+   timeend = timeend0;
+   room = room0;
+
    //type_teacher
    if(document.querySelector("input[name='type_course']:checked").value=="require")
    {
@@ -756,13 +893,13 @@ $current = $dlobj->Get_Current_Semester();
      'PAYMENT_COSTTRANS_TRANSTAXI_ARRIVE' : document.getElementById('TAXI_ARRIVE').value,
      'PAYMENT_COSTTRANS_TRANSTAXI_COST' : costtaxi,
      'PAYMENT_COSTTRANS_TRANSSELFCAR_CHECKED' : selfcarcheck,
-     'PAYMENT_COSTTRANS_TRANSSELFCAR_DISTANCT' : selfdis,
+     'PAYMENT_COSTTRANS_TRANSSELFCAR_DISTANCE' : selfdis,
      'PAYMENT_COSTTRANS_TRANSSELFCAR_UNIT' : selfunit,
      'PAYMENT_COSTTRANS_TRANSSELFCAR_COST' : selfcost,
      'PAYMENT_COSTHOTEL_CHOICE' : hotelchoice,
-     'PAYMENT_COSTHOTEL_UNIT' : hotelunit,
+     'PAYMENT_COSTHOTEL_PERNIGHT' : hotelunit,
      'PAYMENT_COSTHOTEL_NUMBER' : numnight,
-     'PAYMENT_COSTHOTEL_PERNIGHT' : pernight,
+     'PAYMENT_COSTHOTEL_COST' : pernight,
      'PAYMENT_TOTALCOST' : costtotal,
      'NUMTABLE' : rowtr,
      'SUBMIT_TYPE' : casesubmit,
@@ -772,6 +909,7 @@ $current = $dlobj->Get_Current_Semester();
      'YEAR' : '<?php echo date('Y')+543; ?>'
    };
 
+   console.log(JSON.stringify(data));
    if(casesubmit=='1')
    {
      senddata(JSON.stringify(data),getfile());
@@ -896,7 +1034,7 @@ $current = $dlobj->Get_Current_Semester();
  }
 
  $(document).ready(function(){
-   $('#dlhide').hide();
+   $('#dlhide').show();
 
    //deadline
    <?php
@@ -1540,7 +1678,7 @@ function lastcal() {
           </select>
          </div>
          <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,2);">
-         <input type="button" class="btn btn-outline btn-primary" name="subhead2" id="subhead2" value="เพิ่มรายชื่อ" onclick="checksubject(3,2);">
+         <input type="button" class="btn btn-outline btn-success" name="subhead2" id="subhead2" value="เพิ่มรายชื่อ" onclick="checksubject(3,2);">
        </div>
      </div>
          </form>
@@ -1548,11 +1686,6 @@ function lastcal() {
 
       <div id="dlhide" class="panel panel-default"> <br>
       <form name="form1" id="form1" data-toggle="validator" role="form"  method="post">
-      <div id="searchtab">
-        ชื่อ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="fname" size="20"></div>&nbsp;
-        นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="lname" size="20"></div>&nbsp;
-        <input type="button" name="searchname" id="searchname" value="ค้นหา">
-      </div>
       <div class="row form-inline" style="font-size:16px;">
         <center><div class="form-group">
       ภาควิชา
@@ -1588,6 +1721,7 @@ function lastcal() {
               </div>&nbsp;&nbsp;&nbsp;&nbsp;
               ชื่อ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="fname" size="20" required ></div>&nbsp;
               นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="lname" size="20" required ></div>&nbsp;
+              <input type="button" class="btn btn-outline btn-primary" name="searchname" id="searchname" value="ตรวจสอบรายชื่อ" onclick="checksubject(4,2);">
           </div>
 
           <div class="form-inline">
