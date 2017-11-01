@@ -122,20 +122,10 @@ $current = $dlobj->Get_Current_Semester();
    var choice2 = temp['type_course'];
    $('input[name="type_course"][value=' + choice2 + ']').prop('checked', true);
    document.getElementById('reason').value = temp['reason'];
-   document.getElementById('hour').value = temp['lecture_hour'];
+   document.getElementById('hour').value = temp['percent_hour'];
    //table
-   var strlec = temp['lecture_topic'];
-   var cutlec = strlec.split("|");
-   var strdate = temp['lecture_date'];
-   var cutdate = strdate.split("|");
-   var strtimes = temp['lecture_time_start'];
-   var cuttimes = strtimes.split("|");
-   var strtimee = temp['lecture_time_end'];
-   var cuttimee = strtimee.split("|");
-   var strroom = temp['lecture_room'];
-   var cutroom = strroom.split("|");
 
-   for(var tr=1;tr<=temp['numtable'];tr++)
+   for(var tr=1;tr<=temp['num_table'];tr++)
    {
      var table = $('#detailteaching').closest('table');
      if (table.find('input:text').length < 100) {
@@ -146,9 +136,9 @@ $current = $dlobj->Get_Current_Semester();
        });
        table.append('<tr class="warning" name="addtr" id="row' + tr + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + tr + '" id="delbtn' + tr +
          '" value="ลบ" onclick="deleteRow(' + tr + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="detail_topic' + tr + '" id="detail_topic' + tr +
-         '" size="30" value="'+cutlec[tr-1]+'"></div></td><td><input type="date" class="form-control" name="dateteach' + tr + '" id="dateteach' + tr +
-         '" size="2" value="'+cutdate[tr-1]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + tr + '" id="timebegin' + tr + '" size="2" value="'+cuttimes[tr-1]+'" >  ถึง  <input type="time" class="form-control" name="timeend'
-          + tr + '" id="timeend' + tr + '" size="2" value="'+cuttimee[tr-1]+'"></div></td><td><input type="text" class="form-control" id="room' + tr + '" value="'+cutroom[tr-1]+
+         '" size="30" value="'+temp["lecture_detail"][tr-1]["topic_name"]+'"></div></td><td><input type="date" class="form-control" name="dateteach' + tr + '" id="dateteach' + tr +
+         '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_date"]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + tr + '" id="timebegin' + tr + '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_time_start"]+'" >  ถึง  <input type="time" class="form-control" name="timeend'
+          + tr + '" id="timeend' + tr + '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_time_end"]+'"></div></td><td><input type="text" class="form-control" id="room' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_room"]+
           '"></td></tr>');
        $.each(x, function(i, val) {
          table.append(val);
@@ -173,7 +163,7 @@ $current = $dlobj->Get_Current_Semester();
      document.getElementById('NORM_LEVEL').value = temp['level_descript'];
    }
 
-   var choice4 = temp['cost_lec_choice'];
+   var choice4 = temp['expense_lec_choice'];
    if(choice4==1)
    {
      choice4 = "choice1";
@@ -183,40 +173,40 @@ $current = $dlobj->Get_Current_Semester();
    $('input[name="costspec"][value=' + choice4 + ']').prop('checked', true);
    if(choice4=="choice1")
    {
-     document.getElementById('choice1num').value = temp['cost_lec_number'];
-     document.getElementById('choice1hour').value = temp['cost_lec_hour'];
-     document.getElementById('choice1cost').value = temp['cost_lec_cost'];
+     document.getElementById('choice1num').value = temp['expense_lec_number'];
+     document.getElementById('choice1hour').value = temp['expense_lec_hour'];
+     document.getElementById('choice1cost').value = temp['expense_lec_cost'];
    }else {
-     document.getElementById('choice2num').value = temp['cost_lec_number'];
-     document.getElementById('choice2hour').value = temp['cost_lec_hour'];
-     document.getElementById('choice2cost').value = temp['cost_lec_cost'];
+     document.getElementById('choice2num').value = temp['expense_lec_number'];
+     document.getElementById('choice2hour').value = temp['expense_lec_hour'];
+     document.getElementById('choice2cost').value = temp['expense_lec_cost'];
    }
 
-   if(temp['cost_plane_check'] == 1)
+   if(temp['expense_plane_check'] == 1)
    {
      document.getElementById('transplane').checked = true;
-     document.getElementById('AIR_DEPART').value = temp['cost_plane_depart'];
-     document.getElementById('AIR_ARRIVE').value = temp['cost_plane_arrive'];
-     document.getElementById('planecost').value = temp['cost_plane_cost'];
+     document.getElementById('AIR_DEPART').value = temp['expense_plane_depart'];
+     document.getElementById('AIR_ARRIVE').value = temp['expense_plane_arrive'];
+     document.getElementById('planecost').value = temp['expense_plane_cost'];
    }
 
-   if(temp['cost_taxi_check'] == 1)
+   if(temp['expense_taxi_check'] == 1)
    {
      document.getElementById('transtaxi').checked = true;
-     document.getElementById('TAXI_DEPART').value = temp['cost_taxi_depart'];
-     document.getElementById('TAXI_ARRIVE').value = temp['cost_taxi_arrive'];
-     document.getElementById('taxicost').value = temp['cost_taxi_cost'];
+     document.getElementById('TAXI_DEPART').value = temp['expense_taxi_depart'];
+     document.getElementById('TAXI_ARRIVE').value = temp['expense_taxi_arrive'];
+     document.getElementById('taxicost').value = temp['expense_taxi_cost'];
    }
 
-   if(temp['cost_car_check'] == 1)
+   if(temp['expense_car_check'] == 1)
    {
      document.getElementById('transselfcar').checked = true;
-     document.getElementById('SELF_DISTANCT').value = temp['cost_car_distance'];
-     document.getElementById('selfunit').value = temp['cost_car_unit'];
-     document.getElementById('selfcost').value = temp['cost_car_cost'];
+     document.getElementById('SELF_DISTANCT').value = temp['expense_car_distance'];
+     document.getElementById('selfunit').value = temp['expense_car_unit'];
+     document.getElementById('selfcost').value = temp['expense_car_cost'];
    }
 
-   var choice5 = temp['cost_hotel_choice'];
+   var choice5 = temp['expense_hotel_choice'];
    if(choice5 == 1)
    {
      choice5 = "way1";
@@ -228,16 +218,16 @@ $current = $dlobj->Get_Current_Semester();
    $('input[name="hotelchoice"][value=' + choice5 + ']').prop('checked', true);
    if(choice5=="way3")
    {
-     document.getElementById('numnight').value = temp['cost_hotel_number'];
-     document.getElementById('pernight').value = temp['cost_hotel_cost'];
+     document.getElementById('numnight').value = temp['expense_hotel_number'];
+     document.getElementById('pernight').value = temp['expense_hotel_cost'];
    }else if (choice5=="way1") {
-     document.getElementById('way1unit').value = temp['cost_hotel_per_night'];
-     document.getElementById('numnight').value = temp['cost_hotel_number'];
-     document.getElementById('pernight').value = temp['cost_hotel_cost'];
+     document.getElementById('way1unit').value = temp['expense_hotel_per_night'];
+     document.getElementById('numnight').value = temp['expense_hotel_number'];
+     document.getElementById('pernight').value = temp['expense_hotel_cost'];
    }else {
-     document.getElementById('way2unit').value = temp['cost_hotel_per_night'];
-     document.getElementById('numnight').value = temp['cost_hotel_number'];
-     document.getElementById('pernight').value = temp['cost_hotel_cost'];
+     document.getElementById('way2unit').value = temp['expense_hotel_per_night'];
+     document.getElementById('numnight').value = temp['expense_hotel_number'];
+     document.getElementById('pernight').value = temp['expense_hotel_cost'];
    }
    document.getElementById('totalcost').value = temp['cost_total'];
    $('#callist').show();
@@ -877,7 +867,7 @@ $current = $dlobj->Get_Current_Semester();
        'TIME_END' : timeend,
        'ROOM' : room
      },
-     'COURSEDATA_HOUR' : document.getElementById('hour').value,
+     'COURSEDATA_PERCENT_HOUR' : document.getElementById('hour').value,
      'PAYMENT_LVLTEACHER_CHOICE' : lvchoice,
      'PAYMENT_LVLTEACHER_DESCRIPT' : lvteacher,
      'PAYMENT_COSTSPEC_CHOICE' : costspecchoice,
@@ -1034,7 +1024,7 @@ $current = $dlobj->Get_Current_Semester();
  }
 
  $(document).ready(function(){
-   $('#dlhide').show();
+   $('#dlhide').hide();
 
    //deadline
    <?php
