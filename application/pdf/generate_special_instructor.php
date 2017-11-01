@@ -94,7 +94,8 @@ if(isset($_POST['DATA']))
    return $DATA === "" ? 'null' : $DATA;
 	}, $DATA);
 	$course_id = $DATA["COURSEDATA_COURSE_ID"];
-	$submit_date = strtotime($DATA["DATE"]."-".$DATA["MONTH"]."-".(int)$DATA["YEAR"]-543);
+	$year = (int)$DATA["YEAR"]-543;
+	$submit_date = strtotime((int)$DATA["DATE"]."-".(int)$DATA["MONTH"]."-".$year);
 	$mysqldate = date( 'Y-m-d ', $submit_date );
 	if($DATA['SUBMIT_TYPE'] != 3 && $DATA['SUBMIT_TYPE'] != 4)
 	{
