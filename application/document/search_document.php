@@ -1,4 +1,4 @@
-<?php
+<?php //var_dump($_POST); die;
 session_start();
 require_once(__DIR__.'/../class/course.php');
 require_once(__DIR__.'/../class/person.php');
