@@ -4,7 +4,6 @@ require_once(__DIR__.'/../class/manage_deadline.php');
 require_once(__DIR__.'/../class/database.php');
 require_once(__DIR__.'/../class/course.php');
 require_once(__DIR__.'/../class/approval.php');
-require_once(__DIR__.'/../class/curl.php');
 require_once(__DIR__.'/../class/log.php');
 require_once(__DIR__.'/../class/person.php');
 require_once(__DIR__.'/../lib/fpdf17/fpdf.php');
@@ -89,13 +88,14 @@ function Close_connection()
 if(isset($_POST['DATA']))
 {
 	$data = $_POST['DATA'];
-	// $data = '{"TEACHERDATA_ID":"98","TEACHERDATA_DEPARTMENT":"ภาควิชาวิทยาศาสตร์เภสัชกรรม","TEACHERDATA_PREFIX":"นาย","TEACHERDATA_FNAME":"a","TEACHERDATA_LNAME":"b","TEACHERDATA_POSITION":"dsa","TEACHERDATA_QUALIFICATION":"asd","TEACHERDATA_WORKPLACE":"dsa","TEACHERDATA_TELEPHONE_NUMBER":"4565465465","TEACHERDATA_TELEPHONE_SUB":"55","TEACHERDATA_MOBILE":"5465465465","TEACHERDATA_EMAIL":"a@a.com","TEACHERDATA_HISTORY":1,"COURSEDATA_COURSE_ID":"460100","COURSEDATA_NOSTUDENT":"50","COURSEDATA_TYPE_COURSE":"require","COURSEDATA_REASON":"56545","COURSEDATA_DETAIL":{"TOPICLEC":["1.asdasddsada","2.545454"],"DATE":["2017-10-31","2017-11-01"],"TIME_BEGIN":["01:00","02:00"],"TIME_END":["12:00","11:00"],"ROOM":["1234564","456"]},"COURSEDATA_HOUR":"50","PAYMENT_LVLTEACHER_CHOICE":"official","PAYMENT_LVLTEACHER_DESCRIPT":"สกลนคร","PAYMENT_COSTSPEC_CHOICE":1,"PAYMENT_COSTSPEC_NUMBER":"400","PAYMENT_COSTSPEC_HOUR":"1","PAYMENT_COSTSPEC_COST":"400.00","PAYMENT_COSTTRANS_TRANSPLANE_CHECKED":1,"PAYMENT_COSTTRANS_TRANSPLANE_DEPART":"1","PAYMENT_COSTTRANS_TRANSPLANE_ARRIVE":"2","PAYMENT_COSTTRANS_TRANSPLANE_COST":"100.00","PAYMENT_COSTTRANS_TRANSTAXI_CHECKED":0,"PAYMENT_COSTTRANS_TRANSTAXI_DEPART":"","PAYMENT_COSTTRANS_TRANSTAXI_ARRIVE":"","PAYMENT_COSTTRANS_TRANSTAXI_COST":"0.00","PAYMENT_COSTTRANS_TRANSSELFCAR_CHECKED":0,"PAYMENT_COSTTRANS_TRANSSELFCAR_DISTANCE":"0","PAYMENT_COSTTRANS_TRANSSELFCAR_UNIT":"0","PAYMENT_COSTTRANS_TRANSSELFCAR_COST":"0","PAYMENT_COSTHOTEL_CHOICE":1,"PAYMENT_COSTHOTEL_PERNIGHT":"1500","PAYMENT_COSTHOTEL_NUMBER":"1","PAYMENT_COSTHOTEL_COST":"1500.00","PAYMENT_TOTALCOST":"2000.00","NUMTABLE":2,"SUBMIT_TYPE":"3","USERID":"011","DATE":"31","MONTH":"10","YEAR":"2560"}';
+	$data = '{"TEACHERDATA_ID":"98","TEACHERDATA_DEPARTMENT":"ภาควิชาวิทยาศาสตร์เภสัชกรรม","TEACHERDATA_PREFIX":"นาย","TEACHERDATA_FNAME":"a","TEACHERDATA_LNAME":"b","TEACHERDATA_POSITION":"dsa","TEACHERDATA_QUALIFICATION":"asd","TEACHERDATA_WORKPLACE":"dsa","TEACHERDATA_TELEPHONE_NUMBER":"4565465465","TEACHERDATA_TELEPHONE_SUB":"55","TEACHERDATA_MOBILE":"5465465465","TEACHERDATA_EMAIL":"a@a.com","TEACHERDATA_HISTORY":1,"COURSEDATA_COURSE_ID":"460100","COURSEDATA_NOSTUDENT":"50","COURSEDATA_TYPE_COURSE":"require","COURSEDATA_REASON":"56545","COURSEDATA_DETAIL":{"TOPICLEC":["1.asdasddsada","2.545454"],"DATE":["2017-10-31","2017-11-01"],"TIME_BEGIN":["01:00","02:00"],"TIME_END":["12:00","11:00"],"ROOM":["1234564","456"]},"COURSEDATA_PERCENT_HOUR":"50","PAYMENT_LVLTEACHER_CHOICE":"official","PAYMENT_LVLTEACHER_DESCRIPT":"สกลนคร","PAYMENT_COSTSPEC_CHOICE":1,"PAYMENT_COSTSPEC_NUMBER":"400","PAYMENT_COSTSPEC_HOUR":"1","PAYMENT_COSTSPEC_COST":"400.00","PAYMENT_COSTTRANS_TRANSPLANE_CHECKED":1,"PAYMENT_COSTTRANS_TRANSPLANE_DEPART":"1","PAYMENT_COSTTRANS_TRANSPLANE_ARRIVE":"2","PAYMENT_COSTTRANS_TRANSPLANE_COST":"100.00","PAYMENT_COSTTRANS_TRANSTAXI_CHECKED":0,"PAYMENT_COSTTRANS_TRANSTAXI_DEPART":"","PAYMENT_COSTTRANS_TRANSTAXI_ARRIVE":"","PAYMENT_COSTTRANS_TRANSTAXI_COST":"0.00","PAYMENT_COSTTRANS_TRANSSELFCAR_CHECKED":0,"PAYMENT_COSTTRANS_TRANSSELFCAR_DISTANCE":"0","PAYMENT_COSTTRANS_TRANSSELFCAR_UNIT":"0","PAYMENT_COSTTRANS_TRANSSELFCAR_COST":"0","PAYMENT_COSTHOTEL_CHOICE":1,"PAYMENT_COSTHOTEL_PERNIGHT":"1500","PAYMENT_COSTHOTEL_NUMBER":"1","PAYMENT_COSTHOTEL_COST":"1500.00","PAYMENT_TOTALCOST":"2000.00","NUMTABLE":2,"SUBMIT_TYPE":"1","USERID":"011","DATE":"31","MONTH":"10","YEAR":"2560"}';
 	$DATA = json_decode($data,true);
 	$DATA = array_map(function($DATA) {
    return $DATA === "" ? 'null' : $DATA;
 	}, $DATA);
 	$course_id = $DATA["COURSEDATA_COURSE_ID"];
-	$submit_date = strtotime($DATA["DATE"]."-".$DATA["MONTH"]."-".$DATA["YEAR"]);
+	$submit_date = strtotime($DATA["DATE"]."-".$DATA["MONTH"]."-".(int)$DATA["YEAR"]-543);
+	$mysqldate = date( 'Y-m-d ', $submit_date );
 	if($DATA['SUBMIT_TYPE'] != 3 && $DATA['SUBMIT_TYPE'] != 4)
 	{
 			//insert data into database
@@ -123,8 +123,8 @@ if(isset($_POST['DATA']))
 						if($temp_id)
 						{
 							$instructor_id = $temp_id[0]['instructor_id'];
-							$sql = "INSERT INTO `course_hire_special_instructor`(`course_id`, `instructor_id`,`expense_id`, `num_student`, `type_course`, `semester_id`, `status`,`reason`,`percent_hour`,`submit_user_id`,`submit_date`) VALUES ('".$DATA["COURSEDATA_COURSE_ID"]."',".$instructor_id.",".$expense_id.",".$DATA["COURSEDATA_NOSTUDENT"].",'".$DATA["COURSEDATA_TYPE_COURSE"]."',".$semester['id'].",'0','".$DATA["COURSEDATA_REASON"]."',".$DATA["COURSEDATA_HOUR"].",'".$DATA["USERID"]."','".$submit_date."')";
-							$sql .= " ON DUPLICATE KEY UPDATE `course_id` = '".$DATA["COURSEDATA_COURSE_ID"]."', `instructor_id` = ".$instructor_id." ,`expense_id` = ".$expense_id.", `num_student` = ".$DATA["COURSEDATA_NOSTUDENT"].", `type_course` = '".$DATA["COURSEDATA_TYPE_COURSE"]."', `semester_id` = ".$semester['id'].", `status` = '0',`reason` = '".$DATA["COURSEDATA_REASON"]."' , `percent_hour` = ".$DATA["COURSEDATA_HOUR"].",`submit_user_id` = '".$DATA["USERID"]."' ,`submit_date` = '".$submit_date."'";
+							$sql = "INSERT INTO `course_hire_special_instructor`(`course_id`, `instructor_id`,`expense_id`, `num_student`, `type_course`, `semester_id`, `status`,`reason`,`percent_hour`,`submit_user_id`,`submit_date`) VALUES ('".$DATA["COURSEDATA_COURSE_ID"]."',".$instructor_id.",".$expense_id.",".$DATA["COURSEDATA_NOSTUDENT"].",'".$DATA["COURSEDATA_TYPE_COURSE"]."',".$semester['id'].",'0','".$DATA["COURSEDATA_REASON"]."',".$DATA["COURSEDATA_PERCENT_HOUR"].",'".$DATA["USERID"]."','".$mysqldate."')";
+							$sql .= " ON DUPLICATE KEY UPDATE `course_id` = '".$DATA["COURSEDATA_COURSE_ID"]."', `instructor_id` = ".$instructor_id." ,`expense_id` = ".$expense_id.", `num_student` = ".$DATA["COURSEDATA_NOSTUDENT"].", `type_course` = '".$DATA["COURSEDATA_TYPE_COURSE"]."', `semester_id` = ".$semester['id'].", `status` = '0',`reason` = '".$DATA["COURSEDATA_REASON"]."' , `percent_hour` = ".$DATA["COURSEDATA_PERCENT_HOUR"].",`submit_user_id` = '".$DATA["USERID"]."' ,`submit_date` = '".$mysqldate."'";
 							$result = $db->Insert_Update_Delete($sql);
 
 							$sql = "SELECT max(`hire_id`) as `hire_id` FROM `course_hire_special_instructor`";
@@ -200,6 +200,7 @@ if($data_pdf == false)
 	die;
 }
 //start generate pdf
+define('FPDF_FONTPATH','font/');
 $pdf=new FPDF();
 
 $pdf->AddPage();
