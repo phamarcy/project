@@ -501,7 +501,7 @@ class Course
     else if($type == 'special')
     {
       $lecture_detail = array();
-      $sql = "SELECT st.* FROM `special_lecture_teach` st, `course_hire_special_instructor` ci ";
+      $sql = "SELECT st.`topic_name`,st.`teaching_date`,st.`teaching_time_start`,st.`teaching_time_end`,st.`teaching_room` FROM `special_lecture_teach` st, `course_hire_special_instructor` ci ";
       $sql .= "WHERE ci.`instructor_id` = ".$instructor_id." AND ci.`course_id` = '".$course_id."' AND st.`hire_id` = ci.`hire_id` AND ci.`semester_id` = ".$semester_id;
       $result = $this->DB->Query($sql);
       if($result)
