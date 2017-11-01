@@ -833,6 +833,8 @@ $current = $dlobj->Get_Current_Semester();
     }
   }else {
     var hotelchoice = 3;
+    var hotelunit = "0";
+
   }
 
   if( document.getElementById('numnight').value == '')
@@ -874,6 +876,11 @@ $current = $dlobj->Get_Current_Semester();
     var historyteacher = 0;
   }
 
+  //split teachername
+  var teachername_temp = document.getElementById('teachername').value;
+  var stringspl = teachername_temp.split("_");
+  var instructor_id = stringspl[0];
+
    var data = {
      'TEACHERDATA_DEPARTMENT' : document.getElementById('department').value,
      'TEACHERDATA_PREFIX' : document.getElementById('pre').value,
@@ -898,6 +905,7 @@ $current = $dlobj->Get_Current_Semester();
        'TIME_END' : timeend,
        'ROOM' : room
      },
+     'INSTRUCTOR_ID' : instructor_id,
      'COURSEDATA_PERCENT_HOUR' : document.getElementById('hour').value,
      'PAYMENT_LVLTEACHER_CHOICE' : lvchoice,
      'PAYMENT_LVLTEACHER_DESCRIPT' : lvteacher,

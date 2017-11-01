@@ -128,7 +128,7 @@ if(isset($_POST['DATA']))
 							$sql .= " ON DUPLICATE KEY UPDATE `course_id` = '".$DATA["COURSEDATA_COURSE_ID"]."', `instructor_id` = ".$instructor_id." ,`expense_id` = ".$expense_id.", `num_student` = ".$DATA["COURSEDATA_NOSTUDENT"].", `type_course` = '".$DATA["COURSEDATA_TYPE_COURSE"]."', `semester_id` = ".$semester['id'].", `status` = '0',`reason` = '".$DATA["COURSEDATA_REASON"]."' , `percent_hour` = ".$DATA["COURSEDATA_PERCENT_HOUR"].",`submit_user_id` = '".$DATA["USERID"]."' ,`submit_date` = '".$mysqldate."'";
 							$result = $db->Insert_Update_Delete($sql);
 
-							$sql = "SELECT max(`hire_id`) as `hire_id` FROM `course_hire_special_instructor`";
+							$sql = "SELECT `hire_id` FROM `course_hire_special_instructor` WHERE `course_id` = '".$DATA["COURSEDATA_COURSE_ID"]."' AND  `instructor_id` = ".$instructor_id." AND `semester_id` = ".$semester['id'];
 							$hire_id = $db->Query($sql);
 							if($hire_id)
 							{
