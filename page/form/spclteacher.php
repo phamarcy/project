@@ -279,9 +279,10 @@ $current = $dlobj->Get_Current_Semester();
 }
 
  function checksubject(btntype,type){
-   $('#dlhide').hide();
+
    if(btntype==1)
    {
+     $('#dlhide').hide();
      document.getElementById("form1").reset();
      var file_data = new FormData;
      var course_id = document.getElementById('id').value;
@@ -409,6 +410,7 @@ $current = $dlobj->Get_Current_Semester();
         });
    }
    else if (btntype==2) {
+     $('#dlhide').show();
      var file_data = new FormData;
      var teachername_temp = document.getElementById('teachername').value;
      var stringspl = teachername_temp.split("_");
@@ -517,8 +519,14 @@ $current = $dlobj->Get_Current_Semester();
                    }
         });
    }else if(btntype==3) {
+     var rowtr = ($('#detailteaching tr').length)-2
+     for (var i = 1; i <=rowtr; i++) {
+       var row = document.getElementById('row' + i);
+       row.parentNode.removeChild(row);
+     }
+     document.getElementById("form1").reset();
      document.getElementById('course').value = $('#id').val();
-     document.getElementById('formdrpd').style.display = "none";
+     document.getElementById('formdrpd').style.display = "";
 
      $('#dlhide').show();
      $('#topic1')[0].checked = false;
@@ -526,8 +534,30 @@ $current = $dlobj->Get_Current_Semester();
      $('#cvlist').show();
      $('input[name=cv]').prop('required', true);
    }else {
+     $('#dlhide').show();
      var fname = $('#fname').val();
      var lname = $('#lname').val();
+     if(fname=="" || lname=="" )
+     {
+       swal({
+         title: '',
+         text: 'กรุณากรอกชื่อและนามสกุลให้ถูกต้อง',
+         type: 'warning',
+         showCancelButton: false,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         confirmButtonText: 'Ok'
+       }).then(function () {
+
+       }, function (dismiss) {
+       // dismiss can be 'cancel', 'overlay',
+       // 'close', and 'timer'
+       if (dismiss === 'cancel') {
+
+       }
+     })
+   }else{
+
      var type = 3;
      var file_data = new FormData;
      JSON.stringify(name);
@@ -556,7 +586,7 @@ $current = $dlobj->Get_Current_Semester();
                    success: function (result) {
                      try {
                        var temp = $.parseJSON(result);
-                       if(temp!=false)
+                       if(temp['status']!='error' && temp!=false)
                        {
                          swal.hideLoading()
 
@@ -579,7 +609,7 @@ $current = $dlobj->Get_Current_Semester();
                            cancelButtonColor: '#d33',
                            confirmButtonText: 'Ok'
                          }).then(function () {
-
+                            $('#dlhide').show();
                          }, function (dismiss) {
                          // dismiss can be 'cancel', 'overlay',
                          // 'close', and 'timer'
@@ -623,6 +653,7 @@ $current = $dlobj->Get_Current_Semester();
                    }
         });
    }
+ }
  }
 
  function submitfunc(casesubmit) {
