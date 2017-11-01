@@ -463,7 +463,7 @@ class Course
         if($type == 'special')
         {
           $data['DATA'][$i]['id'] = $result[$i]['instructor_id'];
-          $data['DATA'][$i]['name'] = $result[$i]['firstname'].' '.$result[0]['lastname'];
+          $data['DATA'][$i]['name'] = $result[$i]['firstname'].' '.$result[$i]['lastname'];
         }
         else
         {
