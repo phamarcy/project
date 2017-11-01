@@ -28,7 +28,7 @@ if(isset($_POST['course_id']) && isset($_POST['type']))
   {
     die("Invalid type");
   }
-  else if(isset($_POST['semester']) && isset($_POST['year']))
+  if(isset($_POST['semester']) && isset($_POST['year']))
   {
     $semester = $_POST['semester'];
     $year = $_POST['year'];
@@ -49,7 +49,7 @@ if(isset($_POST['course_id']) && isset($_POST['type']))
     }
     else if ($type == 'special')
     {
-      
+
     }
 
 

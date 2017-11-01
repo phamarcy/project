@@ -462,19 +462,22 @@ class Course
       {
         if($type == 'special')
         {
-          $data[$i]['id'] = $result[$i]['instructor_id'];
-          $data[$i]['name'] = $result[$i]['firstname'].' '.$result[0]['lastname'];
+          $data['DATA'][$i]['id'] = $result[$i]['instructor_id'];
+          $data['DATA'][$i]['name'] = $result[$i]['firstname'].' '.$result[0]['lastname'];
         }
         else
         {
-          $data[$i]['semester'] = $result[$i]['semester_num'];
-          $data[$i]['year'] = $result[$i]['year'];
+          $data['DATA'][$i]['semester'] = $result[$i]['semester_num'];
+          $data['DATA'][$i]['year'] = $result[$i]['year'];
         }
       }
-
+    }
+    else
+    {
+      $data['DATA'] = false;
     }
     $data['ACCESS'] = $check_access;
-    $data['info'] = $this->Get_Course_Info($course_id);
+    $data['INFO'] = $this->Get_Course_Info($course_id);
     //id,name,semester,year
       return $data;
   }
