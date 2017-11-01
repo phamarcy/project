@@ -1,8 +1,10 @@
 <?php
 session_start();
 require_once(__DIR__.'/../class/course.php');
+require_once(__DIR__.'/../class/person.php');
 $course = new Course();
-if(isset($_POST['course_id']) && isset($_POST['type']))
+$person = new Person();
+if(isset($_POST['type']))
 {
   if(isset($_POST['instructor_id']))
   {
@@ -12,17 +14,31 @@ if(isset($_POST['course_id']) && isset($_POST['type']))
   {
     $instructor_id = null;
   }
-
-  $course_id = $_POST['course_id'];
+  if(isset($_POST['course_id']) )
+  {
+    $course_id = $_POST['course_id'];
+  }
   if($_POST['type'] == 1)
   {
-    $type = 'evaluate';
+    $type = 'evaluate'; //evaluate form
     $instructor_id = null;
   }
   else if($_POST['type'] == 2)
   {
-    $type = 'special';
-
+    $type = 'special'; // special instructor form
+  }
+  else if($_POST['type'] == 3)
+  {
+    $firstname = $_POST['fname'];
+    $lastname = $_POST['lname'];
+    $data = $person->Get_Special_Instructor_Data($firstname,$lastname);
+    if(!$data)
+    {
+      $data['status'] = 'error';
+      $data['msg'] = "ไม่พบข้อมูล";
+    }
+    echo json_encode($data);
+    die;
   }
   else
   {
@@ -47,12 +63,6 @@ if(isset($_POST['course_id']) && isset($_POST['type']))
         echo json_encode($data);
       }
     }
-    else if ($type == 'special')
-    {
-
-    }
-
-
   }
   else
   {
