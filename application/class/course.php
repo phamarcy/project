@@ -438,8 +438,9 @@ class Course
   {
     if($type =='special')
     {
-      $sql = "SELECT si.`instructor_id`,`firstname`,`lastname` FROM `special_instructor` si,`course_hire_special_instructor` ci
-      WHERE ci.`course_id` = '".$course_id."' AND ci.`instructor_id` = si.`instructor_id` ORDER BY `ci`.`updated_date` DESC LIMIT 1" ;
+      $sql = "SELECT DISTINCT si.`instructor_id`,`firstname`,`lastname` FROM `special_instructor` si,`course_hire_special_instructor` ci
+      WHERE ci.`course_id` = '".$course_id."' AND ci.`instructor_id` = si.`instructor_id` ORDER BY `ci`.`updated_date` DESC" ;
+      die($sql);
     }
     else if ($type == 'evaluate')
     {
