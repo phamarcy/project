@@ -309,7 +309,6 @@ $current = $dlobj->Get_Current_Semester();
                    data: file_data,
                    type: 'post',
                    success: function (result) {
-
                          try {
                            var temp = $.parseJSON(result);
                            var rowtr = ($('#detailteaching tr').length)-2
@@ -337,7 +336,7 @@ $current = $dlobj->Get_Current_Semester();
                              $('#buttondiv').hide();
                            }
 
-                           if(temp['info']!=false && temp[0]!=null)
+                           if(temp['DATA']!=false)
                            {
                              console.log(temp);
                              var course_id = document.getElementById('id').value;
@@ -352,15 +351,15 @@ $current = $dlobj->Get_Current_Semester();
                                }
                              }
 
-                             for(var i=0;i<(Object.keys(temp).length-1);i++)
+                             for(var i=0;i<(Object.keys(temp['DATA']).length);i++)
                              {
                                var opt = document.createElement('option');
-                               opt.value = temp[i].id +"_"+ temp[i].name;
-                               opt.innerHTML = "คุณ"+temp[i].name;
+                               opt.value = temp['DATA'][i].id +"_"+ temp['DATA'][i].name;
+                               opt.innerHTML = "คุณ"+temp['DATA'][i].name;
                                document.getElementById('teachername').appendChild(opt);
                              }
                            }
-                           else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
+                           else if(temp['DATA']==false && $('#id').val()!=""){
                              $('#dlhide').hide();
                              swal(
                                 '',
@@ -539,13 +538,13 @@ $current = $dlobj->Get_Current_Semester();
    }else {
      var fname = $('#fname').val();
      var lname = $('#lname').val();
-
+     var type = 3;
      var file_data = new FormData;
      JSON.stringify(name);
      JSON.stringify(lname);
      JSON.stringify(type);
-    file_data.append("type",type);
-     file_data.append("name",name);
+     file_data.append("type",type);
+     file_data.append("fname",fname);
      file_data.append("lname",lname);
      var URL = '../../application/document/search_document.php';
      $.ajax({
@@ -576,6 +575,7 @@ $current = $dlobj->Get_Current_Semester();
                               'ดึงข้อมูลสำเร็จ',
                               'success'
                             )
+                            $('#dlhide').show();
                            getinfo2(temp);
                        }
                        else {
