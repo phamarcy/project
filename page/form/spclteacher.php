@@ -354,7 +354,7 @@ $current = $dlobj->Get_Current_Semester();
                              for(var i=0;i<(Object.keys(temp['DATA']).length);i++)
                              {
                                var opt = document.createElement('option');
-                               opt.value = temp['DATA'][i].id +"_"+ temp['DATA'][i].name + "_" + temp['INFO']['course_id'];
+                               opt.value = temp['DATA'][i].id +"_"+ temp['DATA'][i].name + "_" + temp['INFO']['course_id'] +"_"+ temp['DATA'][i].semester + "_" + temp['DATA'][i].year;
                                opt.innerHTML = "คุณ"+temp['DATA'][i].name;
                                document.getElementById('teachername').appendChild(opt);
                              }
@@ -425,13 +425,19 @@ $current = $dlobj->Get_Current_Semester();
      var instructor_id = stringspl[0];
      var name = stringspl[1];
      var course_id = stringspl[2];
+     var semester = stringspl[3];
+     var year = stringspl[4];
      JSON.stringify(name);
      JSON.stringify(course_id);
      JSON.stringify(instructor_id);
+     JSON.stringify(semester);
+     JSON.stringify(year);
      JSON.stringify(type);
      file_data.append("name",name);
      file_data.append("course_id",course_id);
      file_data.append("instructor_id",instructor_id);
+     file_data.append("semester",semester);
+     file_data.append("year",year);
      file_data.append("type",type);
      //var URL = '../../application/test_data.php';
      var URL = '../../application/document/search_document.php';
