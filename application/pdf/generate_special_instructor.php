@@ -88,7 +88,7 @@ function Close_connection()
 if(isset($_POST['DATA']))
 {
 	$data = $_POST['DATA'];
-	$data = '{"TEACHERDATA_ID":"98","TEACHERDATA_DEPARTMENT":"ภาควิชาวิทยาศาสตร์เภสัชกรรม","TEACHERDATA_PREFIX":"นาย","TEACHERDATA_FNAME":"a","TEACHERDATA_LNAME":"b","TEACHERDATA_POSITION":"dsa","TEACHERDATA_QUALIFICATION":"asd","TEACHERDATA_WORKPLACE":"dsa","TEACHERDATA_TELEPHONE_NUMBER":"4565465465","TEACHERDATA_TELEPHONE_SUB":"55","TEACHERDATA_MOBILE":"5465465465","TEACHERDATA_EMAIL":"a@a.com","TEACHERDATA_HISTORY":1,"COURSEDATA_COURSE_ID":"460100","COURSEDATA_NOSTUDENT":"50","COURSEDATA_TYPE_COURSE":"require","COURSEDATA_REASON":"56545","COURSEDATA_DETAIL":{"TOPICLEC":["1.asdasddsada","2.545454"],"DATE":["2017-10-31","2017-11-01"],"TIME_BEGIN":["01:00","02:00"],"TIME_END":["12:00","11:00"],"ROOM":["1234564","456"]},"COURSEDATA_PERCENT_HOUR":"50","PAYMENT_LVLTEACHER_CHOICE":"official","PAYMENT_LVLTEACHER_DESCRIPT":"สกลนคร","PAYMENT_COSTSPEC_CHOICE":1,"PAYMENT_COSTSPEC_NUMBER":"400","PAYMENT_COSTSPEC_HOUR":"1","PAYMENT_COSTSPEC_COST":"400.00","PAYMENT_COSTTRANS_TRANSPLANE_CHECKED":1,"PAYMENT_COSTTRANS_TRANSPLANE_DEPART":"1","PAYMENT_COSTTRANS_TRANSPLANE_ARRIVE":"2","PAYMENT_COSTTRANS_TRANSPLANE_COST":"100.00","PAYMENT_COSTTRANS_TRANSTAXI_CHECKED":0,"PAYMENT_COSTTRANS_TRANSTAXI_DEPART":"","PAYMENT_COSTTRANS_TRANSTAXI_ARRIVE":"","PAYMENT_COSTTRANS_TRANSTAXI_COST":"0.00","PAYMENT_COSTTRANS_TRANSSELFCAR_CHECKED":0,"PAYMENT_COSTTRANS_TRANSSELFCAR_DISTANCE":"0","PAYMENT_COSTTRANS_TRANSSELFCAR_UNIT":"0","PAYMENT_COSTTRANS_TRANSSELFCAR_COST":"0","PAYMENT_COSTHOTEL_CHOICE":1,"PAYMENT_COSTHOTEL_PERNIGHT":"1500","PAYMENT_COSTHOTEL_NUMBER":"1","PAYMENT_COSTHOTEL_COST":"1500.00","PAYMENT_TOTALCOST":"2000.00","NUMTABLE":2,"SUBMIT_TYPE":"1","USERID":"011","DATE":"31","MONTH":"10","YEAR":"2560"}';
+	// $data = '{"TEACHERDATA_ID":"98","TEACHERDATA_DEPARTMENT":"ภาควิชาวิทยาศาสตร์เภสัชกรรม","TEACHERDATA_PREFIX":"นาย","TEACHERDATA_FNAME":"a","TEACHERDATA_LNAME":"b","TEACHERDATA_POSITION":"dsa","TEACHERDATA_QUALIFICATION":"asd","TEACHERDATA_WORKPLACE":"dsa","TEACHERDATA_TELEPHONE_NUMBER":"4565465465","TEACHERDATA_TELEPHONE_SUB":"55","TEACHERDATA_MOBILE":"5465465465","TEACHERDATA_EMAIL":"a@a.com","TEACHERDATA_HISTORY":1,"COURSEDATA_COURSE_ID":"460100","COURSEDATA_NOSTUDENT":"50","COURSEDATA_TYPE_COURSE":"require","COURSEDATA_REASON":"56545","COURSEDATA_DETAIL":{"TOPICLEC":["1.asdasddsada","2.545454"],"DATE":["2017-10-31","2017-11-01"],"TIME_BEGIN":["01:00","02:00"],"TIME_END":["12:00","11:00"],"ROOM":["1234564","456"]},"COURSEDATA_PERCENT_HOUR":"50","PAYMENT_LVLTEACHER_CHOICE":"official","PAYMENT_LVLTEACHER_DESCRIPT":"สกลนคร","PAYMENT_COSTSPEC_CHOICE":1,"PAYMENT_COSTSPEC_NUMBER":"400","PAYMENT_COSTSPEC_HOUR":"1","PAYMENT_COSTSPEC_COST":"400.00","PAYMENT_COSTTRANS_TRANSPLANE_CHECKED":1,"PAYMENT_COSTTRANS_TRANSPLANE_DEPART":"1","PAYMENT_COSTTRANS_TRANSPLANE_ARRIVE":"2","PAYMENT_COSTTRANS_TRANSPLANE_COST":"100.00","PAYMENT_COSTTRANS_TRANSTAXI_CHECKED":0,"PAYMENT_COSTTRANS_TRANSTAXI_DEPART":"","PAYMENT_COSTTRANS_TRANSTAXI_ARRIVE":"","PAYMENT_COSTTRANS_TRANSTAXI_COST":"0.00","PAYMENT_COSTTRANS_TRANSSELFCAR_CHECKED":0,"PAYMENT_COSTTRANS_TRANSSELFCAR_DISTANCE":"0","PAYMENT_COSTTRANS_TRANSSELFCAR_UNIT":"0","PAYMENT_COSTTRANS_TRANSSELFCAR_COST":"0","PAYMENT_COSTHOTEL_CHOICE":1,"PAYMENT_COSTHOTEL_PERNIGHT":"1500","PAYMENT_COSTHOTEL_NUMBER":"1","PAYMENT_COSTHOTEL_COST":"1500.00","PAYMENT_TOTALCOST":"2000.00","NUMTABLE":2,"SUBMIT_TYPE":"1","USERID":"011","DATE":"31","MONTH":"10","YEAR":"2560"}';
 	$DATA = json_decode($data,true);
 	$DATA = array_map(function($DATA) {
    return $DATA === "" ? 'null' : $DATA;
@@ -451,6 +451,8 @@ if($data_pdf["expense_lec_choice"] == "1")
 	$cost2 = '';
 	$hour1 = $data_pdf["expense_lec_hour"];
 	$hour2 = '';
+	$num1 = $data_pdf["expense_lec_number"];
+	$num2 = ' ';
 }
 else if($data_pdf["expense_lec_choice"] == "2")
 {
@@ -460,6 +462,8 @@ else if($data_pdf["expense_lec_choice"] == "2")
 	$cost1 = '';
 	$hour2 = $data_pdf["expense_lec_hour"];
 	$hour1 = '';
+	$num2 = $data_pdf["expense_lec_number"];
+	$num1 = ' ';
 }
 else
 {
@@ -469,6 +473,8 @@ else
 	$cost1 = '';
 	$hour2 = '';
 	$hour1 = '';
+	$num1 = ' ';
+	$num2 = ' ';
 }
 
 
@@ -477,7 +483,7 @@ $pdf->SetX(40);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, $choice1, 1,"C");
 $pdf->SetFont('THSarabun','',14);
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ปริญญาตรีปฏิบัติการ 400/ชม.'))+1,7,iconv( 'UTF-8','TIS-620',' ปริญญาตรีบรรยาย '.$data_pdf["expense_lec_number"].'/ชม.'),0);
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ปริญญาตรีปฏิบัติการ '.$num1.'/ชม.'))+1,7,iconv( 'UTF-8','TIS-620',' ปริญญาตรีบรรยาย '.$num1.'/ชม.'),0);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620',' จำนวน   '))+2,7,iconv( 'UTF-8','TIS-620','  จำนวน   '),0);
 $pdf->Cell(13,7,iconv( 'UTF-8','TIS-620',$hour1),0,"C");
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620',' ชั่วโมง'))+2,7,iconv( 'UTF-8','TIS-620','  ชั่วโมง'),0);
@@ -491,7 +497,7 @@ $pdf->SetX(40);
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, $choice2, 1,"C");
 $pdf->SetFont('THSarabun','',14);
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ปริญญาตรีปฏิบัติการ 200/ชม.'))+1,7,iconv( 'UTF-8','TIS-620',' ปริญญาตรีปฏิบัติการ '.$data_pdf["expense_lec_number"].'/ชม.'),0);
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ปริญญาตรีปฏิบัติการ '.$num2.'/ชม.'))+1,7,iconv( 'UTF-8','TIS-620',' ปริญญาตรีปฏิบัติการ '.$num2.'/ชม.'),0);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620',' จำนวน   '))+2,7,iconv( 'UTF-8','TIS-620','  จำนวน   '),0);
 $pdf->Cell(13,7,iconv( 'UTF-8','TIS-620',$hour2),0,"C");
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620',' ชั่วโมง'))+2,7,iconv( 'UTF-8','TIS-620','  ชั่วโมง'),0);
