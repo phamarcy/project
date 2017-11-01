@@ -198,14 +198,23 @@ public function Update($data,$type)
   public function Get_Current_Semester()
   {
     global $CONFIG_PATH;
-    $sql = "SELECT `semester`,`year` FROM `current_semester`";
+    $sql = "SELECT `config_value` FROM `system_configuration` WHERE `config_name` = 'CURRENT_SEMESTER_NUM'";
     $result = $this->DB->Query($sql);
     if($result)
     {
-      $data['semester'] = $result[0]['semester'];
-      $data['year'] = $result[0]['year'];
-      $data['id'] = $this->Search_Semester_id($data['semester'],$data['year']);
-      return $data;
+      $data['semester'] = $result[0]['config_value'];
+      $sql = "SELECT `config_value` FROM `system_configuration` WHERE `config_name` = 'CURRENT_SEMESTER_YEAR'";
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        $data['year'] = $result[0]['config_value'];
+        $data['id'] = $this->Search_Semester_id($data['semester'],$data['year']);
+        return $data;
+      }
+      else
+      {
+        return false;
+      }
     }
     else
     {
@@ -215,17 +224,14 @@ public function Update($data,$type)
 
   public function Add_Current_Semester($semester,$year)
   {
-    $sql = "TRUNCATE TABLE `current_semester`";
-    $result = $this->DB->Insert_Update_Delete($sql);
-    if($result)
-    {
-      $sql = "INSERT INTO `current_semester`(`semester`, `year`) VALUES ('".$semester."','".$year."')";
+    $sql = "INSERT INTO `system_configuration` (`config_name`, `config_value`) VALUES ('CURRENT_SEMESTER_NUM', '".$semester."'), ('CURRENT_SEMESTER_YEAR', '".$year."')";
+    $sql .= "ON DUPLICATE KEY UPDATE `config_name` = VALUES(`config_name`), `config_value` = VALUES(`config_value`)";
       $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
       {
         return true;
       }
-    }
+
     return false;
   }
 //close database connection
