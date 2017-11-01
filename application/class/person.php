@@ -93,7 +93,7 @@ class Person
 
   public function Get_Special_Instructor_Data($firstname,$lastname)
   {
-    $sql = "SELECT `prefix``firstname``lastname``position``qualification``work_place``phone``phone_sub``phone_mobile``email` FROM `special_instructor` WHERE `firstname` = '".$firstname"' AND `lastname` = '".$lastname."'";
+    $sql = "SELECT `prefix`,`firstname`,`lastname`,`position`,`qualification`,`work_place`,`phone`,`phone_sub`,`phone_mobile`,`email` FROM `special_instructor` WHERE `firstname` = '".$firstname."' AND `lastname` = '".$lastname."'";
     $this->DB->Change_DB($this->DEFAULT_DB);
     $result = $this->DB->Query($sql);
     if($result)

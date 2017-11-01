@@ -194,10 +194,10 @@ class approval
   private function Send_Complete_Special($course_id,$instructor_id,$type)
   {
     $data['SUBMIT_TYPE'] = $type;
-    $data['COURSEDATA']['COURSE_ID'] = $course_id;
-    $data['TEACHERDATA']['ID'] = $instructor_id;
+    $data['COURSEDATA_COURSE_ID'] = $course_id;
+    $data['TEACHERDATA_ID'] = $instructor_id;
     $DATA['DATA'] = json_encode($data);
-    $DATA['APPROVER_ID'] = $_SESSION['id'];
+    // $DATA['APPROVER_ID'] = $_SESSION['id'];
     $url = "application/pdf/generate_special_instructor.php";
     $result = $this->CURL->Request($DATA,$url);
     return $result;
@@ -299,8 +299,7 @@ class approval
       else if((int)$status_after == 7)
       {
         //save instructor to database
-        $sql = "INSERT INTO `course_hire`(`course_id`, `instructor_id`, `semester_id`)
-        VALUES ('".$course_id."','".$instructor_id."','".$this->SEMESTER_ID."')";
+        $sql = "UPDATE `course_hire_special_instructor` SET `status`= '1' WHERE `course_id` = '".$course_id."' AND `instructor_id` = ".$instructor_id." AND `semester_id` = ".$this->SEMESTER_ID;
         $result = $this->DB->Insert_Update_Delete($sql);
         if(!$result)
         {
