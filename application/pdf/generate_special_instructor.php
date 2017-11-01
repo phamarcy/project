@@ -171,7 +171,6 @@ if(isset($_POST['DATA']))
 					die;
 				}
 			}
-
 	}
 	else
 	{
@@ -712,17 +711,30 @@ $pdf->Cell(0,7,iconv('UTF-8','TIS-620','หัวหน้า/ผู้แทน
 $person->Close_connection();
 if($DATA['SUBMIT_TYPE'] == '1' || $DATA['SUBMIT_TYPE'] == '3')
 {
-	$file_path = $FILE_PATH."/draft/".$data_pdf['course_id']."/special_instructor";
+	$file_path = $FILE_PATH."/draft/".$data_pdf['course_id'];
+	if(!file_exists($file_path))
+	{
+		mkdir($file_path);
+	}
 }
 else if ($DATA['SUBMIT_TYPE'] == '4')
 {
-	$file_path = $FILE_PATH."/complete".$data_pdf['course_id']."/special_instructor";
+	$file_path = $FILE_PATH."/complete/".$data_pdf['course_id'];
+	if(!file_exists($file_path))
+	{
+		mkdir($file_path);
+	}
 }
 else
 {
 	$file_path = $FILE_PATH;
-}
 
+}
+$file_path = $file_path."/special_instructor";
+if(!file_exists($file_path))
+{
+	mkdir($file_path);
+}
 $pdf->Output($file_path."/".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
 
 if($DATA['SUBMIT_TYPE'] == '1')
