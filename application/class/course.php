@@ -500,15 +500,22 @@ class Course
     }
     else if($type == 'special')
     {
+      $lecture_detail = array();
       $sql = "SELECT * FROM `special_lecture_teach` st, `course_hire_special_instructor` ci ";
       $sql .= "WHERE ci.`instructor_id` = ".$instructor_id." AND ci.`course_id` = '".$course_id."' AND st.`hire_id` = ci.`hire_id` AND ci.`semester_id` = ".$semester_id;
       $result = $this->DB->Query($sql);
       if($result)
       {
+        $numtable = count($result);
         for ($i=0; $i < count($result); $i++)
         {
           $lecture_detail[$i] = $result[$i];
         }
+      }
+      else
+      {
+        $numtable = 0;
+        $data['lecture_detail'] = null;
       }
       $sql = "SELECT si.`instructor_id`,si.`prefix`,si.`firstname`,si.`lastname`,si.`position`,si.`qualification`,si.`work_place`,si.`phone`,si.`phone_sub`,si.`phone_mobile`,si.`email`,si.`invited`,ei.`level_teacher`,ei.`level_descript`,ei.`expense_lec_choice`,ei.`expense_lec_number`,ei.`expense_lec_hour`,ei.`expense_lec_cost`,ei.`expense_plane_check`,ei.`expense_plane_depart`,ei.`expense_plane_arrive`,ei.`expense_plane_cost`,ei.`expense_taxi_check`,ei.`expense_taxi_depart`,ei.`expense_taxi_arrive`,ei.`expense_taxi_cost`,ei.`expense_car_check`,ei.`expense_car_distance`,ei.`expense_car_unit`,ei.`expense_car_cost`,ei.`expense_hotel_choice`,ei.`expense_hotel_per_night`,ei.`expense_hotel_number`,ei.`expense_hotel_cost`,ei.`cost_total`, ci.*";
       $sql .= " FROM `special_instructor` si,`expense_special_instructor` ei, `course_hire_special_instructor` ci  ";
@@ -523,6 +530,7 @@ class Course
     if($result)
     {
       $data = $result[0];
+      $data['num_table'] = $numtable;
       if($type == 'special')
       {
         $data['lecture_detail'] = $lecture_detail;

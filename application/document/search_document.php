@@ -1,4 +1,5 @@
-<?php //var_dump($_POST); die;
+<?php
+// var_dump($_POST); die;
 session_start();
 require_once(__DIR__.'/../class/course.php');
 require_once(__DIR__.'/../class/person.php');
@@ -48,8 +49,6 @@ if(isset($_POST['type']))
   {
     $semester = $_POST['semester'];
     $year = $_POST['year'];
-    if($type == 'evaluate')
-    {
       $data = $course->Get_Document($type,$course_id,$instructor_id,$_SESSION['id'],$semester,$year);
       if($data == false)
       {
@@ -62,7 +61,6 @@ if(isset($_POST['type']))
       {
         echo json_encode($data);
       }
-    }
   }
   else
   {
