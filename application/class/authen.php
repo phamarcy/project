@@ -25,8 +25,8 @@ class Authentication
 //authorize staff,teacher in database from username,password
   public function Authorize($username,$password)
   {
-    $sql = "SELECT `code`,`fname`,`lname` FROM `staff` WHERE `username` = '".$username."'";
-    // $sql = "SELECT `code`,`fname`,`lname` FROM `staff` WHERE `username` = '".$username."' AND `password` = '".$password."'";
+    // $sql = "SELECT `code`,`fname`,`lname` FROM `staff` WHERE `username` = '".$username."'";
+    $sql = "SELECT `code`,`fname`,`lname` FROM `staff` WHERE `username` = '".$username."' AND `password` = '".$password."'";
     $this->DB->Change_DB('person');
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
