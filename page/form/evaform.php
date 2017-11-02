@@ -633,12 +633,12 @@ function checksubject(btntype,type){
                           $('#buttondiv').hide();
                         }
 
-                       if(temp['info']!=false && temp[0]!=null)
+                       if(temp['INFO']!=false && temp[0]!=null)
                        {
-                         document.getElementById('COURSE_ID').value = temp['info']['course_id'];
-                         document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
-                         document.getElementById('NAME_TH_COURSE').value = temp['info']['course_name_th'];
-                         document.getElementById('TOTAL').value = temp['info']['credit']+"("+temp['info']['hr_lec']+"-"+temp['info']['hr_lab']+"-"+temp['info']['hr_self']+")";
+                         document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
+                         document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
+                         document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
+                         document.getElementById('TOTAL').value = temp['INFO']['credit']+"("+temp['INFO']['hr_lec']+"-"+temp['INFO']['hr_lab']+"-"+temp['INFO']['hr_self']+")";
                          document.getElementById('formdrpd').style.display = "";
                          //cleardatalist
                          var selectobject = document.getElementById('semester');
@@ -660,7 +660,7 @@ function checksubject(btntype,type){
 
 
                        }
-                       else if(temp['info']==false && temp[0]==null && $('#id').val()!=""){
+                       else if(temp['INFO']==false && temp[0]==null && $('#id').val()!=""){
                          swal(
                             '',
                             'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
@@ -670,7 +670,7 @@ function checksubject(btntype,type){
                          document.getElementById('id').value = "";
                          document.getElementById('formdrpd').style.display = "none";
                        }
-                       else if(temp['info']!=false && temp[0]==null){
+                       else if(temp['INFO']!=false && temp[0]==null){
                           swal(
                              '',
                              'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
@@ -678,10 +678,10 @@ function checksubject(btntype,type){
                            )
                            document.getElementById('formdrpd').style.display = "none";
                            $('#dlhide').show();
-                          document.getElementById('COURSE_ID').value = temp['info']['course_id'];
-                          document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
-                          document.getElementById('NAME_TH_COURSE').value = temp['info']['course_name_th'];
-                          document.getElementById('TOTAL').value = temp['info']['credit']+"("+temp['info']['hr_lec']+"-"+temp['info']['hr_lab']+"-"+temp['info']['hr_self']+")";
+                          document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
+                          document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
+                          document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
+                          document.getElementById('TOTAL').value = temp['INFO']['credit']+"("+temp['INFO']['hr_lec']+"-"+temp['INFO']['hr_lab']+"-"+temp['INFO']['hr_self']+")";
                         }
                         else {
                           if($('#id').val()=="" ||$('#id').val()==null )
@@ -743,9 +743,7 @@ function checksubject(btntype,type){
                   success: function (result) {
                     try {
                       var temp = $.parseJSON(result);
-                    } catch (e) {
-                         console.log('Error#542-decode error');
-                    }
+
                     if(temp!=null)
                     {
                       swal.hideLoading()
@@ -762,7 +760,28 @@ function checksubject(btntype,type){
                       swal.hideLoading()
                       alert('error');
                     }
-                  },
+                  } catch (e) {
+                    swal.hideLoading()
+                    swal({
+                      title: 'เกิดข้อผิดพลาด',
+                      text: temp["msg"],
+                      type: 'error',
+                      showCancelButton: false,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Ok'
+                    }).then(function () {
+
+                    }, function (dismiss) {
+                    // dismiss can be 'cancel', 'overlay',
+                    // 'close', and 'timer'
+                    if (dismiss === 'cancel') {
+
+                    }
+                  })
+                       console.log('Error#542-decode error');
+                  }
+                },
                   failure: function (result) {
                        alert(result);
                   },
@@ -860,126 +879,62 @@ function submitfunc(casesubmit) {
         'NAMETH' : document.getElementById("NAME_TH_COURSE").value,
         'NAMEENG' : document.getElementById("NAME_ENG_COURSE").value,
         'STUDENT' : sectionobj,
-        'CREDIT' : {
-          'TOTAL' : document.getElementById("TOTAL").value
-        },
+        'CREDIT_TOTAL' : document.getElementById("TOTAL").value,
         'TYPE_TEACHING' : document.querySelector("input[name='TYPE_TEACHING']:checked").value,
         'TYPE_TEACHING_NAME' : document.getElementById('TYPE_TEACHING_NAME').value,
         'TEACHER' : teacher_lec,
         'TEACHER-CO' : document.getElementById('tchco').value,
-        'EXAM': {
-          'MID1' : {
-            'HOUR' : {
-              'LEC' : document.getElementById("MIDEXAM_HOUR_LEC").value,
-              'LAB' : document.getElementById("MIDEXAM_HOUR_LAB").value
-            },
-            'NUMBER' : {
-              'LEC' : document.getElementById("mexholec").value,
-              'LAB' : document.getElementById("mexholac").value
-            },
-            'COMMITTEE' : {
-              'LEC' : commidlec,
-              'LAB' : commidlab
-            }
-          },
-          'MID2' : {
-            'HOUR' : {
-              'LEC' : document.getElementById("MIDEXAM_HOUR_LEC_SEC").value,
-              'LAB' : document.getElementById("MIDEXAM_HOUR_LAB_SEC").value
-            },
-            'NUMBER' : {
-              'LEC' : document.getElementById("mexholec_sec").value,
-              'LAB' : document.getElementById("mexholac_sec").value
-            },
-            'COMMITTEE' : {
-              'LEC' : commidlec_sec,
-              'LAB' : commidlab_sec
-            }
-          },
-          'FINAL' : {
-            'HOUR' : {
-              'LEC' : document.getElementById("FINEXAM_HOUR_LEC").value,
-              'LAB' : document.getElementById("FINEXAM_HOUR_LAB").value
-            },
-            'NUMBER' : {
-              'LEC' : document.getElementById("fexholec").value,
-              'LAB' : document.getElementById("fexholac").value
-            },
-            'COMMITTEE' : {
-              'LEC' : comfinlec,
-              'LAB' : comfinlab
-            }
-          },
-          'SUGGESTION' : document.getElementById("suggestion").value
-        },
-        'MEASURE' : {
-          'MID1' : {
-            'LEC' : document.getElementById("MEASURE_MIDLEC1").value,
-            'LAB' : document.getElementById("MEASURE_MIDLAB1").value
-          },
-          'MID2' : {
-            'LEC' : document.getElementById("MEASURE_MIDLEC2").value,
-            'LAB' : document.getElementById("MEASURE_MIDLAB2").value
-          },
-          'FINAL' : {
-            'LEC' : document.getElementById("MEASURE_FINLEC").value,
-            'LAB' : document.getElementById("MEASURE_FINLAB").value
-          },
-          'WORK' : {
-            'LEC' : document.getElementById("MEASURE_WORKLEC").value,
-            'LAB' : document.getElementById("MEASURE_WORKLAB").value
-          },
-          'OTHER' : {
-            'LEC' : document.getElementById("MEASURE_OTHLEC").value,
-            'LAB' : document.getElementById("MEASURE_OTHLAB").value,
-            'OTH' : document.getElementById("OTHER_MEA").value
-          },
-          'TOTAL' : {
-            'LEC' : document.getElementById("MEASURE_TOTALLEC").value,
-            'LAB' : document.getElementById("MEASURE_TOTALLAB").value
-          },
-          'MSG' : document.getElementById("psmeasure").value
-        },
-        'CALCULATE' : {
-          'TYPE' : document.querySelector("input[name='CALCULATE']:checked").value,
-          'EXPLAINATION' : document.getElementById("EXPLAINATION").value,
-          'A' : {
-            'MIN' : document.getElementById("CALCULATE_A_MIN").value
-          },
-          'B+' : {
-            'MIN' : document.getElementById("CALCULATE_Bp_MIN").value,
-            'MAX' : document.getElementById("CALCULATE_Bp_MAX").value
-          },
-          'B' : {
-            'MIN' : document.getElementById("CALCULATE_B_MIN").value,
-            'MAX' : document.getElementById("CALCULATE_B_MAX").value
-          },
-          'C+' : {
-            'MIN' : document.getElementById("CALCULATE_Cp_MIN").value,
-            'MAX' : document.getElementById("CALCULATE_Cp_MAX").value
-          },
-          'C' : {
-            'MIN' : document.getElementById("CALCULATE_C_MIN").value,
-            'MAX' : document.getElementById("CALCULATE_C_MAX").value
-          },
-          'D+' : {
-            'MIN' : document.getElementById("CALCULATE_Dp_MIN").value,
-            'MAX' : document.getElementById("CALCULATE_Dp_MAX").value
-          },
-          'D' : {
-            'MIN' : document.getElementById("CALCULATE_D_MIN").value,
-            'MAX' : document.getElementById("CALCULATE_D_MAX").value
-          },
-          'F' : {
-            'MAX' : document.getElementById("CALCULATE_F_MAX").value
-          },
-          'S' : {
-            'MIN' : document.getElementById("CALCULATE_S_MIN").value
-          },
-          'U' : {
-            'MAX' : document.getElementById("CALCULATE_U_MAX").value
-          }
-        },
+        'EXAM_MID1_HOUR_LEC' : document.getElementById("MIDEXAM_HOUR_LEC").value,
+        'EXAM_MID1_HOUR_LAB' : document.getElementById("MIDEXAM_HOUR_LAB").value,
+        'EXAM_MID1_NUMBER_LEC' : document.getElementById("mexholec").value,
+        'EXAM_MID1_NUMBER_LAB' : document.getElementById("mexholac").value,
+        'EXAM_MID1_COMMITTEE_LEC' : commidlec,
+        'EXAM_MID1_COMMITTEE_LAB' : commidlab,
+        'EXAM_MID2_HOUR_LEC' : document.getElementById("MIDEXAM_HOUR_LEC_SEC").value,
+        'EXAM_MID2_HOUR_LAB' : document.getElementById("MIDEXAM_HOUR_LAB_SEC").value,
+        'EXAM_MID2_NUMBER_LEC' : document.getElementById("mexholec_sec").value,
+        'EXAM_MID2_NUMBER_LAB' : document.getElementById("mexholac_sec").value,
+        'EXAM_MID2_COMMITTEE_LEC' : commidlec_sec,
+        'EXAM_MID2_COMMITTEE_LAB' : commidlab_sec,
+        'EXAM_FINAL_HOUR_LEC' : document.getElementById("FINEXAM_HOUR_LEC").value,
+        'EXAM_FINAL_HOUR_LAB' : document.getElementById("FINEXAM_HOUR_LAB").value,
+        'EXAM_FINAL_NUMBER_LEC' : document.getElementById("fexholec").value,
+        'EXAM_FINAL_NUMBER_LAB' : document.getElementById("fexholac").value,
+        'EXAM_FINAL_COMMITTEE_LEC' : comfinlec,
+        'EXAM_FINAL_COMMITTEE_LAB' : comfinlab,
+        'EXAM_SUGGESTION' : document.getElementById("suggestion").value,
+        'MEASURE_MID1_LEC' : document.getElementById("MEASURE_MIDLEC1").value,
+        'MEASURE_MID1_LAB' : document.getElementById("MEASURE_MIDLAB1").value,
+        'MEASURE_MID2_LEC' : document.getElementById("MEASURE_MIDLEC2").value,
+        'MEASURE_MID2_LAB' : document.getElementById("MEASURE_MIDLAB2").value,
+        'MEASURE_FINAL_LEC' : document.getElementById("MEASURE_FINLEC").value,
+        'MEASURE_FINAL_LAB' : document.getElementById("MEASURE_FINLAB").value,
+        'MEASURE_WORK_LEC' : document.getElementById("MEASURE_WORKLEC").value,
+        'MEASURE_WORK_LAB' : document.getElementById("MEASURE_WORKLAB").value,
+        'MEASURE_OTHER_LEC' : document.getElementById("MEASURE_OTHLEC").value,
+        'MEASURE_OTHER_LAB' : document.getElementById("MEASURE_OTHLAB").value,
+        'MEASURE_OTHER_OTH' : document.getElementById("OTHER_MEA").value,
+        'MEASURE_TOTAL_LEC' : document.getElementById("MEASURE_TOTALLEC").value,
+        'MEASURE_TOTAL_LAB' : document.getElementById("MEASURE_TOTALLAB").value,
+        'MEASURE_MSG' : document.getElementById("psmeasure").value,
+        'CALCULATE_TYPE' : document.querySelector("input[name='CALCULATE']:checked").value,
+        'CALCULATE_EXPLAINATION' : document.getElementById("EXPLAINATION").value,
+        'CALCULATE_A_MIN' : document.getElementById("CALCULATE_A_MIN").value,
+        'CALCULATE_B+_MIN' : document.getElementById("CALCULATE_Bp_MIN").value,
+        'CALCULATE_B+_MAX' : document.getElementById("CALCULATE_Bp_MAX").value,
+        'CALCULATE_B_MIN' : document.getElementById("CALCULATE_B_MIN").value,
+        'CALCULATE_B_MAX' : document.getElementById("CALCULATE_B_MAX").value,
+        'CALCULATE_C+_MIN' : document.getElementById("CALCULATE_Cp_MIN").value,
+        'CALCULATE_C+_MAX' : document.getElementById("CALCULATE_Cp_MAX").value,
+        'CALCULATE_C_MIN' : document.getElementById("CALCULATE_C_MIN").value,
+        'CALCULATE_C_MAX' : document.getElementById("CALCULATE_C_MAX").value,
+        'CALCULATE_D+_MIN' : document.getElementById("CALCULATE_Dp_MIN").value,
+        'CALCULATE_D+_MAX' : document.getElementById("CALCULATE_Dp_MAX").value,
+        'CALCULATE_D_MIN' : document.getElementById("CALCULATE_D_MIN").value,
+        'CALCULATE_D_MAX' : document.getElementById("CALCULATE_D_MAX").value,
+        'CALCULATE_F_MAX' : document.getElementById("CALCULATE_F_MAX").value,
+        'CALCULATE_S_MIN' : document.getElementById("CALCULATE_S_MIN").value,
+        'CALCULATE_U_MAX' : document.getElementById("CALCULATE_U_MAX").value,
         'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,
         'SUBMIT_TYPE' : casesubmit,
         'USERID' : '<?php echo $_SESSION['id']; ?>',

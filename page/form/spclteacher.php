@@ -327,9 +327,15 @@ $current = $dlobj->Get_Current_Semester();
                              $('#buttondiv').hide();
                            }
 
-                           if(temp['DATA']!=false)
+                           if(temp['DATA']!=false && temp['INFO']!=false)
                            {
+                             $('#teachername').prop('disabled', false);
+                             $('#subhead').prop('disabled', false);
                              console.log(temp);
+                             $('#hiddenh5').hide();
+                             $('#hiddenh5_found').show();
+                             $('#hiddenh5_found').html("กระบวนวิชา "+temp['INFO'].course_name_th+" ("+temp['INFO'].course_id+")");
+                             $('#notfound').hide();
                              var course_id = document.getElementById('id').value;
                              document.getElementById('formdrpd').style.display = "";
                              //cleardatalist
@@ -349,9 +355,32 @@ $current = $dlobj->Get_Current_Semester();
                                opt.innerHTML = "คุณ"+temp['DATA'][i].name;
                                document.getElementById('teachername').appendChild(opt);
                              }
+                           }else if(temp['DATA']==false && temp['INFO']!=false){
+                             $('#hiddenh5_found').show();
+                             $('#hiddenh5_found').html("กระบวนวิชา "+temp['INFO'].course_name_th+" ("+temp['INFO'].course_id+")");
+                             $('#hiddenh5').hide();
+                             $('#notfound').show();
+
+                             var course_id = document.getElementById('id').value;
+                             document.getElementById('formdrpd').style.display = "";
+                             //cleardatalist
+                             var selectobject = document.getElementById('teachername');
+                             var long = selectobject.length;
+                             if(long!=0 && long!=null)
+                             {
+                               for (var i=0; i<=long; i++){
+                                 document.getElementsByName("teachername")[0].remove(0);
+                               }
+                             }
+                             $('#teachername').prop('disabled', true);
+                             $('#subhead').prop('disabled', true);
+
                            }
-                           else if(temp['DATA']==false && $('#id').val()!=""){
+                           else if(temp['DATA']==false && $('#id').val()!="" && temp['INFO']==false){
                              $('#dlhide').hide();
+                             $('#hiddenh5_found').hide();
+                             $('#hiddenh5').show();
+                             $('#notfound').hide();
                              swal(
                                 '',
                                 'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
@@ -362,6 +391,9 @@ $current = $dlobj->Get_Current_Semester();
                             }else {
                                if($('#id').val()=="" ||$('#id').val()==null )
                                {
+                                 $('#hiddenh5_found').hide();
+                                 $('#hiddenh5').show();
+                                 $('#notfound').hide();
                                  swal(
                                     '',
                                     'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
@@ -1687,27 +1719,28 @@ function lastcal() {
 <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
   <div class="row">
     <center>
-      <h3 class="page-header">แบบขออนุมัติเชิญอาจารย์พิเศษ คณะเภสัชศาสตร์</h3>
+      <h3 class="page-header">การเชิญอาจารย์พิเศษ</h3>
+      <h5 id="hiddenh5">กระบวนวิชาที่ต้องการเชิญอาจารย์พิเศษ</h5>
+      <h5 id="hiddenh5_found"></h5>
+
       <div id="overtimemsg" class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> ไม่สามารถกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ <br><br> เนื่องจากช่วงเวลาที่ทำการยังไม่เปิดให้บริการหรือสิ้นสุดลง !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg2"></p></b> </div>
       <form id="formheader" data-toggle="validator" role="form">
         <div id="formchecksj" class="form-inline" style="font-size:16px;">
                   <div class="form-group ">
-                    รหัสกระบวนวิชา
                      <input type="text" class="form-control numonly" id="id" name="id" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required >
                   </div>
                   <input type="hidden" name="type" value="1">
                  <button type="button" class="btn btn-outline btn-primary" onclick="checksubject(1,2);">ค้นหา</button>
          </div>
-
+        <h5 id="notfound" style="color:#ff0000; display:none;">ไม่พบข้อมูล</h5>
     <div id="formdrpd" style="display: none;">
       <div class="form-inline">
         <div class="form-group " style="font-size:16px;">
-           ค้นหารายชื่ออาจารย์พิเศษ
-          <select class="form-control required" id="teachername" name="teachername" style="width: 400px;" required >
+          <select class="form-control required" id="teachername" name="teachername" style="width: 200px;" required >
           </select>
          </div>
          <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,2);">
-         <input type="button" class="btn btn-outline btn-success" name="subhead2" id="subhead2" value="เพิ่มรายชื่อ" onclick="checksubject(3,2);">
+         <input type="button" class="btn btn-outline btn-success" name="subhead2" id="subhead2" value="เพิ่มรายชื่อใหม่" onclick="checksubject(3,2);">
        </div>
      </div>
          </form>
