@@ -121,7 +121,6 @@ $Excel->getActiveSheet(1)
         array_push($dept_course,$temp_course[$i]['id']);
       }
     }
-$file_path = $FILE_PATH.'/temp';
 
 $sql = "SELECT DISTINCT `course_id` FROM `approval_course` WHERE `status` = '7' AND `semester_id` = ".$semester['id'];
 $result = $database->Query($sql);
@@ -137,13 +136,9 @@ if($result)
     {
       continue;
     }
-    // $sql = "SELECT * FROM `evaluate` WHERE `course_id` = '".$course_id."' `semester_id` = ".$semester['id'];
-    // $result = $database->Query($sql);
-    $temp_file = $file_path.'/'.$course_id."/evaluate/".$course_id."_evaluate_".$semester['semester']."_".$semester['year'].".txt";
-    if(file_exists($temp_file))
+    $data = $course->Get_Document('evaluate',$course_id,null,null,$semester['semester'],$semester['year'])
+    if($data)
     {
-      $data = file_get_contents($temp_file);
-      $data = json_decode($data,true);
       $Excel->setActiveSheetIndex(0)->setCellValue('A'.$row, $data['COURSE_ID']);
       $teacher = $course->Get_Responsible_Teacher($data['COURSE_ID'],$semester['id']);
       $Excel->setActiveSheetIndex(0)->setCellValue('B'.$row, $teacher['teacher']);
@@ -281,10 +276,6 @@ $sheet3->getStyle('A2:B2')->applyFromArray($border);
 $sheet3->getStyle('A3:K3')->applyFromArray($border);
 $Excel->getActiveSheet(2)
         ->setTitle('อาจารย์พิเศษ');
-
-$file_path = $FILE_PATH.'/temp';
-
-
   $sql = "SELECT DISTINCT `course_id`,`instructor_id` FROM `course_hire`
   WHERE `semester_id` = ".$semester['id']." ORDER BY `course_id`";
   $result = $database->Query($sql);
@@ -300,24 +291,21 @@ $file_path = $FILE_PATH.'/temp';
       {
         continue;
       }
-      $temp_file = $file_path.'/'.$course_id."/special_instructor/".$course_id."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".txt";
-
-      if(file_exists($temp_file))
+      $data = $course->Get_Document('special',$course_id,$instructor_id,null,$semester['semester'],$semester['year']);
+      if($data)
       {
-        $data = file_get_contents($temp_file);
-        $data = json_decode($data,true);
-        $instructor_name = $data["TEACHERDATA"]['PREFIX']." ".$data["TEACHERDATA"]['FNAME']." ".$data["TEACHERDATA"]["LNAME"];
-        $Excel->setActiveSheetIndex(2)->setCellValue('A'.$row, $data["COURSEDATA"]["COURSE_ID"]);
+        $instructor_name = $data["prefix"]." ".$data["firstname"]." ".$data["lastname"];
+        $Excel->setActiveSheetIndex(2)->setCellValue('A'.$row, $course_id);
         $Excel->setActiveSheetIndex(2)->setCellValue('B'.$row, $instructor_name);
-        $Excel->setActiveSheetIndex(2)->setCellValue('C'.$row, $data["TEACHERDATA"]['POSITION']);
-        $Excel->setActiveSheetIndex(2)->setCellValue('D'.$row, $data["TEACHERDATA"]['WORKPLACE']);
+        $Excel->setActiveSheetIndex(2)->setCellValue('C'.$row, $data["position"]);
+        $Excel->setActiveSheetIndex(2)->setCellValue('D'.$row, $data["work_place"]);
         $yet = '';
         $already = '';
-        switch ($data["TEACHERDATA"]["HISTORY"]) {
-          case 'yet':
+        switch ($data["invited"]) {
+          case '0':
             $yet = '/';
             break;
-          case 'already':
+          case '1':
             $already = '/';
             break;
           default:
@@ -327,20 +315,20 @@ $file_path = $FILE_PATH.'/temp';
         $Excel->setActiveSheetIndex(2)->setCellValue('E'.$row, $already);
         $Excel->setActiveSheetIndex(2)->setCellValue('F'.$row, $yet);
         $topic = '';
-        $count_topic = count($data["COURSEDATA"]["DETAIL"]["TOPICLEC"]);
+        $count_topic = $data["num_table"];
         for($j=0;$j<$count_topic;$j++)
         {
-          $topic .= $data["COURSEDATA"]["DETAIL"]["TOPICLEC"][$j]."\n";
+          $topic .= $data["lecture_detail"][$j]["topic_name"]."\n";
         }
         $Excel->setActiveSheetIndex(2)->setCellValue('G'.$row, $topic);
-        $Excel->setActiveSheetIndex(2)->setCellValue('H'.$row, $data["PAYMENT"]["COSTSPEC"]["COST"]);
+        $Excel->setActiveSheetIndex(2)->setCellValue('H'.$row, $data["expense_lec_cost"]);
 
-        $cost_trans = (float)$data["PAYMENT"]["COSTTRANS"]["TRANSPLANE"]["COST"] + (float)$data["PAYMENT"]["COSTTRANS"]["TRANSTAXI"]["COST"] + (float)$data["PAYMENT"]["COSTTRANS"]["TRANSSELFCAR"]["COST"];
+        $cost_trans = (float)$data["expense_plane_cost"] + (float)$data["expense_taxi_cost"] + (float)$data["expense_car_cost"];
         $Excel->setActiveSheetIndex(2)->setCellValue('I'.$row, $cost_trans);
 
 
-        $Excel->setActiveSheetIndex(2)->setCellValue('J'.$row, $data["PAYMENT"]["COSTHOTEL"]["PERNIGHT"]);
-        $Excel->setActiveSheetIndex(2)->setCellValue('K'.$row, $data["PAYMENT"]["TOTALCOST"]);
+        $Excel->setActiveSheetIndex(2)->setCellValue('J'.$row, $data["expense_hotel_cost"]);
+        $Excel->setActiveSheetIndex(2)->setCellValue('K'.$row, $data["cost_total"]);
         $row++;
       }
     }
