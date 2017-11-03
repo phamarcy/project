@@ -101,9 +101,6 @@ if(isset($_POST['DATA']))
 {
 	$data = $_POST['DATA'];
 	$DATA = json_decode($data,true);
-	$DATA = array_map(function($DATA) {
-   return $DATA === "" ? 'null' : $DATA;
-	}, $DATA);
 	$course_id = $DATA["COURSEDATA_COURSE_ID"];
 	$year = (int)$DATA["YEAR"]-543;
 	$submit_date = strtotime((int)$DATA["DATE"]."-".(int)$DATA["MONTH"]."-".$year);
@@ -211,7 +208,7 @@ if($data_pdf == false)
 	die;
 }
 $data_pdf = array_map(function($data_pdf) {
- return $data_pdf === 'null' ? '' : $data_pdf;
+ return $data_pdf === null ? '' : $data_pdf;
 }, $data_pdf);
 //start generate pdf
 define('FPDF_FONTPATH','font/');
