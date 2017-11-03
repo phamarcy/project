@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__.'/../class/manage_deadline.php');
-
+require_once(__DIR__.'/../class/database.php');
+$db = new Database();
 $deadline = new Deadline();
 $semester = $deadline->Get_Current_Semester();
 if(isset($_FILES['file']))
@@ -16,8 +17,7 @@ if(isset($_FILES['file']))
 
 function Upload($file,$course_id)
 {
-  global $semester;
-	global $FILE_PATH;
+  global $semester,$db,$FILE_PATH;
 	$path = $FILE_PATH."/grade";
 	$filename = $file['name'];
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
@@ -29,8 +29,12 @@ function Upload($file,$course_id)
   {
     unlink($path."/".$course_id."_grade_".$semester['semester']."_".$semester['year'].".xlsx");
   }
-	$uploadfile = $path."/".$course_id."_grade_".$semester['semester']."_".$semester['year'].".".$ext;
-	if (!move_uploaded_file($file['tmp_name'], $uploadfile))
+  $filename = $course_id."_grade_".$semester['semester']."_".$semester['year'].".".$ext;
+	$uploadfile = $path."/".$filename;
+  $sql = "INSERT INTO `couse_grade`(`course_id`, `semester_id`, `file_name`) VALUES ('".$course_id."',".$semester['id'].",'".$filename."') ";
+  $sql .= "ON DUPLICATE KEY UPDATE `file_name` = '".$filename."'";
+  $result = $db->Insert_Update_Delete($sql);
+	if (!move_uploaded_file($file['tmp_name'], $uploadfile) || !$result)
 	{
 		$return['status'] = "error";
 		$return['msg'] = 'ไม่สามารถบันทึกไฟล์เกรดได้';

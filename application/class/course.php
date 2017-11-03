@@ -589,32 +589,23 @@ class Course
     $result = $this->DB->Query($sql);
     if($result)
     {
+      $grade_path = $this->FILE_PATH."/grade/";
       $data = array();
       for($i=0;$i<count($result);$i++)
       {
         $temp['course_id'] = $result[$i]['course_id'];
         $temp['course_name'] = $result[$i]['name'];
-        $grade_file = $this->FILE_PATH."/grade/".$temp['course_id']."_grade_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".xls";
-        if (file_exists(realpath($grade_file)))
+        $sql = "SELECT `file_name` FROM `couse_grade` WHERE `course_id` = '".$temp['course_id']."' AND `semester_id` = ".$this->SEMESTER['id'];
+        $result = $this->DB->Query($sql);
+        if($result)
         {
-            $temp['status'] = 1;
-            $temp['url'] = "/grade/".$temp['course_id']."_grade_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".xls";
+          $temp['url'] = $grade_path."/".$result[0]['file_name'];
         }
         else
         {
-          $grade_file = $this->FILE_PATH."/grade/".$temp['course_id']."_grade_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".xlsx";
-          if (file_exists(realpath($grade_file)))
-          {
-              $temp['status'] = 1;
-              $temp['url'] = "/grade/".$temp['course_id']."_grade_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".xlsx";
-          }
-          else
-          {
-            $temp['status'] = 0;
-            unset($temp['url']);
-          }
+          $temp['status'] = 0;
+          unset($temp['url']);
         }
-
         array_push($data,$temp);
       }
       return $data;
