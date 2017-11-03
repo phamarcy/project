@@ -1,35 +1,31 @@
 <?php
 require_once(__DIR__."/../class/curl.php");
-
+require_once(__DIR__."/../class/manage_deadline.php");
+require_once(__DIR__."/../class/database.php");
+require_once(__DIR__."/../config/configuration_variable.php");
+$db = new Database();
+$deadline = new Deadline();
 if(isset($_GET['info']) && isset($_GET['semester']) && isset($_GET['year']) && isset($_GET['course']))
 {
      $FILE_COURSE = $_GET['course'];
      $SEMESTER = $_GET['semester'];
      $YEAR = $_GET['year'];
+     $SEMESTER_ID = $deadline->Search_Semester_id($SEMESTER,$YEAR);
+
      $INFORMATION_TYPE = $_GET['info']; //evaluate,syllabus,special
-     $PATH_FILE = "../../files/";
      if($INFORMATION_TYPE == 'special')
      {
-       if(isset($_GET['type']))
-       {
-         $FILE_TYPE = $_GET['type']; //draft, complete
-         if(isset($_GET['id']))
+         $SPECIAL_ID = $_GET['id']; //instructor id
+         $sql = "SELECT `pdf_file` FROM `course_hire_special_instructor` WHERE `course_id` ='".$FILE_COURSE."' AND `instructor_id` = ".$SPECIAL_ID." AND `semester_id` = ".$SEMESTER_ID;
+         $result = $db->Query($sql);
+         if($result)
          {
-           $SPECIAL_ID = $_GET['id']; //instructor id
-           $FILE_NAME = $PATH_FILE.$FILE_TYPE."/".$FILE_COURSE."/special_instructor/".$FILE_COURSE."_".$SPECIAL_ID."_".$SEMESTER."_".$YEAR.".pdf";
-           header("Content-type: application/pdf");
-          //  header("Content-Disposition: inline;");
-           readfile($FILE_NAME);
+           $pdf_file = $result[0]['pdf_file'];
          }
-         else
-         {
-           error();
-         }
-       }
-       else
-       {
-         error();
-       }
+         $FILE_NAME = $FILE_PATH.$pdf_file;
+         header("Content-type: application/pdf");
+         //  header("Content-Disposition: inline;");
+         readfile($FILE_NAME);
      }
      else if($INFORMATION_TYPE == 'evaluate')
      {
@@ -38,7 +34,7 @@ if(isset($_GET['info']) && isset($_GET['semester']) && isset($_GET['year']) && i
          $FILE_TYPE = $_GET['type']; //draft, complete
          if(isset($_GET['course']))
          {
-           $FILE_NAME = $PATH_FILE.$FILE_TYPE."/".$FILE_COURSE."/evaluate/".$FILE_COURSE."_".$INFORMATION_TYPE."_".$SEMESTER."_".$YEAR.".pdf";
+           $FILE_NAME = $FILE_PATH.$FILE_TYPE."/".$FILE_COURSE."/evaluate/".$FILE_COURSE."_".$INFORMATION_TYPE."_".$SEMESTER."_".$YEAR.".pdf";
            header("Content-type: application/pdf");
           //  header("Content-Disposition: inline;");
            readfile($FILE_NAME);
@@ -51,31 +47,6 @@ if(isset($_GET['info']) && isset($_GET['semester']) && isset($_GET['year']) && i
        else
        {
           error();
-       }
-     }
-     else if($INFORMATION_TYPE == 'syllabus')
-     {
-       $curl = new CURL();
-       $server_url = $curl->GET_SERVER_URL();
-       if(isset($_GET['course']))
-       {
-         $FILE_COURSE = $_GET['course'];
-         $FILE_NAME = $PATH_FILE."/".$INFORMATION_TYPE.'/'.$FILE_COURSE.".docx";
-         if(!file_exists($FILE_NAME))
-         {
-           $FILE_NAME = $PATH_FILE."/".$INFORMATION_TYPE.'/'.$FILE_COURSE.".doc";
-           $doc_url = $server_url."/files/syllabus/".$FILE_COURSE.".doc";
-         }
-         else
-         {
-           $doc_url = $server_url."/files/syllabus/".$FILE_COURSE.".docx";
-         }
-         $url = 'http://docs.google.com/gview?url='.$doc_url;
-         header( "Location: $url" );
-       }
-       else
-       {
-         error();
        }
      }
      else

@@ -838,7 +838,7 @@ class approval
   {
     $url = $this->CURL->GET_SERVER_URL();
     $view_url = $url."/application/pdf/view.php";
-    $return_url['pdf'] = $view_url."?course=".$course_id."&id=".$instructor_id."&type=".$type."&info=special&semester=".$this->SEMESTER."&year=".$this->YEAR;
+    $return_url['pdf'] = $view_url."?course=".$course_id."&id=".$instructor_id."&info=special&semester=".$this->SEMESTER."&year=".$this->YEAR;
     $return_url['cv'] = $this->PERSON->Get_CV($instructor_id);
     return $return_url;
   }

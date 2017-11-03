@@ -82,7 +82,7 @@ public function Update($data,$type)
     }
 
   }
-  //get current semester id
+  //get semester id
   public function Search_Semester_id($semester,$year)
   {
     $sql = "SELECT `semester_id` FROM `semester` WHERE `semester_num` = ".$semester." AND `year` = '".$year."'";
