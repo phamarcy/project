@@ -167,11 +167,11 @@ $(function() {//<-- wrapped here
                                       echo '<td>'.$num.'</td>';
                                       echo '<td>'.$data_eva[$i]['id'].'</td>';
                                       echo '<td>'.$data_eva[$i]['name'].'</td>';
-                                      if($data_eva[$i]['grade'] != '')
+                                      if($data_eva[$i]['grade'] != '' && $data_eva[$i]['grade'] != null)
                                         echo '<td><a target="_blank" href="../../files'.$data_eva[$i]['grade'].'"><i class="fa fa-file-excel-o fa-2x" aria-hidden="true"></i></a></td>';
                                       else
                                         echo '<td></td>';
-                                      if($data_eva[$i]['syllabus'] != '')
+                                      if($data_eva[$i]['syllabus'] != '' && $data_eva[$i]['syllabus'] != null)
                                         echo '<td><a target="_blank" href="../../files'.$data_eva[$i]['syllabus'].'"><i class="fa fa-file-word-o fa-2x" aria-hidden="true"></i></a></td>';
                                       else
                                         echo '<td></td>';
