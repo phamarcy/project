@@ -17,10 +17,9 @@ $person = new Person();
 $approve =
 $semester = $deadline->Get_Current_Semester();
 $instructor_id = '';
-// var_dump($_POST['DATA']);die;
 function Upload($file,$course_id,$instructor_id)
 {
-	global $FILE_PATH,$semester,$log;
+	global $FILE_PATH,$semester,$log,$db;
 	$path = $FILE_PATH."/cv";
   if(!file_exists($path))
 	{
@@ -73,6 +72,19 @@ function Upload($file,$course_id,$instructor_id)
 		Close_connection();
     die();
 	}
+	else
+	{
+		$sql = "UPDATE `special_instructor` SET `cv` =  '".$instructor_id.'.'.$ext."' WHERE `instructor_id` = '".$instructor_id."'";
+		$result = $db->Insert_Update_Delete($sql);
+		if(!$result)
+		{
+			$return['status'] = "error";
+			$return['msg'] = "ไม่สามารถบันทึกไฟล์ได้";
+			echo json_encode($return);
+			Close_connection();
+	    die();
+		}
+	}
 }
 
 function Close_connection()
@@ -88,7 +100,6 @@ function Close_connection()
 if(isset($_POST['DATA']))
 {
 	$data = $_POST['DATA'];
-	// $data = '{"TEACHERDATA_ID":"98","TEACHERDATA_DEPARTMENT":"ภาควิชาวิทยาศาสตร์เภสัชกรรม","TEACHERDATA_PREFIX":"นาย","TEACHERDATA_FNAME":"a","TEACHERDATA_LNAME":"b","TEACHERDATA_POSITION":"dsa","TEACHERDATA_QUALIFICATION":"asd","TEACHERDATA_WORKPLACE":"dsa","TEACHERDATA_TELEPHONE_NUMBER":"4565465465","TEACHERDATA_TELEPHONE_SUB":"55","TEACHERDATA_MOBILE":"5465465465","TEACHERDATA_EMAIL":"a@a.com","TEACHERDATA_HISTORY":1,"COURSEDATA_COURSE_ID":"460100","COURSEDATA_NOSTUDENT":"50","COURSEDATA_TYPE_COURSE":"require","COURSEDATA_REASON":"56545","COURSEDATA_DETAIL":{"TOPICLEC":["1.asdasddsada","2.545454"],"DATE":["2017-10-31","2017-11-01"],"TIME_BEGIN":["01:00","02:00"],"TIME_END":["12:00","11:00"],"ROOM":["1234564","456"]},"COURSEDATA_PERCENT_HOUR":"50","PAYMENT_LVLTEACHER_CHOICE":"official","PAYMENT_LVLTEACHER_DESCRIPT":"สกลนคร","PAYMENT_COSTSPEC_CHOICE":1,"PAYMENT_COSTSPEC_NUMBER":"400","PAYMENT_COSTSPEC_HOUR":"1","PAYMENT_COSTSPEC_COST":"400.00","PAYMENT_COSTTRANS_TRANSPLANE_CHECKED":1,"PAYMENT_COSTTRANS_TRANSPLANE_DEPART":"1","PAYMENT_COSTTRANS_TRANSPLANE_ARRIVE":"2","PAYMENT_COSTTRANS_TRANSPLANE_COST":"100.00","PAYMENT_COSTTRANS_TRANSTAXI_CHECKED":0,"PAYMENT_COSTTRANS_TRANSTAXI_DEPART":"","PAYMENT_COSTTRANS_TRANSTAXI_ARRIVE":"","PAYMENT_COSTTRANS_TRANSTAXI_COST":"0.00","PAYMENT_COSTTRANS_TRANSSELFCAR_CHECKED":0,"PAYMENT_COSTTRANS_TRANSSELFCAR_DISTANCE":"0","PAYMENT_COSTTRANS_TRANSSELFCAR_UNIT":"0","PAYMENT_COSTTRANS_TRANSSELFCAR_COST":"0","PAYMENT_COSTHOTEL_CHOICE":1,"PAYMENT_COSTHOTEL_PERNIGHT":"1500","PAYMENT_COSTHOTEL_NUMBER":"1","PAYMENT_COSTHOTEL_COST":"1500.00","PAYMENT_TOTALCOST":"2000.00","NUMTABLE":2,"SUBMIT_TYPE":"1","USERID":"011","DATE":"31","MONTH":"10","YEAR":"2560"}';
 	$DATA = json_decode($data,true);
 	$DATA = array_map(function($DATA) {
    return $DATA === "" ? 'null' : $DATA;
@@ -199,6 +210,9 @@ if($data_pdf == false)
 	echo json_encode($return);
 	die;
 }
+$data_pdf = array_map(function($data_pdf) {
+ return $data_pdf === 'null' ? '' : $data_pdf;
+}, $data_pdf);
 //start generate pdf
 define('FPDF_FONTPATH','font/');
 $pdf=new FPDF();
@@ -289,7 +303,7 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','อีเมลล์ 
 $pdf->SetX(32);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','กระบวนวิชานี้เป็นวิชา'))+5,7,iconv( 'UTF-8','TIS-620','หัวข้อที่เชิญมาสอน      '),0,"C");
 $pdf->SetFont('ZapfDingbats','',14);
-if((int)$data_pdf['invited'] == 1)
+if((int)$data_pdf['invited'] == 0)
 {
 	$HISTORY['yet'] = 3;
 	$HISTORY['already'] = '';
@@ -520,6 +534,7 @@ else
 {
 	$pdf->Cell(4,4, '', 1,"C");
 }
+
 $pdf->SetFont('THSarabun','',14);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','เครื่องบิน  ระหว่าง'))+1,7,iconv( 'UTF-8','TIS-620','เครื่องบิน ระหว่าง'),0);
 $pdf->Cell(50,7,iconv( 'UTF-8','TIS-620',$data_pdf["expense_plane_depart"].' - '.$data_pdf["expense_plane_arrive"]),0);
@@ -528,10 +543,6 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','เป็นเงิ�
 $pdf->Cell(20,7,iconv( 'UTF-8','TIS-620',$data_pdf["expense_plane_cost"]),0,"C");
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','บาท'))+2,7,iconv( 'UTF-8','TIS-620','บาท'),0);
 $pdf->Ln();
-
-
-
-
 
 
 $pdf->SetX(40);
@@ -713,6 +724,7 @@ $person->Close_connection();
 if($DATA['SUBMIT_TYPE'] == '1' || $DATA['SUBMIT_TYPE'] == '3')
 {
 	$file_path = $FILE_PATH."/draft/".$data_pdf['course_id'];
+	$file_path_sql = "/draft/".$data_pdf['course_id'];
 	if(!file_exists($file_path))
 	{
 		mkdir($file_path);
@@ -721,6 +733,7 @@ if($DATA['SUBMIT_TYPE'] == '1' || $DATA['SUBMIT_TYPE'] == '3')
 else if ($DATA['SUBMIT_TYPE'] == '4')
 {
 	$file_path = $FILE_PATH."/complete/".$data_pdf['course_id'];
+	$file_path_sql = "/complete/".$data_pdf['course_id'];
 	if(!file_exists($file_path))
 	{
 		mkdir($file_path);
@@ -732,11 +745,15 @@ else
 
 }
 $file_path = $file_path."/special_instructor";
+$file_path_sql = $file_path_sql."/special_instructor/".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf";
 if(!file_exists($file_path))
 {
 	mkdir($file_path);
 }
 $pdf->Output($file_path."/".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
+
+$sql = "UPDATE `course_hire_special_instructor` SET `pdf_file` = '".$file_path_sql."' WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."' AND `semester_id` = ".$semester['id'];
+$result = $db->Insert_Update_Delete($sql);
 
 if($DATA['SUBMIT_TYPE'] == '1')
 {
