@@ -522,34 +522,20 @@ class Person
     return $DATA;
   }
 // get CV file path
-  public function Get_CV($instructor_id,$course_id)
+  public function Get_CV($instructor_id)
   {
-    $CV_file = $this->FILE_PATH."/cv/".$instructor_id.".doc";
-    if (file_exists(realpath($CV_file)))
+    $sql = "SELECT `cv` FROM `special_instructor` WHERE `instructor_id` = '".$instructor_id."'";
+    $result = $this->DB->Query($sql);
+    if($result)
     {
-        $path = "/cv/".$instructor_id.".doc";
+      $file_name = $result[0]['cv'];
+      $path = "/cv/".$file_name;
+      return $path;
     }
     else
     {
-      $CV_file = $this->FILE_PATH."/cv/".$instructor_id.".docx";
-      if (file_exists(realpath($CV_file)))
-      {
-          $path = "/cv/".$instructor_id.".docx";
-      }
-      else
-      {
-        $CV_file = $this->FILE_PATH."/cv/".$instructor_id.".pdf";
-        if (file_exists(realpath($CV_file)))
-        {
-          $path = "/cv/".$instructor_id.".pdf";
-        }
-        else
-        {
-            $path = null;
-        }
-      }
+        return null;
     }
-    return $path;
   }
 
 //search teacher signature file

@@ -53,6 +53,21 @@ if(isset($_POST['type']))
       if($result['status'] == "success")
       {
         $result = $approval->Append_Status_Evaluate($course_id);
+        if($result['status'] == "success")
+        {
+          $result = $approval->Append_Special_Instructor($course_id,null);
+          if($result)
+          {
+            $result = array();
+            $result['status'] = 'success';
+            $result['msg'] = 'เพิ่มข้อมูลสำเร็จ';
+          }
+        }
+        else
+        {
+          $result['status'] = "error";
+          $result['msg'] = "ข้อมูลผิดพลาด";
+        }
       }
     }
     else

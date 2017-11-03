@@ -606,22 +606,55 @@ class approval
       {
         return false;
       }
-    $sql = "SELECT ga.`teacher_id` FROM `subject_assessor` sa, `group_assessor` ga
-    WHERE sa.course_id = '".$course_id."' AND sa.assessor_group_num = ga.group_num AND sa.`semester_id` = ".$this->SEMESTER_ID;
-    $result = $this->DB->Query($sql);
-    if($result)
-    {
-      $updated_date = date("Y-m-d H:i:s");
-      for($i=0;$i<count($result);$i++)
+      if($instructor_id == null)
       {
-        $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`,`updated_date`)
-        VALUES ('".$instructor_id."','".$result[$i]['teacher_id']."','".$course_id."',1,'1',".$this->SEMESTER_ID.",'".$updated_date."')
-        ON DUPLICATE KEY UPDATE `status` = '1',`comment` = null";
-        $approve_result = $this->DB->Insert_Update_Delete($sql);
-        if($approve_result == false)
+        $sql = "SELECT `instructor_id` FROM `course_hire_special_instructor` WHERE `course_id` = '".$course_id."'";
+        $result = $this->DB->Query($sql);
+        if($result)
         {
-          $return['error'] = 'ไม่สามารถเพิ่มข้อมูลได้';
+          $instructor_id = $result;
+          $sql = "SELECT ga.`teacher_id` FROM `subject_assessor` sa, `group_assessor` ga
+          WHERE sa.`course_id` = '".$course_id."' AND sa.assessor_group_num = ga.group_num AND sa.`semester_id` = ".$this->SEMESTER_ID;
+          $result = $this->DB->Query($sql);
+          if($result)
+          {
+            $updated_date = date("Y-m-d H:i:s");
+            for($i=0;$i<count($result);$i++)
+            {
+              for($j=0;$j<count($instructor_id);$j++)
+              {
+                $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`,`updated_date`)
+                VALUES ('".$instructor_id[$j]['instructor_id']."','".$result[$i]['teacher_id']."','".$course_id."',1,'1',".$this->SEMESTER_ID.",'".$updated_date."')
+                ON DUPLICATE KEY UPDATE `status` = '1',`comment` = null";
+                $approve_result = $this->DB->Insert_Update_Delete($sql);
+                if($approve_result == false)
+                {
+                  $return['error'] = 'ไม่สามารถเพิ่มข้อมูลได้';
+                }
+              }
+            }
+          }
         }
+      }
+      else
+      {
+        $sql = "SELECT ga.`teacher_id` FROM `subject_assessor` sa, `group_assessor` ga
+        WHERE sa.course_id = '".$course_id."' AND sa.assessor_group_num = ga.group_num AND sa.`semester_id` = ".$this->SEMESTER_ID;
+        $result = $this->DB->Query($sql);
+        if($result)
+        {
+          $updated_date = date("Y-m-d H:i:s");
+          for($i=0;$i<count($result);$i++)
+          {
+            $sql = "INSERT INTO `approval_special`(`instructor_id`,`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`,`updated_date`)
+            VALUES ('".$instructor_id."','".$result[$i]['teacher_id']."','".$course_id."',1,'1',".$this->SEMESTER_ID.",'".$updated_date."')
+            ON DUPLICATE KEY UPDATE `status` = '1',`comment` = null";
+            $approve_result = $this->DB->Insert_Update_Delete($sql);
+            if($approve_result == false)
+            {
+              $return['error'] = 'ไม่สามารถเพิ่มข้อมูลได้';
+            }
+          }
       }
       $noti['COURSE_ID'] = $course_id;
       $noti['STATUS'] = '1';
@@ -806,7 +839,7 @@ class approval
     $url = $this->CURL->GET_SERVER_URL();
     $view_url = $url."/application/pdf/view.php";
     $return_url['pdf'] = $view_url."?course=".$course_id."&id=".$instructor_id."&type=".$type."&info=special&semester=".$this->SEMESTER."&year=".$this->YEAR;
-    $return_url['cv'] = $this->PERSON->Get_CV($instructor_id,$course_id);
+    $return_url['cv'] = $this->PERSON->Get_CV($instructor_id);
     return $return_url;
   }
 

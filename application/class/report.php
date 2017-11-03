@@ -245,7 +245,7 @@ class Report
                     }
                   }
                 }
-                $instructor['cv'] = $this->PERSON->Get_CV($instructor['id'],$data['id']);
+                $instructor['cv'] = $this->PERSON->Get_CV($instructor['id']);
                 $instructor['pdf'] =  $this->VIEW_URL."?course=".$data['id']."&id=".$instructor['id']."&type=complete&info=special&semester=".$semester."&year=".$year;
                 array_push($data['special'],$instructor);
               }
