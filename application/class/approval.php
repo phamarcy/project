@@ -544,7 +544,7 @@ class approval
          $instructor['id'] = $result[$i]['instructor_id'];
          $instructor['name'] = $result[$i]['firstname'].' '.$result[$i]['lastname'];
          $instructor['status'] = $this->Get_Instructor_Status($result[$i]['instructor_id']);
-         $pdf = $this->Get_Special_Doc_Url($instructor['id'],$course_id,'draft');
+         $pdf = $this->Get_Special_Doc_Url($instructor['id'],$course_id);
          $instructor['pdf'] = $pdf['pdf'];
          $instructor['cv'] = $pdf['cv'];
          $sql = "SELECT teacher_id,comment,`updated_date` FROM `approval_special`
@@ -834,11 +834,11 @@ class approval
   }
 
   //get special instructor pdf url
-  private function Get_Special_Doc_Url($instructor_id,$course_id,$type)
+  private function Get_Special_Doc_Url($instructor_id,$course_id)
   {
     $url = $this->CURL->GET_SERVER_URL();
     $view_url = $url."/application/pdf/view.php";
-    $return_url['pdf'] = $view_url."?course=".$course_id."&id=".$instructor_id."&info=special&semester=".$this->SEMESTER."&year=".$this->YEAR;
+    $return_url['pdf'] = $view_url."?course=".$course_id."&id=".$instructor_id."&type=".$type."&info=special&semester=".$this->SEMESTER."&year=".$this->YEAR;
     $return_url['cv'] = $this->PERSON->Get_CV($instructor_id);
     return $return_url;
   }
