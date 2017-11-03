@@ -256,7 +256,7 @@ $(function() {//<-- wrapped here
                             <h5><b><?php echo "สรุปข้อมูล ภาควิชา ".($dept_id == '1202'? 'บริบาลเภสัชกรรม': ($dept_id == '1203'? 'วิทยาศาสตร์เภสัชกรรม' : 'unknow' ))." ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;?></b></h5>
                           </div>
                           <div class="panel-body">
-                              <center><a target="_blank" href="<?php echo "../../application/report/summary.php?dept=".$dept_id."&semester=".$semester."&year=".$year?>"><button type="button" class="btn btn-success">ดาวน์โหลด ที่นี่</button></center>
+                              <center><a target="_blank" href="<?php echo "../../application/download/summary.php?dept=".$dept_id."&semester=".$semester."&year=".$year?>"><button type="button" class="btn btn-success">ดาวน์โหลด ที่นี่</button></center>
                           </div>
                         </div>
                       </div>
