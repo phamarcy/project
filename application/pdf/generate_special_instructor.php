@@ -102,11 +102,12 @@ if(isset($_POST['DATA']))
 	$data = $_POST['DATA'];
 	$DATA = json_decode($data,true);
 	$course_id = $DATA["COURSEDATA_COURSE_ID"];
-	$year = (int)$DATA["YEAR"]-543;
-	$submit_date = strtotime((int)$DATA["DATE"]."-".(int)$DATA["MONTH"]."-".$year);
-	$mysqldate = date( 'Y-m-d ', $submit_date );
+
 	if($DATA['SUBMIT_TYPE'] != 3 && $DATA['SUBMIT_TYPE'] != 4)
 	{
+		$year = (int)$DATA["YEAR"]-543;
+		$submit_date = strtotime((int)$DATA["DATE"]."-".(int)$DATA["MONTH"]."-".$year);
+		$mysqldate = date( 'Y-m-d ', $submit_date );
 			//insert data into database
 
 			$sql = "INSERT INTO `expense_special_instructor`(`level_teacher`,`level_descript`,`expense_lec_choice`, `expense_lec_number`, `expense_lec_hour`, `expense_lec_cost`, `expense_plane_check`, `expense_plane_depart`, `expense_plane_arrive`, `expense_plane_cost`, `expense_taxi_check`, `expense_taxi_depart`, `expense_taxi_arrive`, `expense_taxi_cost`, `expense_car_check`, `expense_car_distance`, `expense_car_unit`, `expense_car_cost`, `expense_hotel_choice`, `expense_hotel_per_night`, `expense_hotel_number`, `expense_hotel_cost`, `cost_total`) VALUES ('".$DATA["PAYMENT_LVLTEACHER_CHOICE"]."','".$DATA["PAYMENT_LVLTEACHER_DESCRIPT"]."','".$DATA["PAYMENT_COSTSPEC_CHOICE"]."',".$DATA["PAYMENT_COSTSPEC_NUMBER"].",".$DATA["PAYMENT_COSTSPEC_HOUR"].",".$DATA["PAYMENT_COSTSPEC_COST"].",'".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_CHECKED"]."','".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_DEPART"]."','".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_ARRIVE"]."',".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_COST"].",'".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_CHECKED"]."','".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_DEPART"]."','".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_ARRIVE"]."',".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_COST"].",'".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_CHECKED"]."','".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_DISTANCE"]."',".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_UNIT"].",".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_COST"].",'".$DATA["PAYMENT_COSTHOTEL_CHOICE"]."',".$DATA["PAYMENT_COSTHOTEL_NUMBER"].",".$DATA["PAYMENT_COSTHOTEL_PERNIGHT"].",".$DATA["PAYMENT_COSTHOTEL_COST"].",".$DATA["PAYMENT_TOTALCOST"].")";
