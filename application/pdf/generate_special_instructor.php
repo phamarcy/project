@@ -197,7 +197,14 @@ else
 	$return['msg'] = 'ไม่มีข้อมูลนำเข้า';
 	echo json_encode($return);
 }
-
+if($DATA['SUBMIT_TYPE'] == '2')
+{
+	Close_connection();
+	$return['status'] = "success";
+	$return['msg'] = "บันทึกสำเร็จ";
+	echo json_encode($return);
+	die;
+}
 //get data to generate pdf
 $data_pdf = $course->Get_Document('special',$course_id,$instructor_id,null,$semester['semester'],$semester['year']);
 if($data_pdf == false)
@@ -741,26 +748,22 @@ else
 	$file_path = $FILE_PATH;
 
 }
-if($DATA['SUBMIT_TYPE'] != '2')
+$file_path = $file_path."/special_instructor";
+$file_path_sql = $file_path_sql."/special_instructor/".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf";
+if(!file_exists($file_path))
 {
-	$file_path = $file_path."/special_instructor";
-	$file_path_sql = $file_path_sql."/special_instructor/".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf";
-	if(!file_exists($file_path))
-	{
-		mkdir($file_path);
-	}
-	$pdf->Output($file_path."/".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
-
-	$sql = "UPDATE `course_hire_special_instructor` SET `pdf_file` = '".$file_path_sql."' WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."' AND `semester_id` = ".$semester['id'];
-	$result = $db->Insert_Update_Delete($sql);
-
-	if($DATA['SUBMIT_TYPE'] == '1')
-	{
-		$approve = new approval('1');
-		$result = $approve->Append_Special_Instructor($data_pdf['course_id'],$instructor_id);
-	}
+	mkdir($file_path);
 }
+$pdf->Output($file_path."/".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
 
+$sql = "UPDATE `course_hire_special_instructor` SET `pdf_file` = '".$file_path_sql."' WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."' AND `semester_id` = ".$semester['id'];
+$result = $db->Insert_Update_Delete($sql);
+
+if($DATA['SUBMIT_TYPE'] == '1')
+{
+	$approve = new approval('1');
+	$result = $approve->Append_Special_Instructor($data_pdf['course_id'],$instructor_id);
+}
 
 $return['status'] = "success";
 $return['msg'] = "บันทึกสำเร็จ";
