@@ -2,44 +2,32 @@
 session_start();
 require_once(__DIR__.'/../class/curl.php');
 require_once(__DIR__."/../config/configuration_variable.php");
-
-
-
-function add_zip($zip,$course,$type)
+require_once(__DIR__."/../class/manage_deadline.php");
+require_once(__DIR__."/../class/database.php");
+$deadline = new Deadline();
+$db = new Database();
+function add_zip($zip,$course,$path_name)
 {
   global $path_file,$year,$semester;
-  if($type == 'special')
+  $doc_path = $path_file.$path_name;
+  $file_name = explode("/",$path_name);
+  $file_name = $file_name[count($file_name)-1];
+  if(file_exists($doc_path))
   {
-    $type = 'special_instructor';
-  }
-  $doc_path = $path_file."/".$course."/".$type;
-  if(is_dir($doc_path))
-  {
-    $doc_file = scandir($doc_path);
-    $count = count($doc_file);
-
-    for($i=2;$i<$count;$i++)
-    {
-      $doc_file_name = substr($doc_file[$i],0,-4);
-      $prefix = explode("_",$doc_file_name);
-      $count_prefix = count($prefix);
-      if($prefix[0] == $course && $prefix[$count_prefix-2] == $semester && $prefix[$count_prefix-1] == $year)
-      {
-         $zip->addEmptyDir($course);
-         $zip->addFile($doc_path."/".$doc_file[$i],$course."/".$doc_file[$i]);
-      }
-    }
+      $zip->addEmptyDir($course);
+      $zip->addFile($doc_path,$course."/".$file_name);
   }
 
 }
 
 if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) && isset($_GET['info']))
 {
-  $path_file = $FILE_PATH."/complete";
-  $course = $_GET['course'];
+  $path_file = $FILE_PATH;
+  $course = $_GET['course']; //course id
   $semester = $_GET['semester'];
   $year = $_GET['year'];
-  $type = $_GET['info'];
+  $semester_id = $deadline->Search_Semester_id($semester,$year);
+  $type = $_GET['info']; //evaluate , special
 
   $zip = new ZipArchive();
   $zip_file = $path_file."/report_".$type."_".$course."_".$semester."_".$year.".zip";
@@ -55,19 +43,37 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
   //get specific course in semester
   if($course != 'all')
   {
-    add_zip($zip,$course,$type);
+    if($type == 'evaluate')
+    {
+      $sql = "SELECT `course_id`,`pdf_file` FROM `course_evaluate` ce, `student_evaluate` se" =
+      $sql .= " WHERE  ce.`course_evaluate_id` = se.`course_evaluate_id` AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id;
+      $result = $db->Query($sql);
+      if($result)
+      {
+        for($i=0 ;$i< count($result);$i++)
+        {
+          add_zip($zip,$result[$i]['course_id'],$result[$i]['pdf_file']);
+        }
+      }
+    }
   }
   else
   {
-    //get all course in semester
-    $course_folder = scandir($path_file);
-    $count = count($course_folder);
-    for($i=2;$i<$count;$i++)
+    if($type == 'special') //special instrucor
     {
-      if(is_dir($path_file."/".$course_folder[$i]))
+      $sql = "SELECT `course_id`,`instructor_id`,`pdf_file` FROM `course_hire_special_instructor` WHERE `status` = '1' AND `semester_id` = ".$semester_id;
+      $result = $db->Query($sql);
+      if($result)
       {
-        add_zip($zip,$course_folder[$i],$type);
+        for($i=0 ;$i< count($result);$i++)
+        {
+          add_zip($zip,$result[$i]['course_id'],$result[$i]['pdf_file']);
+        }
       }
+    }
+    else //course evaluate
+    {
+
     }
   }
 

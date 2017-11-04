@@ -208,10 +208,10 @@ if(isset($_POST['DATA']))
 			$submit_date = strtotime((int)$DATA["DATE"]."-".(int)$DATA["MONTH"]."-".$year);
 			$mysqldate = date( 'Y-m-d ', $submit_date );
 
-			$sql_course_evaluate = "INSERT INTO `course_evaluate`(`course_id`,`noorspe`,`num_section`,`credit_total`,`type`, `type_other`, `semester_id`, `criterion_grade_id`, `exam_evaluate_id`,`measure_evaluate_id`,`absent`, `submit_user_id`,`submit_date`)
-			                        VALUES ('".$DATA["COURSE_ID"]."','".$DATA["NORORSPE"]."',".$DATA["SECTION"].",'".$DATA["CREDIT_TOTAL"]."','".$DATA["TYPE_TEACHING"]."','".$DATA["TYPE_TEACHING_NAME"]."','".$semester['id']."','".$result_criterion_grade_id[0]["criterion_grade_id"]."','".$result_exam_evaluate_id[0]["exam_evaluate_id"]."','".$result_measure_evaluate_id[0]["measure_evaluate_id"]."','".$DATA["ABSENT"]."','".$DATA["USERID"]."','".$mysqldate."')";
+			$sql_course_evaluate = "INSERT INTO `course_evaluate`(`course_id`,`noorspe`,`num_section`,`credit_total`,`type`, `type_other`, `semester_id`, `criterion_grade_id`, `exam_evaluate_id`,`measure_evaluate_id`,`absent`,`status`, `submit_user_id`,`submit_date`)
+			                        VALUES ('".$DATA["COURSE_ID"]."','".$DATA["NORORSPE"]."',".$DATA["SECTION"].",'".$DATA["CREDIT_TOTAL"]."','".$DATA["TYPE_TEACHING"]."','".$DATA["TYPE_TEACHING_NAME"]."','".$semester['id']."','".$result_criterion_grade_id[0]["criterion_grade_id"]."','".$result_exam_evaluate_id[0]["exam_evaluate_id"]."','".$result_measure_evaluate_id[0]["measure_evaluate_id"]."','".$DATA["ABSENT"]."','0','".$DATA["USERID"]."','".$mysqldate."')";
 
-			$sql_course_evaluate .= "ON DUPLICATE KEY UPDATE `noorspe` = '".$DATA["NORORSPE"]."',`num_section` = ".$DATA["SECTION"].",`credit_total` = '".$DATA["CREDIT_TOTAL"]."',`type` = '".$DATA["TYPE_TEACHING"]."',`type_other` = '".$DATA["TYPE_TEACHING_NAME"]."', `semester_id` = '".$semester['id']."',`criterion_grade_id` = '".$result_criterion_grade_id[0]["criterion_grade_id"]."',`exam_evaluate_id` = '".$result_exam_evaluate_id[0]["exam_evaluate_id"]."', `measure_evaluate_id` = '".$result_measure_evaluate_id[0]["measure_evaluate_id"]."',`absent` = '".$DATA["ABSENT"]."',`submit_user_id` = '".$DATA["USERID"]."',`submit_date` = '".$mysqldate."'";
+			$sql_course_evaluate .= "ON DUPLICATE KEY UPDATE `noorspe` = '".$DATA["NORORSPE"]."',`num_section` = ".$DATA["SECTION"].",`credit_total` = '".$DATA["CREDIT_TOTAL"]."',`type` = '".$DATA["TYPE_TEACHING"]."',`type_other` = '".$DATA["TYPE_TEACHING_NAME"]."', `semester_id` = '".$semester['id']."',`criterion_grade_id` = '".$result_criterion_grade_id[0]["criterion_grade_id"]."',`exam_evaluate_id` = '".$result_exam_evaluate_id[0]["exam_evaluate_id"]."', `measure_evaluate_id` = '".$result_measure_evaluate_id[0]["measure_evaluate_id"]."',`absent` = '".$DATA["ABSENT"]."',`status` = '0',`submit_user_id` = '".$DATA["USERID"]."',`submit_date` = '".$mysqldate."'";
 			$lastrow_course_evaluate = "SELECT course_evaluate_id FROM course_evaluate ORDER BY course_evaluate_id DESC LIMIT 1";
 
 			$result_course_evaluate = $db->Insert_Update_Delete($sql_course_evaluate);
@@ -223,7 +223,8 @@ if(isset($_POST['DATA']))
 			//teacher_exam_evaluate
 
 			for ($i=0; $i <sizeof($DATA["STUDENT"]);  $i++) {
-			    $sql_student_evaluate="INSERT INTO `student_evaluate`(`course_evaluate_id`,`section`, `student`,`pdf_file`) VALUES ('".$result_course_evaluate_id[0]["course_evaluate_id"]."','".($i+1)."','".$DATA["STUDENT"][$i]."','')";
+			    $sql_student_evaluate="INSERT INTO `student_evaluate`(`course_evaluate_id`,`section`, `student`) VALUES ('".$result_course_evaluate_id[0]["course_evaluate_id"]."','".($i+1)."','".$DATA["STUDENT"][$i]."')";
+					$sql_student_evaluate .= "ON DUPLICATE KEY UPDATE `section` = '".($i+1)."', `student` = '".$DATA["STUDENT"][$i]."'";
 			    $result_student_evaluate = $db->Insert_Update_Delete($sql_student_evaluate);
 
 			}
@@ -821,15 +822,16 @@ else
 
 }
 $file_path = $file_path."/evaluate";
-$file_path_sql = $file_path_sql."/evaluate/".$data_pdf['course_id']."_".$semester['semester']."_".$semester['year'].".pdf";
+$sec = (int)$num_section + 1;
+$file_path_sql = $file_path_sql."/evaluate/".$data_pdf['course_id']."_".$sec."_".$semester['semester']."_".$semester['year'].".pdf";
 if(!file_exists($file_path))
 {
 	mkdir($file_path);
 }
 
-$pdf->Output($file_path."/".$data_pdf['course_id']."_".$semester['semester']."_".$semester['year'].".pdf","F");
+$pdf->Output($file_path."/".$data_pdf['course_id']."_".$sec."_".$semester['semester']."_".$semester['year'].".pdf","F");
 
-$sql = "UPDATE `student_evaluate` SET `pdf_file` = '".$file_path_sql."' WHERE `course_evaluate_id` = '".$data_pdf['course_evaluate_id']."' AND `section` = ".$num_section;
+$sql = "UPDATE `student_evaluate` SET `pdf_file` = '".$file_path_sql."' WHERE `course_evaluate_id` = '".$data_pdf['course_evaluate_id']."' AND `section` = ".$sec;
 $result = $db->Insert_Update_Delete($sql);
 }
 if($DATA['SUBMIT_TYPE'] == '1')

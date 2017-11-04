@@ -155,6 +155,12 @@ class approval
       }
       else if((int)$status_after == 7)
       {
+        $sql = "UPDATE `course_evaluate` SET `status`= '1' WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->SEMESTER_ID;
+        $result = $this->DB->Insert_Update_Delete($sql);
+        if(!$result)
+        {
+          $this->LOG->Write("course hire error ");
+        }
         $pdf_complete = $this->Send_Complete_Evaluate($course_id,'4');
         $pdf_result = json_decode($pdf_complete,true);
         if($pdf_result != null)
@@ -298,7 +304,6 @@ class approval
       }
       else if((int)$status_after == 7)
       {
-        //save instructor to database
         $sql = "UPDATE `course_hire_special_instructor` SET `status`= '1' WHERE `course_id` = '".$course_id."' AND `instructor_id` = ".$instructor_id." AND `semester_id` = ".$this->SEMESTER_ID;
         $result = $this->DB->Insert_Update_Delete($sql);
         if(!$result)
