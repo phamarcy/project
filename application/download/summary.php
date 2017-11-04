@@ -122,7 +122,7 @@ $Excel->getActiveSheet(1)
       }
     }
 
-$sql = "SELECT DISTINCT `course_id` FROM `approval_course` WHERE `status` = '7' AND `semester_id` = ".$semester['id'];
+$sql = "SELECT DISTINCT `course_id` FROM `course_evaluate` WHERE `status` = '1' AND `semester_id` = ".$semester['id'];
 $result = $database->Query($sql);
 if($result)
 {
@@ -136,104 +136,104 @@ if($result)
     {
       continue;
     }
-    $data = $course->Get_Document('evaluate',$course_id,null,null,$semester['semester'],$semester['year'])
+    $data = $course->Get_Document('evaluate',$course_id,null,null,$semester['semester'],$semester['year']);
     if($data)
     {
-      $Excel->setActiveSheetIndex(0)->setCellValue('A'.$row, $data['COURSE_ID']);
-      $teacher = $course->Get_Responsible_Teacher($data['COURSE_ID'],$semester['id']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('A'.$row, $data['course_id']);
+      $teacher = $course->Get_Responsible_Teacher($data['course_id'],$semester['id']);
       $Excel->setActiveSheetIndex(0)->setCellValue('B'.$row, $teacher['teacher']);
       $Excel->setActiveSheetIndex(0)->setCellValue('C'.$row, '');
-      $Excel->setActiveSheetIndex(0)->setCellValue('D'.$row, $data['TEACHER-CO']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('E'.$row, $data['MEASURE']['MID1']['LEC']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('F'.$row, $data['MEASURE']['MID1']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('G'.$row, $data['MEASURE']['MID2']['LEC']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('H'.$row, $data['MEASURE']['MID2']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('I'.$row, $data['MEASURE']['FINAL']['LEC']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('J'.$row, $data['MEASURE']['FINAL']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('K'.$row, $data['MEASURE']['WORK']['LEC'] + $data['MEASURE']['WORK']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('L'.$row, $data['MEASURE']['OTHER']['LEC'] + $data['MEASURE']['OTHER']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('M'.$row, $data['EXAM']['MID1']['HOUR']['LEC']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('N'.$row, $data['EXAM']['MID1']['HOUR']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('O'.$row, $data['EXAM']['MID2']['HOUR']['LEC']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('P'.$row, $data['EXAM']['MID2']['HOUR']['LAB']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('Q'.$row, $data['EXAM']['FINAL']['HOUR']['LEC']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('R'.$row, $data['EXAM']['FINAL']['HOUR']['LAB']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('D'.$row, $data['teacher']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('E'.$row, $data['mid1_lec']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('F'.$row, $data['mid1_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('G'.$row, $data['mid2_lec']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('H'.$row, $data['mid2_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('I'.$row, $data['final_lec']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('J'.$row, $data['final_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('K'.$row, $data['work_lec'] + $data['work_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('L'.$row, $data['other_lec'] + $data['other_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('M'.$row, $data['mid1_hour_lec']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('N'.$row, $data['mid1_hour_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('O'.$row, $data['mid2_hour_lec']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('P'.$row, $data['mid2_hour_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('Q'.$row, $data['final_hour_lec']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('R'.$row, $data['final_hour_lab']);
       $calculate = '';
-      if($data['CALCULATE']['TYPE'] == "GROUP")
+      if($data['criterion_type'] == "GROUP")
       {
-        $calculate = $data['CALCULATE']['EXPLAINATION'];
+        $calculate = $data['explaination'];
       }
-      else if($data['CALCULATE']['TYPE'] == 'CRITERIA')
+      else if($data['criterion_type'] == 'CRITERIA')
       {
       	$calculate = 'อิงเกณฑ์';
       }
-      else if ($data['CALCULATE']['TYPE'] == 'SU')
+      else if ($data['criterion_type'] == 'SU')
       {
       	$calculate = 'ให้อักษร S U';
       }
       $Excel->setActiveSheetIndex(0)->setCellValue('S'.$row, $calculate);
 
       $absent = '';
-      if($data['ABSENT'] == 'F')
+      if($data['absent'] == 'F')
       {
       	$absent = 'ให้ลำดับขั้น F';
       }
-      else if($data['ABSENT'] == 'U')
+      else if($data['absent'] == 'U')
       {
       	$absent = 'ให้อักษร U';
       }
-      else if($data['ABSENT'] == 'CAL')
+      else if($data['absent'] == 'CAL')
       {
       	$absent = 'นำคะแนนทั้งหมดมาประเมิน';
       }
       $Excel->setActiveSheetIndex(0)->setCellValue('T'.$row,$absent);
-      $Excel->setActiveSheetIndex(1)->setCellValue('A'.$row,$data['COURSE_ID']);
-      $count_committee = count($data['EXAM']['MID1']['COMMITTEE']['LEC']);
+      $Excel->setActiveSheetIndex(1)->setCellValue('A'.$row,$data['course_id']);
+      $count_committee = count($data['exam_mid1_committee_lec']);
       $committee = '';
       for($j=0;$j<$count_committee;$j++)
       {
-        $committee .= $data['EXAM']['MID1']['COMMITTEE']['LEC'][$j]."\n";
+        $committee .= $data['exam_mid1_committee_lec'][$j]."\n";
 
       }
       $Excel->setActiveSheetIndex(1)->setCellValue('B'.$row,$committee);
 
-      $count_committee = count($data['EXAM']['MID1']['COMMITTEE']['LAB']);
+      $count_committee = count($data['exam_mid1_committee_lab']);
       $committee = '';
       for($j=0;$j<$count_committee;$j++)
       {
-        $committee .= $data['EXAM']['MID1']['COMMITTEE']['LAB'][$j]."\n";
+        $committee .= $data['exam_mid1_committee_lab'][$j]."\n";
 
       }
       $Excel->setActiveSheetIndex(1)->setCellValue('C'.$row,$committee);
 
-      $count_committee = count($data['EXAM']['MID2']['COMMITTEE']['LEC']);
+      $count_committee = count($data['exam_mid2_committee_lec']);
       $committee = '';
       for($j=0;$j<$count_committee;$j++)
       {
-        $committee .= $data['EXAM']['MID2']['COMMITTEE']['LEC'][$j]."\n";
+        $committee .= $data['exam_mid2_committee_lec'][$j]."\n";
       }
       $Excel->setActiveSheetIndex(1)->setCellValue('D'.$row,$committee);
 
-      $count_committee = count($data['EXAM']['MID2']['COMMITTEE']['LAB']);
+      $count_committee = count($data['exam_mid2_committee_lab']);
       $committee = '';
       for($j=0;$j<$count_committee;$j++)
       {
-        $committee .= $data['EXAM']['MID2']['COMMITTEE']['LAB'][$j]."\n";
+        $committee .= $data['exam_mid2_committee_lab'][$j]."\n";
       }
       $Excel->setActiveSheetIndex(1)->setCellValue('E'.$row,$committee);
 
-      $count_committee = count($data['EXAM']['FINAL']['COMMITTEE']['LEC']);
+      $count_committee = count($data['exam_final_committee_lec']);
       $committee = '';
       for($j=0;$j<$count_committee;$j++)
       {
-        $committee .= $data['EXAM']['FINAL']['COMMITTEE']['LEC'][$j]."\n";
+        $committee .= $data['exam_final_committee_lec'][$j]."\n";
       }
       $Excel->setActiveSheetIndex(1)->setCellValue('F'.$row,$committee);
-      $count_committee = count($data['EXAM']['FINAL']['COMMITTEE']['LAB']);
+      $count_committee = count($data['exam_final_committee_lab']);
       $committee = '';
       for($j=0;$j<$count_committee;$j++)
       {
-        $committee .= $data['EXAM']['FINAL']['COMMITTEE']['LAB'][$j]."\n";
+        $committee .= $data['exam_final_committee_lab'][$j]."\n";
       }
       $Excel->setActiveSheetIndex(1)->setCellValue('G'.$row,$committee);
 
@@ -276,8 +276,8 @@ $sheet3->getStyle('A2:B2')->applyFromArray($border);
 $sheet3->getStyle('A3:K3')->applyFromArray($border);
 $Excel->getActiveSheet(2)
         ->setTitle('อาจารย์พิเศษ');
-  $sql = "SELECT DISTINCT `course_id`,`instructor_id` FROM `course_hire`
-  WHERE `semester_id` = ".$semester['id']." ORDER BY `course_id`";
+  $sql = "SELECT DISTINCT `course_id`,`instructor_id` FROM `course_hire_special_instructor`
+  WHERE `semester_id` = ".$semester['id']." AND `status` = '1' ORDER BY `course_id`";
   $result = $database->Query($sql);
   if($result)
   {
@@ -352,12 +352,13 @@ $summary_file = $SUMMARY_PATH.'/summary_'.$dept_id.'_'.$semester['semester'].'_'
 //save file
 $objWriter = PHPExcel_IOFactory::createWriter($Excel, 'Excel2007');
 $objWriter->save($summary_file);
+ob_end_clean();
 header('Content-Description: File Transfer');
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename="'.basename($summary_file).'"');
-header('Expires: 0');
-header('Cache-Control: must-revalidate');
-header('Pragma: public');
+// header('Expires: 0');
+// header('Cache-Control: must-revalidate');
+// header('Pragma: public');
 header('Content-Length: ' . filesize($summary_file));
 readfile($summary_file);
 
