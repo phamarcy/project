@@ -618,9 +618,7 @@ function checksubject(btntype,type){
                   success: function (result) {
                         try {
                           var temp = $.parseJSON(result);
-                        } catch (e) {
-                             console.log('Error#542-decode error');
-                        }
+                          console.log(temp);
 
                         //buttondiv
                         if(temp['ACCESS'] == true)
@@ -655,8 +653,8 @@ function checksubject(btntype,type){
                          for(var i=0;i<(Object.keys(temp).length - 1);i++)
                          {
                            var opt = document.createElement('option');
-                           opt.value = temp[i].semester +"_"+ temp[i].year;
-                           opt.innerHTML = "ภาคการศึกษาที่ " +temp[i].semester +" ปีการศึกษา "+ temp[i].year;
+                           opt.value = temp['DATA'][i].semester +"_"+ temp['DATA'][i].year;
+                           opt.innerHTML = "ภาคการศึกษาที่ " +temp['DATA'][i].semester +" ปีการศึกษา "+ temp['DATA'][i].year;
                            document.getElementById('semester').appendChild(opt);
                          }
 
@@ -697,7 +695,9 @@ function checksubject(btntype,type){
                              )
                           }
                         }
-
+                      } catch (e) {
+                           console.log('Error#542-decode error');
+                      }
                   },
                   failure: function (result) {
                        alert(result);
