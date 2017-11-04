@@ -154,7 +154,37 @@ class Report
         }
       }
       $DATA = array();
-      
+      $sql = "SELECT DISTINCT `course_id` FROM `course_hire_special_instructor` WHERE `status` = '1'";
+      $result_course = $this->DB->Query($sql);
+      if($result_course)
+      {
+        for($i=0;$i<count($result_course);$i++)
+        {
+          if(!in_array($result_course[$i]['course_id'],$dept_course))
+           {
+             continue;
+           }
+          $sql = "SELECT si.`instructor_id`,si.`prefix`,si.`firstname`,si.`lastname`,si.`cv` FROM `course_hire_special_instructor` ci ,`special_instructor` si ";
+          $sql.= "WHERE ci.`instructor_id` = si.`instructor_id` AND ci.`course_id` = '".$result_course[$i]['course_id']."' AND ci.`status` = '1'";
+          $result_instructor =  $this->DB->Query($sql);
+          $data = array();
+          $data['id'] = $result_course[$i]['course_id'];
+          $data['name'] = $this->COURSE->Get_Course_Name($data['id']);
+          $data['special'] = array();
+          if($result_instructor)
+          {
+            for($j=0;$j<count($result_instructor);$j++)
+            {
+              $instructor['id'] = $result_instructor[$j]['instructor_id'];
+              $instructor['name'] = $result_instructor[$j]['prefix'].' '.$result_instructor[$j]['firstname'].' '.$result_instructor[$j]['lastname'];
+              $instructor['cv'] = $result_instructor[$j]['cv'];
+              $instructor['pdf'] = $this->VIEW_URL."?course=".$data['id']."&id=".$instructor['id']."&type=complete&info=special&semester=".$semester."&year=".$year;
+              array_push($data['special'],$instructor);
+            }
+          }
+          array_push($DATA,$data);
+        }
+      }
       if(count($DATA) == 0)
       {
         $return['status'] = 'error';
