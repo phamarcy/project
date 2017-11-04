@@ -741,22 +741,26 @@ else
 	$file_path = $FILE_PATH;
 
 }
-$file_path = $file_path."/special_instructor";
-$file_path_sql = $file_path_sql."/special_instructor/".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf";
-if(!file_exists($file_path))
+if($DATA['SUBMIT_TYPE'] != '2')
 {
-	mkdir($file_path);
-}
-$pdf->Output($file_path."/".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
+	$file_path = $file_path."/special_instructor";
+	$file_path_sql = $file_path_sql."/special_instructor/".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf";
+	if(!file_exists($file_path))
+	{
+		mkdir($file_path);
+	}
+	$pdf->Output($file_path."/".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
 
-$sql = "UPDATE `course_hire_special_instructor` SET `pdf_file` = '".$file_path_sql."' WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."' AND `semester_id` = ".$semester['id'];
-$result = $db->Insert_Update_Delete($sql);
+	$sql = "UPDATE `course_hire_special_instructor` SET `pdf_file` = '".$file_path_sql."' WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."' AND `semester_id` = ".$semester['id'];
+	$result = $db->Insert_Update_Delete($sql);
 
-if($DATA['SUBMIT_TYPE'] == '1')
-{
-	$approve = new approval('1');
-	$result = $approve->Append_Special_Instructor($data_pdf['course_id'],$instructor_id);
+	if($DATA['SUBMIT_TYPE'] == '1')
+	{
+		$approve = new approval('1');
+		$result = $approve->Append_Special_Instructor($data_pdf['course_id'],$instructor_id);
+	}
 }
+
 
 $return['status'] = "success";
 $return['msg'] = "บันทึกสำเร็จ";
