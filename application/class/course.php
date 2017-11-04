@@ -443,7 +443,7 @@ class Course
     }
     else if ($type == 'evaluate')
     {
-      $sql = "SELECT `semester_num`,`year` FROM `evaluate` e,`semester` s
+      $sql = "SELECT `semester_num`,`year` FROM `course_evaluate` e,`semester` s
       WHERE e.`course_id` = '".$course_id."' AND e.`semester_id` = s.`semester_id`" ;
     }
     $data = array();
@@ -496,7 +496,176 @@ class Course
     }
     if($type == 'evaluate')
     {
-      $sql = "SELECT * FROM `evaluate` WHERE `course_id` =  '".$course_id."' AND `semester_id` = ".$semester_id;
+      $sql = "SELECT ce.`course_evaluate_id`,ce.`exam_evaluate_id`,ce.`course_id`,ce.`noorspe`,ce.`type`,ce.`type_other`,ce.`absent`,cg.*,me.*,ee.* ";
+      $sql .=" FROM `course_evaluate` ce, `criterion_grade` cg, `measure_evaluate` me, `exam_evaluate` ee ";
+      $sql .=" WHERE ce.`criterion_grade_id` = cg.`criterion_grade_id` AND ce.`measure_evaluate_id` = me.`measure_evaluate_id` AND ce.`exam_evaluate_id` = ee.`exam_evaluate_id` AND `course_id` = '".$course_id."' AND `semester_id` = '".$semester_id."'";
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        $data = $result[0];
+      }
+      $data['student'] = array();
+      $sql = "SELECT `section`,`student` FROM `student_evalute` WHERE `course_evaluate_id` = ".$data['course_evaluate_id'];
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        for($i=0;$i<count($result);$i++)
+        {
+          $data['student'][$result[$i]['section'] -1] = $result[$i]['student'];
+        }
+      }
+      $data['exam_mid1_committee_lec'] = array();
+      $sql = "SELECT `teacher_id` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'MID1' AND `type_commitee` = 'LEC'";
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        for($i=0;$i<count($result);$i++)
+        {
+          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          if($teacher_name != false)
+          {
+            $temp = explode(" ",$teacher_name);
+            $teacher_name = '';
+            for($j=1;$j<count($temp);$j++)
+            {
+              $teacher_name .= $temp[$j]." ";
+            }
+            $teacher_name = trim($teacher_name," ");
+          }
+          array_push($data['exam_mid1_committee_lec'],$teacher_name);
+        }
+      }
+
+      $data['exam_mid1_committee_lab'] = array();
+      $sql = "SELECT `teacher_id` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'MID1' AND `type_commitee` = 'LAB'";
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        for($i=0;$i<count($result);$i++)
+        {
+          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          if($teacher_name != false)
+          {
+            $temp = explode(" ",$teacher_name);
+            $teacher_name = '';
+            for($j=1;$j<count($temp);$j++)
+            {
+              $teacher_name .= $temp[$j]." ";
+            }
+            $teacher_name = trim($teacher_name," ");
+          }
+          array_push($data['exam_mid1_committee_lab'],$teacher_name);
+        }
+      }
+
+      $data['exam_mid2_committee_lec'] = array();
+      $sql = "SELECT `teacher_id` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'MID2' AND `type_commitee` = 'LEC'";
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        for($i=0;$i<count($result);$i++)
+        {
+          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          if($teacher_name != false)
+          {
+            $temp = explode(" ",$teacher_name);
+            $teacher_name = '';
+            for($j=1;$j<count($temp);$j++)
+            {
+              $teacher_name .= $temp[$j]." ";
+            }
+            $teacher_name = trim($teacher_name," ");
+          }
+          array_push($data['exam_mid2_committee_lec'],$teacher_name);
+        }
+      }
+
+      $data['exam_mid2_committee_lab'] = array();
+      $sql = "SELECT `teacher_id` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'MID2' AND `type_commitee` = 'LAB'";
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        for($i=0;$i<count($result);$i++)
+        {
+          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          if($teacher_name != false)
+          {
+            $temp = explode(" ",$teacher_name);
+            $teacher_name = '';
+            for($j=1;$j<count($temp);$j++)
+            {
+              $teacher_name .= $temp[$j]." ";
+            }
+            $teacher_name = trim($teacher_name," ");
+          }
+          array_push($data['exam_mid2_committee_lab'],$teacher_name);
+        }
+      }
+
+      $data['exam_final_committee_lec'] = array();
+      $sql = "SELECT `teacher_id` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'FINAL' AND `type_commitee` = 'LEC'";
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        for($i=0;$i<count($result);$i++)
+        {
+          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          if($teacher_name != false)
+          {
+            $temp = explode(" ",$teacher_name);
+            $teacher_name = '';
+            for($j=1;$j<count($temp);$j++)
+            {
+              $teacher_name .= $temp[$j]." ";
+            }
+            $teacher_name = trim($teacher_name," ");
+          }
+          array_push($data['exam_final_committee_lec'],$teacher_name);
+        }
+      }
+
+        $data['exam_final_committee_lab'] = array();
+      $sql = "SELECT `teacher_id` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'FINAL' AND `type_commitee` = 'LAB'";
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        for($i=0;$i<count($result);$i++)
+        {
+          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          if($teacher_name != false)
+          {
+            $temp = explode(" ",$teacher_name);
+            $teacher_name = '';
+            for($j=1;$j<count($temp);$j++)
+            {
+              $teacher_name .= $temp[$j]." ";
+            }
+            $teacher_name = trim($teacher_name," ");
+          }
+          array_push($data['exam_final_committee_lab'],$teacher_name);
+        }
+      }
+      $data['teacher'] = array();
+      $sql = "SELECT `teacher_id` FROM `teacher_exam_evaluate` WHERE `course_eveluate_id` = '".$data['course_evaluate_id']."'";
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        for($i=0;$i<count($result);$i++)
+        {
+          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          if($teacher_name != false)
+          {
+            $temp = explode(" ",$teacher_name);
+            $teacher_name = '';
+            for($j=1;$j<count($temp);$j++)
+            {
+              $teacher_name .= $temp[$j]." ";
+            }
+            $teacher_name = trim($teacher_name," ");
+          }
+          array_push($data['teacher'],$teacher_name);
+        }
+      }
     }
     else if($type == 'special')
     {
@@ -520,27 +689,24 @@ class Course
       $sql = "SELECT si.`instructor_id`,si.`prefix`,si.`firstname`,si.`lastname`,si.`position`,si.`qualification`,si.`work_place`,si.`phone`,si.`phone_sub`,si.`phone_mobile`,si.`email`,si.`invited`,ei.`level_teacher`,ei.`level_descript`,ei.`expense_lec_choice`,ei.`expense_lec_number`,ei.`expense_lec_hour`,ei.`expense_lec_cost`,ei.`expense_plane_check`,ei.`expense_plane_depart`,ei.`expense_plane_arrive`,ei.`expense_plane_cost`,ei.`expense_taxi_check`,ei.`expense_taxi_depart`,ei.`expense_taxi_arrive`,ei.`expense_taxi_cost`,ei.`expense_car_check`,ei.`expense_car_distance`,ei.`expense_car_unit`,ei.`expense_car_cost`,ei.`expense_hotel_choice`,ei.`expense_hotel_per_night`,ei.`expense_hotel_number`,ei.`expense_hotel_cost`,ei.`cost_total`, ci.*";
       $sql .= " FROM `special_instructor` si,`expense_special_instructor` ei, `course_hire_special_instructor` ci  ";
       $sql .= "WHERE ci.`instructor_id` = ".$instructor_id." AND ci.`course_id` = '".$course_id."' AND ci.`instructor_id` = si.`instructor_id` AND ci.`expense_id` = ei.`expense_id` AND ci.`semester_id` = ".$semester_id;
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        $data = $result[0];
+        $data['num_table'] = $numtable;
+        $data['lecture_detail'] = $lecture_detail;
+
+      }
+      else
+      {
+        $data = false;
+      }
     }
     else
     {
       die("รูปแบบข้อมูลผิดพลาด กรุณาติดต่อผู้ดูแลระบบ");
     }
-
-    $result = $this->DB->Query($sql);
-    if($result)
-    {
-      $data = $result[0];
-      $data['num_table'] = $numtable;
-      if($type == 'special')
-      {
-        $data['lecture_detail'] = $lecture_detail;
-      }
-      $data['ACCESS'] = $check_access;
-    }
-    else
-    {
-      $data = false;
-    }
+    $data['ACCESS'] = $check_access;
     return $data;
   }
 
