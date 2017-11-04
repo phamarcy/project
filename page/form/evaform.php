@@ -456,7 +456,12 @@ function getinfo(temp) {
   //part3
   for(var i=0;i<=4;i++)
   {
-    document.getElementById('TEACHERLEC_F'+(i+1)).value = temp['teacher'][i];
+    if(temp['teacher'][i]!="")
+    {
+      document.getElementById('TEACHERLEC_F'+(i+1)).value = temp['teacher'][i];
+    }else {
+      document.getElementById('TEACHERLEC_F'+(i+1)).value = "";
+    }
   }
   document.getElementById('tchco').value = temp['teacher-co'];
 
