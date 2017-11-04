@@ -458,7 +458,7 @@ function getinfo(temp) {
   {
     document.getElementById('TEACHERLEC_F'+(i+1)).value = temp['teacher'][i];
   }
-  document.getElementById('tchco').value = temp['TEACHER-CO'];
+  document.getElementById('tchco').value = temp['teacher-co'];
 
   //part4
   document.getElementById('MEASURE_MIDLEC1').value = temp['mid1_lec'];
