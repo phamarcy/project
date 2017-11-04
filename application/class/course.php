@@ -496,7 +496,7 @@ class Course
     }
     if($type == 'evaluate')
     {
-      $sql = "SELECT ce.`course_evaluate_id`,ce.`exam_evaluate_id`,ce.`course_id`,ce.`noorspe`,ce.`type`,ce.`type_other`,ce.`absent`,cg.*,me.*,ee.* ";
+      $sql = "SELECT ce.`course_evaluate_id`,ce.`exam_evaluate_id`,ce.`num_section`,ce.`credit_total`,ce.`course_id`,ce.`noorspe`,ce.`type`,ce.`type_other`,ce.`absent`,ce.`submit_user_id`,ce.`submit_date`,cg.*,me.*,ee.* ";
       $sql .=" FROM `course_evaluate` ce, `criterion_grade` cg, `measure_evaluate` me, `exam_evaluate` ee ";
       $sql .=" WHERE ce.`criterion_grade_id` = cg.`criterion_grade_id` AND ce.`measure_evaluate_id` = me.`measure_evaluate_id` AND ce.`exam_evaluate_id` = ee.`exam_evaluate_id` AND `course_id` = '".$course_id."' AND `semester_id` = '".$semester_id."'";
       $result = $this->DB->Query($sql);
@@ -505,7 +505,7 @@ class Course
         $data = $result[0];
       }
       $data['student'] = array();
-      $sql = "SELECT `section`,`student` FROM `student_evalute` WHERE `course_evaluate_id` = ".$data['course_evaluate_id'];
+      $sql = "SELECT `section`,`student` FROM `student_evaluate` WHERE `course_evaluate_id` = ".$data['course_evaluate_id'];
       $result = $this->DB->Query($sql);
       if($result)
       {
