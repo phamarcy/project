@@ -221,7 +221,7 @@ class approval
         $this->LOG->Write("Insert comment history error");
       }
     }
-    $status_before = $this->Get_Instructor_Status($instructor_id);
+    $status_before = $this->Get_Instructor_Status($instructor_id,$course_id);
     if($this->USER_LEVEL < 6)
     {
       $level_approve = '1';
@@ -273,7 +273,7 @@ class approval
           return false;
         }
       }
-      $status_after = $this->Get_Instructor_Status($instructor_id);
+      $status_after = $this->Get_Instructor_Status($instructor_id,$course_id);
       if($status_before != $status_after)
       {
         $noti['COURSE_ID'] = $course_id;
@@ -548,7 +548,7 @@ class approval
        {
          $instructor['id'] = $result[$i]['instructor_id'];
          $instructor['name'] = $result[$i]['firstname'].' '.$result[$i]['lastname'];
-         $instructor['status'] = $this->Get_Instructor_Status($result[$i]['instructor_id']);
+         $instructor['status'] = $this->Get_Instructor_Status($result[$i]['instructor_id'],$course_id);
          $pdf = $this->Get_Special_Doc_Url($instructor['id'],$course_id);
          $instructor['pdf'] = $pdf['pdf'];
          $instructor['cv'] = $pdf['cv'];
@@ -574,10 +574,10 @@ class approval
   }
 
   //search special instructor approval status and comment
-  private function Get_Instructor_Status($instructor_id)
+  private function Get_Instructor_Status($instructor_id,$course_id)
   {
     $sql = "SELECT status FROM `approval_special`
-    WHERE instructor_id = ".$instructor_id." AND `semester_id` = ".$this->SEMESTER_ID;
+    WHERE instructor_id = ".$instructor_id." AND `course_id` = '".$course_id."' AND `semester_id` = ".$this->SEMESTER_ID;
     $status = 7;
     $result = $this->DB->Query($sql);
         if($result)

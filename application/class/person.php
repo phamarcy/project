@@ -224,7 +224,7 @@ class Person
   }
 
   //search special instructor approval status and comment
-  private function Get_Instructor_Status($instructor_id)
+  private function Get_Instructor_Status($instructor_id,$course_id)
   {
     $sql = "SELECT status FROM `approval_special`
     WHERE instructor_id = ".$instructor_id. " AND `semester_id` = ".$this->DEADLINE['id'];
@@ -311,7 +311,7 @@ class Person
                       $count_instructor = count($result_instructor);
                       for($j=0;$j<$count_instructor;$j++)
                       {
-                        $status_instructor = $this->Get_Instructor_Status($result_instructor[$j]['instructor_id']);
+                        $status_instructor = $this->Get_Instructor_Status($result_instructor[$j]['instructor_id'],$result[$i]['course_id']);
                         if((int)$status_instructor > 0)
                         {
                           $status_instructor = 1;
