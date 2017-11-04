@@ -249,8 +249,7 @@ if(isset($_POST['DATA']))
 				{
 			    $teacher_id = $person->Get_Teacher_Id($DATA["TEACHER"][$i]);
 			    if (!$teacher_id) {
-
-			        $log->Write("insert data into database failed : not found TEACHER id on ".$a );
+			        $log->Write("insert data into database failed : not found TEACHER id on ".$DATA["TEACHER"][$i]);
 			    }
 			    if ($teacher_id) {
 			        $sql_teacher_exam_evaluate = "INSERT INTO `teacher_exam_evaluate`(`teacher_id`, `course_eveluate_id`)VALUES ('".$teacher_id."','".$result_course_evaluate_id[0]["course_evaluate_id"]."')";
