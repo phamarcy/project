@@ -432,23 +432,23 @@ function finexam_hour_lab() {
 
 function getinfo(temp) {
   // part1
-  document.getElementById('SECTION').value = temp['SECTION'];
-  var choice1 = temp['NORORSPE'];
+  document.getElementById('SECTION').value = temp['num_section'];
+  var choice1 = temp['noorspe'];
   $('input[name="NORORSPE"][value=' + choice1 + ']').prop('checked', true);
 
-  for (var i = 0; i <temp['SECTION']; i++) {
+  for (var i = 0; i <temp['num_section']; i++) {
     document.getElementById("secdiv" + (i+1)).style.display = "";
     document.getElementById('secdiv' + (i+1)).classList.remove('hide');
     document.getElementById('ENROLL'+(i+1)).style.display = "";
-    document.getElementById('ENROLL'+(i+1)).value = temp['STUDENT'][i];
+    document.getElementById('ENROLL'+(i+1)).value = temp['student'][i];
   }
 
   //part2
-  var choice2 = temp['TYPE_TEACHING'];
+  var choice2 = temp['type'];
   $('input[name="TYPE_TEACHING"][value=' + choice2 + ']').prop('checked', true);
   if($('input[name="TYPE_TEACHING"]:checked').val()=="OTH")
   {
-    $("#TYPE_TEACHING_NAME").val(temp['TYPE_TEACHING_NAME']);
+    $("#TYPE_TEACHING_NAME").val(temp['type_other']);
     $("#TYPE_TEACHING_NAME").prop('required',true);
     $("#TYPE_TEACHING_NAME").show();
   }
@@ -456,87 +456,89 @@ function getinfo(temp) {
   //part3
   for(var i=0;i<=4;i++)
   {
-    document.getElementById('TEACHERLEC_F'+(i+1)).value = temp['TEACHER'][i];
+    document.getElementById('TEACHERLEC_F'+(i+1)).value = temp['teacher'][i];
   }
   document.getElementById('tchco').value = temp['TEACHER-CO'];
 
   //part4
-  document.getElementById('MEASURE_MIDLEC1').value = temp['MEASURE']['MID1']['LEC'];
-  document.getElementById('MEASURE_MIDLAB1').value = temp['MEASURE']['MID1']['LAB'];
-  document.getElementById('MEASURE_MIDLEC2').value = temp['MEASURE']['MID2']['LEC'];
-  document.getElementById('MEASURE_MIDLAB2').value = temp['MEASURE']['MID2']['LAB'];
-  document.getElementById('MEASURE_FINLEC').value = temp['MEASURE']['FINAL']['LEC'];
-  document.getElementById('MEASURE_FINLAB').value = temp['MEASURE']['FINAL']['LAB'];
-  document.getElementById('MEASURE_WORKLEC').value = temp['MEASURE']['WORK']['LEC'];
-  document.getElementById('MEASURE_WORKLAB').value = temp['MEASURE']['WORK']['LAB'];
-  document.getElementById('OTHER_MEA').value = temp['MEASURE']['OTHER']['OTH'];
-  document.getElementById('MEASURE_OTHLEC').value = temp['MEASURE']['OTHER']['LEC'];
-  document.getElementById('MEASURE_OTHLAB').value = temp['MEASURE']['OTHER']['LAB'];
-  document.getElementById('MEASURE_TOTALLEC').value = temp['MEASURE']['TOTAL']['LEC'];
-  document.getElementById('MEASURE_TOTALLAB').value = temp['MEASURE']['TOTAL']['LAB'];
+  document.getElementById('MEASURE_MIDLEC1').value = temp['mid1_lec'];
+  document.getElementById('MEASURE_MIDLAB1').value = temp['mid1_lab'];
+  document.getElementById('MEASURE_MIDLEC2').value = temp['mid2_lec'];
+  document.getElementById('MEASURE_MIDLAB2').value = temp['mid2_lab'];
+  document.getElementById('MEASURE_FINLEC').value = temp['final_lec'];
+  document.getElementById('MEASURE_FINLAB').value = temp['final_lab'];
+  document.getElementById('MEASURE_WORKLEC').value = temp['work_lec'];
+  document.getElementById('MEASURE_WORKLAB').value = temp['work_lab'];
+  document.getElementById('OTHER_MEA').value = temp['other_oth'];
+  document.getElementById('MEASURE_OTHLEC').value = temp['other_lec'];
+  document.getElementById('MEASURE_OTHLAB').value = temp['other_lab'];
+  document.getElementById('MEASURE_TOTALLEC').value = temp['total_lec'];
+  document.getElementById('MEASURE_TOTALLAB').value = temp['total_lab'];
+  document.getElementById('psmeasure').value = temp['msg'];
+
 
   //part5
-  document.getElementById('MIDEXAM_HOUR_LEC').value = temp['EXAM']['MID1']['HOUR']['LEC'];
-  document.getElementById('MIDEXAM_HOUR_LAB').value = temp['EXAM']['MID1']['HOUR']['LAB'];
-  document.getElementById('MIDEXAM_HOUR_LEC_SEC').value = temp['EXAM']['MID2']['HOUR']['LEC'];
-  document.getElementById('MIDEXAM_HOUR_LAB_SEC').value = temp['EXAM']['MID2']['HOUR']['LAB'];
-  document.getElementById('FINEXAM_HOUR_LEC').value = temp['EXAM']['FINAL']['HOUR']['LEC'];
-  document.getElementById('FINEXAM_HOUR_LAB').value = temp['EXAM']['FINAL']['HOUR']['LAB'];
-  document.getElementById('mexholec').value = temp['EXAM']['MID1']['NUMBER']['LEC'];
-  document.getElementById('mexholac').value = temp['EXAM']['MID1']['NUMBER']['LAB'];
-  document.getElementById('mexholec_sec').value = temp['EXAM']['MID2']['NUMBER']['LEC'];
-  document.getElementById('mexholac_sec').value = temp['EXAM']['MID2']['NUMBER']['LAB'];
-  document.getElementById('fexholec').value = temp['EXAM']['FINAL']['NUMBER']['LEC'];
-  document.getElementById('fexholac').value = temp['EXAM']['FINAL']['NUMBER']['LAB'];
-  document.getElementById('suggestion').value = temp['EXAM']['SUGGESTION'];
+  document.getElementById('MIDEXAM_HOUR_LEC').value = temp['mid1_hour_lec'];
+  document.getElementById('MIDEXAM_HOUR_LAB').value = temp['mid1_hour_lab'];
+  document.getElementById('MIDEXAM_HOUR_LEC_SEC').value = temp['mid2_hour_lec'];
+  document.getElementById('MIDEXAM_HOUR_LAB_SEC').value = temp['mid2_hour_lab'];
+  document.getElementById('FINEXAM_HOUR_LEC').value = temp['final_hour_lec'];
+  document.getElementById('FINEXAM_HOUR_LAB').value = temp['final_hour_lab'];
+  document.getElementById('mexholec').value = temp['mid1_number_lec'];
+  document.getElementById('mexholac').value = temp['mid1_number_lab'];
+  document.getElementById('mexholec_sec').value = temp['mid2_number_lec'];
+  document.getElementById('mexholac_sec').value = temp['mid2_number_lab'];
+  document.getElementById('fexholec').value = temp['final_number_lec'];
+  document.getElementById('fexholac').value = temp['final_number_lab'];
+  document.getElementById('suggestion').value = temp['suggestion'];
 
-  for(var i=0;i<temp['EXAM']['MID1']['NUMBER']['LEC'];i++)
+  for(var i=0;i<temp['mid1_number_lec'];i++)
   {
     document.getElementById("mehle" + (i+1)).style.display = "";
     document.getElementById('mehlec' + (i+1)).classList.remove('hide');
     document.getElementById('MIDEXCOM_LECF'+(i+1)).style.display = "";
-    document.getElementById('MIDEXCOM_LECF'+(i+1)).value = temp['EXAM']['MID1']['COMMITTEE']['LEC'][i];
+    document.getElementById('MIDEXCOM_LECF'+(i+1)).value = temp['exam_mid1_committee_lec'][i];
   }
-  for(var i=0;i<temp['EXAM']['MID1']['NUMBER']['LAB'];i++)
+  for(var i=0;i<temp['mid1_number_lab'];i++)
   {
     document.getElementById("ehla" + (i+1)).style.display = "";
     document.getElementById('ehlab' + (i+1)).classList.remove('hide');
     document.getElementById('MIDEXCOM_LABF' + (i+1)).style.display = "";
-    document.getElementById('MIDEXCOM_LABF'+(i+1)).value = temp['EXAM']['MID1']['COMMITTEE']['LAB'][i];
+    document.getElementById('MIDEXCOM_LABF'+(i+1)).value = temp['exam_mid1_committee_lab'][i];
   }
-  for(var i=0;i<temp['EXAM']['MID2']['NUMBER']['LEC'];i++)
+  for(var i=0;i<temp['mid2_number_lec'];i++)
   {
     document.getElementById("mehle" + (i+1) +"_sec").style.display = "";
     document.getElementById('mehlec' + (i+1) +"_sec").classList.remove('hide');
     document.getElementById('MIDEXCOM_LECF' + (i+1) +"_sec").style.display = "";
-    document.getElementById('MIDEXCOM_LECF'+(i+1)+'_sec').value = temp['EXAM']['MID2']['COMMITTEE']['LEC'][i];
+    document.getElementById('MIDEXCOM_LECF'+(i+1)+'_sec').value = temp['exam_mid2_committee_lec'][i];
   }
-  for(var i=0;i<temp['EXAM']['MID2']['NUMBER']['LAB'];i++)
+  for(var i=0;i<temp['mid2_number_lab'];i++)
   {
     document.getElementById("ehla" + (i+1) +"_sec").style.display = "";
     document.getElementById('ehlab' + (i+1) +"_sec").classList.remove('hide');
     document.getElementById('MIDEXCOM_LABF' + (i+1) +"_sec").style.display = "";
-    document.getElementById('MIDEXCOM_LABF'+(i+1)+'_sec').value = temp['EXAM']['MID2']['COMMITTEE']['LAB'][i];
+    document.getElementById('MIDEXCOM_LABF'+(i+1)+'_sec').value = temp['exam_mid2_committee_lab'][i];
   }
-  for(var i=0;i<temp['EXAM']['FINAL']['NUMBER']['LEC'];i++)
+  for(var i=0;i<temp['final_number_lec'];i++)
   {
     document.getElementById("fmehle" + (i+1)).style.display = "";
     document.getElementById('fmehlec' + (i+1)).classList.remove('hide');
     document.getElementById('FINEXCOM_LECF' + (i+1)).style.display = "";
-    document.getElementById('FINEXCOM_LECF'+(i+1)).value = temp['EXAM']['FINAL']['COMMITTEE']['LEC'][i];
+    document.getElementById('FINEXCOM_LECF'+(i+1)).value = temp['exam_final_committee_lec'][i];
   }
-  for(var i=0;i<temp['EXAM']['FINAL']['NUMBER']['LAB'];i++)
+  for(var i=0;i<temp['final_number_lab'];i++)
   {
     document.getElementById("fehla" + (i+1)).style.display = "";
     document.getElementById('fehlab' + (i+1)).classList.remove('hide');
     document.getElementById('FINEXCOM_LABF' + (i+1)).style.display = "";
-    document.getElementById('FINEXCOM_LABF'+(i+1)).value = temp['EXAM']['FINAL']['COMMITTEE']['LAB'][i];
+    document.getElementById('FINEXCOM_LABF'+(i+1)).value = temp['exam_final_committee_lab'][i];
   }
 
   //part6
-  var choice3 = temp['CALCULATE']['TYPE'];
+  var choice3 = temp['criterion_type'];
   $('input[name="CALCULATE"][value=' + choice3 + ']').prop('checked', true);
-  document.getElementById('EXPLAINATION').value = temp['CALCULATE']['EXPLAINATION'];
+  document.getElementById('EXPLAINATION').value = temp['explaination'];
 
   //fucntion for disabled
   if($("input[name='CALCULATE']:checked").val()=="GROUP")
@@ -555,20 +557,20 @@ function getinfo(temp) {
     $('.atof').prop('required',true);
     $('.atof').prop('disabled',false);
     $('.stou').prop('required',false);
-    document.getElementById("CALCULATE_A_MIN").value = temp['CALCULATE']['A']['MIN'];
-    document.getElementById("CALCULATE_Bp_MIN").value = temp['CALCULATE']['B+']['MIN'];
-    document.getElementById("CALCULATE_Bp_MAX").value = temp['CALCULATE']['B+']['MAX'];
-    document.getElementById("CALCULATE_B_MIN").value = temp['CALCULATE']['B']['MIN'];
-    document.getElementById("CALCULATE_B_MAX").value = temp['CALCULATE']['B']['MAX'];
-    document.getElementById("CALCULATE_Cp_MIN").value = temp['CALCULATE']['C+']['MIN'];
-    document.getElementById("CALCULATE_Cp_MAX").value = temp['CALCULATE']['C+']['MAX'];
-    document.getElementById("CALCULATE_C_MIN").value = temp['CALCULATE']['C']['MIN'];
-    document.getElementById("CALCULATE_C_MAX").value = temp['CALCULATE']['C']['MAX'];
-    document.getElementById("CALCULATE_Dp_MIN").value = temp['CALCULATE']['D+']['MIN'];
-    document.getElementById("CALCULATE_Dp_MAX").value = temp['CALCULATE']['D+']['MAX'];
-    document.getElementById("CALCULATE_D_MIN").value = temp['CALCULATE']['D']['MIN'];
-    document.getElementById("CALCULATE_D_MAX").value = temp['CALCULATE']['D']['MAX'];
-    document.getElementById("CALCULATE_F_MAX").value = temp['CALCULATE']['F']['MAX'];
+    document.getElementById("CALCULATE_A_MIN").value = temp['A_min'];
+    document.getElementById("CALCULATE_Bp_MIN").value = temp['B+_min'];
+    document.getElementById("CALCULATE_Bp_MAX").value = temp['B+_max'];
+    document.getElementById("CALCULATE_B_MIN").value = temp['B_min'];
+    document.getElementById("CALCULATE_B_MAX").value = temp['B_max'];
+    document.getElementById("CALCULATE_Cp_MIN").value = temp['C+_min'];
+    document.getElementById("CALCULATE_Cp_MAX").value = temp['C+_max'];
+    document.getElementById("CALCULATE_C_MIN").value = temp['C_min'];
+    document.getElementById("CALCULATE_C_MAX").value = temp['C_max'];
+    document.getElementById("CALCULATE_Dp_MIN").value = temp['D+_min'];
+    document.getElementById("CALCULATE_Dp_MAX").value = temp['D+_max'];
+    document.getElementById("CALCULATE_D_MIN").value = temp['D_min'];
+    document.getElementById("CALCULATE_D_MAX").value = temp['D_max'];
+    document.getElementById("CALCULATE_F_MAX").value = temp['F_max'];
   }else {
     $('.atof').val("");
     $('#EXPLAINATION').prop('disabled',true);
@@ -576,12 +578,12 @@ function getinfo(temp) {
     $('.stou').prop('disabled',false);
     $('.atof').prop('required',false);
     $('.stou').prop('required',true);
-    document.getElementById("CALCULATE_S_MIN").value = temp['CALCULATE']['S']['MIN'];
-    document.getElementById("CALCULATE_U_MAX").value = temp['CALCULATE']['U']['MAX'];
+    document.getElementById("CALCULATE_S_MIN").value = temp['S_min'];
+    document.getElementById("CALCULATE_U_MAX").value = temp['U_max'];
   }
 
   //part7
-  var choice5 = temp['ABSENT'];
+  var choice5 = temp['absent'];
   $('input[name="ABSENT"][value=' + choice5 + ']').prop('checked', true);
 
   //buttondiv
@@ -633,7 +635,7 @@ function checksubject(btntype,type){
                           $('#buttondiv').hide();
                         }
 
-                       if(temp['INFO']!=false && temp[0]!=null)
+                       if(temp['INFO']!=false && temp['DATA']!=false)
                        {
                          document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
                          document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
@@ -660,7 +662,7 @@ function checksubject(btntype,type){
 
 
                        }
-                       else if(temp['INFO']==false && temp[0]==null && $('#id').val()!=""){
+                       else if(temp['INFO']==false && $('#id').val()!=""){
                          swal(
                             '',
                             'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
@@ -670,7 +672,7 @@ function checksubject(btntype,type){
                          document.getElementById('id').value = "";
                          document.getElementById('formdrpd').style.display = "none";
                        }
-                       else if(temp['INFO']!=false && temp[0]==null){
+                       else if(temp['INFO']!=false && temp['DATA']==false){
                           swal(
                              '',
                              'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
