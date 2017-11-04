@@ -3,26 +3,10 @@ require_once(__DIR__.'/../config/configuration_variable.php');
 require_once(__DIR__.'/../class/approval.php');
 require_once(__DIR__.'/../class/person.php');
 require_once(__DIR__.'/../class/manage_deadline.php');
+
 require('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
-$deadline = new Deadline();
-$semester = $deadline->Get_Current_Semester();
-$file_path = '';
-if(isset($_POST['DATA']))
-{
-	$data = $_POST['DATA'];
-	$DATA = json_decode($data,true);
-	$file_path = $DATA['FILE_PATH'];
-	$semester = $DATA['SEMESTER'];
-	//var_dump($DATA);
-}
-else
-{
-	$return['status'] = "error";
-	$return['msg'] = 'ไม่มีข้อมูลนำเข้า';
-	echo json_encode($return);
-	die;
-}
+
 
 //start generate pdf
 
@@ -515,6 +499,7 @@ $pdf->Cell(0,7,iconv('UTF-8','cp874','(ผู้รับผิดชอบก�
 
 if(isset($DATA['APPROVED']))
 {
+	//get head of depart name and signature_file
 	$approver_name = $person->Get_Teacher_Name($DATA['APPROVED']['ID']);
 	$signature_approver_file = $person->Get_Teacher_Signature($DATA['APPROVED']['ID']);
 //if approve
@@ -540,11 +525,11 @@ if(isset($DATA['APPROVED']))
 	$pdf->SetX(35);
 	$pdf->Cell(0,7,iconv('UTF-8','cp874','(หัวหน้าภาควิชา)'),0,1);
 	$person->Close_connection();
-	if($DATA['APPROVED']['TYPE'] == '4')
+	if($DATA['APPROVED']['TYPE'] == '4') //board approve
 	{
 		$pdf->Output($file_path."/".$DATA['COURSE_ID']."_".$SECTION."_evaluate_".$semester['semester']."_".$semester['year'].".pdf","F");
 	}
-	else if($DATA['APPROVED']['TYPE'] == '3')
+	else if($DATA['APPROVED']['TYPE'] == '3') // assessor approve
 	{
 		$pdf->Output($file_path."/".$DATA['COURSE_ID']."_evaluate_".$semester['semester']."_".$semester['year'].".pdf","F");
 	}
@@ -552,7 +537,7 @@ if(isset($DATA['APPROVED']))
 else
 {
 	$person->Close_connection();
-	//save file
+	//save draft file
 	$pdf->Output($file_path."/".$DATA['COURSE_ID']."_evaluate_".$semester['semester']."_".$semester['year'].".pdf","F");
 
 }

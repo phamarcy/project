@@ -2,28 +2,15 @@
 require_once(__DIR__.'/../class/manage_deadline.php');
 require_once(__DIR__.'/../class/approval.php');
 require_once(__DIR__.'/../class/person.php');
+require_once(__DIR__.'/../class/course.php');
 require_once(__DIR__.'/../class/manage_deadline.php');
 require_once('fpdf17/fpdf.php');
 require_once(__DIR__.'/../lib/thai_date.php');
 define('FPDF_FONTPATH','font/');
 $deadline = new Deadline();
+$course = new Course();
 $semester = $deadline->Get_Current_Semester();
 $file_path = '';
-// var_dump($_POST);
-if(isset($_POST['DATA']))
-{
-	$data = $_POST['DATA'];
-	$DATA = json_decode($data,true);
-	$file_path = $DATA['FILE_PATH'];
-	$instructor_id = $DATA['ID'];
-	$semester = $DATA['SEMESTER'];
-}
-else
-{
-	$return['status'] = "error";
-	$return['msg'] = 'ไม่มีข้อมูลนำเข้า';
-	echo json_encode($return);
-}
 
 //start generate pdf
 $pdf=new FPDF();
