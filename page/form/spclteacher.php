@@ -1732,7 +1732,7 @@ function lastcal() {
                   <input type="hidden" name="type" value="1">
                  <button type="button" class="btn btn-outline btn-primary" onclick="checksubject(1,2);">ค้นหา</button>
          </div>
-        <h5 id="notfound" style="color:#ff0000; display:none;">ไม่พบข้อมูล</h5>
+        <h5 id="notfound" style="color:#ff0000; display:none;">รายวิชานี้ยังไม่เคยเชิญอาจารย์พิเศษมาสอน กดปุ่มเพิ่มรายชื่อใหม่ เพื่อกรอกข้อมูล </h5>
     <div id="formdrpd" style="display: none;">
       <div class="form-inline">
         <div class="form-group " style="font-size:16px;">
