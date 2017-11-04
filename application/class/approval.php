@@ -834,7 +834,7 @@ class approval
     $url = $this->CURL->GET_SERVER_URL();
     $view_url = $url."/application/pdf/view.php";
     $return_url['evaluate'] = $view_url."?course=".$course_id."&type=".$type."&info=evaluate&semester=".$this->SEMESTER."&year=".$this->YEAR;
-    $return_url['syllabus'] = $this->COURSE->Get_Course_Syllabus($course_id);
+    $return_url['syllabus'] = $this->COURSE->Get_Course_Syllabus($course_id,$this->SEMESTER_ID);
     return $return_url;
   }
 

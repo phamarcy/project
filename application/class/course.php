@@ -710,27 +710,21 @@ class Course
     return $data;
   }
 
-  public function Get_Course_Syllabus($course_id)
+  public function Get_Course_Syllabus($course_id,$semester_id)
   {
-    $syllabus_file = $this->FILE_PATH."/syllabus/".$course_id."_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".doc";
-    if (file_exists(realpath($syllabus_file)))
+    $syllabus_file = $this->FILE_PATH."/syllabus/";
+    $sql = "SELECT `syllabus` FROM `course_evaluate` WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$semester_id;
+    $result = $this->DB->Query($sql);
+    if($result)
     {
-        $path = "/syllabus/".$course_id."_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".doc";
+      $path =  $syllabus_file.$result[0]['syllabus'];
+      return $path;
     }
     else
     {
-      $syllabus_file = $this->FILE_PATH."/syllabus/".$course_id."_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".docx";
-      if (file_exists(realpath($syllabus_file)))
-      {
-
-          $path = "/syllabus/".$course_id."_".$this->SEMESTER['semester']."_".$this->SEMESTER['year'].".docx";
-      }
-      else
-      {
-        $path = null;
-      }
+      return false;
     }
-    return $path;
+
   }
 
   private function Check_Access($teacher_id,$course_id)
@@ -748,7 +742,7 @@ class Course
     }
   }
 
-  public function Get_Grade($teacher_id)
+  public function Get_Grade($teacher_id,$semester_id)
   {
     $sql = "SELECT c.`course_id`,`course_name_en` as name FROM `course_responsible` cr,`course` c
     WHERE cr.`teacher_id` = '".$teacher_id."' AND c.`course_id` = cr.`course_id` AND cr.`semester_id` = ".$this->SEMESTER['id'];
@@ -761,7 +755,7 @@ class Course
       {
         $temp['course_id'] = $result[$i]['course_id'];
         $temp['course_name'] = $result[$i]['name'];
-        $sql = "SELECT `file_name` FROM `couse_grade` WHERE `course_id` = '".$temp['course_id']."' AND `semester_id` = ".$this->SEMESTER['id'];
+        $sql = "SELECT `file_name` FROM `couse_grade` WHERE `course_id` = '".$temp['course_id']."' AND `semester_id` = ".$semester_id;
         $result = $this->DB->Query($sql);
         if($result)
         {

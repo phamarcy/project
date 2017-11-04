@@ -9,7 +9,7 @@ require_once(__DIR__."/../../application/class/course.php");
 $deadline = new Deadline;
 $grade = new Course;
 $semeter= $deadline->Get_Current_Semester();
-$showgrade=$grade->Get_Grade($_SESSION['id']);
+$showgrade=$grade->Get_Grade($_SESSION['id'],$semester['id']);
 $grade->Close_connection();
 
 //close
@@ -46,7 +46,7 @@ $deadline->Close_connection();
       font-weight: bold;
       color: red;
     }
-    
+
     #statcf {
      color : #0e9d14;
     }

@@ -19,7 +19,7 @@ $db = new Database();
 $file_path = '';
 function Upload($file,$course_id)
 {
-	global $FILE_PATH,$semester,$log;
+	global $FILE_PATH,$semester,$log,$db;
 	$path = $FILE_PATH."/syllabus";
   if(!file_exists($path))
 	{
@@ -69,6 +69,19 @@ function Upload($file,$course_id)
              $return['msg'] = $message;
              echo json_encode($return);
               die();
+	}
+	else
+	{
+		$sql = "UPDATE `course_evaluate` SET `syllabus` =  '".$course_id."_".$semester['semester']."_".$semester['year'].'.'.$ext."' WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$semester['id'];
+		$result = $db->Insert_Update_Delete($sql);
+		if(!$result)
+		{
+			$return['status'] = "error";
+			$return['msg'] = "ไม่สามารถบันทึกไฟล์ได้";
+			echo json_encode($return);
+			Close_connection();
+			die();
+		}
 	}
 }
 

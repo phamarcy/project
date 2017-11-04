@@ -74,67 +74,31 @@ class Report
         }
       }
       $DATA = array();
-      $course = scandir($this->FILE_PATH);
-      for($i=2;$i<count($course);$i++)
+      $sql ="SELECT `course_id` FROM `course_evaluate` WHERE `status` = '1'";
+      $result = $this->DB->Query($sql);
+      if($result)
       {
-        if(!in_array($course[$i],$dept_course))
+        for($i=0;$i<count($result);$i++)
         {
-          continue;
-        }
-        if(is_dir($this->FILE_PATH."/".$course[$i]))
-        {
-            $data['id'] = $course[$i];
-            $data['name'] = $this->COURSE->Get_Course_Name($data['id']);
-            $syllabus_file = $FILE_PATH."/syllabus/".$data['id']."_".$semester."_".$year.".doc";
-            if (file_exists(realpath($syllabus_file)))
-            {
-                $syllabus_path = "/syllabus/".$data['id']."_".$semester."_".$year.".doc";
-            }
-            else
-            {
-              $syllabus_file = $FILE_PATH."/syllabus/".$data['id']."_".$semester."_".$year.".docx";
-              if (file_exists(realpath($syllabus_file)))
-              {
-
-                  $syllabus_path = "/syllabus/".$data['id']."_".$semester."_".$year.".docx";
-              }
-              else
-              {
-                $syllabus_path = null;
-              }
-            }
-            $data['syllabus'] = $syllabus_path;
-            $data['pdf'] = $this->DOWNLOAD_URL."?course=".$data['id']."&info=evaluate&semester=".$semester."&year=".$year;
-            $grade_file = $FILE_PATH."/grade/".$data['id']."_grade_".$semester."_".$year.".xls";
-            if (file_exists(realpath($grade_file)))
-            {
-                $data['grade'] = "/grade/".$data['id']."_grade_".$semester."_".$year.".xls";
-            }
-            else
-            {
-              $grade_file = $FILE_PATH."/grade/".$data['id']."_grade_".$semester."_".$year.".xlsx";
-              if (file_exists(realpath($grade_file)))
-              {
-                  $data['grade'] = "/grade/".$data['id']."_grade_".$semester."_".$year.".xlsx";
-              }
-              else
-              {
-                $data['grade'] = null;
-
-              }
-            }
-            if(is_dir($this->FILE_PATH."/".$data['id']."/evaluate"))
-            {
-              $file_name = scandir($this->FILE_PATH."/".$data['id']."/evaluate");
-              for($j=2;$j<count($file_name);$j++)
-              {
-                if($this->Check_File_Semester($semester,$year,$file_name[$j]))
-                {
-                  array_push($DATA,$data);
-                  break;
-                }
-              }
-            }
+          if(!in_array($result[$i]['course_id'],$dept_course))
+           {
+             continue;
+           }
+          $data['id'] = $result[$i]['course_id'];
+          $data['name'] = $this->COURSE->Get_Course_Name($data['id']);
+          $data['syllabus'] = $this->COURSE->Get_Course_Syllabus($data['id'],$semester_id);
+          $data['pdf'] = $this->DOWNLOAD_URL."?course=".$data['id']."&info=evaluate&semester=".$semester."&year=".$year;
+          $sql = "SELECT `file_name` FROM `couse_grade` WHERE `course_id` = '".$data['id']."' AND `semester_id` = ".$semester_id;
+          $result = $this->DB->Query($sql);
+          if($result)
+          {
+            $data['grade'] = $result[0]['file_name'];
+          }
+          else
+          {
+            $data['grade'] = null;
+          }
+          array_push($DATA,$data);
         }
       }
       if(count($DATA) == 0)
@@ -190,73 +154,7 @@ class Report
         }
       }
       $DATA = array();
-      $course = scandir($this->FILE_PATH);
-      if(count($course)<= 2)
-      {
-        $return['status'] = 'error';
-        $return['msg'] = 'ไม่พบข้อมูล';
-        return $return;
-      }
-
-      for($i=2;$i<count($course);$i++)
-      {
-        if(!in_array($course[$i],$dept_course))
-        {
-          continue;
-        }
-        $data['id'] = $course[$i];
-        $data['name'] = $this->COURSE->Get_Course_Name($data['id']);
-        $data['special'] = array();
-        if(is_dir($this->FILE_PATH."/".$data['id']))
-        {
-          if(is_dir($this->FILE_PATH."/".$data['id']."/special_instructor"))
-          {
-            $file_name = scandir($this->FILE_PATH."/".$data['id']."/special_instructor");
-
-            for($j=2;$j<count($file_name);$j++)
-            {
-              if($this->Check_File_Semester($semester,$year,$file_name[$j]))
-              {
-                $instructor_id = explode("_",$file_name[$j]);
-                $instructor['id'] = $instructor_id[1];
-                $instructor['name'] = $this->PERSON->Get_Special_Instructor_Name($instructor['id']);
-                $CV_file = $FILE_PATH."/cv/".$instructor['id'].".doc";
-                if (file_exists(realpath($CV_file)))
-                {
-                    $path = "/cv/".$instructor['id'].".doc";
-                }
-                else
-                {
-                  $CV_file = $FILE_PATH."/cv/".$instructor['id'].".docx";
-                  if (file_exists(realpath($CV_file)))
-                  {
-                      $path = "/cv/".$instructor['id'].".docx";
-                  }
-                  else
-                  {
-                    $CV_file = $FILE_PATH."/cv/".$instructor['id'].".pdf";
-                    if (file_exists(realpath($CV_file)))
-                    {
-                      $path = "/cv/".$instructor['id'].".pdf";
-                    }
-                    else
-                    {
-                        $path = null;
-                    }
-                  }
-                }
-                $instructor['cv'] = $this->PERSON->Get_CV($instructor['id']);
-                $instructor['pdf'] =  $this->VIEW_URL."?course=".$data['id']."&id=".$instructor['id']."&type=complete&info=special&semester=".$semester."&year=".$year;
-                array_push($data['special'],$instructor);
-              }
-            }
-          }
-        }
-        if(count($data['special']) != 0)
-        {
-          array_push($DATA,$data);
-        }
-      }
+      
       if(count($DATA) == 0)
       {
         $return['status'] = 'error';
