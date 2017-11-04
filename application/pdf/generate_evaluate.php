@@ -231,16 +231,20 @@ if(isset($_POST['DATA']))
 
 			//teacher_exam_evaluate
 			for ($i=0; $i < sizeof($DATA["TEACHER"]); $i++) {
+				if($DATA["TEACHER"][$i] != '')
+				{
 			    $teacher_id = $person->Get_Teacher_Id($DATA["TEACHER"][$i]);
 			    if (!$teacher_id) {
-			        $log->Write("insert data into database failed : not found TEACHER id on ".$DATA["TEACHER"][$i] );
+
+			        $log->Write("insert data into database failed : not found TEACHER id on ".$a );
 			    }
 			    if ($teacher_id) {
 			        $sql_teacher_exam_evaluate = "INSERT INTO `teacher_exam_evaluate`(`teacher_id`, `course_eveluate_id`)VALUES ('".$teacher_id."','".$result_course_evaluate_id[0]["course_evaluate_id"]."')";
 							$sql_teacher_exam_evaluate .= "ON DUPLICATE KEY UPDATE `teacher_id` = '".$teacher_id."' , `course_eveluate_id` = ".$result_course_evaluate_id[0]["course_evaluate_id"];
 			        $result_teacher_exam_evaluate = $db->Insert_Update_Delete($sql_teacher_exam_evaluate);
 			    }
-	}
+				}
+			}
 }
 else
 {

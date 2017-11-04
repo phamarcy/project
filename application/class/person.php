@@ -525,6 +525,7 @@ class Person
   public function Get_CV($instructor_id)
   {
     $sql = "SELECT `cv` FROM `special_instructor` WHERE `instructor_id` = '".$instructor_id."'";
+    $this->DB->Change_DB($this->DEFAULT_DB);
     $result = $this->DB->Query($sql);
     if($result)
     {
