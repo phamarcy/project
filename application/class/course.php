@@ -749,7 +749,7 @@ class Course
     $result = $this->DB->Query($sql);
     if($result)
     {
-      $grade_path = "/grade/";
+      $grade_path = "/grade";
       $data = array();
       for($i=0;$i<count($result);$i++)
       {
@@ -760,6 +760,7 @@ class Course
         if($result)
         {
           $temp['url'] = $grade_path."/".$result[0]['file_name'];
+          $temp['status'] = 1;
         }
         else
         {

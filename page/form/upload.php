@@ -8,7 +8,7 @@ require_once(__DIR__."/../../application/class/manage_deadline.php");
 require_once(__DIR__."/../../application/class/course.php");
 $deadline = new Deadline;
 $grade = new Course;
-$semeter= $deadline->Get_Current_Semester();
+$semester= $deadline->Get_Current_Semester();
 $showgrade=$grade->Get_Grade($_SESSION['id'],$semester['id']);
 $grade->Close_connection();
 
@@ -81,7 +81,7 @@ $deadline->Close_connection();
       <div class="panel panel-default">
           <div class="panel-heading">
             <h5 class="panel-title">
-                <b>ภาคการศึกษาที่ <?php echo $semeter["semester"]; ?> ปีการศึกษา <?php echo $semeter["year"]; ?></b>
+                <b>ภาคการศึกษาที่ <?php echo $semester["semester"]; ?> ปีการศึกษา <?php echo $semester["year"]; ?></b>
             </h5>
           </div>
           <!-- .panel-heading -->
