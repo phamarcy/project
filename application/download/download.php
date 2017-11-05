@@ -45,14 +45,14 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
   {
     if($type == 'evaluate')
     {
-      $sql = "SELECT `course_id`,`pdf_file` FROM `course_evaluate` ce, `student_evaluate` se" ;
-      $sql .= " WHERE  ce.`course_evaluate_id` = se.`course_evaluate_id` AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id;
+      $sql = "SELECT `pdf_file` FROM `course_evaluate` ce, `student_evaluate` se" ;
+      $sql .= " WHERE  ce.`course_evaluate_id` = se.`course_evaluate_id` AND ce.`status` = '1' AND `course_id` = '".$course."' AND ce.`semester_id` = ".$semester_id;
       $result = $db->Query($sql);
       if($result)
       {
         for($i=0 ;$i< count($result);$i++)
         {
-          add_zip($zip,$result[$i]['course_id'],$result[$i]['pdf_file']);
+          add_zip($zip,$course,$result[$i]['pdf_file']);
         }
       }
     }
@@ -73,7 +73,16 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
     }
     else //course evaluate
     {
-
+      $sql = "SELECT `course_id`,`pdf_file` FROM `course_evaluate` ce, `student_evaluate` se" ;
+      $sql .= " WHERE  ce.`course_evaluate_id` = se.`course_evaluate_id` AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id;
+      $result = $db->Query($sql);
+      if($result)
+      {
+        for($i=0 ;$i< count($result);$i++)
+        {
+          add_zip($zip,$result[$i]['course_id'],$result[$i]['pdf_file']);
+        }
+      }
     }
   }
 
