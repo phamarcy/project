@@ -78,7 +78,8 @@ class Report
       $result = $this->DB->Query($sql);
       if($result)
       {
-        for($i=0;$i<count($result);$i++)
+      	$count = count($result);
+        for($i=0;$i<$count;$i++)
         {
           if(!in_array($result[$i]['course_id'],$dept_course))
            {
@@ -89,8 +90,8 @@ class Report
           $data['syllabus'] = $this->COURSE->Get_Course_Syllabus($data['id'],$semester_id);
           $data['pdf'] = $this->DOWNLOAD_URL."?course=".$data['id']."&info=evaluate&semester=".$semester."&year=".$year;
           $sql = "SELECT `file_name` FROM `couse_grade` WHERE `course_id` = '".$data['id']."' AND `semester_id` = ".$semester_id;
-          $result = $this->DB->Query($sql);
-          if($result)
+          $result_filename = $this->DB->Query($sql);
+          if($result_filename)
           {
             $data['grade'] = $result[0]['file_name'];
           }
