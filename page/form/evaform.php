@@ -456,14 +456,19 @@ function getinfo(temp) {
   //part3
   for(var i=0;i<=4;i++)
   {
-    if(temp['teacher'][i]!="")
+    if(temp['teacher'][i]!="" && temp['teacher'][i]!=undefined)
     {
       document.getElementById('TEACHERLEC_F'+(i+1)).value = temp['teacher'][i];
     }else {
       document.getElementById('TEACHERLEC_F'+(i+1)).value = "";
     }
   }
-  document.getElementById('tchco').value = temp['teacher-co'];
+  if(temp['teacher-co']!="" && temp['teacher-co']!=undefined)
+  {
+    document.getElementById('tchco').value = temp['teacher-co'];
+  }else {
+    document.getElementById('tchco').value = "";
+  }
 
   //part4
   document.getElementById('MEASURE_MIDLEC1').value = temp['mid1_lec'];
@@ -623,7 +628,6 @@ function checksubject(btntype,type){
                   success: function (result) {
                         try {
                           var temp = $.parseJSON(result);
-                          console.log(temp);
 
                         //buttondiv
                         if(temp['ACCESS'] == true)
@@ -655,7 +659,7 @@ function checksubject(btntype,type){
                            }
                          }
 
-                         for(var i=0;i<(Object.keys(temp).length - 1);i++)
+                         for(var i=0;i<(Object.keys(temp['DATA']).length);i++)
                          {
                            var opt = document.createElement('option');
                            opt.value = temp['DATA'][i].semester +"_"+ temp['DATA'][i].year;
@@ -689,7 +693,7 @@ function checksubject(btntype,type){
                           document.getElementById('TOTAL').value = temp['INFO']['credit']+"("+temp['INFO']['hr_lec']+"-"+temp['INFO']['hr_lab']+"-"+temp['INFO']['hr_self']+")";
                         }
                         else {
-                          if($('#id').val()=="" ||$('#id').val()==null )
+                          if($('#id').val()=="" ||$('#id').val()==undefined )
                           {
                             $('#dlhide').hide();
                             document.getElementById('formdrpd').style.display = "none";
