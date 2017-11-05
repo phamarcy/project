@@ -763,7 +763,7 @@ class Course
         $result_filename = $this->DB->Query($sql);
         if($result_filename)
         {
-          $temp['url'] = $grade_path."/".$result[0]['file_name'];
+          $temp['url'] = $grade_path."/".$result_filename[0]['file_name'];
           $temp['status'] = 1;
         }
         else
