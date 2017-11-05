@@ -313,20 +313,9 @@ class Report
     $date = $data['DATE_USER'];
     $time = $data['TIME_USER'];
 
-    $mail = new PHPMailer();
-    $mail->IsSMTP();
-    //$mail->SMTPDebug = $EMAIL['SMTPDebug'];
-    $mail->SMTPAuth = $EMAIL['SMTPAuth'];
-    $mail->SMTPSecure = $EMAIL['SMTPSecure'];
-    $mail->Host = $EMAIL['Host'];
-    $mail->Port = $EMAIL['Port'];
-    $mail->IsHTML(true);
-    $mail->Username = $EMAIL['Username'];
-    $mail->Password = $EMAIL['Password'];
-    $mail->SetFrom($EMAIL['SETFROM']);
+
     $sendsubject = "=?utf-8?b?".base64_encode('ระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่')."?=";
-    $mail->Subject = $sendsubject;
-    $mail->CharSet = "utf-8";
+
 
       if($type=='1')
         {
@@ -396,27 +385,23 @@ class Report
 
         $bodystring = $bodystring." เมื่อวันที่ ".$date." เวลา ".$time;
         $bodystring = $bodystring."<br><br>----อีเมล์นี้ส่งจากระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่----";
-        $mail->Body = $bodystring;
+       
 
-        $debug = '';
-        $mail->Debugoutput = function($str, $level) {
-            $debug .= $level.": ".$str."\n";
-        };
 
-        if($mail->AddAddress($idobj->Get_Teacher_Email($teacher_id)) == false)
-        {
-          $this->LOG->Write($debug);
+        $to = $idobj->Get_Teacher_Email($teacher_id);
+        if (!$to) {
+          $this->LOG->Write("Can't Get Teacher Email");
+          return false;
         }
-        else {
-          $mail->AddAddress($idobj->Get_Teacher_Email($teacher_id));
+        $headerFields = array(
+          "From: noreply@pharmacy.cmu.ac.th",
+          "Content-Type: text/html;charset=utf-8"
+        );
+
+        $mail_sent = mail( $to, $sendsubject, $bodystring, $headerFields );
+        if ((!$mail_sent) || $mail_sent==false) {
+          $this->LOG->Write("MAIL FUNCTION : Failed to send E-mail");
         }
-
-         if(!$mail->Send()) {
-            $this->LOG->Write($debug." Error: incomplete");
-         } else {
-            $this->LOG->Write($debug." Complete");
-         }
-
   } //end email
 
 }
