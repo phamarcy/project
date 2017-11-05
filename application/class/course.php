@@ -510,7 +510,7 @@ class Course
       }
       else
       {
-        die("ไม่พบข้อมูล");
+        $data = false;
       }
       $data['student'] = array();
       $sql = "SELECT `section`,`student` FROM `student_evaluate` WHERE `course_evaluate_id` = ".$data['course_evaluate_id'];
