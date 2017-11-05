@@ -752,12 +752,12 @@ else
 
 }
 $file_path = $file_path."/special_instructor";
-$file_path_sql = $file_path_sql."/special_instructor/".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf";
+$file_path_sql = $file_path_sql."/special_instructor/instructor_".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf";
 if(!file_exists($file_path))
 {
 	mkdir($file_path);
 }
-$pdf->Output($file_path."/".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
+$pdf->Output($file_path."/instructor_".$data_pdf['course_id']."_".$instructor_id."_".$semester['semester']."_".$semester['year'].".pdf","F");
 
 $sql = "UPDATE `course_hire_special_instructor` SET `pdf_file` = '".$file_path_sql."' WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."' AND `semester_id` = ".$semester['id'];
 $result = $db->Insert_Update_Delete($sql);

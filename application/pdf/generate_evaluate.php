@@ -835,13 +835,13 @@ else
 }
 $file_path = $file_path."/evaluate";
 $sec = (int)$num_section + 1;
-$file_path_sql = $file_path_sql."/evaluate/".$data_pdf['course_id']."_".$sec."_".$semester['semester']."_".$semester['year'].".pdf";
+$file_path_sql = $file_path_sql."/evaluate/evaluate_".$data_pdf['course_id']."_".$sec."_".$semester['semester']."_".$semester['year'].".pdf";
 if(!file_exists($file_path))
 {
 	mkdir($file_path);
 }
 
-$pdf->Output($file_path."/".$data_pdf['course_id']."_".$sec."_".$semester['semester']."_".$semester['year'].".pdf","F");
+$pdf->Output($file_path."/evaluate_".$data_pdf['course_id']."_".$sec."_".$semester['semester']."_".$semester['year'].".pdf","F");
 
 $sql = "UPDATE `student_evaluate` SET `pdf_file` = '".$file_path_sql."' WHERE `course_evaluate_id` = '".$data_pdf['course_evaluate_id']."' AND `section` = ".$sec;
 $result = $db->Insert_Update_Delete($sql);
