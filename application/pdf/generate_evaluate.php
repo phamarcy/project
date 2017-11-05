@@ -258,11 +258,16 @@ if(isset($_POST['DATA']))
 			    }
 				}
 			}
-}
-else
-{
-		//type 1 , 2
-}
+		}
+	if($DATA['SUBMIT_TYPE'] == '2')
+		{
+			//type 1 , 2
+			Close_connection();
+			$return['status'] = "success";
+			$return['msg'] = "บันทึกสำเร็จ";
+			echo json_encode($return);
+			die;
+		}
 }
 else
 {
