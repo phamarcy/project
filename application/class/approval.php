@@ -792,7 +792,7 @@ class approval
           }
           $instructor_id = $course['instructor'][$j]['id'];
           $course['instructor'][$j]['status'] = '0';
-          $sql = "SELECT `teacher_id`,`comment`,`status`,`updated_date` FROM `approval_special` WHERE `instructor_id` = '".$instructor_id."'
+          $sql = "SELECT `teacher_id`,`comment`,`status`,`updated_date` FROM `approval_special` WHERE `course_id` = '".$course['id']."' AND `instructor_id` = '".$instructor_id."'
           AND `semester_id` = ".$this->SEMESTER_ID;
           $result_comment = $this->DB->Query($sql);
           if($result_comment)
