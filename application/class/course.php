@@ -13,14 +13,18 @@ class Course
   private $SEMESTER;
   private $DEADLINE;
   private $PERSON;
+  private $PERSON_DB;
+  private $DEFAULT_DB;
+
 
   function __construct()
   {
-    global $FILE_PATH,$DATABASE;
+    global $FILE_PATH,$DATABASE,$PERSON_DATABASE;
     $this->FILE_PATH = $FILE_PATH;
     $this->LOG = new Log();
     $this->DB = new Database();
     $this->DEFAULT_DB = $DATABASE['NAME'];
+    $this->PERSON_DB = $PERSON_DATABASE['NAME'];
     $this->DEADLINE = new Deadline();
     $this->PERSON = new Person();
     $this->SEMESTER  = $this->DEADLINE->Get_Current_Semester();
@@ -130,7 +134,7 @@ class Course
     if($result)
     {
       $sql = "SELECT `name` FROM `department` WHERE `code` = '".$result[0]['department_id']."'";
-      $this->DB->Change_DB('person');
+      $this->DB->Change_DB($this->PERSON_DB);
       $result = $this->DB->Query($sql);
       $this->DB->Change_DB($this->DEFAULT_DB);
       if($result)

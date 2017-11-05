@@ -12,14 +12,18 @@ class Authentication
 
   private $DB;
   private $LOG;
+  private $DEFAULT_DB;
+  private $PERSON_DB;
+
 
   function __construct()
   {
-    global $DATABASE;
+    global $DATABASE,$PERSON_DATABASE;
       $this->DB = new Database();
-      $this->DB->Change_DB('person');
       $this->LOG = new Log();
       $this->DEFAULT_DB = $DATABASE['NAME'];
+      $this->PERSON_DB = $PERSON_DATABASE['NAME'];
+      $this->DB->Change_DB($this->PERSON_DB);
   }
 
 //authorize staff,teacher in database from username,password
@@ -27,7 +31,7 @@ class Authentication
   {
     // $sql = "SELECT `code`,`fname`,`lname` FROM `staff` WHERE `username` = '".$username."'";
     $sql = "SELECT `code`,`fname`,`lname` FROM `staff` WHERE `username` = '".$username."' AND `password` = '".$password."'";
-    $this->DB->Change_DB('person');
+    $this->DB->Change_DB($this->PERSON_DB);
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)
@@ -56,7 +60,7 @@ class Authentication
   private function Check_level($code)
   {
     $sql = "SELECT `education` as level FROM `staff_mis` WHERE `code`='".$code."'";
-    $this->DB->Change_DB('person');
+    $this->DB->Change_DB($this->PERSON_DB);
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)

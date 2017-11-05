@@ -1,7 +1,8 @@
 <?php
 require_once(__DIR__.'/../../application/class/database.php');
+require_once(__DIR__.'/../../application/config/configuration_variable.php');
 $db = new Database();
-$db->Change_DB('person');
+$db->Change_DB($PERSON_DATABASE['NAME']);
 $search = $_POST['name'];
 $sql = "SELECT concat(fname,' ',lname) as name FROM `staff` WHERE concat(fname,' ',lname) LIKE '%".$search."%'";
 $result = $db->Query($sql);

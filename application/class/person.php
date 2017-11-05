@@ -15,15 +15,18 @@ class Person
   private $DB;
   private $DEADLINE;
   private $FILE_PATH;
+  private $DEFAULT_DB;
+  private $PERSON_DB;
 
   function __construct()
   {
-    global $DATABASE,$FILE_PATH;
+    global $DATABASE,$FILE_PATH,$PERSON_DATABASE;
     # code...
     $this->LOG = new Log();
     $this->DB = new Database();
-    $this->DB->Change_DB('person');
     $this->DEFAULT_DB = $DATABASE['NAME'];
+    $this->PERSON_DB = $PERSON_DATABASE['NAME'];
+    $this->DB->Change_DB($this->PERSON_DB);
     $deadline = new Deadline();
     $this->DEADLINE = $deadline->Get_Current_Semester();
     $this->FILE_PATH = $FILE_PATH;
@@ -34,7 +37,7 @@ class Person
     $sql = "SELECT s.`code` as code,p.`name` as prefix,s.`fname`,s.`lname`
     FROM `staff` s,`prefix` p,`position` po
     WHERE s.`position_code` = po.`code` and s.`prefix_code` = p.`code` AND s.`position_code` = '100000'";
-    $this->DB->Change_DB('person');
+    $this->DB->Change_DB($this->PERSON_DB);
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)
@@ -60,7 +63,7 @@ class Person
   public function Get_Teacher_Name($teacher_id)
   {
     //search teacher data
-    $this->DB->Change_DB('person');
+    $this->DB->Change_DB($this->PERSON_DB);
     $sql = "SELECT p.`name` as prefix ,s.`fname`,s.`lname` FROM `staff` s,`prefix` p WHERE s.`code` = '".$teacher_id."' AND s.`prefix_code` = p.`code` ";
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
@@ -109,7 +112,7 @@ class Person
 //get all prifix that exist in database
   public function Get_All_Prefix()
   {
-    $this->DB->Change_DB('person');
+    $this->DB->Change_DB($this->PERSON_DB);
     $sql = "SELECT `code`,`name` FROM `prefix`";
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
@@ -141,7 +144,7 @@ class Person
       $lname = $name[$name_space-1];
       $fname = $name[$name_space-2];
       $sql = "SELECT code FROM `staff` WHERE fname = '".$fname."' AND lname ='".$lname."'";
-      $this->DB->Change_DB('person');
+      $this->DB->Change_DB($this->PERSON_DB);
       $result = $this->DB->Query($sql);
       $this->DB->Change_DB($this->DEFAULT_DB);
       if($result)
@@ -163,7 +166,7 @@ class Person
   public function Get_Teacher_Email($teacher_id)
   {
     $sql = "SELECT `email` FROM `staff` WHERE `code` = '".$teacher_id."'";
-    $this->DB->Change_DB('person');
+    $this->DB->Change_DB($this->PERSON_DB);
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)
@@ -181,7 +184,7 @@ class Person
     $sql = "SELECT s.`dep_code`,dep.`name` FROM `staff`s,`department` dep
     WHERE s.`code` = '".$staff_id."' AND s.`dep_code` = dep.`code`";
 
-    $this->DB->Change_DB('person');
+    $this->DB->Change_DB($this->PERSON_DB);
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)
@@ -542,7 +545,7 @@ class Person
   public function Get_Teacher_Signature($teacher_id)
   {
     global $SIGNATURE_PATH;
-    $this->DB->Change_DB('person');
+    $this->DB->Change_DB($this->PERSON_DB);
     $sql = "SELECT `files_sig` FROM `staff` WHERE `code` = '".$teacher_id."'";
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
@@ -600,7 +603,7 @@ class Person
     {
       return false;
     }
-    $this->DB->Change_DB('person');
+    $this->DB->Change_DB($this->PERSON_DB);
     $sql = "SELECT `code` FROM `staff` WHERE `position_dean` = '".$position_dean."'";
     $result = $this->DB->Query($sql);
     if($result)
