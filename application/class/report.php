@@ -93,7 +93,7 @@ class Report
           $result_filename = $this->DB->Query($sql);
           if($result_filename)
           {
-            $data['grade'] = $result[0]['file_name'];
+            $data['grade'] = $result_filename[0]['file_name'];
           }
           else
           {
