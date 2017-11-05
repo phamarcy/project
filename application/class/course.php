@@ -760,8 +760,8 @@ class Course
         $temp['course_id'] = $result[$i]['course_id'];
         $temp['course_name'] = $result[$i]['name'];
         $sql = "SELECT `file_name` FROM `couse_grade` WHERE `course_id` = '".$temp['course_id']."' AND `semester_id` = ".$semester_id;
-        $result = $this->DB->Query($sql);
-        if($result)
+        $result_filename = $this->DB->Query($sql);
+        if($result_filename)
         {
           $temp['url'] = $grade_path."/".$result[0]['file_name'];
           $temp['status'] = 1;
