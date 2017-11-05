@@ -712,7 +712,7 @@ class Course
 
   public function Get_Course_Syllabus($course_id,$semester_id)
   {
-    $syllabus_file = $this->FILE_PATH."/syllabus/";
+    $syllabus_file = "/syllabus/";
     $sql = "SELECT `syllabus` FROM `course_evaluate` WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$semester_id;
     $result = $this->DB->Query($sql);
     if($result)
@@ -749,7 +749,7 @@ class Course
     $result = $this->DB->Query($sql);
     if($result)
     {
-      $grade_path = $this->FILE_PATH."/grade/";
+      $grade_path = "/grade/";
       $data = array();
       for($i=0;$i<count($result);$i++)
       {
