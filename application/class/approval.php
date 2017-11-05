@@ -349,6 +349,7 @@ class approval
           $updated_date = date("Y-m-d H:i:s");
           $sql = "INSERT INTO `approval_course`(`teacher_id`,`course_id`,`level_approve`,`status`,`semester_id`,`date`)
           VALUES ('".$result[$i]['teacher_id']."','".$course_id."',1,'0',".$this->SEMESTER_ID.",'".$updated_date."')";
+          $sql .= "ON DUPLICATE KEY UPDATE `comment` = NULL,`status` = '0',`date` = '".$updated_date."'";
           $approve_result = $this->DB->Insert_Update_Delete($sql);
           if($approve_result == false)
           {
