@@ -414,7 +414,6 @@ class Person
                 {
                   $return['status'] = 'success';
                   $return['msg'] = 'ลบข้อมูลสำเร็จ';
-                  return $return;
                 }
                 else
                 {
