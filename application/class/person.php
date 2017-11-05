@@ -631,6 +631,7 @@ class Person
     $result = $this->DB->Query($sql);
     $now = strtotime(date("Y-m-d")) ;
     $start = strtotime($result[0]['date_start']);
+
     $end = strtotime($result[0]['date_end']);
 
     if ($result) {
@@ -654,8 +655,9 @@ class Person
           }else {
             $_SESSION['level']=6;
           }
-
       }
+    }else {
+      $_SESSION['admission']=0;
     }
     return false;
   }
