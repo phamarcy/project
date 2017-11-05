@@ -178,7 +178,7 @@ class Report
             {
               $instructor['id'] = $result_instructor[$j]['instructor_id'];
               $instructor['name'] = $result_instructor[$j]['prefix'].' '.$result_instructor[$j]['firstname'].' '.$result_instructor[$j]['lastname'];
-              $instructor['cv'] = $result_instructor[$j]['cv'];
+              $instructor['cv'] = $this->PERSON->Get_CV($instructor['id']);
               $instructor['pdf'] = $this->VIEW_URL."?course=".$data['id']."&id=".$instructor['id']."&type=complete&info=special&semester=".$semester."&year=".$year;
               array_push($data['special'],$instructor);
             }

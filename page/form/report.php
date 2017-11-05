@@ -172,7 +172,7 @@ $(function() {//<-- wrapped here
                                       else
                                         echo '<td></td>';
                                       if($data_eva[$i]['syllabus'] != '' && $data_eva[$i]['syllabus'] != null)
-                                        echo '<td><a target="_blank" href="../../files/cv/'.$data_eva[$i]['syllabus'].'"><i class="fa fa-file-word-o fa-2x" aria-hidden="true"></i></a></td>';
+                                        echo '<td><a target="_blank" href="../../files'.$data_eva[$i]['syllabus'].'"><i class="fa fa-file-word-o fa-2x" aria-hidden="true"></i></a></td>';
                                       else
                                         echo '<td></td>';
                                       echo '<td><a target="_blank" href="'.$data_eva[$i]['pdf'].'"><i class="fa fa-file-archive-o fa-2x" aria-hidden="true"></i></a></td>';
@@ -234,7 +234,7 @@ $(function() {//<-- wrapped here
                                               echo '<tr>
                                                   <td width="10%">'.$num_special.'</td>
                                                   <td width="70%">'.$data_special[$i]['special'][$j]['name'].'</td>
-                                                  <td width="10%"><a target="_blank" href="../../files/cv/'.$data_special[$i]['special'][$j]['cv'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                                                  <td width="10%"><a target="_blank" href="../../files'.$data_special[$i]['special'][$j]['cv'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
                                                   <td width="10%"><a target="_blank" href="'.$data_special[$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
                                                   </tr>';
                                             }

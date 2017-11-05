@@ -45,7 +45,7 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
   {
     if($type == 'evaluate')
     {
-      $sql = "SELECT `course_id`,`pdf_file` FROM `course_evaluate` ce, `student_evaluate` se" =
+      $sql = "SELECT `course_id`,`pdf_file` FROM `course_evaluate` ce, `student_evaluate` se" ;
       $sql .= " WHERE  ce.`course_evaluate_id` = se.`course_evaluate_id` AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id;
       $result = $db->Query($sql);
       if($result)
