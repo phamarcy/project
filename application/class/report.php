@@ -307,7 +307,6 @@ class Report
       $name = $data['NAME'];
     }
 
-    $this->LOG->Write("Send email to ".$teacher_id);
     $course_id = $data['COURSE_ID'];
     $status = $data['STATUS'];
     $date = $data['DATE_USER'];
@@ -385,7 +384,7 @@ class Report
 
         $bodystring = $bodystring." เมื่อวันที่ ".$date." เวลา ".$time;
         $bodystring = $bodystring."<br><br>----อีเมล์นี้ส่งจากระบบงานข้อมูลของงานบริการการศึกษา คณะเภสัชศาสตร์ มหาวิทยาลัยเชียงใหม่----";
-       
+
 
 
         $to = $idobj->Get_Teacher_Email($teacher_id);
