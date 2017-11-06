@@ -463,13 +463,12 @@ function getinfo(temp) {
       document.getElementById('TEACHERLEC_F'+(i+1)).value = "";
     }
   }
-  if(temp['teacher-co']!="" && temp['teacher-co']!=undefined)
+  if(temp['teacher_co']!="" && temp['teacher_co']!=undefined)
   {
-    document.getElementById('tchco').value = temp['teacher-co'];
+    document.getElementById('tchco').value = temp['teacher_co'];
   }else {
     document.getElementById('tchco').value = "";
   }
-
   //part4
   document.getElementById('MEASURE_MIDLEC1').value = temp['mid1_lec'];
   document.getElementById('MEASURE_MIDLAB1').value = temp['mid1_lab'];
