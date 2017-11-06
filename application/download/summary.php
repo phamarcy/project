@@ -55,23 +55,26 @@ $Excel->setActiveSheetIndex(0)
             ->setCellValue('A3', 'กระบวนวิชา (รหัส)')
             ->setCellValue('B3', 'ผู้รับผิดชอบกระบวนวิชา 1')
             ->setCellValue('C3', 'ผู้รับผิดชอบกระบวนวิชา 2')
-            ->setCellValue('D3', 'อาจารย์ผู้ร่วมสอน')
-            ->setCellValue('E3', 'คะแนนสอบกลางภาคครั้งที่ 1 (บรรยาย)')
-            ->setCellValue('F3', 'คะแนนสอบกลางภาคครั้งที่ 1 (lab)')
-            ->setCellValue('G3', 'คะแนนสอบกลางภาคครั้งที่ 2 (บรรยาย)')
-            ->setCellValue('H3', 'คะแนนสอบกลางภาคครั้งที่ 2 (lab)')
-            ->setCellValue('I3', 'คะแนนสอบไล่ (บรรยาย)')
-            ->setCellValue('J3', 'คะแนนสอบไล่ (lab)')
-            ->setCellValue('K3', 'คะแนนงานมอบหมาย')
-            ->setCellValue('L3', 'คะแนนอื่นๆ')
-            ->setCellValue('M3', 'ชม.สอบกลางภาคครั้งที่ 1 (บรรยาย)')
-            ->setCellValue('N3', 'ชม.สอบกลางภาคครั้งที่ 1 (lab)')
-            ->setCellValue('O3', 'ชม.สอบกลางภาคครั้งที่ 2 (บรรยาย)')
-            ->setCellValue('P3', 'ชม.สอบกลางภาคครั้งที่ 2 (lab)')
-            ->setCellValue('Q3', 'ชม.สอบไล่ (บรรยาย)')
-            ->setCellValue('R3', 'ชม.สอบไล่ (lab)')
-            ->setCellValue('S3', 'วิธีการตัดเกรด')
-            ->setCellValue('T3', 'การให้ลำดับขั้นถ้านักศึกษาขาดสอบ');
+            ->setCellValue('D3', 'ผู้รับผิดชอบกระบวนวิชา 3')
+            ->setCellValue('E3', 'ผู้รับผิดชอบกระบวนวิชา 4')
+            ->setCellValue('F3', 'ผู้รับผิดชอบกระบวนวิชา 5')
+            ->setCellValue('G3', 'อาจารย์ผู้ร่วมสอน')
+            ->setCellValue('H3', 'คะแนนสอบกลางภาคครั้งที่ 1 (บรรยาย)')
+            ->setCellValue('I3', 'คะแนนสอบกลางภาคครั้งที่ 1 (lab)')
+            ->setCellValue('J3', 'คะแนนสอบกลางภาคครั้งที่ 2 (บรรยาย)')
+            ->setCellValue('K3', 'คะแนนสอบกลางภาคครั้งที่ 2 (lab)')
+            ->setCellValue('L3', 'คะแนนสอบไล่ (บรรยาย)')
+            ->setCellValue('M3', 'คะแนนสอบไล่ (lab)')
+            ->setCellValue('N3', 'คะแนนงานมอบหมาย')
+            ->setCellValue('O3', 'คะแนนอื่นๆ')
+            ->setCellValue('P3', 'ชม.สอบกลางภาคครั้งที่ 1 (บรรยาย)')
+            ->setCellValue('Q3', 'ชม.สอบกลางภาคครั้งที่ 1 (lab)')
+            ->setCellValue('R3', 'ชม.สอบกลางภาคครั้งที่ 2 (บรรยาย)')
+            ->setCellValue('S3', 'ชม.สอบกลางภาคครั้งที่ 2 (lab)')
+            ->setCellValue('T3', 'ชม.สอบไล่ (บรรยาย)')
+            ->setCellValue('U3', 'ชม.สอบไล่ (lab)')
+            ->setCellValue('V3', 'วิธีการตัดเกรด')
+            ->setCellValue('W3', 'การให้ลำดับขั้นถ้านักศึกษาขาดสอบ');
 
 //bold heading
 $Excel->getActiveSheet(0)->getStyle("A1:T3")->getFont()->setBold(true);
@@ -141,23 +144,26 @@ if($result)
     {
       $Excel->setActiveSheetIndex(0)->setCellValue('A'.$row, $data['course_id']);
       $teacher = $course->Get_Responsible_Teacher($data['course_id'],$semester['id']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('B'.$row, $teacher['teacher']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('C'.$row, '');
-      $Excel->setActiveSheetIndex(0)->setCellValue('D'.$row, $data['teacher']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('E'.$row, $data['mid1_lec']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('F'.$row, $data['mid1_lab']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('G'.$row, $data['mid2_lec']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('H'.$row, $data['mid2_lab']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('I'.$row, $data['final_lec']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('J'.$row, $data['final_lab']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('K'.$row, $data['work_lec'] + $data['work_lab']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('L'.$row, $data['other_lec'] + $data['other_lab']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('M'.$row, $data['mid1_hour_lec']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('N'.$row, $data['mid1_hour_lab']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('O'.$row, $data['mid2_hour_lec']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('P'.$row, $data['mid2_hour_lab']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('Q'.$row, $data['final_hour_lec']);
-      $Excel->setActiveSheetIndex(0)->setCellValue('R'.$row, $data['final_hour_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('B'.$row, (isset($data['teacher'][0]))? $data['teacher'][0] : '');
+      $Excel->setActiveSheetIndex(0)->setCellValue('C'.$row, (isset($data['teacher'][1]))? $data['teacher'][1] : '');
+      $Excel->setActiveSheetIndex(0)->setCellValue('D'.$row, (isset($data['teacher'][2]))? $data['teacher'][2] : '');
+      $Excel->setActiveSheetIndex(0)->setCellValue('E'.$row, (isset($data['teacher'][3]))? $data['teacher'][3] : '');
+      $Excel->setActiveSheetIndex(0)->setCellValue('F'.$row, (isset($data['teacher'][4]))? $data['teacher'][4] : '');
+      $Excel->setActiveSheetIndex(0)->setCellValue('G'.$row, $data['teacher_co']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('H'.$row, $data['mid1_lec']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('I'.$row, $data['mid1_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('J'.$row, $data['mid2_lec']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('K'.$row, $data['mid2_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('L'.$row, $data['final_lec']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('M'.$row, $data['final_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('N'.$row, $data['work_lec'] + $data['work_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('O'.$row, $data['other_lec'] + $data['other_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('P'.$row, $data['mid1_hour_lec']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('Q'.$row, $data['mid1_hour_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('R'.$row, $data['mid2_hour_lec']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('S'.$row, $data['mid2_hour_lab']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('T'.$row, $data['final_hour_lec']);
+      $Excel->setActiveSheetIndex(0)->setCellValue('U'.$row, $data['final_hour_lab']);
       $calculate = '';
       if($data['criterion_type'] == "GROUP")
       {
@@ -171,7 +177,7 @@ if($result)
       {
       	$calculate = 'ให้อักษร S U';
       }
-      $Excel->setActiveSheetIndex(0)->setCellValue('S'.$row, $calculate);
+      $Excel->setActiveSheetIndex(0)->setCellValue('V'.$row, $calculate);
 
       $absent = '';
       if($data['absent'] == 'F')
@@ -186,7 +192,7 @@ if($result)
       {
       	$absent = 'นำคะแนนทั้งหมดมาประเมิน';
       }
-      $Excel->setActiveSheetIndex(0)->setCellValue('T'.$row,$absent);
+      $Excel->setActiveSheetIndex(0)->setCellValue('W'.$row,$absent);
       $Excel->setActiveSheetIndex(1)->setCellValue('A'.$row,$data['course_id']);
       $count_committee = count($data['exam_mid1_committee_lec']);
       $committee = '';
@@ -352,13 +358,10 @@ $summary_file = $SUMMARY_PATH.'/summary_'.$dept_id.'_'.$semester['semester'].'_'
 //save file
 $objWriter = PHPExcel_IOFactory::createWriter($Excel, 'Excel2007');
 $objWriter->save($summary_file);
-ob_end_clean();
+// ob_end_clean();
 header('Content-Description: File Transfer');
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename="'.basename($summary_file).'"');
-// header('Expires: 0');
-// header('Cache-Control: must-revalidate');
-// header('Pragma: public');
 header('Content-Length: ' . filesize($summary_file));
 readfile($summary_file);
 

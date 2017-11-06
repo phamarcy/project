@@ -169,7 +169,7 @@ class approval
         }
         else
         {
-            $this->LOG->Write("Completing approve file error : ".$pdf_complete);
+            $this->LOG->Write("Completing approve file error  ");
             return false;
         }
       }
@@ -298,7 +298,7 @@ class approval
         }
         else
         {
-            $this->LOG->Write("Completing agree file error : ".$pdf_complete);
+            $this->LOG->Write("Completing agree file error ");
             return false;
         }
       }
@@ -382,6 +382,7 @@ class approval
     {
       $sql = "INSERT INTO `comment_course`(`teacher_id`, `comment`, `semester_id`,`course_id`)
       VALUES ('".$teacher_id."','".$comment."','".$this->SEMESTER_ID."','".$course_id."')";
+      $sql .= "ON DUPLICATE KEY UPDATE `teacher_id` = '".$teacher_id."', `comment` = '".$comment."'";
       $result = $this->DB->Insert_Update_Delete($sql);
       if(!$result)
       {
@@ -392,6 +393,7 @@ class approval
     $level_approve = '2';
     $sql = "INSERT INTO `approval_course`(`teacher_id`, `course_id`, `status`,`level_approve`, `comment`,`semester_id`,`date`)
     VALUES ('".$teacher_id."','".$course_id."','".$status."','".$level_approve."','".$comment."','".$this->SEMESTER_ID."','".$updated_date."')";
+    $sql .= " ON DUPLICATE KEY UPDATE `teacher_id` = '".$teacher_id."', `comment` = '".$comment."'";
     $result = $this->DB->Insert_Update_Delete($sql);
     if($result)
     {
