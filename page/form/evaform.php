@@ -883,106 +883,146 @@ function submitfunc(casesubmit) {
 
       if(document.getElementById("CALCULATE_A_MIN").value=="")
       {
-        amin = "0";
+        var amin = "0";
       }else {
-        amin  = document.getElementById("CALCULATE_A_MIN").value;
+        var amin  = document.getElementById("CALCULATE_A_MIN").value;
       }
       if(document.getElementById("CALCULATE_Bp_MIN").value=="")
       {
-        bpmin = "0";
+        var bpmin = "0";
       }else {
-        bpmin = document.getElementById("CALCULATE_Bp_MIN").value;
+        var bpmin = document.getElementById("CALCULATE_Bp_MIN").value;
       }
       if(document.getElementById("CALCULATE_B_MIN").value=="")
       {
-        bmin = "0";
+        var bmin = "0";
       }else {
-        bmin = document.getElementById("CALCULATE_B_MIN").value;
+        var bmin = document.getElementById("CALCULATE_B_MIN").value;
       }
       if(document.getElementById("CALCULATE_Cp_MIN").value=="")
       {
-        cpmin = "0";
+        var cpmin = "0";
       }else {
-        cpmin = document.getElementById("CALCULATE_Cp_MIN").value;
+        var cpmin = document.getElementById("CALCULATE_Cp_MIN").value;
       }
       if(document.getElementById("CALCULATE_C_MIN").value=="")
       {
-        cmin = "0";
+        var cmin = "0";
       }else {
-        cmin = document.getElementById("CALCULATE_C_MIN").value;
+        var cmin = document.getElementById("CALCULATE_C_MIN").value;
       }
       if(document.getElementById("CALCULATE_Dp_MIN").value=="")
       {
-        dpmin = "0";
+        var dpmin = "0";
       }else {
-        dpmin = document.getElementById("CALCULATE_Dp_MIN").value;
+        var dpmin = document.getElementById("CALCULATE_Dp_MIN").value;
       }
       if(document.getElementById("CALCULATE_D_MIN").value=="")
       {
-        dmin = "0";
+        var dmin = "0";
       }else {
-        dmin = document.getElementById("CALCULATE_D_MIN").value;
+        var dmin = document.getElementById("CALCULATE_D_MIN").value;
       }
       if(document.getElementById("CALCULATE_S_MIN").value=="")
       {
-        smin = "0";
+        var smin = "0";
       }else {
-        smin = document.getElementById("CALCULATE_S_MIN").value;
+        var smin = document.getElementById("CALCULATE_S_MIN").value;
       }
       //----------------
 
       if(document.getElementById("CALCULATE_Bp_MAX").value=="")
       {
-        bpmax = "0";
+        var bpmax = "0";
       }else {
-        bpmax = document.getElementById("CALCULATE_Bp_MAX").value;
+        var bpmax = document.getElementById("CALCULATE_Bp_MAX").value;
       }
       if(document.getElementById("CALCULATE_B_MAX").value=="")
       {
-        bmax = "0";
+        var bmax = "0";
       }else {
-        bmax = document.getElementById("CALCULATE_B_MAX").value;
+        var bmax = document.getElementById("CALCULATE_B_MAX").value;
       }
       if(document.getElementById("CALCULATE_Cp_MAX").value=="")
       {
-        cpmax = "0";
+        var cpmax = "0";
       }else {
-        cpmax = document.getElementById("CALCULATE_Cp_MAX").value;
+        var cpmax = document.getElementById("CALCULATE_Cp_MAX").value;
       }
       if(document.getElementById("CALCULATE_C_MAX").value=="")
       {
-        cmax = "0";
+        var cmax = "0";
       }else {
-        cmax = document.getElementById("CALCULATE_C_MAX").value;
+        var cmax = document.getElementById("CALCULATE_C_MAX").value;
       }
       if(document.getElementById("CALCULATE_Dp_MAX").value=="")
       {
-        dpmax = "0";
+        var dpmax = "0";
       }else {
-        dpmax = document.getElementById("CALCULATE_Dp_MAX").value;
+        var dpmax = document.getElementById("CALCULATE_Dp_MAX").value;
       }
       if(document.getElementById("CALCULATE_D_MAX").value=="")
       {
-        dmax = "0";
+        var dmax = "0";
       }else {
-        dmax = document.getElementById("CALCULATE_D_MAX").value;
+        var dmax = document.getElementById("CALCULATE_D_MAX").value;
       }
       if(document.getElementById("CALCULATE_F_MAX").value=="")
       {
-        fmax = "0";
+        var fmax = "0";
       }else {
-        fmax = document.getElementById("CALCULATE_F_MAX").value;
+        var fmax = document.getElementById("CALCULATE_F_MAX").value;
       }
       if(document.getElementById("CALCULATE_U_MAX").value=="")
       {
-        umax = "100";
+        var umax = "100";
       }else {
-        umax = document.getElementById("CALCULATE_U_MAX").value;
+        var umax = document.getElementById("CALCULATE_U_MAX").value;
+      }
+      //------
+
+      if(document.getElementById("MIDEXAM_HOUR_LEC").value=="")
+      {
+        var h1 = "0";
+      }else {
+        var h1 = document.getElementById("MIDEXAM_HOUR_LEC").value;
       }
 
-      $('#form1').find('input[type=text]').each(function(e){
-        if($(this).val()=="") $(this).val("0");
-    })
+      if(document.getElementById("MIDEXAM_HOUR_LAB").value=="")
+      {
+        var h2 = "0";
+      }else {
+        var h2 = document.getElementById("MIDEXAM_HOUR_LAB").value;
+      }
+
+      if(document.getElementById("MIDEXAM_HOUR_LEC_SEC").value=="")
+      {
+        var h3 = "0";
+      }else {
+        var h3 = document.getElementById("MIDEXAM_HOUR_LEC_SEC").value;
+      }
+
+      if(document.getElementById("MIDEXAM_HOUR_LAB_SEC").value=="")
+      {
+        var h4 = "0";
+      }else {
+        var h4 = document.getElementById("MIDEXAM_HOUR_LAB_SEC").value;
+      }
+
+      if(document.getElementById("FINEXAM_HOUR_LEC").value=="")
+      {
+        var h5 = "0";
+      }else {
+        var h5 = document.getElementById("FINEXAM_HOUR_LEC").value;
+      }
+
+      if(document.getElementById("FINEXAM_HOUR_LAB").value=="")
+      {
+        var h6 = "0";
+      }else {
+        var h6 = document.getElementById("FINEXAM_HOUR_LAB").value;
+      }
+
 
 
       var data = {
@@ -997,20 +1037,20 @@ function submitfunc(casesubmit) {
         'TYPE_TEACHING_NAME' : document.getElementById('TYPE_TEACHING_NAME').value,
         'TEACHER' : teacher_lec,
         'TEACHER-CO' : document.getElementById('tchco').value,
-        'EXAM_MID1_HOUR_LEC' : document.getElementById("MIDEXAM_HOUR_LEC").value,
-        'EXAM_MID1_HOUR_LAB' : document.getElementById("MIDEXAM_HOUR_LAB").value,
+        'EXAM_MID1_HOUR_LEC' : h1,
+        'EXAM_MID1_HOUR_LAB' : h2,
         'EXAM_MID1_NUMBER_LEC' : document.getElementById("mexholec").value,
         'EXAM_MID1_NUMBER_LAB' : document.getElementById("mexholac").value,
         'EXAM_MID1_COMMITTEE_LEC' : commidlec,
         'EXAM_MID1_COMMITTEE_LAB' : commidlab,
-        'EXAM_MID2_HOUR_LEC' : document.getElementById("MIDEXAM_HOUR_LEC_SEC").value,
-        'EXAM_MID2_HOUR_LAB' : document.getElementById("MIDEXAM_HOUR_LAB_SEC").value,
+        'EXAM_MID2_HOUR_LEC' : h3,
+        'EXAM_MID2_HOUR_LAB' : h4,
         'EXAM_MID2_NUMBER_LEC' : document.getElementById("mexholec_sec").value,
         'EXAM_MID2_NUMBER_LAB' : document.getElementById("mexholac_sec").value,
         'EXAM_MID2_COMMITTEE_LEC' : commidlec_sec,
         'EXAM_MID2_COMMITTEE_LAB' : commidlab_sec,
-        'EXAM_FINAL_HOUR_LEC' : document.getElementById("FINEXAM_HOUR_LEC").value,
-        'EXAM_FINAL_HOUR_LAB' : document.getElementById("FINEXAM_HOUR_LAB").value,
+        'EXAM_FINAL_HOUR_LEC' : h5,
+        'EXAM_FINAL_HOUR_LAB' : h6,
         'EXAM_FINAL_NUMBER_LEC' : document.getElementById("fexholec").value,
         'EXAM_FINAL_NUMBER_LAB' : document.getElementById("fexholac").value,
         'EXAM_FINAL_COMMITTEE_LEC' : comfinlec,
