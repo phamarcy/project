@@ -975,7 +975,7 @@ function submitfunc(casesubmit) {
       }
       if(document.getElementById("CALCULATE_U_MAX").value=="")
       {
-        umax = "0";
+        umax = "100";
       }else {
         umax = document.getElementById("CALCULATE_U_MAX").value;
       }
