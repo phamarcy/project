@@ -881,104 +881,6 @@ function submitfunc(casesubmit) {
       sectionobj = section;
 
 
-      if(document.getElementById("CALCULATE_A_MIN").value=="")
-      {
-        amin = "0";
-      }else {
-        amin  = document.getElementById("CALCULATE_A_MIN").value;
-      }
-      if(document.getElementById("CALCULATE_B+_MIN").value=="")
-      {
-        bpmin = "0";
-      }else {
-        bpmin = document.getElementById("CALCULATE_B+_MIN").value;
-      }
-      if(document.getElementById("CALCULATE_B_MIN").value=="")
-      {
-        bmin = "0";
-      }else {
-        bmin = document.getElementById("CALCULATE_B_MIN").value;
-      }
-      if(document.getElementById("CALCULATE_C+_MIN").value=="")
-      {
-        cpmin = "0";
-      }else {
-        cpmin = document.getElementById("CALCULATE_C+_MIN").value;
-      }
-      if(document.getElementById("CALCULATE_C_MIN").value=="")
-      {
-        cmin = "0";
-      }else {
-        cmin = document.getElementById("CALCULATE_C_MIN").value;
-      }
-      if(document.getElementById("CALCULATE_D+_MIN").value=="")
-      {
-        dpmin = "0";
-      }else {
-        dpmin = document.getElementById("CALCULATE_D+_MIN").value;
-      }
-      if(document.getElementById("CALCULATE_D_MIN").value=="")
-      {
-        dmin = "0";
-      }else {
-        dmin = document.getElementById("CALCULATE_D_MIN").value;
-      }
-      if(document.getElementById("CALCULATE_S_MIN").value=="")
-      {
-        smin = "0";
-      }else {
-        smin = document.getElementById("CALCULATE_S_MIN").value;
-      }
-      //----------------
-
-      if(document.getElementById("CALCULATE_B+_MAX").value=="")
-      {
-        bpmax = "0";
-      }else {
-        bpmax = document.getElementById("CALCULATE_B+_MAX").value;
-      }
-      if(document.getElementById("CALCULATE_B_MAX").value=="")
-      {
-        bmax = "0";
-      }else {
-        bmax = document.getElementById("CALCULATE_B_MAX").value;
-      }
-      if(document.getElementById("CALCULATE_C+_MAX").value=="")
-      {
-        cpmax = "0";
-      }else {
-        cpmax = document.getElementById("CALCULATE_C+_MAX").value;
-      }
-      if(document.getElementById("CALCULATE_C_MAX").value=="")
-      {
-        cmax = "0";
-      }else {
-        cmax = document.getElementById("CALCULATE_C_MAX").value;
-      }
-      if(document.getElementById("CALCULATE_D+_MAX").value=="")
-      {
-        dpmax = "0";
-      }else {
-        dpmax = document.getElementById("CALCULATE_D+_MAX").value;
-      }
-      if(document.getElementById("CALCULATE_D_MAX").value=="")
-      {
-        dmax = "0";
-      }else {
-        dmax = document.getElementById("CALCULATE_D_MAX").value;
-      }
-      if(document.getElementById("CALCULATE_F_MAX").value=="")
-      {
-        fmax = "0";
-      }else {
-        fmax = document.getElementById("CALCULATE_F_MAX").value;
-      }
-      if(document.getElementById("CALCULATE_U_MAX").value=="")
-      {
-        umax = "0";
-      }else {
-        umax = document.getElementById("CALCULATE_U_MAX").value;
-      }
 
 
       var data = {
@@ -1029,24 +931,24 @@ function submitfunc(casesubmit) {
         'CALCULATE_TYPE' : document.querySelector("input[name='CALCULATE']:checked").value,
         'CALCULATE_EXPLAINATION' : document.getElementById("EXPLAINATION").value,
         'CALCULATE_A_MAX' : "100",
-        'CALCULATE_A_MIN' : amin,
-        'CALCULATE_B+_MIN' : bpmin,
-        'CALCULATE_B+_MAX' : bpmax,
-        'CALCULATE_B_MIN' : bmin,
-        'CALCULATE_B_MAX' : bmax,
-        'CALCULATE_C+_MIN' : cpmin,
-        'CALCULATE_C+_MAX' : cpmax,
-        'CALCULATE_C_MIN' : cmin,
-        'CALCULATE_C_MAX' : cmax,
-        'CALCULATE_D+_MIN' : dpmin,
-        'CALCULATE_D+_MAX' : dpmax,
-        'CALCULATE_D_MIN' : dmin,
-        'CALCULATE_D_MAX' : dmax,
-        'CALCULATE_F_MAX' : fmax,
+        'CALCULATE_A_MIN' : document.getElementById("CALCULATE_A_MIN").value,
+        'CALCULATE_B+_MIN' : document.getElementById("CALCULATE_Bp_MIN").value,
+        'CALCULATE_B+_MAX' : document.getElementById("CALCULATE_Bp_MAX").value,
+        'CALCULATE_B_MIN' : document.getElementById("CALCULATE_B_MIN").value,
+        'CALCULATE_B_MAX' : document.getElementById("CALCULATE_B_MAX").value,
+        'CALCULATE_C+_MIN' : document.getElementById("CALCULATE_Cp_MIN").value,
+        'CALCULATE_C+_MAX' : document.getElementById("CALCULATE_Cp_MAX").value,
+        'CALCULATE_C_MIN' : document.getElementById("CALCULATE_C_MIN").value,
+        'CALCULATE_C_MAX' : document.getElementById("CALCULATE_C_MAX").value,
+        'CALCULATE_D+_MIN' : document.getElementById("CALCULATE_Dp_MIN").value,
+        'CALCULATE_D+_MAX' : document.getElementById("CALCULATE_Dp_MAX").value,
+        'CALCULATE_D_MIN' : document.getElementById("CALCULATE_D_MIN").value,
+        'CALCULATE_D_MAX' : document.getElementById("CALCULATE_D_MAX").value,
+        'CALCULATE_F_MAX' : document.getElementById("CALCULATE_F_MAX").value,
         'CALCULATE_F_MIN' : "0",
         'CALCULATE_S_MAX' : "100",
-        'CALCULATE_S_MIN' : smin,
-        'CALCULATE_U_MAX' : umax,
+        'CALCULATE_S_MIN' : document.getElementById("CALCULATE_S_MIN").value,
+        'CALCULATE_U_MAX' : document.getElementById("CALCULATE_U_MAX").value,
         'CALCULATE_U_MIN' : "0",
         'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,
         'SUBMIT_TYPE' : casesubmit,
