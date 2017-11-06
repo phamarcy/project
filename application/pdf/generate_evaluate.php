@@ -96,6 +96,7 @@ function Close_connection()
 if(isset($_POST['DATA']))
 {
 	$data = $_POST['DATA'];
+	die($data);
 	$DATA = json_decode($data,true);
 	$course_id = $DATA["COURSE_ID"];
 	if(isset($_FILES['file']))
