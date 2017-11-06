@@ -216,7 +216,7 @@ $(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_specia
             swal({
               type:'error',
               text: result.error,
-              timer: 2000,
+              timer: 1000,
               confirmButtonText: "Ok!",
             });
           }
@@ -231,7 +231,7 @@ $(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_specia
             });
             setTimeout(function() {
                 Load_Page(id);
-            }, 2000);
+            }, 1000);
           }
         } catch (e) {
           swal(
