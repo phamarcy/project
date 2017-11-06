@@ -269,11 +269,15 @@ function submitfunc() {
     'COURSE_ID' : document.getElementById("COURSE_ID").value,
     'NAMETH' : document.getElementById("NAME_TH_COURSE").value,
     'NAMEENG' : document.getElementById("NAME_ENG_COURSE").value,
-    'CREDIT_TOTAL' : document.getElementById("TOTAL").value,
+    'CREDIT' : {
+      'TOTAL' : total,
+      'LEC' : lec,
+      'LAB' : lab,
+      'SELF' : self
+    },
     'SUBMIT_TYPE' : '1'
   };
 
-  console.log(JSON.stringify(data),JSON.stringify(typesubmit));
   senddata(JSON.stringify(data),typesubmit);
 
 }

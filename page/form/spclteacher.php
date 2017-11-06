@@ -331,7 +331,6 @@ $current = $dlobj->Get_Current_Semester();
                            {
                              $('#teachername').prop('disabled', false);
                              $('#subhead').prop('disabled', false);
-                             console.log(temp);
                              $('#hiddenh5').hide();
                              $('#hiddenh5_found').show();
                              $('#hiddenh5_found').html("กระบวนวิชา "+temp['INFO'].course_name_th+" ("+temp['INFO'].course_id+")");
@@ -425,7 +424,7 @@ $current = $dlobj->Get_Current_Semester();
                               }
                             })
                          }
-                        //console.log(Object.keys(temp).length);
+
 
 
 
@@ -970,7 +969,7 @@ $current = $dlobj->Get_Current_Semester();
      'YEAR' : '<?php echo date('Y')+543; ?>'
    };
 
-   console.log(JSON.stringify(data));
+
    if(casesubmit=='1')
    {
      senddata(JSON.stringify(data),getfile());
@@ -1130,6 +1129,7 @@ $current = $dlobj->Get_Current_Semester();
 
      }else {
          echo "$('#dlhide').hide();
+         $('#hiddenh5').hide();
          $('#formheader').hide();
          $('#overtimemsg').show();";
      }

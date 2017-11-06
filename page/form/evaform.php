@@ -958,7 +958,6 @@ function submitfunc(casesubmit) {
         'YEAR' : '<?php echo date('Y')+543; ?>'
       };
 
-    console.log(JSON.stringify(data));
     senddata(JSON.stringify(data),getfile('1'));
   }
   else if(casesubmit=='0')
