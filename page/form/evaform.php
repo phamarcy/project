@@ -980,6 +980,10 @@ function submitfunc(casesubmit) {
         umax = document.getElementById("CALCULATE_U_MAX").value;
       }
 
+      $('#form1').find('input[type=text]').each(function(e){
+        if($(this).val()=="") $(this).val("0");
+    })
+
 
       var data = {
         'COURSE_ID': document.getElementById("COURSE_ID").value,
