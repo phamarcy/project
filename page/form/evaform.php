@@ -887,11 +887,11 @@ function submitfunc(casesubmit) {
       }else {
         amin  = document.getElementById("CALCULATE_A_MIN").value;
       }
-      if(document.getElementById("CALCULATE_B+_MIN").value=="")
+      if(document.getElementById("CALCULATE_Bp_MIN").value=="")
       {
         bpmin = "0";
       }else {
-        bpmin = document.getElementById("CALCULATE_B+_MIN").value;
+        bpmin = document.getElementById("CALCULATE_Bp_MIN").value;
       }
       if(document.getElementById("CALCULATE_B_MIN").value=="")
       {
@@ -899,11 +899,11 @@ function submitfunc(casesubmit) {
       }else {
         bmin = document.getElementById("CALCULATE_B_MIN").value;
       }
-      if(document.getElementById("CALCULATE_C+_MIN").value=="")
+      if(document.getElementById("CALCULATE_Cp_MIN").value=="")
       {
         cpmin = "0";
       }else {
-        cpmin = document.getElementById("CALCULATE_C+_MIN").value;
+        cpmin = document.getElementById("CALCULATE_Cp_MIN").value;
       }
       if(document.getElementById("CALCULATE_C_MIN").value=="")
       {
@@ -911,11 +911,11 @@ function submitfunc(casesubmit) {
       }else {
         cmin = document.getElementById("CALCULATE_C_MIN").value;
       }
-      if(document.getElementById("CALCULATE_D+_MIN").value=="")
+      if(document.getElementById("CALCULATE_Dp_MIN").value=="")
       {
         dpmin = "0";
       }else {
-        dpmin = document.getElementById("CALCULATE_D+_MIN").value;
+        dpmin = document.getElementById("CALCULATE_Dp_MIN").value;
       }
       if(document.getElementById("CALCULATE_D_MIN").value=="")
       {
@@ -931,11 +931,11 @@ function submitfunc(casesubmit) {
       }
       //----------------
 
-      if(document.getElementById("CALCULATE_B+_MAX").value=="")
+      if(document.getElementById("CALCULATE_Bp_MAX").value=="")
       {
         bpmax = "0";
       }else {
-        bpmax = document.getElementById("CALCULATE_B+_MAX").value;
+        bpmax = document.getElementById("CALCULATE_Bp_MAX").value;
       }
       if(document.getElementById("CALCULATE_B_MAX").value=="")
       {
@@ -943,11 +943,11 @@ function submitfunc(casesubmit) {
       }else {
         bmax = document.getElementById("CALCULATE_B_MAX").value;
       }
-      if(document.getElementById("CALCULATE_C+_MAX").value=="")
+      if(document.getElementById("CALCULATE_Cp_MAX").value=="")
       {
         cpmax = "0";
       }else {
-        cpmax = document.getElementById("CALCULATE_C+_MAX").value;
+        cpmax = document.getElementById("CALCULATE_Cp_MAX").value;
       }
       if(document.getElementById("CALCULATE_C_MAX").value=="")
       {
@@ -955,11 +955,11 @@ function submitfunc(casesubmit) {
       }else {
         cmax = document.getElementById("CALCULATE_C_MAX").value;
       }
-      if(document.getElementById("CALCULATE_D+_MAX").value=="")
+      if(document.getElementById("CALCULATE_Dp_MAX").value=="")
       {
         dpmax = "0";
       }else {
-        dpmax = document.getElementById("CALCULATE_D+_MAX").value;
+        dpmax = document.getElementById("CALCULATE_Dp_MAX").value;
       }
       if(document.getElementById("CALCULATE_D_MAX").value=="")
       {
