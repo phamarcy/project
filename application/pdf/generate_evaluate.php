@@ -98,11 +98,7 @@ if(isset($_POST['DATA']))
 	$data = $_POST['DATA'];
 	$DATA = json_decode($data,true);
 	$course_id = $DATA["COURSE_ID"];
-	if(isset($_FILES['file']))
-	{
-  	$file = $_FILES['file'];
-		Upload($file,$DATA['COURSE_ID']);
-	}
+
 	if($DATA['SUBMIT_TYPE'] == '0') //upload syllabus only
 	{
 		$return['status'] = "success";
@@ -274,6 +270,11 @@ if(isset($_POST['DATA']))
 			    }
 				}
 			}
+		}
+		if(isset($_FILES['file']))
+		{
+			$file = $_FILES['file'];
+			Upload($file,$DATA['COURSE_ID']);
 		}
 	if($DATA['SUBMIT_TYPE'] == '2')
 		{
