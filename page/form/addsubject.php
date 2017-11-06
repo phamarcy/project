@@ -196,7 +196,7 @@ function checksubject() {
                            console.log('Error#542-decode error');
                       }
 
-                    if(temp['info']==false){
+                    if(temp['INFO']==false){
 
                         swal({
                           title: 'กระบวนวิชาที่ค้นหาไม่พบในระบบ',
@@ -225,7 +225,7 @@ function checksubject() {
                         }
                       })
                      }
-                     else if(temp['info']!=false){
+                     else if(temp['INFO']!=false){
                         swal(
                            'สำเร็จ',
                            'ดึงข้อมูลสำเร็จ <br>สามารถแก้ไขรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
@@ -234,10 +234,10 @@ function checksubject() {
                         $('#submitbtn').show();
                         $('#typesubmit').val('edit');
                         $('#deletebtn').prop('disabled', false);
-                        document.getElementById('COURSE_ID').value = temp['info']['course_id'];
-                        document.getElementById('NAME_ENG_COURSE').value = temp['info']['course_name_en'];
-                        document.getElementById('NAME_TH_COURSE').value = temp['info']['course_name_th'];
-                        document.getElementById('TOTAL').value = temp['info']['credit']+"("+temp['info']['hr_lec']+"-"+temp['info']['hr_lab']+"-"+temp['info']['hr_self']+")";
+                        document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
+                        document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
+                        document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
+                        document.getElementById('TOTAL').value = temp['INFO']['credit']+"("+temp['INFO']['hr_lec']+"-"+temp['INFO']['hr_lab']+"-"+temp['INFO']['hr_self']+")";
                       }
 
                 },
@@ -269,12 +269,7 @@ function submitfunc() {
     'COURSE_ID' : document.getElementById("COURSE_ID").value,
     'NAMETH' : document.getElementById("NAME_TH_COURSE").value,
     'NAMEENG' : document.getElementById("NAME_ENG_COURSE").value,
-    'CREDIT' : {
-      'TOTAL' : total,
-      'LEC' : lec,
-      'LAB' : lab,
-      'SELF' : self
-    },
+    'CREDIT_TOTAL' : document.getElementById("TOTAL").value,
     'SUBMIT_TYPE' : '1'
   };
 
