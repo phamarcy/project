@@ -115,7 +115,7 @@ if(isset($_POST['DATA']))
 	{
 			//insert data into database
 			//criterion_grade
-			$sql_criterion_grade = "INSERT INTO `criterion_grade`(`criterion_type`, `explaination`, `A_min`, `A_max`, `B+_min`, `B+_max`, `B_min`, `B_max`, `C+_min`, `C+_max`, `C_min`, `C_max`, `D+_min`, `D+_max`, `D_max`, `D_min`, `F_max`, `S_min`, `U_max`) VALUES ('".$DATA["CALCULATE_TYPE"]."','".$DATA["CALCULATE_EXPLAINATION"]."','".$DATA["CALCULATE_A_MIN"]."','100','".$DATA["CALCULATE_B+_MIN"]."','".$DATA["CALCULATE_B+_MAX"]."','".$DATA["CALCULATE_B_MIN"]."','".$DATA["CALCULATE_B_MAX"]."','".$DATA["CALCULATE_C+_MIN"]."','".$DATA["CALCULATE_C+_MAX"]."','".$DATA["CALCULATE_C_MIN"]."','".$DATA["CALCULATE_C_MAX"]."','".$DATA["CALCULATE_D+_MIN"]."','".$DATA["CALCULATE_D+_MAX"]."','".$DATA["CALCULATE_D_MIN"]."','".$DATA["CALCULATE_D_MAX"]."','".$DATA["CALCULATE_F_MAX"]."','".$DATA["CALCULATE_S_MIN"]."','".$DATA["CALCULATE_U_MAX"]."')";
+			$sql_criterion_grade = "INSERT INTO `criterion_grade`(`criterion_type`, `explaination`, `A_min`, `A_max`, `B+_min`, `B+_max`, `B_min`, `B_max`, `C+_min`, `C+_max`, `C_min`, `C_max`, `D+_min`, `D+_max`, `D_max`, `D_min`, `F_max`, `S_min`, `U_max`) VALUES ('".$DATA["CALCULATE_TYPE"]."','".$DATA["CALCULATE_EXPLAINATION"]."',".$DATA["CALCULATE_A_MIN"].",100,".$DATA["CALCULATE_B+_MIN"].",".$DATA["CALCULATE_B+_MAX"].",".$DATA["CALCULATE_B_MIN"].",".$DATA["CALCULATE_B_MAX"].",".$DATA["CALCULATE_C+_MIN"].",".$DATA["CALCULATE_C+_MAX"].",".$DATA["CALCULATE_C_MIN"].",".$DATA["CALCULATE_C_MAX"].",".$DATA["CALCULATE_D+_MIN"].",".$DATA["CALCULATE_D+_MAX"].",".$DATA["CALCULATE_D_MIN"].",".$DATA["CALCULATE_D_MAX"].",".$DATA["CALCULATE_F_MAX"].",".$DATA["CALCULATE_S_MIN"].",".$DATA["CALCULATE_U_MAX"].")";
 			$lastrow_criterion_grade_id = "SELECT criterion_grade_id FROM criterion_grade ORDER BY criterion_grade_id DESC LIMIT 1;";
 
 			$result_criterion_grade = $db->Insert_Update_Delete($sql_criterion_grade);
@@ -125,7 +125,7 @@ if(isset($_POST['DATA']))
 
 
 			//measure_evaluate
-			$sql_measure_evaluate = "INSERT INTO `measure_evaluate`( `mid1_lec`, `mid1_lab`, `mid2_lec`, `mid2_lab`, `final_lec`, `final_lab`, `work_lec`, `work_lab`, `other_lec`, `other_lab`, `other_oth`, `total_lec`, `total_lab`, `msg`)VALUES ('".$DATA["MEASURE_MID1_LEC"]."','".$DATA["MEASURE_MID1_LAB"]."','".$DATA["MEASURE_MID2_LEC"]."','".$DATA["MEASURE_MID1_LAB"]."','".$DATA["MEASURE_FINAL_LEC"]."','".$DATA["MEASURE_FINAL_LAB"]."','".$DATA["MEASURE_WORK_LEC"]."','".$DATA["MEASURE_WORK_LAB"]."','".$DATA["MEASURE_OTHER_LEC"]."','".$DATA["MEASURE_OTHER_LAB"]."','".$DATA["MEASURE_OTHER_OTH"]."','".$DATA["MEASURE_TOTAL_LEC"]."','".$DATA["MEASURE_TOTAL_LAB"]."','".$DATA["MEASURE_MSG"]."')";
+			$sql_measure_evaluate = "INSERT INTO `measure_evaluate`( `mid1_lec`, `mid1_lab`, `mid2_lec`, `mid2_lab`, `final_lec`, `final_lab`, `work_lec`, `work_lab`, `other_lec`, `other_lab`, `other_oth`, `total_lec`, `total_lab`, `msg`)VALUES (".$DATA["MEASURE_MID1_LEC"].",".$DATA["MEASURE_MID1_LAB"].",".$DATA["MEASURE_MID2_LEC"].",".$DATA["MEASURE_MID1_LAB"].",".$DATA["MEASURE_FINAL_LEC"].",".$DATA["MEASURE_FINAL_LAB"].",".$DATA["MEASURE_WORK_LEC"].",".$DATA["MEASURE_WORK_LAB"].",".$DATA["MEASURE_OTHER_LEC"].",".$DATA["MEASURE_OTHER_LAB"].",'".$DATA["MEASURE_OTHER_OTH"]."',".$DATA["MEASURE_TOTAL_LEC"].",".$DATA["MEASURE_TOTAL_LAB"].",'".trim($DATA["MEASURE_MSG"])."')";
 			$lastrow_measure_evaluate_id = "SELECT measure_evaluate_id FROM measure_evaluate ORDER BY measure_evaluate_id DESC LIMIT 1;";
 
 			$result_measure_evaluate = $db->Insert_Update_Delete($sql_measure_evaluate);
@@ -136,7 +136,7 @@ if(isset($_POST['DATA']))
 
 
 			//exam_evaluate
-			$sql_exam_evaluate = "INSERT INTO `exam_evaluate`(`mid1_hour_lec`, `mid1_hour_lab`, `mid1_number_lec`, `mid1_number_lab`, `mid2_hour_lec`, `mid2_hour_lab`, `mid2_number_lec`, `mid2_number_lab`, `final_hour_lec`, `final_hour_lab`, `final_number_lec`, `final_number_lab`, `suggestion`)VALUES ('".$DATA["EXAM_MID1_HOUR_LEC"]."','".$DATA["EXAM_MID1_HOUR_LAB"]."','".$DATA["EXAM_MID1_NUMBER_LEC"]."','".$DATA["EXAM_MID1_NUMBER_LAB"]."','".$DATA["EXAM_MID2_HOUR_LEC"]."','".$DATA["EXAM_MID2_HOUR_LAB"]."','".$DATA["EXAM_MID2_NUMBER_LEC"]."','".$DATA["EXAM_MID2_NUMBER_LAB"]."','".$DATA["EXAM_FINAL_HOUR_LEC"]."','".$DATA["EXAM_FINAL_HOUR_LAB"]."','".$DATA["EXAM_FINAL_NUMBER_LEC"]."','".$DATA["EXAM_FINAL_NUMBER_LAB"]."','".$DATA["EXAM_SUGGESTION"]."')";
+			$sql_exam_evaluate = "INSERT INTO `exam_evaluate`(`mid1_hour_lec`, `mid1_hour_lab`, `mid1_number_lec`, `mid1_number_lab`, `mid2_hour_lec`, `mid2_hour_lab`, `mid2_number_lec`, `mid2_number_lab`, `final_hour_lec`, `final_hour_lab`, `final_number_lec`, `final_number_lab`, `suggestion`)VALUES (".$DATA["EXAM_MID1_HOUR_LEC"].",".$DATA["EXAM_MID1_HOUR_LAB"].",".$DATA["EXAM_MID1_NUMBER_LEC"].",".$DATA["EXAM_MID1_NUMBER_LAB"].",".$DATA["EXAM_MID2_HOUR_LEC"].",".$DATA["EXAM_MID2_HOUR_LAB"].",".$DATA["EXAM_MID2_NUMBER_LEC"].",".$DATA["EXAM_MID2_NUMBER_LAB"].",".$DATA["EXAM_FINAL_HOUR_LEC"].",".$DATA["EXAM_FINAL_HOUR_LAB"].",".$DATA["EXAM_FINAL_NUMBER_LEC"].",".$DATA["EXAM_FINAL_NUMBER_LAB"].",'".trim($DATA["EXAM_SUGGESTION"])."')";
 			$lastrow_exam_evaluate_id = "SELECT exam_evaluate_id FROM exam_evaluate ORDER BY exam_evaluate_id DESC LIMIT 1;";
 
 			$result_exam_evaluate = $db->Insert_Update_Delete($sql_exam_evaluate);
@@ -151,7 +151,7 @@ if(isset($_POST['DATA']))
 			        $log->Write("find failed : not found EXAM_MID1_COMMITTEE_LEC id".$DATA["EXAM_MID1_COMMITTEE_LEC"][$i] );
 			    }
 			    if ($teacher_id) {
-			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_evaluate_id`, `teacher_id`, `type`, `type_commitee`) VALUES ('".$result_exam_evaluate_id[0]["exam_evaluate_id"]."','".$teacher_id."','MID1','LEC')";
+			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_evaluate_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','MID1','LEC')";
 			        $result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
 			    }
 			}
@@ -162,7 +162,7 @@ if(isset($_POST['DATA']))
 			        $log->Write("find failed : not found EXAM_MID1_COMMITTEE_LAB id".$DATA["EXAM_MID1_COMMITTEE_LAB"][$i] );
 			    }
 			    if ($teacher_id) {
-			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES ('".$result_exam_evaluate_id[0]["exam_evaluate_id"]."','".$teacher_id."','MID1','LAB')";
+			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','MID1','LAB')";
 			        $result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
 			    }
 
@@ -175,7 +175,7 @@ if(isset($_POST['DATA']))
 			        $log->Write("find failed : not found EXAM_MID2_COMMITTEE_LEC id".$DATA["EXAM_MID2_COMMITTEE_LEC"][$i] );
 			    }
 			    if ($teacher_id) {
-			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES ('".$result_exam_evaluate_id[0]["exam_evaluate_id"]."','".$teacher_id."','MID2','LEC')";
+			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','MID2','LEC')";
 			        $result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
 
 			    }
@@ -184,7 +184,7 @@ if(isset($_POST['DATA']))
 			for ($i=0; $i < count($DATA["EXAM_MID2_COMMITTEE_LAB"]); $i++) {
 			    $teacher_id = $person->Get_Teacher_Id($DATA["EXAM_MID2_COMMITTEE_LAB"][$i]);
 			    if ($teacher_id) {
-			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES ('".$result_exam_evaluate_id[0]["exam_evaluate_id"]."','".$teacher_id."','MID2','LAB')";
+			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','MID2','LAB')";
 			        $result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
 
 			    }
@@ -198,7 +198,7 @@ if(isset($_POST['DATA']))
 			        $log->Write("find failed : not found EXAM_FINAL_COMMITTEE_LEC id".$DATA["EXAM_FINAL_COMMITTEE_LEC"][$i] );
 			    }
 			    if ($teacher_id) {
-			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES ('".$result_exam_evaluate_id[0]["exam_evaluate_id"]."','".$teacher_id."','FINAL','LEC')";
+			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','FINAL','LEC')";
 			        $result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
 
 			    }
@@ -210,7 +210,7 @@ if(isset($_POST['DATA']))
 			        $log->Write("find failed : not found EXAM_FINAL_COMMITTEE_LAB id".$DATA["EXAM_FINAL_COMMITTEE_LAB"][$i] );
 			    }
 			    if ($teacher_id) {
-			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES ('".$result_exam_evaluate_id[0]["exam_evaluate_id"]."','".$teacher_id."','FINAL','LAB')";
+			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','FINAL','LAB')";
 			        $result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
 			    }
 
@@ -236,8 +236,8 @@ if(isset($_POST['DATA']))
 			//teacher_exam_evaluate
 
 			for ($i=0; $i <sizeof($DATA["STUDENT"]);  $i++) {
-			    $sql_student_evaluate="INSERT INTO `student_evaluate`(`course_evaluate_id`,`section`, `student`) VALUES ('".$result_course_evaluate_id[0]["course_evaluate_id"]."','".($i+1)."','".$DATA["STUDENT"][$i]."')";
-					$sql_student_evaluate .= "ON DUPLICATE KEY UPDATE `section` = '".($i+1)."', `student` = '".$DATA["STUDENT"][$i]."'";
+			    $sql_student_evaluate="INSERT INTO `student_evaluate`(`course_evaluate_id`,`section`, `student`) VALUES ('".$result_course_evaluate_id[0]["course_evaluate_id"]."',".($i+1).",".$DATA["STUDENT"][$i].")";
+					$sql_student_evaluate .= "ON DUPLICATE KEY UPDATE `section` = ".($i+1).", `student` = ".$DATA["STUDENT"][$i]."";
 			    $result_student_evaluate = $db->Insert_Update_Delete($sql_student_evaluate);
 
 			}
@@ -252,7 +252,7 @@ if(isset($_POST['DATA']))
 			        $log->Write("insert data into database failed : not found TEACHER id on ".$DATA["TEACHER"][$i]);
 			    }
 			    if ($teacher_id) {
-			        $sql_teacher_exam_evaluate = "INSERT INTO `teacher_exam_evaluate`(`teacher_id`, `course_eveluate_id`)VALUES ('".$teacher_id."','".$result_course_evaluate_id[0]["course_evaluate_id"]."')";
+			        $sql_teacher_exam_evaluate = "INSERT INTO `teacher_exam_evaluate`(`teacher_id`, `course_eveluate_id`)VALUES ('".$teacher_id."',".$result_course_evaluate_id[0]["course_evaluate_id"].")";
 							$sql_teacher_exam_evaluate .= "ON DUPLICATE KEY UPDATE `teacher_id` = '".$teacher_id."' , `course_eveluate_id` = ".$result_course_evaluate_id[0]["course_evaluate_id"];
 			        $result_teacher_exam_evaluate = $db->Insert_Update_Delete($sql_teacher_exam_evaluate);
 			    }
