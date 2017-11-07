@@ -15,10 +15,6 @@ echo "Checking document folder......";
   {
     mkdir($FILE_PATH."/draft");
   }
-  if(!is_dir($FILE_PATH."/temp"))
-  {
-    mkdir($FILE_PATH."/temp");
-  }
   if(!is_dir($FILE_PATH."/syllabus"))
   {
     mkdir($FILE_PATH."/syllabus");
