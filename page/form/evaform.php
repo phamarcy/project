@@ -463,9 +463,9 @@ function getinfo(temp) {
       document.getElementById('TEACHERLEC_F'+(i+1)).value = "";
     }
   }
-  if(temp['teacher-co']!="" && temp['teacher-co']!=undefined)
+  if(temp['teacher_co']!="" && temp['teacher_co']!=undefined)
   {
-    document.getElementById('tchco').value = temp['teacher-co'];
+    document.getElementById('tchco').value = temp['teacher_co'];
   }else {
     document.getElementById('tchco').value = "";
   }
