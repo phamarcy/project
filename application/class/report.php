@@ -5,10 +5,8 @@ require_once(__DIR__.'/curl.php');
 require_once(__DIR__."/course.php");
 require_once(__DIR__."/person.php");
 require_once(__DIR__."/../config/configuration_variable.php");
-require_once(__DIR__."/../../page/vendor/PHPMailer/PHPMailerAutoload.php");
 require_once(__DIR__."/../../page/vendor/autoload.php");
 
-use Mailgun\Mailgun;
 /** This class serves report all new changing status,document
 *
 * @author  Adiluck Chooprateep
