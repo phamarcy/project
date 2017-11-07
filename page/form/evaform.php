@@ -520,50 +520,70 @@ function getinfo(temp) {
     document.getElementById("ehla" + (i+1)).style.display = "";
     document.getElementById('ehlab' + (i+1)).classList.remove('hide');
     document.getElementById('MIDEXCOM_LABF' + (i+1)).style.display = "";
-    if(temp['exam_mid1_committee_lab'][i]=="" || temp['exam_mid1_committee_lab'][i]==undefined)
-      document.getElementById('MIDEXCOM_LABF'+(i+1)).value = temp['exam_mid1_committee_lab'][i];
-    else
-      document.getElementById('MIDEXCOM_LABF'+(i+1)).value = "";
+    if(temp['exam_mid1_committee_lab'].length!=0)
+    {
+      if(temp['exam_mid1_committee_lab'][i]=="" || temp['exam_mid1_committee_lab'][i]==undefined)
+        document.getElementById('MIDEXCOM_LABF'+(i+1)).value = temp['exam_mid1_committee_lab'][i];
+      else
+        document.getElementById('MIDEXCOM_LABF'+(i+1)).value = "";
+    }
+
   }
   for(var i=0;i<temp['mid2_number_lec'];i++)
   {
     document.getElementById("mehle" + (i+1) +"_sec").style.display = "";
     document.getElementById('mehlec' + (i+1) +"_sec").classList.remove('hide');
     document.getElementById('MIDEXCOM_LECF' + (i+1) +"_sec").style.display = "";
-    if(temp['exam_mid2_committee_lec'][i]=="" || temp['exam_mid2_committee_lec'][i]==undefined)
-      document.getElementById('MIDEXCOM_LECF'+(i+1)+'_sec').value = temp['exam_mid2_committee_lec'][i];
-    else
-      document.getElementById('MIDEXCOM_LECF'+(i+1)+'_sec').value = "";
+    if(temp['exam_mid2_committee_lec'].length!=0)
+    {
+      if(temp['exam_mid2_committee_lec'][i]=="" || temp['exam_mid2_committee_lec'][i]==undefined)
+        document.getElementById('MIDEXCOM_LECF'+(i+1)+'_sec').value = temp['exam_mid2_committee_lec'][i];
+      else
+        document.getElementById('MIDEXCOM_LECF'+(i+1)+'_sec').value = "";
+    }
+
   }
   for(var i=0;i<temp['mid2_number_lab'];i++)
   {
     document.getElementById("ehla" + (i+1) +"_sec").style.display = "";
     document.getElementById('ehlab' + (i+1) +"_sec").classList.remove('hide');
     document.getElementById('MIDEXCOM_LABF' + (i+1) +"_sec").style.display = "";
-    if(temp['exam_mid2_committee_lab'][i]=="" || temp['exam_mid2_committee_lab'][i]==undefined)
-      document.getElementById('MIDEXCOM_LABF'+(i+1)+'_sec').value = temp['exam_mid2_committee_lab'][i];
-    else
-      document.getElementById('MIDEXCOM_LABF'+(i+1)+'_sec').value = "";
+    if(temp['exam_mid2_committee_lab'].length!=0)
+    {
+      if(temp['exam_mid2_committee_lab'][i]=="" || temp['exam_mid2_committee_lab'][i]==undefined)
+        document.getElementById('MIDEXCOM_LABF'+(i+1)+'_sec').value = temp['exam_mid2_committee_lab'][i];
+      else
+        document.getElementById('MIDEXCOM_LABF'+(i+1)+'_sec').value = "";
+    }
+
   }
   for(var i=0;i<temp['final_number_lec'];i++)
   {
     document.getElementById("fmehle" + (i+1)).style.display = "";
     document.getElementById('fmehlec' + (i+1)).classList.remove('hide');
     document.getElementById('FINEXCOM_LECF' + (i+1)).style.display = "";
-    if(temp['exam_final_committee_lec'][i]=="" || temp['exam_final_committee_lec'][i]==undefined)
-      document.getElementById('FINEXCOM_LECF'+(i+1)).value = temp['exam_final_committee_lec'][i];
-    else
-      document.getElementById('FINEXCOM_LECF'+(i+1)).value = "";
+    if(temp['exam_final_committee_lec'].length!=0)
+    {
+      if(temp['exam_final_committee_lec'][i]=="" || temp['exam_final_committee_lec'][i]==undefined)
+        document.getElementById('FINEXCOM_LECF'+(i+1)).value = temp['exam_final_committee_lec'][i];
+      else
+        document.getElementById('FINEXCOM_LECF'+(i+1)).value = "";
+    }
+
   }
   for(var i=0;i<temp['final_number_lab'];i++)
   {
     document.getElementById("fehla" + (i+1)).style.display = "";
     document.getElementById('fehlab' + (i+1)).classList.remove('hide');
     document.getElementById('FINEXCOM_LABF' + (i+1)).style.display = "";
-    if(temp['exam_final_committee_lab'][i]=="" || temp['exam_final_committee_lab'][i]==undefined)
-      document.getElementById('FINEXCOM_LABF'+(i+1)).value = temp['exam_final_committee_lab'][i];
-    else
-      document.getElementById('FINEXCOM_LABF'+(i+1)).value = "";
+    if(temp['exam_final_committee_lab'].length!=0)
+    {
+      if(temp['exam_final_committee_lab'][i]=="" || temp['exam_final_committee_lab'][i]==undefined)
+        document.getElementById('FINEXCOM_LABF'+(i+1)).value = temp['exam_final_committee_lab'][i];
+      else
+        document.getElementById('FINEXCOM_LABF'+(i+1)).value = "";
+    }
+
   }
 
   //part6
