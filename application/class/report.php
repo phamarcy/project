@@ -396,8 +396,10 @@ class Report
           "From: noreply@pharmacy.cmu.ac.th",
           "Content-Type: text/html;charset=utf-8"
         );
+        $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= 'From: noreply@pharmacy.cmu.ac.th' . "\r\n";
 
-        $mail_sent = mail( $to, $sendsubject, $bodystring, $headerFields );
+        $mail_sent = mail( $to, $sendsubject, $bodystring, $headers );
         if ((!$mail_sent) || $mail_sent==false) {
           $this->LOG->Write("MAIL FUNCTION : Failed to send E-mail");
         }
