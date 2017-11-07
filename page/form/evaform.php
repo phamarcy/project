@@ -507,10 +507,13 @@ function getinfo(temp) {
     document.getElementById("mehle" + (i+1)).style.display = "";
     document.getElementById('mehlec' + (i+1)).classList.remove('hide');
     document.getElementById('MIDEXCOM_LECF'+(i+1)).style.display = "";
-    if(temp['exam_mid1_committee_lec'][i]=="" || temp['exam_mid1_committee_lec'][i]==undefined)
-      document.getElementById('MIDEXCOM_LECF'+(i+1)).value = temp['exam_mid1_committee_lec'][i];
-    else
-      document.getElementById('MIDEXCOM_LECF'+(i+1)).value = "";
+    if(temp['exam_mid1_committee_lec'].length!=0)
+    {
+      if(temp['exam_mid1_committee_lec'][i]=="" || temp['exam_mid1_committee_lec'][i]==undefined)
+        document.getElementById('MIDEXCOM_LECF'+(i+1)).value = temp['exam_mid1_committee_lec'][i];
+      else
+        document.getElementById('MIDEXCOM_LECF'+(i+1)).value = "";
+    }
   }
   for(var i=0;i<temp['mid1_number_lab'];i++)
   {
