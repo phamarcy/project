@@ -299,7 +299,6 @@ class Report
 //send email
   public function Sendemail($teacher_id,$data)
   {
-    global $EMAIL;
     $idobj = new Person;
     $type = $data['TYPE'];
     if($type=='2')
