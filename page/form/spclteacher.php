@@ -404,7 +404,11 @@ $current = $dlobj->Get_Current_Semester();
                                 'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
                                 'warning'
                               )
+                             $('#notfound').hide();
+                             $('#dlhide').hide();
+                             $('#formdrpd').hide();
                              $('#buttondiv').hide();
+
                            }
 
 
