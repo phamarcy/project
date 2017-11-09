@@ -459,17 +459,16 @@ $end = strtotime($current_semester[0]['last_date']);
                 success: function (data) {
                   try {
                     var msg = JSON.parse(data)
-                    console.log(msg);
-                    console.log('success of ajax response')
+
                     responses.push(data);
                   } catch (e) {
+                    console.log(data);
                     swal({
                       type: "error",
                       text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
                       timer: 2000,
                       confirmButtonText: "Ok!",
                     });
-                    console.log(data);
                   }
                 }
               }));
@@ -499,8 +498,6 @@ $end = strtotime($current_semester[0]['last_date']);
                 });
                 console.log(responses);
               }
-              console.log('all request completed')
-              console.log(responses);
           });
 
         }, function (dismiss) {
@@ -572,8 +569,7 @@ $end = strtotime($current_semester[0]['last_date']);
                 success: function (data) {
                   try {
                     var msg = JSON.parse(data)
-                    console.log(msg);
-                    console.log('success of ajax response')
+
                     responses.push(data);
                   } catch (e) {
                     swal({
@@ -604,6 +600,7 @@ $end = strtotime($current_semester[0]['last_date']);
                   window.location.reload();
                 }, 1500);
               } catch (e) {
+                console.log(responses);
                 swal({
                   type: "error",
                   text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
@@ -611,8 +608,7 @@ $end = strtotime($current_semester[0]['last_date']);
                   confirmButtonText: "Ok!",
                 });
               }
-              console.log('all request completed')
-              console.log(responses);
+              
           });
 
         }, function (dismiss) {
