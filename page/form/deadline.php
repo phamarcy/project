@@ -28,6 +28,8 @@ if(!isset($_POST['tab']))
     <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../vendor/jquery/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="../vender/jquery/resources/demos/style.css"> -->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -37,7 +39,7 @@ if(!isset($_POST['tab']))
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
-
+    <script src="../vendor/jquery/jquery-ui.js"></script>
     <link rel="stylesheet" href="../dist/css/scrollbar.css">
     <script src="../dist/js/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
@@ -49,7 +51,22 @@ if(!isset($_POST['tab']))
 </style>
 <script type="text/javascript">
 
-
+$(document).ready(function(){
+  $("#opendate").datepicker({
+      numberOfMonths: 2,
+      dateFormat: "yy-mm-dd",
+      onSelect: function(selected) {
+        $("#lastdate").datepicker("option","minDate", selected)
+      }
+  });
+  $("#lastdate").datepicker({
+      numberOfMonths: 2,
+      dateFormat: "yy-mm-dd",
+      onSelect: function(selected) {
+         $("#opendate").datepicker("option","maxDate", selected)
+      }
+  });
+  });
 //lock,unlock all input
 function lock(object,type)
 {
@@ -60,10 +77,10 @@ function lock(object,type)
   $(object).find("button[name=submit]").prop('disabled',type);
   $(object).find("#edit").prop('disabled',!type);
 }
-
 //validate is date data correct?
 function checkdate(date_before,date_after)
 {
+
     if(date_after.getTime() > date_before.getTime())
     {
       return 1;
@@ -91,51 +108,7 @@ function reset_date(object)
     $(object).find("#opendate").css("border-color","rgb(204, 204, 204)");
     $(object).find("#lastdate").css("border-color","rgb(204, 204, 204)");
 }
-$(document).ready(function() {
 
-});
-
-//check is last_date greater than first_date
-$(document).on('change', '#lastdate', function() {
-    var last_date = new Date($(this).val());
-    var first_date = $(this).parent().find("#opendate").val();
-    if(first_date != null)
-    {
-        first_date = new Date($(this).parent().find("#opendate").val());
-        var result = checkdate(first_date,last_date);
-        if(result != 1)
-        {
-          $(this).parent().find("#warning").html('วันที่ไม่ถูกต้อง');
-          $(this).parent().find("#warning").css("color","red");
-        }
-        else
-        {
-          //reset_date($(this).parent());
-          $(this).parent().find("#warning").html('');
-        }
-    }
-});
-
-//check if date is correct
-$(document).on('change', '#opendate', function() {
-    var last_date = $(this).parent().find("#lastdate").val();
-    var first_date = new Date($(this).val());
-    if(last_date != '')
-    {
-        last_date = new Date($(this).parent().find("#lastdate").val());
-        var result = checkdate(first_date,last_date);
-        if(result != 1)
-        {
-          $(this).parent().find("#warning").html('วันที่ไม่ถูกต้อง');
-          $(this).parent().find("#warning").css("color","red");
-        }
-        else
-        {
-          //reset_date($(this).parent());
-          $(this).parent().find("#warning").html('');
-        }
-    }
-});
 
 function Load_Page(tab) {
     var form = document.createElement("form");
@@ -177,17 +150,7 @@ $(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_specia
     var form = $(button_object).parent();
     var last_date = $(button_object).parent().find("#lastdate").val();
     var first_date = $(button_object).parent().find("#opendate").val();
-    if(last_date !='' && first_date != '')
-    {
-        first_date = new Date(first_date);
-        last_date = new Date(last_date);
-        var date_check = checkdate(first_date,last_date);
-        if(date_check != 1)
-        {
-            error = 1;
-        }
-    }
-    else
+    if(last_date =='' || first_date == '')
     {
       error = 1;
     }
@@ -271,11 +234,7 @@ $(document).on('click', "#delete", function() {
     $(object).fadeOut(300, function() { $(this).remove(); });
 });
 
-//edit data
-// $(document).on('click', "#edit", function() {
-//     var object = $(this).parent();
-//     lock(object,false);
-// });
+
 </script>
 
 <body id="mainbody">
@@ -325,8 +284,8 @@ $(document).on('click', "#delete", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการกรอกข้อมูลวิธีการวัดผลและประเมินผล <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการกรอกข้อมูลวิธีการวัดผลและประเมินผล <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
+                                            วันเปิดการกรอกข้อมูลวิธีการวัดผลและประเมินผล <input class="form-control" type="text" id="opendate"> <br><br>
+                                            วันสุดท้ายของการกรอกข้อมูลวิธีการวัดผลและประเมินผล <input class="form-control" type="text" id="lastdate"> <div id="warning"></div>
                                         </div>
                                         <br>
                                         <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
@@ -397,8 +356,8 @@ $(document).on('click', "#delete", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการอัปโหลดไฟล์ course syllabus <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการอัปโหลดไฟล์ course syllabus <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
+                                            วันเปิดการอัปโหลดไฟล์ course syllabus <input class="form-control" type="text" id="opendate"> <br><br>
+                                            วันสุดท้ายของการอัปโหลดไฟล์ course syllabus <input class="form-control" type="text" id="lastdate"> <div id="warning"></div>
                                         </div>
                                         <br>
                                         <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
@@ -468,8 +427,8 @@ $(document).on('click', "#delete", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการกรอกข้อมูลอาจารพิเศษ <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการกรอกข้อมูลอาจารพิเศษ <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
+                                            วันเปิดการกรอกข้อมูลอาจารพิเศษ <input class="form-control" type="text" id="opendate"> <br><br>
+                                            วันสุดท้ายของการกรอกข้อมูลอาจารพิเศษ <input class="form-control" type="text" id="lastdate"> <div id="warning"></div>
                                         </div>
                                         <br>
                                         <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
@@ -540,8 +499,8 @@ $(document).on('click', "#delete", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการพิจารณาเห็นชอบกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการพิจารณาเห็นชอบกระบวนวิชา <input class="form-control" type="date" id="lastdate">
+                                            วันเปิดการพิจารณาเห็นชอบกระบวนวิชา <input class="form-control" type="text" id="opendate"> <br><br>
+                                            วันสุดท้ายของการพิจารณาเห็นชอบกระบวนวิชา <input class="form-control" type="text" id="lastdate">
                                             <div id="warning"></div>
                                         </div>
                                         <br>
@@ -612,8 +571,8 @@ $(document).on('click', "#delete", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการประเมินกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการประเมินกระบวนวิชา <input class="form-control" type="date" id="lastdate">
+                                            วันเปิดการประเมินกระบวนวิชา <input class="form-control" type="text" id="opendate"> <br><br>
+                                            วันสุดท้ายของการประเมินกระบวนวิชา <input class="form-control" type="text" id="lastdate">
                                             <div id="warning"></div>
                                         </div>
                                         <br>
