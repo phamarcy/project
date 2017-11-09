@@ -56,11 +56,7 @@ $current = $dlobj->Get_Current_Semester();
 
  <!-- validator -->
  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
- <script src="https://cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
- <script>
-     webshims.setOptions('forms-ext', {types: 'date'});
- webshims.polyfill('forms forms-ext');
- </script>
+
 
  <style>
  input[type=text],input[type=date],input[type=time]{
