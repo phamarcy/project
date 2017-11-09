@@ -668,13 +668,17 @@ class Person
   public function Is_Assessor($teacher_id)
   {
     $this->DB->Change_DB($this->DEFAULT_DB);
-    $sql = "SELECT `teacher_id` FROM `approval_course` WHERE `semester_id` = ".$this->DEADLINE['id'];
+    $sql = "SELECT `status` FROM `approval_course` WHERE `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$this->DEADLINE['id'];
     $result = $this->DB->Query($sql);
     if($result)
     {
       if(isset($result[0]['teacher_id']))
       {
         return true;
+      }
+      else
+      {
+        return false;
       }
     }
     else
