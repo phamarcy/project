@@ -136,8 +136,8 @@ $current = $dlobj->Get_Current_Semester();
        table.append('<tr class="warning" name="addtr" id="row' + tr + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + tr + '" id="delbtn' + tr +
          '" value="ลบ" onclick="deleteRow(' + tr + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="detail_topic' + tr + '" id="detail_topic' + tr +
          '" size="30" value="'+temp["lecture_detail"][tr-1]["topic_name"]+'"></div></td><td><input type="date" class="form-control" name="dateteach' + tr + '" id="dateteach' + tr +
-         '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_date"]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + tr + '" id="timebegin' + tr + '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_time_start"]+'" >  ถึง  <input type="time" class="form-control" name="timeend'
-          + tr + '" id="timeend' + tr + '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_time_end"]+'"></div></td><td><input type="text" class="form-control" id="room' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_room"]+
+         '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_date"]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + tr + '" id="timebegin' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_time_start"]+'" > <br> ถึง <br> <input type="time" class="form-control" name="timeend'
+          + tr + '" id="timeend' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_time_end"]+'"></div></td><td><input type="text" class="form-control" id="room' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_room"]+
           '"></td></tr>');
           setdatepicker();
        $.each(x, function(i, val) {
