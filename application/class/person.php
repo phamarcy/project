@@ -672,7 +672,7 @@ class Person
     $result = $this->DB->Query($sql);
     if($result)
     {
-      if(isset($result[0]['teacher_id']))
+      if(isset($result[0]['status']))
       {
         return true;
       }
