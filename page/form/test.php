@@ -1,5 +1,5 @@
 <?php
-
+/* 
 require_once(__DIR__."/../../application/class/database.php");
 require_once(__DIR__."/../../application/class/person.php");
 require_once(__DIR__."/../../application/class/log.php");
@@ -150,16 +150,19 @@ for ($i=0; $i < sizeof($DATA["TEACHER"]); $i++) {
     }
     
 } 
+ */
+
+$to          = "knownamenow@gmail.com";
+$sendsubject = "Test Mail : Subject";
+$bodystring  = "Test Mail : body string";
+$headers     = "Content-type:text/html;charset=UTF-8" . "\r\n";
+$headers    .= 'From: noreply@pharmacy.cmu.ac.th' . "\r\n";
+$mail_sent   = mail( $to, $sendsubject, $bodystring, $headers );
 
 
 
-
-
-
-
-
-
-
-
+$msg = "Test, First line of text\nSecond line of text";
+$msg = wordwrap($msg,70);
+mail("knownamenow@gmail.com","Test",$msg);
 
 ?>
