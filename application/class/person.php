@@ -675,16 +675,16 @@ class Person
     {
       if(isset($result[0]['status']))
       {
-        return $return[1] = true;
+         $return[1] = true;
       }
       else
       {
-        return $return[1] = false;
+         $return[1] = false;
       }
     }
     else
     {
-      return $return[1] = false;
+       $return[1] = false;
     }
 
     $sql = "SELECT `education` as level FROM `staff_mis` WHERE `code`='".$teacher_id."'";
