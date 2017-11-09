@@ -27,8 +27,10 @@
 	}
 	$show_btn=0;
 	if ($check_assessor) {
-		if ($_SESSION['level'] == $check_assessor[0]) {
+		if ($check_assessor[0]==1) {
 			$show_btn=0;
+		}else if($check_assessor[0]==4){
+			$show_btn = 1;
 		}else {
 			$show_btn = 1;
 		}
