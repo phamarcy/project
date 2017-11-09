@@ -37,8 +37,8 @@ $current = $dlobj->Get_Current_Semester();
  <!-- Custom Fonts -->
  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
- <script src="../vendor/jquery/jquery.min.js"></script>
-
+ <script src="https://code.jquery.com/jquery-1.10.0.js"></script> 
+  <script src="https://afarkas.github.io/webshim/js-webshim/minified/polyfiller.js"></script>
  <!-- Bootstrap Core JavaScript -->
  <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -56,7 +56,11 @@ $current = $dlobj->Get_Current_Semester();
 
  <!-- validator -->
  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
-
+ <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
+ <script>
+     webshims.setOptions('forms-ext', {types: 'date'});
+ webshims.polyfill('forms forms-ext');
+ </script>
 
  <style>
  input[type=text],input[type=date],input[type=time]{
