@@ -11,9 +11,11 @@
 	if (empty($_SESSION['admission'])) {
 		$_SESSION['admission']=0;
 	}
-	
+
 	$person = new Person();
 	$check_permission=$person->Check_Grant($_SESSION['id']);
+	
+	echo '<pre>'; var_dump($check_permission); echo '</pre>';
 	$person->Close_connection();
  ?>
 <html>
@@ -39,7 +41,7 @@
 	<!-- Custom Fonts -->
 	<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -252,7 +254,7 @@
 		}
 
 		.notilist{
-			font-size: 20px:
+			font-size: 20px;
 		}
 		.red{
 			background:#ec2c2c;
@@ -339,17 +341,18 @@
 
 			<ul class="nav navbar-top-links navbar-right">
 				<b>ยินดีต้อนรับ | <font color="#51cc62"> คุณ <?php echo $_SESSION['fname'].' ',$_SESSION['lname']; ?></font></b>
+				&nbsp;
+				<b>สถานะ : อาจารย์ </b>&nbsp;
+				<button type="button" class="btn btn-primary btn-outlne">เปลี่ยนสถานะ</button>
 				<!-- /.dropdown -->
 				<li class="dropdown" id="icon-dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-										<i class="fa fa-bell fa-fw"></i> <span class="label label-danger red" id="new_noti">0</span>
-						</a>
+						<i class="fa fa-bell fa-fw"></i> <span class="label label-danger red" id="new_noti">0</span>
+					</a>
 					<ul class="dropdown-menu scrollable-menu" role="menu" id="noti">
 						<li id="notification_element" style="width: 304px;">
 							<a href="#" class="disabled">
-										<p id="status">
-
-										</p>
+										<p id="status"></p>
 										<p id="type">  </p>
 										<p>กระบวนวิชา : <b id="course_id"></b>
 										<p>
