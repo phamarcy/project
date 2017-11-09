@@ -27,7 +27,13 @@
 	}
 	$show_btn=0;
 	if ($check_assessor) {
-		$show_btn = 1;
+		if ($_SESSION['level'] == $check_assessor[0]) {
+			$show_btn=0;
+		}else {
+			$show_btn = 1;
+		}
+		
+
 	}
 
 	$person->Close_connection();
