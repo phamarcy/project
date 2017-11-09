@@ -16,13 +16,13 @@
 	$check_permission=$person->Check_Grant($_SESSION['id']);
 	$check_assessor=$person->Is_Assessor($_SESSION['id']);
 
+	echo '<pre>'; var_dump($check_assessor); echo '</pre>';
 	if (isset($_POST['change_level'])) {
 		if($_SESSION['level']==1){
 			$_SESSION['level']=4;
 		}
 		else if($_SESSION['level']==4 || $_SESSION['level']==5){
-			$_SESSION['level']=1;
-			
+			$_SESSION['level']=1;	
 		}
 	}
 	$show_btn=0;
@@ -368,10 +368,10 @@
 						}else if ($_SESSION['level']==3){
 							$status_name ="เจ้าหน้าที่คณะ";
 						}else if ($_SESSION['level']==4){
-							$status_name ="คณะกรรมการภาค";
+							$status_name ="คณะกรรมการ";
 						}
 						else if ($_SESSION['level']==5){
-							$status_name ="คณะกรรมการคณะ";
+							$status_name ="คณะกรรมการ";
 						}
 						else if ($_SESSION['level']==6){
 							$status_name ="ผู้บริหาร";
