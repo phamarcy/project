@@ -322,87 +322,92 @@ $current = $dlobj->Get_Current_Semester();
                            if(temp['ACCESS'] == true)
                            {
                              $('#buttondiv').show();
-                           }else {
+                             if(temp['DATA']!=false && temp['INFO']!=false)
+                             {
+                               $('#teachername').prop('disabled', false);
+                               $('#subhead').prop('disabled', false);
+                               $('#hiddenh5').hide();
+                               $('#hiddenh5_found').show();
+                               $('#hiddenh5_found').html("กระบวนวิชา "+temp['INFO'].course_name_th+" ("+temp['INFO'].course_id+")");
+                               $('#notfound').hide();
+                               var course_id = document.getElementById('id').value;
+                               document.getElementById('formdrpd').style.display = "";
+                               //cleardatalist
+                               var selectobject = document.getElementById('teachername');
+                               var long = selectobject.length;
+                               if(long!=0 && long!=null)
+                               {
+                                 for (var i=0; i<=long; i++){
+                                   document.getElementsByName("teachername")[0].remove(0);
+                                 }
+                               }
 
+                               for(var i=0;i<(Object.keys(temp['DATA']).length);i++)
+                               {
+                                 var opt = document.createElement('option');
+                                 opt.value = temp['DATA'][i].id +"_"+ temp['DATA'][i].name + "_" + temp['INFO']['course_id'] +"_"+ temp['DATA'][i].semester + "_" + temp['DATA'][i].year;
+                                 opt.innerHTML = "คุณ"+temp['DATA'][i].name;
+                                 document.getElementById('teachername').appendChild(opt);
+                               }
+                             }else if(temp['DATA']==false && temp['INFO']!=false){
+                               $('#hiddenh5_found').show();
+                               $('#hiddenh5_found').html("กระบวนวิชา "+temp['INFO'].course_name_th+" ("+temp['INFO'].course_id+")");
+                               $('#hiddenh5').hide();
+                               $('#notfound').show();
+
+                               var course_id = document.getElementById('id').value;
+                               document.getElementById('formdrpd').style.display = "";
+                               //cleardatalist
+                               var selectobject = document.getElementById('teachername');
+                               var long = selectobject.length;
+                               if(long!=0 && long!=null)
+                               {
+                                 for (var i=0; i<=long; i++){
+                                   document.getElementsByName("teachername")[0].remove(0);
+                                 }
+                               }
+                               $('#teachername').prop('disabled', true);
+                               $('#subhead').prop('disabled', true);
+
+                             }
+                             else if(temp['DATA']==false && $('#id').val()!="" && temp['INFO']==false){
+                               $('#dlhide').hide();
+                               $('#hiddenh5_found').hide();
+                               $('#hiddenh5').show();
+                               $('#notfound').hide();
+                               swal(
+                                  '',
+                                  'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
+                                  'error'
+                                )
+                               document.getElementById('formdrpd').style.display = "none";
+                               document.getElementById('id').value = "";
+                              }else {
+                                 if($('#id').val()=="" ||$('#id').val()==null )
+                                 {
+                                   $('#hiddenh5_found').hide();
+                                   $('#hiddenh5').show();
+                                   $('#notfound').hide();
+                                   swal(
+                                      '',
+                                      'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
+                                      'error'
+                                    )
+                                    $('#dlhide').hide();
+                                    document.getElementById('formdrpd').style.display = "none";
+
+                                 }
+                               }
+                           }else {
+                             swal(
+                                '',
+                                'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
+                                'warning'
+                              )
                              $('#buttondiv').hide();
                            }
 
-                           if(temp['DATA']!=false && temp['INFO']!=false)
-                           {
-                             $('#teachername').prop('disabled', false);
-                             $('#subhead').prop('disabled', false);
-                             $('#hiddenh5').hide();
-                             $('#hiddenh5_found').show();
-                             $('#hiddenh5_found').html("กระบวนวิชา "+temp['INFO'].course_name_th+" ("+temp['INFO'].course_id+")");
-                             $('#notfound').hide();
-                             var course_id = document.getElementById('id').value;
-                             document.getElementById('formdrpd').style.display = "";
-                             //cleardatalist
-                             var selectobject = document.getElementById('teachername');
-                             var long = selectobject.length;
-                             if(long!=0 && long!=null)
-                             {
-                               for (var i=0; i<=long; i++){
-                                 document.getElementsByName("teachername")[0].remove(0);
-                               }
-                             }
 
-                             for(var i=0;i<(Object.keys(temp['DATA']).length);i++)
-                             {
-                               var opt = document.createElement('option');
-                               opt.value = temp['DATA'][i].id +"_"+ temp['DATA'][i].name + "_" + temp['INFO']['course_id'] +"_"+ temp['DATA'][i].semester + "_" + temp['DATA'][i].year;
-                               opt.innerHTML = "คุณ"+temp['DATA'][i].name;
-                               document.getElementById('teachername').appendChild(opt);
-                             }
-                           }else if(temp['DATA']==false && temp['INFO']!=false){
-                             $('#hiddenh5_found').show();
-                             $('#hiddenh5_found').html("กระบวนวิชา "+temp['INFO'].course_name_th+" ("+temp['INFO'].course_id+")");
-                             $('#hiddenh5').hide();
-                             $('#notfound').show();
-
-                             var course_id = document.getElementById('id').value;
-                             document.getElementById('formdrpd').style.display = "";
-                             //cleardatalist
-                             var selectobject = document.getElementById('teachername');
-                             var long = selectobject.length;
-                             if(long!=0 && long!=null)
-                             {
-                               for (var i=0; i<=long; i++){
-                                 document.getElementsByName("teachername")[0].remove(0);
-                               }
-                             }
-                             $('#teachername').prop('disabled', true);
-                             $('#subhead').prop('disabled', true);
-
-                           }
-                           else if(temp['DATA']==false && $('#id').val()!="" && temp['INFO']==false){
-                             $('#dlhide').hide();
-                             $('#hiddenh5_found').hide();
-                             $('#hiddenh5').show();
-                             $('#notfound').hide();
-                             swal(
-                                '',
-                                'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
-                                'error'
-                              )
-                             document.getElementById('formdrpd').style.display = "none";
-                             document.getElementById('id').value = "";
-                            }else {
-                               if($('#id').val()=="" ||$('#id').val()==null )
-                               {
-                                 $('#hiddenh5_found').hide();
-                                 $('#hiddenh5').show();
-                                 $('#notfound').hide();
-                                 swal(
-                                    '',
-                                    'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
-                                    'error'
-                                  )
-                                  $('#dlhide').hide();
-                                  document.getElementById('formdrpd').style.display = "none";
-
-                               }
-                             }
 
                          } catch (e) {
                               console.log('Error#542-decode error');

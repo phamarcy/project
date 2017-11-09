@@ -674,6 +674,68 @@ function checksubject(btntype,type){
                         if(temp['ACCESS'] == true)
                         {
                           $('#buttondiv').show();
+                          if(temp['INFO']!=false && temp['DATA']!=false)
+                          {
+                            document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
+                            document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
+                            document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
+                            document.getElementById('TOTAL').value = temp['INFO']['credit']+"("+temp['INFO']['hr_lec']+"-"+temp['INFO']['hr_lab']+"-"+temp['INFO']['hr_self']+")";
+                            document.getElementById('formdrpd').style.display = "";
+                            //cleardatalist
+                            var selectobject = document.getElementById('semester');
+                            var long = selectobject.length;
+                            if(long!=0 && long!=null)
+                            {
+                              for (var i=0; i<=long; i++){
+                                document.getElementsByName("semester")[0].remove(0);
+                              }
+                            }
+
+                            for(var i=0;i<(Object.keys(temp['DATA']).length);i++)
+                            {
+                              var opt = document.createElement('option');
+                              opt.value = temp['DATA'][i].semester +"_"+ temp['DATA'][i].year;
+                              opt.innerHTML = "ภาคการศึกษาที่ " +temp['DATA'][i].semester +" ปีการศึกษา "+ temp['DATA'][i].year;
+                              document.getElementById('semester').appendChild(opt);
+                            }
+
+
+                          }
+                          else if(temp['INFO']==false && $('#id').val()!=""){
+                            swal(
+                               '',
+                               'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
+                               'error'
+                             )
+                             $('#dlhide').hide();
+                            document.getElementById('id').value = "";
+                            document.getElementById('formdrpd').style.display = "none";
+                          }
+                          else if(temp['INFO']!=false && temp['DATA']==false){
+                             swal(
+                                '',
+                                'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
+                                'info'
+                              )
+                              document.getElementById('formdrpd').style.display = "none";
+                              $('#dlhide').show();
+                             document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
+                             document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
+                             document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
+                             document.getElementById('TOTAL').value = temp['INFO']['credit']+"("+temp['INFO']['hr_lec']+"-"+temp['INFO']['hr_lab']+"-"+temp['INFO']['hr_self']+")";
+                           }
+                           else {
+                             if($('#id').val()=="" ||$('#id').val()==undefined )
+                             {
+                               $('#dlhide').hide();
+                               document.getElementById('formdrpd').style.display = "none";
+                               swal(
+                                  '',
+                                  'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
+                                  'error'
+                                )
+                             }
+                           }
                         }else {
                           swal(
                              '',
@@ -683,68 +745,7 @@ function checksubject(btntype,type){
                           $('#buttondiv').hide();
                         }
 
-                       if(temp['INFO']!=false && temp['DATA']!=false)
-                       {
-                         document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
-                         document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
-                         document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
-                         document.getElementById('TOTAL').value = temp['INFO']['credit']+"("+temp['INFO']['hr_lec']+"-"+temp['INFO']['hr_lab']+"-"+temp['INFO']['hr_self']+")";
-                         document.getElementById('formdrpd').style.display = "";
-                         //cleardatalist
-                         var selectobject = document.getElementById('semester');
-                         var long = selectobject.length;
-                         if(long!=0 && long!=null)
-                         {
-                           for (var i=0; i<=long; i++){
-                             document.getElementsByName("semester")[0].remove(0);
-                           }
-                         }
 
-                         for(var i=0;i<(Object.keys(temp['DATA']).length);i++)
-                         {
-                           var opt = document.createElement('option');
-                           opt.value = temp['DATA'][i].semester +"_"+ temp['DATA'][i].year;
-                           opt.innerHTML = "ภาคการศึกษาที่ " +temp['DATA'][i].semester +" ปีการศึกษา "+ temp['DATA'][i].year;
-                           document.getElementById('semester').appendChild(opt);
-                         }
-
-
-                       }
-                       else if(temp['INFO']==false && $('#id').val()!=""){
-                         swal(
-                            '',
-                            'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
-                            'error'
-                          )
-                          $('#dlhide').hide();
-                         document.getElementById('id').value = "";
-                         document.getElementById('formdrpd').style.display = "none";
-                       }
-                       else if(temp['INFO']!=false && temp['DATA']==false){
-                          swal(
-                             '',
-                             'ท่านยังไม่เคยกรอกรายละเอียดในวิชานี้ <br>สามารถกรอกรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
-                             'info'
-                           )
-                           document.getElementById('formdrpd').style.display = "none";
-                           $('#dlhide').show();
-                          document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
-                          document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
-                          document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
-                          document.getElementById('TOTAL').value = temp['INFO']['credit']+"("+temp['INFO']['hr_lec']+"-"+temp['INFO']['hr_lab']+"-"+temp['INFO']['hr_self']+")";
-                        }
-                        else {
-                          if($('#id').val()=="" ||$('#id').val()==undefined )
-                          {
-                            $('#dlhide').hide();
-                            document.getElementById('formdrpd').style.display = "none";
-                            swal(
-                               '',
-                               'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
-                               'error'
-                             )
-                          }
-                        }
                       } catch (e) {
                            console.log('Error#542-decode error');
                       }
