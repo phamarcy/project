@@ -24,27 +24,19 @@ $current = $dlobj->Get_Current_Semester();
 
  <!-- Bootstrap Core CSS -->
  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
  <!-- MetisMenu CSS -->
  <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
  <!-- Custom CSS -->
  <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
  <!-- Morris Charts CSS -->
  <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
-
  <!-- Custom Fonts -->
  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
- <script src="https://code.jquery.com/jquery-1.10.0.js"></script> 
-  <script src="https://afarkas.github.io/webshim/js-webshim/minified/polyfiller.js"></script>
+ <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
  <!-- Bootstrap Core JavaScript -->
  <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
  <!-- Metis Menu Plugin JavaScript -->
  <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
  <!-- Custom Theme JavaScript -->
  <script src="../dist/js/sb-admin-2.js"></script>
 
@@ -52,14 +44,17 @@ $current = $dlobj->Get_Current_Semester();
 
  <link rel="stylesheet" href="../dist/css/scrollbar.css">
  <script src="../dist/js/sweetalert2.min.js"></script>
+     <!-- cdn for modernizr, if you haven't included it already -->
+ <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+ <!-- polyfiller file to detect and load polyfills -->
+ <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
  <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
+ <script type="text/javascript">
+ function setdatepicker(){
+   webshims.setOptions('forms-ext', {types: 'date'});
+   webshims.polyfill('forms forms-ext');
+}
 
- <!-- validator -->
- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
- <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
- <script>
-     webshims.setOptions('forms-ext', {types: 'date'});
- webshims.polyfill('forms forms-ext');
  </script>
 
  <style>
@@ -146,6 +141,7 @@ $current = $dlobj->Get_Current_Semester();
           '"></td></tr>');
        $.each(x, function(i, val) {
          table.append(val);
+
        });
      }
    }
@@ -1567,11 +1563,13 @@ $current = $dlobj->Get_Current_Semester();
        $.each(x, function(i, val) {
          val.remove();
        });
+
        table.append('<tr class="warning" name="addtr" id="row' + (rowCount - 1) + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + (rowCount - 1) + '" id="delbtn' + (rowCount - 1) +
          '" value="ลบ" onclick="deleteRow(' + (rowCount - 1) + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="detail_topic' + (rowCount - 1) + '" id="detail_topic' + (rowCount - 1) +
          '" size="30"></div></td><td><input type="date" class="form-control" name="dateteach' + (rowCount - 1) + '" id="dateteach' + (rowCount - 1) +
-         '" size="2"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + (rowCount - 1) + '" id="timebegin' + (rowCount - 1) + '" size="2">  ถึง  <input type="time" class="form-control" name="timeend'
-          + (rowCount - 1) + '" id="timeend' + (rowCount - 1) + '" size="2"></div></td><td><input type="text" class="form-control" id="room' + (rowCount - 1) + '"</td></tr>');
+         '"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + (rowCount - 1) + '" id="timebegin' + (rowCount - 1) + '"> <br> ถึง <br> <input type="time" class="form-control" name="timeend'
+          + (rowCount - 1) + '" id="timeend' + (rowCount - 1) + '" ></div></td><td><input type="text" class="form-control" id="room' + (rowCount - 1) + '"</td></tr>');
+          setdatepicker();
        $.each(x, function(i, val) {
          table.append(val);
        });
@@ -1729,6 +1727,7 @@ function lastcal() {
 
 </header>
 <body class="mybox">
+
 <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
   <div class="row">
     <center>
