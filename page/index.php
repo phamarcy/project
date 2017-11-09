@@ -28,11 +28,9 @@
 	$show_btn=0;
 	if ($check_assessor) {
 		if ($check_assessor[0]==1) {
-			$show_btn=0;
+			$show_btn = 1;
 		}else if($check_assessor[0]==4){
-			$show_btn = 1;
-		}else {
-			$show_btn = 1;
+			$show_btn = 0;
 		}
 		
 
