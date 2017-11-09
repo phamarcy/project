@@ -16,7 +16,6 @@
 	$check_permission=$person->Check_Grant($_SESSION['id']);
 	$check_assessor=$person->Is_Assessor($_SESSION['id']);
 
-	echo '<pre>'; var_dump($check_assessor); echo '</pre>';
 	if (isset($_POST['change_level'])) {
 		if($_SESSION['level']==1){
 			$_SESSION['level']=4;
