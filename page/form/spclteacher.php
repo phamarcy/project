@@ -37,8 +37,8 @@ $current = $dlobj->Get_Current_Semester();
  <!-- Custom Fonts -->
  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
- <script src="https://code.jquery.com/jquery-1.10.0.js"></script> 
- <script src="https://afarkas.github.io/webshim/js-webshim/minified/polyfiller.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+
 
  <!-- Bootstrap Core JavaScript -->
  <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
