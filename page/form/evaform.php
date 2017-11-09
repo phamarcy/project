@@ -742,7 +742,9 @@ function checksubject(btntype,type){
                              'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
                              'warning'
                            )
-                          $('#buttondiv').hide();
+                           $('#dlhide').hide();
+                           $('#formdrpd').hide();
+                           $('#buttondiv').hide();
                         }
 
 
