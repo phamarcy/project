@@ -14,8 +14,22 @@
 
 	$person = new Person();
 	$check_permission=$person->Check_Grant($_SESSION['id']);
-	
-	echo '<pre>'; var_dump($check_permission); echo '</pre>';
+	$check_assessor=$person->Is_Assessor($_SESSION['id']);
+
+	if (isset($_POST['change_level'])) {
+		if($_SESSION['level']==1){
+			$_SESSION['level']=4;
+		}
+		else if($_SESSION['level']==4 || $_SESSION['level']==5){
+			$_SESSION['level']=1;
+			
+		}
+	}
+	$show_btn=0;
+	if ($check_assessor) {
+		$show_btn = 1;
+	}
+
 	$person->Close_connection();
  ?>
 <html>
@@ -216,6 +230,9 @@
 
 	<title>ยินดีต้อนรับ</title>
 	<style>
+		form{
+			margin-top: 10px;
+		}
 	#frm {
 		background:url('../application/picture/loading_icon.gif') center no-repeat;
 	}
@@ -340,10 +357,41 @@
 			<!-- /.navbar-header -->
 
 			<ul class="nav navbar-top-links navbar-right">
-				<b>ยินดีต้อนรับ | <font color="#51cc62"> คุณ <?php echo $_SESSION['fname'].' ',$_SESSION['lname']; ?></font></b>
-				&nbsp;
-				<b>สถานะ : อาจารย์ </b>&nbsp;
-				<button type="button" class="btn btn-primary btn-outlne">เปลี่ยนสถานะ</button>
+				<form action="index.php" method="POST" class="form-inline">
+					<b>ยินดีต้อนรับ | <font color="#51cc62"> คุณ <?php echo $_SESSION['fname'].' ',$_SESSION['lname']; ?></font></b>
+					<?php 
+					if ($show_btn==1) { 
+						if ($_SESSION['level']==1) {
+							$status_name ="อาจารย์";
+						}else if ($_SESSION['level']==2) {
+							$status_name ="เจ้าหน้าที่ภาค";
+						}else if ($_SESSION['level']==3){
+							$status_name ="เจ้าหน้าที่คณะ";
+						}else if ($_SESSION['level']==4){
+							$status_name ="คณะกรรมการภาค";
+						}
+						else if ($_SESSION['level']==5){
+							$status_name ="คณะกรรมการคณะ";
+						}
+						else if ($_SESSION['level']==6){
+							$status_name ="ผู้บริหาร";
+						}
+						else if ($_SESSION['level']==7){
+							$status_name ="admin";
+						}
+						
+
+						?>
+						
+						<b>สถานะ : <?php echo $status_name;?> </b>&nbsp;
+						
+							<button type="submit" class="btn btn-primary btn-outlne" name="change_level">เปลี่ยนสถานะ</button>
+						
+						
+						<?php
+					}
+					?>
+				
 				<!-- /.dropdown -->
 				<li class="dropdown" id="icon-dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -377,6 +425,7 @@
 					<!-- /.dropdown-user -->
 				</li>
 				<!-- /.dropdown -->
+				</form>
 			</ul>
 			<!-- /.navbar-top-links -->
 
