@@ -693,7 +693,7 @@ class Person
     $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)
     {
-      $return[0] = $result[0]['education'];
+      $return[0] = $result[0]['level'];
     }
     else
      {
