@@ -139,6 +139,7 @@ $current = $dlobj->Get_Current_Semester();
          '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_date"]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline"><input type="time" class="form-control" name="timebegin' + tr + '" id="timebegin' + tr + '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_time_start"]+'" >  ถึง  <input type="time" class="form-control" name="timeend'
           + tr + '" id="timeend' + tr + '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_time_end"]+'"></div></td><td><input type="text" class="form-control" id="room' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_room"]+
           '"></td></tr>');
+          setdatepicker();
        $.each(x, function(i, val) {
          table.append(val);
 
