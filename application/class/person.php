@@ -667,6 +667,7 @@ class Person
 
   public function Is_Assessor($teacher_id)
   {
+    $return = array();
     $this->DB->Change_DB($this->DEFAULT_DB);
     $sql = "SELECT `status` FROM `approval_course` WHERE `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$this->DEADLINE['id'];
     $result = $this->DB->Query($sql);
@@ -674,17 +675,31 @@ class Person
     {
       if(isset($result[0]['status']))
       {
-        return true;
+        return $return[1] = true;
       }
       else
       {
-        return false;
+        return $return[1] = false;
       }
     }
     else
     {
-      return false;
+      return $return[1] = false;
     }
+
+    $sql = "SELECT `education` as level FROM `staff_mis` WHERE `code`='".$teacher_id."'";
+    $this->DB->Change_DB($this->PERSON_DB);
+    $result = $this->DB->Query($sql);
+    $this->DB->Change_DB($this->DEFAULT_DB);
+    if($result)
+    {
+      $return[0] = $result[0]['education'];
+    }
+    else
+     {
+        $return[0] = false;
+    }
+    return $return;
   }
 
   //close database connection
