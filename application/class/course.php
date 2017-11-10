@@ -128,7 +128,24 @@ class Course
   }
   public function Get_Dept_All()
   {
-    // SELECT `code`,`name` FROM `department` WHERE 1
+    $sql = "SELECT `code`,`name` FROM `department`";
+    $this->DB->Change_DB($this->PERSON_DB);
+    $result = $this->DB->Query($sql);
+    $this->DB->Change_DB($this->DEFAULT_DB);
+    $dept = array();
+    if($result)
+    {
+      for($i = 0;$i<count($result);$i++)
+      {
+        $dept[$i]['code'] = $result[$i]['code'];
+        $dept[$i]['name'] = $result[$i]['name'];
+      }
+    }
+    else
+    {
+      $dept = false;
+    }
+    return $dept;
   }
   public function Search_Course_Dept($course_id,$semester_id)
   {
