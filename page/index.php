@@ -60,6 +60,7 @@
 
 	<script src="vendor/jquery/jquery.min.js"></script>
 
+	
 	<!-- Bootstrap Core JavaScript -->
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -68,7 +69,7 @@
 
 	<!-- Custom Theme JavaScript -->
 	<script src="dist/js/sb-admin-2.js"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 	<script type="text/javascript" src="dist/js/bootstrap-filestyle.min.js"></script>
 
 	  <link rel="stylesheet" href="dist/css/scrollbar.css">

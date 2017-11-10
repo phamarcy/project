@@ -46,7 +46,7 @@ $semester = $deadline->Get_Current_Semester();
 
  <!-- Custom Theme JavaScript -->
  <script src="../dist/js/sb-admin-2.js"></script>
-
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
  <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>

@@ -58,6 +58,8 @@ $data_course= json_decode($var, true);
 	<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 	<link rel="stylesheet" href="../dist/css/scrollbar.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
 	<script src="../dist/js/sweetalert2.min.js"></script>
 	<link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
 	<title></title>
