@@ -283,10 +283,12 @@ class Course
       $name = $this->PERSON->Get_Teacher_Name($teacher_id);
       if($name)
       {
+        $DATA['id'] = $teacher_id;
         $DATA['teacher'] = $name;
       }
       else
       {
+        $DATA['id'] = null;
         $DATA['teacher'] = null;
       }
     }
