@@ -44,6 +44,8 @@ if(!isset($_POST['tab']))
     <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
     <!-- polyfiller file to detect and load polyfills -->
     <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+  <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
 </header>
 <style>
@@ -66,23 +68,6 @@ function lock(object,type)
   $(object).find("#edit").prop('disabled',!type);
 }
 
-//validate is date data correct?
-function checkdate(date_before,date_after)
-{
-    if(date_after.getTime() > date_before.getTime())
-    {
-      return 1;
-    }
-    else if (date_after.getTime() < date_before.getTime())
-    {
-      return -1;
-    }
-    else
-    {
-      return 0;
-    }
-}
-
 function reset_object(object)
 {
   $(object).find("input[id]").each(function(index, node)
@@ -98,48 +83,6 @@ function reset_date(object)
 }
 $(document).ready(function() {
 
-});
-
-//check is last_date greater than first_date
-$(document).on('change', '#lastdate', function() {
-    var last_date = new Date($(this).val());
-    var first_date = $(this).parent().find("#opendate").val();
-    if(first_date != null)
-    {
-        first_date = new Date($(this).parent().find("#opendate").val());
-        var result = checkdate(first_date,last_date);
-        if(result != 1)
-        {
-          $(this).parent().find("#warning").html('วันที่ไม่ถูกต้อง');
-          $(this).parent().find("#warning").css("color","red");
-        }
-        else
-        {
-          //reset_date($(this).parent());
-          $(this).parent().find("#warning").html('');
-        }
-    }
-});
-
-//check if date is correct
-$(document).on('change', '#opendate', function() {
-    var last_date = $(this).parent().find("#lastdate").val();
-    var first_date = new Date($(this).val());
-    if(last_date != '')
-    {
-        last_date = new Date($(this).parent().find("#lastdate").val());
-        var result = checkdate(first_date,last_date);
-        if(result != 1)
-        {
-          $(this).parent().find("#warning").html('วันที่ไม่ถูกต้อง');
-          $(this).parent().find("#warning").css("color","red");
-        }
-        else
-        {
-          //reset_date($(this).parent());
-          $(this).parent().find("#warning").html('');
-        }
-    }
 });
 
 function Load_Page(tab) {
@@ -182,19 +125,9 @@ $(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_specia
     var form = $(button_object).parent();
     var last_date = $(button_object).parent().find("#lastdate").val();
     var first_date = $(button_object).parent().find("#opendate").val();
-    if(last_date !='' && first_date != '')
+    if(last_date =='' || first_date == '')
     {
-        first_date = new Date(first_date);
-        last_date = new Date(last_date);
-        var date_check = checkdate(first_date,last_date);
-        if(date_check != 1)
-        {
-            error = 1;
-        }
-    }
-    else
-    {
-      error = 1;
+        error = 1;
     }
 
     $(form).find("input[id]").each(function(index, node)
