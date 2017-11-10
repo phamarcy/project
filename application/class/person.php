@@ -699,6 +699,26 @@ class Person
      {
         $return[0] = false;
     }
+
+    $sql = "SELECT `position_dean` FROM `staff_mis` WHERE `code`='".$teacher_id."'";
+    $this->DB->Change_DB($this->PERSON_DB);
+    $result = $this->DB->Query($sql);
+    $this->DB->Change_DB($this->DEFAULT_DB);
+    if($result)
+    {
+      if(!empty($result))
+      {
+        $return[2] = true;
+      }
+      else
+      {
+        $return[2] = false;
+      }
+    }
+    else
+    {
+      $return[2] = false;
+    }
     return $return;
   }
 
