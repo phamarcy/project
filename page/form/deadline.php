@@ -196,8 +196,6 @@ $(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_specia
         $(form).find("#warning").html('<div class="glyphicon glyphicon-alert" style="color: red;"> <b>กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน</b></div>');
     }
 }, function (dismiss) {
-  // dismiss can be 'cancel', 'overlay',
-  // 'close', and 'timer'
 
 })
 
@@ -209,11 +207,7 @@ $(document).on('click', "#delete", function() {
     $(object).fadeOut(300, function() { $(this).remove(); });
 });
 
-//edit data
-// $(document).on('click', "#edit", function() {
-//     var object = $(this).parent();
-//     lock(object,false);
-// });
+
 </script>
 
 <body id="mainbody">

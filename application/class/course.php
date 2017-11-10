@@ -126,7 +126,10 @@ class Course
     }
 
   }
-
+  public function Get_Dept_All()
+  {
+    // SELECT `code`,`name` FROM `department` WHERE 1
+  }
   public function Search_Course_Dept($course_id,$semester_id)
   {
     $sql = "SELECT `department_id` FROM `department_course_responsible` WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$semester_id;
@@ -823,14 +826,14 @@ class Course
   public function Get_Status_Text()
   {
     $status = array();
-    $sql = "SELECT `status_value`,`status_name` FROM `status`";
+    $sql = "SELECT `status_code`,`status_name` FROM `status`";
     $result = $this->DB->Query($sql);
     if($result)
     {
       for($i=0;$i<count($result);$i++)
       {
         $temp = $result[$i];
-        $status[$temp['status_value']] = $temp['status_name'];
+        $status[$temp['status_code']] = $temp['status_name'];
       }
     }
     else
