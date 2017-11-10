@@ -819,6 +819,26 @@ class Course
     }
     return $return;
   }
+
+  public function Get_Status_Text()
+  {
+    $status = array();
+    $sql = "SELECT `status_value`,`status_name` FROM `status`";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      for($i=0;$i<count($result);$i++)
+      {
+        $temp = $result[$i];
+        $status[$temp['status_value']] = $temp['status_name'];
+      }
+    }
+    else
+    {
+      $status = false;
+    }
+    return $status;
+  }
   public function Close_connection()
   {
     $this->DB->Close_connection();
