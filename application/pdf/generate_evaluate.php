@@ -775,8 +775,9 @@ $pdf->SetX(25);
 
 
 $person = new Person();
-$signature_file = $person->Get_Teacher_Signature($data_pdf['submit_user_id']);
-$teacher_name = $person->Get_Teacher_Name($data_pdf['submit_user_id']);
+$respond_teacher = $course->Get_Responsible_Teacher($data_pdf['course_id'],$semester['id']);
+$signature_file = $person->Get_Teacher_Signature($respond_teacher['id']);
+$teacher_name = $person->Get_Teacher_Name($respond_teacher['id']);
 
 $pdf->Cell(10,7,iconv('UTF-8','cp874','ลงชื่อ'),0);
 if($signature_file != null)
@@ -803,7 +804,7 @@ $pdf->Cell(0,7,iconv('UTF-8','cp874','(ผู้รับผิดชอบก�
 
 if($DATA['SUBMIT_TYPE'] == '3' || $DATA['SUBMIT_TYPE'] == '4')
 {
-	$course_dep = $person->Get_Staff_Dep($data_pdf['submit_user_id']);
+	$course_dep = $person->Get_Staff_Dep($respond_teacher['id']);
   $head_department_id = $person->Get_Head_Department($course_dep['code'],$data_pdf['course_id']);
  	$approver_name = $person->Get_Teacher_Name($head_department_id);
  	$signature_approver_file = $person->Get_Teacher_Signature($head_department_id);
