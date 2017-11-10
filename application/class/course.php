@@ -843,14 +843,13 @@ class Course
   public function Get_Status_Text()
   {
     $status = array();
-    $sql = "SELECT `status_code`,`status_name` FROM `status`";
+    $sql = "SELECT `status_code`,`status_name`,`icon`,`color` FROM `status`";
     $result = $this->DB->Query($sql);
     if($result)
     {
       for($i=0;$i<count($result);$i++)
       {
-        $temp = $result[$i];
-        $status[$temp['status_code']] = $temp['status_name'];
+        $status = $result;
       }
     }
     else

@@ -35,7 +35,7 @@ if (isset($assessor['status'])) {
 else {
  if (count($assessor)>0) {
   $stacknum=array();
-  for ($i=1; $i <= $assessor[count($assessor)-1]['group'] ; $i++) { 
+  for ($i=1; $i <= $assessor[count($assessor)-1]['group'] ; $i++) {
       for ($j=0; $j < count($assessor); $j++) {
         if ($assessor[$j]['group']==$i) {
           array_push($stacknum,$i);
@@ -43,7 +43,7 @@ else {
       }
   }
   $stacknum=array_unique($stacknum);
-  $arr2 = range(1,max($stacknum));                                                    
+  $arr2 = range(1,max($stacknum));
   $missing = array_diff($arr2,$stacknum);
   if (!empty($missing)) {
     $checknumgroup=array_shift($missing);
@@ -76,7 +76,7 @@ else {
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../dist/css/scrollbar.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-    
+
     <script src="../vendor/jquery/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -122,7 +122,7 @@ else {
 
 
       .clickable{
-          cursor: pointer;   
+          cursor: pointer;
       }
 
       .panel-heading span {
@@ -167,14 +167,14 @@ else {
           cancelButtonColor: '#d33',
           confirmButtonText: 'ตกลง',
           cancelButtonText: 'ยกเลิก'
-        }).then(function () {   
+        }).then(function () {
           $('#new_group').append(
         `<div class="col-md-6">
         <div class="panel panel-info">
             <div class="panel-heading" role="tab" id="heading1"  style="font-size:14px;">
               <div class="panel-title" style="font-size:14px;">
                 <a role="button" data-toggle="collapse" href="#collapse=" aria-expanded="true" aria-controls="collapse${numgroup}" class="trigger collapsed">
-                คณะกรรมการชุดที่ ${numgroup} 
+                คณะกรรมการชุดที่ ${numgroup}
                 </a>
               </div>
             </div>
@@ -211,12 +211,12 @@ else {
           </div>
         </div>
       `
-        ); 
+        );
         countgroup++;
         }, function (dismiss) {
           if (dismiss === 'cancel') {}
         })
-        
+
           }
 
     }
@@ -375,7 +375,7 @@ else {
                                   course: course,
                                   semester_id:semester,
                                   type: "remove_assessor",
-                                  
+
                                 },
                                 success: function (data) {
                                   try {
@@ -403,7 +403,7 @@ else {
                                     }
                                   } catch (e) {
                                     console.log(data);
-                                    
+
                                     swal({
                                     type: "error",
                                     text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
@@ -415,7 +415,7 @@ else {
                               });
 
                         }
-                        
+
                       } catch (e) {
                         console.log(data);
                         swal({
@@ -499,8 +499,8 @@ else {
           })
       }
       function teacherGroupremove(group, type, department,assessor) {
-        
-       
+
+
           var text = "name_assessor" + assessor;
           var element = document.getElementById(text).value;
           swal({
@@ -612,7 +612,7 @@ else {
         });
         return false;
       });
-      
+
 
       $("form#remove").submit(function () {
         var formData = new FormData(this);
@@ -626,7 +626,7 @@ else {
           confirmButtonText: 'ตกลง',
           cancelButtonText: 'ยกเลิก'
         }).then(function () {
-          
+
           $.ajax({
             url: '../../application/subject/responsible_course_department.php',
             type: 'POST',
@@ -839,7 +839,7 @@ else {
       function searchname(no, type) {
         var name_s = $("#TEACHERLEC_" + no).val();
         $("#dtl" + no).html('');
-        if (name_s.length > 3) {
+        if (name_s.length > 1) {
           $.post("search_name.php", {
               name: name_s
             }, function (data) {
@@ -862,10 +862,10 @@ else {
   </head>
 
   <body>
-      
+
     <h3 class="page-header" style="margin-bottom: 0px;">
       <center><b>จัดการกระบวนวิชา</b></center>
-    </h3>    
+    </h3>
     <div class="container" style="margin-top:30px">
     <?php
     if ($_SESSION['level']==7 ){ ?>
@@ -880,7 +880,7 @@ else {
                 <select name="department" class="form-control">
                 <option value="1202" <?php if ($dep_js=="1202") { echo "selected";} ?>>ภาควิชาบริบาลเภสัชกรรม</option>
                 <option value="1203" <?php if ($dep_js=="1203") { echo "selected";} ?>>ภาควิชาวิทยาศาสตร์เภสัชกรรม</option>
-                </select>&nbsp;&nbsp;<input type="submit" value="บันทึก" class="btn btn-outline btn-primary" ></p> 
+                </select>&nbsp;&nbsp;<input type="submit" value="บันทึก" class="btn btn-outline btn-primary" ></p>
             </div>
             </form>
           </div>
@@ -936,35 +936,35 @@ else {
                                   <th></th>
                                 </thead>
                                 <tbody>
-  
+
                                   <?php foreach ($assessor[$i-1]['assessor'] as $key_assessor => $assessor_name): ?>
                                   <form>
                                     <input type="hidden" name="teacher" id="name_assessor<?php echo $assessor[$i-1]['group'].$key_assessor ?>" value="<?php echo $assessor_name ?>">
                                     <tr>
                                       <td>
-  
+
                                         <?php echo $key_assessor+1;  ?>
                                       </td>
                                       <td>
                                         <?php echo $assessor_name ?>
                                       </td>
                                       <td>
-                                        <button type="button" name="button" class="btn btn-outline btn-danger" 
+                                        <button type="button" name="button" class="btn btn-outline btn-danger"
                                         onclick="teacherGroupremove('<?php echo $assessor[$i-1]['group'];?>','remove',<?php echo $department['code']  ?>,'<?php echo $assessor[$i-1]['group'].$key_assessor ?>')">ลบ</button></td>
                                     </tr>
                                   </form>
                                   <?php endforeach; ?>
-  
+
                                 </tbody>
                               </table>
                             </div>
-  
+
                           </div>
                             </div>
                           </div>
                           </ul>
                         </div>
-                        
+
                         <?php
                         }
                       }
@@ -975,7 +975,7 @@ else {
                           <i class="glyphicon glyphicon-plus"></i> เพื่มชุดคณะกรรมการ
                       </button>
                       </div>
-                      
+
                     </div>
                   </div>
                 </div>
@@ -1082,8 +1082,8 @@ else {
                                       <label for="">คณะกรรมการ</label>
                                       <input type="hidden" name="type" value="add_assessor">
                                       <select class="form-control" id="group<?php echo $value_list['id'] ?>">
-                                        <?php 
-                                        for ($i=0; $i < count($assessor) ; $i++) { 
+                                        <?php
+                                        for ($i=0; $i < count($assessor) ; $i++) {
                                           echo "<option value='".$assessor[$i]['group']."'>คณะกรรมการชุดที่ ".$assessor[$i]['group']." </option>";
                                         }
                                         ?>
@@ -1093,7 +1093,7 @@ else {
                                   </div>
 
                                   <datalist id="dtl<?php echo $value_list['id'] ?>"></datalist>
-                                  <?php 
+                                  <?php
                                   if ($value_list['teacher']!=NULL && $value_list['assessor']!=NULL) { ?>
                                   <div class="col-md-6">
                                       <br>
@@ -1103,18 +1103,18 @@ else {
                                       <?php if ($value_list['teacher']!=NULL): ?>
                                       <?php echo $value_list['teacher'] ?>
                                       <input type="hidden" id="hiddenteacher<?php echo $value_list['id'] ?>" value="<?php echo $value_list['teacher'] ?>">
-                                      <?php endif; ?>  
+                                      <?php endif; ?>
                                       </dd>
                                       <dt>คณะกรรมการ</dt>
-                                      <dd> 
+                                      <dd>
                                         <?php if ($value_list['assessor']!=NULL): ?>
-                                         
-                                          <?php if ($value_list['assessor']):echo "คณะกรรมการชุดที่ ".$value_list['assessor']; ?><?php endif; ?>  
-                      
+
+                                          <?php if ($value_list['assessor']):echo "คณะกรรมการชุดที่ ".$value_list['assessor']; ?><?php endif; ?>
+
                                           <input type="hidden" id="hiddengroup<?php echo $value_list['id'] ?>" value="<?php echo $value_list['assessor'] ?>">
                                         <?php endif; ?>
                                       </dd>
-                                     
+
                                     </dl>
                                   </div>
                                   <div class="col-md-6">
@@ -1143,7 +1143,7 @@ else {
         </div>
       </div>
     </div>
-    
+
   </body>
 
   </html>

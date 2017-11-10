@@ -269,7 +269,7 @@ $semester = $deadline->Get_Current_Semester();
  function searchname(no,type) {
    var name_s = $("#TEACHERLEC_"+no).val();
      $("#dtl"+no).html('');
-     if(name_s.length > 3)
+     if(name_s.length > 1)
      {
        $.post("search_name.php", { name: name_s}, function(data) {
              data = JSON.parse( data );
