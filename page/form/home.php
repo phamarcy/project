@@ -2,23 +2,26 @@
 require_once(__DIR__.'/../../application/class/curl.php');
 require_once(__DIR__.'/../../application/class/manage_deadline.php');
 require_once(__DIR__."/../../application/class/approval.php");
+require_once(__DIR__."/../../application/class/course.php");
 session_start();
 if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
 {
     die('กรุณา Login ใหม่');
 }
 $information_url = "application/information/index.php";
-$curl = new CURL();
-$deadline = new Deadline;
-$approve = new approval($_SESSION['level']);
-$data['level'] = $_SESSION['level'];
-$deadline_form = $deadline->Get_Current_Deadline($_SESSION['level']);
-$semester = $deadline->Get_Current_Semester();
-$var=$approve->Check_Status($_SESSION['id']);
+$curl            = new CURL();
+$deadline        = new Deadline;
+$approve         = new approval($_SESSION['level']);
+$course          = new course;
+$data['level']   = $_SESSION['level'];
+$deadline_form   = $deadline->Get_Current_Deadline($_SESSION['level']);
+$semester        = $deadline->Get_Current_Semester();
+$var             = $approve->Check_Status($_SESSION['id']);
 
+$type_status=$course->Get_Status_Text();
 
-$data_course= json_decode($var, true);
-
+$data_course     = json_decode($var, true);
+echo '<pre>$type_status<br />'; var_dump($type_status); echo '</pre>';
 ?>
 <html>
 
@@ -72,6 +75,7 @@ $data_course= json_decode($var, true);
 		}
 
 		#statc {
+
 			color: #0d4b9d;
 		}
 
@@ -176,30 +180,31 @@ $data_course= json_decode($var, true);
 							<?php
 									$status_text="";
 									switch ($value_course['evaluate']['status']) {
+
 										case '0':
-										$status_text='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+										$status_text='<b style="color:'.$type_status[$value_course['evaluate']['status']]["color"].';">'.$type_status[$value_course['evaluate']['status']]["status_name"].' <i class="'.$type_status[$value_course['evaluate']['status']]["icon"].'"></i></b>';
 										break;
 										case '1':
-										$status_text='<b id="statwt">รอการพิจารณา <i class="fa  fa-clock-o fa-fw"></i></b>';
+										$status_text='<b style="color:'.$type_status[$value_course['evaluate']['status']]["color"].';">'.$type_status[$value_course['evaluate']['status']]["status_name"].' <i class="'.$type_status[$value_course['evaluate']['status']]["icon"].'"></i></b>';
 											break;
 										case '2':
-										$status_text='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+										$status_text='<b style="color:'.$type_status[$value_course['evaluate']['status']]["color"].';">'.$type_status[$value_course['evaluate']['status']]["status_name"].' <i class="'.$type_status[$value_course['evaluate']['status']]["icon"].'"></i></b>';
 											break;
 										case '3':
-										$status_text='<b id="statal">มีการแก้ไขจากคณะกรรมการภาค <i class="fa fa-pencil-square fa-fw"></i></b>';
+										$status_text='<b style="color:'.$type_status[$value_course['evaluate']['status']]["color"].';">'.$type_status[$value_course['evaluate']['status']]["status_name"].' <i class="'.$type_status[$value_course['evaluate']['status']]["icon"].'"></i></b>';
 											break;
 										case '4':
-										$status_text='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค <i class="fa fa-user fa-fw"></i></b>';
+										$status_text='<b style="color:'.$type_status[$value_course['evaluate']['status']]["color"].';">'.$type_status[$value_course['evaluate']['status']]["status_name"].' <i class="'.$type_status[$value_course['evaluate']['status']]["icon"].'"></i></b>';
 											break;
 										case '5':
-										$status_text='<b id="statwt">รอผู้บริหารอนุมัติ <i class="fa fa-user-plus fa-fw"></i></b>';
+										$status_text='<b style="color:'.$type_status[$value_course['evaluate']['status']]["color"].';">'.$type_status[$value_course['evaluate']['status']]["status_name"].' <i class="'.$type_status[$value_course['evaluate']['status']]["icon"].'"></i></b>';
 											break;
 										case '6':
-										$status_text='<b id="statal">มีการแก้ไขจากผู้บริหาร <i class="fa fa-check fa-fw"></i></b>';
+										$status_text='<b style="color:'.$type_status[$value_course['evaluate']['status']]["color"].';">'.$type_status[$value_course['evaluate']['status']]["status_name"].' <i class="'.$type_status[$value_course['evaluate']['status']]["icon"].'"></i></b>';
 											break;
-									case '7':
-									$status_text='<b id="statcf">ผ่าน <i class="fa fa-check fa-fw"></i></b>';
-									break;
+										case '7':
+										$status_text='<b style="color:'.$type_status[$value_course['evaluate']['status']]["color"].';">'.$type_status[$value_course['evaluate']['status']]["status_name"].' <i class="'.$type_status[$value_course['evaluate']['status']]["icon"].'"></i></b>';
+										break;
 										}
 ?>
 								<div class="panel-group" id="accordione1">
@@ -305,31 +310,32 @@ $data_course= json_decode($var, true);
 															<div class="panel-group" id="accordion">
 
 																<?php foreach ($value_course['special'] as $keysp => $valuesp):
-
+																	$status_sp='';
 																	switch ($valuesp['status']) {
 																		case '0':
-																		$status_sp='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+																		$status_sp='<b style="color:'.$type_status[$valuesp['status']]["color"].';">'.$type_status[$valuesp['status']]["status_name"].' <i class="'.$type_status[$valuesp['status']]["icon"].'"></i></b>';
 																		break;
 																		case '1':
-																		$status_sp='<b id="statwt">รอการพิจารณา <i class="fa  fa-clock-o fa-fw"></i></b>';
+																		$status_sp='<b style="color:'.$type_status[$valuesp['status']]["color"].';">'.$type_status[$valuesp['status']]["status_name"].' <i class="'.$type_status[$valuesp['status']]["icon"].'"></i></b>';
 																			break;
 																		case '2':
-																		$status_sp='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+																		$status_sp='<b style="color:'.$type_status[$valuesp['status']]["color"].';">'.$type_status[$valuesp['status']]["status_name"].' <i class="'.$type_status[$valuesp['status']]["icon"].'"></i></b>';
 																			break;
 																		case '3':
-																		$status_sp='<b id="statal">มีการแก้ไขจากคณะกรรมการภาค <i class="fa fa-pencil-square fa-fw"></i></b>';
+																		$status_sp='<b style="color:'.$type_status[$valuesp['status']]["color"].';">'.$type_status[$valuesp['status']]["status_name"].' <i class="'.$type_status[$valuesp['status']]["icon"].'"></i></b>';
 																			break;
 																		case '4':
-																		$status_sp='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค <i class="fa fa-user fa-fw"></i></b>';
+																		$status_sp='<b style="color:'.$type_status[$valuesp['status']]["color"].';">'.$type_status[$valuesp['status']]["status_name"].' <i class="'.$type_status[$valuesp['status']]["icon"].'"></i></b>';
 																			break;
 																		case '5':
-																		$status_sp='<b id="statwt">รอผู้บริหารอนุมัติ <i class="fa fa-user-plus fa-fw"></i></b>';
+																		$status_sp='<b style="color:'.$type_status[$valuesp['status']]["color"].';">'.$type_status[$valuesp['status']]["status_name"].' <i class="'.$type_status[$valuesp['status']]["icon"].'"></i></b>';
 																			break;
 																		case '6':
-																		$status_sp='<b id="statal">มีการแก้ไขจากผู้บริหาร <i class="fa fa-check fa-fw"></i></b>';
+																		$status_sp='<b style="color:'.$type_status[$valuesp['status']]["color"].';">'.$type_status[$valuesp['status']]["status_name"].' <i class="'.$type_status[$valuesp['status']]["icon"].'"></i></b>';
 																			break;
-																	case '7': $status_sp='
-																	<b id="statcf">ผ่าน <i class="fa fa-check fa-fw"></i></b>'; break;
+																		case '7':
+																		$status_sp='<b style="color:'.$type_status[$valuesp['status']]["color"].';">'.$type_status[$valuesp['status']]["status_name"].' <i class="'.$type_status[$valuesp['status']]["icon"].'"></i></b>';
+																		break;
 
 																		}
 																		?>

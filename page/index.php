@@ -32,7 +32,7 @@
 			$show_btn = 0;
 		}
 	}
-
+	
 	$person->Close_connection();
  ?>
 <html>
@@ -75,6 +75,7 @@
 	  <link rel="stylesheet" href="dist/css/scrollbar.css">
 
 	<script>
+	
 	window.onload =  function(){
       update_noti();
     };
@@ -228,6 +229,20 @@
 	        ifrm.frameBorder = 0;
          	document.getElementById("frm").src = url;
 		}
+
+		function check_level(){
+			var level = <?php echo $_SESSION['level'] ?>;
+			if (level==4 || level==5 ) {
+				loadDoc("form/comment.php");
+			}else if(level==6){
+				loadDoc("form/commentboard.php");
+			}
+			else{
+				loadDoc('form/home.php');
+			}
+		}
+	
+		
 	</script>
 
 
@@ -345,7 +360,7 @@
 	</script>
 </header>
 
-<body onload="loadDoc('form/home.php')">
+<body onload="check_level()">
 	<div id="wrapper">
 
 		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
