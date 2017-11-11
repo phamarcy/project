@@ -17,6 +17,7 @@ require_once('../../application/class/course.php');
 $courseobj = new Course();
 $dept = $courseobj->Get_Dept_All();
 
+var_dump($_POST);
  ?>
 
 <html>
@@ -49,10 +50,11 @@ $dept = $courseobj->Get_Dept_All();
 
  <link rel="stylesheet" href="../dist/css/scrollbar.css">
  <script src="../dist/js/sweetalert2.min.js"></script>
-     <!-- cdn for modernizr, if you haven't included it already -->
- <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+ <script src="../vendor/webshim/1.15.3/modernizr-custom.js"></script>
  <!-- polyfiller file to detect and load polyfills -->
- <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+ <script src="../vendor/webshim/1.15.3/js-webshim/minified/polyfiller.js"></script>
+<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+<script src="../vendor/webshim/1.15.3/core.js"></script>
  <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
  <script type="text/javascript">
  function setdatepicker(){
@@ -1142,6 +1144,114 @@ $dept = $courseobj->Get_Dept_All();
      {
        echo "$('#overtimemsg').hide();";
 
+       if(isset($_POST['course_id']))
+       {
+         echo "$('#dlhide').hide();
+         document.getElementById('form1').reset();
+         var file_data = new FormData;
+         var course_id = ".$_POST['course_id'].";
+         var type = 2;
+         JSON.stringify(course_id);
+         JSON.stringify(type);
+         file_data.append('course_id',course_id);
+         file_data.append('type',type);
+         var URL = '../../application/document/search_document.php';
+         $.ajax({
+                       url: URL,
+                       dataType: 'text',
+                       cache: false,
+                       contentType: false,
+                       processData: false,
+                       data: file_data,
+                       type: 'post',
+                       success: function (result) {
+                             try {
+                               var temp = $.parseJSON(result);
+                               var rowtr = ($('#detailteaching tr').length)-2
+                               for (var i = 1; i <=rowtr; i++) {
+                                 var row = document.getElementById('row' + i);
+                                 row.parentNode.removeChild(row);
+                               }
+                               document.getElementById('id').value = temp['INFO']['course_id'];
+                               var course_id = document.getElementById('id').value;
+                               //cleardatalist
+                               var selectobject = document.getElementById('teachername');
+                               var long = selectobject.length;
+                               if(long!=0 && long!=null)
+                               {
+                                 for (var i=0; i<=long; i++){
+                                   document.getElementsByName('teachername')[0].remove(0);
+                                 }
+                               }
+
+                               if(temp['ACCESS'] == true)
+                               {
+                                 $('#buttondiv').show();
+                                 if(temp['DATA']!=false && temp['INFO']!=false)
+                                 {
+                                   $('#teachername').prop('disabled', false);
+                                   $('#subhead').prop('disabled', false);
+                                   $('#hiddenh5').hide();
+                                   $('#hiddenh5_found').show();
+                                   $('#hiddenh5_found').html('กระบวนวิชา '+temp['INFO'].course_name_th+' ('+temp['INFO'].course_id+')');
+                                   $('#notfound').hide();
+                                   var course_id = document.getElementById('id').value;
+                                   document.getElementById('formdrpd').style.display = '';
+                                   //cleardatalist
+                                   var selectobject = document.getElementById('teachername');
+                                   var long = selectobject.length;
+                                   if(long!=0 && long!=null)
+                                   {
+                                     for (var i=0; i<=long; i++){
+                                       document.getElementsByName('teachername')[0].remove(0);
+                                     }
+                                   }
+
+                                   for(var i=0;i<(Object.keys(temp['DATA']).length);i++)
+                                   {
+                                     var opt = document.createElement('option');
+                                     opt.value = temp['DATA'][i].id +'_'+ temp['DATA'][i].name + '_' + temp['INFO']['course_id'] +'_'+ temp['DATA'][i].semester + '_' + temp['DATA'][i].year;
+                                     opt.innerHTML = 'คุณ'+temp['DATA'][i].name;
+                                     document.getElementById('teachername').appendChild(opt);
+                                   }
+                                 }else if(temp['DATA']==false && temp['INFO']!=false){
+                                   $('#hiddenh5_found').show();
+                                   $('#hiddenh5_found').html('กระบวนวิชา '+temp['INFO'].course_name_th+' ('+temp['INFO'].course_id+')');
+                                   $('#hiddenh5').hide();
+                                   $('#notfound').show();
+
+                                   var course_id = document.getElementById('id').value;
+                                   document.getElementById('formdrpd').style.display = '';
+                                   //cleardatalist
+                                   var selectobject = document.getElementById('teachername');
+                                   var long = selectobject.length;
+                                   if(long!=0 && long!=null)
+                                   {
+                                     for (var i=0; i<=long; i++){
+                                       document.getElementsByName('teachername')[0].remove(0);
+                                     }
+                                   }
+                                   $('#teachername').prop('disabled', true);
+                                   $('#subhead').prop('disabled', true);
+
+                                 }
+                               }
+                             } catch (e) {
+                                  console.log('Error#542-decode error');
+                             }
+
+                       },
+                       failure: function (result) {
+                            alert(result);
+                       },
+                       error: function (xhr, status, p3, p4) {
+                            var err = 'Error ' + ' ' + status + ' ' + p3 + ' ' + p4;
+                            if (xhr.responseText && xhr.responseText[0] == '{')
+                                 err = JSON.parse(xhr.responseText).Message;
+                            console.log(err);
+                       }
+            });";
+       }
      }else {
          echo "$('#dlhide').hide();
          $('#hiddenh5').hide();
