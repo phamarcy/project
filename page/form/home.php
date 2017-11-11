@@ -108,7 +108,7 @@ $data_course     = json_decode($var, true);
 <body class="mybox">
 	<?php if($semester['id'] == false)
 		{
-			echo '<div class="alert alert-danger"><center>ระบบยังไม่มีภาค และปีการศึกษาปัจจุบัน กรุณาติดต่อเจ้าหน้าที่ </center></div>';
+			echo '<div class="alert alert-danger"><center>ระบบยังไม่มีภาคการศึกษา และปีการศึกษาปัจจุบัน กรุณาติดต่อเจ้าหน้าที่ </center></div>';
 			die();
 		}
 		?>
@@ -401,7 +401,7 @@ $data_course     = json_decode($var, true);
 																				<?php if ($valuesp['edit']==true && $_SESSION['level']==1 && $valuesp['status']==1 ): ?>
 																				<form action="spclteacher.php" method="post" class="forminline">
 																				<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
-																				<input type="hidden" name="semseter" value="<?php echo $semester ?>">
+																				<input type="hidden" name="semseter" value="<?php $semester ?>">
 																				<input type="hidden" name="instuctor_id" value="<?php echo $valuesp['id'] ?>">
 																					<button type="submit" class="btn btn-warning btn-sm pill" >แก้ไข</button>
 																					</form>
