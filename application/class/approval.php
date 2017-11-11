@@ -97,10 +97,6 @@ class approval
       }
 
       $sql .= " WHERE `course_id` = '".$course_id."'";
-      // if((int)$status <= 4 )
-      // {
-      //   $sql .= " AND `level_approve` = '".$level_approve."'";
-      // }
     }
     else //update specific teacher_id,course_id
     {
@@ -338,6 +334,8 @@ class approval
 //add new approval status
   public function Append_Status_Evaluate($course_id)
   {
+    $sql = " DELETE FROM `approval_course` WHERE `course_id` = '".$course_id."' AND `level_approve` = '2' AND `semester_id` = ".$this->SEMESTER_ID;
+    $result_delete = $this->DB->Insert_Update_Delete($sql);
    //default status 0 = waiting for create
       $sql = "SELECT ga.`teacher_id` FROM `subject_assessor` sa, `group_assessor` ga
       WHERE sa.`course_id` = '".$course_id."' AND sa.`assessor_group_num` = ga.`group_num` AND `semester_id` = '".$this->SEMESTER_ID."'";

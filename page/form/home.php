@@ -22,8 +22,6 @@ $type_status=$course->Get_Status_Text();
 
 
 $data_course     = json_decode($var, true);
-echo '<pre><br />'; var_dump($semester); echo '</pre>';
-
 ?>
 <html>
 
@@ -96,10 +94,10 @@ echo '<pre><br />'; var_dump($semester); echo '</pre>';
 		#statal {
 			color: #da9001;
 		}
-		
+
 		.pill{
 			margin-top: -8px;
-			
+
 		}
 		.forminline{
 			display:inline-block;
@@ -222,12 +220,12 @@ echo '<pre><br />'; var_dump($semester); echo '</pre>';
 										<div class="panel-heading">
 											<h3 class="panel-title" style="font-size:14px;">
 												<li><b><u>กระบวนวิชา</u></b> :
-													<?php echo $value_course['id']." ".$value_course['name']?> 
+													<?php echo $value_course['id']." ".$value_course['name']?>
 													<div class="pull-right pill">
 													<?php if ($value_course['evaluate']['status']==0 && ($_SESSION['level']==1 || $_SESSION['level']==2)) {?>
 														<form action="evaform.php" method="post" class="forminline">
 															<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
-															<button type="submit" class="btn btn-success btn-sm ">กรอกแบบแจ้ง</button>	
+															<button type="submit" class="btn btn-success btn-sm ">กรอกแบบแจ้ง</button>
 														</form>
 													<?php } ?>
 													<?php if ($_SESSION['level']==1 || $_SESSION['level']==2 ) {?>
@@ -237,8 +235,8 @@ echo '<pre><br />'; var_dump($semester); echo '</pre>';
 														</form>
 													<?php } ?>
 													</div>
-													
-												</li>	
+
+												</li>
 											</h3>
 										</div>
 										<div class="panel-body" style="font-size:14px;">
@@ -278,7 +276,7 @@ echo '<pre><br />'; var_dump($semester); echo '</pre>';
 																	<input type="hidden" name="year" value="<?php echo $semester['year'] ?>">
 																	<button type="submit" class="btn btn-warning btn-sm pill" >แก้ไข</button>
 																</form>
-																
+
 															<?php endif; ?>
 															</div>
 														</h3>
