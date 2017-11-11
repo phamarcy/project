@@ -72,7 +72,7 @@ class Course
 
   public function Get_All_Course()
   {
-    $sql = "SELECT `course_id`as id,`course_name_en` as name_en,`course_name_th`as name_th FROM `course`";
+    $sql = "SELECT `course_id`as id,`course_name_en` as name_en,`course_name_th`as name_th,`credit`,`hr_lec`,`hr_lab`,`hr_self` FROM `course`";
     $result = $this->DB->Query($sql);
     if($result)
     {
@@ -82,6 +82,10 @@ class Course
         $course['id'] = $result[$i]['id'];
         $course['name']['en'] = $result[$i]['name_en'];
         $course['name']['th'] = $result[$i]['name_th'];
+        $course['credit'] = $result[$i]['credit'];
+        $course['lec'] = $result[$i]['hr_lec'];
+        $course['lab'] = $result[$i]['hr_lab'];
+        $course['self'] = $result[$i]['hr_self'];
         array_push($data,$course);
       }
       return $data;
