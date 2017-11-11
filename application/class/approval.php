@@ -97,10 +97,6 @@ class approval
       }
 
       $sql .= " WHERE `course_id` = '".$course_id."'";
-      // if((int)$status <= 4 )
-      // {
-      //   $sql .= " AND `level_approve` = '".$level_approve."'";
-      // }
     }
     else //update specific teacher_id,course_id
     {
