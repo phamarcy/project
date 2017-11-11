@@ -703,8 +703,6 @@ class Course
     }
     else if($type == 'special')
     {
-      $dept_name = $this->Search_Course_Dept($course_id,$semester_id);
-      $data['department'] = $dept_name;
       $lecture_detail = array();
       $sql = "SELECT st.`topic_name`,st.`teaching_date`,st.`teaching_time_start`,st.`teaching_time_end`,st.`teaching_room` FROM `special_lecture_teach` st, `course_hire_special_instructor` ci ";
       $sql .= "WHERE ci.`instructor_id` = ".$instructor_id." AND ci.`course_id` = '".$course_id."' AND st.`hire_id` = ci.`hire_id` AND ci.`semester_id` = ".$semester_id;
@@ -731,7 +729,8 @@ class Course
         $data = $result[0];
         $data['num_table'] = $numtable;
         $data['lecture_detail'] = $lecture_detail;
-
+        $dept_name = $this->Search_Course_Dept($course_id,$semester_id);
+        $data['department'] = $dept_name;
       }
       else
       {
