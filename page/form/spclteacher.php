@@ -12,6 +12,11 @@ require_once('../../application/class/manage_deadline.php');
 $dlobj = new Deadline();
 $dlspcl = $dlobj->Search_all(3);
 $current = $dlobj->Get_Current_Semester();
+
+require_once('../../application/class/course.php');
+$courseobj = new Course();
+$dept = $courseobj->Get_Dept_All();
+
  ?>
 
 <html>
@@ -1765,10 +1770,13 @@ function lastcal() {
         <center><div class="form-group">
       ภาควิชา
         <select class="form-control required" id="department" style="width: auto;" id="select" required >
-         <option value="">--------------</option>
-         <option value="ภาควิชาวิทยาศาสตร์เภสัชกรรม">ภาควิชาวิทยาศาสตร์เภสัชกรรม</option>
-         <option value="ภาควิชาบริบาลเภสัชกรรม">ภาควิชาบริบาลเภสัชกรรม</option>
-      </select>
+         <option value="0" selected="selected">--------------</option>
+         <?php
+          for ($i=0; $i <sizeof($dept) ; $i++) {
+            echo "<option value=".$dept[$i]['code'].">".$dept[$i]['name']."</option>";
+          }
+          ?>
+       </select>
         </div></center>
       </div>
 
