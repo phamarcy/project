@@ -475,6 +475,7 @@ class approval
             $course['pdf'] = $pdf['evaluate'];
             //search evaluate form
             $course['evaluate']['status'] = $this->Get_Doc_Status($course['id']);
+            $course['evaluate']['edit'] = $this->Is_Edit('evaluate',$course['id'],null);
             $sql_course = "SELECT `teacher_id`,`comment`,`date` FROM `approval_course` WHERE `course_id` ='".$course['id']."'
             AND `semester_id` =".$this->SEMESTER_ID;
             $comment_temp = $this->DB->Query($sql_course);
@@ -512,6 +513,39 @@ class approval
 
 
   }
+
+  private function Is_Edit($type,$course_id,$instructor_id)
+  {
+    if($type == "evaluate")
+    {
+      $sql = "SELECT `approval_id` FROM `approval_course` WHERE `course_id` = '".$course_id."' AND `status` > '1' AND `semester_id` = ".$this->SEMESTER_ID;
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        return false;
+      }
+      else
+      {
+        return true;
+      }
+    }
+    else if($type == 'special')
+    {
+      $sql = "SELECT `approval_id` FROM `approval_special` ";
+      $sql .=" WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."' AND `status` > '1' AND `semester_id` = ".$this->SEMESTER_ID;
+      $result = $this->DB->Query($sql);
+      if($result)
+      {
+        return false;
+      }
+      else
+      {
+        return true;
+      }
+    }
+
+  }
+
   //get document approval status
   private function Get_Doc_Status($course_id)
   {
@@ -555,6 +589,7 @@ class approval
          $pdf = $this->Get_Special_Doc_Url($instructor['id'],$course_id);
          $instructor['pdf'] = $pdf['pdf'];
          $instructor['cv'] = $pdf['cv'];
+         $instructor['edit'] = $this->Is_Edit('special',$course_id,$instructor['id']);
          $sql = "SELECT teacher_id,comment,`updated_date` FROM `approval_special`
          WHERE `course_id` = '".$course_id."' AND `instructor_id` = ".$result[$i]['instructor_id']." AND `semester_id` =".$this->SEMESTER_ID;
          $result_comment = $this->DB->Query($sql);

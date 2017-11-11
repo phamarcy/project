@@ -671,7 +671,7 @@ class Person
     $this->DB->Change_DB($this->DEFAULT_DB);
     $sql = "SELECT `status` FROM `approval_course` WHERE `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$this->DEADLINE['id'];
     $result = $this->DB->Query($sql);
-    if($result)
+    if($result) //is assessor
     {
       if(isset($result[0]['status']))
       {
@@ -691,7 +691,7 @@ class Person
     $this->DB->Change_DB($this->PERSON_DB);
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
-    if($result)
+    if($result) // default level
     {
       $return[0] = $result[0]['level'];
     }
@@ -704,7 +704,7 @@ class Person
     $this->DB->Change_DB($this->PERSON_DB);
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
-    if($result)
+    if($result) // is board
     {
       if(!empty($result))
       {
