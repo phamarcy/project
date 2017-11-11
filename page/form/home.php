@@ -21,7 +21,7 @@ $var             = $approve->Check_Status($_SESSION['id']);
 $type_status=$course->Get_Status_Text();
 
 $data_course     = json_decode($var, true);
-echo '<pre>$type_status<br />'; var_dump($type_status); echo '</pre>';
+
 ?>
 <html>
 
@@ -93,6 +93,14 @@ echo '<pre>$type_status<br />'; var_dump($type_status); echo '</pre>';
 
 		#statal {
 			color: #da9001;
+		}
+		
+		.pill{
+			margin-top: -8px;
+			
+		}
+		.forminline{
+			display:inline-block;
 		}
 	</style>
 </head>
@@ -212,7 +220,21 @@ echo '<pre>$type_status<br />'; var_dump($type_status); echo '</pre>';
 										<div class="panel-heading">
 											<h3 class="panel-title" style="font-size:14px;">
 												<li><b><u>กระบวนวิชา</u></b> :
-													<?php echo $value_course['id']." ".$value_course['name']?> </li>
+													<?php echo $value_course['id']." ".$value_course['name']?> 
+													<div class="pull-right pill">
+													<?php if ($value_course['evaluate']['status']==0 && ($_SESSION['level']==1 || $_SESSION['level']==2)) {?>
+														<form action="evaform.php" method="post" class="forminline">
+															<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
+															<button type="submit" class="btn btn-success btn-sm ">กรอกแบบแจ้ง</button>	
+														</form>
+													<?php } ?>
+														<form action="spclteacher.php" method="post" class="forminline">
+															<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
+															<button type="submit" class="btn btn-primary btn-sm ">เชิญอาจารย์พิเศษ</button>
+														</form>
+													</div>
+													
+												</li>	
 											</h3>
 										</div>
 										<div class="panel-body" style="font-size:14px;">

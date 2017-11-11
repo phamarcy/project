@@ -452,7 +452,12 @@
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
 						<li>
-							<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
+							<?php
+								if ($_SESSION['level']<=3) { ?>
+									<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
+								
+							<?php	}
+							?>
 						</li>
 						<?php if($_SESSION['level'] == 2 || $_SESSION['admission']==2 ) { ?>
 
@@ -507,6 +512,17 @@
 										</li>
 									<?php
 								} ?>
+						 <li>
+							<?php
+								if ($_SESSION['level']==4 || $_SESSION['level']==5 ) { ?>
+									<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> สถานะการพิจารณา</a>
+								<?php
+								}elseif ($_SESSION['level']==6) { ?>
+									<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> สถานะการอนุมัติ</a>
+								<?php
+								}
+							?>
+						</li>
 						<li>
 							<a href="#" onclick="loadDoc('form/history.php')"><i class="fa fa-newspaper-o  fa-fw"></i> ประวัติข้อเสนอแนะ</a>
 						</li>
@@ -515,6 +531,7 @@
 						}
 
 						 ?>
+						
 
 						<?php
 							if($_SESSION['level']==6)
