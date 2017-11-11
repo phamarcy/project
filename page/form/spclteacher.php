@@ -88,12 +88,8 @@ var_dump($_POST);
 
  function getinfo(temp) {
    //part1
-   if(temp['department']=="ภาควิชาวิทยาศาสตร์เภสัชกรรม")
-   {
-     document.getElementById('department').value = "ภาควิชาวิทยาศาสตร์เภสัชกรรม";
-   }else {
-     document.getElementById('department').value = "ภาควิชาบริบาลเภสัชกรรม";
-   }
+   document.getElementById('department').value = temp["department"];
+
 
    document.getElementById('pre').value = temp['prefix'];
    var constring = temp['firstname'];
@@ -458,6 +454,12 @@ var_dump($_POST);
         });
    }
    else if (btntype==2) {
+     var rowtr = ($('#detailteaching tr').length)-2
+     for (var i = 1; i <=rowtr; i++) {
+       var row = document.getElementById('row' + i);
+       row.parentNode.removeChild(row);
+     }
+
      $('#dlhide').show();
      var file_data = new FormData;
      var teachername_temp = document.getElementById('teachername').value;
@@ -989,6 +991,7 @@ var_dump($_POST);
 
    if(casesubmit=='1')
    {
+     console.log(JSON.stringify(data));
      senddata(JSON.stringify(data),getfile());
    }
    else if(casesubmit=='2')
@@ -1214,7 +1217,72 @@ var_dump($_POST);
                                      opt.innerHTML = 'คุณ'+temp['DATA'][i].name;
                                      document.getElementById('teachername').appendChild(opt);
                                    }
-                                 }else if(temp['DATA']==false && temp['INFO']!=false){
+
+                                   ";
+
+                                   if(isset($_POST['instructor_id']))
+                                {
+                                   echo "$('#teachername').val('".$_POST['instructor_id']."_".$_POST['name']."_".$_POST['course_id']."_".$_POST['semester']."_".$_POST['year']."');
+
+                                   var file_data = new FormData;
+                                   var teachername_temp = document.getElementById('teachername').value;
+                                   var stringspl = teachername_temp.split('_');
+                                   var instructor_id = stringspl[0];
+                                   var name = stringspl[1];
+                                   var course_id = stringspl[2];
+                                   var semester = stringspl[3];
+                                   var year = stringspl[4];
+                                   JSON.stringify(name);
+                                   JSON.stringify(course_id);
+                                   JSON.stringify(instructor_id);
+                                   JSON.stringify(semester);
+                                   JSON.stringify(year);
+                                   JSON.stringify(type);
+                                   file_data.append('name',name);
+                                   file_data.append('course_id',course_id);
+                                   file_data.append('instructor_id',instructor_id);
+                                   file_data.append('semester',semester);
+                                   file_data.append('year',year);
+                                   file_data.append('type',type);
+                                   //var URL = '../../application/test_data.php';
+                                   var URL = '../../application/document/search_document.php';
+                                   $.ajax({
+                                                 url: URL,
+                                                 dataType: 'text',
+                                                 cache: false,
+                                                 contentType: false,
+                                                 processData: false,
+                                                 data: file_data,
+                                                 type: 'post',
+                                                 success: function (result) {
+                                                   try {
+                                                     var temp = $.parseJSON(result);
+                                                     if(temp!=null)
+                                                     {
+                                                        $('#dlhide').show();
+                                                         getinfo(temp);
+                                                     }
+                                                     else {
+                                                       alert('Error');
+                                                     }
+                                                   } catch (e) {
+                                                        console.log('Error#542-decode error');
+
+                                                      }
+                                                },
+                                                failure: function (result) {
+                                                     alert(result);
+                                                },
+                                                error: function (xhr, status, p3, p4) {
+                                                     var err = 'Error ' + ' ' + status + ' ' + p3 + ' ' + p4;
+                                                     if (xhr.responseText && xhr.responseText[0] == '{')
+                                                          err = JSON.parse(xhr.responseText).Message;
+                                                     console.log(err);
+                                                }
+                                      });";
+                                    }
+
+                                 echo "}else if(temp['DATA']==false && temp['INFO']!=false){
                                    $('#hiddenh5_found').show();
                                    $('#hiddenh5_found').html('กระบวนวิชา '+temp['INFO'].course_name_th+' ('+temp['INFO'].course_id+')');
                                    $('#hiddenh5').hide();
