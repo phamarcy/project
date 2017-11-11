@@ -20,8 +20,9 @@ $var             = $approve->Check_Status($_SESSION['id']);
 
 $type_status=$course->Get_Status_Text();
 
-$data_course     = json_decode($var, true);
 
+$data_course     = json_decode($var, true);
+echo '<pre>$data_course<br />'; var_dump($data_course); echo '</pre>';
 ?>
 <html>
 
@@ -269,8 +270,18 @@ $data_course     = json_decode($var, true);
 															<?php if ($_SESSION['level']==3 && ($value_course['evaluate']['status'])==4 || ($_SESSION['admission']==3 && $value_course['evaluate']['status']==4)): ?>
 																<label style="font-size:14px"><input type="checkbox" name="coursecheck" id="checkedAll" class="checkSingle" value="<?php echo $value_course['id'] ?>"></input></label>
 															<?php endif; ?>
+															<?php if ($value_course['evaluate']['edit']==true && $_SESSION['level']==1 &&$value_course['evaluate']['status']==1 ): ?>
+																<form action="evaform.php" method="post" class="forminline">
+																	<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
+																	<input type="hidden" name="semseter" value="<?php echo $semester ?>">
+																	<button type="submit" class="btn btn-warning btn-sm pill" >แก้ไข</button>
+																</form>
+																
+															<?php endif; ?>
 															</div>
 														</h3>
+
+
 													</div>
 													<?php if (isset($_SESSION['level'])) { ?>
 													<div id="evaluate<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse">
@@ -387,6 +398,14 @@ $data_course     = json_decode($var, true);
 																			<div class="pull-right">
 																				<?php if ($_SESSION['level']==3 && $valuesp['status']==4 || ($_SESSION['admission']==3 && $valuesp['status']==4)): ?>
 																					<label style="font-size:14px"><input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $value_course['id']?>,<?php echo $valuesp['id']?>"></input></label>
+																				<?php endif; ?>
+																				<?php if ($valuesp['edit']==true && $_SESSION['level']==1 && $valuesp['status']==1 ): ?>
+																				<form action="spclteacher.php" method="post" class="forminline">
+																				<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
+																				<input type="hidden" name="semseter" value="<?php echo $semester ?>">
+																				<input type="hidden" name="instuctor_id" value="<?php echo $valuesp['id'] ?>">
+																					<button type="submit" class="btn btn-warning btn-sm pill" >แก้ไข</button>
+																					</form>
 																				<?php endif; ?>
 																			</div>
 																		</h3>

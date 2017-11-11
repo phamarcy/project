@@ -1022,7 +1022,7 @@ else {
                       <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
                       <input type="hidden" name="semester_id" id="semester_id" value="<?php echo $semeter['id'] ?>">
                       <input type="hidden" name="type" id="type" value="add">
-                      <button type="submit" class="btn btn-outline btn-primary " id="submit" name="submit">เลือก</button>
+                      <button  class="btn btn-outline btn-primary " id="submit" name="submit">เลือก</button>
                     </div>
                   </form>
                 </div>
