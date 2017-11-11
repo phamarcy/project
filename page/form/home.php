@@ -228,10 +228,12 @@ $data_course     = json_decode($var, true);
 															<button type="submit" class="btn btn-success btn-sm ">กรอกแบบแจ้ง</button>	
 														</form>
 													<?php } ?>
+													<?php if ($_SESSION['level']==1 || $_SESSION['level']==2 ) {?>
 														<form action="spclteacher.php" method="post" class="forminline">
 															<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
 															<button type="submit" class="btn btn-primary btn-sm ">เชิญอาจารย์พิเศษ</button>
 														</form>
+													<?php } ?>
 													</div>
 													
 												</li>	
