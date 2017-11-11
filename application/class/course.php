@@ -157,23 +157,24 @@ class Course
     $result = $this->DB->Query($sql);
     if($result)
     {
-      $sql = "SELECT `name` FROM `department` WHERE `code` = '".$result[0]['department_id']."'";
+      $sql = "SELECT `code`,`name` FROM `department` WHERE `code` = '".$result[0]['department_id']."'";
       $this->DB->Change_DB($this->PERSON_DB);
       $result = $this->DB->Query($sql);
       $this->DB->Change_DB($this->DEFAULT_DB);
       if($result)
       {
-        $dept_name = $result[0]['name'];
-        return $dept_name;
+        $dept['id'] = $result[0]['code'];
+        $dept['name'] = $result[0]['name'];
+        return $dept;
       }
       else
       {
-        return '-';
+        return false;
       }
     }
     else
     {
-      return '-';
+      return false;
     }
   }
 
@@ -730,7 +731,7 @@ class Course
         $data['num_table'] = $numtable;
         $data['lecture_detail'] = $lecture_detail;
         $dept_name = $this->Search_Course_Dept($course_id,$semester_id);
-        $data['department'] = $dept_name;
+        $data['department'] = $dept_name['id'];
       }
       else
       {
