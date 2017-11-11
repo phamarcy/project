@@ -25,14 +25,24 @@
 		}
 	}
 	$show_btn=0;
+	$show_btnmulti=0;
 	if ($check_assessor[1]) {
+		
 		if ($check_assessor[0]==1) {
-			$show_btn = 1;
+			$show_btn=1;
 		}else if($check_assessor[0]==4){
 			$show_btn = 0;
 		}
+
+		if ($check_assessor[1]==true && $check_assessor[2]==true) {
+			$show_btnmulti=1;
+		}
 	}
-	
+
+	if ($_SESSION) {
+		# code...
+	}
+	echo '<pre>'; var_dump($check_assessor); echo '</pre>';
 	$person->Close_connection();
  ?>
 <html>
@@ -379,7 +389,7 @@
 				<form action="index.php" method="POST" class="form-inline">
 					<b>ยินดีต้อนรับ | <font color="#51cc62"> คุณ <?php echo $_SESSION['fname'].' ',$_SESSION['lname']; ?></font></b>
 					<?php 
-					if ($show_btn==1) { 
+					if ($show_btn==1 || $show_btnmulti==1) { 
 						if ($_SESSION['level']==1) {
 							$status_name ="อาจารย์";
 						}else if ($_SESSION['level']==2) {
@@ -403,9 +413,9 @@
 						?>
 						
 						<b>สถานะ : <?php echo $status_name;?> </b>&nbsp;
-						
+						<?php if (condition) {  ?>
 							<button type="submit" class="btn btn-primary btn-outlne" name="change_level">เปลี่ยนสถานะ</button>
-						
+						<?php } ?>
 						
 						<?php
 					}
