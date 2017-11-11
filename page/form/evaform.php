@@ -48,11 +48,12 @@
 
  	<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
 
-  <!-- validator -->
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
-
   <script src="../dist/js/sweetalert2.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+  <!-- polyfiller file to detect and load polyfills -->
+  <script src="../vendor/webshim/1.15.3/js-webshim/minified/polyfiller.js"></script>
+ <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+ <script src="../vendor/webshim/1.15.3/core.js"></script>
 
   <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
 
@@ -1332,6 +1333,142 @@ $(document).ready(function(){
       $('#syllabus').prop('required', false);
       $('#syllabus_2').prop('required', false);
       $('#COURSE_ID_2').prop('required', false);";
+
+      if(isset($_POST['course_id']))
+    {
+      echo "document.getElementById('form1').reset();
+      var file_data = new FormData;
+      var course_id = ".$_POST['course_id'].";
+      var type = 1;
+      JSON.stringify(course_id);
+      JSON.stringify(type);
+      file_data.append('course_id',course_id);
+      file_data.append('type',type);
+      var URL = '../../application/document/search_document.php';
+      $.ajax({
+                    url: URL,
+                    dataType: 'text',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: file_data,
+                    type: 'post',
+                    success: function (result) {
+                          try {
+                            var temp = $.parseJSON(result);
+                            if(temp['ACCESS'] == true)
+                            {
+                              $('#buttondiv').show();
+                              if(temp['INFO']!=false && temp['DATA']!=false)
+                              {
+                                document.getElementById('id').value = temp['INFO']['course_id'];
+                                document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
+                                document.getElementById('COURSE_ID_2').value = temp['INFO']['course_id'];
+                                document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
+                                document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
+                                document.getElementById('TOTAL').value = temp['INFO']['credit']+'('+temp['INFO']['hr_lec']+'-'+temp['INFO']['hr_lab']+'-'+temp['INFO']['hr_self']+')';
+                                document.getElementById('formdrpd').style.display = '';
+                                //cleardatalist
+                                var selectobject = document.getElementById('semester');
+                                var long = selectobject.length;
+                                if(long!=0 && long!=null)
+                                {
+                                  for (var i=0; i<=long; i++){
+                                    document.getElementsByName('semester')[0].remove(0);
+                                  }
+                                }
+
+                                for(var i=0;i<(Object.keys(temp['DATA']).length);i++)
+                                {
+                                  var opt = document.createElement('option');
+                                  opt.value = temp['DATA'][i].semester +'_'+ temp['DATA'][i].year;
+                                  opt.innerHTML = 'ภาคการศึกษาที่ ' +temp['DATA'][i].semester +' ปีการศึกษา '+ temp['DATA'][i].year;
+                                  document.getElementById('semester').appendChild(opt);
+                                }
+                                var file_data = new FormData;
+                                var course_id = temp['INFO']['course_id'];
+                                var semester_temp = document.getElementById('semester').value;
+                                var stringspl = semester_temp.split('_');
+                                var semester = stringspl[0];
+                                var year = stringspl[1];
+                                var type = 1;
+                                JSON.stringify(course_id);
+                                JSON.stringify(semester);
+                                JSON.stringify(year);
+                                JSON.stringify(type);
+                                file_data.append('course_id',course_id);
+                                file_data.append('semester',semester);
+                                file_data.append('year',year);
+                                file_data.append('type',type);
+                                var URL = '../../application/document/search_document.php';
+                                $.ajax({
+                                              url: URL,
+                                              dataType: 'text',
+                                              cache: false,
+                                              contentType: false,
+                                              processData: false,
+                                              data: file_data,
+                                              type: 'post',
+                                              success: function (result) {
+                                                try {
+                                                  var temp = $.parseJSON(result);
+
+                                                if(temp!=null)
+                                                {
+                                                  getinfo(temp);
+                                                  $('#dlhide').show();
+
+                                                }
+                                                else {
+                                                  alert('error');
+                                                }
+                                              }  catch (e) {
+                                                   console.log('Error#542-decode error');
+                                              }
+                                          },
+                                          failure: function (result) {
+                                               alert(result);
+                                          },
+                                          error: function (xhr, status, p3, p4) {
+                                               var err = 'Error ' + ' ' + status + ' ' + p3 + ' ' + p4;
+                                               if (xhr.responseText && xhr.responseText[0] == '{')
+                                                    err = JSON.parse(xhr.responseText).Message;
+                                               console.log(err);
+                                          }
+                                   });
+
+                              }
+                              else if(temp['INFO']==false){
+                                 $('#dlhide').hide();
+                                document.getElementById('id').value = '';
+                                document.getElementById('formdrpd').style.display = 'none';
+                              }
+                              else if(temp['INFO']!=false && temp['DATA']==false){
+                                  document.getElementById('formdrpd').style.display = 'none';
+                                  $('#dlhide').show();
+                                 document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
+                                 document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
+                                 document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
+                                 document.getElementById('TOTAL').value = temp['INFO']['credit']+'('+temp['INFO']['hr_lec']+'-'+temp['INFO']['hr_lab']+'-'+temp['INFO']['hr_self']+')';
+                               }
+                            }
+
+                        } catch (e) {
+                             console.log('Error#542-decode error');
+                        }
+                    },
+                    failure: function (result) {
+                         alert(result);
+                    },
+                    error: function (xhr, status, p3, p4) {
+                         var err = 'Error ' + ' ' + status + ' ' + p3 + ' ' + p4;
+                         if (xhr.responseText && xhr.responseText[0] == '{')
+                              err = JSON.parse(xhr.responseText).Message;
+                         console.log(err);
+                    }
+         });";
+       }
+
     }else if ($flageva==0 && $flagcor>0) {
       echo "$('#overtimemsg3').hide();
       $('#overtimemsg5').hide();
@@ -1340,6 +1477,11 @@ $(document).ready(function(){
       $('#syllabus').prop('required', false);
       $('#syllabus_2').prop('required', true);
       $('#COURSE_ID_2').prop('required', true);";
+
+      if(isset($_POST['course_id']))
+      {
+        echo "$('#COURSE_ID_2').val('".$_POST['course_id']."');";
+      }
     }else if ($flageva>0 && $flagcor>0) {
       echo "$('#overtimemsg').hide();
       $('#overtimemsg3').hide();
@@ -1348,6 +1490,142 @@ $(document).ready(function(){
       $('#syllabus').prop('required', true);
       $('#syllabus_2').prop('required', false);
       $('#COURSE_ID_2').prop('required', false);";
+
+      if(isset($_POST['course_id']))
+    {
+      echo "document.getElementById('form1').reset();
+      var file_data = new FormData;
+      var course_id = ".$_POST['course_id'].";
+      var type = 1;
+      JSON.stringify(course_id);
+      JSON.stringify(type);
+      file_data.append('course_id',course_id);
+      file_data.append('type',type);
+      var URL = '../../application/document/search_document.php';
+      $.ajax({
+                    url: URL,
+                    dataType: 'text',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: file_data,
+                    type: 'post',
+                    success: function (result) {
+                          try {
+                            var temp = $.parseJSON(result);
+                            if(temp['ACCESS'] == true)
+                            {
+                              $('#buttondiv').show();
+                              if(temp['INFO']!=false && temp['DATA']!=false)
+                              {
+                                document.getElementById('id').value = temp['INFO']['course_id'];
+                                document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
+                                document.getElementById('COURSE_ID_2').value = temp['INFO']['course_id'];
+                                document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
+                                document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
+                                document.getElementById('TOTAL').value = temp['INFO']['credit']+'('+temp['INFO']['hr_lec']+'-'+temp['INFO']['hr_lab']+'-'+temp['INFO']['hr_self']+')';
+                                document.getElementById('formdrpd').style.display = '';
+                                //cleardatalist
+                                var selectobject = document.getElementById('semester');
+                                var long = selectobject.length;
+                                if(long!=0 && long!=null)
+                                {
+                                  for (var i=0; i<=long; i++){
+                                    document.getElementsByName('semester')[0].remove(0);
+                                  }
+                                }
+
+                                for(var i=0;i<(Object.keys(temp['DATA']).length);i++)
+                                {
+                                  var opt = document.createElement('option');
+                                  opt.value = temp['DATA'][i].semester +'_'+ temp['DATA'][i].year;
+                                  opt.innerHTML = 'ภาคการศึกษาที่ ' +temp['DATA'][i].semester +' ปีการศึกษา '+ temp['DATA'][i].year;
+                                  document.getElementById('semester').appendChild(opt);
+                                }
+                                var file_data = new FormData;
+                                var course_id = temp['INFO']['course_id'];
+                                var semester_temp = document.getElementById('semester').value;
+                                var stringspl = semester_temp.split('_');
+                                var semester = stringspl[0];
+                                var year = stringspl[1];
+                                var type = 1;
+                                JSON.stringify(course_id);
+                                JSON.stringify(semester);
+                                JSON.stringify(year);
+                                JSON.stringify(type);
+                                file_data.append('course_id',course_id);
+                                file_data.append('semester',semester);
+                                file_data.append('year',year);
+                                file_data.append('type',type);
+                                console.log(course_id);
+                                var URL = '../../application/document/search_document.php';
+                                $.ajax({
+                                              url: URL,
+                                              dataType: 'text',
+                                              cache: false,
+                                              contentType: false,
+                                              processData: false,
+                                              data: file_data,
+                                              type: 'post',
+                                              success: function (result) {
+                                                try {
+                                                  var temp = $.parseJSON(result);
+
+                                                if(temp!=null)
+                                                {
+                                                  getinfo(temp);
+                                                  $('#dlhide').show();
+
+                                                }
+                                                else {
+                                                  alert('error');
+                                                }
+                                              }  catch (e) {
+                                                   console.log('Error#542-decode error');
+                                              }
+                                          },
+                                          failure: function (result) {
+                                               alert(result);
+                                          },
+                                          error: function (xhr, status, p3, p4) {
+                                               var err = 'Error ' + ' ' + status + ' ' + p3 + ' ' + p4;
+                                               if (xhr.responseText && xhr.responseText[0] == '{')
+                                                    err = JSON.parse(xhr.responseText).Message;
+                                               console.log(err);
+                                          }
+                                   });
+
+                              }
+                              else if(temp['INFO']==false){
+                                 $('#dlhide').hide();
+                                document.getElementById('id').value = '';
+                                document.getElementById('formdrpd').style.display = 'none';
+                              }
+                              else if(temp['INFO']!=false && temp['DATA']==false){
+                                  document.getElementById('formdrpd').style.display = 'none';
+                                  $('#dlhide').show();
+                                 document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
+                                 document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
+                                 document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
+                                 document.getElementById('TOTAL').value = temp['INFO']['credit']+'('+temp['INFO']['hr_lec']+'-'+temp['INFO']['hr_lab']+'-'+temp['INFO']['hr_self']+')';
+                               }
+                            }
+
+                        } catch (e) {
+                             console.log('Error#542-decode error');
+                        }
+                    },
+                    failure: function (result) {
+                         alert(result);
+                    },
+                    error: function (xhr, status, p3, p4) {
+                         var err = 'Error ' + ' ' + status + ' ' + p3 + ' ' + p4;
+                         if (xhr.responseText && xhr.responseText[0] == '{')
+                              err = JSON.parse(xhr.responseText).Message;
+                         console.log(err);
+                    }
+         });";
+       }
     }else if ($flageva==0 && $flagcor==0) {
       echo "$('#overtimemsg').hide();
       $('#overtimemsg3').hide();
@@ -1358,6 +1636,8 @@ $(document).ready(function(){
       $('#syllabus_2').prop('required', false);
       $('#COURSE_ID_2').prop('required', false);";
     }
+
+
 
    ?>
 
