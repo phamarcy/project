@@ -991,7 +991,6 @@ var_dump($_POST);
 
    if(casesubmit=='1')
    {
-     console.log(JSON.stringify(data));
      senddata(JSON.stringify(data),getfile());
    }
    else if(casesubmit=='2')
