@@ -475,11 +475,24 @@
 								if ($_SESSION['level']<=3) { ?>
 									<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
 								
-							<?php	}
-							?>
+							<?php } ?>
 						</li>
 						<?php if($_SESSION['level'] == 2 || $_SESSION['admission']==2 ) { ?>
+							<li>
+								<a href="#"><i class="fa fa-edit fa-fw"></i> กรอกข้อมูล<span class="fa arrow"></span></a>
 
+								<ul class="nav nav-second-level">
+									<li>
+										<a href="#" onclick="loadDoc('form/evaform.php')"><i class="fa fa-pencil fa-fw"></i> กรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</a>
+									</li>
+									<li>
+										<a href="#" onclick="loadDoc('form/spclteacher.php')"><i class="fa fa-pencil fa-fw"></i> กรอกแบบขออนุมัติเชิญอาจารย์พิเศษ</a>
+									</li>
+									<li>
+										<a href="#" onclick="loadDoc('form/upload.php')"><i class="fa fa-upload  fa-fw"></i> อัปโหลดคะแนน</a>
+									</li>
+								</ul>
+							</li>
 							<li>
 								<a href="#" onclick="loadDoc('form/managesubject.php')"><i class="fa fa-user-md fa-fw"></i> จัดการกระบวนวิชา</a>
 							</li>
