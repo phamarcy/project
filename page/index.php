@@ -41,7 +41,6 @@
 	if (isset($_GET['level'])) {
 		$_SESSION['level'] = $_GET['level'];
 	}
-	echo '<pre>'; var_dump($check_assessor); echo '</pre>';
 	$person->Close_connection();
  ?>
 <html>
@@ -420,7 +419,7 @@
 							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">เปลี่ยนสถานะ
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu">
-								<li><a href="index.php?level=1" >อาจารย์</a></li>
+								<li><a href="index.php?level=1">อาจารย์</a></li>
 								<li><a href="index.php?level=4">คณะกรรมการ</a></li>
 								<li><a href="index.php?level=6">ผู้บริหาร</a></li>
 							</ul>
