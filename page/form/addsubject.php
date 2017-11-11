@@ -1,5 +1,9 @@
 <?php
   session_start();
+
+  require_once('../../application/class/course.php');
+  $courseobj = new Course();
+  $course = $courseobj->Get_All_Course();
  ?>
  <html>
  <header>
@@ -212,7 +216,6 @@ function checksubject() {
                           $('#deletebtn').prop('disabled', true);
                           document.getElementById('NAME_ENG_COURSE').value = '';
                           document.getElementById('NAME_TH_COURSE').value = '';
-                          document.getElementById('TOTAL').value = '';
                           $('#submitbtn').show();
 
                         }, function (dismiss) {
@@ -231,13 +234,17 @@ function checksubject() {
                            'ดึงข้อมูลสำเร็จ <br>สามารถแก้ไขรายละเอียดได้ดังแบบฟอร์มข้างล่าง',
                            'success'
                          )
+
                         $('#submitbtn').show();
                         $('#typesubmit').val('edit');
                         $('#deletebtn').prop('disabled', false);
                         document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
                         document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                         document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
-                        document.getElementById('TOTAL').value = temp['INFO']['credit']+"("+temp['INFO']['hr_lec']+"-"+temp['INFO']['hr_lab']+"-"+temp['INFO']['hr_self']+")";
+                        document.getElementById('TOTAL_1').value = temp['INFO']['credit']
+                        document.getElementById('TOTAL_2').value = temp['INFO']['hr_lec'];
+                        document.getElementById('TOTAL_3').value = temp['INFO']['hr_lab'];
+                        document.getElementById('TOTAL_4').value = temp['INFO']['hr_self'];
                       }
 
                 },
@@ -260,11 +267,10 @@ function submitfunc() {
   //typesubmit
   var typesubmit = document.getElementById('typesubmit').value;
   //CREDIT
-  var splitor = document.getElementById("TOTAL").value;
-  var total = splitor.charAt(0);
-  var lec = splitor.charAt(2);
-  var lab = splitor.charAt(4);
-  var self = splitor.charAt(6);
+  var total = document.getElementById("TOTAL_1").value;
+  var lec = document.getElementById("TOTAL_2").value;
+  var lab = document.getElementById("TOTAL_3").value;
+  var self = document.getElementById("TOTAL_4").value;
   var data = {
     'COURSE_ID' : document.getElementById("COURSE_ID").value,
     'NAMETH' : document.getElementById("NAME_TH_COURSE").value,
@@ -357,11 +363,28 @@ function senddata(data,typesubmit)
 // Charecter fixed
 $(function() {//<-- wrapped here
   $('.numonly').on('input', function() {
-    this.value = this.value.replace(/[^0-9.]/g, ''); //<-- replace all other than given set of values
+    this.value = this.value.replace(/[^0-9]/g, ''); //<-- replace all other than given set of values
   });
   $('.charonly').on('input', function() {
     this.value = this.value.replace(/[^a-zA-Zก-ฮๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ. ]/g, ''); //<-- replace all other than given set of values
   });
+  $('.charthonly').on('input', function() {
+    this.value = this.value.replace(/[^0-9ก-ฮๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ. ]/g, ''); //<-- replace all other than given set of values
+  });
+  $('.charengonly').on('input', function() {
+    this.value = this.value.replace(/[^0-9a-zA-Z. ]/g, ''); //<-- replace all other than given set of values
+  });
+  $("input[name^='TOTAL_']").keyup(function(event){
+        if(event.keyCode==8){
+            if($(this).val().length==0){
+                $(this).prev("input").focus();
+            }
+            return false;
+        }
+        if($(this).val().length==$(this).attr("maxLength")){
+            $(this).next("input").focus();
+        }
+    });
 });
 
 $(document).ready(function(){
@@ -369,105 +392,6 @@ $(document).ready(function(){
 
   //hide
   $('#submitbtn').hide();
-  //radio
-  $("input[name='EVALUATE_TYPE']").change(function(){
-    if($(this).val()=="SU")
-    {
-      $('.atof').val("");
-      $('.stou').val("");
-      $('.atof').prop('disabled',true);
-      $('.atof').prop('required',false);
-      $('.stou').prop('required',true);
-      $('.stou').prop('disabled',false);
-    }
-    else if($(this).val()=="AF")
-    {
-      $('#CALCULATE_A_MIN').val("80.0");
-      $('#CALCULATE_Bp_MIN').val("75.0");
-      $('#CALCULATE_B_MIN').val("70.0");
-      $('#CALCULATE_Cp_MIN').val("65.0");
-      $('#CALCULATE_C_MIN').val("60.0");
-      $('#CALCULATE_Dp_MIN').val("55.0");
-      $('#CALCULATE_D_MIN').val("50.0");
-      $('#CALCULATE_F_MAX').val("49.9");
-      $('#CALCULATE_Bp_MAX').val("79.9");
-      $('#CALCULATE_B_MAX').val("74.9");
-      $('#CALCULATE_Cp_MAX').val("69.9");
-      $('#CALCULATE_C_MAX').val("64.9");
-      $('#CALCULATE_Dp_MAX').val("59.9");
-      $('#CALCULATE_D_MAX').val("54.9");
-      $('.stou').val("");
-      $('.atof').prop('disabled',false);
-      $('.atof').prop('required',true);
-      $('.stou').prop('disabled',true);
-      $('.stou').prop('required',false);
-    }
-    });
-
-    $("input[name='CALCULATE']").change(function(){
-      if($(this).val()=="GROUP")
-      {
-        $('.atof').val("");
-        $('.stou').val("");
-        $('.atof').prop('disabled',true);
-        $('.stou').prop('disabled',true);
-        $('.atof').prop('required',false);
-        $('.stou').prop('required',false);
-        $('#EVALUATE1').prop('required',false);
-        $('#EVALUATE2').prop('required',false);
-        $('#EVALUATE1').prop('disabled',true);
-        $('#EVALUATE2').prop('disabled',true);
-        $('.opacity01').css("opacity","0.1");
-      }
-      else if ($(this).val()=="CRITERIA")
-      {
-        $('#CALCULATE_A_MIN').val("80.0");
-        $('#CALCULATE_Bp_MIN').val("75.0");
-        $('#CALCULATE_B_MIN').val("70.0");
-        $('#CALCULATE_Cp_MIN').val("65.0");
-        $('#CALCULATE_C_MIN').val("60.0");
-        $('#CALCULATE_Dp_MIN').val("55.0");
-        $('#CALCULATE_D_MIN').val("50.0");
-        $('#CALCULATE_F_MAX').val("49.9");
-        $('#CALCULATE_Bp_MAX').val("79.9");
-        $('#CALCULATE_B_MAX').val("74.9");
-        $('#CALCULATE_Cp_MAX').val("69.9");
-        $('#CALCULATE_C_MAX').val("64.9");
-        $('#CALCULATE_Dp_MAX').val("59.9");
-        $('#CALCULATE_D_MAX').val("54.9");
-        $('.atof').prop('disabled',true);
-        $('.atof').prop('required',false);
-        $('.stou').prop('required',true);
-        $('.stou').prop('disabled',false);
-        $('#EVALUATE1').prop('required',true);
-        $('#EVALUATE2').prop('required',true);
-        $('#EVALUATE1').prop('disabled',false);
-        $('#EVALUATE2').prop('disabled',false);
-        $('#EXPLAINATION').val("");
-        $('.opacity01').css("opacity","1");
-        document.getElementById("EVALUATE1").checked = false;
-        document.getElementById("EVALUATE2").checked = false;
-      }
-    });
-
-
-
-  $("#TYPE_TEACHING_NAME").hide();
-  $("input[name='TYPE_TEACHING']").change(function(){
-    if($(this).val()=="OTH")
-    {
-        $("#TYPE_TEACHING_NAME").prop('required',true);
-        $("#TYPE_TEACHING_NAME").show();
-    }
-    else
-    {
-      $("#TYPE_TEACHING_NAME").prop('required',false);
-      $("#TYPE_TEACHING_NAME").hide();
-      $("#TYPE_TEACHING_NAME").val("");
-    }
-
-    });
-
     $( '#form1' ).submit( function( event ) {
       event.preventDefault();
 
@@ -603,14 +527,18 @@ function confreset(casereset) {
           </div>
           <br>
           <div class="form-group">
-          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   maxlength="50" required placeholder="e.g. การเรียนรู้นอกห้องเรียนเพื่อเสริมสร้างประสบการณ์ชีวิต">
+          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 500px;" type="text" class="form-control charthonly" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   required placeholder="e.g. การเรียนรู้นอกห้องเรียนเพื่อเสริมสร้างประสบการณ์ชีวิต">
           </div>
           <br>
           <div class="form-group">
-          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   maxlength="50" required placeholder="e.g. Learning outside for experience">
+          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control charengonly" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   required placeholder="e.g. Learning outside for experience">
           </div>
           <div class="row">
-            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="7" maxlength="10" required pattern=".{8,10}" placeholder="e.g. 3(3-0-6)" >&nbsp; หน่วยกิต
+            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;
+          <input class="form-control numonly" name="TOTAL_1" type="text" id="TOTAL_1" size="1" maxlength="1" style="width:35px;" />(
+          <input class="form-control numonly" name="TOTAL_2" type="text" id="TOTAL_2" size="1" maxlength="1" style="width:35px;" />-
+          <input class="form-control numonly" name="TOTAL_3" type="text" id="TOTAL_3" size="1" maxlength="1" style="width:35px;" />-
+          <input class="form-control numonly" name="TOTAL_4" type="text" id="TOTAL_4" size="1" maxlength="1" style="width:35px;" />)&nbsp; หน่วยกิต
             </div>
           </div>
           <input type="hidden" id="typesubmit" name="typesubmit">
@@ -625,7 +553,31 @@ function confreset(casereset) {
       &nbsp;&nbsp;<input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="deletebtn" id="deletebtn" onclick="delsubj();" value="ลบข้อมูลกระบวนวิชา" disabled>
 
     </div>
+
+
 </form>
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10">
+<table class="table table-bordered table-hover" align="center" style="font-size: 13px;">
+  <tr class="success">
+    <th>รหัสกระบวนวิชา</th>
+    <th>ชื่อกระบวนวิชาภาษาไทย</th>
+    <th>ชื่อกระบวนวิชาภาษาอังกฤษ</th>
+    <th>จำนวนหน่วยกิตทั้งหมด(หน่วยกิต)</th>
+  </tr>
+  <?php
+    for ($i=0; $i <sizeof($course) ; $i++) {
+     echo "<tr>";
+     echo "<td>".$course[$i]['id']."</td>";
+     echo "<td>".$course[$i]['name']['en']."</td>";
+     echo "<td>".$course[$i]['name']['th']."</td>";
+     echo "<td>".$course[$i]['credit']."(".$course[$i]['lec']."-".$course[$i]['lab']."-".$course[$i]['self'].")</td>";
+    }
+   ?>
+</div>
+</div>
+</table>
 </div>
 </div>
 </div>
