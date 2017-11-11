@@ -41,11 +41,11 @@ if(!isset($_POST['tab']))
     <link rel="stylesheet" href="../dist/css/scrollbar.css">
     <script src="../dist/js/sweetalert2.min.js"></script>
         <!-- cdn for modernizr, if you haven't included it already -->
-    <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+    <script src="../vendor/webshim/1.15.3/modernizr-custom.js"></script>
     <!-- polyfiller file to detect and load polyfills -->
-    <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+    <script src="../vendor/webshim/1.15.3/js-webshim/minified/polyfiller.js"></script>
   <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+  <script src="../vendor/webshim/1.15.3/core.js"></script>
     <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
 </header>
 <style>
