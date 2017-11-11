@@ -21,7 +21,9 @@ $var             = $approve->Check_Status($_SESSION['id']);
 $type_status=$course->Get_Status_Text();
 
 
+
 $data_course     = json_decode($var, true);
+echo '<pre>$data_course<br />'; var_dump($data_course); echo '</pre>';
 ?>
 <html>
 
@@ -405,7 +407,7 @@ $data_course     = json_decode($var, true);
 																				<input type="hidden" name="name" value="<?php echo $valuesp['name'] ?>">
 																				<input type="hidden" name="semester" value="<?php echo $semester['semester'] ?>">
 																				<input type="hidden" name="year" value="<?php echo $semester['year'] ?>">
-																				<input type="hidden" name="instuctor_id" value="<?php echo $valuesp['id'] ?>">
+																				<input type="hidden" name="instructor_id" value="<?php echo $valuesp['id'] ?>">
 																					<button type="submit" class="btn btn-warning btn-sm pill" >แก้ไข</button>
 																					</form>
 																				<?php endif; ?>
