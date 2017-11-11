@@ -763,16 +763,23 @@ class Course
 
   private function Check_Access($teacher_id,$course_id)
   {
-    $sql = "SELECT `respon_id` FROM `course_responsible`
-    WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$this->SEMESTER['id'];
-    $result = $this->DB->Query($sql);
-    if($result != null)
+    if($_SESSION['level'] == '2')
     {
       return true;
     }
     else
     {
-      return false;
+      $sql = "SELECT `respon_id` FROM `course_responsible`
+      WHERE `course_id` = '".$course_id."' AND `teacher_id` = '".$teacher_id."' AND `semester_id` = ".$this->SEMESTER['id'];
+      $result = $this->DB->Query($sql);
+      if($result != null)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
   }
 
