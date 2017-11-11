@@ -133,8 +133,8 @@ if(isset($_POST['DATA']))
 						if($temp_id)
 						{
 							$instructor_id = $temp_id[0]['instructor_id'];
-							$sql = "INSERT INTO `course_hire_special_instructor`(`course_id`, `instructor_id`,`expense_id`, `num_student`, `type_course`, `semester_id`, `status`,`reason`,`percent_hour`,`submit_user_id`,`submit_date`) VALUES ('".$DATA["COURSEDATA_COURSE_ID"]."',".$instructor_id.",".$expense_id.",".$DATA["COURSEDATA_NOSTUDENT"].",'".$DATA["COURSEDATA_TYPE_COURSE"]."',".$semester['id'].",'0','".$DATA["COURSEDATA_REASON"]."',".$DATA["COURSEDATA_PERCENT_HOUR"].",'".$DATA["USERID"]."','".$mysqldate."')";
-							$sql .= " ON DUPLICATE KEY UPDATE `course_id` = '".$DATA["COURSEDATA_COURSE_ID"]."', `instructor_id` = ".$instructor_id." ,`expense_id` = ".$expense_id.", `num_student` = ".$DATA["COURSEDATA_NOSTUDENT"].", `type_course` = '".$DATA["COURSEDATA_TYPE_COURSE"]."', `semester_id` = ".$semester['id'].", `status` = '0',`reason` = '".$DATA["COURSEDATA_REASON"]."' , `percent_hour` = ".$DATA["COURSEDATA_PERCENT_HOUR"].",`submit_user_id` = '".$DATA["USERID"]."' ,`submit_date` = '".$mysqldate."'";
+							$sql = "INSERT INTO `course_hire_special_instructor`(`course_id`, `instructor_id`,`expense_id`,`department`, `num_student`, `type_course`, `semester_id`, `status`,`reason`,`percent_hour`,`submit_user_id`,`submit_date`) VALUES ('".$DATA["COURSEDATA_COURSE_ID"]."',".$instructor_id.",".$expense_id.",'".$DATA['TEACHERDATA_DEPARTMENT']."',".$DATA["COURSEDATA_NOSTUDENT"].",'".$DATA["COURSEDATA_TYPE_COURSE"]."',".$semester['id'].",'0','".$DATA["COURSEDATA_REASON"]."',".$DATA["COURSEDATA_PERCENT_HOUR"].",'".$DATA["USERID"]."','".$mysqldate."')";
+							$sql .= " ON DUPLICATE KEY UPDATE `course_id` = '".$DATA["COURSEDATA_COURSE_ID"]."', `instructor_id` = ".$instructor_id." ,`expense_id` = ".$expense_id.",`department` = '".$DATA['TEACHERDATA_DEPARTMENT']."' ,`num_student` = ".$DATA["COURSEDATA_NOSTUDENT"].", `type_course` = '".$DATA["COURSEDATA_TYPE_COURSE"]."', `semester_id` = ".$semester['id'].", `status` = '0',`reason` = '".$DATA["COURSEDATA_REASON"]."' , `percent_hour` = ".$DATA["COURSEDATA_PERCENT_HOUR"].",`submit_user_id` = '".$DATA["USERID"]."' ,`submit_date` = '".$mysqldate."'";
 							$result = $db->Insert_Update_Delete($sql);
 
 							$sql = "SELECT `hire_id` FROM `course_hire_special_instructor` WHERE `course_id` = '".$DATA["COURSEDATA_COURSE_ID"]."' AND  `instructor_id` = ".$instructor_id." AND `semester_id` = ".$semester['id'];
@@ -238,16 +238,17 @@ $pdf->AddFont('ZapfDingbats','','zapfdingbats.php');
 $pdf->SetFont('THSarabun_B','',14);
 $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','แบบขออนุมัติเชิญอาจารย์พิเศษ'),0,1,"C");
 
+$department_name = '-';
+$dept_all = $course->Get_Dept_All();
+for ($i=0; $i <count($dept_all) ; $i++)
+{
+	if($dept_all[$i]['code'] == $data_pdf['department'])
+	{
+		$department_name = $dept_all[$i]['name'];
+		break;
+	}
+}
 
-$department_name = $course->Search_Course_Dept($course_id,$semester['id']);
-if(!$department_name)
-{
-	$department_name = '-';
-}
-else
-{
-	$department_name = $department_name['name'];
-}
 $pdf->SetX(75);
 $pdf->Cell(10,7,iconv( 'UTF-8','TIS-620','ภาควิชา'),0,"C");
 $pdf->SetFont('THSarabun','',14);

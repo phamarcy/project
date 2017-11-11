@@ -730,8 +730,6 @@ class Course
         $data = $result[0];
         $data['num_table'] = $numtable;
         $data['lecture_detail'] = $lecture_detail;
-        $dept_name = $this->Search_Course_Dept($course_id,$semester_id);
-        $data['department'] = $dept_name['id'];
       }
       else
       {
