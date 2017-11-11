@@ -6,7 +6,10 @@ if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION[
 }
 require_once(__DIR__."/../../application/class/report.php");
 require_once(__DIR__."/../../application/class/person.php");
+require_once(__DIR__."/../../application/class/course.php");
 $person = new Person();
+$course = new Course();
+$dept = $course->Get_Dept_All();
  ?>
 <html>
 <header>
@@ -81,8 +84,11 @@ $(function() {//<-- wrapped here
                         <?php  if($_SESSION['level'] == '3' || $_SESSION['level'] == '6'){ ?>
                           ภาควิชา
                           <select class="form-control" name="department">
-                            <option value="1202">บริบาลเภสัชกรรม</option>
-                            <option value="1203">วิทยาศาสตร์เภสัชกรรม</option>
+                            <?php
+                             for ($i=0; $i <count($dept) ; $i++) {
+                               echo "<option value=".$dept[$i]['code'].">".$dept[$i]['name']."</option>";
+                             }
+                             ?>
                           </select>
                         <?php  } ?>
                         <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
@@ -98,7 +104,14 @@ $(function() {//<-- wrapped here
         if(isset($_POST['department']))
         {
           $dept_id = $_POST['department'];
-
+          $dept_name = '';
+          for ($i=0; $i <count($dept) ; $i++) {
+            if($dept[$i]['code'] == $dept_id)
+            {
+              $dept_name = $dept[$i]['name'];
+              break;
+            }
+          }
         }
         else
         {
@@ -129,7 +142,9 @@ $(function() {//<-- wrapped here
                         <div class="panel panel-info">
                             <div class="panel-heading">
                               <h5><b>
-                              <?php echo "แบบแจ้งวิธีการวัดผลและประเมินผล ภาควิชา ". ($dept_id == '1202'? 'บริบาลเภสัชกรรม': ($dept_id == '1203'? 'วิทยาศาสตร์เภสัชกรรม' : 'unknow' )). " ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
+                              <?php
+
+                              echo "แบบแจ้งวิธีการวัดผลและประเมินผล ".$dept_name. " ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
                               $download_all = '../../application/download/download.php?course=all&info=evaluate&semester='.$semester.'&year='.$year;
                               ?>
                               <a target="_blank" href="<?php echo $download_all; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ Evaluation Form ทั้งหมด</button></a>
@@ -190,7 +205,7 @@ $(function() {//<-- wrapped here
                       <div class="panel panel-info">
                           <div class="panel-heading">
                             <h5><b>
-                            <?php echo "แบบเชิญอาจารย์พิเศษ ภาควิชา ".($dept_id == '1202'? 'บริบาลเภสัชกรรม': ($dept_id == '1203'? 'วิทยาศาสตร์เภสัชกรรม' : 'unknow' ))." ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
+                            <?php echo "แบบเชิญอาจารย์พิเศษ ".$dept_name." ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
                             $download_all_special =  '../../application/download/download.php?course=all&info=special&semester='.$semester.'&year='.$year;
                             ?>
                             <a target="_blank" href="<?php echo $download_all_special; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ Instructor Form ทั้งหมด</button></a>
@@ -253,7 +268,7 @@ $(function() {//<-- wrapped here
                       <div class="container">
                         <div class="panel panel-info">
                           <div class="panel-heading">
-                            <h5><b><?php echo "สรุปข้อมูล ภาควิชา ".($dept_id == '1202'? 'บริบาลเภสัชกรรม': ($dept_id == '1203'? 'วิทยาศาสตร์เภสัชกรรม' : 'unknow' ))." ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;?></b></h5>
+                            <h5><b><?php echo "สรุปข้อมูล ".$dept_name." ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;?></b></h5>
                           </div>
                           <div class="panel-body">
                               <center><a target="_blank" href="<?php echo "../../application/download/summary.php?dept=".$dept_id."&semester=".$semester."&year=".$year?>"><button type="button" class="btn btn-success">ดาวน์โหลด ที่นี่</button></center>
