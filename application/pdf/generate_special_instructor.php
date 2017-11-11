@@ -240,7 +240,14 @@ $pdf->Cell(0,7,iconv( 'UTF-8','TIS-620','แบบขออนุมัติเ
 
 
 $department_name = $course->Search_Course_Dept($course_id,$semester['id']);
-
+if(!$department_name)
+{
+	$department_name = '-';
+}
+else
+{
+	$department_name = $department_name['name'];
+}
 $pdf->SetX(75);
 $pdf->Cell(10,7,iconv( 'UTF-8','TIS-620','ภาควิชา'),0,"C");
 $pdf->SetFont('THSarabun','',14);
