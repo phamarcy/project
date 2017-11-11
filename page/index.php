@@ -38,9 +38,8 @@
 			$show_btnmulti=1;
 		}
 	}
-
-	if ($_SESSION) {
-		# code...
+	if (isset($_GET['level'])) {
+		$_SESSION['level'] = $_GET['level'];
 	}
 	echo '<pre>'; var_dump($check_assessor); echo '</pre>';
 	$person->Close_connection();
@@ -413,8 +412,19 @@
 						?>
 						
 						<b>สถานะ : <?php echo $status_name;?> </b>&nbsp;
-						<?php if (condition) {  ?>
+						<?php if ($show_btn==1 && $show_btnmulti==0) {  ?>
 							<button type="submit" class="btn btn-primary btn-outlne" name="change_level">เปลี่ยนสถานะ</button>
+						<?php } ?>
+						<?php if ($show_btnmulti==1) {  ?>
+							<div class="dropdown" style="display:inline-block;">
+							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">เปลี่ยนสถานะ
+							<span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li><a href="index.php?level=1" >อาจารย์</a></li>
+								<li><a href="index.php?level=4">คณะกรรมการ</a></li>
+								<li><a href="index.php?level=6">ผู้บริหาร</a></li>
+							</ul>
+							</div>
 						<?php } ?>
 						
 						<?php
