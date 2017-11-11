@@ -54,7 +54,7 @@ if(!isset($_POST['tab']))
 }
 </style>
 <script type="text/javascript">
-
+webshims.setOptions('waitReady', false);
 webshims.setOptions('forms-ext', {types: 'date'});
 webshims.polyfill('forms forms-ext');
 //lock,unlock all input
@@ -84,6 +84,8 @@ function reset_date(object)
 $(document).ready(function() {
 
 });
+
+
 
 function Load_Page(tab) {
     var form = document.createElement("form");
@@ -257,8 +259,8 @@ $(document).on('click', "#delete", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการกรอกข้อมูลวิธีการวัดผลและประเมินผล <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการกรอกข้อมูลวิธีการวัดผลและประเมินผล <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
+                                            วันเปิดการกรอกข้อมูลวิธีการวัดผลและประเมินผล <input style="width:160px" class="form-control" type="date" id="opendate"> <br><br>
+                                            วันสุดท้ายของการกรอกข้อมูลวิธีการวัดผลและประเมินผล <input style="width:160px" class="form-control"  type="date" id="lastdate"> <div id="warning"></div>
                                         </div>
                                         <br>
                                         <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
@@ -329,8 +331,8 @@ $(document).on('click', "#delete", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการอัปโหลดไฟล์ course syllabus <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการอัปโหลดไฟล์ course syllabus <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
+                                            วันเปิดการอัปโหลดไฟล์ course syllabus <input style="width:160px" class="form-control" type="date" id="opendate"> <br><br>
+                                            วันสุดท้ายของการอัปโหลดไฟล์ course syllabus <input style="width:160px" class="form-control" type="date" id="lastdate"> <div id="warning"></div>
                                         </div>
                                         <br>
                                         <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
@@ -400,8 +402,8 @@ $(document).on('click', "#delete", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการกรอกข้อมูลอาจารพิเศษ <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการกรอกข้อมูลอาจารพิเศษ <input class="form-control" type="date" id="lastdate"> <div id="warning"></div>
+                                            วันเปิดการกรอกข้อมูลอาจารพิเศษ <input class="form-control" style="width:160px" type="date" id="opendate"> <br><br>
+                                            วันสุดท้ายของการกรอกข้อมูลอาจารพิเศษ <input class="form-control" style="width:160px" type="date" id="lastdate"> <div id="warning"></div>
                                         </div>
                                         <br>
                                         <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
@@ -472,8 +474,8 @@ $(document).on('click', "#delete", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการพิจารณาเห็นชอบกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการพิจารณาเห็นชอบกระบวนวิชา <input class="form-control" type="date" id="lastdate">
+                                            วันเปิดการพิจารณาเห็นชอบกระบวนวิชา <input class="form-control" style="width:160px" type="date" id="opendate"> <br><br>
+                                            วันสุดท้ายของการพิจารณาเห็นชอบกระบวนวิชา <input class="form-control" style="width:160px" type="date" id="lastdate">
                                             <div id="warning"></div>
                                         </div>
                                         <br>
@@ -544,8 +546,8 @@ $(document).on('click', "#delete", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการประเมินกระบวนวิชา <input class="form-control" type="date" id="opendate"> <br><br>
-                                            วันสุดท้ายของการประเมินกระบวนวิชา <input class="form-control" type="date" id="lastdate">
+                                            วันเปิดการประเมินกระบวนวิชา <input class="form-control" style="width:160px" type="date" id="opendate"> <br><br>
+                                            วันสุดท้ายของการประเมินกระบวนวิชา <input class="form-control" style="width:160px" type="date" id="lastdate">
                                             <div id="warning"></div>
                                         </div>
                                         <br>
