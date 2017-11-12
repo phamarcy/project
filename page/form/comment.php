@@ -93,7 +93,12 @@ $end = strtotime($current_semester[0]['last_date']);
 
 
   <body class="mybox">
-
+  <?php if($semeter['id'] == false)
+		{
+			echo '<div class="alert alert-danger"><center style="font-size:23px">ระบบยังไม่มีภาคการศึกษา และปีการศึกษาปัจจุบัน กรุณาติดต่อเจ้าหน้าที่ </center></div>';
+			die();
+		}
+		?>
     <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
       <div class="container">
         <div class="row">

@@ -59,6 +59,12 @@ $semester = $deadline->Get_Current_Semester();
 
  </header>
  <body class="mybox">
+ <?php if($semester['id'] == false)
+		{
+			echo '<div class="alert alert-danger"><center style="font-size:23px">ระบบยังไม่มีภาคการศึกษา และปีการศึกษาปัจจุบัน กรุณาติดต่อเจ้าหน้าที่ </center></div>';
+			die();
+		}
+		?>
  <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
 
    <div class="row">
