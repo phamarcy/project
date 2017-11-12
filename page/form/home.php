@@ -249,7 +249,7 @@ $data_course     = json_decode($var, true);
 														<h3 class="panel-title" style="font-size:14px;">
 															<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']."_".$key ?>">
 															<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b>
-															<?php if ((isset($value_course['pdf']) && $_SESSION['level']==3 && $value_course['evaluate']['status']!=0) || ($_SESSION['admission']==3 && isset($value_course['pdf']) && $value_course['evaluate']['status']!=0)): ?>
+															<?php if ((isset($value_course['pdf']) && $value_course['evaluate']['status']!=0) || ($_SESSION['admission']==3 && isset($value_course['pdf']) && $value_course['evaluate']['status']!=0)): ?>
 																	<a id="hover" href="<?php echo $value_course['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
 															<?php endif; ?>
 															<i class="fa fa-long-arrow-right fa-fw"></i>
@@ -384,7 +384,7 @@ $data_course     = json_decode($var, true);
 																			<a data-toggle="collapse"  href="#special_<?php echo $value_course['id']."_".$keysp ?>">
 																				<?php echo $valuesp['name'] ?> </a>
 																			</b>
-																			<?php if ((isset($valuesp['pdf']) && $_SESSION['level']==3 && $valuesp['status']!=0) || ($_SESSION['admission']==3 && isset($valuesp['pdf']) && $valuesp['status']!=0)): ?>
+																			<?php if ((isset($valuesp['pdf']) && $valuesp['status']!=0) || ($_SESSION['admission']==3 && isset($valuesp['pdf']) && $valuesp['status']!=0)): ?>
 																			<a id="hover" href="<?php echo $valuesp['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
 																			<?php endif; ?>
 																			<?php echo ' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp; if ($_SESSION['level']==3 || $_SESSION['admission']==3): ?>
