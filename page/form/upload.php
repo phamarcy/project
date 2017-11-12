@@ -71,12 +71,6 @@ $deadline->Close_connection();
 
 
 <body class="mybox" >
-    <?php if($semester['id'] == false)
-		{
-			echo '<div class="alert alert-danger"><center style="font-size:23px">ระบบยังไม่มีภาคการศึกษา และปีการศึกษาปัจจุบัน กรุณาติดต่อเจ้าหน้าที่ </center></div>';
-			die();
-		}
-		?>
     <div  style="padding-left: 30px; padding-right: 30px;">
       <div class="container">
         <div class="row">

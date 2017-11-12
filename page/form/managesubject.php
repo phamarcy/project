@@ -356,7 +356,7 @@ else {
                                     <div class="form-inline">
                                       <label for="">ผู้รับผิดชอบ</label>
                                       <input type="text" name="teacher" class="form-control " name="teacher" id="TEACHERLEC_<?php echo $value_list['id'] ?>" list="dtl<?php echo $value_list['id'] ?>"
-                                        placeholder="ชื่อ-นามสกุล" size="27" onkeydown="searchname('<?php echo $value_list['id'] ?>','responsible');">
+                                        placeholder="ชื่อ-นามสกุล" size="27" onkeydown="searchname(<?php echo $value_list['id'] ?>,'responsible');">
                                       <label for="">คณะกรรมการ</label>
                                       <input type="hidden" name="type" value="add_assessor">
                                       <select class="form-control" id="group<?php echo $value_list['id'] ?>">
@@ -1112,6 +1112,7 @@ else {
 
       function searchname(no, type) {
         var name_s = $("#TEACHERLEC_" + no).val();
+      console.log(name_s);
         $("#dtl" + no).html('');
         if (name_lenght > 1) {
           $.post("search_name.php", {
