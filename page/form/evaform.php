@@ -513,9 +513,9 @@ function getinfo(temp) {
     if(temp['exam_mid1_committee_lec'].length!=0)
     {
       if(temp['exam_mid1_committee_lec'][i]=="" || temp['exam_mid1_committee_lec'][i]==undefined)
-        document.getElementById('MIDEXCOM_LECF'+(i+1)).value = temp['exam_mid1_committee_lec'][i];
-      else
         document.getElementById('MIDEXCOM_LECF'+(i+1)).value = "";
+      else
+        document.getElementById('MIDEXCOM_LECF'+(i+1)).value = temp['exam_mid1_committee_lec'][i];
     }
   }
   for(var i=0;i<temp['mid1_number_lab'];i++)
@@ -526,9 +526,9 @@ function getinfo(temp) {
     if(temp['exam_mid1_committee_lab'].length!=0)
     {
       if(temp['exam_mid1_committee_lab'][i]=="" || temp['exam_mid1_committee_lab'][i]==undefined)
-        document.getElementById('MIDEXCOM_LABF'+(i+1)).value = temp['exam_mid1_committee_lab'][i];
-      else
         document.getElementById('MIDEXCOM_LABF'+(i+1)).value = "";
+      else
+        document.getElementById('MIDEXCOM_LABF'+(i+1)).value = temp['exam_mid1_committee_lab'][i];
     }
 
   }
@@ -540,9 +540,9 @@ function getinfo(temp) {
     if(temp['exam_mid2_committee_lec'].length!=0)
     {
       if(temp['exam_mid2_committee_lec'][i]=="" || temp['exam_mid2_committee_lec'][i]==undefined)
-        document.getElementById('MIDEXCOM_LECF'+(i+1)+'_sec').value = temp['exam_mid2_committee_lec'][i];
-      else
         document.getElementById('MIDEXCOM_LECF'+(i+1)+'_sec').value = "";
+      else
+        document.getElementById('MIDEXCOM_LECF'+(i+1)+'_sec').value = temp['exam_mid2_committee_lec'][i];
     }
 
   }
@@ -554,9 +554,9 @@ function getinfo(temp) {
     if(temp['exam_mid2_committee_lab'].length!=0)
     {
       if(temp['exam_mid2_committee_lab'][i]=="" || temp['exam_mid2_committee_lab'][i]==undefined)
-        document.getElementById('MIDEXCOM_LABF'+(i+1)+'_sec').value = temp['exam_mid2_committee_lab'][i];
-      else
         document.getElementById('MIDEXCOM_LABF'+(i+1)+'_sec').value = "";
+      else
+        document.getElementById('MIDEXCOM_LABF'+(i+1)+'_sec').value = temp['exam_mid2_committee_lab'][i];
     }
 
   }
@@ -568,9 +568,9 @@ function getinfo(temp) {
     if(temp['exam_final_committee_lec'].length!=0)
     {
       if(temp['exam_final_committee_lec'][i]=="" || temp['exam_final_committee_lec'][i]==undefined)
-        document.getElementById('FINEXCOM_LECF'+(i+1)).value = temp['exam_final_committee_lec'][i];
-      else
         document.getElementById('FINEXCOM_LECF'+(i+1)).value = "";
+      else
+        document.getElementById('FINEXCOM_LECF'+(i+1)).value = temp['exam_final_committee_lec'][i];
     }
 
   }
@@ -582,9 +582,9 @@ function getinfo(temp) {
     if(temp['exam_final_committee_lab'].length!=0)
     {
       if(temp['exam_final_committee_lab'][i]=="" || temp['exam_final_committee_lab'][i]==undefined)
-        document.getElementById('FINEXCOM_LABF'+(i+1)).value = temp['exam_final_committee_lab'][i];
-      else
         document.getElementById('FINEXCOM_LABF'+(i+1)).value = "";
+      else
+        document.getElementById('FINEXCOM_LABF'+(i+1)).value = temp['exam_final_committee_lab'][i];
     }
 
   }
