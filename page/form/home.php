@@ -23,7 +23,7 @@ $type_status=$course->Get_Status_Text();
 
 
 $data_course     = json_decode($var, true);
-echo '<pre>$data_course<br />'; var_dump($data_course); echo '</pre>';
+
 ?>
 <html>
 
@@ -291,7 +291,7 @@ echo '<pre>$data_course<br />'; var_dump($data_course); echo '</pre>';
 															<table class="table " style="font-size:14px;">
 																<thead>
 																	<?php if ($_SESSION['level'] >=2  || $_SESSION['admission']==1): ?>
-																	<th style="width:250px">คณะกรรมการ</th>
+																	<th style="width:300px">คณะกรรมการ</th>
 																	<?php endif; ?>
 																	<th>ข้อเสนอแนะ</th>
 																	<th>วัน/เวลา</th>
@@ -420,7 +420,7 @@ echo '<pre>$data_course<br />'; var_dump($data_course); echo '</pre>';
 																			<table class="table " style="font-size:14px;">
 																				<thead>
 																					<?php if ($_SESSION['level'] >=2  || $_SESSION['admission']==1): ?>
-																					<th style="width:250px">คณะกรรมการ</th>
+																					<th style="width:300px">คณะกรรมการ</th>
 																					<?php endif; ?>
 																					<th>ข้อเสนอแนะ</th>
 																					<th>วัน/เวลา</th>

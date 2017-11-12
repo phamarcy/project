@@ -188,7 +188,7 @@ $end = strtotime($current_semester[0]['last_date']);
                                   <table class="table " style="font-size:14px">
                                     <thead>
                                       <?php if ($_SESSION['level'] > 1  || $_SESSION['admission']==1): ?>
-                                      <th style="width:230px">คณะกรรมการ</th>
+                                      <th style="width:300px">คณะกรรมการ</th>
                                       <?php endif; ?>
                                       <th>ข้อเสนอแนะ</th>
                                       <th>วัน/เวลา</th>
@@ -285,7 +285,7 @@ $end = strtotime($current_semester[0]['last_date']);
                                     <table class="table " style="font-size:14px">
                                       <thead>
                                         <?php if ($_SESSION['level'] > 1  || $_SESSION['admission']==1): ?>
-                                        <th style="width:230px">คณะกรรมการ</th>
+                                        <th style="width:300px">คณะกรรมการ</th>
                                         <?php endif; ?>
                                         <th>ข้อเสนอแนะ</th>
                                         <th>วัน/เวลา</th>

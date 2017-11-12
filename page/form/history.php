@@ -137,7 +137,7 @@ if (isset($_POST['subject'])) {
                                             <table class="table " style="font-size:14px">
                                               <thead>
                                                 <?php if ($_SESSION['level'] > 1 ): ?>
-                                                <th style="width:230px">คณะกรรมการ</th>
+                                                <th style="width:300pxpx">คณะกรรมการ</th>
                                                 <?php endif; ?>
                                                 <th>ข้อเสนอแนะ</th>
                                                 <th>วัน/เวลา</th>
@@ -146,7 +146,7 @@ if (isset($_POST['subject'])) {
                                                 <?php foreach ($value['evaluate'] as $key => $valueeva): ?>
                                                   <tr>
                                                     <?php if ($_SESSION['level'] > 1 ): ?>
-                                                    <td style="width:230px"><?php echo $valueeva['name'] ?></td>
+                                                    <td style="width:300pxpx"><?php echo $valueeva['name'] ?></td>
                                                     <?php endif; ?>
                                                     <td><?php echo $valueeva['comment'] ?></td>
                                                     <td><?php echo $valueeva['date'] ?></td>
@@ -178,7 +178,7 @@ if (isset($_POST['subject'])) {
                                                     <div class="panel-body">
                                                       <table class="table " style="font-size:14px">
                                                         <thead>
-                                                          <th style="width:230px">คณะกรรมการ</th>
+                                                          <th style="width:300pxpx">คณะกรรมการ</th>
                                                           <th>ข้อเสนอแนะ</th>
                                                           <th>วัน/เวลา</th>
                                                         </thead>
@@ -186,7 +186,7 @@ if (isset($_POST['subject'])) {
                                                           <?php foreach ($valuesp['comment'] as  $valuespcomment):
                                                             ?>
                                                             <tr>
-                                                                <td style="width:230px"><?php echo $valuespcomment['name'] ?></td>
+                                                                <td style="width:300pxpx"><?php echo $valuespcomment['name'] ?></td>
                                                                 <td><?php echo $valuespcomment['comment'] ?></td>
                                                                 <td><?php echo $valuespcomment['date'] ?></td>  
                                                             </tr>
