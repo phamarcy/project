@@ -42,9 +42,9 @@
 		}
 	}
 	if (isset($_GET['level'])) {
+		
 		$_SESSION['level'] = $_GET['level'];
 	}
-
 
 	$person->Close_connection();
  ?>
@@ -536,12 +536,16 @@
 						<?php }
 						if($_SESSION['level'] >= 4 || $_SESSION['admission'] == 1)
 						{
-							if ($_SESSION['level']==6 || $_SESSION['admission'] == 1) { ?>
+							if(($_SESSION['level'] == 4 || $_SESSION['level'] == 5) && $check_assessor[1]==true  ){ ?>
+							<li>
+								<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> การพิจารณากระบวนวิชา</a>
+							</li>
+						<?php
+							}else if ($_SESSION['level']==6 || $_SESSION['admission'] == 1) { ?>
 								<li>
 									<a href="#" onclick="loadDoc('form/commentboard.php')"><i class="fa fa-pencil-square fa-fw"></i> อนุมัติกระบวนวิชา</a>
 								</li>
-						<?php
-							}
+							<?php }
 							else { ?>
 
 										<li>
