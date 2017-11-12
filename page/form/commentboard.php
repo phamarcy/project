@@ -40,7 +40,6 @@ $approval->Close_connection();
 $now = strtotime(date("Y-m-d"));
 $start = strtotime($current_semester[0]['open_date']);
 $end = strtotime($current_semester[0]['last_date']);
-
  ?>
   <html>
   <header>
