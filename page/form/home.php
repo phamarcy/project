@@ -257,13 +257,13 @@ $data_course     = json_decode($var, true);
 															</a>
 															<?php if ($_SESSION['level']==3 || $_SESSION['admission']==3): ?>
 															<?php if(($value_course['evaluate']['status'])==4){ ?>
-															<button class='btn btn-outline btn-success' onclick='senttohead(<?php echo $value_course['id'] ?>);'>ยืนยัน</button>
+															<button class='btn btn-outline btn-success' onclick='senttohead('<?php echo $value_course['id'] ?>');'>ยืนยัน</button>
 															<?php
 															} ?>
 																<?php endif; ?>
 																<?php if ($_SESSION['level']==2 || $_SESSION['admission']==2): ?>
 																<?php if(($value_course['evaluate']['status'])==1 ){ ?>
-																<button class='btn btn-outline btn-success' onclick='sendtoboard(<?php echo $value_course['id'] ?>);'>ผ่าน</button>
+																<button class='btn btn-outline btn-success' onclick='sendtoboard('<?php echo $value_course['id'] ?>');'>ผ่าน</button>
 																<?php
 															} ?>
 																	<?php endif; ?>
@@ -389,12 +389,12 @@ $data_course     = json_decode($var, true);
 																			<?php endif; ?>
 																			<?php echo ' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp; if ($_SESSION['level']==3 || $_SESSION['admission']==3): ?>
 																			<?php if($valuesp['status']==4 ){ ?>
-																			<button class='btn btn-outline btn-success' onclick='senttoheadSP(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>ยืนยัน</button>
+																			<button class='btn btn-outline btn-success' onclick='senttoheadSP('<?php echo $value_course['id'] ?>',"<?php echo $valuesp['id'] ?>");'>ยืนยัน</button>
 																			<?php } ?>
 																				<?php endif; ?>
 																				<?php if($_SESSION['level']==2 || $_SESSION['admission']==2){
 																					if ($valuesp['status']==1) {?>
-																				<button class='btn btn-outline btn-success' onclick='sendtoboardsp(<?php echo $value_course['id'] ?>,"<?php echo $valuesp['id'] ?>");'>ผ่าน</button>
+																				<button class='btn btn-outline btn-success' onclick='sendtoboardsp('<?php echo $value_course['id'] ?>',"<?php echo $valuesp['id'] ?>");'>ผ่าน</button>
 																				<?php }
 																					} ?>
 																			<div class="pull-right">
