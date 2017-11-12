@@ -835,6 +835,10 @@ if($DATA['SUBMIT_TYPE'] == '3' || $DATA['SUBMIT_TYPE'] == '4')
 }
 if($DATA['SUBMIT_TYPE'] == '1' || $DATA['SUBMIT_TYPE'] == '3')
 {
+	if(!file_exists($FILE_PATH."/draft"))
+	{
+		mkdir($FILE_PATH."/draft");
+	}
 	$file_path = $FILE_PATH."/draft/".$data_pdf['course_id'];
 	$file_path_sql = "/draft/".$data_pdf['course_id'];
 	if(!file_exists($file_path))
@@ -844,6 +848,10 @@ if($DATA['SUBMIT_TYPE'] == '1' || $DATA['SUBMIT_TYPE'] == '3')
 }
 else if ($DATA['SUBMIT_TYPE'] == '4')
 {
+	if(!file_exists($FILE_PATH."/complete"))
+	{
+		mkdir($FILE_PATH."/complete");
+	}
 	$file_path = $FILE_PATH."/complete/".$data_pdf['course_id'];
 	$file_path_sql = "/complete/".$data_pdf['course_id'];
 	if(!file_exists($file_path))
