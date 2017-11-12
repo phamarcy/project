@@ -706,7 +706,7 @@ class Person
     $this->DB->Change_DB($this->DEFAULT_DB);
     if($result) // is board
     {
-      if(!empty($result))
+      if($result[0]['position_dean'] != '')
       {
         $return[2] = true;
       }
