@@ -1112,8 +1112,10 @@ else {
 
       function searchname(no, type) {
         var name_s = $("#TEACHERLEC_" + no).val();
+        var name_lenght = $("#TEACHERLEC_" + no).val().length;
+        console.log(name_lenght);
         $("#dtl" + no).html('');
-        if (name_s.length > 0) {
+        if (name_lenght > 0) {
           $.post("search_name.php", {
               name: name_s
             }, function (data) {
