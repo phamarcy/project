@@ -366,7 +366,7 @@ else {
                                         }
                                         ?>
                                       </select>
-                                      <button type="button" name="button" class="btn btn-outline btn-primary" onclick="addStaffCourse(<?php echo $value_list['id'] ?>,'<?php echo $dep_js ?>','<?php echo $semeter['id'] ?>')">เพิ่ม</button>
+                                      <button type="button" name="button" class="btn btn-outline btn-primary" onclick="addStaffCourse('<?php echo $value_list['id'] ?>','<?php echo $dep_js ?>','<?php echo $semeter['id'] ?>')">เพิ่ม</button>
                                     </div>
                                   </div>
 
