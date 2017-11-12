@@ -84,7 +84,7 @@ function searchname(no,type) {
   {
       var name_s = $("#TEACHERLEC_F"+no).val();
       $("#dtl"+no).html('');
-      if(name_s.length > 1)
+      if(name_s.length > 0)
       {
         $.post("search_name.php", { name: name_s}, function(data) {
               data = JSON.parse( data );

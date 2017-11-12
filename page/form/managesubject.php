@@ -1108,7 +1108,7 @@ else {
       function searchname(no, type) {
         var name_s = $("#TEACHERLEC_" + no).val();
         $("#dtl" + no).html('');
-        if (name_s.length > 1) {
+        if (name_s.length > 0) {
           $.post("search_name.php", {
               name: name_s
             }, function (data) {
