@@ -640,8 +640,7 @@ class approval
   public function Append_Special_Instructor($course_id,$instructor_id)
   {
       $sql = " DELETE FROM `approval_special`
-       WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."'
-       AND `level_approve` = '2' AND `semester_id` = ".$this->SEMESTER_ID;
+       WHERE `course_id` = '".$course_id."' AND `instructor_id` = '".$instructor_id."' AND `semester_id` = ".$this->SEMESTER_ID;
       $result_delete = $this->DB->Insert_Update_Delete($sql);
       if(!$result_delete)
       {
