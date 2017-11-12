@@ -135,7 +135,12 @@ else {
   </head>
 
   <body>
-
+  <?php if($semeter['id'] == false)
+		{
+			echo '<div class="alert alert-danger"><center style="font-size:23px">ระบบยังไม่มีภาคการศึกษา และปีการศึกษาปัจจุบัน กรุณาติดต่อเจ้าหน้าที่ </center></div>';
+			die();
+		}
+		?>
     <h3 class="page-header" style="margin-bottom: 0px;">
       <center><b>จัดการกระบวนวิชา</b></center>
     </h3>
@@ -1108,7 +1113,7 @@ else {
       function searchname(no, type) {
         var name_s = $("#TEACHERLEC_" + no).val();
         $("#dtl" + no).html('');
-        if (name_s.length > 0) {
+        if (undefined !== name_s && name_s.length > 0) {
           $.post("search_name.php", {
               name: name_s
             }, function (data) {
