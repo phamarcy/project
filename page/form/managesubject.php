@@ -1113,7 +1113,11 @@ else {
       function searchname(no, type) {
         var name_s = $("#TEACHERLEC_" + no).val();
         $("#dtl" + no).html('');
+<<<<<<< HEAD
         if (name_s.length > 0) {
+=======
+        if (name_lenght > 1) {
+>>>>>>> c55ce7f86955a73a0f5c8cc0874d46037a396f3c
           $.post("search_name.php", {
               name: name_s
             }, function (data) {
