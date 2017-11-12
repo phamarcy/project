@@ -17,7 +17,6 @@ require_once('../../application/class/course.php');
 $courseobj = new Course();
 $dept = $courseobj->Get_Dept_All();
 
-var_dump($_POST);
  ?>
 
 <html>
