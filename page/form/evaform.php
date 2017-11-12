@@ -1602,8 +1602,9 @@ $(document).ready(function(){
                                 document.getElementById('formdrpd').style.display = 'none';
                               }
                               else if(temp['INFO']!=false && temp['DATA']==false){
-                                  document.getElementById('formdrpd').style.display = 'none';
-                                  $('#dlhide').show();
+                                 document.getElementById('formdrpd').style.display = 'none';
+                                 $('#dlhide').show();
+                                 document.getElementById('id').value = temp['INFO']['course_id'];
                                  document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
                                  document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                                  document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
