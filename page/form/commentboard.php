@@ -97,21 +97,14 @@ $end = strtotime($current_semester[0]['last_date']);
       <div class="container">
         <div class="row">
           <center>
-            <?php $approve_text="";
-             if ($_SESSION['level']==6 || $_SESSION['admission']==1):
-            $approve_text="อนุมัติ";
-            ?>
             <h3 class="page-header">อนุมัติกระบวนวิชา</h3>
-            <?php else:
-            $approve_text="เห็นชอบ";?>
-            <h3 class="page-header">พิจารณาให้ความเห็นชอบกระบวนวิชา</h3>
-            <?php endif; ?>
+
             <?php
           if ($now>$end) {
-            echo  '<div class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการ'.$approve_text.'<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
+            echo  '<div class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการอนุมัติ<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
             exit();
           }elseif ($now<$start) {
-            echo  '<div class="alert alert-warning"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> ยังไม่ถึงเวลาในการ'.$approve_text.'<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
+            echo  '<div class="alert alert-warning"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> ยังไม่ถึงเวลาในการอนุมัติ<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
             exit();
           }
            ?>
@@ -181,7 +174,7 @@ $end = strtotime($current_semester[0]['last_date']);
                                       <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $eva['id'] ?>"></textarea>
                                     </div>
                                     <div class="form-group">
-                                      <button type="button" class="btn btn-outline btn-success " onclick="approve_course('<?php echo $eva['id'] ?>','approve')"><?php echo $approve_text; ?></button>&nbsp;
+                                      <button type="button" class="btn btn-outline btn-success " onclick="approve_course('<?php echo $eva['id'] ?>','approve')">อนุมัติ</button>&nbsp;
                                       <button type="button" class="btn btn-outline btn-danger " onclick="approve_course('<?php echo $eva['id'] ?>','edit')">มีการแก้ไข</button>
                                     </div>
                                   </form>
@@ -253,7 +246,7 @@ $end = strtotime($current_semester[0]['last_date']);
                               <div class="panel panel-default">
                                 <div class="panel-heading">
                                   <h5 class="panel-title" style="font-size:14px">
-                                    <a data-toggle="collapse" href="#collapsesp<?php echo $spcomment['id'] ?>">
+                                    <a data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">
                                       <?php echo $spcomment['name'] ?>
                                     </a>
                                     <?php if (isset($spcomment['pdf']) ): ?> &nbsp;&nbsp;
@@ -266,23 +259,23 @@ $end = strtotime($current_semester[0]['last_date']);
                                   <?php endif; ?>
                                   <?php if ($spcomment['status']==0): ?>
                                     <div class="pull-right">
-                                      <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapsesp<?php echo $spcomment['id'] ?>">อนุมัติ</a>&nbsp;
+                                      <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">อนุมัติ</a>&nbsp;
                                       <input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $sp['id']?>,<?php echo $spcomment['id']?>"></input>
                                     </div>
                                   <?php endif; ?>
                                   </h5>
                                 </div>
-                                <div id="collapsesp<?php echo $spcomment['id'] ?>" class="panel-collapse collapse " style="font-size:14px">
+                                <div id="collapsesp<?php echo $sp['id'].$spcomment['id'] ?>" class="panel-collapse collapse " style="font-size:14px">
                                   <div class="panel-body">
                                     <?php  if ($spcomment['status']==0) { ?>
                                     <form id="approve_course" method="post">
                                       <div class="form-group ">
                                         <label for="">ข้อเสนอแนะ</label>
-                                        <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $spcomment['id'] ?>"></textarea>
+                                        <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $sp['id'].$spcomment['id'] ?>"></textarea>
                                       </div>
                                       <div class="form-group">
-                                        <button type="button" class="btn btn-outline btn-success " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $spcomment['id'] ?>','approve_sp')"><?php echo $approve_text; ?></button>&nbsp;
-                                        <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $spcomment['id'] ?>','edit_sp')">มีการแก้ไข</button>
+                                        <button type="button" class="btn btn-outline btn-success " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','approve_sp')">อนุมัติ</button>&nbsp;
+                                        <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','edit_sp')">มีการแก้ไข</button>
                                       </div>
 
                                     </form>

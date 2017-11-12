@@ -42,7 +42,6 @@
 		}
 	}
 	if (isset($_GET['level'])) {
-		
 		$_SESSION['level'] = $_GET['level'];
 	}
 
@@ -516,7 +515,7 @@
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
 						<?php }else { ?>
-						<?php if ($_SESSION['level']<=1 ||  $_SESSION['admission']==1 ): ?>
+						<?php if ($_SESSION['level']<=1 ||  $_SESSION['admission']==2 ): ?>
 							<li>
 								<a href="#"><i class="fa fa-edit fa-fw"></i> กรอกข้อมูล<span class="fa arrow"></span></a>
 
