@@ -476,7 +476,7 @@
 					<ul class="nav" id="side-menu">
 						<li>
 							<?php
-								if ($_SESSION['level']<=3) { ?>
+								if ($_SESSION['level']<=3 || $_SESSION['admission'] == 2 || $_SESSION['admission'] == 3) { ?>
 									<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
 								
 							<?php } ?>
