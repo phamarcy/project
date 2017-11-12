@@ -304,7 +304,7 @@ if($data_pdf == false)
 }
 //start generate pdf
 define('FPDF_FONTPATH','font/');
-if($DATA['SUBMIT_TYPE'] == '1')
+if($DATA['SUBMIT_TYPE'] != '4')
 {
 	$data_pdf['num_section'] = 1;
 }
