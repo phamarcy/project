@@ -1115,7 +1115,7 @@ else {
         var name_lenght = $("#TEACHERLEC_" + no).val().length;
         console.log(name_lenght);
         $("#dtl" + no).html('');
-        if (name_lenght > 0) {
+        if (name_lenght > 1) {
           $.post("search_name.php", {
               name: name_s
             }, function (data) {
