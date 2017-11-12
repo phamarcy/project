@@ -179,8 +179,8 @@ $end = strtotime($current_semester[0]['last_date']);
                                       <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $eva['id'] ?>"></textarea>
                                     </div>
                                     <div class="form-group">
-                                      <button type="button" class="btn btn-outline btn-success " onclick="approve_course(<?php echo $eva['id'] ?>,'approve')"><?php echo $approve_text; ?></button>&nbsp;
-                                      <button type="button" class="btn btn-outline btn-danger " onclick="approve_course(<?php echo $eva['id'] ?>,'edit')">มีการแก้ไข</button>
+                                      <button type="button" class="btn btn-outline btn-success " onclick="approve_course('<?php echo $eva['id'] ?>','approve')"><?php echo $approve_text; ?></button>&nbsp;
+                                      <button type="button" class="btn btn-outline btn-danger " onclick="approve_course('<?php echo $eva['id'] ?>','edit')">มีการแก้ไข</button>
                                     </div>
 
                                   </form>
