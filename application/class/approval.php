@@ -165,7 +165,7 @@ class approval
         }
         else
         {
-            $this->LOG->Write("Completing approve file error  ");
+            $this->LOG->Write("Completing approve file error  ".$pdf_complete);
             return false;
         }
       }
