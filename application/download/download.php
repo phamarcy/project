@@ -14,7 +14,7 @@ function add_zip($zip,$course,$path_name)
   if($file_name)
   {
     $file_name = $file_name[count($file_name)-1];
-    if(file_exists($doc_path) && is_file($file))
+    if(file_exists($doc_path) && is_file($doc_path))
     {
         $zip->addEmptyDir($course);
         $zip->addFile($doc_path,$course."/".$file_name);
