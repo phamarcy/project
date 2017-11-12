@@ -13,9 +13,10 @@
 	}
 
 	$person = new Person();
+	
 	$check_permission=$person->Check_Grant($_SESSION['id']);
 	$check_assessor=$person->Is_Assessor($_SESSION['id']);
-	
+
 	if (isset($_POST['change_level'])) {
 		if($_SESSION['level']==1){
 			$_SESSION['level']=4;
@@ -26,7 +27,7 @@
 	}
 	$show_btn=0;
 	$show_btnmulti=0;
-	if ($check_assessor[1]==true || $check_assessor[2]==true) {
+	if ($check_assessor[1]==true || $check_assessor[2]==true || $_SESSION['level']==6) {
 		
 		if ($check_assessor[0]==1) {
 			$show_btn=1;
@@ -36,7 +37,7 @@
 
 		if ($check_assessor[1]==true && $check_assessor[2]==true) {
 			$show_btnmulti=1;
-		}elseif($check_assessor[2]==true){
+		}elseif($check_assessor[2]==true || $_SESSION['level']==6){
 			$show_btnmulti=1;
 		}
 	}
