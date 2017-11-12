@@ -77,7 +77,7 @@ $Excel->setActiveSheetIndex(0)
             ->setCellValue('W3', 'การให้ลำดับขั้นถ้านักศึกษาขาดสอบ');
 
 //bold heading
-$Excel->getActiveSheet(0)->getStyle("A1:T3")->getFont()->setBold(true);
+$Excel->getActiveSheet(0)->getStyle("A1:W3")->getFont()->setBold(true);
 //cell border
 $sheet1->getStyle('A1')->applyFromArray($border);
 $sheet1->getStyle('A2:B2')->applyFromArray($border);
@@ -251,7 +251,7 @@ if($result)
     }
   }
   $row--;
-  $sheet1->getStyle('A4:T'.$row)->applyFromArray($border);
+  $sheet1->getStyle('A4:W'.$row)->applyFromArray($border);
   $sheet2->getStyle('A4:G'.$row)->applyFromArray($border);
 }
 
