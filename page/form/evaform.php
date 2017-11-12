@@ -1544,7 +1544,7 @@ $(document).ready(function(){
                                   document.getElementById('semester').appendChild(opt);
                                 }
                                 var file_data = new FormData;
-                                var course_id = temp['INFO']['course_id'];
+                                var course_id = String(temp['INFO']['course_id']);
                                 var semester_temp = document.getElementById('semester').value;
                                 var stringspl = semester_temp.split('_');
                                 var semester = stringspl[0];
@@ -1558,7 +1558,6 @@ $(document).ready(function(){
                                 file_data.append('semester',semester);
                                 file_data.append('year',year);
                                 file_data.append('type',type);
-                                console.log(course_id);
                                 var URL = '../../application/document/search_document.php';
                                 $.ajax({
                                               url: URL,
