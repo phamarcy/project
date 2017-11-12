@@ -11,12 +11,16 @@ function add_zip($zip,$course,$path_name)
   global $path_file,$year,$semester;
   $doc_path = $path_file.$path_name;
   $file_name = explode("/",$path_name);
-  $file_name = $file_name[count($file_name)-1];
-  if(file_exists($doc_path))
+  if($file_name)
   {
-      $zip->addEmptyDir($course);
-      $zip->addFile($doc_path,$course."/".$file_name);
+    $file_name = $file_name[count($file_name)-1];
+    if(file_exists($doc_path) && is_file($doc_path))
+    {
+        $zip->addEmptyDir($course);
+        $zip->addFile($doc_path,$course."/".$file_name);
+    }
   }
+
 
 }
 
