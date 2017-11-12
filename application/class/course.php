@@ -475,7 +475,7 @@ class Course
     else if ($type == 'evaluate')
     {
       $sql = "SELECT `semester_num`,`year` FROM `course_evaluate` e,`semester` s
-      WHERE e.`course_id` = '".$course_id."' AND e.`semester_id` = s.`semester_id`" ;
+      WHERE e.`course_id` = '".$course_id."' AND e.`semester_id` = s.`semester_id` ORDER BY e.`updated_date` DESC" ;
     }
     $data = array();
     if($teacher_id != null)
