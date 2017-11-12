@@ -1150,7 +1150,7 @@ $dept = $courseobj->Get_Dept_All();
          echo "$('#dlhide').hide();
          document.getElementById('form1').reset();
          var file_data = new FormData;
-         var course_id = ".$_POST['course_id'].";
+         var course_id = '".$_POST['course_id']."';
          var type = 2;
          JSON.stringify(course_id);
          JSON.stringify(type);
