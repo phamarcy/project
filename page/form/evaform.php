@@ -655,7 +655,7 @@ function checksubject(btntype,type){
   {
     document.getElementById("form1").reset();
     var file_data = new FormData;
-    var course_id = document.getElementById('id').value;
+    var course_id = String(document.getElementById('id').value);
     JSON.stringify(course_id);
     JSON.stringify(type);
     file_data.append("course_id",course_id);
@@ -768,7 +768,7 @@ function checksubject(btntype,type){
   }
   else if (btntype==2) {
     var file_data = new FormData;
-    var course_id = document.getElementById('id').value;
+    var course_id = String(document.getElementById('id').value);
     var semester_temp = document.getElementById('semester').value;
     var stringspl = semester_temp.split("_");
     var semester = stringspl[0];
@@ -1338,7 +1338,7 @@ $(document).ready(function(){
     {
       echo "document.getElementById('form1').reset();
       var file_data = new FormData;
-      var course_id = ".$_POST['course_id'].";
+      var course_id = '".$_POST['course_id']."';
       var type = 1;
       JSON.stringify(course_id);
       JSON.stringify(type);
@@ -1386,7 +1386,7 @@ $(document).ready(function(){
                                   document.getElementById('semester').appendChild(opt);
                                 }
                                 var file_data = new FormData;
-                                var course_id = temp['INFO']['course_id'];
+                                var course_id = String(temp['INFO']['course_id']);
                                 var semester_temp = document.getElementById('semester').value;
                                 var stringspl = semester_temp.split('_');
                                 var semester = stringspl[0];
@@ -1495,7 +1495,7 @@ $(document).ready(function(){
     {
       echo "document.getElementById('form1').reset();
       var file_data = new FormData;
-      var course_id = ".$_POST['course_id'].";
+      var course_id = '".$_POST['course_id']."';
       var type = 1;
       JSON.stringify(course_id);
       JSON.stringify(type);
