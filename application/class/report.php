@@ -72,7 +72,7 @@ class Report
         }
       }
       $DATA = array();
-      $sql ="SELECT `course_id` FROM `course_evaluate` WHERE `status` = '1'";
+      $sql ="SELECT `course_id` FROM `course_evaluate` WHERE `status` = '1' AND `semester_id` = ".$semester_id;;
       $result = $this->DB->Query($sql);
       if($result)
       {
