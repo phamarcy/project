@@ -37,13 +37,13 @@ class approval
     $this->SEMESTER = $data['semester'];
     $this->YEAR = $data['year'];
     $this->USER_LEVEL = $level;
-    if(isset($_SESSION['admission']))
-    {
-      if($_SESSION['admission'] > 0 && $this->USER_LEVEL == 1)
-      {
-        $this->USER_LEVEL = 6;
-      }
-    }
+    // if(isset($_SESSION['admission']))
+    // {
+    //   if($_SESSION['admission'] > 0 && $this->USER_LEVEL == 1)
+    //   {
+    //     $this->USER_LEVEL = 6;
+    //   }
+    // }
 
     $this->CURL = new CURL();
     $this->COURSE = new Course();
