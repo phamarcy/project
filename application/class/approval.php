@@ -39,7 +39,7 @@ class approval
     $this->USER_LEVEL = $level;
     if(isset($_SESSION['admission']))
     {
-      if($_SESSION['admission'] > 0)
+      if($_SESSION['admission'] > 0 && $this->USER_LEVEL == 1)
       {
         $this->USER_LEVEL = 6;
       }
