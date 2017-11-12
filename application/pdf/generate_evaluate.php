@@ -164,7 +164,7 @@ if(isset($_POST['DATA']))
 			        $log->Write("find failed : not found EXAM_MID1_COMMITTEE_LAB id".$DATA["EXAM_MID1_COMMITTEE_LAB"][$i] );
 			    }
 			    if ($teacher_id) {
-			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','MID1','LAB')";
+			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_commitee_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','MID1','LAB')";
 			        $result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
 			    }
 				}
