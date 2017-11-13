@@ -37,7 +37,7 @@ $dept = $course->Get_Dept_All();
     <script src="../dist/js/sb-admin-2.js"></script>
     <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
     <link rel="stylesheet" href="../dist/css/scrollbar.css">
     <style >
     i:hover {
