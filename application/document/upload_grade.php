@@ -19,6 +19,10 @@ function Upload($file,$course_id)
 {
   global $semester,$db,$FILE_PATH;
 	$path = $FILE_PATH."/grade";
+  if(!file_exists($path))
+  {
+    mkdir($path);
+  }
 	$filename = $file['name'];
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
   if(file_exists($path."/".$course_id."_grade_".$semester['semester']."_".$semester['year'].".xls"))
