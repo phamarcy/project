@@ -101,8 +101,12 @@ class Course
   public function Get_Dept_Course($department_id,$semester_id)
   {
     $DATA = array();
-    $sql = "SELECT c.`course_id`,c.`course_name_en` FROM `department_course_responsible` dc, `course` c
-    WHERE c.`course_id` = dc.`course_id` AND dc.`department_id` = '".$department_id."' AND dc.`semester_id` = ".$semester_id;
+    $sql = "SELECT DISTINCT c.`course_id`,c.`course_name_en`,c.`course_name_th`,c.`credit`,c.`hr_lec`,c.`hr_lab`,c.`hr_self` FROM `department_course_responsible` dc, `course` c
+    WHERE c.`course_id` = dc.`course_id` AND dc.`department_id` = '".$department_id."'";
+    if($semester_id != 'all')
+    {
+      $sql .= " AND dc.`semester_id` = ".$semester_id;
+    }
     $result = $this->DB->Query($sql);
 
     if($result)
@@ -111,6 +115,11 @@ class Course
       {
         $course['id'] = $result[$i]['course_id'];
         $course['name'] = $result[$i]['course_name_en'];
+        $course['name_th'] = $result[$i]['course_name_th'];
+        $course['credit'] = $result[$i]['credit'];
+        $course['lec'] = $result[$i]['hr_lec'];
+        $course['lab'] =  $result[$i]['hr_lab'];
+        $course['self'] = $result[$i]['hr_self'];
         $staff = $this->Get_Responsible_Teacher($course['id'],$semester_id);
         $course['teacher'] = $staff['teacher'];
         $course['assessor'] = $staff['assessor'];
