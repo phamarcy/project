@@ -141,18 +141,21 @@ $(function() {//<-- wrapped here
                 <div class="tab-content">
                     <div class="tab-pane fade active in" id="course">
                         <div class="panel panel-info">
-                            <div class="panel-heading">
-                              <h5><b>
+                            <div class="panel-heading clearfix" style="font-size:14px;padding-top: 7.5px">
+                              <h5 class="pull-left"><b>
                               <?php
                               echo "แบบแจ้งวิธีการวัดผลและประเมินผล ".$dept_name. " ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
-                              if(isset($data_eva['download']))
+                              ?>
+                              </b></h5>
+                            <div class="pull-right">
+                              <?php
+                            if(isset($data_eva['download']))
                               {
                                 $download_all = $data_eva['download'];
                               ?>
                               <a target="_blank" href="<?php echo $download_all; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ Evaluation Form ทั้งหมด</button></a>
                             <?php } ?>
-                              </b></h5>
-
+                            </div>
                             </div>
                             <div class="panel-body">
                               <?php
@@ -207,16 +210,20 @@ $(function() {//<-- wrapped here
                     </div>
                     <div class="tab-pane fade" id="special">
                       <div class="panel panel-info">
-                          <div class="panel-heading">
-                            <h5><b>
+                          <div class="panel-heading clearfix" style="font-size:14px;padding-top: 7.5px">
+                            <h5 class="pull-left"><b>
                             <?php echo "แบบเชิญอาจารย์พิเศษ ".$dept_name." ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
-                            if(isset($data_special['download']))
+                            ?>
+                          </b></h5>
+                          <div class="pull-right">
+                            <?php
+                          if(isset($data_special['download']))
                             {
                             $download_all_special =  $data_special['download'];
                             ?>
                             <a target="_blank" href="<?php echo $download_all_special; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ Instructor Form ทั้งหมด</button></a>
                             <?php } ?>
-                          </b></h5>
+                          </div>
                           </div>
                           <div class="panel-body">
                             <?php
@@ -274,7 +281,7 @@ $(function() {//<-- wrapped here
                     <div class="tab-pane fade" id="summary">
                       <div class="container">
                         <div class="panel panel-info">
-                          <div class="panel-heading">
+                          <div class="panel-heading" >
                             <h5><b><?php echo "สรุปข้อมูล ".$dept_name." ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;?></b></h5>
                           </div>
                           <div class="panel-body">
