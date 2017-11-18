@@ -81,7 +81,7 @@ $dept = $courseobj->Get_Dept_All();
        $("#dtl1").html('');
        if(name_s.length > 0)
        {
-         $.post("search_name.php", { name: name_s}, function(data) {
+         $.post("search_special_instructor.php", { name: name_s}, function(data) {
                data = JSON.parse( data );
                for(var i=0;i<data.length;i++)
                {
@@ -488,6 +488,7 @@ $dept = $courseobj->Get_Dept_All();
                                }
                                $('#teachername').prop('disabled', true);
                                $('#subhead').prop('disabled', true);
+                               $('#department').val(temp['INFO'].department);
 
                              }
                              else if(temp['DATA']==false && $('#id').val()!="" && temp['INFO']==false){
@@ -690,7 +691,9 @@ $dept = $courseobj->Get_Dept_All();
        var row = document.getElementById('row' + i);
        row.parentNode.removeChild(row);
      }
+     var department = $('#department').val();
      document.getElementById("form1").reset();
+     $('#department').val(department);
      document.getElementById('course').value = $('#id').val();
      document.getElementById('formdrpd').style.display = "";
 
@@ -1420,7 +1423,7 @@ $dept = $courseobj->Get_Dept_All();
                                    }
                                    $('#teachername').prop('disabled', true);
                                    $('#subhead').prop('disabled', true);
-
+                                   $('#department').val(temp['INFO'].department);
                                  }
                                }
                              } catch (e) {
