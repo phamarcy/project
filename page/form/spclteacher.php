@@ -55,13 +55,11 @@ $dept = $courseobj->Get_Dept_All();
 <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
 <script src="../vendor/webshim/1.15.3/core.js"></script>
  <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
- <script type="text/javascript">
- function setdatepicker(){
-   webshims.setOptions('forms-ext', {types: 'date'});
-   webshims.polyfill('forms forms-ext');
-}
 
- </script>
+ <link href="../dist/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
+ <script src="../dist/js/moment.min.js"></script>
+ <script src="../dist/js/bootstrap-datetimepicker.min.js"></script>
+
 
  <style>
  input[type=text],input[type=date],input[type=time]{
@@ -75,6 +73,11 @@ $dept = $courseobj->Get_Dept_All();
  </style>
 
  <script>
+ function setdatepicker(){
+   webshims.setOptions('forms-ext', {types: 'date'});
+   webshims.polyfill('forms forms-ext');
+}
+
  function searchname() {
 
        var name_s = $("#search_1").val();
@@ -147,7 +150,6 @@ $dept = $courseobj->Get_Dept_All();
 
    for(var tr=1;tr<=temp['num_table'];tr++)
    {
-     setdatepicker();
      var table = $('#detailteaching').closest('table');
      if (table.find('input:text').length < 100) {
        var x = $("tr[name=addtr]:last").closest('tr').nextAll('tr');
@@ -264,7 +266,9 @@ $dept = $courseobj->Get_Dept_All();
          '<option value="24:30:00">24:30 น.</option><option value="24:45:00">24:45 น.</option></select>' +
          '</div></td><td><input type="text" class="form-control" id="room' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_room"]+
           '"></td></tr>');
-
+          $('#dateteach'+(rowCount - 1)).datetimepicker({
+             format: 'YYYY-MM-DD'
+          });
        $.each(x, function(i, val) {
          table.append(val);
        });
@@ -368,9 +372,8 @@ $dept = $courseobj->Get_Dept_All();
  }
 
  function getinfo2(temp) {
-   //part1
-  document.getElementById('department').value = temp["department"];
 
+   //part1
    document.getElementById('pre').value = temp['prefix'];
    var constring = temp['firstname'];
    var constring2 = temp['lastname'];
@@ -738,7 +741,6 @@ $dept = $courseobj->Get_Dept_All();
      file_data.append("type",type);
      file_data.append("fname",fname);
      file_data.append("lname",lname);
-     console.log(fname);
      var URL = '../../application/document/search_document.php';
      $.ajax({
                    url: URL,
@@ -1233,6 +1235,129 @@ $dept = $courseobj->Get_Dept_All();
    var form_data = new FormData();
    form_data.append('file', file_data);
    return form_data;
+ }
+
+ function deletedata()
+ {
+   if( document.getElementById('teachername').value!="" && document.getElementById('teachername').value!=undefined )
+   {
+     var file_data = new FormData;
+     var course_id = $('#id').val();
+     var teachername_temp = document.getElementById('teachername').value;
+     var stringspl = teachername_temp.split('_');
+     var instructor_id = stringspl[0];
+     var name = stringspl[1];
+     var semester = stringspl[3];
+     var year = stringspl[4];
+     file_data.append("course_id",course_id);
+     file_data.append("semester",semester);
+     file_data.append("year",year);
+     var URL = '../../application/document/delete.php';
+     $.ajax({
+                   url: URL,
+                   dataType: 'text',
+                   cache: false,
+                   contentType: false,
+                   processData: false,
+                   data: file_data,
+                   type: 'post',
+                   beforeSend: function() {
+                     swal({
+                       title: 'กรุณารอสักครู่',
+                       text: 'ระบบกำลังประมวลผล',
+                       allowOutsideClick: false
+                     })
+                     swal.showLoading()
+                   },
+                   success: function (result) {
+                         try {
+                           var temp = $.parseJSON(result);
+                           if(temp["status"]=='success')
+                           {
+                              swal.hideLoading()
+                              swal({
+                                title: 'ลบข้อมูลสำเร็จ',
+                                text: temp["msg"],
+                                type: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Ok'
+                              }).then(function () {
+                                location.reload();
+                              }, function (dismiss) {
+                              // dismiss can be 'cancel', 'overlay',
+                              // 'close', and 'timer'
+                              if (dismiss === 'cancel') {
+
+                              }
+                            })
+
+                             //alert(temp["msg"]);
+                           }
+                           else {
+                             swal.hideLoading()
+                             swal({
+                               title: 'เกิดข้อผิดพลาด',
+                               text: temp["msg"],
+                               type: 'error',
+                               showCancelButton: false,
+                               confirmButtonColor: '#3085d6',
+                               cancelButtonColor: '#d33',
+                               confirmButtonText: 'Ok'
+                             }).then(function () {
+
+                             }, function (dismiss) {
+                             // dismiss can be 'cancel', 'overlay',
+                             // 'close', and 'timer'
+                             if (dismiss === 'cancel') {
+
+                             }
+                           })
+                             //alert(temp["msg"]);
+                           }
+                         } catch (e) {
+                              console.log('Error#542-decode error');
+                              swal.hideLoading()
+                              swal({
+                                title: 'เกิดข้อผิดพลาด',
+                                text: temp["msg"],
+                                type: 'error',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Ok'
+                              }).then(function () {
+
+                              }, function (dismiss) {
+                              // dismiss can be 'cancel', 'overlay',
+                              // 'close', and 'timer'
+                              if (dismiss === 'cancel') {
+
+                              }
+                            })
+                         }
+
+
+                   },
+                   failure: function (result) {
+                        alert(result);
+                   },
+                   error: function (xhr, status, p3, p4) {
+                        var err = "Error " + " " + status + " " + p3 + " " + p4;
+                        if (xhr.responseText && xhr.responseText[0] == "{")
+                             err = JSON.parse(xhr.responseText).Message;
+                        console.log(err);
+                   }
+        });
+      }
+      else {
+        swal(
+          '',
+          'ไม่สามารถลบข้อมูลได้',
+          'warning'
+        )
+      }
  }
 
  $(document).ready(function(){
@@ -1871,7 +1996,6 @@ $dept = $courseobj->Get_Dept_All();
 
 
    $('#adddetail').click(function() {
-     setdatepicker();
      var table = $(this).closest('table');
      if (table.find('input:text').length < 100) {
        var x = $("tr[name=addtr]:last").closest('tr').nextAll('tr');
@@ -1989,6 +2113,9 @@ $dept = $courseobj->Get_Dept_All();
          '<option value="24:30">24:30 น.</option><option value="24:45">24:45 น.</option></select>' +
          '</div></td><td><input type="text" class="form-control" id="room' + (rowCount - 1) + '"</td></tr>');
 
+         $('#dateteach'+(rowCount - 1)).datetimepicker({
+            format: 'YYYY-MM-DD'
+         });
        $.each(x, function(i, val) {
          table.append(val);
        });
@@ -2387,7 +2514,9 @@ function lastcal() {
       <input type="button" style="font-size: 18px; display:none;" class="btn btn-outline btn-success" name="submitbtn2" id="submitbtn2" value="ยืนยันเพื่อส่งข้อมูล" onclick="checkreq('0')"> &nbsp;
       <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล"> &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2');"> &nbsp;
-      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
+      <!-- <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล"> -->
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="delbtn" id="delbtn" onclick="deletedata();" value="ลบข้อมูล">
+
     </div>
 </form>
 </div>

@@ -1263,6 +1263,127 @@ function getfile(typedl)
 
 }
 
+function deletedata()
+{
+  if( document.getElementById('semester').value!="" && document.getElementById('semester').value!=undefined )
+  {
+    var file_data = new FormData;
+    var course_id = $('#id').val();
+    var teachername_temp = document.getElementById('semester').value;
+    var stringspl = teachername_temp.split('_');
+    var semester = stringspl[0];
+    var year = stringspl[1];
+    file_data.append("course_id",course_id);
+    file_data.append("semester",semester);
+    file_data.append("year",year);
+    var URL = '../../application/document/delete.php';
+    $.ajax({
+                  url: URL,
+                  dataType: 'text',
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: file_data,
+                  type: 'post',
+                  beforeSend: function() {
+                    swal({
+                      title: 'กรุณารอสักครู่',
+                      text: 'ระบบกำลังประมวลผล',
+                      allowOutsideClick: false
+                    })
+                    swal.showLoading()
+                  },
+                  success: function (result) {
+                        try {
+                          var temp = $.parseJSON(result);
+                          if(temp["status"]=='success')
+                          {
+                             swal.hideLoading()
+                             swal({
+                               title: 'ลบข้อมูลสำเร็จ',
+                               text: temp["msg"],
+                               type: 'success',
+                               showCancelButton: false,
+                               confirmButtonColor: '#3085d6',
+                               cancelButtonColor: '#d33',
+                               confirmButtonText: 'Ok'
+                             }).then(function () {
+                               location.reload();
+                             }, function (dismiss) {
+                             // dismiss can be 'cancel', 'overlay',
+                             // 'close', and 'timer'
+                             if (dismiss === 'cancel') {
+
+                             }
+                           })
+
+                            //alert(temp["msg"]);
+                          }
+                          else {
+                            swal.hideLoading()
+                            swal({
+                              title: 'เกิดข้อผิดพลาด',
+                              text: temp["msg"],
+                              type: 'error',
+                              showCancelButton: false,
+                              confirmButtonColor: '#3085d6',
+                              cancelButtonColor: '#d33',
+                              confirmButtonText: 'Ok'
+                            }).then(function () {
+
+                            }, function (dismiss) {
+                            // dismiss can be 'cancel', 'overlay',
+                            // 'close', and 'timer'
+                            if (dismiss === 'cancel') {
+
+                            }
+                          })
+                            //alert(temp["msg"]);
+                          }
+                        } catch (e) {
+                             console.log('Error#542-decode error');
+                             swal.hideLoading()
+                             swal({
+                               title: 'เกิดข้อผิดพลาด',
+                               text: temp["msg"],
+                               type: 'error',
+                               showCancelButton: false,
+                               confirmButtonColor: '#3085d6',
+                               cancelButtonColor: '#d33',
+                               confirmButtonText: 'Ok'
+                             }).then(function () {
+
+                             }, function (dismiss) {
+                             // dismiss can be 'cancel', 'overlay',
+                             // 'close', and 'timer'
+                             if (dismiss === 'cancel') {
+
+                             }
+                           })
+                        }
+
+
+                  },
+                  failure: function (result) {
+                       alert(result);
+                  },
+                  error: function (xhr, status, p3, p4) {
+                       var err = "Error " + " " + status + " " + p3 + " " + p4;
+                       if (xhr.responseText && xhr.responseText[0] == "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                       console.log(err);
+                  }
+       });
+     }
+     else {
+       swal(
+         '',
+         'ไม่สามารถลบข้อมูลได้',
+         'warning'
+       )
+     }
+}
+
 // Charecter fixed
 $(function() {//<-- wrapped here
   $('.numonly').on('input', function() {
@@ -2597,7 +2718,8 @@ function confreset(casereset) {
     <div id="buttondiv" align="center">
       <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn"  value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
       <input type="button" style="font-size: 18px;" class="btn btn-outline btn-warning" name="draftbtn" id="draftbtn" value="บันทึกข้อมูลชั่วคราว" onclick="checkreq('2')"> &nbsp;
-      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset('1');" value="รีเซ็ตข้อมูล">
+      <!-- <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset('1');" value="รีเซ็ตข้อมูล"> -->
+      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="delbtn" id="delbtn" onclick="deletedata();" value="ลบข้อมูล">
     </div>
 </form>
 </div>
@@ -2617,7 +2739,6 @@ function confreset(casereset) {
       <br><br>
       <div align="center">
         <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn2" id="submitbtn2" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
-        <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn2" id="resetbtn2" onclick="confreset('2');" value="รีเซ็ตข้อมูล">
       </div>
     </form>
     </ol>
