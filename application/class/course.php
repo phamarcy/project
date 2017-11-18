@@ -506,6 +506,19 @@ class Course
     }
     $data['ACCESS'] = $check_access;
     $data['INFO'] = $this->Get_Course_Info($course_id);
+    $dept = $this->Search_Course_Dept($course_id,$this->SEMESTER['id']);
+    if($dept)
+    {
+      $data['INFO']['department'] = $dept['id'];
+
+    }
+    $sql = "SELECT sum(se.`student`) as num_student FROM `course_evaluate` ce, `student_evaluate` se ";
+    $sql .= "WHERE ce.`course_evaluate_id` = se.`course_evaluate_id` AND ce.`course_id` = '".$course_id."' AND ce.`semester_id` = '".$this->SEMESTER['id']."'";
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $data['INFO']['num_student'] = $result[0]['num_student'];
+    }
     //id,name,semester,year
       return $data;
   }
