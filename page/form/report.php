@@ -115,8 +115,9 @@ $(function() {//<-- wrapped here
         }
         else
         {
-          $dept_id = $person->Get_Staff_Dep($_SESSION['id']);
-          $dept_id = $dept_id['code'];
+          $dept = $person->Get_Staff_Dep($_SESSION['id']);
+          $dept_id = $dept['code'];
+          $dept_name = $dept['name'];
         }
         //start Search
         $report = new Report();
@@ -143,12 +144,15 @@ $(function() {//<-- wrapped here
                             <div class="panel-heading">
                               <h5><b>
                               <?php
-
                               echo "แบบแจ้งวิธีการวัดผลและประเมินผล ".$dept_name. " ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
-                              $download_all = '../../application/download/download.php?course=all&info=evaluate&semester='.$semester.'&year='.$year;
+                              if(isset($data_eva['download']))
+                              {
+                                $download_all = $data_eva['download'];
                               ?>
                               <a target="_blank" href="<?php echo $download_all; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ Evaluation Form ทั้งหมด</button></a>
+                            <?php } ?>
                               </b></h5>
+
                             </div>
                             <div class="panel-body">
                               <?php
@@ -175,22 +179,22 @@ $(function() {//<-- wrapped here
                                   </thead>
                                   <tbody>
                                     <?php
-                                    for($i=0;$i<count($data_eva);$i++)
+                                    for($i=0;$i<count($data_eva['info']);$i++)
                                     {
                                       $num = $i+1;
                                       echo '<tr>';
                                       echo '<td>'.$num.'</td>';
-                                      echo '<td>'.$data_eva[$i]['id'].'</td>';
-                                      echo '<td>'.$data_eva[$i]['name'].'</td>';
-                                      if($data_eva[$i]['grade'] != '' && $data_eva[$i]['grade'] != null)
-                                        echo '<td><a target="_blank" href="../../files/grade/'.$data_eva[$i]['grade'].'"><i class="fa fa-file-excel-o fa-2x" aria-hidden="true"></i></a></td>';
+                                      echo '<td>'.$data_eva['info'][$i]['id'].'</td>';
+                                      echo '<td>'.$data_eva['info'][$i]['name'].'</td>';
+                                      if($data_eva['info'][$i]['grade'] != '' && $data_eva['info'][$i]['grade'] != null)
+                                        echo '<td><a target="_blank" href="../../files/grade/'.$data_eva['info'][$i]['grade'].'"><i class="fa fa-file-excel-o fa-2x" aria-hidden="true"></i></a></td>';
                                       else
                                         echo '<td></td>';
-                                      if($data_eva[$i]['syllabus'] != '' && $data_eva[$i]['syllabus'] != null)
-                                        echo '<td><a target="_blank" href="../../files'.$data_eva[$i]['syllabus'].'"><i class="fa fa-file-word-o fa-2x" aria-hidden="true"></i></a></td>';
+                                      if($data_eva['info'][$i]['syllabus'] != '' && $data_eva['info'][$i]['syllabus'] != null)
+                                        echo '<td><a target="_blank" href="../../files'.$data_eva['info'][$i]['syllabus'].'"><i class="fa fa-file-word-o fa-2x" aria-hidden="true"></i></a></td>';
                                       else
                                         echo '<td></td>';
-                                      echo '<td><a target="_blank" href="'.$data_eva[$i]['pdf'].'"><i class="fa fa-file-archive-o fa-2x" aria-hidden="true"></i></a></td>';
+                                      echo '<td><a target="_blank" href="'.$data_eva['info'][$i]['pdf'].'"><i class="fa fa-file-archive-o fa-2x" aria-hidden="true"></i></a></td>';
                                       echo '</tr>';
                                     }
                                     ?>
@@ -206,9 +210,12 @@ $(function() {//<-- wrapped here
                           <div class="panel-heading">
                             <h5><b>
                             <?php echo "แบบเชิญอาจารย์พิเศษ ".$dept_name." ภาคการศึกษาที่ ".$semester." ปีการศึกษา ".$year;
-                            $download_all_special =  '../../application/download/download.php?course=all&info=special&semester='.$semester.'&year='.$year;
+                            if(isset($data_special['download']))
+                            {
+                            $download_all_special =  $data_special['download'];
                             ?>
                             <a target="_blank" href="<?php echo $download_all_special; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ Instructor Form ทั้งหมด</button></a>
+                            <?php } ?>
                           </b></h5>
                           </div>
                           <div class="panel-body">
@@ -223,15 +230,15 @@ $(function() {//<-- wrapped here
                             {
                             ?>
                               <div class="panel-group" id="accordion">
-                                <?php for($i=0;$i<count($data_special);$i++) {
+                                <?php for($i=0;$i<count($data_special['info']);$i++) {
                                   $num = $i +1;
                                 echo '<div class="panel panel-default">
                                     <div class="panel-heading">
                                         <div class="panel-title" style="font-size:14px">
-                                        <a data-toggle="collapse" href="#'.$data_special[$i]['id'].'">'.$data_special[$i]['id'].' '.$data_special[$i]['name'].'</a>
+                                        <a data-toggle="collapse" href="#'.$data_special['info'][$i]['id'].'">'.$data_special['info'][$i]['id'].' '.$data_special['info'][$i]['name'].'</a>
                                       </div>
                                     </div>
-                                    <div id="'.$data_special[$i]['id'].'" class="panel-collapse collapse in">
+                                    <div id="'.$data_special['info'][$i]['id'].'" class="panel-collapse collapse in">
                                       <div class="panel-body">
                                         <table class="table table-hover" style="font-size:14px">
                                             <thead>
@@ -243,14 +250,14 @@ $(function() {//<-- wrapped here
                                                 </tr>
                                             </thead>
                                             <tbody>';
-                                            for($j=0;$j<count($data_special[$i]['special']);$j++)
+                                            for($j=0;$j<count($data_special['info'][$i]['special']);$j++)
                                             {
                                               $num_special = $j+1;
                                               echo '<tr>
                                                   <td width="10%">'.$num_special.'</td>
-                                                  <td width="70%">'.$data_special[$i]['special'][$j]['name'].'</td>
-                                                  <td width="10%"><a target="_blank" href="../../files'.$data_special[$i]['special'][$j]['cv'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
-                                                  <td width="10%"><a target="_blank" href="'.$data_special[$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                                                  <td width="70%">'.$data_special['info'][$i]['special'][$j]['name'].'</td>
+                                                  <td width="10%"><a target="_blank" href="../../files'.$data_special['info'][$i]['special'][$j]['cv'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                                                  <td width="10%"><a target="_blank" href="'.$data_special['info'][$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
                                                   </tr>';
                                             }
                                             echo '</tbody>

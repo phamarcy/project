@@ -72,7 +72,9 @@ class Report
         }
       }
       $DATA = array();
-      $sql ="SELECT `course_id` FROM `course_evaluate` WHERE `status` = '1' AND `semester_id` = ".$semester_id;;
+      $DATA['info'] = array();
+      $DATA['download'] = $this->DOWNLOAD_URL."?course=all&type=report&info=evaluate&semester=".$semester."&year=".$year;
+      $sql ="SELECT `course_id` FROM `course_evaluate` WHERE `status` = '1' AND `semester_id` = ".$semester_id;
       $result = $this->DB->Query($sql);
       if($result)
       {
@@ -86,7 +88,7 @@ class Report
           $data['id'] = $result[$i]['course_id'];
           $data['name'] = $this->COURSE->Get_Course_Name($data['id']);
           $data['syllabus'] = $this->COURSE->Get_Course_Syllabus($data['id'],$semester_id);
-          $data['pdf'] = $this->DOWNLOAD_URL."?course=".$data['id']."&info=evaluate&semester=".$semester."&year=".$year;
+          $data['pdf'] = $this->DOWNLOAD_URL."?course=".$data['id']."&type=report&info=evaluate&semester=".$semester."&year=".$year;
           $sql = "SELECT `file_name` FROM `couse_grade` WHERE `course_id` = '".$data['id']."' AND `semester_id` = ".$semester_id;
           $result_filename = $this->DB->Query($sql);
           if($result_filename)
@@ -97,10 +99,10 @@ class Report
           {
             $data['grade'] = null;
           }
-          array_push($DATA,$data);
+          array_push($DATA['info'],$data);
         }
       }
-      if(count($DATA) == 0)
+      if(count($DATA['info']) == 0)
       {
         $return['status'] = 'error';
         $return['msg'] = 'ไม่พบข้อมูล';
@@ -153,6 +155,8 @@ class Report
         }
       }
       $DATA = array();
+      $DATA['info'] = array();
+      $DATA['download'] = $this->DOWNLOAD_URL."?course=all&type=report&info=special&semester=".$semester."&year=".$year;
       $sql = "SELECT DISTINCT `course_id` FROM `course_hire_special_instructor` WHERE `status` = '1'";
       $result_course = $this->DB->Query($sql);
       if($result_course)
@@ -181,10 +185,10 @@ class Report
               array_push($data['special'],$instructor);
             }
           }
-          array_push($DATA,$data);
+          array_push($DATA['info'],$data);
         }
       }
-      if(count($DATA) == 0)
+      if(count($DATA['info']) == 0)
       {
         $return['status'] = 'error';
         $return['msg'] = 'ไม่พบข้อมูล';

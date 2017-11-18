@@ -461,6 +461,7 @@ class approval
             $course['name'] = $this->COURSE->Get_Course_Name($course['id']);
             $pdf = $this->Get_Doc_Url($course['id'],'draft');
             $course['pdf'] = $pdf['evaluate'];
+            $course['document'] = $pdf['document'];
             //search evaluate form
             $course['evaluate']['status'] = $this->Get_Doc_Status($course['id']);
             $course['evaluate']['edit'] = $this->Is_Edit('evaluate',$course['id'],null);
@@ -481,11 +482,8 @@ class approval
             //end search evaluate form
             //search special instructor form
             $course['special'] = $this->Get_Instructor_Data($course['id']);
-              //end search special instructor
+            //end search special instructor
             array_push($DATA,$course);
-
-
-
         }
         return json_encode($DATA);
       }
@@ -859,6 +857,9 @@ class approval
   {
     $url = $this->CURL->GET_SERVER_URL();
     $view_url = $url."/application/pdf/view.php";
+    $download_url = $url."/application/download/download.php";
+    $return_url['document']['all'] = $download_url."?course=".$course_id."&type=draft&info=all&semester=".$this->SEMESTER."&year=".$this->YEAR;
+    $return_url['document']['instructor'] = $download_url."?course=".$course_id."&type=draft&info=instructor&semester=".$this->SEMESTER."&year=".$this->YEAR;
     $return_url['evaluate'] = $view_url."?course=".$course_id."&type=".$type."&info=evaluate&semester=".$this->SEMESTER."&year=".$this->YEAR;
     $return_url['syllabus'] = $this->COURSE->Get_Course_Syllabus($course_id,$this->SEMESTER_ID);
     return $return_url;
