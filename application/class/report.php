@@ -157,7 +157,7 @@ class Report
       $DATA = array();
       $DATA['info'] = array();
       $DATA['download'] = $this->DOWNLOAD_URL."?course=all&type=report&info=special&semester=".$semester."&year=".$year;
-      $sql = "SELECT DISTINCT `course_id` FROM `course_hire_special_instructor` WHERE `status` = '1'";
+      $sql = "SELECT DISTINCT `course_id` FROM `course_hire_special_instructor` WHERE `status` = '1' AND `semester_id` = ".$semester_id;
       $result_course = $this->DB->Query($sql);
       if($result_course)
       {
@@ -168,7 +168,7 @@ class Report
              continue;
            }
           $sql = "SELECT si.`instructor_id`,si.`prefix`,si.`firstname`,si.`lastname`,si.`cv` FROM `course_hire_special_instructor` ci ,`special_instructor` si ";
-          $sql.= "WHERE ci.`instructor_id` = si.`instructor_id` AND ci.`course_id` = '".$result_course[$i]['course_id']."' AND ci.`status` = '1'";
+          $sql.= "WHERE ci.`instructor_id` = si.`instructor_id` AND ci.`course_id` = '".$result_course[$i]['course_id']."' AND ci.`status` = '1' AND ci.`semester_id` = ".$semester_id;
           $result_instructor =  $this->DB->Query($sql);
           $data = array();
           $data['id'] = $result_course[$i]['course_id'];

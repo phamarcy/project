@@ -24,33 +24,119 @@ function add_zip($zip,$course,$path_name)
 
 }
 
-if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) && isset($_GET['info']))
+if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) && isset($_GET['info']) && isset($_GET['type']))
 {
   $path_file = $FILE_PATH;
   $course = $_GET['course']; //course id
   $semester = $_GET['semester'];
   $year = $_GET['year'];
   $semester_id = $deadline->Search_Semester_id($semester,$year);
-  $type = $_GET['info']; //evaluate , special
-
+  $info = $_GET['info']; //evaluate , special
+  $type = $_GET['type'];
   $zip = new ZipArchive();
-  $zip_file = $path_file."/report_".$type."_".$course."_".$semester."_".$year.".zip";
-  if(file_exists($zip_file))
+  if($type == "report")
   {
-    unlink($zip_file);
-  }
-  if ($zip->open($zip_file, ZipArchive::CREATE)!==TRUE)
-  {
-      exit("cannot open <$zip_file>\n");
-  }
-
-  //get specific course in semester
-  if($course != 'all')
-  {
-    if($type == 'evaluate')
+    $zip_file = $path_file."/report_".$info."_".$course."_".$semester."_".$year.".zip";
+    if(file_exists($zip_file))
     {
+      unlink($zip_file);
+    }
+    if ($zip->open($zip_file, ZipArchive::CREATE)!==TRUE)
+    {
+        exit("cannot open <$zip_file>\n");
+    }
+    if($course != 'all')
+    {
+      if($info == 'evaluate')
+      {
+        $sql = "SELECT `pdf_file` FROM `course_evaluate` ce, `student_evaluate` se" ;
+        $sql .= " WHERE  ce.`course_evaluate_id` = se.`course_evaluate_id` AND ce.`status` = '1' AND `course_id` = '".$course."' AND ce.`semester_id` = ".$semester_id;
+        $result = $db->Query($sql);
+        if($result)
+        {
+          for($i=0 ;$i< count($result);$i++)
+          {
+            add_zip($zip,$course,$result[$i]['pdf_file']);
+          }
+        }
+      }
+    }
+    else
+    {
+      if($info == 'special') //special instrucor
+      {
+        $sql = "SELECT `course_id`,`instructor_id`,`pdf_file` FROM `course_hire_special_instructor` WHERE `status` = '1' AND `semester_id` = ".$semester_id;
+        $result = $db->Query($sql);
+        if($result)
+        {
+          for($i=0 ;$i< count($result);$i++)
+          {
+            add_zip($zip,$result[$i]['course_id'],$result[$i]['pdf_file']);
+          }
+        }
+      }
+      else //course evaluate
+      {
+        $sql = "SELECT `course_id`,`pdf_file` FROM `course_evaluate` ce, `student_evaluate` se" ;
+        $sql .= " WHERE  ce.`course_evaluate_id` = se.`course_evaluate_id` AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id;
+        $result = $db->Query($sql);
+        if($result)
+        {
+          for($i=0 ;$i< count($result);$i++)
+          {
+            add_zip($zip,$result[$i]['course_id'],$result[$i]['pdf_file']);
+          }
+        }
+      }
+    }
+  }
+  else if($type == 'draft')
+  {
+    if($info == 'all')
+    {
+      $zip_file = $path_file."/document_".$course."_".$semester."_".$year.".zip";
+      if(file_exists($zip_file))
+      {
+        unlink($zip_file);
+      }
+      if ($zip->open($zip_file, ZipArchive::CREATE)!==TRUE)
+      {
+          exit("cannot open <$zip_file>\n");
+      }
+    }
+    else if($info == 'instructor')
+    {
+      $zip_file = $path_file."/instructor_".$course."_".$semester."_".$year.".zip";
+      if(file_exists($zip_file))
+      {
+        unlink($zip_file);
+      }
+      if ($zip->open($zip_file, ZipArchive::CREATE)!==TRUE)
+      {
+          exit("cannot open <$zip_file>\n");
+      }
+    }
+    if($info == 'instructor' || $info == 'all')
+    {
+      // get all special instructor pdf file
+      $sql = "SELECT ci.`course_id`,ci.`instructor_id`,ci.`pdf_file`,si.`cv` FROM `course_hire_special_instructor` ci, `special_instructor` si ";
+      $sql .= "WHERE ci.`course_id` = '".$course."' AND ci.`semester_id` = ".$semester_id." AND ci.`instructor_id` = si.`instructor_id`";
+      $result = $db->Query($sql);
+      if($result)
+      {
+        for($i=0 ;$i< count($result);$i++)
+        {
+          add_zip($zip,$result[$i]['course_id'],$result[$i]['pdf_file']);
+          // get cv of special instructor
+          add_zip($zip,$result[$i]['course_id'],'/cv/'.$result[$i]['cv']);
+        }
+      }
+    }
+    if($info == 'all')
+    {
+      // get course evaluate pdf file
       $sql = "SELECT `pdf_file` FROM `course_evaluate` ce, `student_evaluate` se" ;
-      $sql .= " WHERE  ce.`course_evaluate_id` = se.`course_evaluate_id` AND ce.`status` = '1' AND `course_id` = '".$course."' AND ce.`semester_id` = ".$semester_id;
+      $sql .= " WHERE  ce.`course_evaluate_id` = se.`course_evaluate_id` AND ce.`course_id` = '".$course."' AND se.`section` = 1 AND ce.`semester_id` = ".$semester_id;
       $result = $db->Query($sql);
       if($result)
       {
@@ -60,35 +146,11 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
         }
       }
     }
+
   }
-  else
-  {
-    if($type == 'special') //special instrucor
-    {
-      $sql = "SELECT `course_id`,`instructor_id`,`pdf_file` FROM `course_hire_special_instructor` WHERE `status` = '1' AND `semester_id` = ".$semester_id;
-      $result = $db->Query($sql);
-      if($result)
-      {
-        for($i=0 ;$i< count($result);$i++)
-        {
-          add_zip($zip,$result[$i]['course_id'],$result[$i]['pdf_file']);
-        }
-      }
-    }
-    else //course evaluate
-    {
-      $sql = "SELECT `course_id`,`pdf_file` FROM `course_evaluate` ce, `student_evaluate` se" ;
-      $sql .= " WHERE  ce.`course_evaluate_id` = se.`course_evaluate_id` AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id;
-      $result = $db->Query($sql);
-      if($result)
-      {
-        for($i=0 ;$i< count($result);$i++)
-        {
-          add_zip($zip,$result[$i]['course_id'],$result[$i]['pdf_file']);
-        }
-      }
-    }
-  }
+
+
+  //get specific course in semester
 
   if($zip->numFiles <= 0)
   {
@@ -100,14 +162,14 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
   {
     $zip->close();
     session_write_close();
-    header('Content-Description: File Transfer');
-    header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename="'.basename($zip_file).'"');
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
-    header('Content-Length: ' . filesize($zip_file));
-    readfile($zip_file);
+    // header('Content-Description: File Transfer');
+    // header('Content-Type: application/octet-stream');
+    // header('Content-Disposition: attachment; filename="'.basename($zip_file).'"');
+    // header('Expires: 0');
+    // header('Cache-Control: must-revalidate');
+    // header('Pragma: public');
+    // header('Content-Length: ' . filesize($zip_file));
+    // readfile($zip_file);
   }
 
 }
