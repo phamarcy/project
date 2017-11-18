@@ -131,6 +131,9 @@ else {
           height: 250px;
           overflow-y: scroll;
       }
+      .bigdrop {
+          width: 600px !important;
+      }
     </style>
   </head>
 
@@ -286,16 +289,17 @@ else {
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-12">
+              <div class="col-xs-12 col-md-12">
                   <form id="course" method="post">
                     <div class="form-inline">
                       <div class="form-group">
-                        <label for="">วิชา</label>
-                        <select class="form-control" name="course" id="search_course_id">
-                            <?php foreach ($course->Get_All_Course() as $value_course): ?>
-                              <option value="<?php echo $value_course['id'] ?>"><?php echo $value_course['id']." ".$value_course['name']['en']; ?></option>
-                            <?php endforeach; ?>
-                          </select>
+                          <label for="">วิชา</label>
+                          <select class="form-control resize" name="course" id="search_course_id" >
+                              <?php foreach ($course->Get_All_Course() as $value_course): ?>
+                                <option value="<?php echo $value_course['id'] ?>"><?php echo $value_course['id']." ".$value_course['name']['en']; ?></option>
+                              <?php endforeach; ?>
+                            </select>
+ 
                       </div>
                       <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
                       <input type="hidden" name="semester_id" id="semester_id" value="<?php echo $semeter['id'] ?>">
@@ -304,9 +308,7 @@ else {
                     </div>
                   </form>
                 </div>
-
-              </div>
-
+                </div>
               <hr>
               <table class="table table-hover" style="font-size:14px">
                 <thead>
@@ -1130,7 +1132,7 @@ else {
         }
       }
       $('#select').select2({
-        width: '70%'
+        {dropdownCssClass : 'bigdrop'}
       });
       $('#search_course_id').select2();
     </script>
