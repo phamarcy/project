@@ -825,11 +825,11 @@ $dept = $courseobj->Get_Dept_All();
 
    for(var i=1;i<=(($('#detailteaching tr').length)-2);i++)
    {
-      topiclec0[i-1] = document.getElementById('detail_topic'+i).value;
-      date0[i-1] = document.getElementById('dateteach'+i).value;
-      timebegin0[i-1] = document.getElementById('timebegin'+i).value;
-      timeend0[i-1] = document.getElementById('timeend'+i).value;
-      room0[i-1] = document.getElementById('room'+i).value;
+      topiclec0[i-1] = $('#detail_topic'+i).val();
+      date0[i-1] = $('#dateteach'+i).val();
+      timebegin0[i-1] = $('#timebegin'+i).val();
+      timeend0[i-1] = $('#timeend'+i).val();
+      room0[i-1] = $('#room'+i).val();
    }
 
    topiclec = topiclec0;
@@ -1827,7 +1827,16 @@ $dept = $courseobj->Get_Dept_All();
         });
 
         if ( ! fail ) {
-          checkreq('1');
+          if($('#hour').val()=='0')
+          {
+            swal(
+              '',
+              'กรุณากรอกจำนวนชั่วโมงของหัวข้อที่เชิญมาสอนให้ถูกต้อง',
+              'warning'
+            )
+          }else {
+            checkreq('1');
+          }
         } else {
           swal(
             '',
