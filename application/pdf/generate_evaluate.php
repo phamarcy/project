@@ -435,7 +435,10 @@ for($i=1;$i<6;$i++)
 	$pdf->SetX(55);
 
 }
-
+$pdf->SetX(35);
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874','อาจารย์ผู้ร่วมสอน '),0,1,"L");
+$pdf->SetX(50);
+$pdf->MultiCell( 140, 7, iconv( 'UTF-8','TIS-620',$data_pdf['teacher_co']), 0,1);
 //$pdf->Ln();
 
 // Topic 4
