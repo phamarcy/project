@@ -144,9 +144,14 @@ if(isset($_POST['DATA']))
 			for ($i=0; $i < count($DATA["EXAM_MID1_COMMITTEE_LEC"]); $i++) {
 				if($DATA["EXAM_MID1_COMMITTEE_LEC"] != "")
 				{
-					$teacher_name = $DATA["EXAM_MID1_COMMITTEE_LEC"][$i];
-				  $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_evaluate_id`, `teacher_name`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_name."','MID1','LEC')";
-					$result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
+					$teacher_id =$person->Get_Teacher_Id($DATA["EXAM_MID1_COMMITTEE_LEC"][$i]);
+					if (!$teacher_id) {
+							$log->Write("find failed : not found EXAM_MID1_COMMITTEE_LEC id".$DATA["EXAM_MID1_COMMITTEE_LEC"][$i] );
+					}
+					if ($teacher_id) {
+							$sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_evaluate_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','MID1','LEC')";
+							$result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
+					}
 				}
 
 			}
@@ -154,9 +159,14 @@ if(isset($_POST['DATA']))
 			for ($i=0; $i < count($DATA["EXAM_MID1_COMMITTEE_LAB"]); $i++) {
 				if($DATA["EXAM_MID1_COMMITTEE_LAB"][$i] != "")
 				{
-			    $teacher_name = $DATA["EXAM_MID1_COMMITTEE_LAB"][$i];
-			    $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_evaluate_id`, `teacher_name`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_name."','MID1','LAB')";
-			    $result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
+			    $teacher_id =$person->Get_Teacher_Id($DATA["EXAM_MID1_COMMITTEE_LAB"][$i]);
+			    if (!$teacher_id) {
+			        $log->Write("find failed : not found EXAM_MID1_COMMITTEE_LAB id".$DATA["EXAM_MID1_COMMITTEE_LAB"][$i] );
+			    }
+			    if ($teacher_id) {
+			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_commitee_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','MID1','LAB')";
+			        $result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
+			    }
 				}
 			}
 
@@ -164,18 +174,27 @@ if(isset($_POST['DATA']))
 			for ($i=0; $i < count($DATA["EXAM_MID2_COMMITTEE_LEC"]); $i++) {
 				if($DATA["EXAM_MID2_COMMITTEE_LEC"][$i] != "")
 				{
-					$teacher_name = $DATA["EXAM_MID2_COMMITTEE_LEC"][$i];
-				  $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_evaluate_id`, `teacher_name`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_name."','MID2','LEC')";
-				  $result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
+					$teacher_id =$person->Get_Teacher_Id($DATA["EXAM_MID2_COMMITTEE_LEC"][$i]);
+					if (!$teacher_id) {
+							$log->Write("find failed : not found EXAM_MID2_COMMITTEE_LEC id".$DATA["EXAM_MID2_COMMITTEE_LEC"][$i] );
+					}
+					if ($teacher_id) {
+							$sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','MID2','LEC')";
+							$result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
+
+					}
 				}
 			}
 
 			for ($i=0; $i < count($DATA["EXAM_MID2_COMMITTEE_LAB"]); $i++) {
 				if($DATA["EXAM_MID2_COMMITTEE_LAB"] != "")
 				{
-					$teacher_name = $DATA["EXAM_MID2_COMMITTEE_LAB"][$i];
-					$sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_evaluate_id`, `teacher_name`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_name."','MID2','LAB')";
-					$result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
+					$teacher_id = $person->Get_Teacher_Id($DATA["EXAM_MID2_COMMITTEE_LAB"][$i]);
+					if ($teacher_id) {
+							$sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','MID2','LAB')";
+							$result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
+
+					}
 				}
 			}
 
@@ -183,18 +202,29 @@ if(isset($_POST['DATA']))
 			for ($i=0; $i < count($DATA["EXAM_FINAL_COMMITTEE_LEC"]); $i++) {
 				if($DATA["EXAM_FINAL_COMMITTEE_LEC"][$i] != "")
 				{
-			    $teacher_name = $DATA["EXAM_FINAL_COMMITTEE_LEC"][$i];
-			    $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_evaluate_id`, `teacher_name`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_name."','FINAL','LEC')";
-			    $result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
+			    $teacher_id =$person-> Get_Teacher_Id($DATA["EXAM_FINAL_COMMITTEE_LEC"][$i]);
+			    if (!$teacher_id) {
+			        $log->Write("find failed : not found EXAM_FINAL_COMMITTEE_LEC id".$DATA["EXAM_FINAL_COMMITTEE_LEC"][$i] );
+			    }
+			    if ($teacher_id) {
+			        $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','FINAL','LEC')";
+			        $result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
+
+			    }
 				}
 			}
 
 			for ($i=0; $i < count($DATA["EXAM_FINAL_COMMITTEE_LAB"]); $i++) {
 				if($DATA["EXAM_FINAL_COMMITTEE_LAB"][$i] != "")
 				{
-					$teacher_name = $DATA["EXAM_FINAL_COMMITTEE_LAB"][$i];
-				  $sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_evaluate_id`, `teacher_name`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_name."','FINAL','LAB')";
-					$result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
+					$teacher_id =$person->Get_Teacher_Id($DATA["EXAM_FINAL_COMMITTEE_LAB"][$i]);
+					if (!$teacher_id) {
+							$log->Write("find failed : not found EXAM_FINAL_COMMITTEE_LAB id".$DATA["EXAM_FINAL_COMMITTEE_LAB"][$i] );
+					}
+					if ($teacher_id) {
+							$sql_exam_commitee="INSERT INTO `exam_commitee`( `exam_id`, `teacher_id`, `type`, `type_commitee`) VALUES (".$result_exam_evaluate_id[0]["exam_evaluate_id"].",'".$teacher_id."','FINAL','LAB')";
+							$result_exam_commitee = $db->Insert_Update_Delete($sql_exam_commitee);
+					}
 				}
 			}
 
@@ -229,10 +259,13 @@ if(isset($_POST['DATA']))
 			for ($i=0; $i < sizeof($DATA["TEACHER"]); $i++) {
 				if($DATA["TEACHER"][$i] != '')
 				{
-			    $teacher_name = $DATA["TEACHER"][$i];
-			    if ($teacher_name) {
-			        $sql_teacher_exam_evaluate = "INSERT INTO `teacher_exam_evaluate`(`teacher_name`, `course_eveluate_id`)VALUES ('".$teacher_name."',".$result_course_evaluate_id[0]["course_evaluate_id"].")";
-							$sql_teacher_exam_evaluate .= "ON DUPLICATE KEY UPDATE `teacher_name` = '".$teacher_name."' , `course_eveluate_id` = ".$result_course_evaluate_id[0]["course_evaluate_id"];
+			    $teacher_id = $person->Get_Teacher_Id($DATA["TEACHER"][$i]);
+			    if (!$teacher_id) {
+			        $log->Write("insert data into database failed : not found TEACHER id on ".$DATA["TEACHER"][$i]);
+			    }
+			    if ($teacher_id) {
+			        $sql_teacher_exam_evaluate = "INSERT INTO `teacher_exam_evaluate`(`teacher_id`, `course_eveluate_id`)VALUES ('".$teacher_id."',".$result_course_evaluate_id[0]["course_evaluate_id"].")";
+							$sql_teacher_exam_evaluate .= "ON DUPLICATE KEY UPDATE `teacher_id` = '".$teacher_id."' , `course_eveluate_id` = ".$result_course_evaluate_id[0]["course_evaluate_id"];
 			        $result_teacher_exam_evaluate = $db->Insert_Update_Delete($sql_teacher_exam_evaluate);
 			    }
 				}
@@ -585,7 +618,7 @@ $pdf->Cell(15,7,$data_pdf['final_hour_lab'],0,0,"C");
 $pdf->SetX(80);
 for($i=1;$i<=10;$i++)
 {
-	$pdf->Cell(60,7,$i < count($data_pdf['exam_final_committee_lab']) +1  ? iconv( 'UTF-8','cp874',$i.') '.$data_pdf['exam_final_committee_lab'][$i-1]) : $i.")",0);
+	$pdf->Cell(60,7,$i < count($data_pdf['exam_final_committee_lec']) +1  ? iconv( 'UTF-8','cp874',$i.') '.$data_pdf['exam_final_committee_lab'][$i-1]) : $i.")",0);
 	$j++;
 	if($j >=2)
 	{
