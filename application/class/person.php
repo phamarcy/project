@@ -143,7 +143,14 @@ class Person
     {
       $lname = $name[$name_space-1];
       $fname = $name[$name_space-2];
-      $sql = "SELECT code FROM `staff` WHERE fname = '".$fname."' AND lname ='".$lname."'";
+      if(strlen($fname) != mb_strlen($fname, 'utf-8'))
+      {
+        $sql = "SELECT code FROM `staff` WHERE fname = '".$fname."' AND lname ='".$lname."'";
+      }
+      else
+      {
+        $sql = "SELECT code FROM `staff` WHERE e_fname = '".$fname."' AND e_lname ='".$lname."'";
+      }
       $this->DB->Change_DB($this->PERSON_DB);
       $result = $this->DB->Query($sql);
       $this->DB->Change_DB($this->DEFAULT_DB);
