@@ -19,9 +19,6 @@ $semester        = $deadline->Get_Current_Semester();
 $var             = $approve->Check_Status($_SESSION['id']);
 
 $type_status=$course->Get_Status_Text();
-
-
-
 $data_course     = json_decode($var, true);
 
 ?>
@@ -358,8 +355,12 @@ $data_course     = json_decode($var, true);
 													<?php if (isset($_SESSION['level'])) { ?>
 													<div id="special<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse  in">
 														<div class="panel-body" style="font-size:14px;">
+															<?php 
+																if (count($value_course['special'])==0) { ?>
+																	<div class="fa fa-exclamation-circle" style="color: #ec2c2c;font-size:16px;"></div><b style="color: #ec2c2c;font-size:16px;"> กระบวนวิชานี้ไม่ได้เชิญอาจารย์พิเศษ </b>
+														<?php		}
+															?>
 															<div class="panel-group" id="accordion">
-
 																<?php foreach ($value_course['special'] as $keysp => $valuesp):
 																	$status_sp='';
 																	switch ($valuesp['status']) {

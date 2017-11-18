@@ -25,7 +25,16 @@
 			$_SESSION['level']=1;	
 		}
 	}
+	if (isset($_POST['change_leveldep'])) {
+		if ($_SESSION['level']==2) {
+			$_SESSION['level']=4;
+		}elseif($_SESSION['level']==4){
+			$_SESSION['level']=2;
+		}
+	}
+
 	$show_btn=0;
+	$show_btndep=0;
 	$show_btnmulti=0;
 	if ($check_assessor[1]==true || $check_assessor[2]==true || $_SESSION['level']==6) {
 		
@@ -44,7 +53,9 @@
 	if (isset($_GET['level'])) {
 		$_SESSION['level'] = $_GET['level'];
 	}
-
+	if ($check_assessor[0]==2) {
+		$show_btndep=1;
+	}
 	$person->Close_connection();
  ?>
 <html>
@@ -253,6 +264,7 @@
 				loadDoc('form/home.php');
 			}
 		}
+
 	
 		
 	</script>
@@ -391,7 +403,7 @@
 				<form action="index.php" method="POST" class="form-inline">
 					<b>ยินดีต้อนรับ | <font color="#51cc62"> คุณ <?php echo $_SESSION['fname'].' ',$_SESSION['lname']; ?></font></b>
 					<?php 
-					if ($show_btn==1 || $show_btnmulti==1) { 
+					if ($show_btn==1 || $show_btnmulti==1 ||$show_btndep==1) { 
 						if ($_SESSION['level']==1) {
 							$status_name ="อาจารย์";
 						}else if ($_SESSION['level']==2) {
@@ -417,6 +429,9 @@
 						<b>สถานะ : <?php echo $status_name;?> </b>&nbsp;
 						<?php if ($show_btn==1 && $show_btnmulti==0) {  ?>
 							<button type="submit" class="btn btn-primary btn-outlne" name="change_level">เปลี่ยนสถานะ</button>
+						<?php } ?>
+						<?php if ($show_btndep==1) {  ?>
+							<button type="submit" class="btn btn-primary btn-outlne" name="change_leveldep">เปลี่ยนสถานะ</button>
 						<?php } ?>
 						<?php if ($show_btnmulti==1) {  ?>
 							<div class="dropdown" style="display:inline-block;">
@@ -587,8 +602,6 @@
 
 								<?php
 							}
-
-
 						?>
 					</ul>
 				</div>
