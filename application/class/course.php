@@ -39,8 +39,8 @@ class Course
       $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
       {
-        $return['status'] = 'success';
-        $return['msg'] = 'บันทึกข้อมูลสำเร็จ';
+          $return['status'] = 'success';
+          $return['msg'] = 'บันทึกข้อมูลสำเร็จ';
       }
       else
       {
@@ -863,14 +863,24 @@ class Course
     $result = $this->DB->Insert_Update_Delete($sql);
     if(!$result)
     {
-      $this->LOG->Write("Error sql :".$sql);
       $return['status'] = 'error';
       $return['msg'] = 'ไม่สามารถลบข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
     }
     else
     {
-      $return['status'] = 'success';
-      $return['msg'] = 'ลบข้อมูลสำเร็จ';
+      $sql = "DELETE FROM `department_course_responsible` WHERE `course_id` = '".$course_id."'";
+      $result = $this->DB->Insert_Update_Delete($sql);
+      if($result)
+      {
+        $return['status'] = 'success';
+        $return['msg'] = 'ลบข้อมูลสำเร็จ';
+      }
+      else
+      {
+        $return['status'] = 'error';
+        $return['msg'] = 'ไม่สามารถลบข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ';
+      }
+
     }
     return $return;
   }
