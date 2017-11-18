@@ -137,6 +137,7 @@ $semester = $deadline->Get_Current_Semester();
             </div>
             <div class="panel-body" style="position: relative;">
               <form id="manage_semester">
+                <button type="button" class="btn btn-outline btn-default" id="change-data">เปลี่ยน</button>
                   <div class="form-inline">
                       <h style="width: 100px;  ">ภาคการศึกษาที่ </h>
                       <div class="form-group">
@@ -148,7 +149,6 @@ $semester = $deadline->Get_Current_Semester();
                       </div>
                       ปีการศึกษา
                       <input class="form-control" id="year" name="year" placeholder="e.g. 2560" style="width: 100px;" value="<?php echo $semester['year']; ?>" disabled>
-                      <button type="button" class="btn btn-outline btn-default" id="change-data">เปลี่ยน</button>
                     <img id="loading" height="35px"/>
                   </div>
                   <br>
