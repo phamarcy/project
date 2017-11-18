@@ -75,6 +75,25 @@ $dept = $courseobj->Get_Dept_All();
  </style>
 
  <script>
+ function searchname() {
+
+       var name_s = $("#search_1").val();
+       $("#dtl1").html('');
+       if(name_s.length > 0)
+       {
+         $.post("search_name.php", { name: name_s}, function(data) {
+               data = JSON.parse( data );
+               for(var i=0;i<data.length;i++)
+               {
+                   $("#dtl1").append('<option value="'+data[i]+'"></option>');
+               }
+
+             })
+             .fail(function() {
+                 alert("error");
+             });
+       }
+}
  // Charecter fixed
  $(function() {//<-- wrapped here
    $('.numonly').on('input', function() {
@@ -141,108 +160,108 @@ $dept = $courseobj->Get_Dept_All();
          '" size="30" value="'+temp["lecture_detail"][tr-1]["topic_name"]+'"></div></td><td><input type="date" class="form-control" name="dateteach' + tr + '" id="dateteach' + tr +
          '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_date"]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline">' +
          '<select class="form-control" name="timebegin' + tr + '" id="timebegin' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_time_start"]+'">'+
-         '<option value="00:00">00:00 น.</option><option value="00:15">00:15 น.</option>' +
-         '<option value="00:30">00:30 น.</option><option value="00:45">00:45 น.</option>' +
-         '<option value="01:00">01:00 น.</option><option value="01:15">01:15 น.</option>' +
-         '<option value="01:30">01:30 น.</option><option value="01:45">01:45 น.</option>' +
-         '<option value="02:00">02:00 น.</option><option value="02:15">02:15 น.</option>' +
-         '<option value="02:30">02:30 น.</option><option value="02:45">02:45 น.</option>' +
-         '<option value="03:00">03:00 น.</option><option value="03:15">03:15 น.</option>' +
-         '<option value="03:30">03:30 น.</option><option value="03:45">03:45 น.</option>' +
-         '<option value="04:00">04:00 น.</option><option value="04:15">04:15 น.</option>' +
-         '<option value="04:30">04:30 น.</option><option value="04:45">04:45 น.</option>' +
-         '<option value="05:00">05:00 น.</option><option value="05:15">05:15 น.</option>' +
-         '<option value="05:30">05:30 น.</option><option value="05:45">05:45 น.</option>' +
-         '<option value="06:00">06:00 น.</option><option value="06:15">06:15 น.</option>' +
-         '<option value="06:30">06:30 น.</option><option value="06:45">06:45 น.</option>' +
-         '<option value="07:00">07:00 น.</option><option value="07:15">07:15 น.</option>' +
-         '<option value="07:30">07:30 น.</option><option value="07:45">07:45 น.</option>' +
-         '<option value="08:00">08:00 น.</option><option value="08:15">08:15 น.</option>' +
-         '<option value="08:30">08:30 น.</option><option value="08:45">08:45 น.</option>' +
-         '<option value="09:00">09:00 น.</option><option value="09:15">09:15 น.</option>' +
-         '<option value="09:30">09:30 น.</option><option value="09:45">09:45 น.</option>' +
-         '<option value="10:00">10:00 น.</option><option value="10:15">10:15 น.</option>' +
-         '<option value="10:30">10:30 น.</option><option value="10:45">10:45 น.</option>' +
-         '<option value="11:00">11:00 น.</option><option value="11:15">11:15 น.</option>' +
-         '<option value="11:30">11:30 น.</option><option value="11:45">11:45 น.</option>' +
-         '<option value="12:00">12:00 น.</option><option value="12:15">12:15 น.</option>' +
-         '<option value="12:30">12:30 น.</option><option value="12:45">12:45 น.</option>' +
-         '<option value="13:00">13:00 น.</option><option value="13:15">13:15 น.</option>' +
-         '<option value="13:30">13:30 น.</option><option value="13:45">13:45 น.</option>' +
-         '<option value="14:00">14:00 น.</option><option value="14:15">14:15 น.</option>' +
-         '<option value="14:30">14:30 น.</option><option value="14:45">14:45 น.</option>' +
-         '<option value="15:00">15:00 น.</option><option value="15:15">15:15 น.</option>' +
-         '<option value="15:30">15:30 น.</option><option value="15:45">15:45 น.</option>' +
-         '<option value="16:00">16:00 น.</option><option value="16:15">16:15 น.</option>' +
-         '<option value="16:30">16:30 น.</option><option value="16:45">16:45 น.</option>' +
-         '<option value="17:00">17:00 น.</option><option value="17:15">17:15 น.</option>' +
-         '<option value="17:30">17:30 น.</option><option value="17:45">17:45 น.</option>' +
-         '<option value="18:00">18:00 น.</option><option value="18:15">18:15 น.</option>' +
-         '<option value="18:30">18:30 น.</option><option value="18:45">18:45 น.</option>' +
-         '<option value="19:00">19:00 น.</option><option value="19:15">19:15 น.</option>' +
-         '<option value="19:30">19:30 น.</option><option value="19:45">19:45 น.</option>' +
-         '<option value="20:00">20:00 น.</option><option value="20:15">20:15 น.</option>' +
-         '<option value="20:30">20:30 น.</option><option value="20:45">20:45 น.</option>' +
-         '<option value="21:00">21:00 น.</option><option value="21:15">21:15 น.</option>' +
-         '<option value="21:30">21:30 น.</option><option value="21:45">21:45 น.</option>' +
-         '<option value="22:00">22:00 น.</option><option value="22:15">22:15 น.</option>' +
-         '<option value="22:30">22:30 น.</option><option value="22:45">22:45 น.</option>' +
-         '<option value="23:00">23:00 น.</option><option value="23:15">23:15 น.</option>' +
-         '<option value="23:30">23:30 น.</option><option value="23:45">23:45 น.</option>' +
-         '<option value="24:00">24:00 น.</option><option value="24:15">24:15 น.</option>' +
-         '<option value="24:30">24:30 น.</option><option value="24:45">24:45 น.</option></select>' +
+         '<option value="00:00:00">00:00 น.</option><option value="00:15:00">00:15 น.</option>' +
+         '<option value="00:30:00">00:30 น.</option><option value="00:45:00">00:45 น.</option>' +
+         '<option value="01:00:00">01:00 น.</option><option value="01:15:00">01:15 น.</option>' +
+         '<option value="01:30:00">01:30 น.</option><option value="01:45:00">01:45 น.</option>' +
+         '<option value="02:00:00">02:00 น.</option><option value="02:15:00">02:15 น.</option>' +
+         '<option value="02:30:00">02:30 น.</option><option value="02:45:00">02:45 น.</option>' +
+         '<option value="03:00:00">03:00 น.</option><option value="03:15:00">03:15 น.</option>' +
+         '<option value="03:30:00">03:30 น.</option><option value="03:45:00">03:45 น.</option>' +
+         '<option value="04:00:00">04:00 น.</option><option value="04:15:00">04:15 น.</option>' +
+         '<option value="04:30:00">04:30 น.</option><option value="04:45:00">04:45 น.</option>' +
+         '<option value="05:00:00">05:00 น.</option><option value="05:15:00">05:15 น.</option>' +
+         '<option value="05:30:00">05:30 น.</option><option value="05:45:00">05:45 น.</option>' +
+         '<option value="06:00:00">06:00 น.</option><option value="06:15:00">06:15 น.</option>' +
+         '<option value="06:30:00">06:30 น.</option><option value="06:45:00">06:45 น.</option>' +
+         '<option value="07:00:00">07:00 น.</option><option value="07:15:00">07:15 น.</option>' +
+         '<option value="07:30:00">07:30 น.</option><option value="07:45:00">07:45 น.</option>' +
+         '<option value="08:00:00">08:00 น.</option><option value="08:15:00">08:15 น.</option>' +
+         '<option value="08:30:00">08:30 น.</option><option value="08:45:00">08:45 น.</option>' +
+         '<option value="09:00:00">09:00 น.</option><option value="09:15:00">09:15 น.</option>' +
+         '<option value="09:30:00">09:30 น.</option><option value="09:45:00">09:45 น.</option>' +
+         '<option value="10:00:00">10:00 น.</option><option value="10:15:00">10:15 น.</option>' +
+         '<option value="10:30:00">10:30 น.</option><option value="10:45:00">10:45 น.</option>' +
+         '<option value="11:00:00">11:00 น.</option><option value="11:15:00">11:15 น.</option>' +
+         '<option value="11:30:00">11:30 น.</option><option value="11:45:00">11:45 น.</option>' +
+         '<option value="12:00:00">12:00 น.</option><option value="12:15:00">12:15 น.</option>' +
+         '<option value="12:30:00">12:30 น.</option><option value="12:45:00">12:45 น.</option>' +
+         '<option value="13:00:00">13:00 น.</option><option value="13:15:00">13:15 น.</option>' +
+         '<option value="13:30:00">13:30 น.</option><option value="13:45:00">13:45 น.</option>' +
+         '<option value="14:00:00">14:00 น.</option><option value="14:15:00">14:15 น.</option>' +
+         '<option value="14:30:00">14:30 น.</option><option value="14:45:00">14:45 น.</option>' +
+         '<option value="15:00:00">15:00 น.</option><option value="15:15:00">15:15 น.</option>' +
+         '<option value="15:30:00">15:30 น.</option><option value="15:45:00">15:45 น.</option>' +
+         '<option value="16:00:00">16:00 น.</option><option value="16:15:00">16:15 น.</option>' +
+         '<option value="16:30:00">16:30 น.</option><option value="16:45:00">16:45 น.</option>' +
+         '<option value="17:00:00">17:00 น.</option><option value="17:15:00">17:15 น.</option>' +
+         '<option value="17:30:00">17:30 น.</option><option value="17:45:00">17:45 น.</option>' +
+         '<option value="18:00:00">18:00 น.</option><option value="18:15:00">18:15 น.</option>' +
+         '<option value="18:30:00">18:30 น.</option><option value="18:45:00">18:45 น.</option>' +
+         '<option value="19:00:00">19:00 น.</option><option value="19:15:00">19:15 น.</option>' +
+         '<option value="19:30:00">19:30 น.</option><option value="19:45:00">19:45 น.</option>' +
+         '<option value="20:00:00">20:00 น.</option><option value="20:15:00">20:15 น.</option>' +
+         '<option value="20:30:00">20:30 น.</option><option value="20:45:00">20:45 น.</option>' +
+         '<option value="21:00:00">21:00 น.</option><option value="21:15:00">21:15 น.</option>' +
+         '<option value="21:30:00">21:30 น.</option><option value="21:45:00">21:45 น.</option>' +
+         '<option value="22:00:00">22:00 น.</option><option value="22:15:00">22:15 น.</option>' +
+         '<option value="22:30:00">22:30 น.</option><option value="22:45:00">22:45 น.</option>' +
+         '<option value="23:00:00">23:00 น.</option><option value="23:15:00">23:15 น.</option>' +
+         '<option value="23:30:00">23:30 น.</option><option value="23:45:00">23:45 น.</option>' +
+         '<option value="24:00:00">24:00 น.</option><option value="24:15:00">24:15 น.</option>' +
+         '<option value="24:30:00">24:30 น.</option><option value="24:45:00">24:45 น.</option></select>' +
          ' <br> ถึง <br> '+
          '<select class="form-control" name="timeend'+ tr + '" id="timeend' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_time_end"]+'">'+
-         '<option value="00:00">00:00 น.</option><option value="00:15">00:15 น.</option>' +
-         '<option value="00:30">00:30 น.</option><option value="00:45">00:45 น.</option>' +
-         '<option value="01:00">01:00 น.</option><option value="01:15">01:15 น.</option>' +
-         '<option value="01:30">01:30 น.</option><option value="01:45">01:45 น.</option>' +
-         '<option value="02:00">02:00 น.</option><option value="02:15">02:15 น.</option>' +
-         '<option value="02:30">02:30 น.</option><option value="02:45">02:45 น.</option>' +
-         '<option value="03:00">03:00 น.</option><option value="03:15">03:15 น.</option>' +
-         '<option value="03:30">03:30 น.</option><option value="03:45">03:45 น.</option>' +
-         '<option value="04:00">04:00 น.</option><option value="04:15">04:15 น.</option>' +
-         '<option value="04:30">04:30 น.</option><option value="04:45">04:45 น.</option>' +
-         '<option value="05:00">05:00 น.</option><option value="05:15">05:15 น.</option>' +
-         '<option value="05:30">05:30 น.</option><option value="05:45">05:45 น.</option>' +
-         '<option value="06:00">06:00 น.</option><option value="06:15">06:15 น.</option>' +
-         '<option value="06:30">06:30 น.</option><option value="06:45">06:45 น.</option>' +
-         '<option value="07:00">07:00 น.</option><option value="07:15">07:15 น.</option>' +
-         '<option value="07:30">07:30 น.</option><option value="07:45">07:45 น.</option>' +
-         '<option value="08:00">08:00 น.</option><option value="08:15">08:15 น.</option>' +
-         '<option value="08:30">08:30 น.</option><option value="08:45">08:45 น.</option>' +
-         '<option value="09:00">09:00 น.</option><option value="09:15">09:15 น.</option>' +
-         '<option value="09:30">09:30 น.</option><option value="09:45">09:45 น.</option>' +
-         '<option value="10:00">10:00 น.</option><option value="10:15">10:15 น.</option>' +
-         '<option value="10:30">10:30 น.</option><option value="10:45">10:45 น.</option>' +
-         '<option value="11:00">11:00 น.</option><option value="11:15">11:15 น.</option>' +
-         '<option value="11:30">11:30 น.</option><option value="11:45">11:45 น.</option>' +
-         '<option value="12:00">12:00 น.</option><option value="12:15">12:15 น.</option>' +
-         '<option value="12:30">12:30 น.</option><option value="12:45">12:45 น.</option>' +
-         '<option value="13:00">13:00 น.</option><option value="13:15">13:15 น.</option>' +
-         '<option value="13:30">13:30 น.</option><option value="13:45">13:45 น.</option>' +
-         '<option value="14:00">14:00 น.</option><option value="14:15">14:15 น.</option>' +
-         '<option value="14:30">14:30 น.</option><option value="14:45">14:45 น.</option>' +
-         '<option value="15:00">15:00 น.</option><option value="15:15">15:15 น.</option>' +
-         '<option value="15:30">15:30 น.</option><option value="15:45">15:45 น.</option>' +
-         '<option value="16:00">16:00 น.</option><option value="16:15">16:15 น.</option>' +
-         '<option value="16:30">16:30 น.</option><option value="16:45">16:45 น.</option>' +
-         '<option value="17:00">17:00 น.</option><option value="17:15">17:15 น.</option>' +
-         '<option value="17:30">17:30 น.</option><option value="17:45">17:45 น.</option>' +
-         '<option value="18:00">18:00 น.</option><option value="18:15">18:15 น.</option>' +
-         '<option value="18:30">18:30 น.</option><option value="18:45">18:45 น.</option>' +
-         '<option value="19:00">19:00 น.</option><option value="19:15">19:15 น.</option>' +
-         '<option value="19:30">19:30 น.</option><option value="19:45">19:45 น.</option>' +
-         '<option value="20:00">20:00 น.</option><option value="20:15">20:15 น.</option>' +
-         '<option value="20:30">20:30 น.</option><option value="20:45">20:45 น.</option>' +
-         '<option value="21:00">21:00 น.</option><option value="21:15">21:15 น.</option>' +
-         '<option value="21:30">21:30 น.</option><option value="21:45">21:45 น.</option>' +
-         '<option value="22:00">22:00 น.</option><option value="22:15">22:15 น.</option>' +
-         '<option value="22:30">22:30 น.</option><option value="22:45">22:45 น.</option>' +
-         '<option value="23:00">23:00 น.</option><option value="23:15">23:15 น.</option>' +
-         '<option value="23:30">23:30 น.</option><option value="23:45">23:45 น.</option>' +
-         '<option value="24:00">24:00 น.</option><option value="24:15">24:15 น.</option>' +
-         '<option value="24:30">24:30 น.</option><option value="24:45">24:45 น.</option></select>' +
+         '<option value="00:00:00">00:00 น.</option><option value="00:15:00">00:15 น.</option>' +
+         '<option value="00:30:00">00:30 น.</option><option value="00:45:00">00:45 น.</option>' +
+         '<option value="01:00:00">01:00 น.</option><option value="01:15:00">01:15 น.</option>' +
+         '<option value="01:30:00">01:30 น.</option><option value="01:45:00">01:45 น.</option>' +
+         '<option value="02:00:00">02:00 น.</option><option value="02:15:00">02:15 น.</option>' +
+         '<option value="02:30:00">02:30 น.</option><option value="02:45:00">02:45 น.</option>' +
+         '<option value="03:00:00">03:00 น.</option><option value="03:15:00">03:15 น.</option>' +
+         '<option value="03:30:00">03:30 น.</option><option value="03:45:00">03:45 น.</option>' +
+         '<option value="04:00:00">04:00 น.</option><option value="04:15:00">04:15 น.</option>' +
+         '<option value="04:30:00">04:30 น.</option><option value="04:45:00">04:45 น.</option>' +
+         '<option value="05:00:00">05:00 น.</option><option value="05:15:00">05:15 น.</option>' +
+         '<option value="05:30:00">05:30 น.</option><option value="05:45:00">05:45 น.</option>' +
+         '<option value="06:00:00">06:00 น.</option><option value="06:15:00">06:15 น.</option>' +
+         '<option value="06:30:00">06:30 น.</option><option value="06:45:00">06:45 น.</option>' +
+         '<option value="07:00:00">07:00 น.</option><option value="07:15:00">07:15 น.</option>' +
+         '<option value="07:30:00">07:30 น.</option><option value="07:45:00">07:45 น.</option>' +
+         '<option value="08:00:00">08:00 น.</option><option value="08:15:00">08:15 น.</option>' +
+         '<option value="08:30:00">08:30 น.</option><option value="08:45:00">08:45 น.</option>' +
+         '<option value="09:00:00">09:00 น.</option><option value="09:15:00">09:15 น.</option>' +
+         '<option value="09:30:00">09:30 น.</option><option value="09:45:00">09:45 น.</option>' +
+         '<option value="10:00:00">10:00 น.</option><option value="10:15:00">10:15 น.</option>' +
+         '<option value="10:30:00">10:30 น.</option><option value="10:45:00">10:45 น.</option>' +
+         '<option value="11:00:00">11:00 น.</option><option value="11:15:00">11:15 น.</option>' +
+         '<option value="11:30:00">11:30 น.</option><option value="11:45:00">11:45 น.</option>' +
+         '<option value="12:00:00">12:00 น.</option><option value="12:15:00">12:15 น.</option>' +
+         '<option value="12:30:00">12:30 น.</option><option value="12:45:00">12:45 น.</option>' +
+         '<option value="13:00:00">13:00 น.</option><option value="13:15:00">13:15 น.</option>' +
+         '<option value="13:30:00">13:30 น.</option><option value="13:45:00">13:45 น.</option>' +
+         '<option value="14:00:00">14:00 น.</option><option value="14:15:00">14:15 น.</option>' +
+         '<option value="14:30:00">14:30 น.</option><option value="14:45:00">14:45 น.</option>' +
+         '<option value="15:00:00">15:00 น.</option><option value="15:15:00">15:15 น.</option>' +
+         '<option value="15:30:00">15:30 น.</option><option value="15:45:00">15:45 น.</option>' +
+         '<option value="16:00:00">16:00 น.</option><option value="16:15:00">16:15 น.</option>' +
+         '<option value="16:30:00">16:30 น.</option><option value="16:45:00">16:45 น.</option>' +
+         '<option value="17:00:00">17:00 น.</option><option value="17:15:00">17:15 น.</option>' +
+         '<option value="17:30:00">17:30 น.</option><option value="17:45:00">17:45 น.</option>' +
+         '<option value="18:00:00">18:00 น.</option><option value="18:15:00">18:15 น.</option>' +
+         '<option value="18:30:00">18:30 น.</option><option value="18:45:00">18:45 น.</option>' +
+         '<option value="19:00:00">19:00 น.</option><option value="19:15:00">19:15 น.</option>' +
+         '<option value="19:30:00">19:30 น.</option><option value="19:45:00">19:45 น.</option>' +
+         '<option value="20:00:00">20:00 น.</option><option value="20:15:00">20:15 น.</option>' +
+         '<option value="20:30:00">20:30 น.</option><option value="20:45:00">20:45 น.</option>' +
+         '<option value="21:00:00">21:00 น.</option><option value="21:15:00">21:15 น.</option>' +
+         '<option value="21:30:00">21:30 น.</option><option value="21:45:00">21:45 น.</option>' +
+         '<option value="22:00:00">22:00 น.</option><option value="22:15:00">22:15 น.</option>' +
+         '<option value="22:30:00">22:30 น.</option><option value="22:45:00">22:45 น.</option>' +
+         '<option value="23:00:00">23:00 น.</option><option value="23:15:00">23:15 น.</option>' +
+         '<option value="23:30:00">23:30 น.</option><option value="23:45:00">23:45 น.</option>' +
+         '<option value="24:00:00">24:00 น.</option><option value="24:15:00">24:15 น.</option>' +
+         '<option value="24:30:00">24:30 น.</option><option value="24:45:00">24:45 น.</option></select>' +
          '</div></td><td><input type="text" class="form-control" id="room' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_room"]+
           '"></td></tr>');
 
@@ -350,12 +369,7 @@ $dept = $courseobj->Get_Dept_All();
 
  function getinfo2(temp) {
    //part1
-   if(temp['department']=="ภาควิชาวิทยาศาสตร์เภสัชกรรม")
-   {
-     document.getElementById('department').value = "ภาควิชาวิทยาศาสตร์เภสัชกรรม";
-   }else {
-     document.getElementById('department').value = "ภาควิชาบริบาลเภสัชกรรม";
-   }
+  document.getElementById('department').value = temp["department"];
 
    document.getElementById('pre').value = temp['prefix'];
    var constring = temp['firstname'];
@@ -388,7 +402,7 @@ $dept = $courseobj->Get_Dept_All();
 
    if(btntype==1)
    {
-     $('#dlhide').hide();
+     $('#dlhide,#search_1hide').hide();
      document.getElementById("form1").reset();
      var file_data = new FormData;
      var course_id = document.getElementById('id').value;
@@ -477,7 +491,7 @@ $dept = $courseobj->Get_Dept_All();
 
                              }
                              else if(temp['DATA']==false && $('#id').val()!="" && temp['INFO']==false){
-                               $('#dlhide').hide();
+                               $('#dlhide,#search_1hide').hide();
                                $('#hiddenh5_found').hide();
                                $('#hiddenh5').show();
                                $('#notfound').hide();
@@ -499,7 +513,7 @@ $dept = $courseobj->Get_Dept_All();
                                       'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
                                       'error'
                                     )
-                                    $('#dlhide').hide();
+                                    $('#dlhide,#search_1hide').hide();
                                     document.getElementById('formdrpd').style.display = "none";
 
                                  }
@@ -511,7 +525,7 @@ $dept = $courseobj->Get_Dept_All();
                                 'warning'
                               )
                              $('#notfound').hide();
-                             $('#dlhide').hide();
+                             $('#dlhide,#search_1hide').hide();
                              $('#formdrpd').hide();
                              $('#buttondiv').hide();
 
@@ -562,7 +576,7 @@ $dept = $courseobj->Get_Dept_All();
        row.parentNode.removeChild(row);
      }
 
-     $('#dlhide').show();
+     $('#dlhide,#search_1hide').show();
      var file_data = new FormData;
      var teachername_temp = document.getElementById('teachername').value;
      var stringspl = teachername_temp.split("_");
@@ -613,7 +627,7 @@ $dept = $courseobj->Get_Dept_All();
                               'ดึงข้อมูลสำเร็จ',
                               'success'
                             )
-                          $('#dlhide').show();
+                          $('#dlhide,#search_1hide').show();
                            getinfo(temp);
                        }
                        else {
@@ -680,16 +694,15 @@ $dept = $courseobj->Get_Dept_All();
      document.getElementById('course').value = $('#id').val();
      document.getElementById('formdrpd').style.display = "";
 
-     $('#dlhide').show();
+     $('#dlhide,#search_1hide').show();
      $('#topic1')[0].checked = false;
      $('#topic2')[0].checked = true;
      $('#cvlist').show();
      $('input[name=cv]').prop('required', true);
    }else {
-     $('#dlhide').show();
-     var fname = $('#fname').val();
-     var lname = $('#lname').val();
-     if(fname=="" || lname=="" )
+     $('#dlhide,#search_1hide').show();
+     var fname = $('#search_1').val();
+     if(fname=="")
      {
        swal({
          title: '',
@@ -712,12 +725,17 @@ $dept = $courseobj->Get_Dept_All();
 
      var type = 3;
      var file_data = new FormData;
-     JSON.stringify(name);
+     var name = $('#search_1').val();
+     var splitor = name.split(' ');
+     var fname = splitor[0];
+     var lname = splitor[1];
+     JSON.stringify(fname);
      JSON.stringify(lname);
      JSON.stringify(type);
      file_data.append("type",type);
      file_data.append("fname",fname);
      file_data.append("lname",lname);
+     console.log(fname);
      var URL = '../../application/document/search_document.php';
      $.ajax({
                    url: URL,
@@ -747,7 +765,7 @@ $dept = $courseobj->Get_Dept_All();
                               'ดึงข้อมูลสำเร็จ',
                               'success'
                             )
-                            $('#dlhide').show();
+                            $('#dlhide,#search_1hide').show();
                            getinfo2(temp);
                        }
                        else {
@@ -761,7 +779,7 @@ $dept = $courseobj->Get_Dept_All();
                            cancelButtonColor: '#d33',
                            confirmButtonText: 'Ok'
                          }).then(function () {
-                            $('#dlhide').show();
+                            $('#dlhide,#search_1hide').show();
                          }, function (dismiss) {
                          // dismiss can be 'cancel', 'overlay',
                          // 'close', and 'timer'
@@ -1215,7 +1233,7 @@ $dept = $courseobj->Get_Dept_All();
  }
 
  $(document).ready(function(){
-   $('#dlhide').hide();
+   $('#dlhide,#search_1hide').hide();
 
    //deadline
    <?php
@@ -1250,7 +1268,7 @@ $dept = $courseobj->Get_Dept_All();
 
        if(isset($_POST['course_id']))
        {
-         echo "$('#dlhide').hide();
+         echo "$('#dlhide,#search_1hide').hide();
          document.getElementById('form1').reset();
          var file_data = new FormData;
          var course_id = '".$_POST['course_id']."';
@@ -1360,7 +1378,7 @@ $dept = $courseobj->Get_Dept_All();
                                                      var temp = $.parseJSON(result);
                                                      if(temp!=null)
                                                      {
-                                                        $('#dlhide').show();
+                                                        $('#dlhide,#search_1hide').show();
                                                          getinfo(temp);
                                                      }
                                                      else {
@@ -1422,7 +1440,7 @@ $dept = $courseobj->Get_Dept_All();
             });";
        }
      }else {
-         echo "$('#dlhide').hide();
+         echo "$('#dlhide,#search_1hide').hide();
          $('#hiddenh5').hide();
          $('#formheader').hide();
          $('#overtimemsg').show();";
@@ -2154,7 +2172,16 @@ function lastcal() {
        </div>
      </div>
          </form>
-      </center>
+         <div id="search_1hide" class="row form-inline" style="font-size:14px;">
+           <center><div class="form-group">
+             ชื่อ-นามสกุล
+             <input type="text" class="form-control" name="search_1" id="search_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname();" >
+             <datalist id="dtl1">
+             </datalist>
+             <input type="button" class="btn btn-outline btn-primary" name="searchname" id="searchname" value="ดึงข้อมูล" onclick="checksubject(4,2);">
+            </div></center>
+          </div>
+      </center><br>
 
       <div id="dlhide" class="panel panel-default"> <br>
       <form name="form1" id="form1" data-toggle="validator" role="form"  method="post">
@@ -2196,7 +2223,6 @@ function lastcal() {
               </div>&nbsp;&nbsp;&nbsp;&nbsp;
               ชื่อ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="fname" size="20" required ></div>&nbsp;
               นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="lname" size="20" required ></div>&nbsp;
-              <input type="button" class="btn btn-outline btn-primary" name="searchname" id="searchname" value="ตรวจสอบรายชื่อ" onclick="checksubject(4,2);">
           </div>
 
           <div class="form-inline">
@@ -2224,7 +2250,7 @@ function lastcal() {
       </div>
 
         <div class="form-inline">
-          <li>E-mail &nbsp;&nbsp;<div class="form-group"><input style="height: 25px;" type="email" class="form-control" id="email" size="45" required ></div></li>
+          <li>E-mail &nbsp;&nbsp;<div class="form-group"><input style="height: 30px;" type="email" class="form-control" id="email" size="45" required ></div></li>
         </div>
         <div class="form-inline">
           <li>ประวัติการเชิญมาสอน <br>
