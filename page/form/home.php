@@ -97,12 +97,23 @@ $data_course     = json_decode($var, true);
 			color: #da9001;
 		}
 
-		.pill{
+		.{
 			margin-top: -8px;
-
+		}
+		.spec{
+			margin-top: -23px;
 		}
 		.forminline{
 			display:inline-block;
+			margin:0;
+		}
+		.pull-right{
+			margin-top: -5px;
+		}
+		@media only screen and (max-width: 500px) {
+			.pull-right{
+				margin-top: 0px;
+			}
 		}
 	</style>
 </head>
@@ -219,39 +230,36 @@ $data_course     = json_decode($var, true);
 ?>
 								<div class="panel-group" id="accordione1">
 									<div class="panel panel-success">
-										<div class="panel-heading">
-											<h3 class="panel-title" style="font-size:14px;">
-												<li><b><u>กระบวนวิชา</u></b> :
-													<?php echo $value_course['id']." ".$value_course['name']?>
-													<div class="pull-right pill">
-													<?php if ($value_course['evaluate']['status']==0 && ($_SESSION['level']==1 || $_SESSION['level']==2)) {?>
-														<form action="evaform.php" method="post" class="forminline">
-															<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
-															<button type="submit" class="btn btn-success btn-sm ">กรอกแบบแจ้ง</button>
-														</form>
-													<?php } ?>
-													<?php if ($_SESSION['level']==1 || $_SESSION['level']==2 ) {?>
-														<form action="spclteacher.php" method="post" class="forminline">
-															<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
-															<button type="submit" class="btn btn-primary btn-sm ">เชิญอาจารย์พิเศษ</button>
-														</form>
-													<?php } ?>
-													</div>
-
-												</li>
-											</h3>
+										<div class="panel-heading clearfix"> 
+											<h4 class="panel-title  pull-left" style="font-size:14px;padding-top: 7.5px">
+												<b><u>กระบวนวิชา</u></b> :<?php echo $value_course['id']." ".$value_course['name']?>
+											</h4>
+											<div class="btn-group pull-right">
+											<?php if ((isset($value_course['pdf']) && $value_course['evaluate']['status']!=0) || ($_SESSION['admission']==3 && isset($value_course['pdf']) && $value_course['evaluate']['status']!=0)): ?>
+											<a id="hover" href="<?php echo $value_course['pdf'] ?>" target="_blank" ><button type="button" class="btn btn-default btn-sm" >Download</button></a>
+												<?php endif; ?>
+												<?php if ($value_course['evaluate']['status']==0 && ($_SESSION['level']==1 || $_SESSION['level']==2)) {?>
+													<form action="evaform.php" method="post" class="forminline">
+														<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
+														<button type="submit" class="btn btn-success btn-sm ">กรอกแบบแจ้ง</button>
+													</form>
+												<?php } ?>
+												<?php if ($_SESSION['level']==1 || $_SESSION['level']==2 ) {?>
+													<form action="spclteacher.php" method="post" class="forminline">
+														<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
+														<button type="submit" class="btn btn-primary btn-sm ">เชิญอาจารย์พิเศษ</button>
+													</form>
+												<?php } ?>
+											</div>
 										</div>
 										<div class="panel-body" style="font-size:14px;">
 
 											<div class="panel-group">
 												<div class="panel panel-default">
 													<div class="panel-heading">
-														<h3 class="panel-title" style="font-size:14px;">
+														<h3 class="panel-title" style="font-size:14px;" style="">
 															<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']."_".$key ?>">
 															<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b>
-															<?php if ((isset($value_course['pdf']) && $value_course['evaluate']['status']!=0) || ($_SESSION['admission']==3 && isset($value_course['pdf']) && $value_course['evaluate']['status']!=0)): ?>
-																	<a id="hover" href="<?php echo $value_course['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
-															<?php endif; ?>
 															<i class="fa fa-long-arrow-right fa-fw"></i>
 															<?php echo $status_text ?>
 															</a>
@@ -263,11 +271,11 @@ $data_course     = json_decode($var, true);
 																<?php endif; ?>
 																<?php if ($_SESSION['level']==2 || $_SESSION['admission']==2): ?>
 																<?php if(($value_course['evaluate']['status'])==1 ){ ?>
-																<button class='btn btn-outline btn-success' onclick='sendtoboard("<?php echo $value_course['id'] ?>");'>ผ่าน</button>
+																<button class='btn  btn-success btn-sm' onclick='sendtoboard("<?php echo $value_course['id'] ?>");'>ผ่าน</button>
 																<?php
 															} ?>
 																	<?php endif; ?>
-															<div class="pull-right">
+															
 															<?php if ($_SESSION['level']==3 && ($value_course['evaluate']['status'])==4 || ($_SESSION['admission']==3 && $value_course['evaluate']['status']==4)): ?>
 																<label style="font-size:14px"><input type="checkbox" name="coursecheck" id="checkedAll" class="checkSingle" value="<?php echo $value_course['id'] ?>"></input></label>
 															<?php endif; ?>
@@ -276,11 +284,11 @@ $data_course     = json_decode($var, true);
 																	<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
 																	<input type="hidden" name="semester" value="<?php echo $semester['semester'] ?>">
 																	<input type="hidden" name="year" value="<?php echo $semester['year'] ?>">
-																	<button type="submit" class="btn btn-warning btn-sm pill" >แก้ไข</button>
+																	<button type="submit" class="btn btn-warning btn-sm " >แก้ไข</button>
 																</form>
 
 															<?php endif; ?>
-															</div>
+															
 														</h3>
 
 
@@ -335,11 +343,17 @@ $data_course     = json_decode($var, true);
 
 											<div class="panel-group">
 												<div class="panel panel-default">
-													<div class="panel-heading">
-														<h3 class="panel-title" style="font-size:14px;">
+
+													<div class="panel-heading clearfix" >
+														<h4 class="panel-title pull-left" style="font-size:14px;" >
 															<a data-toggle="collapse" href="#special<?php echo $value_course['id']."_".$key ?>" disabled="disabled">
-													<i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></b></a>
-														</h3>
+																<i class="fa fa-file-o fa-fw"></i><b>  แบบขออนุมัติเชิญอาจารย์พิเศษ </b></b></a>
+														</h4>
+														<div class="btn-group pull-right">
+															<?php if ((isset($valuesp['pdf']) && $valuesp['status']!=0) || ($_SESSION['admission']==3 && isset($valuesp['pdf']) && $valuesp['status']!=0)): ?>
+																<a id="hover" href="<?php echo $valuesp['pdf'] ?>"><button type="button" class="btn btn-default btn-sm" >Download</button></a>
+															<?php endif; ?>
+														</div>
 													</div>
 													<?php if (isset($_SESSION['level'])) { ?>
 													<div id="special<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse  in">
@@ -384,9 +398,6 @@ $data_course     = json_decode($var, true);
 																			<a data-toggle="collapse"  href="#special_<?php echo $value_course['id']."_".$keysp ?>">
 																				<?php echo $valuesp['name'] ?> </a>
 																			</b>
-																			<?php if ((isset($valuesp['pdf']) && $valuesp['status']!=0) || ($_SESSION['admission']==3 && isset($valuesp['pdf']) && $valuesp['status']!=0)): ?>
-																			<a id="hover" href="<?php echo $valuesp['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
-																			<?php endif; ?>
 																			<?php echo ' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp; if ($_SESSION['level']==3 || $_SESSION['admission']==3): ?>
 																			<?php if($valuesp['status']==4 ){ ?>
 																			<button class='btn btn-outline btn-success' onclick='senttoheadSP("<?php echo $value_course['id'] ?>","<?php echo $valuesp['id'] ?>");'>ยืนยัน</button>
@@ -394,7 +405,7 @@ $data_course     = json_decode($var, true);
 																				<?php endif; ?>
 																				<?php if($_SESSION['level']==2 || $_SESSION['admission']==2){
 																					if ($valuesp['status']==1) {?>
-																				<button class='btn btn-outline btn-success' onclick='sendtoboardsp("<?php echo $value_course['id'] ?>","<?php echo $valuesp['id'] ?>");'>ผ่าน</button>
+																				<button class='btn  btn-success btn-sm' onclick='sendtoboardsp("<?php echo $value_course['id'] ?>","<?php echo $valuesp['id'] ?>");'>ผ่าน</button>
 																				<?php }
 																					} ?>
 																			<div class="pull-right">
@@ -408,7 +419,7 @@ $data_course     = json_decode($var, true);
 																				<input type="hidden" name="semester" value="<?php echo $semester['semester'] ?>">
 																				<input type="hidden" name="year" value="<?php echo $semester['year'] ?>">
 																				<input type="hidden" name="instructor_id" value="<?php echo $valuesp['id'] ?>">
-																					<button type="submit" class="btn btn-warning btn-sm pill" >แก้ไข</button>
+																					<button type="submit" class="btn btn-warning btn-sm " >แก้ไข</button>
 																					</form>
 																				<?php endif; ?>
 																			</div>
