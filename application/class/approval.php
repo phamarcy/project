@@ -37,14 +37,6 @@ class approval
     $this->SEMESTER = $data['semester'];
     $this->YEAR = $data['year'];
     $this->USER_LEVEL = $level;
-    // if(isset($_SESSION['admission']))
-    // {
-    //   if($_SESSION['admission'] > 0 && $this->USER_LEVEL == 1)
-    //   {
-    //     $this->USER_LEVEL = 6;
-    //   }
-    // }
-
     $this->CURL = new CURL();
     $this->COURSE = new Course();
     if (class_exists('Database'))
@@ -137,6 +129,12 @@ class approval
       }
       if((int)$status_after == 4)
       {
+        $sql = "UPDATE `course_evaluate` SET `status`= '1' WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->SEMESTER_ID;
+        $result = $this->DB->Insert_Update_Delete($sql);
+        if(!$result)
+        {
+          $this->LOG->Write("course approve error : cannot update course evaluate status ");
+        }
         $pdf_complete = $this->Send_Complete_Evaluate($course_id,'3');
         $pdf_result = json_decode($pdf_complete,true);
         if($pdf_result != null)
@@ -151,12 +149,6 @@ class approval
       }
       else if((int)$status_after == 7)
       {
-        $sql = "UPDATE `course_evaluate` SET `status`= '1' WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->SEMESTER_ID;
-        $result = $this->DB->Insert_Update_Delete($sql);
-        if(!$result)
-        {
-          $this->LOG->Write("course hire error ");
-        }
         $pdf_complete = $this->Send_Complete_Evaluate($course_id,'4');
         $pdf_result = json_decode($pdf_complete,true);
         if($pdf_result != null)
@@ -199,7 +191,6 @@ class approval
     $data['COURSEDATA_COURSE_ID'] = $course_id;
     $data['TEACHERDATA_ID'] = $instructor_id;
     $DATA['DATA'] = json_encode($data);
-    // $DATA['APPROVER_ID'] = $_SESSION['id'];
     $url = "application/pdf/generate_special_instructor.php";
     $result = $this->CURL->Request($DATA,$url);
     return $result;
@@ -286,6 +277,12 @@ class approval
       }
       if((int)$status_after == 4)
       {
+        $sql = "UPDATE `course_hire_special_instructor` SET `status`= '1' WHERE `course_id` = '".$course_id."' AND `instructor_id` = ".$instructor_id." AND `semester_id` = ".$this->SEMESTER_ID;
+        $result = $this->DB->Insert_Update_Delete($sql);
+        if(!$result)
+        {
+          $this->LOG->Write("course hire error : cannot update special instructor status");
+        }
         $pdf_complete = $this->Send_Complete_Special($course_id,$instructor_id,'3');
         $pdf_result = json_decode($pdf_complete,true);
         if($pdf_result != null)
@@ -300,13 +297,6 @@ class approval
       }
       else if((int)$status_after == 7)
       {
-        $sql = "UPDATE `course_hire_special_instructor` SET `status`= '1' WHERE `course_id` = '".$course_id."' AND `instructor_id` = ".$instructor_id." AND `semester_id` = ".$this->SEMESTER_ID;
-        $result = $this->DB->Insert_Update_Delete($sql);
-        if(!$result)
-        {
-          $this->LOG->Write("course hire error ");
-        }
-
         //starting generate pdf
         $pdf_complete = $this->Send_Complete_Special($course_id,$instructor_id,'4');
         $pdf_result = json_decode($pdf_complete,true);
