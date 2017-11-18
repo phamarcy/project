@@ -102,7 +102,7 @@ function searchname(no,type) {
   else if (type==511) {
     var name_s = $("#MIDEXCOM_LECF"+no).val();
     $("#dtmeh"+no).html('');
-    if(name_s.length > 3)
+    if(name_s.length > 0)
     {
       $.post("search_name.php", { name: name_s}, function(data) {
             data = JSON.parse( data );
@@ -120,7 +120,7 @@ function searchname(no,type) {
   else if (type==512) {
     var name_s = $("#MIDEXCOM_LABF"+no).val();
     $("#dtehlab"+no).html('');
-    if(name_s.length > 3)
+    if(name_s.length > 0)
     {
       $.post("search_name.php", { name: name_s}, function(data) {
             data = JSON.parse( data );
@@ -138,7 +138,7 @@ function searchname(no,type) {
   else if (type==521) {
     var name_s = $("#MIDEXCOM_LECF"+no+"_sec").val();
     $("#dtmehle"+no+"_sec").html('');
-    if(name_s.length > 3)
+    if(name_s.length > 0)
     {
       $.post("search_name.php", { name: name_s}, function(data) {
             data = JSON.parse( data );
@@ -156,7 +156,7 @@ function searchname(no,type) {
   else if (type==522) {
     var name_s = $("#MIDEXCOM_LABF"+no+"_sec").val();
     $("#dtehla"+no+"_sec").html('');
-    if(name_s.length > 3)
+    if(name_s.length > 0)
     {
       $.post("search_name.php", { name: name_s}, function(data) {
             data = JSON.parse( data );
@@ -174,7 +174,7 @@ function searchname(no,type) {
   else if (type==531) {
     var name_s = $("#FINEXCOM_LECF"+no).val();
     $("#dtfmehle"+no).html('');
-    if(name_s.length > 3)
+    if(name_s.length > 0)
     {
       $.post("search_name.php", { name: name_s}, function(data) {
             data = JSON.parse( data );
@@ -192,7 +192,7 @@ function searchname(no,type) {
   else if (type==532) {
     var name_s = $("#FINEXCOM_LABF"+no).val();
     $("#dtfehla"+no).html('');
-    if(name_s.length > 3)
+    if(name_s.length > 0)
     {
       $.post("search_name.php", { name: name_s}, function(data) {
             data = JSON.parse( data );
@@ -2584,9 +2584,9 @@ function confreset(casereset) {
 
           <br>
           <li style="font-size: 14px;" id="listcor">
-            <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์จากโปรแกรม Microsoft Word (.doc หรือ .docx) เท่านั้น) : </b><br />
+            <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็น .doc , .docx หรือ .pdf เท่านั้น) : </b><br />
           <div class="col-md-5 form-inline form-group">
-            <input type="file" class="filestyle" id="syllabus" data-icon="false" accept=".doc,.docx" required><font color="red"><b> ** จำเป็น</b></font>
+            <input type="file" class="filestyle" id="syllabus" data-icon="false" accept=".doc,.docx,.pdf" required><font color="red"><b> ** จำเป็น</b></font>
           </div>
           </li>
 
@@ -2609,9 +2609,9 @@ function confreset(casereset) {
       <form data-toggle="validator" role="form" name="form2" id="form2">
       <li style="font-size: 14px;"><div class="form-inline form-group"><b>รหัสกระบวนวิชา : </b><input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID_2" id="COURSE_ID_2"   maxlength="6" required pattern=".{6,6}" ></div></li>
       <li style="font-size: 14px;">
-        <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็นไฟล์จากโปรแกรม Microsoft Word (.doc หรือ .docx) เท่านั้น) : </b><br />
+        <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็น .doc , .docx หรือ .pdf เท่านั้น) : </b><br />
         <div class="col-md-5 form-inline form-group">
-          <input type="file" class="filestyle" id="syllabus_2" data-icon="false" accept=".doc,.docx" required><font color="red"><b> ** จำเป็น</b></font>
+          <input type="file" class="filestyle" id="syllabus_2" data-icon="false" accept=".doc,.docx,.pdf" required><font color="red"><b> ** จำเป็น</b></font>
         </div>
       </li>
       <br><br>
