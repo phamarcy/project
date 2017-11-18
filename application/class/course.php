@@ -550,21 +550,15 @@ class Course
         }
       }
       $data['exam_mid1_committee_lec'] = array();
-      $sql = "SELECT `teacher_id` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'MID1' AND `type_commitee` = 'LEC'";
+      $sql = "SELECT `teacher_name` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'MID1' AND `type_commitee` = 'LEC'";
       $result = $this->DB->Query($sql);
       if($result)
       {
         for($i=0;$i<count($result);$i++)
         {
-          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          $teacher_name = $result[$i]['teacher_name'];
           if($teacher_name != false)
           {
-            $temp = explode(" ",$teacher_name);
-            $teacher_name = '';
-            for($j=1;$j<count($temp);$j++)
-            {
-              $teacher_name .= $temp[$j]." ";
-            }
             $teacher_name = trim($teacher_name," ");
           }
           array_push($data['exam_mid1_committee_lec'],$teacher_name);
@@ -572,21 +566,15 @@ class Course
       }
 
       $data['exam_mid1_committee_lab'] = array();
-      $sql = "SELECT `teacher_id` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'MID1' AND `type_commitee` = 'LAB'";
+      $sql = "SELECT `teacher_name` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'MID1' AND `type_commitee` = 'LAB'";
       $result = $this->DB->Query($sql);
       if($result)
       {
         for($i=0;$i<count($result);$i++)
         {
-          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          $teacher_name = $result[$i]['teacher_name'];
           if($teacher_name != false)
           {
-            $temp = explode(" ",$teacher_name);
-            $teacher_name = '';
-            for($j=1;$j<count($temp);$j++)
-            {
-              $teacher_name .= $temp[$j]." ";
-            }
             $teacher_name = trim($teacher_name," ");
           }
           array_push($data['exam_mid1_committee_lab'],$teacher_name);
@@ -594,21 +582,15 @@ class Course
       }
 
       $data['exam_mid2_committee_lec'] = array();
-      $sql = "SELECT `teacher_id` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'MID2' AND `type_commitee` = 'LEC'";
+      $sql = "SELECT `teacher_name` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'MID2' AND `type_commitee` = 'LEC'";
       $result = $this->DB->Query($sql);
       if($result)
       {
         for($i=0;$i<count($result);$i++)
         {
-          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          $teacher_name = $result[$i]['teacher_name'];
           if($teacher_name != false)
           {
-            $temp = explode(" ",$teacher_name);
-            $teacher_name = '';
-            for($j=1;$j<count($temp);$j++)
-            {
-              $teacher_name .= $temp[$j]." ";
-            }
             $teacher_name = trim($teacher_name," ");
           }
           array_push($data['exam_mid2_committee_lec'],$teacher_name);
@@ -616,21 +598,15 @@ class Course
       }
 
       $data['exam_mid2_committee_lab'] = array();
-      $sql = "SELECT `teacher_id` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'MID2' AND `type_commitee` = 'LAB'";
+      $sql = "SELECT `teacher_name` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'MID2' AND `type_commitee` = 'LAB'";
       $result = $this->DB->Query($sql);
       if($result)
       {
         for($i=0;$i<count($result);$i++)
         {
-          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          $teacher_name = $result[$i]['teacher_name'];
           if($teacher_name != false)
           {
-            $temp = explode(" ",$teacher_name);
-            $teacher_name = '';
-            for($j=1;$j<count($temp);$j++)
-            {
-              $teacher_name .= $temp[$j]." ";
-            }
             $teacher_name = trim($teacher_name," ");
           }
           array_push($data['exam_mid2_committee_lab'],$teacher_name);
@@ -638,21 +614,15 @@ class Course
       }
 
       $data['exam_final_committee_lec'] = array();
-      $sql = "SELECT `teacher_id` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'FINAL' AND `type_commitee` = 'LEC'";
+      $sql = "SELECT `teacher_name` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'FINAL' AND `type_commitee` = 'LEC'";
       $result = $this->DB->Query($sql);
       if($result)
       {
         for($i=0;$i<count($result);$i++)
         {
-          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          $teacher_name = $result[$i]['teacher_name'];
           if($teacher_name != false)
           {
-            $temp = explode(" ",$teacher_name);
-            $teacher_name = '';
-            for($j=1;$j<count($temp);$j++)
-            {
-              $teacher_name .= $temp[$j]." ";
-            }
             $teacher_name = trim($teacher_name," ");
           }
           array_push($data['exam_final_committee_lec'],$teacher_name);
@@ -660,42 +630,30 @@ class Course
       }
 
         $data['exam_final_committee_lab'] = array();
-      $sql = "SELECT `teacher_id` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'FINAL' AND `type_commitee` = 'LAB'";
+      $sql = "SELECT `teacher_name` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'FINAL' AND `type_commitee` = 'LAB'";
       $result = $this->DB->Query($sql);
       if($result)
       {
         for($i=0;$i<count($result);$i++)
         {
-          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          $teacher_name = $result[$i]['teacher_name'];
           if($teacher_name != false)
           {
-            $temp = explode(" ",$teacher_name);
-            $teacher_name = '';
-            for($j=1;$j<count($temp);$j++)
-            {
-              $teacher_name .= $temp[$j]." ";
-            }
             $teacher_name = trim($teacher_name," ");
           }
           array_push($data['exam_final_committee_lab'],$teacher_name);
         }
       }
       $data['teacher'] = array();
-      $sql = "SELECT `teacher_id` FROM `teacher_exam_evaluate` WHERE `course_eveluate_id` = '".$data['course_evaluate_id']."'";
+      $sql = "SELECT `teacher_name` FROM `teacher_exam_evaluate` WHERE `course_eveluate_id` = '".$data['course_evaluate_id']."'";
       $result = $this->DB->Query($sql);
       if($result)
       {
         for($i=0;$i<count($result);$i++)
         {
-          $teacher_name = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          $teacher_name = $result[$i]['teacher_name'];
           if($teacher_name != false)
           {
-            $temp = explode(" ",$teacher_name);
-            $teacher_name = '';
-            for($j=1;$j<count($temp);$j++)
-            {
-              $teacher_name .= $temp[$j]." ";
-            }
             $teacher_name = trim($teacher_name," ");
           }
           array_push($data['teacher'],$teacher_name);
