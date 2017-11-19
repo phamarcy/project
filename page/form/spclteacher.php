@@ -159,7 +159,7 @@ $dept = $courseobj->Get_Dept_All();
        });
        table.append('<tr class="warning" name="addtr" id="row' + tr + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + tr + '" id="delbtn' + tr +
          '" value="ลบ" onclick="deleteRow(' + tr + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="detail_topic' + tr + '" id="detail_topic' + tr +
-         '" size="30" value="'+temp["lecture_detail"][tr-1]["topic_name"]+'"></div></td><td><input type="date" class="form-control" name="dateteach' + tr + '" id="dateteach' + tr +
+         '" size="30" value="'+temp["lecture_detail"][tr-1]["topic_name"]+'"></div></td><td><input type="text" class="form-control" name="dateteach' + tr + '" id="dateteach' + tr +
          '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_date"]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline">' +
          '<select class="form-control" name="timebegin' + tr + '" id="timebegin' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_time_start"]+'">'+
          '<option value="00:00:00">00:00 น.</option><option value="00:15:00">00:15 น.</option>' +
@@ -2006,7 +2006,7 @@ $dept = $courseobj->Get_Dept_All();
 
        table.append('<tr class="warning" name="addtr" id="row' + (rowCount - 1) + '"><td colspan="2"><div class="form-inline"><input type="text" class="form-control" name="detail_topic' + (rowCount - 1) + '" id="detail_topic' + (rowCount - 1) +
          '" ><br><center><input type="button" class="btn btn-outline btn-danger" name="delbtn' + (rowCount - 1) + '" id="delbtn' + (rowCount - 1) +
-           '" value="ลบ" onclick="deleteRow(' + (rowCount - 1) + ')"></center></div></td><td><input type="date" class="form-control" name="dateteach' + (rowCount - 1) + '" id="dateteach' + (rowCount - 1) +
+           '" value="ลบ" onclick="deleteRow(' + (rowCount - 1) + ')"></center></div></td><td><input type="text" class="form-control" name="dateteach' + (rowCount - 1) + '" id="dateteach' + (rowCount - 1) +
          '"></td><td width="25%" style="text-align: center;"><div class="form-inline">'+
          '<select class="form-control" name="timebegin' + (rowCount - 1) + '" id="timebegin' + (rowCount - 1) + '">'+
          '<option value="00:00">00:00 น.</option><option value="00:15">00:15 น.</option>' +
