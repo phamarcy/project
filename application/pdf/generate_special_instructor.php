@@ -458,6 +458,8 @@ if($data_pdf['payment_method'] == '0')
 {
 	$norm = '';
 	$pro = '';
+	$level_norm = '';
+	$level_pro = '';
 }
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, $pro, 1,"C");
