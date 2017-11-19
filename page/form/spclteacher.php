@@ -1171,7 +1171,6 @@ textarea {
      'YEAR' : '<?php echo date('Y')+543; ?>'
    };
 
-   console.log(JSON.stringify(data));
    if(casesubmit=='1')
    {
      senddata(JSON.stringify(data),getfile());
@@ -1212,7 +1211,7 @@ textarea {
                              swal.hideLoading()
                              swal({
                                title: 'สำเร็จ',
-                               text: temp["msg"],
+                               text: 'บันทึกข้อมูลสำเร็จ',
                                type: 'success',
                                showCancelButton: false,
                                confirmButtonColor: '#3085d6',
@@ -1228,7 +1227,7 @@ textarea {
                              }
                            })
 
-                            //alert(temp["msg"]);
+                           window.open(temp["msg"], '_blank');
                           }
                           else {
                             swal.hideLoading()
@@ -1317,9 +1316,11 @@ textarea {
          var name = stringspl[1];
          var semester = stringspl[3];
          var year = stringspl[4];
+         var type = 'special';
          file_data.append("course_id",course_id);
          file_data.append("semester",semester);
          file_data.append("year",year);
+         file_data.append("type",type);
          var URL = '../../application/document/delete.php';
          $.ajax({
                        url: URL,
@@ -2559,8 +2560,9 @@ function lastcal() {
           </div>
           </div>
           <br>
+          <font color="red"><b id="cvlist"> ** กรุณากดปุ่มสรุปค่าใช้จ่ายทั้งหมดทุกครั้งก่อนส่งข้อมูล **</b></font>
           <div class="form-inline">
-            <input type="button" class="btn btn-outline btn-default" name="calculatebtn" id="calculatebtn" value="คำนวณค่าใช้จ่ายทั้งหมด" onclick="lastcal();">
+            <input type="button" class="btn btn-outline btn-primary" name="calculatebtn" id="calculatebtn" value="คำนวณค่าใช้จ่ายทั้งหมด" onclick="lastcal();">
           </div>
           <br>
           <div class="form-inline">
@@ -2573,7 +2575,7 @@ function lastcal() {
       <li  style="font-size: 14px;" >
         <b>เลือกไฟล์ Curriculum Vitae (CV) เพื่ออัปโหลด : </b><br />
       <div id="cvdanger" class="col-md-5 form-inline form-group">
-        <input type="file" class="filestyle" id="cv" name="cv" data-icon="false"><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
+        <input type="file" class="filestyle" id="cv" name="cv" data-icon="false"><div ><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
       </div>
       </li>
     </ol>
