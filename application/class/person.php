@@ -64,7 +64,14 @@ class Person
   {
     //search teacher data
     $this->DB->Change_DB($this->PERSON_DB);
-    $sql = "SELECT p.`name` as prefix ,s.`fname`,s.`lname` FROM `staff` s,`prefix` p WHERE s.`code` = '".$teacher_id."' AND s.`prefix_code` = p.`code` ";
+    if($type == 'TH')
+    {
+      $sql = "SELECT p.`name` as prefix ,s.`fname`,s.`lname` FROM `staff` s,`prefix` p WHERE s.`code` = '".$teacher_id."' AND s.`prefix_code` = p.`code` ";
+    }
+    else if($type == 'EN')
+    {
+      $sql = "SELECT p.`name_eng` as prefix ,s.`e_fname` as fname ,s.`e_lname` as lname FROM `staff` s,`prefix` p WHERE s.`code` = '".$teacher_id."' AND s.`prefix_code` = p.`code` ";
+    }
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)
