@@ -17,8 +17,9 @@ if(isset($_POST['course_id']) && isset($_POST['semester']) && isset($_POST['year
   }
   else
   {
-    $data['status'] = 'error';
-    $data['msg'] = "ไม่พบภาคการศึกษา";
+    $result['status'] = 'error';
+    $result['msg'] = "ไม่พบภาคการศึกษา";
+    echo json_encode($result);
   }
 
 }
