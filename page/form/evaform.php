@@ -83,12 +83,11 @@
   }
   table { width: auto !important; }
   textarea {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    max-width: 100%;
-    width: 100%;
-}
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+  }
   </style>
 
 <script id="contentScript">
@@ -2338,9 +2337,9 @@ function confreset(casereset) {
           <div id="text"><b>อาจารย์ผู้ร่วมสอน</b>
           </div>
         </div>
-        <div class="form-inline">
-          <textarea class="form-control" id="tchco" rows="4"></textarea>
-        </div>
+
+          <textarea class="form-control" id="tchco" rows="5"></textarea>
+
 
       </li>
 
@@ -2393,10 +2392,10 @@ function confreset(casereset) {
           </div>
             </div>
           </div>
-          <div class="form-inline">
+
             หมายเหตุ
-            <br> <textarea class="form-control" id="psmeasure" rows="4"></textarea>
-          </div>
+            <br> <textarea class="form-control" id="psmeasure" rows="5"></textarea>
+
           </li>
 
           <br>
@@ -2607,7 +2606,7 @@ function confreset(casereset) {
           </ul>
           <div class="form-inline">
             หมายเหตุ
-            <br> <textarea class="form-control" id="suggestion" rows="4"></textarea>
+            <br> <textarea class="form-control" id="suggestion" rows="5"></textarea>
           </div>
         </li>
 
@@ -2692,7 +2691,7 @@ function confreset(casereset) {
         </div>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม &nbsp;
               <div style="margin-left:35px;">
-                <textarea class="form-control" name="EXPLAINATION" id="EXPLAINATION" rows="4" placeholder="โปรดระบุ" ></textarea>
+                <textarea class="form-control" name="EXPLAINATION" id="EXPLAINATION" rows="5" placeholder="โปรดระบุ" ></textarea>
               </div>
               <br>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE3" value="SU"> ให้อักษร S หรือ U

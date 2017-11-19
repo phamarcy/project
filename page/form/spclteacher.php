@@ -78,7 +78,10 @@ input[type=radio]{
 }
 table { width: auto !important; }
 textarea {
-  width: auto !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
 }
  </style>
 
@@ -2422,16 +2425,16 @@ function lastcal() {
             <li>ตำแหน่ง &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength " id="position" size="35" required ></div></li>
           </div>
 
-          <div class="form-inline">
+
             <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<br>
-              <div class="form-group"><textarea class="form-control formlength" name="qualification" id="qualification" rows="3" cols="60" required></textarea></div></li>
-          </div>
+              <div class="form-group"><textarea class="form-control " name="qualification" id="qualification" rows="3"  required></textarea></div></li>
+
           <br>
-          <div class="form-inline">
+
             <li>สถานที่ทำงาน / สถานที่ติดต่อ &nbsp;&nbsp;<br />
-              <div class="form-group"><textarea class="form-control formlength" name="workplace" id="workplace" rows="3" cols="60"></textarea></div>
+              <div class="form-group"><textarea class="form-control " name="workplace" id="workplace" rows="3" ></textarea></div>
             </li>
-          </div>
+
           <br>
           <div class="form-inline">
             <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength numonly" id="tel" size="20" maxlength="10" required ></div>
@@ -2478,9 +2481,9 @@ function lastcal() {
                 </li>
               </div>
               </li>
-              <div class="form-inline">
-                <div class="form-group"><li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control formlength" id="reason" rows="4" cols="70" required ></textarea></li></div>
-              </div>
+
+                <div class="form-group"><li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control " id="reason" rows="4"  required ></textarea></li></div>
+
                 <li> รายละเอียดในการสอน <br>
                   <div class="col-md-10">
                   <div class="table-responsive">
