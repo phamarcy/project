@@ -72,6 +72,10 @@ $dept = $courseobj->Get_Dept_All();
 .formlength{
   width: auto !important;
 }
+input[type=radio]{
+  position: static!important;
+  margin-left: 0px!important;
+}
  </style>
 
  <script>
@@ -1869,7 +1873,7 @@ $dept = $courseobj->Get_Dept_All();
       $('#costhide').hide();
 
       $("input[name='paymethod']").change(function(){
-        if($(this).val()=="yes")
+        if($(this).val()=="1")
         {
           $('#costhide').show();
         }else {
@@ -2453,8 +2457,8 @@ function lastcal() {
         <ul>
         <div class="form-inline">
           <div class="radio">
-            <div class="form-group"><input type="radio" name="paymethod" id="paymethod1" value="no" checked>&nbsp;ไม่มีค่าใช้จ่าย </div> <br>
-            <div class="form-group"><input type="radio" name="paymethod" id="paymethod1" value="yes">&nbsp;มีค่าใช้จ่าย</div>
+            <div class="form-group"><input type="radio" name="paymethod" id="paymethod1" value="0" checked>&nbsp;ไม่มีค่าใช้จ่าย </div> <br>
+            <div class="form-group"><input type="radio" name="paymethod" id="paymethod1" value="1">&nbsp;มีค่าใช้จ่าย</div>
           </div>
         </div>
           <div id="costhide">
