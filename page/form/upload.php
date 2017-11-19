@@ -64,8 +64,14 @@ $_SESSION['semester']='false';
 <body class="mybox" >
 <form id="search-panel" method="post" action="#" data-toggle="validator" role="form">
             <h3 class="page-header"><center>อัปโหลดไฟล์เกรด</center></h3>
+            <center> <div class="fa fa-exclamation-circle" style="color: #ec2c2c;font-size:16px;"></div><b style="color: #ec2c2c;font-size:16px;"> กรุณาเลือกภาคและปีการศึกษาที่ต้องการอัปโหลดไฟล์เกรด </b>
+          </center>  
+          <br>
             <div class="form-inline">
                 <center>
+
+                     
+               
                     <h style="font-size : 14px">ภาคการศึกษาที่
                         <div class="form-group">
                             <select class="form-control" name="semester" style="width: 100px;" required>
@@ -165,7 +171,7 @@ if (isset($_SESSION['term']) && isset($_SESSION['grade']))
                               <td><?php echo $value['course_name']; ?></td>
                               <td>
                               <?php if (isset($value['url'])): ?>
-                                  <a href="../../files<?php echo $value['url']; ?>" target="_blank"><button class="btn btn-sm btn-success">ดาวน์โหลดไฟล์</button> </a>
+                                  <a href="../../files<?php echo $value['url']; ?>" target="_blank" class="btn btn-sm btn-success" role="button">ดาวน์โหลดไฟล์</a>
                               <?php endif; ?>
                               </td>
                               <td><?php echo $status ?></td>
