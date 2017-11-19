@@ -1173,15 +1173,15 @@ textarea {
 
    if(casesubmit=='1')
    {
-     senddata(JSON.stringify(data),getfile());
+     senddata(JSON.stringify(data),getfile(),casesubmit);
    }
    else if(casesubmit=='2')
    {
-     senddata(JSON.stringify(data),getfile());
+     senddata(JSON.stringify(data),getfile(),casesubmit);
    }
  }
 
- function senddata(data,file_data)
+ function senddata(data,file_data,casesubmit)
  {
 
    //prompt("data", data);
@@ -1226,8 +1226,8 @@ textarea {
 
                              }
                            })
-
-                           window.open(temp["msg"], '_blank');
+                           if(casesubmit==1)
+                          {window.open(temp["msg"], '_blank');}
                           }
                           else {
                             swal.hideLoading()

@@ -1159,7 +1159,7 @@ function submitfunc(casesubmit) {
         'YEAR' : '<?php echo date('Y')+543; ?>'
       };
 
-    senddata(JSON.stringify(data),getfile('1'));
+    senddata(JSON.stringify(data),getfile('1'),casesubmit);
   }
   else if(casesubmit=='0')
   {
@@ -1167,11 +1167,11 @@ function submitfunc(casesubmit) {
       'COURSE_ID' : document.getElementById('COURSE_ID_2'),
       'SUBMIT_TYPE' : casesubmit
     };
-    senddata(JSON.stringify(data),getfile('0'));
+    senddata(JSON.stringify(data),getfile('0'),casesubmit);
   }
 
 }
-function senddata(data,file_data)
+function senddata(data,file_data,casesubmit)
 {
   //prompt("data", data);
    file_data.append("DATA",data);
@@ -1218,7 +1218,8 @@ function senddata(data,file_data)
 
                      }
                    })
-                    window.open(temp["msg"], '_blank');
+                   if(casesubmit==1)
+                  {window.open(temp["msg"], '_blank');}
 
                    }
                    else {
