@@ -1879,6 +1879,12 @@ input[type=radio]{
         }else {
           $('#costhide').hide();
         }
+        $('.resettext').val("");
+        $('.resetvalue').val("0");
+        $('.resetchecked').prop('checked', false);
+        $("input[name='levelteacher'][value='pro']").prop("checked",true);
+        $("input[name='hotelchoice'][value='way3']").prop("checked",true);
+
       });
 
       //cvlist
@@ -2457,56 +2463,56 @@ function lastcal() {
         <ul>
         <div class="form-inline">
           <div class="radio">
-            <div class="form-group"><input type="radio" name="paymethod" id="paymethod1" value="0" checked>&nbsp;ไม่มีค่าใช้จ่าย </div> <br>
-            <div class="form-group"><input type="radio" name="paymethod" id="paymethod1" value="1">&nbsp;มีค่าใช้จ่าย</div>
+            <div class="form-group"><input type="radio" name="paymethod" id="paymethod1" value="0" checked>&nbsp;&nbsp;ไม่มีค่าใช้จ่าย </div>&nbsp;&nbsp;&nbsp;
+            <div class="form-group"><input type="radio" name="paymethod" id="paymethod1" value="1">&nbsp;&nbsp;มีค่าใช้จ่าย</div>
           </div>
         </div>
           <div id="costhide">
           <div class="form-inline">
             <li>อาจารย์พิเศษเป็น &nbsp;</li>
             <div class="radio">
-              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="pro" checked>&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control formlength " name="GOV_LEVEL" id="GOV_LEVEL"/></div>
+              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="pro" checked>&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control formlength resettext" name="GOV_LEVEL" id="GOV_LEVEL"/></div>
               <br>
-              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ &nbsp;<input type="text" class="form-control formlength " name="NORM_LEVEL" id="NORM_LEVEL"/></div>
+              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ &nbsp;<input type="text" class="form-control formlength resettext" name="NORM_LEVEL" id="NORM_LEVEL"/></div>
             </div>
           </div>
           <div class="form-inline">
             <li>ค่าสอนพิเศษ</li>
             <div class="checkbox">
               <div class="form-group">
-                <input type="checkbox"  name="costspec" id="costspec1" value="choice1">&nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control formlength numonly" name="choice1num" id="choice1num"  size="5" value="0"> ต่อชม.&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" id="choice1hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
-              <input type="text" class="form-control formlength numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999" value="0" READONLY>&nbsp;&nbsp;บาท
+                <input type="checkbox" class="resetchecked"  name="costspec" id="costspec1" value="choice1"> &nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control formlength numonly resetvalue" name="choice1num" id="choice1num"  size="5" value="0"> ต่อชม.&nbsp;
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue" id="choice1hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
+              <input type="text" class="form-control formlength numonly resetvalue" id="choice1cost" size="5" data-minlength="5" min="0" max="99999" value="0" READONLY>&nbsp;&nbsp;บาท
               </div><br>
-              <div class="form-group"><input type="checkbox"  name="costspec" id="costspec2" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ <input type="text" class="form-control formlength numonly" name="choice2num" id="choice2num" size="5" value="0"> ต่อชม.&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" id="choice2hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
-              <input type="text" class="form-control formlength numonly" id="choice2cost" size="5" data-minlength="5" min="0" max="99999" value="0" READONLY>&nbsp;&nbsp;บาท
+              <div class="form-group"><input type="checkbox" class="resetchecked" name="costspec" id="costspec2" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ <input type="text" class="form-control formlength numonly resetvalue" name="choice2num" id="choice2num" size="5" value="0"> ต่อชม.&nbsp;
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue" id="choice2hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
+              <input type="text" class="form-control formlength numonly resetvalue" id="choice2cost" size="5" data-minlength="5" min="0" max="99999" value="0" READONLY>&nbsp;&nbsp;บาท
               </div>
             </div>
           </div>
           <div class="form-inline">
             <li>ค่าพาหนะเดินทาง </li>
             <div class="checkbox">
-              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control formlength" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control formlength" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" name="planecost" id="planecost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
+              <div class="form-group"><label><input type="checkbox" class="resetchecked"name="transchoice" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control formlength resettext" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control formlength resettext" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue" name="planecost" id="planecost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
               <br>
-              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control formlength" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control formlength" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" name="taxicost" id="taxicost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
+              <div class="form-group"><label><input type="checkbox" class="resetchecked" name="transchoice" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control formlength resettext" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control formlength resettext" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue" name="taxicost" id="taxicost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
               <br>
-              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transselfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;
-                <input type="text" class="form-control formlength numonly" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="1" min="0" max="9999"> &nbsp;กิโลเมตร  กิโลเมตรละ
-                <input type="text" class="form-control formlength numonly" name="selfunit" id="selfunit" size="4">
+              <div class="form-group"><label><input type="checkbox" class="resetchecked" name="transchoice" id="transselfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;
+                <input type="text" class="form-control formlength numonly resetvalue" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="1" min="0" max="9999" value="0"> &nbsp;กิโลเมตร  กิโลเมตรละ
+                <input type="text" class="form-control formlength numonly resetvalue" name="selfunit" id="selfunit" size="4" value="0">
                  บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
-                <input type="text" class="form-control formlength numonly" name="selfcost" id="selfcost" size="5" data-minlength="2" min="0" max="99999" READONLY >&nbsp;&nbsp;บาท</label></div>
+                <input type="text" class="form-control formlength numonly resetvalue" name="selfcost" id="selfcost" size="5" data-minlength="2" min="0" max="99999" value="0" READONLY >&nbsp;&nbsp;บาท</label></div>
               </div>
           </div>
           <div class="form-inline">
             <li>ค่าที่พัก</li>
             <div class="form-group"><div class="radio">
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way3" required checked>&nbsp;&nbsp; ไม่เบิกค่าที่พัก&nbsp;&nbsp;<br>
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน <input type="text" class="form-control formlength numonly" name="way1unit" id="way1unit" size="4" value="0" > บาท/คน/คืน&nbsp;&nbsp;<br>
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน <input type="text" class="form-control formlength numonly" name="way2unit" id="way2unit" size="4" value="0" > บาท/คน/คืน &nbsp;&nbsp;
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน <input type="text" class="form-control formlength numonly resetvalue" name="way1unit" id="way1unit" size="4" value="0" > บาท/คน/คืน&nbsp;&nbsp;<br>
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน <input type="text" class="form-control formlength numonly resetvalue" name="way2unit" id="way2unit" size="4" value="0" > บาท/คน/คืน &nbsp;&nbsp;
             </div></div>
-            <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" name="numnight" id="numnight" size="5" min="0" max="99999" value="0"  >&nbsp;&nbsp;คืน
-            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" name="pernight" id="pernight" size="5" min="0" max="99999" value="0" READONLY  >&nbsp;&nbsp;บาท
+            <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue" name="numnight" id="numnight" size="5" min="0" max="99999" value="0"  >&nbsp;&nbsp;คืน
+            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue" name="pernight" id="pernight" size="5" min="0" max="99999" value="0" READONLY  >&nbsp;&nbsp;บาท
           </div>
           </div>
           <br>
@@ -2515,7 +2521,7 @@ function lastcal() {
           </div>
           <br>
           <div class="form-inline">
-            <li style="font-size: 16px;" id="callist"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" name="totalcost" id="totalcost" size="10" value="0" READONLY >&nbsp;&nbsp;บาท</li>
+            <li style="font-size: 16px;" id="callist"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue" name="totalcost" id="totalcost" size="10" value="0" READONLY >&nbsp;&nbsp;บาท</li>
             <br>
           </div>
         </div>
