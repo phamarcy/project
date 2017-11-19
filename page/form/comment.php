@@ -178,7 +178,7 @@ $end = strtotime($current_semester[0]['last_date']);
                                     <a href="<?php echo $eva['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดแบบแจ้ง</button></a>
                                     <?php endif; ?>
                                     <?php if ($eva['status']==0) { ?>
-                                      <a type="button" class="btn btn-outline btn-success btn-sm" data-toggle="collapse" href="#collapse<?php echo $eva['id']?>">การพิจารณา</a>
+                                      <a type="button" class="btn  btn-success btn-sm" data-toggle="collapse" href="#collapse<?php echo $eva['id']?>">การพิจารณา</a>
                                     <?php
                                     }
                                     ?>
@@ -194,8 +194,8 @@ $end = strtotime($current_semester[0]['last_date']);
                                       <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $eva['id'] ?>"></textarea>
                                     </div>
                                     <div class="form-group">
-                                      <button type="button" class="btn btn-outline btn-success " onclick="approve_course('<?php echo $eva['id'] ?>','approve')">เห็นชอบ</button>&nbsp;
-                                      <button type="button" class="btn btn-outline btn-danger " onclick="approve_course('<?php echo $eva['id'] ?>','edit')">มีการแก้ไข</button>
+                                      <button type="button" class="btn  btn-success " onclick="approve_course('<?php echo $eva['id'] ?>','approve')">เห็นชอบ</button>&nbsp;
+                                      <button type="button" class="btn  btn-danger " onclick="approve_course('<?php echo $eva['id'] ?>','edit')">มีการแก้ไข</button>
                                     </div>
 
                                   </form>
@@ -274,7 +274,7 @@ $end = strtotime($current_semester[0]['last_date']);
                                     <?php endif; ?>
                                   
                                     <?php if ($spcomment['status']==0) { ?>
-                                      <a type="button" class="btn btn-outline btn-success btn-sm" data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">การพิจารณา</a>
+                                      <a type="button" class="btn  btn-success btn-sm" data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">การพิจารณา</a>
                                     <?php
                                     }
                                     ?>
@@ -290,8 +290,8 @@ $end = strtotime($current_semester[0]['last_date']);
                                         <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $sp['id'].$spcomment['id'] ?>"></textarea>
                                       </div>
                                       <div class="form-group">
-                                        <button type="button" class="btn btn-outline btn-success " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','approve_sp')">เห็นชอบ</button>&nbsp;
-                                        <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','edit_sp')">มีการแก้ไข</button>
+                                        <button type="button" class="btn  btn-success " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','approve_sp')">เห็นชอบ</button>&nbsp;
+                                        <button type="button" class="btn  btn-danger " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','edit_sp')">มีการแก้ไข</button>
                                       </div>
 
                                     </form>
