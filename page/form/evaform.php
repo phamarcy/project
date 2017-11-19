@@ -2628,72 +2628,62 @@ function confreset(casereset) {
                   <th>คะแนนต่ำสุด</th>
                   <th></th>
                   <th>คะแนนสูงสุด</th>
-                  <th></th>
-                  <th>เกรด</th>
-                  <th>คะแนนต่ำสุด</th>
-                  <th></th>
-                  <th>คะแนนสูงสุด</th>
-                  <th></th>
                 </tr>
                 <tr align="center">
                   <td>A</td>
                   <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_A_MIN" id="CALCULATE_A_MIN" maxlength="5" value="80.0"></td>
                   <td>ถึง</td>
                   <td><input type="text" class="form-control formlength numonly" name="CALCULATE_A_MAX" id="CALCULATE_A_MAX" placeholder="100" disabled></td>
-                  <td></td>
-                  <td>D+</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" maxlength="5" value="55.0"></td>
-                  <td>ถึง</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Dp_MAX" id="CALCULATE_Dp_MAX" maxlength="5" value="59.9"></td>
-                  <td></td>
+
                 </tr>
                 <tr align="center">
                   <td>B+</td>
                   <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Bp_MIN" id="CALCULATE_Bp_MIN" maxlength="5" value="75.0"></td>
                   <td>ถึง</td>
                   <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Bp_MAX" id="CALCULATE_Bp_MAX" maxlength="5" value="79.9"></td>
-                  <td></td>
-                  <td>D</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_D_MIN" id="CALCULATE_D_MIN" maxlength="5" value="50.0"></td>
-                  <td>ถึง</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_D_MAX" id="CALCULATE_D_MAX" maxlength="5" value="54.9"></td>
-                  <td></td>
+
                 </tr>
                 <tr align="center">
                   <td>B</td>
                   <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_B_MIN" id="CALCULATE_B_MIN" maxlength="5" value="70.0"></td>
                   <td>ถึง</td>
                   <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_B_MAX" id="CALCULATE_B_MAX" maxlength="5" value="74.9"></td>
-                  <td></td>
-                  <td>F</td>
-                  <td><input type="text" class="form-control formlength numonly" name="CALCULATE_F_MIN" id="CALCULATE_F_MIN" placeholder="0" disabled></td>
-                  <td>ถึง</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" maxlength="5" value="49.9"></td>
-                  <td></td>
+
+
                 </tr>
                 <tr align="center">
                   <td>C+</td>
                   <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Cp_MIN" id="CALCULATE_Cp_MIN" maxlength="5" value="65.0"></td>
                   <td>ถึง</td>
                   <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Cp_MAX" id="CALCULATE_Cp_MAX" maxlength="5" value="69.9"></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+
                 </tr>
                 <tr align="center">
                   <td>C</td>
                   <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_C_MIN" id="CALCULATE_C_MIN" maxlength="5" value="60.0"></td>
                   <td>ถึง</td>
                   <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_C_MAX" id="CALCULATE_C_MAX" maxlength="5" value="64.9"></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+
+                </tr>
+                <tr align="center">
+                  <td>D+</td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" maxlength="5" value="55.0"></td>
+                  <td>ถึง</td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Dp_MAX" id="CALCULATE_Dp_MAX" maxlength="5" value="59.9"></td>
+                </tr>
+                <tr align="center">
+                  <td>D</td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_D_MIN" id="CALCULATE_D_MIN" maxlength="5" value="50.0"></td>
+                  <td>ถึง</td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_D_MAX" id="CALCULATE_D_MAX" maxlength="5" value="54.9"></td>
+
+                </tr>
+                <tr align="center">
+                  <td>F</td>
+                  <td><input type="text" class="form-control formlength numonly" name="CALCULATE_F_MIN" id="CALCULATE_F_MIN" placeholder="0" disabled></td>
+                  <td>ถึง</td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" maxlength="5" value="49.9"></td>
+
                 </tr>
               </table>
             </div>
