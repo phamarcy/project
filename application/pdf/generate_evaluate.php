@@ -943,8 +943,10 @@ if($DATA['SUBMIT_TYPE'] == '1')
 	$result = $approve->Update_Status_Evaluate($DATA['COURSE_ID'],'1','all','');
 	if($result)
 	{
+		$url = $curl->GET_SERVER_URL();
+    $view_url = $url."/application/pdf/view.php";
 		$return['status'] = "success";
-		$return['msg'] = "บันทึกสำเร็จ";
+		$return['msg'] = $view_url."?course=".$data_pdf['course_id']."&type=draft&info=evaluate&semester=".$semester['semester']."&year=".$semester['year'];
 	}
 	else
 	{

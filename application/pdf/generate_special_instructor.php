@@ -803,10 +803,17 @@ if($DATA['SUBMIT_TYPE'] == '1')
 {
 	$approve = new approval('1');
 	$result = $approve->Append_Special_Instructor($data_pdf['course_id'],$instructor_id);
-}
+	$url = $curl->GET_SERVER_URL();
+	$view_url = $url."/application/pdf/view.php";
+	$return['status'] = "success";
+	$return['msg'] = 	$view_url."?course=".$data_pdf['course_id']."&id=".$instructor_id."&info=special&semester=".$semester['semester']."&year=".$semester['year'];
 
-$return['status'] = "success";
-$return['msg'] = "บันทึกสำเร็จ";
+}
+else
+{
+	$return['status'] = "success";
+	$return['msg'] = "บันทึกสำเร็จ";
+}
 echo json_encode($return);
 
 

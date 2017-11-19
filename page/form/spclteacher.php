@@ -76,6 +76,10 @@ input[type=radio]{
   position: static!important;
   margin-left: 0px!important;
 }
+table { width: auto !important; }
+textarea {
+  width: auto !important;
+}
  </style>
 
  <script>
@@ -147,6 +151,7 @@ input[type=radio]{
 
    //part2
    document.getElementById('course').value = temp['course_id'];
+   if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
    document.getElementById('numstudent').value = temp['num_student'];
    var choice2 = temp['type_course'];
    $('input[name="type_course"][value=' + choice2 + ']').prop('checked', true);
@@ -163,10 +168,10 @@ input[type=radio]{
        $.each(x, function(i, val) {
          val.remove();
        });
-       table.append('<tr class="warning" name="addtr" id="row' + tr + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + tr + '" id="delbtn' + tr +
-         '" value="ลบ" onclick="deleteRow(' + tr + ')">&nbsp;&nbsp;<input type="text" class="form-control formlength" name="detail_topic' + tr + '" id="detail_topic' + tr +
-         '" size="30" value="'+temp["lecture_detail"][tr-1]["topic_name"]+'"></div></td><td><input type="text" class="form-control formlength" name="dateteach' + tr + '" id="dateteach' + tr +
-         '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_date"]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline">' +
+       table.append('<tr class="warning" name="addtr" id="row' + tr + '"><td colspan="2"><div class="form-inline"><input type="text" class="form-control formlength" name="detail_topic' + tr + '" id="detail_topic' + tr +
+         '" size="30" value="'+temp["lecture_detail"][tr-1]["topic_name"]+'"><br><center><input type="button" class="btn btn-outline btn-danger" name="delbtn' + tr + '" id="delbtn' + tr +
+           '" value="ลบ" onclick="deleteRow(' + tr + ')"></center></div></td><td><input type="text" class="form-control formlength" name="dateteach' + tr + '" id="dateteach' + tr +
+         '" value="'+temp["lecture_detail"][tr-1]["teaching_date"]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline">' +
          '<select class="form-control formlength" name="timebegin' + tr + '" id="timebegin' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_time_start"]+'">'+
          '<option value="00:00:00">00:00 น.</option><option value="00:15:00">00:15 น.</option>' +
          '<option value="00:30:00">00:30 น.</option><option value="00:45:00">00:45 น.</option>' +
@@ -282,6 +287,18 @@ input[type=radio]{
    }
 
    //part3
+
+   var choice33 = temp['payment_method'];
+   if(choice33 == 1)
+   {
+     $('input[name="paymethod"][value="1"]').prop('checked', true);
+     $('#costhide').show();
+   }
+   else {
+     $('input[name="paymethod"][value="0"]').prop('checked', true);
+     $('#costhide').hide();
+   }
+
    var choice3 = temp['level_teacher'];
    if(choice3 == "official")
    {
@@ -298,24 +315,26 @@ input[type=radio]{
      document.getElementById('NORM_LEVEL').value = temp['level_descript'];
    }
 
-   var choice4 = temp['expense_lec_choice'];
+   var choice4 = temp['expense_lec_checked'];
    if(choice4==1)
    {
-     choice4 = "choice1";
-   }else {
-     choice4 = "choice2";
+     $('#costspec1').prop('checked', true);
    }
-   $('input[name="costspec"][value=' + choice4 + ']').prop('checked', true);
-   if(choice4=="choice1")
+
+   document.getElementById('choice1num').value = temp['expense_lec_number'];
+   document.getElementById('choice1hour').value = temp['expense_lec_hour'];
+   document.getElementById('choice1cost').value = temp['expense_lec_cost'];
+
+   var choice44 = temp['expense_lab_checked'];
+   if(choice44==1)
    {
-     document.getElementById('choice1num').value = temp['expense_lec_number'];
-     document.getElementById('choice1hour').value = temp['expense_lec_hour'];
-     document.getElementById('choice1cost').value = temp['expense_lec_cost'];
-   }else {
-     document.getElementById('choice2num').value = temp['expense_lec_number'];
-     document.getElementById('choice2hour').value = temp['expense_lec_hour'];
-     document.getElementById('choice2cost').value = temp['expense_lec_cost'];
+     $('#costspec2').prop('checked', true);
    }
+
+   document.getElementById('choice2num').value = temp['expense_lec_number'];
+   document.getElementById('choice2hour').value = temp['expense_lec_hour'];
+   document.getElementById('choice2cost').value = temp['expense_lec_cost'];
+
 
    if(temp['expense_plane_check'] == 1)
    {
@@ -460,7 +479,8 @@ input[type=radio]{
                                $('#hiddenh5_found').html("กระบวนวิชา "+temp['INFO'].course_name_th+" ("+temp['INFO'].course_id+")");
                                $('#notfound').hide();
                                $('#department').val(temp['INFO'].department);
-                               $('#numstudent').val(parseInt(temp['INFO'].num_student));
+                               if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+                                  $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                var course_id = document.getElementById('id').value;
                                document.getElementById('formdrpd').style.display = "";
                                //cleardatalist
@@ -481,6 +501,7 @@ input[type=radio]{
                                  document.getElementById('teachername').appendChild(opt);
                                }
                                $('#department').val(temp['INFO'].department);
+                               if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
                                $('#numstudent').val(parseInt(temp['INFO'].num_student));
                              }else if(temp['DATA']==false && temp['INFO']!=false){
                                $('#hiddenh5_found').show();
@@ -488,6 +509,7 @@ input[type=radio]{
                                $('#hiddenh5').hide();
                                $('#notfound').show();
                                $('#department').val(temp['INFO'].department);
+                               if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
                                $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                var course_id = document.getElementById('id').value;
                                document.getElementById('formdrpd').style.display = "";
@@ -1277,115 +1299,133 @@ input[type=radio]{
  {
    if( document.getElementById('teachername').value!="" && document.getElementById('teachername').value!=undefined )
    {
-     var file_data = new FormData;
-     var course_id = $('#id').val();
-     var teachername_temp = document.getElementById('teachername').value;
-     var stringspl = teachername_temp.split('_');
-     var instructor_id = stringspl[0];
-     var name = stringspl[1];
-     var semester = stringspl[3];
-     var year = stringspl[4];
-     file_data.append("course_id",course_id);
-     file_data.append("semester",semester);
-     file_data.append("year",year);
-     var URL = '../../application/document/delete.php';
-     $.ajax({
-                   url: URL,
-                   dataType: 'text',
-                   cache: false,
-                   contentType: false,
-                   processData: false,
-                   data: file_data,
-                   type: 'post',
-                   beforeSend: function() {
-                     swal({
-                       title: 'กรุณารอสักครู่',
-                       text: 'ระบบกำลังประมวลผล',
-                       allowOutsideClick: false
-                     })
-                     swal.showLoading()
-                   },
-                   success: function (result) {
-                         try {
-                           var temp = $.parseJSON(result);
-                           if(temp["status"]=='success')
-                           {
-                              swal.hideLoading()
-                              swal({
-                                title: 'ลบข้อมูลสำเร็จ',
-                                text: temp["msg"],
-                                type: 'success',
-                                showCancelButton: false,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Ok'
-                              }).then(function () {
-                                location.reload();
-                              }, function (dismiss) {
-                              // dismiss can be 'cancel', 'overlay',
-                              // 'close', and 'timer'
-                              if (dismiss === 'cancel') {
+     swal({
+         title: 'แน่ใจหรือไม่',
+         text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
+         type: 'question',
+         showCancelButton: true,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         confirmButtonText: 'Ok',
+         cancelButtonText: 'Cancel'
+       }).then(function () {
+         var file_data = new FormData;
+         var course_id = $('#id').val();
+         var teachername_temp = document.getElementById('teachername').value;
+         var stringspl = teachername_temp.split('_');
+         var instructor_id = stringspl[0];
+         var name = stringspl[1];
+         var semester = stringspl[3];
+         var year = stringspl[4];
+         file_data.append("course_id",course_id);
+         file_data.append("semester",semester);
+         file_data.append("year",year);
+         var URL = '../../application/document/delete.php';
+         $.ajax({
+                       url: URL,
+                       dataType: 'text',
+                       cache: false,
+                       contentType: false,
+                       processData: false,
+                       data: file_data,
+                       type: 'post',
+                       beforeSend: function() {
+                         swal({
+                           title: 'กรุณารอสักครู่',
+                           text: 'ระบบกำลังประมวลผล',
+                           allowOutsideClick: false
+                         })
+                         swal.showLoading()
+                       },
+                       success: function (result) {
+                             try {
+                               var temp = $.parseJSON(result);
+                               if(temp["status"]=='success')
+                               {
+                                  swal.hideLoading()
+                                  swal({
+                                    title: 'ลบข้อมูลสำเร็จ',
+                                    text: temp["msg"],
+                                    type: 'success',
+                                    showCancelButton: false,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Ok'
+                                  }).then(function () {
+                                    location.reload();
+                                  }, function (dismiss) {
+                                  // dismiss can be 'cancel', 'overlay',
+                                  // 'close', and 'timer'
+                                  if (dismiss === 'cancel') {
 
-                              }
-                            })
+                                  }
+                                })
 
-                             //alert(temp["msg"]);
-                           }
-                           else {
-                             swal.hideLoading()
-                             swal({
-                               title: 'เกิดข้อผิดพลาด',
-                               text: temp["msg"],
-                               type: 'error',
-                               showCancelButton: false,
-                               confirmButtonColor: '#3085d6',
-                               cancelButtonColor: '#d33',
-                               confirmButtonText: 'Ok'
-                             }).then(function () {
+                                 //alert(temp["msg"]);
+                               }
+                               else {
+                                 swal.hideLoading()
+                                 swal({
+                                   title: 'เกิดข้อผิดพลาด',
+                                   text: temp["msg"],
+                                   type: 'error',
+                                   showCancelButton: false,
+                                   confirmButtonColor: '#3085d6',
+                                   cancelButtonColor: '#d33',
+                                   confirmButtonText: 'Ok'
+                                 }).then(function () {
 
-                             }, function (dismiss) {
-                             // dismiss can be 'cancel', 'overlay',
-                             // 'close', and 'timer'
-                             if (dismiss === 'cancel') {
+                                 }, function (dismiss) {
+                                 // dismiss can be 'cancel', 'overlay',
+                                 // 'close', and 'timer'
+                                 if (dismiss === 'cancel') {
 
+                                 }
+                               })
+                                 //alert(temp["msg"]);
+                               }
+                             } catch (e) {
+                                  console.log('Error#542-decode error');
+                                  swal.hideLoading()
+                                  swal({
+                                    title: 'เกิดข้อผิดพลาด',
+                                    text: temp["msg"],
+                                    type: 'error',
+                                    showCancelButton: false,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Ok'
+                                  }).then(function () {
+
+                                  }, function (dismiss) {
+                                  // dismiss can be 'cancel', 'overlay',
+                                  // 'close', and 'timer'
+                                  if (dismiss === 'cancel') {
+
+                                  }
+                                })
                              }
-                           })
-                             //alert(temp["msg"]);
-                           }
-                         } catch (e) {
-                              console.log('Error#542-decode error');
-                              swal.hideLoading()
-                              swal({
-                                title: 'เกิดข้อผิดพลาด',
-                                text: temp["msg"],
-                                type: 'error',
-                                showCancelButton: false,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Ok'
-                              }).then(function () {
-
-                              }, function (dismiss) {
-                              // dismiss can be 'cancel', 'overlay',
-                              // 'close', and 'timer'
-                              if (dismiss === 'cancel') {
-
-                              }
-                            })
-                         }
 
 
-                   },
-                   failure: function (result) {
-                        alert(result);
-                   },
-                   error: function (xhr, status, p3, p4) {
-                        var err = "Error " + " " + status + " " + p3 + " " + p4;
-                        if (xhr.responseText && xhr.responseText[0] == "{")
-                             err = JSON.parse(xhr.responseText).Message;
-                        console.log(err);
-                   }
-        });
+                       },
+                       failure: function (result) {
+                            alert(result);
+                       },
+                       error: function (xhr, status, p3, p4) {
+                            var err = "Error " + " " + status + " " + p3 + " " + p4;
+                            if (xhr.responseText && xhr.responseText[0] == "{")
+                                 err = JSON.parse(xhr.responseText).Message;
+                            console.log(err);
+                       }
+            });
+       }, function (dismiss) {
+       // dismiss can be 'cancel', 'overlay',
+       // 'close', and 'timer'
+       if (dismiss === 'cancel') {
+
+       }
+     })
+
       }
       else {
         swal(
@@ -1460,6 +1500,7 @@ input[type=radio]{
                                }
                                document.getElementById('id').value = temp['INFO']['course_id'];
                                $('#department').val(temp['INFO'].department);
+                               if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
                                $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                var course_id = document.getElementById('id').value;
                                //cleardatalist
@@ -1484,6 +1525,7 @@ input[type=radio]{
                                    $('#hiddenh5_found').html('กระบวนวิชา '+temp['INFO'].course_name_th+' ('+temp['INFO'].course_id+')');
                                    $('#notfound').hide();
                                    $('#department').val(temp['INFO'].department);
+                                   if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
                                    $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                    var course_id = document.getElementById('id').value;
                                    document.getElementById('formdrpd').style.display = '';
@@ -1576,6 +1618,7 @@ input[type=radio]{
                                    $('#hiddenh5').hide();
                                    $('#notfound').show();
                                    $('#department').val(temp['INFO'].department);
+                                   if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
                                    $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                    var course_id = document.getElementById('id').value;
                                    document.getElementById('formdrpd').style.display = '';
@@ -2022,7 +2065,7 @@ input[type=radio]{
          val.remove();
        });
 
-       table.append('<tr class="warning" name="addtr" id="row' + (rowCount - 1) + '"><td colspan="2"><div class="form-inline"><input type="text" class="form-control formlength" name="detail_topic' + (rowCount - 1) + '" id="detail_topic' + (rowCount - 1) +
+       table.append('<tr class="warning" name="addtr" id="row' + (rowCount - 1) + '"><td colspan="2"><div class="form-inline"><input type="text" class="form-control formlength" size="30" name="detail_topic' + (rowCount - 1) + '" id="detail_topic' + (rowCount - 1) +
          '" ><br><center><input type="button" class="btn btn-outline btn-danger" name="delbtn' + (rowCount - 1) + '" id="delbtn' + (rowCount - 1) +
            '" value="ลบ" onclick="deleteRow(' + (rowCount - 1) + ')"></center></div></td><td><input type="text" class="form-control formlength" name="dateteach' + (rowCount - 1) + '" id="dateteach' + (rowCount - 1) +
          '"></td><td width="25%" style="text-align: center;"><div class="form-inline">'+
@@ -2464,7 +2507,7 @@ function lastcal() {
         <div class="form-inline">
           <div class="radio">
             <div class="form-group"><input type="radio" name="paymethod" id="paymethod1" value="0" checked>&nbsp;&nbsp;ไม่มีค่าใช้จ่าย </div>&nbsp;&nbsp;&nbsp;
-            <div class="form-group"><input type="radio" name="paymethod" id="paymethod1" value="1">&nbsp;&nbsp;มีค่าใช้จ่าย</div>
+            <div class="form-group"><input type="radio" name="paymethod" id="paymethod2" value="1">&nbsp;&nbsp;มีค่าใช้จ่าย</div>
           </div>
         </div>
           <div id="costhide">

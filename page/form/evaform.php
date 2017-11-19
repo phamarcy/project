@@ -73,6 +73,18 @@
   .floatrm {
     float: none !important;
   }
+
+  .formlength{
+    width: auto !important;
+  }
+  input[type=radio]{
+    position: static!important;
+    margin-left: 0px!important;
+  }
+  table { width: auto !important; }
+  textarea {
+    width: auto !important;
+  }
   </style>
 
 <script id="contentScript">
@@ -1267,113 +1279,130 @@ function deletedata()
 {
   if( document.getElementById('semester').value!="" && document.getElementById('semester').value!=undefined )
   {
-    var file_data = new FormData;
-    var course_id = $('#id').val();
-    var teachername_temp = document.getElementById('semester').value;
-    var stringspl = teachername_temp.split('_');
-    var semester = stringspl[0];
-    var year = stringspl[1];
-    file_data.append("course_id",course_id);
-    file_data.append("semester",semester);
-    file_data.append("year",year);
-    var URL = '../../application/document/delete.php';
-    $.ajax({
-                  url: URL,
-                  dataType: 'text',
-                  cache: false,
-                  contentType: false,
-                  processData: false,
-                  data: file_data,
-                  type: 'post',
-                  beforeSend: function() {
-                    swal({
-                      title: 'กรุณารอสักครู่',
-                      text: 'ระบบกำลังประมวลผล',
-                      allowOutsideClick: false
-                    })
-                    swal.showLoading()
-                  },
-                  success: function (result) {
-                        try {
-                          var temp = $.parseJSON(result);
-                          if(temp["status"]=='success')
-                          {
-                             swal.hideLoading()
-                             swal({
-                               title: 'ลบข้อมูลสำเร็จ',
-                               text: temp["msg"],
-                               type: 'success',
-                               showCancelButton: false,
-                               confirmButtonColor: '#3085d6',
-                               cancelButtonColor: '#d33',
-                               confirmButtonText: 'Ok'
-                             }).then(function () {
-                               location.reload();
-                             }, function (dismiss) {
-                             // dismiss can be 'cancel', 'overlay',
-                             // 'close', and 'timer'
-                             if (dismiss === 'cancel') {
-
-                             }
-                           })
-
-                            //alert(temp["msg"]);
-                          }
-                          else {
-                            swal.hideLoading()
-                            swal({
-                              title: 'เกิดข้อผิดพลาด',
-                              text: temp["msg"],
-                              type: 'error',
-                              showCancelButton: false,
-                              confirmButtonColor: '#3085d6',
-                              cancelButtonColor: '#d33',
-                              confirmButtonText: 'Ok'
-                            }).then(function () {
-
-                            }, function (dismiss) {
-                            // dismiss can be 'cancel', 'overlay',
-                            // 'close', and 'timer'
-                            if (dismiss === 'cancel') {
-
-                            }
+    swal({
+        title: 'แน่ใจหรือไม่',
+        text: 'คุณต้องการลบข้อมูลใช่หรือไม่',
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok',
+        cancelButtonText: 'Cancel'
+      }).then(function () {
+          var file_data = new FormData;
+          var course_id = $('#id').val();
+          var teachername_temp = document.getElementById('semester').value;
+          var stringspl = teachername_temp.split('_');
+          var semester = stringspl[0];
+          var year = stringspl[1];
+          file_data.append("course_id",course_id);
+          file_data.append("semester",semester);
+          file_data.append("year",year);
+          var URL = '../../application/document/delete.php';
+          $.ajax({
+                        url: URL,
+                        dataType: 'text',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: file_data,
+                        type: 'post',
+                        beforeSend: function() {
+                          swal({
+                            title: 'กรุณารอสักครู่',
+                            text: 'ระบบกำลังประมวลผล',
+                            allowOutsideClick: false
                           })
-                            //alert(temp["msg"]);
-                          }
-                        } catch (e) {
-                             console.log('Error#542-decode error');
-                             swal.hideLoading()
-                             swal({
-                               title: 'เกิดข้อผิดพลาด',
-                               text: temp["msg"],
-                               type: 'error',
-                               showCancelButton: false,
-                               confirmButtonColor: '#3085d6',
-                               cancelButtonColor: '#d33',
-                               confirmButtonText: 'Ok'
-                             }).then(function () {
+                          swal.showLoading()
+                        },
+                        success: function (result) {
+                              try {
+                                var temp = $.parseJSON(result);
+                                if(temp["status"]=='success')
+                                {
+                                   swal.hideLoading()
+                                   swal({
+                                     title: 'ลบข้อมูลสำเร็จ',
+                                     text: temp["msg"],
+                                     type: 'success',
+                                     showCancelButton: false,
+                                     confirmButtonColor: '#3085d6',
+                                     cancelButtonColor: '#d33',
+                                     confirmButtonText: 'Ok'
+                                   }).then(function () {
+                                     location.reload();
+                                   }, function (dismiss) {
+                                   // dismiss can be 'cancel', 'overlay',
+                                   // 'close', and 'timer'
+                                   if (dismiss === 'cancel') {
 
-                             }, function (dismiss) {
-                             // dismiss can be 'cancel', 'overlay',
-                             // 'close', and 'timer'
-                             if (dismiss === 'cancel') {
+                                   }
+                                 })
 
-                             }
-                           })
+                                  //alert(temp["msg"]);
+                                }
+                                else {
+                                  swal.hideLoading()
+                                  swal({
+                                    title: 'เกิดข้อผิดพลาด',
+                                    text: temp["msg"],
+                                    type: 'error',
+                                    showCancelButton: false,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Ok'
+                                  }).then(function () {
+
+                                  }, function (dismiss) {
+                                  // dismiss can be 'cancel', 'overlay',
+                                  // 'close', and 'timer'
+                                  if (dismiss === 'cancel') {
+
+                                  }
+                                })
+                                  //alert(temp["msg"]);
+                                }
+                              } catch (e) {
+                                   console.log('Error#542-decode error');
+                                   swal.hideLoading()
+                                   swal({
+                                     title: 'เกิดข้อผิดพลาด',
+                                     text: temp["msg"],
+                                     type: 'error',
+                                     showCancelButton: false,
+                                     confirmButtonColor: '#3085d6',
+                                     cancelButtonColor: '#d33',
+                                     confirmButtonText: 'Ok'
+                                   }).then(function () {
+
+                                   }, function (dismiss) {
+                                   // dismiss can be 'cancel', 'overlay',
+                                   // 'close', and 'timer'
+                                   if (dismiss === 'cancel') {
+
+                                   }
+                                 })
+                              }
+
+
+                        },
+                        failure: function (result) {
+                             alert(result);
+                        },
+                        error: function (xhr, status, p3, p4) {
+                             var err = "Error " + " " + status + " " + p3 + " " + p4;
+                             if (xhr.responseText && xhr.responseText[0] == "{")
+                                  err = JSON.parse(xhr.responseText).Message;
+                             console.log(err);
                         }
+             });
+           }, function (dismiss) {
+           // dismiss can be 'cancel', 'overlay',
+           // 'close', and 'timer'
+           if (dismiss === 'cancel') {
 
-
-                  },
-                  failure: function (result) {
-                       alert(result);
-                  },
-                  error: function (xhr, status, p3, p4) {
-                       var err = "Error " + " " + status + " " + p3 + " " + p4;
-                       if (xhr.responseText && xhr.responseText[0] == "{")
-                            err = JSON.parse(xhr.responseText).Message;
-                       console.log(err);
-                  }
-       });
+           }
+         })
      }
      else {
        swal(
@@ -2169,7 +2198,7 @@ function confreset(casereset) {
       <div id="formchecksj" class="form-inline" style="font-size:16px;">
                 <div class="form-group ">
                   รหัสกระบวนวิชา
-                   <input type="text" class="form-control numonly" id="id" name="id" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required >
+                   <input type="text" class="form-control formlength numonly" id="id" name="id" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required >
                 </div>
                 <input type="hidden" name="type" value="1">
                <button type="button" class="btn btn-outline btn-primary" onclick="checksubject(1,1);">ค้นหา</button>
@@ -2179,7 +2208,7 @@ function confreset(casereset) {
     <div class="form-inline">
       <div class="form-group " style="font-size:16px;">
          ดึงข้อมูลย้อนหลัง
-        <select class="form-control required" id="semester" name="semester" style="width: 300px;" required >
+        <select class="form-control formlength required" id="semester" name="semester" style="width: 300px;" required >
         </select>
        </div>
        <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,1);">
@@ -2198,11 +2227,11 @@ function confreset(casereset) {
       <li style="font-size: 14px">
         <div class="form-inline">
           <div class="form-group">
-          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID" id="COURSE_ID"   maxlength="6" required pattern=".{6,6}" readonly>
+          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control formlength numonly" name="COURSE_ID" id="COURSE_ID"   maxlength="6" required pattern=".{6,6}" readonly>
           </div>
           <div class="form-group">
             &nbsp;จำนวนตอน (ทั้งหมด) &nbsp;
-            <select class="form-control required" id="SECTION" name="SECTION" style="width: 70px;" required onchange="section_box()" >
+            <select class="form-control formlength required" id="SECTION" name="SECTION" style="width: 70px;" required onchange="section_box()" >
               <option value="1" selected>1</option>
             <?php
             for($i=2;$i<=5;$i++)
@@ -2218,20 +2247,20 @@ function confreset(casereset) {
           </div></div>
           <br>
           <div class="form-group">
-          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   maxlength="50" required readonly>
+          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 100%!important;" type="text" class="form-control formlength" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   maxlength="50" required readonly>
           </div>
           <br>
           <div class="form-group">
-          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   maxlength="50" required readonly>
+          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 100%!important;" type="text" class="form-control formlength" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   maxlength="50" required readonly>
           </div>
           <div class="row">
-            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control" name="TOTAL" id="TOTAL" size="5" maxlength="10" required pattern=".{8,10}" readonly>&nbsp; หน่วยกิต
+            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control formlength" name="TOTAL" id="TOTAL" size="5" maxlength="10" required pattern=".{8,10}" readonly>&nbsp; หน่วยกิต
             </div></div>
           </div>
-          <div class="form-group"><div class="form-inline" id="secdiv1">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ 1 จำนวน&nbsp;<input style="width: 70px;" type="text" class="form-control numonly" name="ENROLL1" id="ENROLL1" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>
+          <div class="form-group"><div class="form-inline" id="secdiv1">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ 1 จำนวน&nbsp;<input style="width: 70px;" type="text" class="form-control formlength numonly" name="ENROLL1" id="ENROLL1" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>
             <?php
                 for ($i=2; $i<=5 ; $i++) {
-                  echo '<div class="form-inline hide" style="display:none;" id="secdiv'.$i.'">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ '.$i.' จำนวน&nbsp;<input style="width: 70px; display: none;" type="text" class="form-control numonly" name="ENROLL'.$i.'" id="ENROLL'.$i.'" size="2" maxlength="3" pattern=".{1,3}">&nbsp;คน </div>';
+                  echo '<div class="form-inline hide" style="display:none;" id="secdiv'.$i.'">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ '.$i.' จำนวน&nbsp;<input style="width: 70px; display: none;" type="text" class="form-control formlength numonly" name="ENROLL'.$i.'" id="ENROLL'.$i.'" size="2" maxlength="3" pattern=".{1,3}">&nbsp;คน </div>';
                 }
              ?>
            </div>
@@ -2252,7 +2281,7 @@ function confreset(casereset) {
             <input type="radio" name="TYPE_TEACHING" id="TYPE_TEACHING7" value="OTH" onchange="other_type()"> อื่นๆ &nbsp;
           </div>
         </div><br>
-            <input type="text" class="form-control" name="TYPE_TEACHING_NAME" id="TYPE_TEACHING_NAME" placeholder="โปรดระบุ">
+            <input type="text" class="form-control formlength" name="TYPE_TEACHING_NAME" id="TYPE_TEACHING_NAME" placeholder="โปรดระบุ">
 
         </div>
       </li>
@@ -2266,33 +2295,33 @@ function confreset(casereset) {
 
         <div class="form-inline" id="ctlec1">
           <label id="li1">1. &nbsp;</label>
-          <input type="text" class="form-control charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'subject');" >
+          <input type="text" class="form-control formlength charonly" name="TEACHERLEC_F1" id="TEACHERLEC_F1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(1,'subject');" >
           <datalist id="dtl1">
           </datalist>
         </div>
 
         <div class="form-inline" id="ctlec2">
           <label id="li2">2. &nbsp;</label>
-          <input type="text" class="form-control charonly" name="TEACHERLEC_F2" id="TEACHERLEC_F2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'subject');" >
+          <input type="text" class="form-control formlength charonly" name="TEACHERLEC_F2" id="TEACHERLEC_F2" list="dtl2" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(2,'subject');" >
           <datalist id="dtl2">
           </datalist>
         </div>
 
         <div class="form-inline" id="ctlec3">
           <label id="li3">3. &nbsp;</label>
-          <input type="text" class="form-control charonly" name="TEACHERLEC_F3" id="TEACHERLEC_F3" list="dtl3" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(3,'subject');" >
+          <input type="text" class="form-control formlength charonly" name="TEACHERLEC_F3" id="TEACHERLEC_F3" list="dtl3" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(3,'subject');" >
           <datalist id="dtl3">
           </datalist>
         </div>
         <div class="form-inline" id="ctlec4">
           <label id="li4">4. &nbsp;</label>
-          <input type="text" class="form-control charonly" name="TEACHERLEC_F4" id="TEACHERLEC_F4" list="dtl4" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(4,'subject');" >
+          <input type="text" class="form-control formlength charonly" name="TEACHERLEC_F4" id="TEACHERLEC_F4" list="dtl4" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(4,'subject');" >
           <datalist id="dtl4">
           </datalist>
         </div>
         <div class="form-inline" id="ctlec5">
           <label id="li5">5. &nbsp;</label>
-          <input type="text" class="form-control charonly" name="TEACHERLEC_F5" id="TEACHERLEC_F5" list="dtl5" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(5,'subject');" >
+          <input type="text" class="form-control formlength charonly" name="TEACHERLEC_F5" id="TEACHERLEC_F5" list="dtl5" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname(5,'subject');" >
           <datalist id="dtl5">
           </datalist>
         </div>
@@ -2301,7 +2330,7 @@ function confreset(casereset) {
           </div>
         </div>
         <div class="form-inline">
-          <textarea class="form-control" id="tchco" rows="4" cols="125"></textarea>
+          <textarea class="form-control formlength" id="tchco" rows="4" cols="125"></textarea>
         </div>
 
       </li>
@@ -2321,41 +2350,41 @@ function confreset(casereset) {
               </tr>
               <tr>
                 <td colspan="2">1. สอบกลางภาคครั้งที่ 1</td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC1" id="MEASURE_MIDLEC1" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB1" id="MEASURE_MIDLAB1" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_MIDLEC1" id="MEASURE_MIDLEC1" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_MIDLAB1" id="MEASURE_MIDLAB1" size="10" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">2. สอบกลางภาคครั้งที่ 2</td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLEC2" id="MEASURE_MIDLEC2" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_MIDLAB2" id="MEASURE_MIDLAB2" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_MIDLEC2" id="MEASURE_MIDLEC2" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_MIDLAB2" id="MEASURE_MIDLAB2" size="10" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">3. สอบไล่ </td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="10" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">4. งานมอบหมาย </td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_WORKLEC" id="MEASURE_WORKLEC" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_WORKLAB" id="MEASURE_WORKLAB" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_WORKLEC" id="MEASURE_WORKLEC" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_WORKLAB" id="MEASURE_WORKLAB" size="10" value="0"></div></td>
               </tr>
               <tr name="addtr">
 
-                <td colspan="2"><div class="form-group form-inline">5. อื่นๆ โปรดระบุ &nbsp;&nbsp;<input type="text" class="form-control" name="OTHER_MEA" id="OTHER_MEA" size="30"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_OTHLEC" id="MEASURE_OTHLEC" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_OTHLAB" id="MEASURE_OTHLAB" size="10" value="0"></div></td>
+                <td colspan="2"><div class="form-group form-inline">5. อื่นๆ โปรดระบุ &nbsp;&nbsp;<input type="text" class="form-control formlength" name="OTHER_MEA" id="OTHER_MEA" size="30"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_OTHLEC" id="MEASURE_OTHLEC" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_OTHLAB" id="MEASURE_OTHLAB" size="10" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2" align="right"><input type="button" class="btn btn-outline btn-warning" name="calmea" id="calmea" value="รวมคะแนน"></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="10" value="0"></div></td>
               </tr>
             </table>
             </div>
           </div>
           <div class="form-inline">
             หมายเหตุ
-            <br> <textarea class="form-control" id="psmeasure" rows="4" cols="125"></textarea>
+            <br> <textarea class="form-control formlength" id="psmeasure" rows="4" cols="125"></textarea>
           </div>
           </li>
 
@@ -2372,10 +2401,10 @@ function confreset(casereset) {
                   <div class="form-inline">
                     <li style="font-size: 14px">
                       <div class="form-group">
-                      จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" style="width: 70px" class="form-control numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
+                      จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" style="width: 70px" class="form-control formlength numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
                     </div>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                      <select style="height: 28px;" name="mexholec" id="mexholec" class="form-control numonly" onchange="midexam_hour_lec()">
+                      <select style="height: 28px;" name="mexholec" id="mexholec" class="form-control formlength numonly" onchange="midexam_hour_lec()">
           <option value="0" selected>0</option>
           <?php
             for($i=1;$i<=10;$i++)
@@ -2390,7 +2419,7 @@ function confreset(casereset) {
             for ($i=1; $i<=10 ; $i++) {
               echo '<div class="form-inline hide" id="mehlec'.$i.'">
                 <label id="mehle'.$i.'" style="display:none;">'.$i.'.&nbsp; </label>
-                <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF'.$i.'" id="MIDEXCOM_LECF'.$i.'" placeholder="ชื่อ" size="35" list="dtmeh'.$i.'" onkeydown="searchname('.$i.',511);">
+                <input type="text" style="display:none;" class="form-control formlength charonly" name="MIDEXCOM_LECF'.$i.'" id="MIDEXCOM_LECF'.$i.'" placeholder="ชื่อ" size="35" list="dtmeh'.$i.'" onkeydown="searchname('.$i.',511);">
                 <datalist id="dtmeh'.$i.'">
                 </datalist>
               </div>';
@@ -2400,10 +2429,10 @@ function confreset(casereset) {
                       <div class="form-inline">
                         <li style="font-size: 14px">
                           <div class="form-group">
-                          จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" >&nbsp; ชั่วโมง
+                          จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control formlength numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" >&nbsp; ชั่วโมง
                         </div>
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                          <select style="height: 28px;" name="mexholac" id="mexholac" class="form-control numonly" onchange="midexam_hour_lab()">
+                          <select style="height: 28px;" name="mexholac" id="mexholac" class="form-control formlength numonly" onchange="midexam_hour_lab()">
           <option value="0" selected>0</option>
           <?php
             for($i=1;$i<=10;$i++)
@@ -2418,7 +2447,7 @@ function confreset(casereset) {
              for ($i=1; $i<=10 ; $i++) {
                echo '<div class="form-inline hide" id="ehlab'.$i.'">
                  <label id="ehla'.$i.'" style="display:none;">'.$i.'.&nbsp; </label>
-                 <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF'.$i.'" id="MIDEXCOM_LABF'.$i.'" placeholder="ชื่อ" size="35" list="dtehlab'.$i.'" onkeydown="searchname('.$i.',512);">
+                 <input type="text" style="display:none;" class="form-control formlength charonly" name="MIDEXCOM_LABF'.$i.'" id="MIDEXCOM_LABF'.$i.'" placeholder="ชื่อ" size="35" list="dtehlab'.$i.'" onkeydown="searchname('.$i.',512);">
                  <datalist id="dtehlab'.$i.'">
                  </datalist>
                </div>';
@@ -2438,10 +2467,10 @@ function confreset(casereset) {
                   <div class="form-inline">
                     <li style="font-size: 14px">
                       <div class="form-group">
-                      จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" style="width: 70px" class="form-control numonly" name="MIDEXAM_HOUR_LEC_SEC" id="MIDEXAM_HOUR_LEC_SEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
+                      จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" style="width: 70px" class="form-control formlength numonly" name="MIDEXAM_HOUR_LEC_SEC" id="MIDEXAM_HOUR_LEC_SEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
                     </div>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                      <select style="height: 28px;" name="mexholec_sec" id="mexholec_sec" class="form-control numonly" onchange="midexam_hour_lec_sec()">
+                      <select style="height: 28px;" name="mexholec_sec" id="mexholec_sec" class="form-control formlength numonly" onchange="midexam_hour_lec_sec()">
           <option value="0" selected>0</option>
           <?php
             for($i=1;$i<=10;$i++)
@@ -2456,7 +2485,7 @@ function confreset(casereset) {
             for ($i=1; $i<=10 ; $i++) {
               echo '<div class="form-inline hide" id="mehlec'.$i.'_sec">
                 <label id="mehle'.$i.'_sec" style="display:none;">'.$i.'.&nbsp; </label>
-                <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LECF'.$i.'_sec" id="MIDEXCOM_LECF'.$i.'_sec" placeholder="ชื่อ" size="35" list="dtmehle'.$i.'_sec" onkeydown="searchname('.$i.',521);">
+                <input type="text" style="display:none;" class="form-control formlength charonly" name="MIDEXCOM_LECF'.$i.'_sec" id="MIDEXCOM_LECF'.$i.'_sec" placeholder="ชื่อ" size="35" list="dtmehle'.$i.'_sec" onkeydown="searchname('.$i.',521);">
                 <datalist id="dtmehle'.$i.'_sec">
                 </datalist>
               </div>';
@@ -2466,10 +2495,10 @@ function confreset(casereset) {
                       <div class="form-inline">
                         <li style="font-size: 14px">
                           <div class="form-group">
-                          จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control numonly" name="MIDEXAM_HOUR_LAB_SEC" id="MIDEXAM_HOUR_LAB_SEC" size="2" >&nbsp; ชั่วโมง
+                          จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control formlength numonly" name="MIDEXAM_HOUR_LAB_SEC" id="MIDEXAM_HOUR_LAB_SEC" size="2" >&nbsp; ชั่วโมง
                         </div>
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                          <select style="height: 28px;" name="mexholac_sec" id="mexholac_sec" class="form-control numonly" onchange="midexam_hour_lab_sec()">
+                          <select style="height: 28px;" name="mexholac_sec" id="mexholac_sec" class="form-control formlength numonly" onchange="midexam_hour_lab_sec()">
           <option value="0" selected>0</option>
           <?php
             for($i=1;$i<=10;$i++)
@@ -2484,7 +2513,7 @@ function confreset(casereset) {
              for ($i=1; $i<=10 ; $i++) {
                echo '<div class="form-inline hide" id="ehlab'.$i.'_sec">
                  <label id="ehla'.$i.'_sec" style="display:none;">'.$i.'.&nbsp; </label>
-                 <input type="text" style="display:none;" class="form-control charonly" name="MIDEXCOM_LABF'.$i.'_sec" id="MIDEXCOM_LABF'.$i.'_sec" placeholder="ชื่อ" size="35" list="dtehla'.$i.'_sec" onkeydown="searchname('.$i.',522);">
+                 <input type="text" style="display:none;" class="form-control formlength charonly" name="MIDEXCOM_LABF'.$i.'_sec" id="MIDEXCOM_LABF'.$i.'_sec" placeholder="ชื่อ" size="35" list="dtehla'.$i.'_sec" onkeydown="searchname('.$i.',522);">
                  <datalist id="dtehla'.$i.'_sec">
                  </datalist>
                </div>';
@@ -2505,10 +2534,10 @@ function confreset(casereset) {
                     <div class="form-inline">
                       <li style="font-size: 14px">
                         <div class="form-group">
-                        จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input  style="width: 70px"type="text" class="form-control numonly" name="FINEXAM_HOUR_LEC" id="FINEXAM_HOUR_LEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
+                        จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input  style="width: 70px"type="text" class="form-control formlength numonly" name="FINEXAM_HOUR_LEC" id="FINEXAM_HOUR_LEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                        <select style="height: 28px;" name="fexholec" id="fexholec" class="form-control numonly" onchange="finexam_hour_lec()">
+                        <select style="height: 28px;" name="fexholec" id="fexholec" class="form-control formlength numonly" onchange="finexam_hour_lec()">
           <option value="0" selected>0</option>
           <?php
             for($i=1;$i<=10;$i++)
@@ -2523,7 +2552,7 @@ function confreset(casereset) {
             for ($i=1; $i<=10 ; $i++) {
               echo '<div class="form-inline hide" id="fmehlec'.$i.'">
                 <label id="fmehle'.$i.'" style="display:none;">'.$i.'.&nbsp; </label>
-                <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LECF'.$i.'" id="FINEXCOM_LECF'.$i.'" placeholder="ชื่อ" size="35" list="dtfmehle'.$i.'" onkeydown="searchname('.$i.',531);">
+                <input type="text" style="display:none;" class="form-control formlength charonly" name="FINEXCOM_LECF'.$i.'" id="FINEXCOM_LECF'.$i.'" placeholder="ชื่อ" size="35" list="dtfmehle'.$i.'" onkeydown="searchname('.$i.',531);">
                 <datalist id="dtfmehle'.$i.'">
                 </datalist>
               </div>';
@@ -2534,10 +2563,10 @@ function confreset(casereset) {
                         <div class="form-inline">
                           <li style="font-size: 14px">
                             <div class="form-group">
-                            จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input style="width: 70px" type="text" class="form-control numonly" name="FINEXAM_HOUR_LAB" id="FINEXAM_HOUR_LAB" size="2" maxlength="3" >&nbsp; ชั่วโมง
+                            จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input style="width: 70px" type="text" class="form-control formlength numonly" name="FINEXAM_HOUR_LAB" id="FINEXAM_HOUR_LAB" size="2" maxlength="3" >&nbsp; ชั่วโมง
                           </div>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                            <select style="height: 28px;" name="fexholac" id="fexholac" class="form-control numonly" onchange="finexam_hour_lab()">
+                            <select style="height: 28px;" name="fexholac" id="fexholac" class="form-control formlength numonly" onchange="finexam_hour_lab()">
           <option value="0" selected>0</option>
           <?php
             for($i=1;$i<=10;$i++)
@@ -2552,7 +2581,7 @@ function confreset(casereset) {
              for ($i=1; $i<=10 ; $i++) {
                echo '<div class="form-inline hide" id="fehlab'.$i.'">
                  <label id="fehla'.$i.'" style="display:none;">'.$i.'.&nbsp; </label>
-                 <input type="text" style="display:none;" class="form-control charonly" name="FINEXCOM_LABF'.$i.'" id="FINEXCOM_LABF'.$i.'" placeholder="ชื่อ" size="35" list="dtfehla'.$i.'" onkeydown="searchname('.$i.',532);">
+                 <input type="text" style="display:none;" class="form-control formlength charonly" name="FINEXCOM_LABF'.$i.'" id="FINEXCOM_LABF'.$i.'" placeholder="ชื่อ" size="35" list="dtfehla'.$i.'" onkeydown="searchname('.$i.',532);">
                  <datalist id="dtfehla'.$i.'">
                  </datalist>
                </div>';
@@ -2567,7 +2596,7 @@ function confreset(casereset) {
           </ul>
           <div class="form-inline">
             หมายเหตุ
-            <br> <textarea class="form-control" id="suggestion" rows="4" cols="125"></textarea>
+            <br> <textarea class="form-control formlength" id="suggestion" rows="4" cols="125"></textarea>
           </div>
         </li>
 
@@ -2596,45 +2625,45 @@ function confreset(casereset) {
                 </tr>
                 <tr align="center">
                   <td>A</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_A_MIN" id="CALCULATE_A_MIN" maxlength="5" value="80.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_A_MIN" id="CALCULATE_A_MIN" maxlength="5" value="80.0"></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control numonly" name="CALCULATE_A_MAX" id="CALCULATE_A_MAX" placeholder="100" disabled></td>
+                  <td><input type="text" class="form-control formlength numonly" name="CALCULATE_A_MAX" id="CALCULATE_A_MAX" placeholder="100" disabled></td>
                   <td></td>
                   <td>D+</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" maxlength="5" value="55.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" maxlength="5" value="55.0"></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_Dp_MAX" id="CALCULATE_Dp_MAX" maxlength="5" value="59.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Dp_MAX" id="CALCULATE_Dp_MAX" maxlength="5" value="59.9"></td>
                   <td></td>
                 </tr>
                 <tr align="center">
                   <td>B+</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_Bp_MIN" id="CALCULATE_Bp_MIN" maxlength="5" value="75.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Bp_MIN" id="CALCULATE_Bp_MIN" maxlength="5" value="75.0"></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_Bp_MAX" id="CALCULATE_Bp_MAX" maxlength="5" value="79.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Bp_MAX" id="CALCULATE_Bp_MAX" maxlength="5" value="79.9"></td>
                   <td></td>
                   <td>D</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_D_MIN" id="CALCULATE_D_MIN" maxlength="5" value="50.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_D_MIN" id="CALCULATE_D_MIN" maxlength="5" value="50.0"></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_D_MAX" id="CALCULATE_D_MAX" maxlength="5" value="54.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_D_MAX" id="CALCULATE_D_MAX" maxlength="5" value="54.9"></td>
                   <td></td>
                 </tr>
                 <tr align="center">
                   <td>B</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_B_MIN" id="CALCULATE_B_MIN" maxlength="5" value="70.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_B_MIN" id="CALCULATE_B_MIN" maxlength="5" value="70.0"></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_B_MAX" id="CALCULATE_B_MAX" maxlength="5" value="74.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_B_MAX" id="CALCULATE_B_MAX" maxlength="5" value="74.9"></td>
                   <td></td>
                   <td>F</td>
-                  <td><input type="text" class="form-control numonly" name="CALCULATE_F_MIN" id="CALCULATE_F_MIN" placeholder="0" disabled></td>
+                  <td><input type="text" class="form-control formlength numonly" name="CALCULATE_F_MIN" id="CALCULATE_F_MIN" placeholder="0" disabled></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" maxlength="5" value="49.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" maxlength="5" value="49.9"></td>
                   <td></td>
                 </tr>
                 <tr align="center">
                   <td>C+</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_Cp_MIN" id="CALCULATE_Cp_MIN" maxlength="5" value="65.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Cp_MIN" id="CALCULATE_Cp_MIN" maxlength="5" value="65.0"></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_Cp_MAX" id="CALCULATE_Cp_MAX" maxlength="5" value="69.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Cp_MAX" id="CALCULATE_Cp_MAX" maxlength="5" value="69.9"></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -2644,9 +2673,9 @@ function confreset(casereset) {
                 </tr>
                 <tr align="center">
                   <td>C</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_C_MIN" id="CALCULATE_C_MIN" maxlength="5" value="60.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_C_MIN" id="CALCULATE_C_MIN" maxlength="5" value="60.0"></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control numonly atof" name="CALCULATE_C_MAX" id="CALCULATE_C_MAX" maxlength="5" value="64.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_C_MAX" id="CALCULATE_C_MAX" maxlength="5" value="64.9"></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -2660,7 +2689,7 @@ function confreset(casereset) {
         </div>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม &nbsp;
               <div style="margin-left:35px;">
-                <textarea class="form-control" name="EXPLAINATION" id="EXPLAINATION" rows="4" cols="125" placeholder="โปรดระบุ" ></textarea>
+                <textarea class="form-control formlength" name="EXPLAINATION" id="EXPLAINATION" rows="4" cols="125" placeholder="โปรดระบุ" ></textarea>
               </div>
               <br>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE3" value="SU"> ให้อักษร S หรือ U
@@ -2676,15 +2705,15 @@ function confreset(casereset) {
                 </tr>
                 <tr align="center">
                   <td>S</td>
-                  <td><input type="text" class="form-control numonly stou" name="CALCULATE_S_MIN" id="CALCULATE_S_MIN" maxlength="5" value=""></td>
+                  <td><input type="text" class="form-control formlength numonly stou" name="CALCULATE_S_MIN" id="CALCULATE_S_MIN" maxlength="5" value=""></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control numonly" name="CALCULATE_S_MAX" id="CALCULATE_S_MIN" placeholder="100" disabled></td>
+                  <td><input type="text" class="form-control formlength numonly" name="CALCULATE_S_MAX" id="CALCULATE_S_MIN" placeholder="100" disabled></td>
                 </tr>
                 <tr align="center">
                   <td>U</td>
-                  <td><input type="text" class="form-control numonly" name="CALCULATE_U_MAX" id="CALCULATE_U_MIN" placeholder="0" disabled></td>
+                  <td><input type="text" class="form-control formlength numonly" name="CALCULATE_U_MAX" id="CALCULATE_U_MIN" placeholder="0" disabled></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control numonly stou" name="CALCULATE_U_MAX" id="CALCULATE_U_MAX" maxlength="5" value=""></td>
+                  <td><input type="text" class="form-control formlength numonly stou" name="CALCULATE_U_MAX" id="CALCULATE_U_MAX" maxlength="5" value=""></td>
                 </tr>
               </table>
             </div>
@@ -2729,7 +2758,7 @@ function confreset(casereset) {
     <br>
     <ol>
       <form data-toggle="validator" role="form" name="form2" id="form2">
-      <li style="font-size: 14px;"><div class="form-inline form-group"><b>รหัสกระบวนวิชา : </b><input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID_2" id="COURSE_ID_2"   maxlength="6" required pattern=".{6,6}" ></div></li>
+      <li style="font-size: 14px;"><div class="form-inline form-group"><b>รหัสกระบวนวิชา : </b><input style="width: 100px;" type="text" class="form-control formlength numonly" name="COURSE_ID_2" id="COURSE_ID_2"   maxlength="6" required pattern=".{6,6}" ></div></li>
       <li style="font-size: 14px;">
         <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็น .doc , .docx หรือ .pdf เท่านั้น) : </b><br />
         <div class="col-md-5 form-inline form-group">

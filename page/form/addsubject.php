@@ -70,6 +70,18 @@
   .floatrm {
     float: none !important;
   }
+
+  .formlength{
+    width: auto !important;
+  }
+  input[type=radio]{
+    position: static!important;
+    margin-left: 0px!important;
+  }
+  table { width: auto !important; }
+  textarea {
+    width: auto !important;
+  }
   </style>
 
 <script id="contentScript">
@@ -535,24 +547,24 @@ function confreset(casereset) {
       <li style="font-size: 14px">
         <div class="form-inline">
           <div class="form-group">
-          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control numonly" name="COURSE_ID" id="COURSE_ID"  placeholder="e.g. 204111"  maxlength="6" required pattern=".{6,6}" >
+          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control formlength numonly" name="COURSE_ID" id="COURSE_ID"  placeholder="e.g. 204111"  maxlength="6" required pattern=".{6,6}" >
           &nbsp;<button type="button" class="btn btn-outline btn-primary" onclick="checksubject();">ค้นหา</button>
 
           </div>
           <br>
           <div class="form-group">
-          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 500px;" type="text" class="form-control dis charthonly" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   required placeholder="e.g. การเรียนรู้นอกห้องเรียนเพื่อเสริมสร้างประสบการณ์ชีวิต">
+          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 500px;" type="text" class="form-control formlength dis charthonly" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   required placeholder="e.g. การเรียนรู้นอกห้องเรียนเพื่อเสริมสร้างประสบการณ์ชีวิต">
           </div>
           <br>
           <div class="form-group">
-          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control dis charengonly" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   required placeholder="e.g. Learning outside for experience">
+          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control formlength dis charengonly" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   required placeholder="e.g. Learning outside for experience">
           </div>
           <div class="row">
             <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;
-          <input class="form-control dis numonly" name="TOTAL_1" type="text" id="TOTAL_1" size="1" maxlength="1" style="width:35px;" />(
-          <input class="form-control dis numonly" name="TOTAL_2" type="text" id="TOTAL_2" size="1" maxlength="1" style="width:35px;" />-
-          <input class="form-control dis numonly" name="TOTAL_3" type="text" id="TOTAL_3" size="1" maxlength="1" style="width:35px;" />-
-          <input class="form-control dis numonly" name="TOTAL_4" type="text" id="TOTAL_4" size="1" maxlength="1" style="width:35px;" />)&nbsp; หน่วยกิต
+          <input class="form-control formlength dis numonly" name="TOTAL_1" type="text" id="TOTAL_1" size="1" maxlength="1" style="width:35px;" />(
+          <input class="form-control formlength dis numonly" name="TOTAL_2" type="text" id="TOTAL_2" size="1" maxlength="1" style="width:35px;" />-
+          <input class="form-control formlength dis numonly" name="TOTAL_3" type="text" id="TOTAL_3" size="1" maxlength="1" style="width:35px;" />-
+          <input class="form-control formlength dis numonly" name="TOTAL_4" type="text" id="TOTAL_4" size="1" maxlength="1" style="width:35px;" />)&nbsp; หน่วยกิต
             </div>
           </div>
           <input type="hidden" id="typesubmit" name="typesubmit">
