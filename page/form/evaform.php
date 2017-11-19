@@ -2337,9 +2337,9 @@ function confreset(casereset) {
           <div id="text"><b>อาจารย์ผู้ร่วมสอน</b>
           </div>
         </div>
-
+        <div class="col-md-12">
           <textarea class="form-control" id="tchco" rows="5"></textarea>
-
+        </div>
 
       </li>
 
@@ -2392,10 +2392,10 @@ function confreset(casereset) {
           </div>
             </div>
           </div>
-
+          <div class="col-md-12">
             หมายเหตุ
             <br> <textarea class="form-control" id="psmeasure" rows="5"></textarea>
-
+          </div>
           </li>
 
           <br>
@@ -2691,7 +2691,9 @@ function confreset(casereset) {
         </div>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม &nbsp;
               <div style="margin-left:35px;">
+                <div class="col-md-12">
                 <textarea class="form-control" name="EXPLAINATION" id="EXPLAINATION" rows="5" placeholder="โปรดระบุ" ></textarea>
+              </div>
               </div>
               <br>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE3" value="SU"> ให้อักษร S หรือ U
