@@ -500,6 +500,47 @@ class approval
 
   }
 
+  public function Reset_Data($course_id)
+  {
+    $status = $this->Get_Doc_Status($course_id);
+    if((int)$status != 0)
+    {
+      $return['status'] = 'error';
+      $return['msg'] = 'ข้อมูลถูกบันทึกเรียบร้อยแล้ว ไม่สามารถลบได้';
+      return $return;
+    }
+    $sql = "SELECT `course_evaluate_id`,`criterion_grade_id`,`exam_evaluate_id`,`measure_evaluate_id`";
+    $sql .= " FROM `course_evaluate` WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->SEMESTER_ID;
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $sql = "DELETE FROM `teacher_exam_evaluate` WHERE `course_eveluate_id` = ".$result[0]['course_evaluate_id'];
+      $this->DB->Insert_Update_Delete($sql);
+      $sql = "DELETE FROM `student_evaluate` WHERE `course_evaluate_id` = ".$result[0]['course_evaluate_id'];
+      $this->DB->Insert_Update_Delete($sql);
+      $sql = "DELETE FROM `criterion_grade` WHERE `criterion_grade_id` = ".$result[0]['criterion_grade_id'];
+      $this->DB->Insert_Update_Delete($sql);
+      $sql = "DELETE FROM `exam_evaluate` WHERE `exam_evaluate_id` = ".$result[0]['exam_evaluate_id'];
+      $this->DB->Insert_Update_Delete($sql);
+      $sql = "DELETE FROM `exam_commitee` WHERE `exam_evaluate_id` = ".$result[0]['exam_evaluate_id'];
+      $this->DB->Insert_Update_Delete($sql);
+      $sql = "DELETE FROM `measure_evaluate` WHERE `measure_evaluate_id` = ".$result[0]['measure_evaluate_id'];
+      $this->DB->Insert_Update_Delete($sql);
+      $sql = $sql = "DELETE FROM `course_evaluate` WHERE `course_id` = '".$course_id."' AND `semester_id` = ".$this->SEMESTER_ID;
+      $this->DB->Insert_Update_Delete($sql);
+      $return['status'] = 'success';
+      $return['msg'] = 'ลบข้อมูลสำเร็จ';
+      return $return;
+    }
+    else
+    {
+      $return['status'] = 'error';
+      $return['msg'] = 'ไม่สามารถลบข้อมูลได้้';
+      return $return;
+    }
+
+  }
+
   private function Is_Edit($type,$course_id,$instructor_id)
   {
     if($type == "evaluate")
