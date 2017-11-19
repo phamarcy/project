@@ -1318,6 +1318,7 @@ textarea {
          var year = stringspl[4];
          var type = 'special';
          file_data.append("course_id",course_id);
+         file_data.append("instructor_id",instructor_id);
          file_data.append("semester",semester);
          file_data.append("year",year);
          file_data.append("type",type);
