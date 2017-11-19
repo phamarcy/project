@@ -268,7 +268,7 @@ $end = strtotime($current_semester[0]['last_date']);
                             <div class="panel-group">
                               <div class="panel panel-default">
                                 <div class="panel-heading clearfix">
-                                  <h5 class="panel-title pull-left" style="font-size:14px:padding-top:8px;">
+                                  <h5 class="panel-title pull-left" style="font-size:14px;padding-top:8px;">
                                     <a data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">
                                       <?php echo $spcomment['name'] ?>
                                     </a>
