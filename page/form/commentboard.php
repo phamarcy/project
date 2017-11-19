@@ -106,7 +106,7 @@ $end = strtotime($current_semester[0]['last_date']);
       }
 
       @media only screen and (max-width: 500px) {
-        .pull-right{
+        .textarea{
           margin-top: 0px;
         }
       }
@@ -283,7 +283,7 @@ $end = strtotime($current_semester[0]['last_date']);
                                   <?php endif; ?>
                                   <?php if (isset($spcomment['cv']) ): ?> &nbsp;&nbsp;
                                     <b>CV: </b>
-                                    <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดประวัติส่วนตัว</button></a>
+                                    <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลด CV</button></a>
                                   <?php endif; ?>
                                     <a type="button" class="btn  btn-success btn-sm" data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">อนุมัติ</a>&nbsp;
                                     <input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $sp['id']?>,<?php echo $spcomment['id']?>"></input>

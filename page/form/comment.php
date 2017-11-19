@@ -270,7 +270,7 @@ $end = strtotime($current_semester[0]['last_date']);
                                     <?php endif; ?>
                                     <?php if (isset($spcomment['cv']) ): ?> 
 
-                                      <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดประวัติส่วนตัว</button></a>
+                                      <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลด CV</button></a>
                                     <?php endif; ?>
                                   
                                     <?php if ($spcomment['status']==0) { ?>
