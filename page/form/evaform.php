@@ -83,8 +83,12 @@
   }
   table { width: auto !important; }
   textarea {
-    width: auto !important;
-  }
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 100%;
+}
   </style>
 
 <script id="contentScript">
@@ -2335,7 +2339,7 @@ function confreset(casereset) {
           </div>
         </div>
         <div class="form-inline">
-          <textarea class="form-control formlength" id="tchco" rows="4" cols="125"></textarea>
+          <textarea class="form-control" id="tchco" rows="4"></textarea>
         </div>
 
       </li>
@@ -2347,6 +2351,7 @@ function confreset(casereset) {
             <b>การวัดผลการศึกษา</b> (สัดส่วนการให้คะแนนโปรดระบุเป็นร้อยละ)<br>
             <div class="row">
             <div class="col-md-10">
+            <div class="table-responsive">
             <table id="meastable" class="table table-bordered table-hover" style="font-size: 14px;">
               <tr class="success">
                 <th width="67%" colspan="2"> </th>
@@ -2385,11 +2390,12 @@ function confreset(casereset) {
                 <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="10" value="0"></div></td>
               </tr>
             </table>
+          </div>
             </div>
           </div>
           <div class="form-inline">
             หมายเหตุ
-            <br> <textarea class="form-control formlength" id="psmeasure" rows="4" cols="125"></textarea>
+            <br> <textarea class="form-control" id="psmeasure" rows="4"></textarea>
           </div>
           </li>
 
@@ -2601,7 +2607,7 @@ function confreset(casereset) {
           </ul>
           <div class="form-inline">
             หมายเหตุ
-            <br> <textarea class="form-control formlength" id="suggestion" rows="4" cols="125"></textarea>
+            <br> <textarea class="form-control" id="suggestion" rows="4"></textarea>
           </div>
         </li>
 
@@ -2615,6 +2621,7 @@ function confreset(casereset) {
               <div style="margin-left:20px;">
               <div class="row">
               <div class="col-md-10">
+              <div class="table-responsive">
               <table class="table table-hover" style="font-size: 14px; ">
                 <tr align="center">
                   <th>เกรด</th>
@@ -2690,17 +2697,19 @@ function confreset(casereset) {
                 </tr>
               </table>
             </div>
+            </div>
           </div>
         </div>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม &nbsp;
               <div style="margin-left:35px;">
-                <textarea class="form-control formlength" name="EXPLAINATION" id="EXPLAINATION" rows="4" cols="125" placeholder="โปรดระบุ" ></textarea>
+                <textarea class="form-control" name="EXPLAINATION" id="EXPLAINATION" rows="4" placeholder="โปรดระบุ" ></textarea>
               </div>
               <br>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE3" value="SU"> ให้อักษร S หรือ U
               <div style="margin-left:35px;">
               <div class="row">
               <div class="col-md-5">
+              <div class="table-responsive">
               <table class="table table-hover" style="font-size: 14px; ">
                 <tr align="center" style="text-align:center;">
                   <th>เกรด</th>
@@ -2721,6 +2730,7 @@ function confreset(casereset) {
                   <td><input type="text" class="form-control formlength numonly stou" name="CALCULATE_U_MAX" id="CALCULATE_U_MAX" maxlength="5" value=""></td>
                 </tr>
               </table>
+            </div>
             </div>
           </div>
         </div>

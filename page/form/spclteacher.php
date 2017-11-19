@@ -2483,6 +2483,7 @@ function lastcal() {
               </div>
                 <li> รายละเอียดในการสอน <br>
                   <div class="col-md-10">
+                  <div class="table-responsive">
                   <table id="detailteaching" style="overflow-x:auto" class="table table-bordered table-hover" style="font-size: 14px; ">
                     <tr align="center" class="success">
                       <th colspan="2" style="text-align: center;">หัวข้อบรรยายปฏิบัติการ</th>
@@ -2494,6 +2495,7 @@ function lastcal() {
                       <td colspan="5" style="text-align: center;"><input type="button" class="btn btn-outline btn-success" name="addbtn" id="adddetail" value="เพิ่ม" required> </td>
                     </tr>
                   </table>
+                </div>
                 </div>
                 </li>
                 <div class="form-inline">
