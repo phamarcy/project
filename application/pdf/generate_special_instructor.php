@@ -478,40 +478,20 @@ $pdf->Ln();
 $pdf->SetX(25);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','3.1 ค่าสอนพิเศษ '))+3,10,iconv('UTF-8','TIS-620','3.1 ค่าสอนพิเศษ'),0,1);
 
+$cost1 = $data_pdf["expense_lec_cost"];
+$hour1 = $data_pdf["expense_lec_hour"];
+$num1 = $data_pdf["expense_lec_number"];
+$cost2 = $data_pdf["expense_lab_cost"];
+$hour2 = $data_pdf["expense_lab_hour"];
+$num2 = $data_pdf["expense_lab_number"];
 if($data_pdf["expense_lec_checked"] == "1")
 {
 	$choice1 = 3;
-	$choice2 = '';
-	$cost1 = $data_pdf["expense_lec_cost"];
-	$cost2 = '';
-	$hour1 = $data_pdf["expense_lec_hour"];
-	$hour2 = '';
-	$num1 = $data_pdf["expense_lec_number"];
-	$num2 = ' ';
 }
 if($data_pdf["expense_lab_checked"] == "1")
 {
-	$choice1 = '';
 	$choice2 = 3;
-	$cost2 = $data_pdf["expense_lab_cost"];
-	$cost1 = '';
-	$hour2 = $data_pdf["expense_lab_hour"];
-	$hour1 = '';
-	$num2 = $data_pdf["expense_lab_number"];
-	$num1 = ' ';
 }
-else
-{
-	$choice1 = '';
-	$choice2 = '';
-	$cost2 = '';
-	$cost1 = '';
-	$hour2 = '';
-	$hour1 = '';
-	$num1 = ' ';
-	$num2 = ' ';
-}
-
 if($data_pdf['payment_method'] == '0')
 {
 	$choice1 = '';

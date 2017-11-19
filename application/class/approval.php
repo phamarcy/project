@@ -500,7 +500,7 @@ class approval
 
   }
 
-  public function Reset_Data($course_id)
+  public function Reset_Data_Evaluate($course_id)
   {
     $status = $this->Get_Doc_Status($course_id);
     if((int)$status != 0)
@@ -538,6 +538,40 @@ class approval
       $return['msg'] = 'ไม่สามารถลบข้อมูลได้้';
       return $return;
     }
+
+  }
+  public function Reset_Data_Special($course_id,$instructor_id)
+  {
+    $status = $this->Get_Instructor_Status($instructor_id,$course_id);
+    if((int)$status != 0)
+    {
+      $return['status'] = 'error';
+      $return['msg'] = 'ข้อมูลถูกบันทึกเรียบร้อยแล้ว ไม่สามารถลบได้';
+      return $return;
+    }
+    $sql = "SELECT `hire_id`,`expense_id` FROM `course_hire_special_instructor` WHERE `course_id` = '".$course_id."' AND `instructor_id` = ".$instructor_id." AND `semester_id` = ".$this->SEMESTER_ID;
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $expense_id = $result[0]['expense_id'];
+      $hire_id = $result[0]['hire_id'];
+      $sql = "DELETE FROM `course_hire_special_instructor` WHERE `course_id` = '".$course_id."' AND `instructor_id` = ".$instructor_id." AND `semester_id` = ".$this->SEMESTER_ID;
+      $this->DB->Insert_Update_Delete($sql);
+      $sql = "DELETE FROM `expense_special_instructor` WHERE `expense_id` = ".$expense_id;
+      $this->DB->Insert_Update_Delete($sql);
+      $sql = "DELETE FROM `special_lecture_teach` WHERE `hire_id` = ".$hire_id;
+      $this->DB->Insert_Update_Delete($sql);
+      $return['status'] = 'success';
+      $return['msg'] = 'ลบข้อมูลสำเร็จ';
+      return $return;
+    }
+    else
+    {
+      $return['status'] = 'error';
+      $return['msg'] = 'ไม่สามารถลบข้อมูลได้้';
+      return $return;
+    }
+
 
   }
 

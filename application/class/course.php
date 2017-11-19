@@ -526,7 +526,15 @@ class Course
     $result = $this->DB->Query($sql);
     if($result)
     {
-      $data['INFO']['num_student'] = $result[0]['num_student'];
+
+      if(is_null($result[0]['num_student']))
+      {
+          $data['INFO']['num_student'] = '0';
+      }
+      else
+      {
+          $data['INFO']['num_student'] = $result[0]['num_student'];
+      }
     }
     //id,name,semester,year
       return $data;

@@ -1195,16 +1195,14 @@ function senddata(data,file_data)
                  success: function (result) {
                    try {
                      var temp = $.parseJSON(result);
-                   } catch (e) {
-                        console.log('Error#542-decode error');
-                   }
+
 
                    if(temp["status"]=='success')
                    {
                      swal.hideLoading()
                      swal({
                        title: 'สำเร็จ',
-                       text: temp["msg"],
+                       text: 'บันทึกข้อมูลสำเร็จ',
                        type: 'success',
                        showCancelButton: false,
                        confirmButtonColor: '#3085d6',
@@ -1220,6 +1218,7 @@ function senddata(data,file_data)
 
                      }
                    })
+                    window.open(temp["msg"], '_blank');
 
                    }
                    else {
@@ -1243,7 +1242,9 @@ function senddata(data,file_data)
                    })
                      //alert(temp["msg"]);
                    }
-
+                 } catch (e) {
+                      console.log('Error#542-decode error');
+                 }
                  },
                  failure: function (result) {
                       alert(result);
@@ -1255,6 +1256,7 @@ function senddata(data,file_data)
                       console.log(err);
                  }
       });
+
 }
 
 function getfile(typedl)
@@ -1295,9 +1297,11 @@ function deletedata()
           var stringspl = teachername_temp.split('_');
           var semester = stringspl[0];
           var year = stringspl[1];
+          var type = 'evaluate';
           file_data.append("course_id",course_id);
           file_data.append("semester",semester);
           file_data.append("year",year);
+          file_data.append("type",type);
           var URL = '../../application/document/delete.php';
           $.ajax({
                         url: URL,

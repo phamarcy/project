@@ -151,7 +151,7 @@ textarea {
 
    //part2
    document.getElementById('course').value = temp['course_id'];
-   if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
    document.getElementById('numstudent').value = temp['num_student'];
    var choice2 = temp['type_course'];
    $('input[name="type_course"][value=' + choice2 + ']').prop('checked', true);
@@ -479,7 +479,7 @@ textarea {
                                $('#hiddenh5_found').html("กระบวนวิชา "+temp['INFO'].course_name_th+" ("+temp['INFO'].course_id+")");
                                $('#notfound').hide();
                                $('#department').val(temp['INFO'].department);
-                               if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
                                   $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                var course_id = document.getElementById('id').value;
                                document.getElementById('formdrpd').style.display = "";
@@ -501,7 +501,7 @@ textarea {
                                  document.getElementById('teachername').appendChild(opt);
                                }
                                $('#department').val(temp['INFO'].department);
-                               if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
                                $('#numstudent').val(parseInt(temp['INFO'].num_student));
                              }else if(temp['DATA']==false && temp['INFO']!=false){
                                $('#hiddenh5_found').show();
@@ -509,7 +509,7 @@ textarea {
                                $('#hiddenh5').hide();
                                $('#notfound').show();
                                $('#department').val(temp['INFO'].department);
-                               if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
                                $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                var course_id = document.getElementById('id').value;
                                document.getElementById('formdrpd').style.display = "";
@@ -1171,7 +1171,6 @@ textarea {
      'YEAR' : '<?php echo date('Y')+543; ?>'
    };
 
-   console.log(JSON.stringify(data));
    if(casesubmit=='1')
    {
      senddata(JSON.stringify(data),getfile());
@@ -1212,7 +1211,7 @@ textarea {
                              swal.hideLoading()
                              swal({
                                title: 'สำเร็จ',
-                               text: temp["msg"],
+                               text: 'บันทึกข้อมูลสำเร็จ',
                                type: 'success',
                                showCancelButton: false,
                                confirmButtonColor: '#3085d6',
@@ -1228,7 +1227,7 @@ textarea {
                              }
                            })
 
-                            //alert(temp["msg"]);
+                           window.open(temp["msg"], '_blank');
                           }
                           else {
                             swal.hideLoading()
@@ -1317,9 +1316,12 @@ textarea {
          var name = stringspl[1];
          var semester = stringspl[3];
          var year = stringspl[4];
+         var type = 'special';
          file_data.append("course_id",course_id);
+         file_data.append("instructor_id",instructor_id);
          file_data.append("semester",semester);
          file_data.append("year",year);
+         file_data.append("type",type);
          var URL = '../../application/document/delete.php';
          $.ajax({
                        url: URL,
@@ -1500,7 +1502,7 @@ textarea {
                                }
                                document.getElementById('id').value = temp['INFO']['course_id'];
                                $('#department').val(temp['INFO'].department);
-                               if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
                                $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                var course_id = document.getElementById('id').value;
                                //cleardatalist
@@ -1525,7 +1527,7 @@ textarea {
                                    $('#hiddenh5_found').html('กระบวนวิชา '+temp['INFO'].course_name_th+' ('+temp['INFO'].course_id+')');
                                    $('#notfound').hide();
                                    $('#department').val(temp['INFO'].department);
-                                   if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
                                    $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                    var course_id = document.getElementById('id').value;
                                    document.getElementById('formdrpd').style.display = '';
@@ -1618,7 +1620,7 @@ textarea {
                                    $('#hiddenh5').hide();
                                    $('#notfound').show();
                                    $('#department').val(temp['INFO'].department);
-                                   if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
                                    $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                    var course_id = document.getElementById('id').value;
                                    document.getElementById('formdrpd').style.display = '';
@@ -2495,7 +2497,7 @@ function lastcal() {
                 </div>
                 </li>
                 <div class="form-inline">
-                  <div class="form-group"><li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control formlength numonly" name="" id="hour" size="3" maxlength="10" required > &nbsp;ของทั้งกระบวนวิชา</li></div>
+                  <div class="form-group"><li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control formlength numonly" name="" id="hour" size="3" maxlength="10" value="0" required > &nbsp;ของทั้งกระบวนวิชา</li></div>
                 </div>
             </ul>
           </div>
@@ -2559,8 +2561,9 @@ function lastcal() {
           </div>
           </div>
           <br>
+          <font color="red"><b> ** กรุณากดปุ่มสรุปค่าใช้จ่ายทั้งหมดทุกครั้งก่อนส่งข้อมูล **</b></font>
           <div class="form-inline">
-            <input type="button" class="btn btn-outline btn-default" name="calculatebtn" id="calculatebtn" value="คำนวณค่าใช้จ่ายทั้งหมด" onclick="lastcal();">
+            <input type="button" class="btn btn-outline btn-primary" name="calculatebtn" id="calculatebtn" value="คำนวณค่าใช้จ่ายทั้งหมด" onclick="lastcal();">
           </div>
           <br>
           <div class="form-inline">
@@ -2573,7 +2576,7 @@ function lastcal() {
       <li  style="font-size: 14px;" >
         <b>เลือกไฟล์ Curriculum Vitae (CV) เพื่ออัปโหลด : </b><br />
       <div id="cvdanger" class="col-md-5 form-inline form-group">
-        <input type="file" class="filestyle" id="cv" name="cv" data-icon="false"><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
+        <input type="file" class="filestyle" id="cv" name="cv" data-icon="false"><div ><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
       </div>
       </li>
     </ol>
