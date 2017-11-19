@@ -453,6 +453,8 @@ $dept = $courseobj->Get_Dept_All();
                                $('#hiddenh5_found').show();
                                $('#hiddenh5_found').html("กระบวนวิชา "+temp['INFO'].course_name_th+" ("+temp['INFO'].course_id+")");
                                $('#notfound').hide();
+                               $('#department').val(temp['INFO'].department);
+                               $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                var course_id = document.getElementById('id').value;
                                document.getElementById('formdrpd').style.display = "";
                                //cleardatalist
@@ -472,12 +474,15 @@ $dept = $courseobj->Get_Dept_All();
                                  opt.innerHTML = "คุณ"+temp['DATA'][i].name;
                                  document.getElementById('teachername').appendChild(opt);
                                }
+                               $('#department').val(temp['INFO'].department);
+                               $('#numstudent').val(parseInt(temp['INFO'].num_student));
                              }else if(temp['DATA']==false && temp['INFO']!=false){
                                $('#hiddenh5_found').show();
                                $('#hiddenh5_found').html("กระบวนวิชา "+temp['INFO'].course_name_th+" ("+temp['INFO'].course_id+")");
                                $('#hiddenh5').hide();
                                $('#notfound').show();
-
+                               $('#department').val(temp['INFO'].department);
+                               $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                var course_id = document.getElementById('id').value;
                                document.getElementById('formdrpd').style.display = "";
                                //cleardatalist
@@ -491,7 +496,7 @@ $dept = $courseobj->Get_Dept_All();
                                }
                                $('#teachername').prop('disabled', true);
                                $('#subhead').prop('disabled', true);
-                               $('#department').val(temp['INFO'].department);
+
 
                              }
                              else if(temp['DATA']==false && $('#id').val()!="" && temp['INFO']==false){
@@ -695,8 +700,10 @@ $dept = $courseobj->Get_Dept_All();
        row.parentNode.removeChild(row);
      }
      var department = $('#department').val();
+     var numstudent = $('#numstudent').val();
      document.getElementById("form1").reset();
      $('#department').val(department);
+     $('#numstudent').val(numstudent);
      document.getElementById('course').value = $('#id').val();
      document.getElementById('formdrpd').style.display = "";
 
@@ -1423,6 +1430,8 @@ $dept = $courseobj->Get_Dept_All();
                                  row.parentNode.removeChild(row);
                                }
                                document.getElementById('id').value = temp['INFO']['course_id'];
+                               $('#department').val(temp['INFO'].department);
+                               $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                var course_id = document.getElementById('id').value;
                                //cleardatalist
                                var selectobject = document.getElementById('teachername');
@@ -1445,6 +1454,8 @@ $dept = $courseobj->Get_Dept_All();
                                    $('#hiddenh5_found').show();
                                    $('#hiddenh5_found').html('กระบวนวิชา '+temp['INFO'].course_name_th+' ('+temp['INFO'].course_id+')');
                                    $('#notfound').hide();
+                                   $('#department').val(temp['INFO'].department);
+                                   $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                    var course_id = document.getElementById('id').value;
                                    document.getElementById('formdrpd').style.display = '';
                                    //cleardatalist
@@ -1464,6 +1475,7 @@ $dept = $courseobj->Get_Dept_All();
                                      opt.innerHTML = 'คุณ'+temp['DATA'][i].name;
                                      document.getElementById('teachername').appendChild(opt);
                                    }
+
 
                                    ";
 
@@ -1534,7 +1546,8 @@ $dept = $courseobj->Get_Dept_All();
                                    $('#hiddenh5_found').html('กระบวนวิชา '+temp['INFO'].course_name_th+' ('+temp['INFO'].course_id+')');
                                    $('#hiddenh5').hide();
                                    $('#notfound').show();
-
+                                   $('#department').val(temp['INFO'].department);
+                                   $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                    var course_id = document.getElementById('id').value;
                                    document.getElementById('formdrpd').style.display = '';
                                    //cleardatalist
@@ -1548,7 +1561,7 @@ $dept = $courseobj->Get_Dept_All();
                                    }
                                    $('#teachername').prop('disabled', true);
                                    $('#subhead').prop('disabled', true);
-                                   $('#department').val(temp['INFO'].department);
+
                                  }
                                }
                              } catch (e) {
@@ -2401,10 +2414,10 @@ function lastcal() {
           <div class="row">
             <ul>
               <div class="form-inline">
-                <li>รหัสกระบวนวิชาที่สอน &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="" id="course" size="6" maxlength="6" required readonly ></div></li>
+                <li>รหัสกระบวนวิชาที่สอน &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="course" id="course" size="6" maxlength="6" required readonly ></div></li>
               </div>
               <div class="form-inline">
-                <li>จำนวนนักศึกษา &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="" id="numstudent" size="6" maxlength="6"  required ></div> คน</li>
+                <li>จำนวนนักศึกษา &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="numstudent" id="numstudent" size="6" maxlength="6"  required ></div> คน</li>
               </div>
               <div class="form-inline">
                 <li>กระบวนวิชานี้เป็นวิชา &nbsp;<br />
