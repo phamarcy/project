@@ -1131,9 +1131,9 @@ else {
             });
         }
       }
-      $('#select').select2({
+      $('#select').select2(
         {dropdownCssClass : 'bigdrop'}
-      });
+      );
       $('#search_course_id').select2();
     </script>
   </body>
