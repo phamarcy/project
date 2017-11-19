@@ -749,7 +749,7 @@ input[type=radio]{
      var splitor = name.split(' ');
      var fname = splitor[0];
      var lname = splitor[1];
-     if(splitor[2]!="")
+     if(splitor.length>2)
      {
        lname += " "+splitor[2];
      }
