@@ -69,7 +69,9 @@ $dept = $courseobj->Get_Dept_All();
  input[type=number]{
    height: 30px;
  }
-
+.formlength{
+  width: auto !important;
+}
  </style>
 
  <script>
@@ -158,10 +160,10 @@ $dept = $courseobj->Get_Dept_All();
          val.remove();
        });
        table.append('<tr class="warning" name="addtr" id="row' + tr + '"><td colspan="2"><div class="form-inline"><input type="button" class="btn btn-outline btn-danger" name="delbtn' + tr + '" id="delbtn' + tr +
-         '" value="ลบ" onclick="deleteRow(' + tr + ')">&nbsp;&nbsp;<input type="text" class="form-control" name="detail_topic' + tr + '" id="detail_topic' + tr +
-         '" size="30" value="'+temp["lecture_detail"][tr-1]["topic_name"]+'"></div></td><td><input type="text" class="form-control" name="dateteach' + tr + '" id="dateteach' + tr +
+         '" value="ลบ" onclick="deleteRow(' + tr + ')">&nbsp;&nbsp;<input type="text" class="form-control formlength" name="detail_topic' + tr + '" id="detail_topic' + tr +
+         '" size="30" value="'+temp["lecture_detail"][tr-1]["topic_name"]+'"></div></td><td><input type="text" class="form-control formlength" name="dateteach' + tr + '" id="dateteach' + tr +
          '" size="2" value="'+temp["lecture_detail"][tr-1]["teaching_date"]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline">' +
-         '<select class="form-control" name="timebegin' + tr + '" id="timebegin' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_time_start"]+'">'+
+         '<select class="form-control formlength" name="timebegin' + tr + '" id="timebegin' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_time_start"]+'">'+
          '<option value="00:00:00">00:00 น.</option><option value="00:15:00">00:15 น.</option>' +
          '<option value="00:30:00">00:30 น.</option><option value="00:45:00">00:45 น.</option>' +
          '<option value="01:00:00">01:00 น.</option><option value="01:15:00">01:15 น.</option>' +
@@ -213,7 +215,7 @@ $dept = $courseobj->Get_Dept_All();
          '<option value="24:00:00">24:00 น.</option><option value="24:15:00">24:15 น.</option>' +
          '<option value="24:30:00">24:30 น.</option><option value="24:45:00">24:45 น.</option></select>' +
          ' <br> ถึง <br> '+
-         '<select class="form-control" name="timeend'+ tr + '" id="timeend' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_time_end"]+'">'+
+         '<select class="form-control formlength" name="timeend'+ tr + '" id="timeend' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_time_end"]+'">'+
          '<option value="00:00:00">00:00 น.</option><option value="00:15:00">00:15 น.</option>' +
          '<option value="00:30:00">00:30 น.</option><option value="00:45:00">00:45 น.</option>' +
          '<option value="01:00:00">01:00 น.</option><option value="01:15:00">01:15 น.</option>' +
@@ -264,7 +266,7 @@ $dept = $courseobj->Get_Dept_All();
          '<option value="23:30:00">23:30 น.</option><option value="23:45:00">23:45 น.</option>' +
          '<option value="24:00:00">24:00 น.</option><option value="24:15:00">24:15 น.</option>' +
          '<option value="24:30:00">24:30 น.</option><option value="24:45:00">24:45 น.</option></select>' +
-         '</div></td><td><input type="text" class="form-control" id="room' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_room"]+
+         '</div></td><td><input type="text" class="form-control formlength" id="room' + tr + '" value="'+temp["lecture_detail"][tr-1]["teaching_room"]+
           '"></td></tr>');
           $('#dateteach'+(rowCount - 1)).datetimepicker({
              format: 'YYYY-MM-DD'
@@ -734,6 +736,7 @@ $dept = $courseobj->Get_Dept_All();
 
        }
      })
+
    }else{
 
      var type = 3;
@@ -742,6 +745,12 @@ $dept = $courseobj->Get_Dept_All();
      var splitor = name.split(' ');
      var fname = splitor[0];
      var lname = splitor[1];
+     if(splitor[2]!="")
+     {
+       lname += " "+splitor[2];
+     }
+     $('#fname').val(fname);
+     $('#lname').val(lname);
      JSON.stringify(fname);
      JSON.stringify(lname);
      JSON.stringify(type);
@@ -888,59 +897,70 @@ $dept = $courseobj->Get_Dept_All();
   }
 
   //costspec
-  if(document.querySelector("input[name='costspec']:checked").value=="choice1")
+  if($('#costspec1').is(":checked"))
   {
-    var costspecchoice = 1;
+    var costspecchoice1 = 1;
     if( document.getElementById('choice1num').value == '')
     {
-      var num = "0";
+      var num1 = "0";
     }
     else {
-      var num = document.getElementById('choice1num').value;
+      var num1 = document.getElementById('choice1num').value;
     }
 
     if( document.getElementById('choice1hour').value == '')
     {
-      var hour = "0";
+      var hour1 = "0";
     }
     else {
-      var hour = document.getElementById('choice1hour').value;
+      var hour1 = document.getElementById('choice1hour').value;
     }
 
     if( document.getElementById('choice1cost').value == '')
     {
-      var cost = "0.00";
+      var cost1 = "0.00";
     }
     else {
-      var cost = document.getElementById('choice1cost').value;
+      var cost1 = document.getElementById('choice1cost').value;
     }
+  }else {
+    var num1 = "0";
+    var hour1 = "0";
+    var cost1 = "0.00";
+    var costspecchoice1 = 0;
   }
-  else if(document.querySelector("input[name='costspec']:checked").value=="choice2")
+
+  if($('#costspec2').is(":checked"))
   {
-    var costspecchoice = 2;
+    var costspecchoice2 = 1;
     if( document.getElementById('choice2num').value == '')
     {
-      var num = "0";
+      var num2 = "0";
     }
     else {
-      var num = document.getElementById('choice2num').value;
+      var num2 = document.getElementById('choice2num').value;
     }
 
     if( document.getElementById('choice2hour').value == '')
     {
-      var hour = "0";
+      var hour2 = "0";
     }
     else {
-      var hour = document.getElementById('choice2hour').value;
+      var hour2 = document.getElementById('choice2hour').value;
     }
 
     if( document.getElementById('choice2cost').value == '')
     {
-      var cost = "0.00";
+      var cost2 = "0.00";
     }
     else {
-      var cost = document.getElementById('choice2cost').value;
+      var cost2 = document.getElementById('choice2cost').value;
     }
+  }else {
+    var num2 = "0";
+    var hour2 = "0";
+    var cost2 = "0.00";
+    var costspecchoice2 = 0;
   }
 
   //trans
@@ -1089,12 +1109,17 @@ $dept = $courseobj->Get_Dept_All();
      },
      'INSTRUCTOR_ID' : instructor_id,
      'COURSEDATA_PERCENT_HOUR' : document.getElementById('hour').value,
+     'PAYMENT_METHOD' : document.querySelector("input[name='paymethod']:checked").value,
      'PAYMENT_LVLTEACHER_CHOICE' : lvchoice,
      'PAYMENT_LVLTEACHER_DESCRIPT' : lvteacher,
-     'PAYMENT_COSTSPEC_CHOICE' : costspecchoice,
-     'PAYMENT_COSTSPEC_NUMBER' : num,
-     'PAYMENT_COSTSPEC_HOUR' : hour,
-     'PAYMENT_COSTSPEC_COST' : cost,
+     'PAYMENT_COSTSPEC_LEC_CHECKED' : costspecchoice1,
+     'PAYMENT_COSTSPEC_LAB_CHECKED' : costspecchoice2,
+     'PAYMENT_COSTSPEC_LEC_NUMBER' : num1,
+     'PAYMENT_COSTSPEC_LEC_HOUR' : hour1,
+     'PAYMENT_COSTSPEC_LEC_COST' : cost1,
+     'PAYMENT_COSTSPEC_LAB_NUMBER' : num2,
+     'PAYMENT_COSTSPEC_LAB_HOUR' : hour2,
+     'PAYMENT_COSTSPEC_LAB_COST' : cost2,
      'PAYMENT_COSTTRANS_TRANSPLANE_CHECKED' : planecheck,
      'PAYMENT_COSTTRANS_TRANSPLANE_DEPART' : document.getElementById('AIR_DEPART').value,
      'PAYMENT_COSTTRANS_TRANSPLANE_ARRIVE' : document.getElementById('AIR_ARRIVE').value,
@@ -1120,7 +1145,7 @@ $dept = $courseobj->Get_Dept_All();
      'YEAR' : '<?php echo date('Y')+543; ?>'
    };
 
-
+   console.log(JSON.stringify(data));
    if(casesubmit=='1')
    {
      senddata(JSON.stringify(data),getfile());
@@ -1659,107 +1684,64 @@ $dept = $courseobj->Get_Dept_All();
     });
 
     // CALCULATE
-    if(document.querySelector("input[name='costspec']:checked").value=="choice1")
-    {
-      $('#choice1hour').val("0");
-      $('#choice1cost').val("0");
-      $('#choice1num').val("400");
-      $('#choice2hour').val("0");
-      $('#choice2cost').val("0");
-      $('#choice2num').val("0");
-      $('#choice1hour').keyup(function(){
-          var textone;
-          var texttwo;
-          textone = parseFloat($('#choice1hour').val());
-          texttwo = parseFloat($('#choice1num').val());
-          var result = textone*texttwo;
-          $('#choice1cost').val(result.toFixed(2));
-      });
-      $('#choice1num').keyup(function(){
-          var textone;
-          var texttwo;
-          textone = parseFloat($('#choice1hour').val());
-          texttwo = parseFloat($('#choice1num').val());
-          var result = textone*texttwo;
-          $('#choice1cost').val(result.toFixed(2));
-      });
-    }
-
-    $("input[name='costspec']").change(function(){
-      if($(this).val()=="choice1")
+    $("#costspec1").change(function(){
+      if($('#costspec1').is(":checked"))
       {
         $('#choice1hour').val("0");
         $('#choice1cost').val("0");
         $('#choice1num').val("400");
-        $('#choice2hour').val("0");
-        $('#choice2cost').val("0");
-        $('#choice2num').val("0");
         $('#choice1hour').keyup(function(){
-          if($('#choice1hour').val()=='')
-          {
-            $('#choice1cost').val("0");
-          }else {
             var textone;
             var texttwo;
             textone = parseFloat($('#choice1hour').val());
             texttwo = parseFloat($('#choice1num').val());
             var result = textone*texttwo;
             $('#choice1cost').val(result.toFixed(2));
-          }
-
         });
         $('#choice1num').keyup(function(){
-          if($('#choice1num').val()=='')
-          {
-            $('#choice1cost').val("0");
-          }else {
-              var textone;
-              var texttwo;
-              textone = parseFloat($('#choice1hour').val());
-              texttwo = parseFloat($('#choice1num').val());
-              var result = textone*texttwo;
-              $('#choice1cost').val(result.toFixed(2));
-          }
+            var textone;
+            var texttwo;
+            textone = parseFloat($('#choice1hour').val());
+            texttwo = parseFloat($('#choice1num').val());
+            var result = textone*texttwo;
+            $('#choice1cost').val(result.toFixed(2));
         });
-      }
-      else
-      {
+      }else {
         $('#choice1hour').val("0");
         $('#choice1cost').val("0");
         $('#choice1num').val("0");
-        $('#choice2hour').val("0");
-        $('#choice2cost').val("0");
-        $('#choice2num').val("200");
-        $('#choice2hour').keyup(function(){
-          if($('#choice2hour').val()=='')
-          {
-            $('#choice2cost').val("0");
-          }else {
-            var textone;
-            var texttwo;
-            textone = parseFloat($('#choice2hour').val());
-            texttwo = parseFloat($('#choice2num').val());
-            var result = textone*texttwo;
-            $('#choice2cost').val(result.toFixed(2));
-          }
-
-        });
-        $('#choice2num').keyup(function(){
-          if($('#choice2num').val()=='')
-          {
-            $('#choice2cost').val("0");
-          }else {
-            var textone;
-            var texttwo;
-            textone = parseFloat($('#choice2hour').val());
-            texttwo = parseFloat($('#choice2num').val());
-            var result = textone*texttwo;
-            $('#choice2cost').val(result.toFixed(2));
-          }
-
-        });
       }
+
+
+    });
+  $("#costspec2").change(function(){
+    if($('#costspec2').is(":checked"))
+    {
+      $('#choice2hour').val("0");
+      $('#choice2cost').val("0");
+      $('#choice2num').val("200");
+      $('#choice2hour').keyup(function(){
+          var textone;
+          var texttwo;
+          textone = parseFloat($('#choice2hour').val());
+          texttwo = parseFloat($('#choice2num').val());
+          var result = textone*texttwo;
+          $('#choice2cost').val(result.toFixed(2));
       });
+      $('#choice2num').keyup(function(){
+          var textone;
+          var texttwo;
+          textone = parseFloat($('#choice2hour').val());
+          texttwo = parseFloat($('#choice2num').val());
+          var result = textone*texttwo;
+          $('#choice2cost').val(result.toFixed(2));
+      });
+    }else {
+      $('#choice2hour').val("0");
+      $('#choice2cost').val("0");
+      $('#choice2num').val("0");
+    }
+});
 
 
     $('#SELF_DISTANCT').keyup(function(){
@@ -1881,6 +1863,19 @@ $dept = $courseobj->Get_Dept_All();
       // callist
 
       $("#callist").hide();
+
+      //paymethod
+
+      $('#costhide').hide();
+
+      $("input[name='paymethod']").change(function(){
+        if($(this).val()=="yes")
+        {
+          $('#costhide').show();
+        }else {
+          $('#costhide').hide();
+        }
+      });
 
       //cvlist
       $('#cvlist').hide();
@@ -2017,11 +2012,11 @@ $dept = $courseobj->Get_Dept_All();
          val.remove();
        });
 
-       table.append('<tr class="warning" name="addtr" id="row' + (rowCount - 1) + '"><td colspan="2"><div class="form-inline"><input type="text" class="form-control" name="detail_topic' + (rowCount - 1) + '" id="detail_topic' + (rowCount - 1) +
+       table.append('<tr class="warning" name="addtr" id="row' + (rowCount - 1) + '"><td colspan="2"><div class="form-inline"><input type="text" class="form-control formlength" name="detail_topic' + (rowCount - 1) + '" id="detail_topic' + (rowCount - 1) +
          '" ><br><center><input type="button" class="btn btn-outline btn-danger" name="delbtn' + (rowCount - 1) + '" id="delbtn' + (rowCount - 1) +
-           '" value="ลบ" onclick="deleteRow(' + (rowCount - 1) + ')"></center></div></td><td><input type="text" class="form-control" name="dateteach' + (rowCount - 1) + '" id="dateteach' + (rowCount - 1) +
+           '" value="ลบ" onclick="deleteRow(' + (rowCount - 1) + ')"></center></div></td><td><input type="text" class="form-control formlength" name="dateteach' + (rowCount - 1) + '" id="dateteach' + (rowCount - 1) +
          '"></td><td width="25%" style="text-align: center;"><div class="form-inline">'+
-         '<select class="form-control" name="timebegin' + (rowCount - 1) + '" id="timebegin' + (rowCount - 1) + '">'+
+         '<select class="form-control formlength" name="timebegin' + (rowCount - 1) + '" id="timebegin' + (rowCount - 1) + '">'+
          '<option value="00:00">00:00 น.</option><option value="00:15">00:15 น.</option>' +
          '<option value="00:30">00:30 น.</option><option value="00:45">00:45 น.</option>' +
          '<option value="01:00">01:00 น.</option><option value="01:15">01:15 น.</option>' +
@@ -2073,7 +2068,7 @@ $dept = $courseobj->Get_Dept_All();
          '<option value="24:00">24:00 น.</option><option value="24:15">24:15 น.</option>' +
          '<option value="24:30">24:30 น.</option><option value="24:45">24:45 น.</option></select>' +
          ' <br> ถึง <br> '+
-         '<select class="form-control" name="timeend' + (rowCount - 1) + '" id="timeend' + (rowCount - 1) + '" >'+
+         '<select class="form-control formlength" name="timeend' + (rowCount - 1) + '" id="timeend' + (rowCount - 1) + '" >'+
          '<option value="00:00">00:00 น.</option><option value="00:15">00:15 น.</option>' +
          '<option value="00:30">00:30 น.</option><option value="00:45">00:45 น.</option>' +
          '<option value="01:00">01:00 น.</option><option value="01:15">01:15 น.</option>' +
@@ -2124,7 +2119,7 @@ $dept = $courseobj->Get_Dept_All();
          '<option value="23:30">23:30 น.</option><option value="23:45">23:45 น.</option>' +
          '<option value="24:00">24:00 น.</option><option value="24:15">24:15 น.</option>' +
          '<option value="24:30">24:30 น.</option><option value="24:45">24:45 น.</option></select>' +
-         '</div></td><td><input type="text" class="form-control" id="room' + (rowCount - 1) + '"</td></tr>');
+         '</div></td><td><input type="text" class="form-control formlength" id="room' + (rowCount - 1) + '"</td></tr>');
 
          $('#dateteach'+(rowCount - 1)).datetimepicker({
             format: 'YYYY-MM-DD'
@@ -2298,7 +2293,7 @@ function lastcal() {
       <form id="formheader" data-toggle="validator" role="form">
         <div id="formchecksj" class="form-inline" style="font-size:16px;">
                   <div class="form-group ">
-                     <input type="text" class="form-control numonly" id="id" name="id" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required >
+                     <input type="text" class="form-control formlength numonly" id="id" name="id" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required >
                   </div>
                   <input type="hidden" name="type" value="1">
                  <button type="button" class="btn btn-outline btn-primary" onclick="checksubject(1,2);">ค้นหา</button>
@@ -2307,7 +2302,7 @@ function lastcal() {
     <div id="formdrpd" style="display: none;">
       <div class="form-inline">
         <div class="form-group " style="font-size:16px;">
-          <select class="form-control required" id="teachername" name="teachername" style="width: 200px;" required >
+          <select class="form-control formlength required" id="teachername" name="teachername" style="width: 200px;" required >
           </select>
          </div>
          <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,2);">
@@ -2318,7 +2313,7 @@ function lastcal() {
          <div id="search_1hide" class="row form-inline" style="font-size:14px;">
            <center><div class="form-group">
              ชื่อ-นามสกุล
-             <input type="text" class="form-control" name="search_1" id="search_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname();" >
+             <input type="text" class="form-control formlength" name="search_1" id="search_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname();" >
              <datalist id="dtl1">
              </datalist>
              <input type="button" class="btn btn-outline btn-primary" name="searchname" id="searchname" value="ดึงข้อมูล" onclick="checksubject(4,2);">
@@ -2331,7 +2326,7 @@ function lastcal() {
       <div class="row form-inline" style="font-size:16px;">
         <center><div class="form-group">
       ภาควิชา
-        <select class="form-control required" id="department" style="width: auto;" id="select" required >
+        <select class="form-control formlength required" id="department" style="width: auto;" id="select" required >
          <option value="0" selected="selected">--------------</option>
          <?php
           for ($i=0; $i <sizeof($dept) ; $i++) {
@@ -2354,7 +2349,7 @@ function lastcal() {
           <ul>
           <div class="form-inline">
             <li>คำนำหน้า &nbsp;&nbsp;<div class="form-group">
-              <select class="form-control" name="pre" id="pre" required>
+              <select class="form-control formlength" name="pre" id="pre" required>
                 <?php
                       echo '<option value="0">----</option>';
                     for($i=0;$i<count($prefix);$i++)
@@ -2364,36 +2359,36 @@ function lastcal() {
                  ?>
               </select>
               </div>&nbsp;&nbsp;&nbsp;&nbsp;
-              ชื่อ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="fname" size="20" required ></div>&nbsp;
-              นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control" id="lname" size="20" required ></div>&nbsp;
+              ชื่อ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength" id="fname" size="20" required ></div>&nbsp;
+              นามสกุล &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength" id="lname" size="20" required ></div>&nbsp;
           </div>
 
           <div class="form-inline">
-            <li>ตำแหน่ง &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control " id="position" size="35" required ></div></li>
+            <li>ตำแหน่ง &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength " id="position" size="35" required ></div></li>
           </div>
 
           <div class="form-inline">
             <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<br>
-              <div class="form-group"><textarea class="form-control" name="qualification" id="qualification" rows="3" cols="60" required></textarea></div></li>
+              <div class="form-group"><textarea class="form-control formlength" name="qualification" id="qualification" rows="3" cols="60" required></textarea></div></li>
           </div>
           <br>
           <div class="form-inline">
             <li>สถานที่ทำงาน / สถานที่ติดต่อ &nbsp;&nbsp;<br />
-              <div class="form-group"><textarea class="form-control" name="workplace" id="workplace" rows="3" cols="60"></textarea></div>
+              <div class="form-group"><textarea class="form-control formlength" name="workplace" id="workplace" rows="3" cols="60"></textarea></div>
             </li>
           </div>
           <br>
           <div class="form-inline">
-            <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control numonly" id="tel" size="20" maxlength="10" required ></div>
-              &nbsp;ต่อ&nbsp;<input type="text" class="form-control numonly" id="subtel" size="2" maxlength="5"></li>
+            <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength numonly" id="tel" size="20" maxlength="10" required ></div>
+              &nbsp;ต่อ&nbsp;<input type="text" class="form-control formlength numonly" id="subtel" size="2" maxlength="5"></li>
         </div>
         <div class="form-inline">
-          <li>โทรศัพท์มือถือ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control numonly" id="mobile" size="20" maxlength="10" required ></div>
+          <li>โทรศัพท์มือถือ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength numonly" id="mobile" size="20" maxlength="10" required ></div>
             </li>
       </div>
 
         <div class="form-inline">
-          <li>E-mail &nbsp;&nbsp;<div class="form-group"><input style="height: 30px;" type="email" class="form-control" id="email" size="45" required ></div></li>
+          <li>E-mail &nbsp;&nbsp;<div class="form-group"><input style="height: 30px;" type="email" class="form-control formlength" id="email" size="45" required ></div></li>
         </div>
         <div class="form-inline">
           <li>ประวัติการเชิญมาสอน <br>
@@ -2414,10 +2409,10 @@ function lastcal() {
           <div class="row">
             <ul>
               <div class="form-inline">
-                <li>รหัสกระบวนวิชาที่สอน &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="course" id="course" size="6" maxlength="6" required readonly ></div></li>
+                <li>รหัสกระบวนวิชาที่สอน &nbsp;<div class="form-group"><input type="text" class="form-control formlength numonly" name="course" id="course" size="6" maxlength="6" required readonly ></div></li>
               </div>
               <div class="form-inline">
-                <li>จำนวนนักศึกษา &nbsp;<div class="form-group"><input type="text" class="form-control numonly" name="numstudent" id="numstudent" size="6" maxlength="6"  required ></div> คน</li>
+                <li>จำนวนนักศึกษา &nbsp;<div class="form-group"><input type="text" class="form-control formlength numonly" name="numstudent" id="numstudent" size="6" maxlength="6"  required ></div> คน</li>
               </div>
               <div class="form-inline">
                 <li>กระบวนวิชานี้เป็นวิชา &nbsp;<br />
@@ -2429,7 +2424,7 @@ function lastcal() {
               </div>
               </li>
               <div class="form-inline">
-                <div class="form-group"><li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control" id="reason" rows="4" cols="70" required ></textarea></li></div>
+                <div class="form-group"><li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control formlength" id="reason" rows="4" cols="70" required ></textarea></li></div>
               </div>
                 <li> รายละเอียดในการสอน <br>
                   <div class="col-md-10">
@@ -2447,7 +2442,7 @@ function lastcal() {
                 </div>
                 </li>
                 <div class="form-inline">
-                  <div class="form-group"><li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control numonly" name="" id="hour" size="3" maxlength="10" required > &nbsp;ของทั้งกระบวนวิชา</li></div>
+                  <div class="form-group"><li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control formlength numonly" name="" id="hour" size="3" maxlength="10" required > &nbsp;ของทั้งกระบวนวิชา</li></div>
                 </div>
             </ul>
           </div>
@@ -2456,51 +2451,58 @@ function lastcal() {
       <li  style="font-size: 14px;;">
         <b>ค่าใช้จ่าย </b>
         <ul>
+        <div class="form-inline">
+          <div class="radio">
+            <div class="form-group"><input type="radio" name="paymethod" id="paymethod1" value="no" checked>&nbsp;ไม่มีค่าใช้จ่าย </div> <br>
+            <div class="form-group"><input type="radio" name="paymethod" id="paymethod1" value="yes">&nbsp;มีค่าใช้จ่าย</div>
+          </div>
+        </div>
+          <div id="costhide">
           <div class="form-inline">
             <li>อาจารย์พิเศษเป็น &nbsp;</li>
             <div class="radio">
-              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="pro" checked>&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control " name="GOV_LEVEL" id="GOV_LEVEL"/></div>
+              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="pro" checked>&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control formlength " name="GOV_LEVEL" id="GOV_LEVEL"/></div>
               <br>
-              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ &nbsp;<input type="text" class="form-control " name="NORM_LEVEL" id="NORM_LEVEL"/></div>
+              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ &nbsp;<input type="text" class="form-control formlength " name="NORM_LEVEL" id="NORM_LEVEL"/></div>
             </div>
           </div>
           <div class="form-inline">
             <li>ค่าสอนพิเศษ</li>
-            <div class="radio">
+            <div class="checkbox">
               <div class="form-group">
-                <input type="radio"  name="costspec" id="costspec" value="choice1" required checked>&nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control numonly" name="choice1num" id="choice1num"  size="5" value="400"> ต่อชม.&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice1hour" size="5" data-minlength="1" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
-              <input type="text" class="form-control numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999" READONLY>&nbsp;&nbsp;บาท
+                <input type="checkbox"  name="costspec" id="costspec1" value="choice1">&nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control formlength numonly" name="choice1num" id="choice1num"  size="5" value="0"> ต่อชม.&nbsp;
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" id="choice1hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
+              <input type="text" class="form-control formlength numonly" id="choice1cost" size="5" data-minlength="5" min="0" max="99999" value="0" READONLY>&nbsp;&nbsp;บาท
               </div><br>
-              <div class="form-group"><input type="radio"  name="costspec" id="costspec" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ <input type="text" class="form-control numonly" name="choice2num" id="choice2num" size="5"> ต่อชม.&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" id="choice2hour" size="5" data-minlength="1" min="0" max="99" >&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
-              <input type="text" class="form-control numonly" id="choice2cost" size="5" data-minlength="5" min="0" max="99999" READONLY>&nbsp;&nbsp;บาท
+              <div class="form-group"><input type="checkbox"  name="costspec" id="costspec2" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ <input type="text" class="form-control formlength numonly" name="choice2num" id="choice2num" size="5" value="0"> ต่อชม.&nbsp;
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" id="choice2hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
+              <input type="text" class="form-control formlength numonly" id="choice2cost" size="5" data-minlength="5" min="0" max="99999" value="0" READONLY>&nbsp;&nbsp;บาท
               </div>
             </div>
           </div>
           <div class="form-inline">
             <li>ค่าพาหนะเดินทาง </li>
             <div class="checkbox">
-              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="planecost" id="planecost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
+              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control formlength" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control formlength" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" name="planecost" id="planecost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
               <br>
-              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="taxicost" id="taxicost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
+              <div class="form-group"><label><input type="checkbox" name="transchoice" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control formlength" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control formlength" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" name="taxicost" id="taxicost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
               <br>
               <div class="form-group"><label><input type="checkbox" name="transchoice" id="transselfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;
-                <input type="text" class="form-control numonly" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="1" min="0" max="9999"> &nbsp;กิโลเมตร  กิโลเมตรละ
-                <input type="text" class="form-control numonly" name="selfunit" id="selfunit" size="4">
+                <input type="text" class="form-control formlength numonly" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="1" min="0" max="9999"> &nbsp;กิโลเมตร  กิโลเมตรละ
+                <input type="text" class="form-control formlength numonly" name="selfunit" id="selfunit" size="4">
                  บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
-                <input type="text" class="form-control numonly" name="selfcost" id="selfcost" size="5" data-minlength="2" min="0" max="99999" READONLY >&nbsp;&nbsp;บาท</label></div>
+                <input type="text" class="form-control formlength numonly" name="selfcost" id="selfcost" size="5" data-minlength="2" min="0" max="99999" READONLY >&nbsp;&nbsp;บาท</label></div>
               </div>
           </div>
           <div class="form-inline">
             <li>ค่าที่พัก</li>
             <div class="form-group"><div class="radio">
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way3" required checked>&nbsp;&nbsp; ไม่เบิกค่าที่พัก&nbsp;&nbsp;<br>
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน <input type="text" class="form-control numonly" name="way1unit" id="way1unit" size="4" value="0" > บาท/คน/คืน&nbsp;&nbsp;<br>
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน <input type="text" class="form-control numonly" name="way2unit" id="way2unit" size="4" value="0" > บาท/คน/คืน &nbsp;&nbsp;
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน <input type="text" class="form-control formlength numonly" name="way1unit" id="way1unit" size="4" value="0" > บาท/คน/คืน&nbsp;&nbsp;<br>
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน <input type="text" class="form-control formlength numonly" name="way2unit" id="way2unit" size="4" value="0" > บาท/คน/คืน &nbsp;&nbsp;
             </div></div>
-            <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="numnight" id="numnight" size="5" min="0" max="99999" value="0"  >&nbsp;&nbsp;คืน
-            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control numonly" name="pernight" id="pernight" size="5" min="0" max="99999" value="0" READONLY  >&nbsp;&nbsp;บาท
+            <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" name="numnight" id="numnight" size="5" min="0" max="99999" value="0"  >&nbsp;&nbsp;คืน
+            &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" name="pernight" id="pernight" size="5" min="0" max="99999" value="0" READONLY  >&nbsp;&nbsp;บาท
           </div>
           </div>
           <br>
@@ -2509,9 +2511,10 @@ function lastcal() {
           </div>
           <br>
           <div class="form-inline">
-            <li style="font-size: 16px;" id="callist"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control numonly" name="totalcost" id="totalcost" size="10" value="0" READONLY >&nbsp;&nbsp;บาท</li>
+            <li style="font-size: 16px;" id="callist"><b>สรุปค่าใช้จ่ายทั้งหมด</b>&nbsp;&nbsp;<input type="text" class="form-control formlength numonly" name="totalcost" id="totalcost" size="10" value="0" READONLY >&nbsp;&nbsp;บาท</li>
             <br>
           </div>
+        </div>
         </ul>
       </li>
       <li  style="font-size: 14px;" >
