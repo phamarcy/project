@@ -151,7 +151,7 @@ textarea {
 
    //part2
    document.getElementById('course').value = temp['course_id'];
-   if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
    document.getElementById('numstudent').value = temp['num_student'];
    var choice2 = temp['type_course'];
    $('input[name="type_course"][value=' + choice2 + ']').prop('checked', true);
@@ -479,7 +479,7 @@ textarea {
                                $('#hiddenh5_found').html("กระบวนวิชา "+temp['INFO'].course_name_th+" ("+temp['INFO'].course_id+")");
                                $('#notfound').hide();
                                $('#department').val(temp['INFO'].department);
-                               if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
                                   $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                var course_id = document.getElementById('id').value;
                                document.getElementById('formdrpd').style.display = "";
@@ -501,7 +501,7 @@ textarea {
                                  document.getElementById('teachername').appendChild(opt);
                                }
                                $('#department').val(temp['INFO'].department);
-                               if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
                                $('#numstudent').val(parseInt(temp['INFO'].num_student));
                              }else if(temp['DATA']==false && temp['INFO']!=false){
                                $('#hiddenh5_found').show();
@@ -509,7 +509,7 @@ textarea {
                                $('#hiddenh5').hide();
                                $('#notfound').show();
                                $('#department').val(temp['INFO'].department);
-                               if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
                                $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                var course_id = document.getElementById('id').value;
                                document.getElementById('formdrpd').style.display = "";
@@ -1500,7 +1500,7 @@ textarea {
                                }
                                document.getElementById('id').value = temp['INFO']['course_id'];
                                $('#department').val(temp['INFO'].department);
-                               if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
                                $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                var course_id = document.getElementById('id').value;
                                //cleardatalist
@@ -1525,7 +1525,7 @@ textarea {
                                    $('#hiddenh5_found').html('กระบวนวิชา '+temp['INFO'].course_name_th+' ('+temp['INFO'].course_id+')');
                                    $('#notfound').hide();
                                    $('#department').val(temp['INFO'].department);
-                                   if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
                                    $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                    var course_id = document.getElementById('id').value;
                                    document.getElementById('formdrpd').style.display = '';
@@ -1618,7 +1618,7 @@ textarea {
                                    $('#hiddenh5').hide();
                                    $('#notfound').show();
                                    $('#department').val(temp['INFO'].department);
-                                   if(temp['INFO'].num_student!="" && temp['INFO'].num_student!=undefined && !isNan(temp['INFO'].num_student))
+
                                    $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                    var course_id = document.getElementById('id').value;
                                    document.getElementById('formdrpd').style.display = '';
