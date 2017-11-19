@@ -532,8 +532,6 @@ class Course
       return $data;
   }
 
-
-
   // get course evaluate, special instructor data
   public function Get_Document($type,$course_id,$instructor_id,$teacher_id,$semester,$year)
   {
@@ -872,6 +870,22 @@ class Course
       $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
       {
+        $sql = "DELETE FROM `approval_course` WHERE `course_id` = '".$course_id."'";
+        $this->DB->Insert_Update_Delete($sql);
+        $sql = "DELETE FROM `approval_special` WHERE `course_id` = '".$course_id."'";
+        $this->DB->Insert_Update_Delete($sql);
+        $sql = "DELETE FROM `comment_course` WHERE `course_id` = '".$course_id."'";
+        $this->DB->Insert_Update_Delete($sql);
+        $sql = "DELETE FROM `comment_special` WHERE `course_id` = '".$course_id."'";
+        $this->DB->Insert_Update_Delete($sql);
+        $sql = "DELETE FROM `course_evaluate` WHERE `course_id` = '".$course_id."'";
+        $this->DB->Insert_Update_Delete($sql);
+        $sql = "DELETE FROM `course_hire_special_instructor` WHERE `course_id` = '".$course_id."'";
+        $this->DB->Insert_Update_Delete($sql);
+        $sql = "DELETE FROM `couse_grade` WHERE `course_id` = '".$course_id."'";
+        $this->DB->Insert_Update_Delete($sql);
+        $sql = "DELETE FROM `subject_assessor` WHERE `course_id` = '".$course_id."'";
+        $this->DB->Insert_Update_Delete($sql);
         $return['status'] = 'success';
         $return['msg'] = 'ลบข้อมูลสำเร็จ';
       }

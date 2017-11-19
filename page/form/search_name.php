@@ -10,7 +10,7 @@ if(strlen($search) != mb_strlen($search, 'utf-8'))
 }
 else
 {
-    $sql = "SELECT concat(e_fname,' ',e_lname) as name FROM `staff` WHERE concat(e_fname,' ',e_lname) LIKE '%".$search."%'";
+    $sql = "SELECT concat(e_fname,' ',e_lname) as name FROM `staff` WHERE concat(LOWER(e_fname),' ',LOWER(e_lname)) LIKE LOWER('%".$search."%')";
 }
 $result = $db->Query($sql);
 if($result)
