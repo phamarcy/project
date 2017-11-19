@@ -2497,7 +2497,7 @@ function lastcal() {
                 </div>
                 </li>
                 <div class="form-inline">
-                  <div class="form-group"><li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control formlength numonly" name="" id="hour" size="3" maxlength="10" required > &nbsp;ของทั้งกระบวนวิชา</li></div>
+                  <div class="form-group"><li>จำนวนชั่วโมงของหัวข้อที่เชิญมาสอนคิดเป็นร้อยละ  &nbsp;<input type="text" class="form-control formlength numonly" name="" id="hour" size="3" maxlength="10" value="0" required > &nbsp;ของทั้งกระบวนวิชา</li></div>
                 </div>
             </ul>
           </div>
@@ -2561,7 +2561,7 @@ function lastcal() {
           </div>
           </div>
           <br>
-          <font color="red"><b id="cvlist"> ** กรุณากดปุ่มสรุปค่าใช้จ่ายทั้งหมดทุกครั้งก่อนส่งข้อมูล **</b></font>
+          <font color="red"><b> ** กรุณากดปุ่มสรุปค่าใช้จ่ายทั้งหมดทุกครั้งก่อนส่งข้อมูล **</b></font>
           <div class="form-inline">
             <input type="button" class="btn btn-outline btn-primary" name="calculatebtn" id="calculatebtn" value="คำนวณค่าใช้จ่ายทั้งหมด" onclick="lastcal();">
           </div>
