@@ -8,15 +8,8 @@ require_once(__DIR__."/../../application/class/manage_deadline.php");
 require_once(__DIR__."/../../application/class/course.php");
 $deadline = new Deadline;
 $grade = new Course;
-$semester= $deadline->Get_Current_Semester();
-$showgrade=$grade->Get_Grade($_SESSION['id'],$semester['id']);
-$grade->Close_connection();
-
-//close
-$grade->Close_connection();
-$deadline->Close_connection();
-
- ?>
+$_SESSION['semester']='false'; 
+?>
 <html>
 <header>
     <meta charset="utf-8">
@@ -37,10 +30,9 @@ $deadline->Close_connection();
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <script src="../dist/js/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
+    <script type="text/javascript" src="../dist/js/validator.min.js"></script>
     <style>
     i:hover {
       font-size: 30px;
@@ -69,20 +61,74 @@ $deadline->Close_connection();
 
 </header>
 
-
 <body class="mybox" >
-    <div  style="padding-left: 30px; padding-right: 30px;">
-      <div class="container">
-        <div class="row">
-            <center>
-              <h3 class="page-header">อัปโหลดไฟล์เกรด</h3>
-            </center>
-        </div>
+<form id="search-panel" method="post" action="#" data-toggle="validator" role="form">
+            <h3 class="page-header"><center>อัปโหลดไฟล์เกรด</center></h3>
+            <div class="form-inline">
+                <center>
+                    <h style="font-size : 14px">ภาคการศึกษาที่
+                        <div class="form-group">
+                            <select class="form-control" name="semester" style="width: 100px;" required>
+                                <option value="">--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                          </div>
+
+                        <div class="form-group">
+                            ปีการศึกษา
+                          <input type="text" class="form-control numonly" placeholder="e.g. 2560" style="width: 100px;" pattern=".{4,4}" name="year" required > &nbsp;
+                        </div>
+                        <?php  if($_SESSION['level'] == '3' || $_SESSION['level'] == '6'){ ?>
+                          ภาควิชา
+                          <select class="form-control" name="department">
+                            <?php
+                             for ($i=0; $i <count($dept) ; $i++) {
+                               echo "<option value=".$dept[$i]['code'].">".$dept[$i]['name']."</option>";
+                             }
+                             ?>
+                          </select>
+                        <?php  } ?>
+                        <button type="submit" class="btn btn-outline btn-primary">ค้นหา</button>
+                    </h>
+                </center>
+            </div>
+      </form>
+<?php
+
+
+$value=false;
+if (isset($_POST['semester'])  && isset($_POST['year'])) {
+  $semester= $deadline->Search_Semester_id($_POST['semester'],$_POST['year']);
+  $showgrade=$grade->Get_Grade($_SESSION['id'],$semester);
+  if (!$semester || !$showgrade) {
+    echo  "
+    <script>
+      swal('ไม่พบข้อมูล');
+    </script>
+    ";
+    return false;
+  }else {
+    if ($semester) {
+      $_SESSION['semester']=$semester;
+      $_SESSION['term']=$deadline->Search_Semester_Term($semester);
+      $_SESSION['grade']=$showgrade;
+    }
+   
+  }
+
+}
+if (isset($_SESSION['term']) && isset($_SESSION['grade']))
+
+{ ?>
+  <div  style="padding-left: 30px; padding-right: 30px;">
+ 
       <br>
       <div class="panel panel-default">
           <div class="panel-heading">
             <h5 class="panel-title">
-                <b>ภาคการศึกษาที่ <?php echo $semester["semester"]; ?> ปีการศึกษา <?php echo $semester["year"]; ?></b>
+                <b>ภาคการศึกษาที่ <?php echo $_SESSION['term']["semester"]; ?> ปีการศึกษา <?php echo $_SESSION['term']["year"]; ?></b>
             </h5>
           </div>
           <!-- .panel-heading -->
@@ -102,8 +148,8 @@ $deadline->Close_connection();
                   </tr>
                 </thead>
                 <tbody>
-                  <?php if (is_array($showgrade) || is_object($showgrade)): ?>
-                        <?php foreach ($showgrade as $value):
+                  <?php if (is_array($_SESSION['grade']) || is_object($_SESSION['grade'])): ?>
+                        <?php foreach ($_SESSION['grade'] as $value):
                           switch ($value['status']) {
                             case 0:
                             $status='<b id="statn">ยังไม่ได้อัปโหลด</b>';
@@ -119,7 +165,7 @@ $deadline->Close_connection();
                               <td><?php echo $value['course_name']; ?></td>
                               <td>
                               <?php if (isset($value['url'])): ?>
-                                  <a href="../../files<?php echo $value['url']; ?>" target="_blank"><i type="button" class="fa fa-file-excel-o fa-2x" ></i></a>
+                                  <a href="../../files<?php echo $value['url']; ?>" target="_blank"><button class="btn btn-sm btn-success">ดาวน์โหลดไฟล์</button> </a>
                               <?php endif; ?>
                               </td>
                               <td><?php echo $status ?></td>
@@ -136,13 +182,20 @@ $deadline->Close_connection();
               </table>
           </div>
       </div>
-    </div>
+
 </div>
+<?php } ?>
+    
+    
 <script type="text/javascript">
 
 function uploadFile(course){
   var text = "grade_"+course;
   var checkfile = document.getElementById(text).value;
+  var semester = <?php echo $_SESSION['semester'] ?>;
+  if (semester=='false') {
+    return false;
+  }
   if (!checkfile) {
     swal({
       type:"warning",
@@ -155,7 +208,7 @@ function uploadFile(course){
       var formData = new FormData();
       formData.append('file', fileexcel);
       formData.append('course_id', course);
-
+      formData.append('semester',semester);
       console.log(formData);
       $.ajax({
           url: '../../application/document/upload_grade.php',

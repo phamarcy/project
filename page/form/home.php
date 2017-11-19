@@ -59,9 +59,9 @@ $data_course     = json_decode($var, true);
 	<script src="../dist/js/sb-admin-2.js"></script>
 
 	<script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+	<script type="text/javascript" src="../dist/js/validator.min.js"></script>
 	<link rel="stylesheet" href="../dist/css/scrollbar.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+	<script src="../dist/js/core.js"></script>
 
 	<script src="../dist/js/sweetalert2.min.js"></script>
 	<link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
@@ -285,8 +285,7 @@ $data_course     = json_decode($var, true);
 																<?php if(($value_course['evaluate']['status'])==1 ){ ?>
 																	<div class="forminline">
 																	<button class='btn  btn-success btn-sm' onclick='sendtoboard("<?php echo $value_course['id'] ?>");'>ผ่าน</button>
-
-																</div>
+																	</div>
 																<?php
 															} ?>
 																	<?php endif; ?>
@@ -420,12 +419,16 @@ $data_course     = json_decode($var, true);
 																		<?php 
 																			 if ($_SESSION['level']==3 || $_SESSION['admission']==3):
 																			if($valuesp['status']==4 ){ ?>
+																			<div class="forminline">
 																			<button class='btn btn-outline btn-success' onclick='senttoheadSP("<?php echo $value_course['id'] ?>","<?php echo $valuesp['id'] ?>");'>ยืนยัน</button>
+																			</div>
 																			<?php } ?>
 																				<?php endif; ?>
 																				<?php if($_SESSION['level']==2 || $_SESSION['admission']==2){
 																					if ($valuesp['status']==1) {?>
+																					<div class="forminline">
 																				<button class='btn  btn-success btn-sm' onclick='sendtoboardsp("<?php echo $value_course['id'] ?>","<?php echo $valuesp['id'] ?>");'>ผ่าน</button>
+																					</div>
 																				<?php }
 																					} ?>
 																				<?php if ($_SESSION['level']==3 && $valuesp['status']==4 || ($_SESSION['admission']==3 && $valuesp['status']==4)): ?>

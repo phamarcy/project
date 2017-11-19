@@ -132,7 +132,12 @@ else {
           overflow-y: scroll;
       }
       .bigdrop {
-          width: 600px !important;
+          width: 300px !important;
+      }
+      @media screen and (max-width: 767px) {
+          .select2 {
+              width: 100% !important;
+          }
       }
     </style>
   </head>
@@ -294,7 +299,7 @@ else {
                     <div class="form-inline">
                       <div class="form-group">
                           <label for="">วิชา</label>
-                          <select class="form-control resize" name="course" id="search_course_id" >
+                          <select class="form-control resize select2" name="course" id="search_course_id" >
                               <?php foreach ($course->Get_All_Course() as $value_course): ?>
                                 <option value="<?php echo $value_course['id'] ?>"><?php echo $value_course['id']." ".$value_course['name']['en']; ?></option>
                               <?php endforeach; ?>
@@ -1132,7 +1137,10 @@ else {
         }
       }
       $('#select').select2(
-        {dropdownCssClass : 'bigdrop'}
+        { width: 'resolve',
+          dropdownAutoWidth: 'true',
+          dropdownCssClass : 'bigdrop'
+          }
       );
       $('#search_course_id').select2();
     </script>
