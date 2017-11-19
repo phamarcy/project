@@ -1242,7 +1242,9 @@ function senddata(data,file_data)
                    })
                      //alert(temp["msg"]);
                    }
-
+                 } catch (e) {
+                      console.log('Error#542-decode error');
+                 }
                  },
                  failure: function (result) {
                       alert(result);
@@ -1254,9 +1256,7 @@ function senddata(data,file_data)
                       console.log(err);
                  }
       });
-    } catch (e) {
-         console.log('Error#542-decode error');
-    }
+
 }
 
 function getfile(typedl)
