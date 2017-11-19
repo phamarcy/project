@@ -69,7 +69,7 @@ $(function() {//<-- wrapped here
                 <center>
                     <h style="font-size : 14px">ภาคการศึกษาที่
                         <div class="form-group">
-                            <select class="form-control" name="semester" required>
+                            <select class="form-control" name="semester" style="width: 100px;" required>
                                 <option value="">--</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
