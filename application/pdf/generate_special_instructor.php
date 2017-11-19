@@ -110,7 +110,7 @@ if(isset($_POST['DATA']))
 		$mysqldate = date( 'Y-m-d ', $submit_date );
 			//insert data into database
 
-			$sql = "INSERT INTO `expense_special_instructor`(`level_teacher`,`level_descript`,`expense_lec_choice`, `expense_lec_number`, `expense_lec_hour`, `expense_lec_cost`, `expense_plane_check`, `expense_plane_depart`, `expense_plane_arrive`, `expense_plane_cost`, `expense_taxi_check`, `expense_taxi_depart`, `expense_taxi_arrive`, `expense_taxi_cost`, `expense_car_check`, `expense_car_distance`, `expense_car_unit`, `expense_car_cost`, `expense_hotel_choice`, `expense_hotel_per_night`, `expense_hotel_number`, `expense_hotel_cost`, `cost_total`) VALUES ('".$DATA["PAYMENT_LVLTEACHER_CHOICE"]."','".$DATA["PAYMENT_LVLTEACHER_DESCRIPT"]."','".$DATA["PAYMENT_COSTSPEC_CHOICE"]."',".$DATA["PAYMENT_COSTSPEC_NUMBER"].",".$DATA["PAYMENT_COSTSPEC_HOUR"].",".$DATA["PAYMENT_COSTSPEC_COST"].",'".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_CHECKED"]."','".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_DEPART"]."','".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_ARRIVE"]."',".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_COST"].",'".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_CHECKED"]."','".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_DEPART"]."','".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_ARRIVE"]."',".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_COST"].",'".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_CHECKED"]."','".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_DISTANCE"]."',".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_UNIT"].",".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_COST"].",'".$DATA["PAYMENT_COSTHOTEL_CHOICE"]."',".$DATA["PAYMENT_COSTHOTEL_NUMBER"].",".$DATA["PAYMENT_COSTHOTEL_PERNIGHT"].",".$DATA["PAYMENT_COSTHOTEL_COST"].",".$DATA["PAYMENT_TOTALCOST"].")";
+			$sql = "INSERT INTO `expense_special_instructor`(`level_teacher`,`payment_method`,`level_descript`,`expense_lec_checked`, `expense_lec_number`, `expense_lec_hour`, `expense_lec_cost`,`expense_lab_checked`,`expense_lab_number`,`expense_lab_hour`,`expense_lab_cost`, `expense_plane_check`, `expense_plane_depart`, `expense_plane_arrive`, `expense_plane_cost`, `expense_taxi_check`, `expense_taxi_depart`, `expense_taxi_arrive`, `expense_taxi_cost`, `expense_car_check`, `expense_car_distance`, `expense_car_unit`, `expense_car_cost`, `expense_hotel_choice`, `expense_hotel_per_night`, `expense_hotel_number`, `expense_hotel_cost`, `cost_total`) VALUES ('".$DATA["PAYMENT_LVLTEACHER_CHOICE"]."','".$DATA['PAYMENT_METHOD']."','".$DATA["PAYMENT_LVLTEACHER_DESCRIPT"]."','".$DATA["PAYMENT_COSTSPEC_LEC_CHECKED"]."',".$DATA["PAYMENT_COSTSPEC_LEC_NUMBER"].",".$DATA["PAYMENT_COSTSPEC_LEC_HOUR"].",".$DATA["PAYMENT_COSTSPEC_LEC_COST"].",'".$DATA["PAYMENT_COSTSPEC_LAB_CHECKED"]."',".$DATA["PAYMENT_COSTSPEC_LAB_NUMBER"].",".$DATA["PAYMENT_COSTSPEC_LAB_HOUR"].",".$DATA["PAYMENT_COSTSPEC_LAB_COST"].",'".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_CHECKED"]."','".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_DEPART"]."','".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_ARRIVE"]."',".$DATA["PAYMENT_COSTTRANS_TRANSPLANE_COST"].",'".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_CHECKED"]."','".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_DEPART"]."','".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_ARRIVE"]."',".$DATA["PAYMENT_COSTTRANS_TRANSTAXI_COST"].",'".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_CHECKED"]."','".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_DISTANCE"]."',".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_UNIT"].",".$DATA["PAYMENT_COSTTRANS_TRANSSELFCAR_COST"].",'".$DATA["PAYMENT_COSTHOTEL_CHOICE"]."',".$DATA["PAYMENT_COSTHOTEL_NUMBER"].",".$DATA["PAYMENT_COSTHOTEL_PERNIGHT"].",".$DATA["PAYMENT_COSTHOTEL_COST"].",".$DATA["PAYMENT_TOTALCOST"].")";
 
 			$result = $db->Insert_Update_Delete($sql);
 
@@ -454,7 +454,11 @@ else if($data_pdf["level_teacher"] == "equivalent")
 	$norm = 3;
 	$level_norm = $data_pdf["level_descript"];
 }
-
+if($data_pdf['payment_method'] == '0')
+{
+	$norm = '';
+	$pro = '';
+}
 $pdf->SetFont('ZapfDingbats','',14);
 $pdf->Cell(4,4, $pro, 1,"C");
 $pdf->SetFont('THSarabun','',14);
@@ -472,7 +476,7 @@ $pdf->Ln();
 $pdf->SetX(25);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','3.1 ค่าสอนพิเศษ '))+3,10,iconv('UTF-8','TIS-620','3.1 ค่าสอนพิเศษ'),0,1);
 
-if($data_pdf["expense_lec_choice"] == "1")
+if($data_pdf["expense_lec_checked"] == "1")
 {
 	$choice1 = 3;
 	$choice2 = '';
@@ -483,15 +487,15 @@ if($data_pdf["expense_lec_choice"] == "1")
 	$num1 = $data_pdf["expense_lec_number"];
 	$num2 = ' ';
 }
-else if($data_pdf["expense_lec_choice"] == "2")
+if($data_pdf["expense_lab_checked"] == "1")
 {
 	$choice1 = '';
 	$choice2 = 3;
-	$cost2 = $data_pdf["expense_lec_cost"];
+	$cost2 = $data_pdf["expense_lab_cost"];
 	$cost1 = '';
-	$hour2 = $data_pdf["expense_lec_hour"];
+	$hour2 = $data_pdf["expense_lab_hour"];
 	$hour1 = '';
-	$num2 = $data_pdf["expense_lec_number"];
+	$num2 = $data_pdf["expense_lab_number"];
 	$num1 = ' ';
 }
 else
@@ -506,6 +510,17 @@ else
 	$num2 = ' ';
 }
 
+if($data_pdf['payment_method'] == '0')
+{
+	$choice1 = '';
+	$choice2 = '';
+	$cost2 = '';
+	$cost1 = '';
+	$hour2 = '';
+	$hour1 = '';
+	$num1 = ' ';
+	$num2 = ' ';
+}
 
 
 $pdf->SetX(40);
@@ -580,11 +595,9 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','บาท'))+2,7,iconv
 $pdf->Ln();
 
 
-
-
 $pdf->SetX(40);
 $pdf->SetFont('ZapfDingbats','',14);
-if($data_pdf["expense_car_check"] == "true")
+if($data_pdf["expense_car_check"] == "1")
 {
 	$pdf->Cell(4,4, 3, 1,"C");
 }
@@ -630,7 +643,14 @@ else if ($data_pdf["expense_hotel_choice"] == "3")
  	$number = '  ';
 }
 
-
+if($data_pdf['payment_method'] == '0')
+{
+	$choice_hotel1 = '  ';
+	$choice_hotel2 = '  ';
+	$per_night1 = '  ';
+	$per_night2 = '  ';
+	$number = '  ';
+}
 
 $pdf->AddPage();
 $pdf->SetX(25);
@@ -666,7 +686,7 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','บาท'))+2,7,iconv
 $person = new Person();
 $respond_teacher = $course->Get_Responsible_Teacher($data_pdf['course_id'],$semester['id']);
 $signature_file = $person->Get_Teacher_Signature($respond_teacher['id']);
-$teacher_name = $person->Get_Teacher_Name($respond_teacher['id']);
+$teacher_name = $person->Get_Teacher_Name($respond_teacher['id'],'TH');
 //end get
 
 $pdf->SetX(35);
@@ -711,7 +731,7 @@ if($DATA['SUBMIT_TYPE'] == '3' || $DATA['SUBMIT_TYPE'] == '4')
 {
  $course_dep = $person->Get_Staff_Dep($respond_teacher['id']);
  $head_department_id = $person->Get_Head_Department($course_dep['code'],$data_pdf['course_id']);
-	$approver_name = $person->Get_Teacher_Name($head_department_id);
+	$approver_name = $person->Get_Teacher_Name($head_department_id,'TH');
 	$signature_approver_file = $person->Get_Teacher_Signature($head_department_id);
 
 $pdf->Ln();

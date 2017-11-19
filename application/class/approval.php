@@ -473,7 +473,7 @@ class approval
               $course['evaluate']['comment'] = array();
               for($j=0;$j<count($comment_temp);$j++)
               {
-                $comment['name'] = $this->PERSON->Get_Teacher_Name($comment_temp[$j]['teacher_id']);
+                $comment['name'] = $this->PERSON->Get_Teacher_Name($comment_temp[$j]['teacher_id'],'TH');
                 $comment['comment'] = $comment_temp[$j]['comment'];
                 $comment['date'] = $comment_temp[$j]['date'];
                 array_push($course['evaluate']['comment'],$comment);
@@ -625,7 +625,7 @@ class approval
          {
            for($j=0;$j<count($result_comment);$j++)
            {
-                $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$j]['teacher_id']);
+                $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$j]['teacher_id'],'TH');
                 $comment['comment'] = $result_comment[$j]['comment'];
                 $comment['date'] = $result_comment[$j]['updated_date'];
                array_push($instructor['comment'],$comment);
@@ -793,7 +793,7 @@ class approval
                 }
               }
             }
-            $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$j]['teacher_id']);
+            $comment['name'] = $this->PERSON->Get_Teacher_Name($result_comment[$j]['teacher_id'],'TH');
             $comment['comment'] = $result_comment[$j]['comment'];
             $comment['date'] = $result_comment[$j]['date'];
             array_push($course['comment'],$comment);

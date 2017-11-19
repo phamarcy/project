@@ -242,7 +242,7 @@ class Report
           $course['comment'][$semester]['special'] = array();
           $course['comment'][$semester]['evaluate'] = array();
         }
-          $data['name'] = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+          $data['name'] = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id'],'TH');
           $data['comment'] = $result[$i]['comment'];
           $originalDate = $result[$i]['updated_date'];
           $update_date = date("d-m-Y H:i:s", strtotime($originalDate));
@@ -273,7 +273,7 @@ class Report
           $course['comment'][$semester]['special'][$instructor_id]['name'] = $instructor_name;
           $course['comment'][$semester]['special'][$instructor_id]['comment'] =array();
         }
-        $data['name'] = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id']);
+        $data['name'] = $this->PERSON->Get_Teacher_Name($result[$i]['teacher_id'],'TH');
         $data['comment'] = $result[$i]['comment'];
         $originalDate = $result[$i]['updated_date'];
         $update_date = date("d-m-Y H:i:s", strtotime($originalDate));

@@ -60,7 +60,7 @@ class Person
   }
 
   //search teacher prefix and name
-  public function Get_Teacher_Name($teacher_id)
+  public function Get_Teacher_Name($teacher_id,$type)
   {
     //search teacher data
     $this->DB->Change_DB($this->PERSON_DB);
@@ -504,7 +504,7 @@ class Person
       for($i=0;$i<count($result);$i++)
       {
           $group_num = substr($result[$i]['group_num'], 1);
-          $teacher_name = $this->Get_Teacher_Name($result[$i]['teacher_id']);
+          $teacher_name = $this->Get_Teacher_Name($result[$i]['teacher_id'],'TH');
           $check = 0;
           for($j=0;$j<count($DATA);$j++)
           {
@@ -630,7 +630,7 @@ class Person
     $sql    = 'SELECT * FROM grant_approve';
     $result = $this->DB->Query($sql);
     if ($result) {
-      $name   = $this->Get_Teacher_Name($result[0]['user_id']);
+      $name   = $this->Get_Teacher_Name($result[0]['user_id'],'TH');
       $DATA   = array('user_id' => $result[0]["user_id"] ,'user_name' =>$name,'status'=>$result[0]['status'],'startdate'=>$result[0]['date_start'],'enddate'=>$result[0]['date_end'] );
     }
     return $DATA;
