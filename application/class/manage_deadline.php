@@ -98,6 +98,22 @@ public function Update($data,$type)
     }
   }
 
+  public function Search_Semester_Term($semester_id)
+  {
+    $sql = "SELECT `semester_num`,`year` FROM `semester` WHERE `semester_id` = ".$semester_id;
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $semester['semester'] = $result[0]['semester_num'];
+      $semester['year'] = $result[0]['year'];
+      return $semester;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
 // add new semester
   public function Add_Semester($semester,$year)
   {
