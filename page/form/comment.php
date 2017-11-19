@@ -88,6 +88,29 @@ $end = strtotime($current_semester[0]['last_date']);
       #statal {
         color: #da9001;
       }
+      .spec{
+			margin-top: -23px;
+      }
+      .forminline{
+        display:inline-block;
+        margin:0;
+      }
+      .pull-right {
+        margin-top: 0px;
+      }
+      .eva{
+        margin-top: 0px;
+      }
+      .checkbox{
+        display:inline-block;
+        margin-top:5px;
+      }
+
+      @media only screen and (max-width: 500px) {
+        .pull-right{
+          margin-top: 0px;
+        }
+      }
     </style>
   </header>
 
@@ -138,29 +161,29 @@ $end = strtotime($current_semester[0]['last_date']);
                         foreach ($data_forapproval as $key => $eva) { ?>
                           <div class="panel-group">
                             <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h5 class="panel-title" style="font-size:14px">
+                              <div class="panel-heading clearfix">
+                                <h5 class="panel-title pull-left" style="font-size:14px;padding-top:8px">
                                   <a data-toggle="collapse" href="#collapse<?php echo $eva['id']?>">
                                     <?php echo $eva['id']."  ".$eva['name']; ?>
                                   </a>
 
-                                  <?php if (isset($eva['syllabus']) ): ?> &nbsp;&nbsp;
-                                  <b>Syllabus:</b>
-                                  <a href="../../files<?php echo $eva['syllabus'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
-                                  <?php endif; ?>
-                                  <?php if (isset($eva['evaluate'])): ?> &nbsp;&nbsp;
-                                  <b>Evaluation Form:</b>
-                                  <a href="<?php echo $eva['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
-                                  <?php endif; ?>
-                                  <div class="pull-right">
+                                  
+                                </h5>
+                                <div class="btn-group pull-right eva">
+                                  <div class="forminline">
+                                  <?php if (isset($eva['syllabus']) ): ?> 
+                                    <a href="../../files<?php echo $eva['syllabus'] ?>" target="_blank" ><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดหลักสูตร</button></a>
+                                    <?php endif; ?>
+                                    <?php if (isset($eva['evaluate'])): ?> 
+                                    <a href="<?php echo $eva['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดแบบแจ้ง</button></a>
+                                    <?php endif; ?>
                                     <?php if ($eva['status']==0) { ?>
-                                      <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapse<?php echo $eva['id']?>">การพิจารณา</a>
+                                      <a type="button" class="btn btn-outline btn-success btn-sm" data-toggle="collapse" href="#collapse<?php echo $eva['id']?>">การพิจารณา</a>
                                     <?php
                                     }
                                     ?>
                                   </div>
-                                </h5>
-
+                                  </div>
                               </div>
                               <div id="collapse<?php echo $eva['id']?>" class="panel-collapse collapse " style="font-size:14px">
                                 <div class="panel-body">
@@ -233,28 +256,30 @@ $end = strtotime($current_semester[0]['last_date']);
                             <?php foreach ($sp['instructor'] as $keycom => $spcomment) { ?>
                             <div class="panel-group">
                               <div class="panel panel-default">
-                                <div class="panel-heading">
-                                  <h5 class="panel-title" style="font-size:14px">
+                                <div class="panel-heading clearfix">
+                                  <h5 class="panel-title pull-left" style="font-size:14px;padding-top:8px">
                                     <a data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">
                                       <?php echo $spcomment['name'] ?>
                                     </a>
-                                    <?php if (isset($spcomment['pdf']) ): ?> &nbsp;&nbsp;
-                                      <b>Instructor Form: </b>
-                                      <a href="<?php echo $spcomment['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                                  </h5>
+                                  <div class="btn-group pull-right eva">
+                                    <div class="forminline">
+                                  <?php if (isset($spcomment['pdf']) ): ?> 
+  
+                                      <a href="<?php echo $spcomment['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดแบบเชิญอาจารย์พิเศษ</button></a>
                                     <?php endif; ?>
-                                    <?php if (isset($spcomment['cv']) ): ?> &nbsp;&nbsp;
-                                      <b>CV: </b>
-                                      <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                                    <?php if (isset($spcomment['cv']) ): ?> 
+
+                                      <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดประวัติส่วนตัว</button></a>
                                     <?php endif; ?>
-                                    <div class="pull-right">
+                                  
                                     <?php if ($spcomment['status']==0) { ?>
-                                      <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">การพิจารณา</a>
+                                      <a type="button" class="btn btn-outline btn-success btn-sm" data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">การพิจารณา</a>
                                     <?php
                                     }
                                     ?>
-                                      
                                     </div>
-                                  </h5>
+                                  </div>
                                 </div>
                                 <div id="collapsesp<?php echo $sp['id'].$spcomment['id'] ?>" class="panel-collapse collapse " style="font-size:14px">
                                   <div class="panel-body">

@@ -103,7 +103,7 @@ $data_course     = json_decode($var, true);
 			margin:0;
 		}
 		.pull-right {
-			margin-top: -5px;
+			margin-top: 0px;
 		}
 		.eva{
 			margin-top: 0px;

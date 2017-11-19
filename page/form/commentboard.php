@@ -87,6 +87,29 @@ $end = strtotime($current_semester[0]['last_date']);
       #statal {
         color: #da9001;
       }
+      .spec{
+			margin-top: -23px;
+      }
+      .forminline{
+        display:inline-block;
+        margin:0;
+      }
+      .pull-right {
+        margin-top: 0px;
+      }
+      .eva{
+        margin-top: 0px;
+      }
+      .checkbox{
+        display:inline-block;
+        margin-top:5px;
+      }
+
+      @media only screen and (max-width: 500px) {
+        .pull-right{
+          margin-top: 0px;
+        }
+      }
     </style>
   </header>
 
@@ -143,25 +166,25 @@ $end = strtotime($current_semester[0]['last_date']);
                         foreach ($data_forapproval as $key => $eva) { ?>
                           <div class="panel-group">
                             <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h5 class="panel-title" style="font-size:14px">
+                              <div class="panel-heading clearfix">
+                                <h5 class="panel-title pull-left" style="font-size:14px;padding-top:8px;">
                                   <a data-toggle="collapse" href="#collapse<?php echo $eva['id']?>">
                                     <?php echo $eva['id']."  ".$eva['name']; ?>
                                   </a>
-
-                                  <?php if (isset($eva['syllabus']) ): ?> &nbsp;&nbsp;
-                                  <b>Syllabus:</b>
-                                  <a href="../../files<?php echo $eva['syllabus'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
-                                  <?php endif; ?>
-                                  <?php if (isset($eva['evaluate'])): ?> &nbsp;&nbsp;
-                                  <b>Evaluation Form:</b>
-                                  <a href="<?php echo $eva['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
-                                  <?php endif; ?>
-                                  <div class="pull-right">
-                                  <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapse<?php echo $eva['id'] ?>">อนุมัติ</a>&nbsp;
-                                    <input type="checkbox" name="coursecheck" id="checkedAll" class="checkSingle" value="<?php echo $eva['id']?>"></input>
-                                  </div>
                                 </h5>
+                                <div class="btn-group pull-right eva">
+                                  <div class="forminline">
+                                  <?php if (isset($eva['syllabus']) ): ?>
+                                    <a href="../../files<?php echo $eva['syllabus'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดหลักสูตร</button></a>
+                                    <?php endif; ?>
+                                    <?php if (isset($eva['evaluate'])): ?> 
+                                    <a href="<?php echo $eva['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดแบบแจ้ง</button></a>
+                                    <?php endif; ?>
+                                    
+                                    <a type="button" class="btn  btn-success btn-sm" data-toggle="collapse" href="#collapse<?php echo $eva['id'] ?>">อนุมัติ</a>
+                                      <input type="checkbox" name="coursecheck" id="checkedAll" class="checkSingle" value="<?php echo $eva['id']?>"></input>
+                                  </div>
+                                </div>
 
                               </div>
                               <div id="collapse<?php echo $eva['id']?>" class="panel-collapse collapse " style="font-size:14px">
@@ -174,8 +197,8 @@ $end = strtotime($current_semester[0]['last_date']);
                                       <textarea class="form-control" name="name" rows="8" cols="40" id="comment_<?php echo $eva['id'] ?>"></textarea>
                                     </div>
                                     <div class="form-group">
-                                      <button type="button" class="btn btn-outline btn-success " onclick="approve_course('<?php echo $eva['id'] ?>','approve')">อนุมัติ</button>&nbsp;
-                                      <button type="button" class="btn btn-outline btn-danger " onclick="approve_course('<?php echo $eva['id'] ?>','edit')">มีการแก้ไข</button>
+                                      <button type="button" class="btn  btn-success " onclick="approve_course('<?php echo $eva['id'] ?>','approve')">อนุมัติ</button>&nbsp;
+                                      <button type="button" class="btn  btn-danger " onclick="approve_course('<?php echo $eva['id'] ?>','edit')">มีการแก้ไข</button>
                                     </div>
                                   </form>
                                   <?php }?>
@@ -216,7 +239,7 @@ $end = strtotime($current_semester[0]['last_date']);
                         }
                         ?>
                         <div class="pull-right">
-                          <button type="button" class="btn btn-success btn-outline " onclick="get_selectall()">ยืนยัน</button>
+                          <button type="button" class="btn btn-success  " onclick="get_selectall()">ยืนยัน</button>
                         </div>
                       </div>
                       <!-- col 12-->
@@ -244,26 +267,29 @@ $end = strtotime($current_semester[0]['last_date']);
                             <?php foreach ($sp['instructor'] as $keycom => $spcomment) { ?>
                             <div class="panel-group">
                               <div class="panel panel-default">
-                                <div class="panel-heading">
-                                  <h5 class="panel-title" style="font-size:14px">
+                                <div class="panel-heading clearfix">
+                                  <h5 class="panel-title pull-left" style="font-size:14px:padding-top:8px;">
                                     <a data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">
                                       <?php echo $spcomment['name'] ?>
                                     </a>
+                                    
+
+                                  </h5>
+                                  <div class="btn-group pull-right eva">
+                                    <div class="forminline">
                                     <?php if (isset($spcomment['pdf']) ): ?> &nbsp;&nbsp;
                                     <b>Instructor Form: </b>
-                                    <a href="<?php echo $spcomment['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                                    <a href="<?php echo $spcomment['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดแบบเชิญอาจารย์พิเศษ</button></a>
                                   <?php endif; ?>
                                   <?php if (isset($spcomment['cv']) ): ?> &nbsp;&nbsp;
                                     <b>CV: </b>
-                                    <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><i type="button" class="fa fa-file-pdf-o fa-2x " ></i></a>
+                                    <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดประวัติส่วนตัว</button></a>
                                   <?php endif; ?>
-                                  <?php if ($spcomment['status']==0): ?>
-                                    <div class="pull-right">
-                                      <a type="button" class="btn btn-outline btn-success" data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">อนุมัติ</a>&nbsp;
-                                      <input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $sp['id']?>,<?php echo $spcomment['id']?>"></input>
+                                    <a type="button" class="btn  btn-success btn-sm" data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">อนุมัติ</a>&nbsp;
+                                    <input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $sp['id']?>,<?php echo $spcomment['id']?>"></input>
+                                    
                                     </div>
-                                  <?php endif; ?>
-                                  </h5>
+                                  </div>
                                 </div>
                                 <div id="collapsesp<?php echo $sp['id'].$spcomment['id'] ?>" class="panel-collapse collapse " style="font-size:14px">
                                   <div class="panel-body">
@@ -274,8 +300,8 @@ $end = strtotime($current_semester[0]['last_date']);
                                         <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $sp['id'].$spcomment['id'] ?>"></textarea>
                                       </div>
                                       <div class="form-group">
-                                        <button type="button" class="btn btn-outline btn-success " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','approve_sp')">อนุมัติ</button>&nbsp;
-                                        <button type="button" class="btn btn-outline btn-danger " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','edit_sp')">มีการแก้ไข</button>
+                                        <button type="button" class="btn  btn-success " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','approve_sp')">อนุมัติ</button>&nbsp;
+                                        <button type="button" class="btn  btn-danger " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','edit_sp')">มีการแก้ไข</button>
                                       </div>
 
                                     </form>
@@ -318,7 +344,7 @@ $end = strtotime($current_semester[0]['last_date']);
                         </div>
                         <?php } ?>
                         <div class="pull-right">
-                          <button type="button" class="btn btn-success btn-outline " onclick="get_selectallsp()">ยืนยัน</button>
+                          <button type="button" class="btn btn-success  " onclick="get_selectallsp()">ยืนยัน</button>
                         </div>
                       </div>
                       <!--col 12-->
