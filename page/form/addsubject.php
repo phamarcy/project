@@ -201,11 +201,9 @@ function checksubject() {
                 success: function (result) {
                       try {
                         var temp = $.parseJSON(result);
-                      } catch (e) {
-                           console.log('Error#542-decode error');
-                      }
 
-                    if(temp['INFO']==false){
+
+                    if(!temp['INFO'].course_id){
 
                         swal({
                           title: 'กระบวนวิชาที่ค้นหาไม่พบในระบบ',
@@ -215,9 +213,11 @@ function checksubject() {
                           confirmButtonColor: '#3085d6',
                           cancelButtonColor: '#d33',
                           confirmButtonText: 'Ok',
-                          cancelButtonText: 'Cancel'
+                          cancelButtonText: 'Cancel',
+                          allowOutsideClick: false
                         }).then(function () {
                           $('#typesubmit').val("add");
+                          $('.dis').prop('disabled', false);
                           $('#deletebtn').prop('disabled', true);
                           document.getElementById('NAME_ENG_COURSE').value = '';
                           document.getElementById('NAME_TH_COURSE').value = '';
@@ -227,8 +227,10 @@ function checksubject() {
                         // dismiss can be 'cancel', 'overlay',
                         // 'close', and 'timer'
                         if (dismiss === 'cancel') {
-                          document.getElementById('COURSE_ID').value = '';
+                          document.getElementById("form1").reset();
+                          $('#deletebtn').hide();
                           $('#submitbtn').hide();
+                          $('.dis').prop('disabled', true);
 
                         }
                       })
@@ -241,7 +243,9 @@ function checksubject() {
                          )
 
                         $('#submitbtn').show();
+                        $('#deletebtn').show();
                         $('#typesubmit').val('edit');
+                        $('.dis').prop('disabled', false);
                         $('#deletebtn').prop('disabled', false);
                         document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
                         document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
@@ -251,7 +255,9 @@ function checksubject() {
                         document.getElementById('TOTAL_3').value = temp['INFO']['hr_lab'];
                         document.getElementById('TOTAL_4').value = temp['INFO']['hr_self'];
                       }
-
+                    } catch (e) {
+                         console.log('Error#542-decode error');
+                    }
                 },
                 failure: function (result) {
                      alert(result);
@@ -397,6 +403,9 @@ $(document).ready(function(){
 
   //hide
   $('#submitbtn').hide();
+  $('#deletebtn').hide();
+  $('.dis').prop('disabled', true);
+
     $( '#form1' ).submit( function( event ) {
       event.preventDefault();
 
@@ -532,18 +541,18 @@ function confreset(casereset) {
           </div>
           <br>
           <div class="form-group">
-          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 500px;" type="text" class="form-control charthonly" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   required placeholder="e.g. การเรียนรู้นอกห้องเรียนเพื่อเสริมสร้างประสบการณ์ชีวิต">
+          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 500px;" type="text" class="form-control dis charthonly" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   required placeholder="e.g. การเรียนรู้นอกห้องเรียนเพื่อเสริมสร้างประสบการณ์ชีวิต">
           </div>
           <br>
           <div class="form-group">
-          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control charengonly" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   required placeholder="e.g. Learning outside for experience">
+          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control dis charengonly" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   required placeholder="e.g. Learning outside for experience">
           </div>
           <div class="row">
             <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;
-          <input class="form-control numonly" name="TOTAL_1" type="text" id="TOTAL_1" size="1" maxlength="1" style="width:35px;" />(
-          <input class="form-control numonly" name="TOTAL_2" type="text" id="TOTAL_2" size="1" maxlength="1" style="width:35px;" />-
-          <input class="form-control numonly" name="TOTAL_3" type="text" id="TOTAL_3" size="1" maxlength="1" style="width:35px;" />-
-          <input class="form-control numonly" name="TOTAL_4" type="text" id="TOTAL_4" size="1" maxlength="1" style="width:35px;" />)&nbsp; หน่วยกิต
+          <input class="form-control dis numonly" name="TOTAL_1" type="text" id="TOTAL_1" size="1" maxlength="1" style="width:35px;" />(
+          <input class="form-control dis numonly" name="TOTAL_2" type="text" id="TOTAL_2" size="1" maxlength="1" style="width:35px;" />-
+          <input class="form-control dis numonly" name="TOTAL_3" type="text" id="TOTAL_3" size="1" maxlength="1" style="width:35px;" />-
+          <input class="form-control dis numonly" name="TOTAL_4" type="text" id="TOTAL_4" size="1" maxlength="1" style="width:35px;" />)&nbsp; หน่วยกิต
             </div>
           </div>
           <input type="hidden" id="typesubmit" name="typesubmit">
@@ -554,7 +563,7 @@ function confreset(casereset) {
     </ol>
     <div align="center">
       <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
-      <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล">
+      <!-- <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล"> -->
       &nbsp;&nbsp;<input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="deletebtn" id="deletebtn" onclick="delsubj();" value="ลบข้อมูลกระบวนวิชา" disabled>
 
     </div>
