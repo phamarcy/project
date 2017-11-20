@@ -12,6 +12,7 @@ $deadline = new Deadline();
 $course = new course();
 $semeter= $deadline->Get_Current_Semester();
 $department=$person->Get_Staff_Dep($_SESSION['id']);
+
 if ($_SESSION['level']==7 || $_SESSION['level']==3) {
   if(isset($_POST['department'])){
     $_SESSION['department']=$_POST['department'];
@@ -25,7 +26,7 @@ if ($_SESSION['level']==7 || $_SESSION['level']==3) {
     $dep_js='1201';
   }
 }else {
-  $dep_js=$person->Get_Staff_Dep($_SESSION['id']);
+  $dep_js=$department['code'];
 }
 
 
