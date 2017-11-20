@@ -585,15 +585,19 @@ class Course
         $data = false;
       }
       $data['student'] = array();
-      $sql = "SELECT `section`,`student` FROM `student_evaluate` WHERE `course_evaluate_id` = ".$data['course_evaluate_id'];
-      $result = $this->DB->Query($sql);
-      if($result)
+      if(isset($data['course_evaluate_id']))
       {
-        for($i=0;$i<count($result);$i++)
+        $sql = "SELECT `section`,`student` FROM `student_evaluate` WHERE `course_evaluate_id` = ".$data['course_evaluate_id'];
+        $result = $this->DB->Query($sql);
+        if($result)
         {
-          $data['student'][$result[$i]['section'] -1] = $result[$i]['student'];
+          for($i=0;$i<count($result);$i++)
+          {
+            $data['student'][$result[$i]['section'] -1] = $result[$i]['student'];
+          }
         }
       }
+
       $data['exam_mid1_committee_lec'] = array();
       $sql = "SELECT `teacher_id`,`name_type` FROM `exam_commitee` WHERE `exam_evaluate_id` = '".$data['exam_evaluate_id']."' AND `type` = 'MID1' AND `type_commitee` = 'LEC' ORDER BY `updated_date` ASC";
       $result = $this->DB->Query($sql);
@@ -726,7 +730,7 @@ class Course
         }
       }
       $data['teacher'] = array();
-      $sql = "SELECT `teacher_id`,`name_type` FROM `teacher_exam_evaluate` WHERE `course_eveluate_id` = '".$data['course_evaluate_id']."' ORDER BY `updated_date` ASC";
+      $sql = "SELECT `teacher_id`,`name_type` FROM `teacher_exam_evaluate` WHERE `course_eveluate_id` = ".$data['course_evaluate_id']." ORDER BY `updated_date` ASC";
       $result = $this->DB->Query($sql);
       if($result)
       {
