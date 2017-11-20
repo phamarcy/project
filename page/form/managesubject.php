@@ -11,8 +11,8 @@ $person = new Person();
 $deadline = new Deadline();
 $course = new course();
 $semeter= $deadline->Get_Current_Semester();
-$department =$person->Get_Staff_Dep($_SESSION['id']);
-if ($_SESSION['level']==7) {
+$department=$person->Get_Staff_Dep($_SESSION['id']);
+if ($_SESSION['level']==7 || $_SESSION['level']==3) {
   if(isset($_POST['department'])){
     $_SESSION['department']=$_POST['department'];
   }
@@ -20,11 +20,16 @@ if ($_SESSION['level']==7) {
     $department['code']=$_SESSION['department'];
     $dep_js=$_SESSION['department'];
   }
+
+  if ($department==false || $department==null || $dep_js==null) {
+    $dep_js='1201';
+  }
 }
-$dep_js=$department['code'];
+
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $history=$course->Get_History($department['code']);
+$dept = $course->Get_Dept_All();
 
 $missing =array();
 if (isset($assessor['status'])) {
@@ -154,18 +159,27 @@ else {
     </h3>
     <div class="container" style="margin-top:30px">
     <?php
-    if ($_SESSION['level']==7 ){ ?>
+    if ($_SESSION['level']==7 || $_SESSION['level']==3){ ?>
     <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">สำหรับผู้ดูแลระบบ</h3>
+            <h3 class="panel-title">กำหนดภาควิชา</h3>
           </div>
           <div class="panel-body">
             <form action="managesubject.php" method="post">
             <div class="form-inline">
               <p><b>ภาควิชาปัจจุบัน : </b>
                 <select name="department" class="form-control">
-                <option value="1202" <?php if ($dep_js=="1202") { echo "selected";} ?>>ภาควิชาบริบาลเภสัชกรรม</option>
-                <option value="1203" <?php if ($dep_js=="1203") { echo "selected";} ?>>ภาควิชาวิทยาศาสตร์เภสัชกรรม</option>
+                <?php
+                $true="";
+                for ($i=0; $i <count($dept) ; $i++) {
+                  if ($dep_js==$dept[$i]['code']) {
+                    $true='selected';
+                  }else {
+                    $true='';
+                  }
+                  echo "<option value='".$dept[$i]['code']."' ".$true.">".$dept[$i]['name']."</option>";
+                }
+                ?>
                 </select>&nbsp;&nbsp;<input type="submit" value="บันทึก" class="btn btn-outline btn-primary" ></p>
             </div>
             </form>
@@ -965,7 +979,7 @@ else {
 
         var hidden = document.getElementById('hidden').value;
         var type = "add_oldcourse";
-        var dep = <?php echo $dep_js ?>;
+        var dep = '<?php echo $dep_js ?>';
         //console.log(dep);
         $.ajax({
           url: '../../application/subject/responsible_course_department.php',
