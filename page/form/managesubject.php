@@ -300,11 +300,11 @@ else {
                       <div class="form-group">
                           <label for="">วิชา</label>
                           <select class="form-control resize select2" name="course" id="search_course_id" >
-                              <?php foreach ($course->Get_All_Course() as $value_course): ?>
+                              <?php foreach ($course->Get_All_Course($department['code']) as $value_course): ?>
                                 <option value="<?php echo $value_course['id'] ?>"><?php echo $value_course['id']." ".$value_course['name']['en']; ?></option>
                               <?php endforeach; ?>
                             </select>
- 
+
                       </div>
                       <input type="hidden" name="dep_id" value="<?php echo $department['code']  ?>">
                       <input type="hidden" name="semester_id" id="semester_id" value="<?php echo $semeter['id'] ?>">

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once(__DIR__.'/../class/course.php');
 $course = new Course();
 if(isset($_POST['DATA']) && isset($_POST['TYPE']))

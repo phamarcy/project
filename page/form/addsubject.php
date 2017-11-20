@@ -8,7 +8,7 @@
   $person = new Person();
   $semester= $deadline->Get_Current_Semester();
   $dept = $person->Get_Staff_Dep($_SESSION['id']);
-  $course = $courseobj->Get_Dept_Course($dept['code'],'all');
+  $course = $courseobj->Get_All_Course($dept['code']);
  ?>
  <html>
  <header>
@@ -596,8 +596,8 @@ function confreset(casereset) {
     for ($i=0; $i <sizeof($course) ; $i++) {
      echo "<tr>";
      echo "<td>".$course[$i]['id']."</td>";
-     echo "<td>".$course[$i]['name']."</td>";
-     echo "<td>".$course[$i]['name_th']."</td>";
+     echo "<td>".$course[$i]['name']['en']."</td>";
+     echo "<td>".$course[$i]['name']['th']."</td>";
      echo "<td>".$course[$i]['credit']."(".$course[$i]['lec']."-".$course[$i]['lab']."-".$course[$i]['self'].")</td>";
     }
    ?>

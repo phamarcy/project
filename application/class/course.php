@@ -32,10 +32,11 @@ class Course
 
   public function Add_Course($data)
   {
-      $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`, `hr_lec`, `hr_lab`, `hr_self`)
-      VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]["TOTAL"]."','".$data["CREDIT"]["LEC"]."','".$data["CREDIT"]["LAB"]."','".$data["CREDIT"]["SELF"]."')";
+      $dept = $this->PERSON->Get_Staff_Dep($_SESSION['id']);
+      $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`, `hr_lec`, `hr_lab`, `hr_self`,`department_id`)
+      VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]["TOTAL"]."','".$data["CREDIT"]["LEC"]."','".$data["CREDIT"]["LAB"]."','".$data["CREDIT"]["SELF"]."','".$dept['code']."')";
       $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]["TOTAL"]."',`hr_lec` = '".$data["CREDIT"]["LEC"]."'
-        ,`hr_lab` = '".$data["CREDIT"]["LAB"]."' , `hr_self` = '".$data["CREDIT"]["SELF"]."'";
+        ,`hr_lab` = '".$data["CREDIT"]["LAB"]."' , `hr_self` = '".$data["CREDIT"]["SELF"]."',`department_id` = '".$dept['code']."'";
       $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
       {
@@ -70,9 +71,10 @@ class Course
     //search teacher data
   }
 
-  public function Get_All_Course()
+  public function Get_All_Course($dept_id)
   {
     $sql = "SELECT `course_id`as id,`course_name_en` as name_en,`course_name_th`as name_th,`credit`,`hr_lec`,`hr_lab`,`hr_self` FROM `course`";
+    $sql .=" WHERE `department_id`IS NULL OR `department_id` = '".$dept_id."'";
     $result = $this->DB->Query($sql);
     if($result)
     {
