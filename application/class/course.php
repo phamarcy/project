@@ -81,13 +81,17 @@ class Course
     }
     //search teacher data
   }
-
+//get all course in department
   public function Get_All_Course($dept_id)
   {
     $sql = "SELECT `course_id`as id,`course_name_en` as name_en,`course_name_th`as name_th,`credit`,`hr_lec`,`hr_lab`,`hr_self` FROM `course`";
-    if($_SESSION['level'] != '3' && $_SESSION['level'] != '7')
+    if($dept_id != 'all')
     {
       $sql .=" WHERE `department_id` = '".$dept_id."'";
+    }
+    else
+    {
+      $sql .= " WHERE `department_id` = NULL OR `department_id` = '".$dept_id."' ";
     }
     $result = $this->DB->Query($sql);
     if($result)
