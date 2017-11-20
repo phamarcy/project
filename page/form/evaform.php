@@ -82,12 +82,11 @@
     margin-left: 0px!important;
   }
   table { width: auto !important; }
-  textarea {
-    -webkit-box-sizing: border-box !important;
-    -moz-box-sizing: border-box !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
+
+  .textareawidth{
+    width: 70%;
   }
+
   </style>
 
 <script id="contentScript">
@@ -2337,9 +2336,10 @@ function confreset(casereset) {
           <div id="text"><b>อาจารย์ผู้ร่วมสอน</b>
           </div>
         </div>
-        <div class="col-md-12">
-          <textarea class="form-control" id="tchco" rows="5"></textarea>
-        </div>
+
+          <textarea class="form-control textareawidth" id="tchco" rows="5"></textarea>
+
+
 
       </li>
 
@@ -2392,10 +2392,9 @@ function confreset(casereset) {
           </div>
             </div>
           </div>
-          <div class="col-md-12">
             หมายเหตุ
-            <br> <textarea class="form-control" id="psmeasure" rows="5"></textarea>
-          </div>
+            <br> <textarea class="form-control textareawidth" id="psmeasure" rows="5"></textarea>
+
           </li>
 
           <br>
@@ -2604,10 +2603,9 @@ function confreset(casereset) {
                   </li>
           </li>
           </ul>
-          <div class="col-md-12">
             หมายเหตุ
-            <br> <textarea class="form-control" id="suggestion" rows="5"></textarea>
-          </div>
+            <br> <textarea class="form-control textareawidth" id="suggestion" rows="5"></textarea>
+
         </li>
 
           <br>
@@ -2690,10 +2688,10 @@ function confreset(casereset) {
           </div>
         </div>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม &nbsp;
-              <div style="margin-left:35px;">
-                <div class="col-md-12">
-                <textarea class="form-control" name="EXPLAINATION" id="EXPLAINATION" rows="5" placeholder="โปรดระบุ" ></textarea>
-              </div>
+              <div class="form-inline">
+
+                <textarea class="form-control " style="width: 70%;" name="EXPLAINATION" id="EXPLAINATION" rows="5" placeholder="โปรดระบุ" ></textarea>
+
               </div>
               <br>
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE3" value="SU"> ให้อักษร S หรือ U
