@@ -77,14 +77,10 @@ input[type=radio]{
   margin-left: 0px!important;
 }
 table { width: auto !important; }
-textarea {
-  -webkit-box-sizing: border-box !important;
-  -moz-box-sizing: border-box !important;
-  box-sizing: border-box !important;
-  width: 100% !important !important;
-}
-.col-md-12 {
-  padding-right: 30px !important;
+
+.textareawidth{
+  width: 70%;
+  resize: none;
 }
  </style>
 
@@ -2431,14 +2427,11 @@ function lastcal() {
             <li>ตำแหน่ง &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength " id="position" size="35" required ></div></li>
           </div>
           <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;</li>
-          <div class="col-md-12">
-              <div class="form-group"><textarea class="form-control " name="qualification" id="qualification" rows="3"  required></textarea></div>
-            </div>
+              <div class="form-group"><textarea class="form-control textareawidth" name="qualification" id="qualification" rows="3"  required></textarea></div>
           <br>
           <li>สถานที่ทำงาน / สถานที่ติดต่อ &nbsp;&nbsp;
-          <div class="col-md-12">
-              <div class="form-group"><textarea class="form-control " name="workplace" id="workplace" rows="3" ></textarea></div>
-          </div></li>
+              <div class="form-group"><textarea class="form-control textareawidth" name="workplace" id="workplace" rows="3" ></textarea></div>
+          </li>
           <br>
           <div class="form-inline">
             <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength numonly" id="tel" size="20" maxlength="10" required ></div>
@@ -2485,9 +2478,7 @@ function lastcal() {
                 </li>
               </div>
               </li>
-              <div class="col-md-12">
-                <div class="form-group"><li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control " id="reason" rows="4"  required ></textarea></li></div>
-              </div>
+                <div class="form-group"><li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control textareawidth" id="reason" rows="4"  required ></textarea></li></div>
                 <li> รายละเอียดในการสอน <br>
                   <div class="col-md-12">
                   <div class="table-responsive">
@@ -2585,7 +2576,7 @@ function lastcal() {
       <li  style="font-size: 14px;" >
         <b>เลือกไฟล์ Curriculum Vitae (CV) เพื่ออัปโหลด : </b><br />
       <div id="cvdanger" class="col-md-5 form-inline form-group">
-        <input type="file" class="filestyle" id="cv" name="cv" data-icon="false"><div ><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
+        <input type="file" class="filestyle" id="cv" name="cv" data-icon="false"><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
       </div>
       </li>
     </ol>
