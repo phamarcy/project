@@ -2619,7 +2619,7 @@ function confreset(casereset) {
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE2" value="CRITERIA" checked> อิงเกณฑ์ &nbsp;&nbsp;ได้กำหนดเกณฑ์ดังต่อไปนี้
               <div style="margin-left:20px;">
               <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-12">
               <div class="table-responsive">
               <table class="table table-hover" style="font-size: 14px; ">
                 <tr align="center">
@@ -2699,7 +2699,7 @@ function confreset(casereset) {
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE3" value="SU"> ให้อักษร S หรือ U
               <div style="margin-left:35px;">
               <div class="row">
-              <div class="col-md-5">
+              <div class="col-md-12">
               <div class="table-responsive">
               <table class="table table-hover" style="font-size: 14px; ">
                 <tr align="center" style="text-align:center;">
