@@ -81,7 +81,10 @@ textarea {
   -webkit-box-sizing: border-box !important;
   -moz-box-sizing: border-box !important;
   box-sizing: border-box !important;
-  width: 100% !important;
+  width: 100% !important !important;
+}
+.col-md-12 {
+  padding-right: 30px !important;
 }
  </style>
 
@@ -2424,17 +2427,15 @@ function lastcal() {
           <div class="form-inline">
             <li>ตำแหน่ง &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength " id="position" size="35" required ></div></li>
           </div>
-
+          <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;</li>
           <div class="col-md-12">
-            <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;<br>
-              <div class="form-group"><textarea class="form-control " name="qualification" id="qualification" rows="3"  required></textarea></div></li>
+              <div class="form-group"><textarea class="form-control " name="qualification" id="qualification" rows="3"  required></textarea></div>
             </div>
           <br>
+          <li>สถานที่ทำงาน / สถานที่ติดต่อ &nbsp;&nbsp;
           <div class="col-md-12">
-            <li>สถานที่ทำงาน / สถานที่ติดต่อ &nbsp;&nbsp;<br />
               <div class="form-group"><textarea class="form-control " name="workplace" id="workplace" rows="3" ></textarea></div>
-            </li>
-          </div>
+          </div></li>
           <br>
           <div class="form-inline">
             <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength numonly" id="tel" size="20" maxlength="10" required ></div>
@@ -2485,7 +2486,7 @@ function lastcal() {
                 <div class="form-group"><li>เหตุผลและความจำเป็นในการเชิญอาจารย์พิเศษ  &nbsp;&nbsp;<br /><textarea class="form-control " id="reason" rows="4"  required ></textarea></li></div>
               </div>
                 <li> รายละเอียดในการสอน <br>
-                  <div class="col-md-10">
+                  <div class="col-md-12">
                   <div class="table-responsive">
                   <table id="detailteaching" style="overflow-x:auto" class="table table-bordered table-hover" style="font-size: 14px; ">
                     <tr align="center" class="success">
