@@ -85,6 +85,7 @@
 
   .textareawidth{
     width: 70%;
+    resize: none;
   }
 
   </style>
@@ -2690,7 +2691,7 @@ function confreset(casereset) {
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม &nbsp;
               <div class="form-inline">
 
-                <textarea class="form-control " style="width: 70%;" name="EXPLAINATION" id="EXPLAINATION" rows="5" placeholder="โปรดระบุ" ></textarea>
+                <textarea class="form-control textareawidth" name="EXPLAINATION" id="EXPLAINATION" rows="5" placeholder="โปรดระบุ" ></textarea>
 
               </div>
               <br>
