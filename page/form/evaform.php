@@ -1085,6 +1085,79 @@ function submitfunc(casesubmit) {
         var h6 = document.getElementById("FINEXAM_HOUR_LAB").value;
       }
 
+      if(document.getElementById("MEASURE_MIDLEC1").value=="")
+      {
+        var m1 = "0";
+      }else {
+        var m1  = document.getElementById("MEASURE_MIDLEC1").value;
+      }
+      if(document.getElementById("MEASURE_MIDLAB1").value=="")
+      {
+        var m2 = "0";
+      }else {
+        var m2  = document.getElementById("MEASURE_MIDLAB1").value;
+      }
+      if(document.getElementById("MEASURE_MIDLEC2").value=="")
+      {
+        var m3 = "0";
+      }else {
+        var m3  = document.getElementById("MEASURE_MIDLEC2").value;
+      }
+      if(document.getElementById("MEASURE_MIDLAB2").value=="")
+      {
+        var m4 = "0";
+      }else {
+        var m4  = document.getElementById("MEASURE_MIDLAB2").value;
+      }
+      if(document.getElementById("MEASURE_FINLEC").value=="")
+      {
+        var m5 = "0";
+      }else {
+        var m5  = document.getElementById("MEASURE_FINLEC").value;
+      }
+      if(document.getElementById("MEASURE_FINLAB").value=="")
+      {
+        var m6 = "0";
+      }else {
+        var m6  = document.getElementById("MEASURE_FINLAB").value;
+      }
+      if(document.getElementById("MEASURE_WORKLEC").value=="")
+      {
+        var m7 = "0";
+      }else {
+        var m7  = document.getElementById("MEASURE_WORKLEC").value;
+      }
+      if(document.getElementById("MEASURE_WORKLAB").value=="")
+      {
+        var m8 = "0";
+      }else {
+        var m8  = document.getElementById("MEASURE_WORKLAB").value;
+      }
+      if(document.getElementById("MEASURE_OTHLEC").value=="")
+      {
+        var m9 = "0";
+      }else {
+        var m9  = document.getElementById("MEASURE_OTHLEC").value;
+      }
+      if(document.getElementById("MEASURE_OTHLAB").value=="")
+      {
+        var m10 = "0";
+      }else {
+        var m10  = document.getElementById("MEASURE_OTHLAB").value;
+      }
+      if(document.getElementById("MEASURE_TOTALLEC").value=="")
+      {
+        var m11 = "0";
+      }else {
+        var m11  = document.getElementById("MEASURE_TOTALLEC").value;
+      }
+      if(document.getElementById("MEASURE_TOTALLAB").value=="")
+      {
+        var m12 = "0";
+      }else {
+        var m12  = document.getElementById("MEASURE_TOTALLAB").value;
+      }
+
 
 
       var data = {
@@ -1118,19 +1191,19 @@ function submitfunc(casesubmit) {
         'EXAM_FINAL_COMMITTEE_LEC' : comfinlec,
         'EXAM_FINAL_COMMITTEE_LAB' : comfinlab,
         'EXAM_SUGGESTION' : document.getElementById("suggestion").value,
-        'MEASURE_MID1_LEC' : document.getElementById("MEASURE_MIDLEC1").value,
-        'MEASURE_MID1_LAB' : document.getElementById("MEASURE_MIDLAB1").value,
-        'MEASURE_MID2_LEC' : document.getElementById("MEASURE_MIDLEC2").value,
-        'MEASURE_MID2_LAB' : document.getElementById("MEASURE_MIDLAB2").value,
-        'MEASURE_FINAL_LEC' : document.getElementById("MEASURE_FINLEC").value,
-        'MEASURE_FINAL_LAB' : document.getElementById("MEASURE_FINLAB").value,
-        'MEASURE_WORK_LEC' : document.getElementById("MEASURE_WORKLEC").value,
-        'MEASURE_WORK_LAB' : document.getElementById("MEASURE_WORKLAB").value,
-        'MEASURE_OTHER_LEC' : document.getElementById("MEASURE_OTHLEC").value,
-        'MEASURE_OTHER_LAB' : document.getElementById("MEASURE_OTHLAB").value,
+        'MEASURE_MID1_LEC' : m1,
+        'MEASURE_MID1_LAB' : m2,
+        'MEASURE_MID2_LEC' : m3,
+        'MEASURE_MID2_LAB' : m4,
+        'MEASURE_FINAL_LEC' : m5,
+        'MEASURE_FINAL_LAB' : m6,
+        'MEASURE_WORK_LEC' : m7,
+        'MEASURE_WORK_LAB' : m8,
+        'MEASURE_OTHER_LEC' : m9,
+        'MEASURE_OTHER_LAB' : m10,
         'MEASURE_OTHER_OTH' : document.getElementById("OTHER_MEA").value,
-        'MEASURE_TOTAL_LEC' : document.getElementById("MEASURE_TOTALLEC").value,
-        'MEASURE_TOTAL_LAB' : document.getElementById("MEASURE_TOTALLAB").value,
+        'MEASURE_TOTAL_LEC' : m11,
+        'MEASURE_TOTAL_LAB' : m12,
         'MEASURE_MSG' : document.getElementById("psmeasure").value,
         'CALCULATE_TYPE' : document.querySelector("input[name='CALCULATE']:checked").value,
         'CALCULATE_EXPLAINATION' : document.getElementById("EXPLAINATION").value,
@@ -2614,7 +2687,7 @@ function confreset(casereset) {
             <b>วิธีการตัดเกรด</b>
             <br>
             <div class="form-inline">
-              <div class="form-group form-inline"><div class="radio">
+              <div class="radio">
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE2" value="CRITERIA" checked> อิงเกณฑ์ &nbsp;&nbsp;ได้กำหนดเกณฑ์ดังต่อไปนี้
               <div style="margin-left:20px;">
               <div class="row">
@@ -2691,7 +2764,7 @@ function confreset(casereset) {
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม &nbsp;
               <div class="form-inline">
 
-                <textarea class="form-control textareawidth" name="EXPLAINATION" id="EXPLAINATION" rows="5" placeholder="โปรดระบุ" ></textarea>
+                <textarea class="form-control" style="width: 95%; padding-left:30px;" name="EXPLAINATION" id="EXPLAINATION" rows="5" placeholder="โปรดระบุ" ></textarea>
 
               </div>
               <br>
@@ -2724,7 +2797,7 @@ function confreset(casereset) {
             </div>
           </div>
         </div>
-      </div></div>
+      </div>
           </div>
           </li>
           <li style="font-size: 14px;">
