@@ -24,7 +24,10 @@ if ($_SESSION['level']==7 || $_SESSION['level']==3) {
   if ($department==false || $department==null || $dep_js==null) {
     $dep_js='1201';
   }
+}else {
+  $dep_js=$person->Get_Staff_Dep($_SESSION['id']);
 }
+
 
 $assessor=$person->Search_Assessor($department['code']);
 $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
