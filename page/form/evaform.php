@@ -2604,7 +2604,7 @@ function confreset(casereset) {
                   </li>
           </li>
           </ul>
-          <div class="form-inline">
+          <div class="col-md-12">
             หมายเหตุ
             <br> <textarea class="form-control" id="suggestion" rows="5"></textarea>
           </div>
