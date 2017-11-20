@@ -88,10 +88,10 @@ class Course
     if($dept_id != 'all')
     {
       $sql .=" WHERE `department_id` = '".$dept_id."'";
-    }
-    else
-    {
-      $sql .= " WHERE `department_id` = NULL OR `department_id` = '".$dept_id."' ";
+      if($_SESSION['level'] == '3' || $_SESSION['level'] == '7')
+      {
+        $sql .= " OR `department_id` is NULL";
+      }
     }
     $result = $this->DB->Query($sql);
     if($result)

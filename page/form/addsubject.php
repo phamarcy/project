@@ -8,7 +8,14 @@
   $person = new Person();
   $semester= $deadline->Get_Current_Semester();
   $dept = $person->Get_Staff_Dep($_SESSION['id']);
-  $course = $courseobj->Get_All_Course($dept['code']);
+  if($_SESSION['level'] == '3' || $_SESSION['level'] == '7')
+  {
+    $course = $courseobj->Get_All_Course('all');
+  }
+  else
+  {
+    $course = $courseobj->Get_All_Course($dept['code']);
+  }
  ?>
  <html>
  <header>
