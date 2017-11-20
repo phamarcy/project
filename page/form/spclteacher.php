@@ -740,13 +740,15 @@ table { width: auto !important; }
      document.getElementById('course').value = $('#id').val();
      document.getElementById('formdrpd').style.display = "";
 
-     $('#dlhide,#search_1hide').show();
+     $('#search_1hide').show();
+     $('#dlhide').hide();
      $('#topic1')[0].checked = false;
      $('#topic2')[0].checked = true;
      $('#cvlist').show();
      $('input[name=cv]').prop('required', true);
    }else {
-     $('#dlhide,#search_1hide').show();
+     $('#dlhide').hide();
+     $('#search_1hide').show();
      var fname = $('#search_1').val();
      if(fname=="")
      {
@@ -759,6 +761,7 @@ table { width: auto !important; }
          cancelButtonColor: '#d33',
          confirmButtonText: 'Ok'
        }).then(function () {
+         $('#dlhide').hide();
 
        }, function (dismiss) {
        // dismiss can be 'cancel', 'overlay',
@@ -772,7 +775,13 @@ table { width: auto !important; }
 
      var type = 3;
      var file_data = new FormData;
+     var department = $('#department').val();
+     var numstudent = $('#numstudent').val();
      var name = $('#search_1').val();
+     var course_id = $('#id').val();
+     document.getElementById("form1").reset();
+     $('#department').val(department);
+     $('#numstudent').val(numstudent);
      var splitor = name.split(' ');
      var fname = splitor[0];
      var lname = splitor[1];
@@ -780,8 +789,10 @@ table { width: auto !important; }
      {
        lname += " "+splitor[2];
      }
+     $('#course').val(course_id);
      $('#fname').val(fname);
      $('#lname').val(lname);
+     $('input[name="topic"][value="yet"]').prop('checked', true);
      JSON.stringify(fname);
      JSON.stringify(lname);
      JSON.stringify(type);
@@ -2372,11 +2383,11 @@ function lastcal() {
          </form>
          <div id="search_1hide" class="row form-inline" style="font-size:14px;">
            <center><div class="form-group">
-             ชื่อ-นามสกุล
+             ค้นหารายชื่ออาจารย์พิเศษ
              <input type="text" class="form-control formlength" name="search_1" id="search_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname();" >
              <datalist id="dtl1">
              </datalist>
-             <input type="button" class="btn btn-outline btn-primary" name="searchname" id="searchname" value="ดึงข้อมูล" onclick="checksubject(4,2);">
+             <input type="button" class="btn btn-outline btn-primary" name="searchname" id="searchname" value="ค้นหาข้อมูล" onclick="checksubject(4,2);">
             </div></center>
           </div>
       </center><br>
