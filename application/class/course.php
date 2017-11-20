@@ -32,7 +32,7 @@ class Course
 
   public function Add_Course($data)
   {
-      if($_SESSION['level'] == '3')
+      if($_SESSION['level'] == '3' || $_SESSION['level'] == '7')
       {
         $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`, `hr_lec`, `hr_lab`, `hr_self`,`department_id`)
         VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]["TOTAL"]."','".$data["CREDIT"]["LEC"]."','".$data["CREDIT"]["LAB"]."','".$data["CREDIT"]["SELF"]."',NULL)";
@@ -85,7 +85,7 @@ class Course
   public function Get_All_Course($dept_id)
   {
     $sql = "SELECT `course_id`as id,`course_name_en` as name_en,`course_name_th`as name_th,`credit`,`hr_lec`,`hr_lab`,`hr_self` FROM `course`";
-    if($_SESSION['level'] != '3')
+    if($_SESSION['level'] != '3' && $_SESSION['level'] != '7')
     {
       $sql .=" WHERE `department_id` = '".$dept_id."'";
     }
