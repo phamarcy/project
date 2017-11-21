@@ -622,8 +622,8 @@ $data_course     = json_decode($var, true);
                 success: function (data) {
                   try {
                     var msg = JSON.parse(data)
-                    console.log(msg);
-                    console.log('success of ajax response')
+                    //console.log(msg);
+                    //console.log('success of ajax response')
                     responses.push(data);
                   } catch (e) {
                     swal({
@@ -662,8 +662,8 @@ $data_course     = json_decode($var, true);
                 });
                 console.log(responses);
               }
-              console.log('all request completed')
-              console.log(responses);
+              //console.log('all request completed')
+              //console.log(responses);
           });
 
         }, function (dismiss) {
@@ -728,8 +728,8 @@ $data_course     = json_decode($var, true);
                 success: function (data) {
                   try {
                     var msg = JSON.parse(data)
-                    console.log(msg);
-                    console.log('success of ajax response')
+                    //console.log(msg);
+                    //console.log('success of ajax response')
                     responses.push(data);
                   } catch (e) {
                     swal({
@@ -767,8 +767,8 @@ $data_course     = json_decode($var, true);
                   confirmButtonText: "Ok!",
                 });
               }
-              console.log('all request completed')
-              console.log(responses);
+              //console.log('all request completed')
+              //console.log(responses);
           });
 
         }, function (dismiss) {
@@ -914,7 +914,7 @@ $data_course     = json_decode($var, true);
 						swal.hideLoading();
 						try {
 							var msg = JSON.parse(data)
-							console.log(msg);
+							//console.log(msg);
 							swal({
 								type: msg.status,
 								text: msg.msg,
