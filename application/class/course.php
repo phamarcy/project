@@ -35,15 +35,15 @@ class Course
       if($_SESSION['level'] == '3' || $_SESSION['level'] == '7')
       {
         $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`,`department_id`)
-        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]["TOTAL"]."',NULL)";
-        $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]["TOTAL"]."',`department_id` = NULL";
+        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT_TOTAL"]."',NULL)";
+        $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT_TOTAL"]."',`department_id` = NULL";
       }
       else
       {
         $dept = $this->PERSON->Get_Staff_Dep($_SESSION['id']);
         $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`,`department_id`)
-        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]["TOTAL"]."','".$dept['code']."')";
-        $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]["TOTAL"]."',`department_id` = '".$dept['code']."'";
+        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT_TOTAL"]."','".$dept['code']."')";
+        $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT_TOTAL"]."',`department_id` = '".$dept['code']."'";
       }
 
       $result = $this->DB->Insert_Update_Delete($sql);
