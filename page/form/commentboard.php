@@ -21,9 +21,9 @@ $list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 
 $data_forapproval=$approval->Get_Approval_Evaluate($_SESSION['id']);
 
+
 $data_forapprovalsp=$approval->Get_Approval_Special($_SESSION['id']);
 $check_permission=$person->Check_Grant($_SESSION['id']);
-
 if ($_SESSION['level']==4 || $_SESSION['level'] ==5 ) {
   $type_deadline = 4;
 }else {
@@ -277,12 +277,10 @@ $end = strtotime($current_semester[0]['last_date']);
                                   </h5>
                                   <div class="btn-group pull-right eva">
                                     <div class="forminline">
-                                    <?php if (isset($spcomment['pdf']) ): ?> &nbsp;&nbsp;
-                                    <b>Instructor Form: </b>
+                                    <?php if (isset($spcomment['pdf']) ): ?> 
                                     <a href="<?php echo $spcomment['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดแบบเชิญอาจารย์พิเศษ</button></a>
                                   <?php endif; ?>
-                                  <?php if (isset($spcomment['cv']) ): ?> &nbsp;&nbsp;
-                                    <b>CV: </b>
+                                  <?php if (isset($spcomment['cv']) ): ?> 
                                     <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลด CV</button></a>
                                   <?php endif; ?>
                                     <a type="button" class="btn  btn-success btn-sm" data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">อนุมัติ</a>&nbsp;
@@ -300,8 +298,8 @@ $end = strtotime($current_semester[0]['last_date']);
                                         <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $sp['id'].$spcomment['id'] ?>"></textarea>
                                       </div>
                                       <div class="form-group">
-                                        <button type="button" class="btn  btn-success " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','approve_sp')">อนุมัติ</button>&nbsp;
-                                        <button type="button" class="btn  btn-danger " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','edit_sp')">มีการแก้ไข</button>
+                                        <button type="button" class="btn  btn-success " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $spcomment['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','approve_sp')">อนุมัติ</button>&nbsp;
+                                        <button type="button" class="btn  btn-danger " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $spcomment['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','edit_sp')">มีการแก้ไข</button>
                                       </div>
 
                                     </form>
@@ -699,10 +697,10 @@ $end = strtotime($current_semester[0]['last_date']);
 
       }
 
-      function approve_sp(course, teacherSp, type) {
+      function approve_sp(course, teacherSp,textarea, type) {
 
         var id = "<?php echo $_SESSION['id'] ?>";
-        var text = "comment_sp_" + teacherSp;
+        var text = "comment_sp_" + textarea;
         var comment = document.getElementById(text).value;
         swal({
           title: 'แน่ใจหรือไม่',

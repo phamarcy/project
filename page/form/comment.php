@@ -17,8 +17,8 @@ $semeter= $deadline->Get_Current_Semester();
 $department =$person->Get_Staff_Dep($_SESSION['id']);
 $dep_js=$department['code'];
 $assessor=$person->Search_Assessor($department['code']);
-$list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 
+$list_course= $course->Get_Dept_Course($department['code'],$semeter['id']);
 $data_forapproval=$approval->Get_Approval_Evaluate($_SESSION['id']);
 $data_forapprovalsp=$approval->Get_Approval_Special($_SESSION['id']);
 
@@ -290,8 +290,8 @@ $end = strtotime($current_semester[0]['last_date']);
                                         <textarea class="form-control" name="name" rows="8" cols="40" id="comment_sp_<?php echo $sp['id'].$spcomment['id'] ?>"></textarea>
                                       </div>
                                       <div class="form-group">
-                                        <button type="button" class="btn  btn-success " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','approve_sp')">เห็นชอบ</button>&nbsp;
-                                        <button type="button" class="btn  btn-danger " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','edit_sp')">มีการแก้ไข</button>
+                                        <button type="button" class="btn  btn-success " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $spcomment['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','approve_sp')">เห็นชอบ</button>&nbsp;
+                                        <button type="button" class="btn  btn-danger " onclick="approve_sp('<?php echo $sp['id'] ?>','<?php echo $spcomment['id'] ?>','<?php echo $sp['id'].$spcomment['id'] ?>','edit_sp')">มีการแก้ไข</button>
                                       </div>
 
                                     </form>
@@ -678,10 +678,10 @@ $end = strtotime($current_semester[0]['last_date']);
 
       }
 
-      function approve_sp(course, teacherSp, type) {
+      function approve_sp(course, teacherSp,textarea, type) {
 
         var id = "<?php echo $_SESSION['id'] ?>";
-        var text = "comment_sp_" + teacherSp;
+        var text = "comment_sp_" + textarea;
         var comment = document.getElementById(text).value;
 
         swal({

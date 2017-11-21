@@ -267,17 +267,13 @@ $data_course     = json_decode($var, true);
 															<i class="fa fa-long-arrow-right fa-fw"></i>
 															<?php echo $status_text ?>
 															</a>
-															<?php if ($_SESSION['level']==3 && ($value_course['evaluate']['status'])==4 || ($_SESSION['admission']==3 && $value_course['evaluate']['status']==4)): ?>
-																<label style="font-size:14px" ><input type="checkbox" name="coursecheck" id="checkedAll" class="checkSingle " value="<?php echo $value_course['id'] ?>"></input></label>
-															<?php endif; ?>
+															
 														</h3>
 														<div class="btn-group pull-right eva">
-															
+														<div class="forminline">
 														<?php if ($_SESSION['level']==3 || $_SESSION['admission']==3): ?>
 															<?php if(($value_course['evaluate']['status'])==4){ ?>
-																<div class="forminline">
 																<button class='btn btn-success btn-sm' onclick='senttohead("<?php echo $value_course['id'] ?>");'>ยืนยัน</button>
-															</div>
 															<?php
 															} ?>
 																<?php endif; ?>
@@ -302,7 +298,10 @@ $data_course     = json_decode($var, true);
 															<a id="hover" href="<?php echo $value_course['pdf'] ?>" target="_blank" ><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดแบบแจ้ง</button></a>
 																<?php endif; ?>
 															</div>
-															
+															<?php if ($_SESSION['level']==3 && ($value_course['evaluate']['status'])==4 || ($_SESSION['admission']==3 && $value_course['evaluate']['status']==4)): ?>
+																<label style="font-size:14px" ><input type="checkbox" name="coursecheck" id="checkedAll" class="checkSingle " value="<?php echo $value_course['id'] ?>"></input></label>
+															<?php endif; ?>
+															</div>
 													</div>
 													<?php if (isset($_SESSION['level'])) { ?>
 													<div id="evaluate<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse">
@@ -421,19 +420,17 @@ $data_course     = json_decode($var, true);
 																			if($valuesp['status']==4 ){ ?>
 																			<div class="forminline">
 																			<button class='btn btn-outline btn-success' onclick='senttoheadSP("<?php echo $value_course['id'] ?>","<?php echo $valuesp['id'] ?>");'>ยืนยัน</button>
-																			</div>
+																	
 																			<?php } ?>
 																				<?php endif; ?>
 																				<?php if($_SESSION['level']==2 || $_SESSION['admission']==2){
 																					if ($valuesp['status']==1) {?>
-																					<div class="forminline">
+																		
 																				<button class='btn  btn-success btn-sm' onclick='sendtoboardsp("<?php echo $value_course['id'] ?>","<?php echo $valuesp['id'] ?>");'>ผ่าน</button>
-																					</div>
+																					
 																				<?php }
 																					} ?>
-																				<?php if ($_SESSION['level']==3 && $valuesp['status']==4 || ($_SESSION['admission']==3 && $valuesp['status']==4)): ?>
-																					<label style="font-size:14px"><input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $value_course['id']?>,<?php echo $valuesp['id']?>"></input></label>
-																				<?php endif; ?>
+																				
 																				<?php if (($valuesp['edit']==true && $valuesp['status']==1 && ($_SESSION['level']==1 || $_SESSION['level']==2)) || ( $valuesp['status']==3 || $valuesp['status']==6)&& $_SESSION['level']==1 ): ?>
 																				<form action="spclteacher.php" method="post" class="forminline">
 																				<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
@@ -450,6 +447,10 @@ $data_course     = json_decode($var, true);
 																			<?php if ((isset($valuesp['pdf']) && $valuesp['status']!=0) || ($_SESSION['admission']==3 && isset($valuesp['pdf']) && $valuesp['status']!=0)): ?>
 																				<a id="hover" href="<?php echo $valuesp['pdf'] ?>" target="_blank"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดแบบเชิญอาจารย์พิเศษ</button></a>
 																			<?php endif; ?>
+																			<?php if ($_SESSION['level']==3 && $valuesp['status']==4 || ($_SESSION['admission']==3 && $valuesp['status']==4)): ?>
+																					<label style="font-size:14px"><input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $value_course['id']?>,<?php echo $valuesp['id']?>"></input></label>
+																				<?php endif; ?>
+																				</div>
 																		</div>
 																	</div>
 																	<div id="special_<?php echo $value_course['id']."_".$keysp ?>" class="panel-collapse collapse">
