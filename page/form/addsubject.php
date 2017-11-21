@@ -269,7 +269,7 @@ function checksubject() {
                         document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
                         document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                         document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
-                        var stringor = temp['info']['credit'];
+                        var stringor = temp['INFO']['credit'];
                         var splitor = stringor.split('(');
                         var hr_total = splitor[0];
                         var splitor2 = splitor[1].split('-');
