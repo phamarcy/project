@@ -406,8 +406,8 @@ for($i=0;$i<count($data_pdf["lecture_detail"]);$i++)
 	$current_y = $pdf->GetY();
 	$current_x = $pdf->GetX();
 
-	$data_date = strtotime($data_pdf["lecture_detail"][$i]["teaching_date"][$i]);
- 	$date = date('d-m-Y',$data_date);
+	$data_date = strtotime($data_pdf["lecture_detail"][$i]["teaching_date"]);
+ 	$date = date('d/m/Y',$data_date);
 
 	$pdf->SetXY($before_x + 70, $before_y);
 	$pdf->Cell(30,7,iconv('UTF-8','TIS-620',$date));
