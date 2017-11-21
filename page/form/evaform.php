@@ -697,7 +697,7 @@ function checksubject(btntype,type){
                             document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
                             document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                             document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
-                            document.getElementById('TOTAL').value = temp['INFO']['credit']+"("+temp['INFO']['hr_lec']+"-"+temp['INFO']['hr_lab']+"-"+temp['INFO']['hr_self']+")";
+                            document.getElementById('TOTAL').value = temp['INFO']['credit'];
                             document.getElementById('formdrpd').style.display = "";
                             //cleardatalist
                             var selectobject = document.getElementById('semester');
@@ -740,7 +740,7 @@ function checksubject(btntype,type){
                              document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
                              document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                              document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
-                             document.getElementById('TOTAL').value = temp['INFO']['credit']+"("+temp['INFO']['hr_lec']+"-"+temp['INFO']['hr_lab']+"-"+temp['INFO']['hr_self']+")";
+                             document.getElementById('TOTAL').value = temp['INFO']['credit'];
                            }
                            else {
                              if($('#id').val()=="" ||$('#id').val()==undefined )
@@ -1597,7 +1597,7 @@ $(document).ready(function(){
                                 document.getElementById('COURSE_ID_2').value = temp['INFO']['course_id'];
                                 document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                                 document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
-                                document.getElementById('TOTAL').value = temp['INFO']['credit']+'('+temp['INFO']['hr_lec']+'-'+temp['INFO']['hr_lab']+'-'+temp['INFO']['hr_self']+')';
+                                document.getElementById('TOTAL').value = temp['INFO']['credit'];
                                 document.getElementById('formdrpd').style.display = '';
                                 //cleardatalist
                                 var selectobject = document.getElementById('semester');
@@ -1681,7 +1681,7 @@ $(document).ready(function(){
                                  document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
                                  document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                                  document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
-                                 document.getElementById('TOTAL').value = temp['INFO']['credit']+'('+temp['INFO']['hr_lec']+'-'+temp['INFO']['hr_lab']+'-'+temp['INFO']['hr_self']+')';
+                                 document.getElementById('TOTAL').value = temp['INFO']['credit'];
                                }
                             }
 
@@ -1755,7 +1755,7 @@ $(document).ready(function(){
                                 document.getElementById('COURSE_ID_2').value = temp['INFO']['course_id'];
                                 document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                                 document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
-                                document.getElementById('TOTAL').value = temp['INFO']['credit']+'('+temp['INFO']['hr_lec']+'-'+temp['INFO']['hr_lab']+'-'+temp['INFO']['hr_self']+')';
+                                document.getElementById('TOTAL').value = temp['INFO']['credit'];
                                 document.getElementById('formdrpd').style.display = '';
                                 //cleardatalist
                                 var selectobject = document.getElementById('semester');
@@ -1839,7 +1839,7 @@ $(document).ready(function(){
                                  document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
                                  document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                                  document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
-                                 document.getElementById('TOTAL').value = temp['INFO']['credit']+'('+temp['INFO']['hr_lec']+'-'+temp['INFO']['hr_lab']+'-'+temp['INFO']['hr_self']+')';
+                                 document.getElementById('TOTAL').value = temp['INFO']['credit'];
                                }
                             }
 

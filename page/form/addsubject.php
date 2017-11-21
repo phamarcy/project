@@ -269,10 +269,18 @@ function checksubject() {
                         document.getElementById('COURSE_ID').value = temp['INFO']['course_id'];
                         document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                         document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
-                        document.getElementById('TOTAL_1').value = temp['INFO']['credit']
-                        document.getElementById('TOTAL_2').value = temp['INFO']['hr_lec'];
-                        document.getElementById('TOTAL_3').value = temp['INFO']['hr_lab'];
-                        document.getElementById('TOTAL_4').value = temp['INFO']['hr_self'];
+                        var stringor = temp['info']['credit'];
+                        var splitor = stringor.split('(');
+                        var hr_total = splitor[0];
+                        var splitor2 = splitor[1].split('-');
+                        var hr_lec = splitor2[0];
+                        var hr_lab = splitor2[1];
+                        var splitor3 = splitor2[2].split(')');
+                        var hr_self = splitor3[0];
+                        document.getElementById('TOTAL_1').value = hr_total;
+                        document.getElementById('TOTAL_2').value = hr_lec;
+                        document.getElementById('TOTAL_3').value = hr_lab;
+                        document.getElementById('TOTAL_4').value = hr_self;
                       }
                     } catch (e) {
                          console.log('Error#542-decode error');
@@ -305,12 +313,7 @@ function submitfunc() {
     'COURSE_ID' : document.getElementById("COURSE_ID").value,
     'NAMETH' : document.getElementById("NAME_TH_COURSE").value,
     'NAMEENG' : document.getElementById("NAME_ENG_COURSE").value,
-    'CREDIT' : {
-      'TOTAL' : total,
-      'LEC' : lec,
-      'LAB' : lab,
-      'SELF' : self
-    },
+    'CREDIT' : total+"("+lec+"-"+lab+"-"+self+")",
     'SUBMIT_TYPE' : '1'
   };
 
@@ -605,7 +608,7 @@ function confreset(casereset) {
      echo "<td>".$course[$i]['id']."</td>";
      echo "<td>".$course[$i]['name']['en']."</td>";
      echo "<td>".$course[$i]['name']['th']."</td>";
-     echo "<td>".$course[$i]['credit']."(".$course[$i]['lec']."-".$course[$i]['lab']."-".$course[$i]['self'].")</td>";
+     echo "<td>".$course[$i]['credit']."</td>";
     }
    ?>
 </div>
