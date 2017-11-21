@@ -34,18 +34,16 @@ class Course
   {
       if($_SESSION['level'] == '3' || $_SESSION['level'] == '7')
       {
-        $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`, `hr_lec`, `hr_lab`, `hr_self`,`department_id`)
-        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]["TOTAL"]."','".$data["CREDIT"]["LEC"]."','".$data["CREDIT"]["LAB"]."','".$data["CREDIT"]["SELF"]."',NULL)";
-        $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]["TOTAL"]."',`hr_lec` = '".$data["CREDIT"]["LEC"]."'
-          ,`hr_lab` = '".$data["CREDIT"]["LAB"]."' , `hr_self` = '".$data["CREDIT"]["SELF"]."',`department_id` = NULL";
+        $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`,`department_id`)
+        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]["TOTAL"]."',NULL)";
+        $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]["TOTAL"]."',`department_id` = NULL";
       }
       else
       {
         $dept = $this->PERSON->Get_Staff_Dep($_SESSION['id']);
-        $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`, `hr_lec`, `hr_lab`, `hr_self`,`department_id`)
-        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]["TOTAL"]."','".$data["CREDIT"]["LEC"]."','".$data["CREDIT"]["LAB"]."','".$data["CREDIT"]["SELF"]."','".$dept['code']."')";
-        $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]["TOTAL"]."',`hr_lec` = '".$data["CREDIT"]["LEC"]."'
-          ,`hr_lab` = '".$data["CREDIT"]["LAB"]."' , `hr_self` = '".$data["CREDIT"]["SELF"]."',`department_id` = '".$dept['code']."'";
+        $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`,`department_id`)
+        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]["TOTAL"]."','".$dept['code']."')";
+        $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]["TOTAL"]."',`department_id` = '".$dept['code']."'";
       }
 
       $result = $this->DB->Insert_Update_Delete($sql);
@@ -84,7 +82,7 @@ class Course
 //get all course in department
   public function Get_All_Course($dept_id)
   {
-    $sql = "SELECT `course_id`as id,`course_name_en` as name_en,`course_name_th`as name_th,`credit`,`hr_lec`,`hr_lab`,`hr_self` FROM `course`";
+    $sql = "SELECT `course_id`as id,`course_name_en` as name_en,`course_name_th`as name_th,`credit` FROM `course`";
     if($dept_id != 'all')
     {
       $sql .=" WHERE `department_id` = '".$dept_id."'";
@@ -103,9 +101,6 @@ class Course
         $course['name']['en'] = $result[$i]['name_en'];
         $course['name']['th'] = $result[$i]['name_th'];
         $course['credit'] = $result[$i]['credit'];
-        $course['lec'] = $result[$i]['hr_lec'];
-        $course['lab'] = $result[$i]['hr_lab'];
-        $course['self'] = $result[$i]['hr_self'];
         array_push($data,$course);
       }
       return $data;
@@ -121,7 +116,7 @@ class Course
   public function Get_Dept_Course($department_id,$semester_id)
   {
     $DATA = array();
-    $sql = "SELECT DISTINCT c.`course_id`,c.`course_name_en`,c.`course_name_th`,c.`credit`,c.`hr_lec`,c.`hr_lab`,c.`hr_self` FROM `department_course_responsible` dc, `course` c
+    $sql = "SELECT DISTINCT c.`course_id`,c.`course_name_en`,c.`course_name_th`,c.`credit` FROM `department_course_responsible` dc, `course` c
     WHERE c.`course_id` = dc.`course_id` AND dc.`department_id` = '".$department_id."'";
     if($semester_id != 'all')
     {
@@ -137,9 +132,6 @@ class Course
         $course['name'] = $result[$i]['course_name_en'];
         $course['name_th'] = $result[$i]['course_name_th'];
         $course['credit'] = $result[$i]['credit'];
-        $course['lec'] = $result[$i]['hr_lec'];
-        $course['lab'] =  $result[$i]['hr_lab'];
-        $course['self'] = $result[$i]['hr_self'];
         $staff = $this->Get_Responsible_Teacher($course['id'],$semester_id);
         $course['teacher'] = $staff['teacher'];
         $course['assessor'] = $staff['assessor'];
@@ -872,7 +864,7 @@ class Course
   }
   public function Get_Course_Info($course_id)
   {
-    $sql = "SELECT `course_id`,`course_name_en`,`course_name_th`,`credit`,`hr_lec`,`hr_lab`,`hr_self`
+    $sql = "SELECT `course_id`,`course_name_en`,`course_name_th`,`credit`
     FROM `course` WHERE `course_id` ='".$course_id."'";
     $result = $this->DB->Query($sql);
     if($result)
