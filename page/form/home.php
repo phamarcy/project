@@ -182,8 +182,8 @@ $data_course     = json_decode($var, true);
 						<?php if ($_SESSION['level']==3 || $_SESSION['admission']==3): ?>
 						<div class="row">
 							<div class="col-md-10 col-md-offset-4">
-								<button class='btn btn-outline btn-success' onclick='selectall();'>ยืนยันการเลือกวิชา</button>
-								<button class='btn btn-outline btn-primary' onclick='selectallsp();'>ยืนยันการเลือกอาจารย์พิเศษ</button>
+								<button class='btn  btn-success' onclick='selectall();'>ยืนยันการเลือกวิชา</button>
+								<button class='btn  btn-primary' onclick='selectallsp();'>ยืนยันการเลือกอาจารย์พิเศษ</button>
 							</div>
 						</div>
 						<div class="row">
@@ -419,7 +419,7 @@ $data_course     = json_decode($var, true);
 																			 if ($_SESSION['level']==3 || $_SESSION['admission']==3):
 																			if($valuesp['status']==4 ){ ?>
 																			<div class="forminline">
-																			<button class='btn btn-outline btn-success' onclick='senttoheadSP("<?php echo $value_course['id'] ?>","<?php echo $valuesp['id'] ?>");'>ยืนยัน</button>
+																			<button class='btn  btn-success' onclick='senttoheadSP("<?php echo $value_course['id'] ?>","<?php echo $valuesp['id'] ?>");'>ยืนยัน</button>
 																	
 																			<?php } ?>
 																				<?php endif; ?>
