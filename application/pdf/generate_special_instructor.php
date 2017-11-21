@@ -412,9 +412,15 @@ for($i=0;$i<count($data_pdf["lecture_detail"]);$i++)
 	$pdf->SetXY($before_x + 70, $before_y);
 	$pdf->Cell(30,7,iconv('UTF-8','TIS-620',$date));
 
+	$time_start = strtotime($data_pdf["lecture_detail"][$i]["teaching_time_start"]);
+	$time_end = strtotime($data_pdf["lecture_detail"][$i]["teaching_time_end"]);
+
+	$time_start_format = date('H:i',$time_start);
+	$time_end_format = date('H:i',$time_end);
+
 	$current_x += 30;
 	$pdf->SetXY($before_x + 100, $before_y);
-	$pdf->Cell(30,7,iconv('UTF-8','TIS-620',$data_pdf["lecture_detail"][$i]["teaching_time_start"].' - '.$data_pdf["lecture_detail"][$i]["teaching_time_end"]));
+	$pdf->Cell(30,7,iconv('UTF-8','TIS-620',$time_start_format.' น. - '.$time_end_format.' น.'));
 
 	$current_x += 30;
 	$pdf->SetXY($before_x + 130 , $before_y);
