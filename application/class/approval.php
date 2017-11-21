@@ -143,7 +143,7 @@ class approval
         }
         else
         {
-            $this->LOG->Write("Completing agree file error : ".$pdf_complete);
+            $this->LOG->Write("Completing agree file error : ");
             return false;
         }
       }
@@ -157,7 +157,7 @@ class approval
         }
         else
         {
-            $this->LOG->Write("Completing approve file error  ".$pdf_complete);
+            $this->LOG->Write("Completing approve file error  ");
             return false;
         }
       }
@@ -291,7 +291,7 @@ class approval
         }
         else
         {
-            $this->LOG->Write("Completing agree file error ");
+            $this->LOG->Write("Completing agree special instructor file error ");
             return false;
         }
       }
@@ -306,7 +306,7 @@ class approval
         }
         else
         {
-            $this->LOG->Write($pdf_complete);
+          $this->LOG->Write("Completing approval special instructor file error ");
             return false;
         }
       }
