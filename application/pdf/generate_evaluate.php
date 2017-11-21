@@ -847,16 +847,17 @@ if($signature_file != null)
 
 $day = date('d', strtotime($data_pdf['submit_date']));
 $month = date('m', strtotime($data_pdf['submit_date']));
-$year = date('Y', strtotime($data_pdf['submit_date']));
+$year = date('Y', strtotime($data_pdf['submit_date'])) + 543;
 
-$pdf->Cell(0,7,iconv('UTF-8','cp874','วันที่  '.$day.'   เดือน   '.$THAI_MONTH[(int)$month-1].'   พ.ศ.   '.$year),0);
 $pdf->Ln();
-
 
 $pdf->SetX(35);
 $pdf->Cell(0,7,iconv('UTF-8','cp874','('.$teacher_name.')'),0,1);
 $pdf->SetX(35);
 $pdf->Cell(0,7,iconv('UTF-8','cp874','(ผู้รับผิดชอบกระบวนวิชา)'),0,1);
+$pdf->SetX(25);
+$pdf->Cell(0,7,iconv('UTF-8','cp874','วันที่  '.$day.'   เดือน   '.$THAI_MONTH[(int)$month-1].'   พ.ศ.   '.$year),0,1);
+
 
 
 
