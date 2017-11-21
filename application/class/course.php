@@ -838,7 +838,7 @@ class Course
   public function Get_Grade($teacher_id,$semester_id)
   {
     $sql = "SELECT c.`course_id`,`course_name_en` as name FROM `course_responsible` cr,`course` c
-    WHERE cr.`teacher_id` = '".$teacher_id."' AND c.`course_id` = cr.`course_id` AND cr.`semester_id` = ".$this->SEMESTER['id'];
+    WHERE cr.`teacher_id` = '".$teacher_id."' AND c.`course_id` = cr.`course_id` AND cr.`semester_id` = ".$semester_id;
     $result = $this->DB->Query($sql);
     if($result)
     {
