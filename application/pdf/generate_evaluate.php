@@ -419,7 +419,7 @@ $pdf->SetX(30);
 $pdf->Cell(15,7,iconv( 'UTF-8','cp874','ภาคพิเศษ'),0,0,"L");
 
 $pdf->SetFont('THSarabun','',14);
-$pdf->Cell(0,7,iconv( 'UTF-8','cp874','ตอนที่   '.$spe_sction.'   จำนวนหน่วยกิจ '.$spe_credit.' จำนวนนักศึกษาลงทะเบียนเรียน   '.$spe_student.'   คน'),0,1,"L");
+$pdf->Cell(0,7,iconv( 'UTF-8','cp874','ตอนที่   '.$spe_sction.'   จำนวนหน่วยกิต '.$spe_credit.' จำนวนนักศึกษาลงทะเบียนเรียน   '.$spe_student.'   คน'),0,1,"L");
 
 $pdf->SetX(20);
 // $pdf->Ln();
