@@ -2439,11 +2439,11 @@ function lastcal() {
           </div>
           <li>คุณวุฒิ/สาขาที่เชี่ยวชาญ &nbsp;&nbsp;</li>
               <div class="form-group"><textarea class="form-control textareawidth" name="qualification" id="qualification" rows="3"  required></textarea></div>
-          <br>
+
           <li>สถานที่ทำงาน / สถานที่ติดต่อ &nbsp;&nbsp;
               <div class="form-group"><textarea class="form-control textareawidth" name="workplace" id="workplace" rows="3" ></textarea></div>
           </li>
-          <br>
+          
           <div class="form-inline">
             <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength numonly" id="tel" size="20" maxlength="10" required ></div>
               &nbsp;ต่อ&nbsp;<input type="text" class="form-control formlength numonly" id="subtel" size="2" maxlength="5"></li>
