@@ -270,16 +270,19 @@ $Excel->setActiveSheetIndex(2)
             ->setCellValue('E3', 'เคยเชิญมาสอนแล้ว')
             ->setCellValue('F3', 'ยังไม่เคยเชิญมาสอน')
             ->setCellValue('G3', 'หัวข้อที่สอน')
-            ->setCellValue('H3', 'ค่าสอน')
-            ->setCellValue('I3', 'ค่าเดินทาง')
-            ->setCellValue('J3', 'ค่าที่พัก')
-            ->setCellValue('K3', 'รวมค่าใช้จ่าย');
+            ->setCellValue('H3', 'วันที่สอน')
+            ->setCellValue('I3', 'เวลาที่สอน')
+            ->setCellValue('J3', 'สถานที่')
+            ->setCellValue('K3', 'ค่าสอน')
+            ->setCellValue('L3', 'ค่าเดินทาง')
+            ->setCellValue('M3', 'ค่าที่พัก')
+            ->setCellValue('N3', 'รวมค่าใช้จ่าย');
 //bold heading
-$Excel->getActiveSheet(2)->getStyle("A1:K3")->getFont()->setBold(true);
+$Excel->getActiveSheet(2)->getStyle("A1:N3")->getFont()->setBold(true);
 //cell border
 $sheet3->getStyle('A1')->applyFromArray($border);
 $sheet3->getStyle('A2:B2')->applyFromArray($border);
-$sheet3->getStyle('A3:K3')->applyFromArray($border);
+$sheet3->getStyle('A3:N3')->applyFromArray($border);
 $Excel->getActiveSheet(2)
         ->setTitle('อาจารย์พิเศษ');
   $sql = "SELECT DISTINCT `course_id`,`instructor_id` FROM `course_hire_special_instructor`
@@ -321,25 +324,46 @@ $Excel->getActiveSheet(2)
         $Excel->setActiveSheetIndex(2)->setCellValue('E'.$row, $already);
         $Excel->setActiveSheetIndex(2)->setCellValue('F'.$row, $yet);
         $topic = '';
+        $teach_date = '';
+        $teach_time = '';
+        $teach_room = '';
         $count_topic = $data["num_table"];
         for($j=0;$j<$count_topic;$j++)
         {
           $topic .= $data["lecture_detail"][$j]["topic_name"]."\n";
+          $teach_date .= $data["lecture_detail"][$j]["teaching_date"]."\n";
+
+          $time_start = strtotime($data["lecture_detail"][$j]["teaching_time_start"]);
+          $time_end = strtotime($data["lecture_detail"][$j]["teaching_time_end"]);
+
+          $time_start_format = date('H:i',$time_start);
+          $time_end_format = date('H:i',$time_end);
+
+          $teach_time .= $time_start_format.' น. - '.$time_end_format.' น.'."\n";
+
+          $teach_room .= $data["lecture_detail"][$j]["teaching_room"]."\n";
         }
         $Excel->setActiveSheetIndex(2)->setCellValue('G'.$row, $topic);
-        $Excel->setActiveSheetIndex(2)->setCellValue('H'.$row, $data["expense_lec_cost"]);
+
+        $Excel->setActiveSheetIndex(2)->setCellValue('H'.$row, $teach_date);
+
+        $Excel->setActiveSheetIndex(2)->setCellValue('I'.$row, $teach_time);
+
+        $Excel->setActiveSheetIndex(2)->setCellValue('J'.$row, $teach_room);
+
+        $Excel->setActiveSheetIndex(2)->setCellValue('K'.$row, $data["expense_lec_cost"]);
 
         $cost_trans = (float)$data["expense_plane_cost"] + (float)$data["expense_taxi_cost"] + (float)$data["expense_car_cost"];
-        $Excel->setActiveSheetIndex(2)->setCellValue('I'.$row, $cost_trans);
+        $Excel->setActiveSheetIndex(2)->setCellValue('L'.$row, $cost_trans);
 
 
-        $Excel->setActiveSheetIndex(2)->setCellValue('J'.$row, $data["expense_hotel_cost"]);
-        $Excel->setActiveSheetIndex(2)->setCellValue('K'.$row, $data["cost_total"]);
+        $Excel->setActiveSheetIndex(2)->setCellValue('M'.$row, $data["expense_hotel_cost"]);
+        $Excel->setActiveSheetIndex(2)->setCellValue('N'.$row, $data["cost_total"]);
         $row++;
       }
     }
     $row--;
-    $sheet3->getStyle('A4:K'.$row)->applyFromArray($border);
+    $sheet3->getStyle('A4:N'.$row)->applyFromArray($border);
   }
 
 
