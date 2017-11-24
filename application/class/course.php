@@ -33,8 +33,8 @@ class Course
   public function Add_Course($data)
   {
       $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`,`department_id`)
-        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]."','".$data['DEPARTMENT']."')";
-      $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]."',`department_id` = '".$data['DEPARTMENT']."'";
+        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]."',".($data['DEPARTMENT'] == '' ? "NULL" : "'".$data['DEPARTMENT']."'")." )";
+      $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]."',`department_id` = ".($data['DEPARTMENT'] == '' ? "NULL" : "'".$data['DEPARTMENT']."'");
       $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
       {
