@@ -90,11 +90,11 @@ table { width: auto !important; }
    webshims.polyfill('forms forms-ext');
 }
 
- function searchname() {
+ function searchname1() {
 
        var name_s = $("#search_1").val();
        $("#dtl1").html('');
-       if(name_s.length > 0)
+       if(name_s.length > 1)
        {
          $.post("search_special_instructor.php", { name: name_s}, function(data) {
                data = JSON.parse( data );
@@ -2372,6 +2372,7 @@ function lastcal() {
         <h5 id="notfound" style="color:#ff0000; display:none;">รายวิชานี้ยังไม่เคยเชิญอาจารย์พิเศษมาสอน กดปุ่มเพิ่มรายชื่อใหม่ เพื่อกรอกข้อมูล </h5>
     <div id="formdrpd" style="display: none;">
       <div class="form-inline">
+        <div style="font-size:14px;">รายชื่ออาจารย์พิเศษที่เคยเชิญมาสอนในวิชานี้</div>
         <div class="form-group " style="font-size:16px;">
           <select class="form-control formlength required" id="teachername" name="teachername" style="width: 200px;" required >
           </select>
@@ -2380,19 +2381,20 @@ function lastcal() {
          <input type="button" class="btn btn-outline btn-success" name="subhead2" id="subhead2" value="เพิ่มรายชื่อใหม่" onclick="checksubject(3,2);">
        </div>
      </div>
-         </form>
+
          <div id="search_1hide" class="row form-inline" style="font-size:14px;">
-           <center><div class="form-group">
+           <div class="form-group" style="margin-top:10px;">
              ค้นหารายชื่ออาจารย์พิเศษ
-             <input type="text" class="form-control formlength" name="search_1" id="search_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname();" >
+             <input type="text" class="form-control formlength" name="search_1" id="search_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname1();" >
              <datalist id="dtl1">
              </datalist>
              <input type="button" class="btn btn-outline btn-primary" name="searchname" id="searchname" value="ค้นหาข้อมูล" onclick="checksubject(4,2);">
-            </div></center>
+            </div>
           </div>
-      </center><br>
+      </center>
+      </form>
 
-      <div id="dlhide" class="panel panel-default"> <br>
+      <div id="dlhide" class="panel panel-default"><br>
       <form name="form1" id="form1" data-toggle="validator" role="form"  method="post">
       <div class="row form-inline" style="font-size:16px;">
         <center><div class="form-group">
@@ -2407,9 +2409,6 @@ function lastcal() {
        </select>
         </div></center>
       </div>
-
-
-
 
     <ol>
 
@@ -2443,7 +2442,7 @@ function lastcal() {
           <li>สถานที่ทำงาน / สถานที่ติดต่อ &nbsp;&nbsp;
               <div class="form-group"><textarea class="form-control textareawidth" name="workplace" id="workplace" rows="3" ></textarea></div>
           </li>
-          
+
           <div class="form-inline">
             <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength numonly" id="tel" size="20" maxlength="10" required ></div>
               &nbsp;ต่อ&nbsp;<input type="text" class="form-control formlength numonly" id="subtel" size="2" maxlength="5"></li>

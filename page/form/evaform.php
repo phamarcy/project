@@ -99,6 +99,7 @@
 
 <script id="contentScript">
 
+window.sumcheck = 0;
 // searchname
 function searchname(no,type) {
 
@@ -1514,6 +1515,7 @@ $(function() {//<-- wrapped here
 $(document).ready(function(){
 
   $('#dlhide').hide();
+
   //deadline
   <?php
     (int)$flagcor = 0;
@@ -2053,6 +2055,7 @@ $(document).ready(function(){
     var summea = callec + callab;
     if(summea!=100)
     {
+      window.sumcheck = 0;
       swal(
         '',
         'คะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100\nกรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง',
@@ -2061,10 +2064,19 @@ $(document).ready(function(){
       //alert('กรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง\nคะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100');
     }
     else {
+      
+      window.sumcheck = 1;
       $('#MEASURE_TOTALLEC').val(callec);
       $('#MEASURE_TOTALLAB').val(callab);
     }
   });
+
+  $('.keyupcheck').keyup(function() {
+    $('.keyupcheck').each(function() {
+        window.sumcheck = 0;
+    });
+ });
+
 
   //submit
   $( '#form1' ).submit( function( event ) {
@@ -2156,24 +2168,35 @@ function checkreq(casesubmit) {
   {
     if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
     {
-      swal({
-        title: 'แน่ใจหรือไม่',
-        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ok',
-        cancelButtonText: 'Cancel'
-      }).then(function () {
-        submitfunc(casesubmit);
-      }, function (dismiss) {
-      // dismiss can be 'cancel', 'overlay',
-      // 'close', and 'timer'
-      if (dismiss === 'cancel') {
+      if(window.sumcheck==1 || casesubmit=='2')
+      {
+        swal({
+          title: 'แน่ใจหรือไม่',
+          text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+          type: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok',
+          cancelButtonText: 'Cancel'
+        }).then(function () {
+          submitfunc(casesubmit);
+        }, function (dismiss) {
+        // dismiss can be 'cancel', 'overlay',
+        // 'close', and 'timer'
+        if (dismiss === 'cancel') {
 
+        }
+      })
       }
-    })
+      else {
+        swal(
+          '',
+          'กรุณากดปุ่ม "รวมคะแนน" ในหัวข้อที่ 4 และกรอกสัดส่วนคะแนนให้ถูกต้อง',
+          'error'
+        )
+      }
+
     }
     else {
 
@@ -2440,34 +2463,34 @@ function confreset(casereset) {
               </tr>
               <tr>
                 <td colspan="2">1. สอบกลางภาคครั้งที่ 1</td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_MIDLEC1" id="MEASURE_MIDLEC1" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_MIDLAB1" id="MEASURE_MIDLAB1" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_MIDLEC1" id="MEASURE_MIDLEC1" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_MIDLAB1" id="MEASURE_MIDLAB1" size="10" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">2. สอบกลางภาคครั้งที่ 2</td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_MIDLEC2" id="MEASURE_MIDLEC2" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_MIDLAB2" id="MEASURE_MIDLAB2" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_MIDLEC2" id="MEASURE_MIDLEC2" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_MIDLAB2" id="MEASURE_MIDLAB2" size="10" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">3. สอบไล่ </td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="10" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">4. งานมอบหมาย </td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_WORKLEC" id="MEASURE_WORKLEC" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_WORKLAB" id="MEASURE_WORKLAB" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_WORKLEC" id="MEASURE_WORKLEC" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_WORKLAB" id="MEASURE_WORKLAB" size="10" value="0"></div></td>
               </tr>
               <tr name="addtr">
 
                 <td colspan="2"><div class="form-group form-inline">5. อื่นๆ โปรดระบุ &nbsp;&nbsp;<input type="text" class="form-control formlength" name="OTHER_MEA" id="OTHER_MEA" size="30"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_OTHLEC" id="MEASURE_OTHLEC" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_OTHLAB" id="MEASURE_OTHLAB" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_OTHLEC" id="MEASURE_OTHLEC" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_OTHLAB" id="MEASURE_OTHLAB" size="10" value="0"></div></td>
               </tr>
               <tr>
                 <td colspan="2" align="right"><input type="button" class="btn btn-outline btn-warning" name="calmea" id="calmea" value="รวมคะแนน"></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_TOTALLEC" id="MEASURE_TOTALLEC" size="10" value="0" readonly></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_TOTALLAB" id="MEASURE_TOTALLAB" size="10" value="0" readonly></div></td>
               </tr>
             </table>
           </div>
