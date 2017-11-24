@@ -8,15 +8,10 @@
   $person = new Person();
   $semester= $deadline->Get_Current_Semester();
   $dept = $person->Get_Staff_Dep($_SESSION['id']);
-  if($_SESSION['level'] == '3' || $_SESSION['level'] == '7')
-  {
-    $course = $courseobj->Get_All_Course('all');
-  }
-  else
-  {
-    $course = $courseobj->Get_All_Course($dept['code']);
-  }
 
+  $coursemain = $courseobj->Get_All_Course(null);
+  $coursecare = $courseobj->Get_All_Course('1202');
+  $coursescience = $courseobj->Get_All_Course('1203');
   $department = $courseobj->Get_Dept_All();
  ?>
  <html>
@@ -283,8 +278,13 @@ function checksubject() {
                         document.getElementById('TOTAL_2').value = hr_lec;
                         document.getElementById('TOTAL_3').value = hr_lab;
                         document.getElementById('TOTAL_4').value = hr_self;
-                        document.getElementById('TOTAL_4').value = hr_self;
-                        document.getElementById('department').value = temp['INFO']['department_id'];
+                        if(temp['INFO']['department_id']==null)
+                        {
+                          document.getElementById('department').value = "0";
+                        }else {
+                          document.getElementById('department').value = temp['INFO']['department_id'];
+                        }
+                        //console.log(temp['INFO']['department_id']);
 
                       }
                     } catch (e) {
@@ -572,8 +572,7 @@ function confreset(casereset) {
         <div class="col-md-2">ภาควิชา</div>
         <div class="col-md-5">
           <select class="form-control formlength required dis" id="department" style="width: auto;" required >
-           <option value="0" selected="selected">-</option>
-           <option value="">วิชาพื้นฐาน</option>
+           <option value="0">วิชาพื้นฐาน</option>
            <?php
             for ($i=0; $i <sizeof($department) ; $i++) {
               echo "<option value=".$department[$i]['code'].">".$department[$i]['name']."</option>";
@@ -594,22 +593,19 @@ function confreset(casereset) {
           <div class="col-md-2">
           ชื่อกระบวนวิชาภาษาอังกฤษ
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10" >
           <input style="width: 500px;" type="text" class="form-control dis charengonly" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   required placeholder="e.g. Learning outside for experience">
           </div>
         </div>
-          <div class="row">
-            <div class="col-md-2">จำนวนหน่วยกิตทั้งหมด</div>
-          <div class="form-inline">
-            <input class="form-control formlength dis numonly" name="TOTAL_1" type="text" id="TOTAL_1" size="1" maxlength="1" style="width:35px; margin-left:15px !important;" />(
+            <div class="col-md-2 row">จำนวนหน่วยกิตทั้งหมด</div>
+          <div class="form-inline" style="display:inline-block;">
+            <input class="form-control formlength dis numonly" name="TOTAL_1" type="text" id="TOTAL_1" size="1" maxlength="1" style="width:35px; margin-left:35px !important;" />(
           <input class="form-control formlength dis numonly" name="TOTAL_2" type="text" id="TOTAL_2" size="1" maxlength="1" style="width:35px;" />-
           <input class="form-control formlength dis numonly" name="TOTAL_3" type="text" id="TOTAL_3" size="1" maxlength="1" style="width:35px;" />-
           <input class="form-control formlength dis numonly" name="TOTAL_4" type="text" id="TOTAL_4" size="1" maxlength="1" style="width:35px;" />)&nbsp; หน่วยกิต
           </div>
-            </div>
-
           <input type="hidden" id="typesubmit" name="typesubmit">
-        </div></div>
+        </div>
       <br>
 
 
@@ -625,25 +621,82 @@ function confreset(casereset) {
 <div class="row">
 <div class="col-md-1"></div>
 <div class="col-md-10">
-<table class="table table-bordered table-hover" align="center" style="font-size: 13px;">
-  <tr class="success">
-    <th>รหัสกระบวนวิชา</th>
-    <th>ชื่อกระบวนวิชาภาษาไทย</th>
-    <th>ชื่อกระบวนวิชาภาษาอังกฤษ</th>
-    <th>จำนวนหน่วยกิตทั้งหมด(หน่วยกิต)</th>
-  </tr>
-  <?php
-    for ($i=0; $i <sizeof($course) ; $i++) {
-     echo "<tr>";
-     echo "<td>".$course[$i]['id']."</td>";
-     echo "<td>".$course[$i]['name']['en']."</td>";
-     echo "<td>".$course[$i]['name']['th']."</td>";
-     echo "<td>".$course[$i]['credit']."</td>";
-    }
-   ?>
-</div>
-</div>
-</table>
+  <div class="panel-body">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs">
+          <li class="active"><a href="#main" data-toggle="tab">วิชากลาง</a>
+          </li>
+          <li><a href="#care" data-toggle="tab">ภาควิชาบาลเภสัชกรรม</a>
+          </li>
+          <li><a href="#science" data-toggle="tab">ภาควิชาวิทยาศาสตร์เภสัชกรรม</a>
+          </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+          <div class="tab-pane fade in active" id="main">
+            <br>
+              <table class="table table-bordered table-hover" align="center" style="font-size: 13px;">
+                <tr class="success">
+                  <th>รหัสกระบวนวิชา</th>
+                  <th>ชื่อกระบวนวิชาภาษาไทย</th>
+                  <th>ชื่อกระบวนวิชาภาษาอังกฤษ</th>
+                  <th>จำนวนหน่วยกิตทั้งหมด(หน่วยกิต)</th>
+                </tr>
+                <?php
+                  for ($i=0; $i <sizeof($coursemain) ; $i++) {
+                   echo "<tr>";
+                   echo "<td>".$coursemain[$i]['id']."</td>";
+                   echo "<td>".$coursemain[$i]['name']['en']."</td>";
+                   echo "<td>".$coursemain[$i]['name']['th']."</td>";
+                   echo "<td>".$coursemain[$i]['credit']."</td>";
+                  }
+                 ?>
+              </table>
+          </div>
+          <div class="tab-pane fade" id="care">
+            <br>
+              <table class="table table-bordered table-hover" align="center" style="font-size: 13px;">
+                <tr class="success">
+                  <th>รหัสกระบวนวิชา</th>
+                  <th>ชื่อกระบวนวิชาภาษาไทย</th>
+                  <th>ชื่อกระบวนวิชาภาษาอังกฤษ</th>
+                  <th>จำนวนหน่วยกิตทั้งหมด(หน่วยกิต)</th>
+                </tr>
+                <?php
+                  for ($i=0; $i <sizeof($coursecare) ; $i++) {
+                   echo "<tr>";
+                   echo "<td>".$coursecare[$i]['id']."</td>";
+                   echo "<td>".$coursecare[$i]['name']['en']."</td>";
+                   echo "<td>".$coursecare[$i]['name']['th']."</td>";
+                   echo "<td>".$coursecare[$i]['credit']."</td>";
+                  }
+                 ?>
+              </table>
+          </div>
+          <div class="tab-pane fade" id="science">
+            <br>
+              <table class="table table-bordered table-hover" align="center" style="font-size: 13px;">
+                <tr class="success">
+                  <th>รหัสกระบวนวิชา</th>
+                  <th>ชื่อกระบวนวิชาภาษาไทย</th>
+                  <th>ชื่อกระบวนวิชาภาษาอังกฤษ</th>
+                  <th>จำนวนหน่วยกิตทั้งหมด(หน่วยกิต)</th>
+                </tr>
+                <?php
+                  for ($i=0; $i <sizeof($coursescience) ; $i++) {
+                   echo "<tr>";
+                   echo "<td>".$coursescience[$i]['id']."</td>";
+                   echo "<td>".$coursescience[$i]['name']['en']."</td>";
+                   echo "<td>".$coursescience[$i]['name']['th']."</td>";
+                   echo "<td>".$coursescience[$i]['credit']."</td>";
+                  }
+                 ?>
+              </table>
+          </div>
+      </div>
+  </div>
+
 </div>
 </div>
 </div>

@@ -33,8 +33,8 @@ class Course
   public function Add_Course($data)
   {
       $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`,`department_id`)
-        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]."',".($data['DEPARTMENT'] == '' ? "NULL" : "'".$data['DEPARTMENT']."'")." )";
-      $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]."',`department_id` = ".($data['DEPARTMENT'] == '' ? "NULL" : "'".$data['DEPARTMENT']."'");
+        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]."',".($data['DEPARTMENT'] == '0' ? "NULL" : "'".$data['DEPARTMENT']."'")." )";
+      $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]."',`department_id` = ".($data['DEPARTMENT'] == '0' ? "NULL" : "'".$data['DEPARTMENT']."'");
       $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
       {
@@ -72,13 +72,13 @@ class Course
   public function Get_All_Course($dept_id)
   {
     $sql = "SELECT `course_id`as id,`course_name_en` as name_en,`course_name_th`as name_th,`credit` FROM `course`";
-    if($dept_id != 'all')
-    {
-      $sql .=" WHERE `department_id` = '".$dept_id."'";
-    }
-    else if($dept_id == null)
+    if($dept_id == null)
     {
       $sql .= "WHERE `department_id` is NULL";
+    }
+    else if($dept_id != 'all')
+    {
+      $sql .=" WHERE `department_id` = '".$dept_id."'";
     }
     $result = $this->DB->Query($sql);
     if($result)

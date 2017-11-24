@@ -59,31 +59,30 @@ if(isset($_POST['type']))
       }
       else
       {
-        if($teacher_name != '')
-        {
-          $result = $course->Add_Responsible_Teacher($course_id,$teacher_name,$semester['id']);
-          if($result['status'] == 'error')
-          {
-            break;
-          }
-        }
-        if($assessor_group != '')
-        {
-          $result = $course->Add_Responsible_Assessor($course_id,$assessor_group,$semester['id'],$department_id);
-          if($result['status'] == "success")
-          {
+        // if($teacher_name != '')
+        // {
+        //   $result = $course->Add_Responsible_Teacher($course_id,$teacher_name,$semester['id']);
+        //   if($result['status'] == 'error')
+        //   {
+        //     break;
+        //   }
+        // }
+        // if($assessor_group != '')
+        // {
+        //   $result = $course->Add_Responsible_Assessor($course_id,$assessor_group,$semester['id'],$department_id);
+        //   if($result['status'] == "success")
+        //   {
             $result = $approval->Append_Status_Evaluate($course_id);
-            if($result['status'] == 'error')
-            {
-              break;
-            }
-          }
-          else
-          {
-            break;
-          }
-        }
-
+        //     if($result['status'] == 'error')
+        //     {
+        //       break;
+        //     }
+        //   }
+        //   else
+        //   {
+        //     break;
+        //   }
+        // }
       }
       $result['status'] = 'success';
       $result['msg'] = 'เพิ่มข้อมูลสำเร็จ';
