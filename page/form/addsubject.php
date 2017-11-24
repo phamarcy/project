@@ -16,6 +16,8 @@
   {
     $course = $courseobj->Get_All_Course($dept['code']);
   }
+
+  $department = $courseobj->Get_Dept_All();
  ?>
  <html>
  <header>
@@ -281,6 +283,9 @@ function checksubject() {
                         document.getElementById('TOTAL_2').value = hr_lec;
                         document.getElementById('TOTAL_3').value = hr_lab;
                         document.getElementById('TOTAL_4').value = hr_self;
+                        document.getElementById('TOTAL_4').value = hr_self;
+                        document.getElementById('department').value = temp['INFO']['department_id'];
+
                       }
                     } catch (e) {
                          console.log('Error#542-decode error');
@@ -314,6 +319,7 @@ function submitfunc() {
     'NAMETH' : document.getElementById("NAME_TH_COURSE").value,
     'NAMEENG' : document.getElementById("NAME_ENG_COURSE").value,
     'CREDIT' : total+"("+lec+"-"+lab+"-"+self+")",
+    'DEPARTMENT' : document.getElementById("department").value,
     'SUBMIT_TYPE' : '1'
   };
 
@@ -550,12 +556,11 @@ function confreset(casereset) {
 
 </center>
 
-<div class="panel panel-default" id="panelbody">
+<div class="panel panel-default" style="font-size:14px;" id="panelbody">
 <form data-toggle="validator" role="form" name="form1" id="form1" method="post" onsubmit="checkreq('1')">
-    <ol>
+
       <br>
-      <li style="font-size: 14px">
-        <div class="form-inline">
+        <div class="form-inline" style="margin-left:30px;">
           <div class="form-group">
           <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control formlength numonly" name="COURSE_ID" id="COURSE_ID"  placeholder="e.g. 204111"  maxlength="6" required pattern=".{6,6}" >
           &nbsp;<button type="button" class="btn btn-outline btn-primary" onclick="checksubject();">ค้นหา</button>
@@ -577,12 +582,24 @@ function confreset(casereset) {
           <input class="form-control formlength dis numonly" name="TOTAL_4" type="text" id="TOTAL_4" size="1" maxlength="1" style="width:35px;" />)&nbsp; หน่วยกิต
             </div>
           </div>
+          <div class="row" style="margin-top:5px;">
+          <div class="form-group">
+            &nbsp;&nbsp;&nbsp;&nbsp;ภาควิชา &nbsp;
+            <select class="form-control formlength required dis" id="department" style="width: auto;" required >
+             <option value="0" selected="selected">--------------</option>
+             <?php
+              for ($i=0; $i <sizeof($department) ; $i++) {
+                echo "<option value=".$department[$i]['code'].">".$department[$i]['name']."</option>";
+              }
+              ?>
+           </select>
+          </div>
           <input type="hidden" id="typesubmit" name="typesubmit">
         </div>
-      </li>
+      </div>
       <br>
 
-    </ol>
+
     <div align="center">
       <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn" id="submitbtn" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
       <!-- <input type="button" style="font-size: 18px;" class="btn btn-outline btn-danger" name="resetbtn" id="resetbtn" onclick="confreset();" value="รีเซ็ตข้อมูล"> -->
