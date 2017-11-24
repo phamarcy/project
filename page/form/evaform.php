@@ -88,6 +88,13 @@
     resize: none;
   }
 
+  ol li {
+      font-weight:bold;
+  }
+  li > * {
+      font-weight:normal;
+  }
+
   </style>
 
 <script id="contentScript">
@@ -99,7 +106,7 @@ function searchname(no,type) {
   {
       var name_s = $("#TEACHERLEC_F"+no).val();
       $("#dtl"+no).html('');
-      if(name_s.length > 0)
+      if(name_s.length > 1)
       {
         $.post("search_name.php", { name: name_s}, function(data) {
               data = JSON.parse( data );
@@ -117,7 +124,7 @@ function searchname(no,type) {
   else if (type==511) {
     var name_s = $("#MIDEXCOM_LECF"+no).val();
     $("#dtmeh"+no).html('');
-    if(name_s.length > 0)
+    if(name_s.length > 1)
     {
       $.post("search_name.php", { name: name_s}, function(data) {
             data = JSON.parse( data );
@@ -135,7 +142,7 @@ function searchname(no,type) {
   else if (type==512) {
     var name_s = $("#MIDEXCOM_LABF"+no).val();
     $("#dtehlab"+no).html('');
-    if(name_s.length > 0)
+    if(name_s.length > 1)
     {
       $.post("search_name.php", { name: name_s}, function(data) {
             data = JSON.parse( data );
@@ -153,7 +160,7 @@ function searchname(no,type) {
   else if (type==521) {
     var name_s = $("#MIDEXCOM_LECF"+no+"_sec").val();
     $("#dtmehle"+no+"_sec").html('');
-    if(name_s.length > 0)
+    if(name_s.length > 1)
     {
       $.post("search_name.php", { name: name_s}, function(data) {
             data = JSON.parse( data );
@@ -171,7 +178,7 @@ function searchname(no,type) {
   else if (type==522) {
     var name_s = $("#MIDEXCOM_LABF"+no+"_sec").val();
     $("#dtehla"+no+"_sec").html('');
-    if(name_s.length > 0)
+    if(name_s.length > 1)
     {
       $.post("search_name.php", { name: name_s}, function(data) {
             data = JSON.parse( data );
@@ -189,7 +196,7 @@ function searchname(no,type) {
   else if (type==531) {
     var name_s = $("#FINEXCOM_LECF"+no).val();
     $("#dtfmehle"+no).html('');
-    if(name_s.length > 0)
+    if(name_s.length > 1)
     {
       $.post("search_name.php", { name: name_s}, function(data) {
             data = JSON.parse( data );
@@ -207,7 +214,7 @@ function searchname(no,type) {
   else if (type==532) {
     var name_s = $("#FINEXCOM_LABF"+no).val();
     $("#dtfehla"+no).html('');
-    if(name_s.length > 0)
+    if(name_s.length > 1)
     {
       $.post("search_name.php", { name: name_s}, function(data) {
             data = JSON.parse( data );
@@ -2421,7 +2428,7 @@ function confreset(casereset) {
         <br>
 
           <li style="font-size: 14px;">
-            <b>การวัดผลการศึกษา</b> (สัดส่วนการให้คะแนนโปรดระบุเป็นร้อยละ)<br>
+            การวัดผลการศึกษา (สัดส่วนการให้คะแนนโปรดระบุเป็นร้อยละ)<br>
             <div class="row">
             <div class="col-md-10">
             <div class="table-responsive">
@@ -2684,7 +2691,7 @@ function confreset(casereset) {
 
           <br>
           <li style="font-size: 14px;">
-            <b>วิธีการตัดเกรด</b>
+            วิธีการตัดเกรด
             <br>
             <div class="form-inline">
               <div class="radio">
@@ -2764,7 +2771,7 @@ function confreset(casereset) {
               <input type="radio" name="CALCULATE" id="CALCULATE_TYPE1" value="GROUP" required> อิงกลุ่ม &nbsp;
               <div class="form-inline">
 
-                <textarea class="form-control" style="width: 95%; padding-left:30px;" name="EXPLAINATION" id="EXPLAINATION" rows="5" placeholder="โปรดระบุ" ></textarea>
+                <textarea class="form-control" style="width: 95%; margin-left:15px;" name="EXPLAINATION" id="EXPLAINATION" rows="5" placeholder="โปรดระบุ" ></textarea>
 
               </div>
               <br>
@@ -2801,7 +2808,7 @@ function confreset(casereset) {
           </div>
           </li>
           <li style="font-size: 14px;">
-            <b>นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย</b> &nbsp;&nbsp;โดยไม่ได้รับอนุญาตให้เลื่อนการสอบตามข้อบังคับ ของมหาวิทยาลัยเชียงใหม่ ว่าด้วยการศึกษาชั้นปริญญาตรี อาจารย์ผู้สอนจะประเมินดังนี้
+            นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย &nbsp;&nbsp;โดยไม่ได้รับอนุญาตให้เลื่อนการสอบตามข้อบังคับ ของมหาวิทยาลัยเชียงใหม่ ว่าด้วยการศึกษาชั้นปริญญาตรี อาจารย์ผู้สอนจะประเมินดังนี้
             <br>
             <div class="form-inline"><div class="form-group"><div class="radio">
             <input type="radio" name="ABSENT" id="ABSENT1" value="F" required checked>&nbsp;ให้ลำดับขั้น F &nbsp;&nbsp; <br>
@@ -2812,7 +2819,7 @@ function confreset(casereset) {
 
           <br>
           <li style="font-size: 14px;" id="listcor">
-            <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็น .doc , .docx หรือ .pdf เท่านั้น) : </b><br />
+            เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็น .doc , .docx หรือ .pdf เท่านั้น) : <br />
           <div class="col-md-5 form-inline form-group">
             <input type="file" class="filestyle" id="syllabus" data-icon="false" accept=".doc,.docx,.pdf" required><font color="red"><b> ** จำเป็น</b></font>
           </div>
