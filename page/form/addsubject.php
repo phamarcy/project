@@ -556,47 +556,60 @@ function confreset(casereset) {
 
 </center>
 
-<div class="panel panel-default" style="font-size:14px;" id="panelbody">
+<div class="panel panel-default" style="font-size:14px;" id="panelbody"><div style="margin-left:30px;">
 <form data-toggle="validator" role="form" name="form1" id="form1" method="post" onsubmit="checkreq('1')">
 
       <br>
-        <div class="form-inline" style="margin-left:30px;">
-          <div class="form-group">
-          <b>รหัสกระบวนวิชา</b> &nbsp;<input style="width: 100px;" type="text" class="form-control formlength numonly" name="COURSE_ID" id="COURSE_ID"  placeholder="e.g. 204111"  maxlength="6" required pattern=".{6,6}" >
+      <div class="row">
+        <div class="col-md-2">
+          <b>รหัสกระบวนวิชา</b>
+        </div>
+          <div class="col-md-5 form-inline"><input style="width: auto;" type="text" class="form-control formlength numonly" name="COURSE_ID" id="COURSE_ID"  placeholder="e.g. 204111"  maxlength="6" required pattern=".{6,6}" >
           &nbsp;<button type="button" class="btn btn-outline btn-primary" onclick="checksubject();">ค้นหา</button>
-
           </div>
-          <br>
-          <div class="form-group">
-          ชื่อกระบวนวิชาภาษาไทย &nbsp;<input style="width: 500px;" type="text" class="form-control formlength dis charthonly" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   required placeholder="e.g. การเรียนรู้นอกห้องเรียนเพื่อเสริมสร้างประสบการณ์ชีวิต">
-          </div>
-          <br>
-          <div class="form-group">
-          ชื่อกระบวนวิชาภาษาอังกฤษ &nbsp;<input style="width: 500px;" type="text" class="form-control formlength dis charengonly" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   required placeholder="e.g. Learning outside for experience">
-          </div>
+        </div>
+        <div class="row" style="margin-bottom:5px; margin-top:5px;">
+        <div class="col-md-2">ภาควิชา</div>
+        <div class="col-md-5">
+          <select class="form-control formlength required dis" id="department" style="width: auto;" required >
+           <option value="0" selected="selected">-</option>
+           <option value="">วิชาพื้นฐาน</option>
+           <?php
+            for ($i=0; $i <sizeof($department) ; $i++) {
+              echo "<option value=".$department[$i]['code'].">".$department[$i]['name']."</option>";
+            }
+            ?>
+         </select>
+       </div>
+        </div>
           <div class="row">
-            <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;
-          <input class="form-control formlength dis numonly" name="TOTAL_1" type="text" id="TOTAL_1" size="1" maxlength="1" style="width:35px;" />(
+          <div class="col-md-2">
+            ชื่อกระบวนวิชาภาษาไทย
+          </div>
+          <div class="col-md-10">
+          <input style="width: 500px;" type="text" class="form-control dis charthonly" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   required placeholder="e.g. การเรียนรู้นอกห้องเรียนเพื่อเสริมสร้างประสบการณ์ชีวิต">
+          </div>
+        </div>
+          <div class="row">
+          <div class="col-md-2">
+          ชื่อกระบวนวิชาภาษาอังกฤษ
+        </div>
+        <div class="col-md-10">
+          <input style="width: 500px;" type="text" class="form-control dis charengonly" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   required placeholder="e.g. Learning outside for experience">
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-md-2">จำนวนหน่วยกิตทั้งหมด</div>
+          <div class="form-inline">
+            <input class="form-control formlength dis numonly" name="TOTAL_1" type="text" id="TOTAL_1" size="1" maxlength="1" style="width:35px; margin-left:15px !important;" />(
           <input class="form-control formlength dis numonly" name="TOTAL_2" type="text" id="TOTAL_2" size="1" maxlength="1" style="width:35px;" />-
           <input class="form-control formlength dis numonly" name="TOTAL_3" type="text" id="TOTAL_3" size="1" maxlength="1" style="width:35px;" />-
           <input class="form-control formlength dis numonly" name="TOTAL_4" type="text" id="TOTAL_4" size="1" maxlength="1" style="width:35px;" />)&nbsp; หน่วยกิต
+          </div>
             </div>
-          </div>
-          <div class="row" style="margin-top:5px;">
-          <div class="form-group">
-            &nbsp;&nbsp;&nbsp;&nbsp;ภาควิชา &nbsp;
-            <select class="form-control formlength required dis" id="department" style="width: auto;" required >
-             <option value="0" selected="selected">--------------</option>
-             <?php
-              for ($i=0; $i <sizeof($department) ; $i++) {
-                echo "<option value=".$department[$i]['code'].">".$department[$i]['name']."</option>";
-              }
-              ?>
-           </select>
-          </div>
+
           <input type="hidden" id="typesubmit" name="typesubmit">
-        </div>
-      </div>
+        </div></div>
       <br>
 
 
