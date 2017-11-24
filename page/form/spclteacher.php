@@ -1459,7 +1459,18 @@ table { width: auto !important; }
 
  $(document).ready(function(){
    $('#dlhide,#search_1hide').hide();
-
+   $('input[type=file]').change(function () {
+     var val = $(this).val().toLowerCase();
+     var regex = new RegExp("(.*?)\.(doc|docx|pdf)$");
+     if (!(regex.test(val))) {
+       $(this).val('');
+       swal({
+       type: "warning",
+       text: "กรุณาเลือกไฟล์ที่มีนามสกุล .doc , .docx หรือ .pdf เท่านั้น",
+       confirmButtonText: "ตกลง!",
+     });
+     }
+   });
    //deadline
    <?php
      $flagspcl = 0;
@@ -2606,7 +2617,7 @@ function lastcal() {
       <li  style="font-size: 14px;" >
         <b>เลือกไฟล์ Curriculum Vitae (CV) เพื่ออัปโหลด : </b><br />
       <div id="cvdanger" class="col-md-5 form-inline form-group">
-        <input type="file" class="filestyle" id="cv" name="cv" data-icon="false"><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
+        <input type="file" class="filestyle" id="cv" name="cv" accept=".doc,.docx,.pdf" data-icon="false"><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
       </div>
       </li>
     </ol>

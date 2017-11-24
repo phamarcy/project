@@ -86,6 +86,7 @@
   textarea {
     width: auto !important;
   }
+
   </style>
 
 <script id="contentScript">
@@ -586,7 +587,7 @@ function confreset(casereset) {
             ชื่อกระบวนวิชาภาษาไทย
           </div>
           <div class="col-md-10">
-          <input style="width: 500px;" type="text" class="form-control dis charthonly" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   required placeholder="e.g. การเรียนรู้นอกห้องเรียนเพื่อเสริมสร้างประสบการณ์ชีวิต">
+          <input style="width: 90%;" type="text" class="form-control dis charthonly" name="NAME_TH_COURSE" id="NAME_TH_COURSE"   required placeholder="e.g. การเรียนรู้นอกห้องเรียนเพื่อเสริมสร้างประสบการณ์ชีวิต">
           </div>
         </div>
           <div class="row">
@@ -594,7 +595,7 @@ function confreset(casereset) {
           ชื่อกระบวนวิชาภาษาอังกฤษ
         </div>
         <div class="col-md-10" >
-          <input style="width: 500px;" type="text" class="form-control dis charengonly" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   required placeholder="e.g. Learning outside for experience">
+          <input style="width: 90%;" type="text" class="form-control dis charengonly" name="NAME_ENG_COURSE" id="NAME_ENG_COURSE"   required placeholder="e.g. Learning outside for experience">
           </div>
         </div>
             <div class="col-md-2 row">จำนวนหน่วยกิตทั้งหมด</div>
@@ -624,7 +625,7 @@ function confreset(casereset) {
   <div class="panel-body">
       <!-- Nav tabs -->
       <ul class="nav nav-tabs">
-          <li class="active"><a href="#main" data-toggle="tab">วิชากลาง</a>
+          <li class="active"><a href="#main" data-toggle="tab">วิชาพื้นฐาน</a>
           </li>
           <li><a href="#care" data-toggle="tab">ภาควิชาบาลเภสัชกรรม</a>
           </li>
