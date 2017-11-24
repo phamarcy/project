@@ -144,6 +144,10 @@ else {
         display: -ms-flexbox;,
           width: 300px !important;
       }
+      .form-inline{
+        display:inline-block;
+     
+      }
       @media screen and (max-width: 767px) {
           .select2 {
               width: 100% !important;
@@ -313,7 +317,7 @@ else {
             </div>
             <div class="panel-body">
               <div class="row">
-              <div class="col-xs-12 col-md-12">
+              <div class="col-md-12">
                   <form id="course" method="post">
                     <div class="form-inline">
                       <div class="form-group">
