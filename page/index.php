@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	require_once(__DIR__."/../application/class/person.php");
+	require_once(__DIR__."/../application/class/course.php");
 	if(!isset($_SESSION['level']) || !isset($_SESSION['fname']) || !isset($_SESSION['lname']) || !isset($_SESSION['id']))
 	{
 	    die('กรุณา Login ใหม่');
@@ -13,7 +14,8 @@
 	}
 
 	$person = new Person();
-	
+	$course = new Course();
+	$type_status=$course->Get_Status_Text();
 	$check_permission=$person->Check_Grant($_SESSION['id']);
 	$check_assessor=$person->Is_Assessor($_SESSION['id']);
 
@@ -22,7 +24,7 @@
 			$_SESSION['level']=4;
 		}
 		else if($_SESSION['level']==4 || $_SESSION['level']==5){
-			$_SESSION['level']=1;	
+			$_SESSION['level']=1;
 		}
 	}
 	if (isset($_POST['change_leveldep'])) {
@@ -37,7 +39,7 @@
 	$show_btndep=0;
 	$show_btnmulti=0;
 	if ($check_assessor[1]==true || $check_assessor[2]==true || $_SESSION['level']==6) {
-		
+
 		if ($check_assessor[0]==1) {
 			$show_btn=1;
 		}else if($check_assessor[0]==4){
@@ -83,7 +85,7 @@
 
 	<script src="vendor/jquery/jquery.min.js"></script>
 
-	
+
 	<!-- Bootstrap Core JavaScript -->
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -98,7 +100,7 @@
 	  <link rel="stylesheet" href="dist/css/scrollbar.css">
 
 	<script>
-	
+
 	window.onload =  function(){
       update_noti();
     };
@@ -162,28 +164,28 @@
 				{
 					switch(data.STATUS) {
 						case '0':
-						status='<b id="statc">รอการกรอกข้อมูล <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+						status= '<?php echo '<b style=color:'.$type_status[0]["color"].'>'.$type_status[0]["status_name"]. '<i class="'.$type_status[0]["icon"].'"></i></b>' ?>';
 						break;
 					 case '1':
-					 	status='<b id="statwt">รอการพิจารณา <i class="fa  fa-clock-o fa-fw"></i></b>';
+					 	status= '<?php echo '<b style=color:'.$type_status[1]["color"].'>'.$type_status[1]["status_name"]. '<i class="'.$type_status[1]["icon"].'"></i></b>' ?>';
 						 break;
 					 case '2':
-					 	status='<b id="statn">ไม่เห็นชอบ <i class="fa fa-pencil-square-o  fa-fw"></i></b>';
+					 	status= '<?php echo '<b style=color:'.$type_status[2]["color"].'>'.$type_status[2]["status_name"]. '<i class="'.$type_status[2]["icon"].'"></i></b>' ?>';
 						 break;
 					 case '3':
-					 	status='<b id="statal">มีการแก้ไขจากภาควิชา<i class="fa fa-pencil-square fa-fw"></i></b>';
+					 	status= '<?php echo '<b style=color:'.$type_status[3]["color"].'>'.$type_status[3]["status_name"]. '<i class="'.$type_status[3]["icon"].'"></i></b>' ?>';
 						 break;
 					 case '4':
-					 	status='<b id="statcf">ผ่านการประเมินจากคณะกรรมการภาค<i class="fa fa-user fa-fw"></i></b>';
+					 	status= '<?php echo '<b style=color:'.$type_status[4]["color"].'>'.$type_status[4]["status_name"]. '<i class="'.$type_status[4]["icon"].'"></i></b>' ?>';
 						 break;
 					 case '5':
-					 	status='<b id="statwt">รอคณะอนุมัติ<i class="fa fa-user-plus fa-fw"></i></b>';
+					 	status= '<?php echo '<b style=color:'.$type_status[5]["color"].'>'.$type_status[5]["status_name"]. '<i class="'.$type_status[5]["icon"].'"></i></b>' ?>';
 						 break;
 					 case '6':
-					 	status='<b id="statal">มีการแก้ไขจากคณะ<i class="fa fa-check fa-fw"></i></b>';
+					 	status= '<?php echo '<b style=color:'.$type_status[6]["color"].'>'.$type_status[6]["status_name"]. '<i class="'.$type_status[6]["icon"].'"></i></b>' ?>';
 						 break;
 					 case '7':
-					 	status='<b id="statcf">ผ่าน<i class="fa fa-check fa-fw"></i></b>';
+					 	status= '<?php echo '<b style=color:'.$type_status[7]["color"].'>'.$type_status[7]["status_name"]. '<i class="'.$type_status[7]["icon"].'"></i></b>' ?>';
 						 break;
 		    	 default:
 		        status = '';
@@ -265,8 +267,8 @@
 			}
 		}
 
-	
-		
+
+
 	</script>
 
 
@@ -402,8 +404,8 @@
 			<ul class="nav navbar-top-links navbar-right">
 				<form action="index.php" method="POST" class="form-inline">
 					<b>ยินดีต้อนรับ | <font color="#51cc62"> คุณ <?php echo $_SESSION['fname'].' ',$_SESSION['lname']; ?></font></b>
-					<?php 
-					if ($show_btn==1 || $show_btnmulti==1 ||$show_btndep==1) { 
+					<?php
+					if ($show_btn==1 || $show_btnmulti==1 ||$show_btndep==1) {
 						if ($_SESSION['level']==1) {
 							$status_name ="อาจารย์";
 						}else if ($_SESSION['level']==2) {
@@ -422,10 +424,10 @@
 						else if ($_SESSION['level']==7){
 							$status_name ="admin";
 						}
-						
+
 
 						?>
-						
+
 						<b>สถานะ : <?php echo $status_name;?> </b>&nbsp;
 						<?php if ($show_btn==1 && $show_btnmulti==0) {  ?>
 							<button type="submit" class="btn btn-primary btn-outlne" name="change_level">เปลี่ยนสถานะ</button>
@@ -444,11 +446,11 @@
 							</ul>
 							</div>
 						<?php } ?>
-						
+
 						<?php
 					}
 					?>
-				
+
 				<!-- /.dropdown -->
 				<li class="dropdown" id="icon-dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -493,7 +495,7 @@
 							<?php
 								if ($_SESSION['level']<=3 || $_SESSION['admission'] == 2 || $_SESSION['admission'] == 3) { ?>
 									<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
-								
+
 							<?php } ?>
 						</li>
 						<?php if($_SESSION['level'] == 2 || $_SESSION['admission']==2 ) { ?>
@@ -592,7 +594,7 @@
 						}
 
 						 ?>
-						
+
 
 						<?php
 							if($_SESSION['level']==6)
