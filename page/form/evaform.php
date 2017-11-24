@@ -1520,6 +1520,18 @@ $(document).ready(function(){
 
   $('#dlhide').hide();
 
+  $('input[type=file]').change(function () {
+    var val = $(this).val().toLowerCase();
+    var regex = new RegExp("(.*?)\.(doc|docx|pdf)$");
+    if (!(regex.test(val))) {
+      $(this).val('');
+      swal({
+      type: "warning",
+      text: "กรุณาเลือกไฟล์ที่มีนามสกุล .doc , .docx หรือ .pdf เท่านั้น",
+      confirmButtonText: "ตกลง!",
+    });
+    }
+  });
   //deadline
   <?php
     (int)$flagcor = 0;
