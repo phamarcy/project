@@ -2184,6 +2184,7 @@ function checkreq(casesubmit) {
           confirmButtonText: 'Ok',
           cancelButtonText: 'Cancel'
         }).then(function () {
+          window.sumcheck = 0;
           submitfunc(casesubmit);
         }, function (dismiss) {
         // dismiss can be 'cancel', 'overlay',
@@ -2220,7 +2221,7 @@ function checkreq(casesubmit) {
 }
 
 function checkreq2(casesubmit) {
-  if($("#COURSE_ID_2").val()!=null && $("[COURSE_ID_2]").val()!="" && $("#syllabus_2").val()!=null && $("[syllabus_2]").val()!="")
+  if($("#COURSE_ID_2").val()!=undefined && $("[COURSE_ID_2]").val()!="" && $("#syllabus_2").val()!=undefined && $("[syllabus_2]").val()!="")
   {
     swal({
       title: 'แน่ใจหรือไม่',

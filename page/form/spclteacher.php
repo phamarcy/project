@@ -85,6 +85,8 @@ table { width: auto !important; }
  </style>
 
  <script>
+
+ window.sumcheck = 0;
  function setdatepicker(){
    webshims.setOptions('forms-ext', {types: 'date'});
    webshims.polyfill('forms forms-ext');
@@ -2029,6 +2031,12 @@ table { width: auto !important; }
         }
       });
 
+      $('.keyupcheck').keyup(function() {
+        $('.keyupcheck').each(function() {
+            window.sumcheck = 0;
+        });
+     });
+
 
 
 
@@ -2229,33 +2237,44 @@ function lastcal() {
    //alert(totaltemp);
    $("#totalcost").val(totaltemp);
    $("#callist").show();
-
+   window.sumcheck = 1;
   }
 
   function checkreq(casesubmit) {
 
     if(casesubmit=='1'||casesubmit=='2')
     {
+
       if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
       {
-        swal({
-        title: 'แน่ใจหรือไม่',
-        text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ok',
-        cancelButtonText: 'Cancel'
-      }).then(function () {
-        submitfunc(casesubmit);
-      }, function (dismiss) {
-      // dismiss can be 'cancel', 'overlay',
-      // 'close', and 'timer'
-      if (dismiss === 'cancel') {
+        if(window.sumcheck==1 || casesubmit=='2')
+        {
+            swal({
+            title: 'แน่ใจหรือไม่',
+            text: 'คุณต้องการยืนยันเพื่อส่งข้อมูลใช่หรือไม่',
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ok',
+            cancelButtonText: 'Cancel'
+          }).then(function () {
+            window.sumcheck = 0;
+            submitfunc(casesubmit);
+          }, function (dismiss) {
+          // dismiss can be 'cancel', 'overlay',
+          // 'close', and 'timer'
+          if (dismiss === 'cancel') {
 
-      }
-        })
+          }
+            })
+          }else {
+            swal(
+              '',
+              'กรุณากดปุ่ม "คำนวณค่าใช้จ่ายทั้งหมด" ในหัวข้อที่ 3',
+              'error'
+            )
+          }
       }
       else {
 
@@ -2535,12 +2554,12 @@ function lastcal() {
             <li>ค่าสอนพิเศษ</li>
             <div class="checkbox">
               <div class="form-group">
-                <input type="checkbox" class="resetchecked"  name="costspec" id="costspec1" value="choice1"> &nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control formlength numonly resetvalue" name="choice1num" id="choice1num"  size="5" value="0"> ต่อชม.&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue" id="choice1hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
+                <input type="checkbox" class="resetchecked"  name="costspec" id="costspec1" value="choice1"> &nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control formlength numonly resetvalue keyupcheck" name="choice1num" id="choice1num"  size="5" value="0"> ต่อชม.&nbsp;
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue keyupcheck" id="choice1hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
               <input type="text" class="form-control formlength numonly resetvalue" id="choice1cost" size="5" data-minlength="5" min="0" max="99999" value="0" READONLY>&nbsp;&nbsp;บาท
               </div><br>
-              <div class="form-group"><input type="checkbox" class="resetchecked" name="costspec" id="costspec2" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ <input type="text" class="form-control formlength numonly resetvalue" name="choice2num" id="choice2num" size="5" value="0"> ต่อชม.&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue" id="choice2hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
+              <div class="form-group"><input type="checkbox" class="resetchecked" name="costspec" id="costspec2" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ <input type="text" class="form-control formlength numonly resetvalue keyupcheck" name="choice2num" id="choice2num" size="5" value="0"> ต่อชม.&nbsp;
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue keyupcheck" id="choice2hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
               <input type="text" class="form-control formlength numonly resetvalue" id="choice2cost" size="5" data-minlength="5" min="0" max="99999" value="0" READONLY>&nbsp;&nbsp;บาท
               </div>
             </div>
@@ -2548,13 +2567,13 @@ function lastcal() {
           <div class="form-inline">
             <li>ค่าพาหนะเดินทาง </li>
             <div class="checkbox">
-              <div class="form-group"><label><input type="checkbox" class="resetchecked"name="transchoice" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control formlength resettext" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control formlength resettext" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue" name="planecost" id="planecost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
+              <div class="form-group"><label><input type="checkbox" class="resetchecked"name="transchoice" id="transplane">&nbsp;&nbsp;เครื่องบิน ระหว่าง &nbsp;<input type="text" class="form-control formlength resettext" name="AIR_DEPART" id="AIR_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control formlength resettext" name="AIR_ARRIVE" id="AIR_ARRIVE" placeholder="ปลายทาง"/>  &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue keyupcheck" name="planecost" id="planecost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
               <br>
-              <div class="form-group"><label><input type="checkbox" class="resetchecked" name="transchoice" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control formlength resettext" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control formlength resettext" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue" name="taxicost" id="taxicost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
+              <div class="form-group"><label><input type="checkbox" class="resetchecked" name="transchoice" id="transtaxi">&nbsp;&nbsp;ค่า taxi &nbsp;<input type="text" class="form-control formlength resettext" name="TAXI_DEPART" id="TAXI_DEPART" placeholder="ต้นทาง"/> - <input type="text" class="form-control formlength resettext" name="TAXI_ARRIVE" id="TAXI_ARRIVE" placeholder="ปลายทาง"/> &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue keyupcheck" name="taxicost" id="taxicost" size="5" value="0">&nbsp;&nbsp;บาท</label></div>
               <br>
               <div class="form-group"><label><input type="checkbox" class="resetchecked" name="transchoice" id="transselfcar">&nbsp;&nbsp;รถยนต์ส่วนตัว ระยะทางไป-กลับ ระยะทาง &nbsp;
-                <input type="text" class="form-control formlength numonly resetvalue" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="1" min="0" max="9999" value="0"> &nbsp;กิโลเมตร  กิโลเมตรละ
-                <input type="text" class="form-control formlength numonly resetvalue" name="selfunit" id="selfunit" size="4" value="0">
+                <input type="text" class="form-control formlength numonly resetvalue keyupcheck" name="SELF_DISTANCT" id="SELF_DISTANCT" size="5" data-minlength="1" min="0" max="9999" value="0"> &nbsp;กิโลเมตร  กิโลเมตรละ
+                <input type="text" class="form-control formlength numonly resetvalue keyupcheck" name="selfunit" id="selfunit" size="4" value="0">
                  บาท &nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
                 <input type="text" class="form-control formlength numonly resetvalue" name="selfcost" id="selfcost" size="5" data-minlength="2" min="0" max="99999" value="0" READONLY >&nbsp;&nbsp;บาท</label></div>
               </div>
@@ -2563,10 +2582,10 @@ function lastcal() {
             <li>ค่าที่พัก</li>
             <div class="form-group"><div class="radio">
               <input type="radio" name="hotelchoice" id="hotelchoice" value="way3" required checked>&nbsp;&nbsp; ไม่เบิกค่าที่พัก&nbsp;&nbsp;<br>
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน <input type="text" class="form-control formlength numonly resetvalue" name="way1unit" id="way1unit" size="4" value="0" > บาท/คน/คืน&nbsp;&nbsp;<br>
-              <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน <input type="text" class="form-control formlength numonly resetvalue" name="way2unit" id="way2unit" size="4" value="0" > บาท/คน/คืน &nbsp;&nbsp;
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way1" >&nbsp;&nbsp; เบิกได้เท่าจ่ายจริงไม่เกิน <input type="text" class="form-control formlength numonly resetvalue keyupcheck" name="way1unit" id="way1unit" size="4" value="0" > บาท/คน/คืน&nbsp;&nbsp;<br>
+              <input type="radio" name="hotelchoice" id="hotelchoice" value="way2">&nbsp;&nbsp; เบิกในลักษณะเหมาจ่ายไม่เกิน <input type="text" class="form-control formlength numonly resetvalue keyupcheck" name="way2unit" id="way2unit" size="4" value="0" > บาท/คน/คืน &nbsp;&nbsp;
             </div></div>
-            <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue" name="numnight" id="numnight" size="5" min="0" max="99999" value="0"  >&nbsp;&nbsp;คืน
+            <br><div class="form-group">จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue keyupcheck" name="numnight" id="numnight" size="5" min="0" max="99999" value="0"  >&nbsp;&nbsp;คืน
             &nbsp;&nbsp;คิดเป็นเงิน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue" name="pernight" id="pernight" size="5" min="0" max="99999" value="0" READONLY  >&nbsp;&nbsp;บาท
           </div>
           </div>
