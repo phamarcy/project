@@ -251,9 +251,9 @@ $(function() {//<-- wrapped here
                                             <thead>
                                                 <tr>
                                                     <th width="10%">#</th>
-                                                    <th width="70%">ชื่อ - สกุล</th>
+                                                    <th width="60%">ชื่อ - สกุล</th>
                                                     <th width="10%">CV</th>
-                                                    <th width="10%">Instructor Form</th>
+                                                    <th width="20%">Instructor Form</th>
                                                 </tr>
                                             </thead>
                                             <tbody>';
@@ -262,9 +262,9 @@ $(function() {//<-- wrapped here
                                               $num_special = $j+1;
                                               echo '<tr>
                                                   <td width="10%">'.$num_special.'</td>
-                                                  <td width="70%">'.$data_special['info'][$i]['special'][$j]['name'].'</td>
+                                                  <td width="60%">'.$data_special['info'][$i]['special'][$j]['name'].'</td>
                                                   <td width="10%"><a target="_blank" href="../../files'.$data_special['info'][$i]['special'][$j]['cv'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
-                                                  <td width="10%"><a target="_blank" href="'.$data_special['info'][$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                                                  <td width="20%"><a target="_blank" href="'.$data_special['info'][$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
                                                   </tr>';
                                             }
                                             echo '</tbody>
