@@ -864,7 +864,7 @@ class Course
   }
   public function Get_Course_Info($course_id)
   {
-    $sql = "SELECT `course_id`,`course_name_en`,`course_name_th`,`credit`
+    $sql = "SELECT `course_id`,`course_name_en`,`course_name_th`,`credit`,`department_id`
     FROM `course` WHERE `course_id` ='".$course_id."'";
     $result = $this->DB->Query($sql);
     if($result)
