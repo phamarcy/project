@@ -318,7 +318,14 @@ else {
                       <div class="form-group">
                           <label for="">วิชา</label>
                           <select class="form-control resize select2" name="course" id="search_course_id" >
-                              <?php foreach ($course->Get_All_Course($department['code']) as $value_course): ?>
+                              <?php 
+                              if ($_SESSION['level']==3 || $_SESSION['admission']==3) {
+                                $selectcourse=$course->Get_All_Course('all');
+                              }else {
+                                $selectcourse=$course->Get_All_Course($department['code']);
+                              }
+                              
+                              foreach ($selectcourse as $value_course): ?>
                                 <option value="<?php echo $value_course['id'] ?>"><?php echo $value_course['id']." ".$value_course['name']['en']; ?></option>
                               <?php endforeach; ?>
                             </select>
@@ -1139,7 +1146,7 @@ else {
         var name_s = $("#TEACHERLEC_" + no).val();
 
         $("#dtl" + no).html('');
-        if (name_s.length > 0) {
+        if (name_s.length > 1) {
           $.post("search_name.php", {
               name: name_s
             }, function (data) {
