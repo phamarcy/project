@@ -141,6 +141,7 @@ else {
           overflow-y: scroll;
       }
       .bigdrop {
+        display: -ms-flexbox;,
           width: 300px !important;
       }
       @media screen and (max-width: 767px) {
