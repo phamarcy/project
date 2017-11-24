@@ -32,20 +32,9 @@ class Course
 
   public function Add_Course($data)
   {
-      if($_SESSION['level'] == '3' || $_SESSION['level'] == '7')
-      {
-        $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`,`department_id`)
-        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]."',NULL)";
-        $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]."',`department_id` = NULL";
-      }
-      else
-      {
-        $dept = $this->PERSON->Get_Staff_Dep($_SESSION['id']);
-        $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`,`department_id`)
-        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]."','".$dept['code']."')";
-        $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]."',`department_id` = '".$dept['code']."'";
-      }
-
+      $sql = "INSERT INTO `course`( `course_id`, `course_name_en`, `course_name_th`, `credit`,`department_id`)
+        VALUES ('".$data["COURSE_ID"]."','".$data["NAMEENG"]."','".$data["NAMETH"]."','".$data["CREDIT"]."','".$data['DEPARTMENT']."')";
+      $sql .= "  ON DUPLICATE KEY UPDATE `course_name_en`= '".$data["NAMEENG"]."',course_name_th = '".$data["NAMETH"]."',`credit` = '".$data["CREDIT"]."',`department_id` = '".$data['DEPARTMENT']."'";
       $result = $this->DB->Insert_Update_Delete($sql);
       if($result)
       {
@@ -86,10 +75,10 @@ class Course
     if($dept_id != 'all')
     {
       $sql .=" WHERE `department_id` = '".$dept_id."'";
-      if($_SESSION['level'] == '3' || $_SESSION['level'] == '7')
-      {
-        $sql .= " OR `department_id` is NULL";
-      }
+    }
+    else if($dept_id == null)
+    {
+      $sql .= "WHERE `department_id` is NULL";
     }
     $result = $this->DB->Query($sql);
     if($result)
