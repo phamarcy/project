@@ -194,7 +194,20 @@ if (isset($_SESSION['term']) && isset($_SESSION['grade']))
     
     
 <script type="text/javascript">
-
+ $(document).ready(function () {
+    $('input[type=file]').change(function () {
+      var val = $(this).val().toLowerCase();
+      var regex = new RegExp("(.*?)\.(xlsx|xls)$");
+      if (!(regex.test(val))) {
+        $(this).val('');
+        swal({
+        type: "warning",
+        text: "กรุณาเลือกไฟล์ Excel ที่มีนามสกุล .xlsx , .xls",
+        confirmButtonText: "ตกลง!",
+      });
+      }
+    });
+  });
 function uploadFile(course){
   var text = "grade_"+course;
   var checkfile = document.getElementById(text).value;
