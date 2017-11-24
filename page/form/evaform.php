@@ -95,6 +95,10 @@
       font-weight:normal;
   }
 
+  select{
+    height:35px;
+  }
+
   </style>
 
 <script id="contentScript">
@@ -2064,7 +2068,7 @@ $(document).ready(function(){
       //alert('กรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง\nคะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100');
     }
     else {
-      
+
       window.sumcheck = 1;
       $('#MEASURE_TOTALLEC').val(callec);
       $('#MEASURE_TOTALLAB').val(callab);
@@ -2319,7 +2323,7 @@ function confreset(casereset) {
     <div class="form-inline">
       <div class="form-group " style="font-size:16px;">
          ดึงข้อมูลย้อนหลัง
-        <select class="form-control formlength required" id="semester" name="semester" style="width: 300px;" required >
+        <select class="form-control formlength required" id="semester" name="semester" style="width: 300px; " required >
         </select>
        </div>
        <input type="button" class="btn btn-outline btn-primary" name="subhead" id="subhead" value="ยืนยัน" onclick="checksubject(2,1);">
@@ -2517,7 +2521,7 @@ function confreset(casereset) {
                       จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" style="width: 70px" class="form-control formlength numonly" name="MIDEXAM_HOUR_LEC" id="MIDEXAM_HOUR_LEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
                     </div>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                      <select style="height: 28px;" name="mexholec" id="mexholec" class="form-control formlength numonly" onchange="midexam_hour_lec()">
+                      <select name="mexholec" id="mexholec" class="form-control formlength numonly" onchange="midexam_hour_lec()">
           <option value="0" selected>0</option>
           <?php
             for($i=1;$i<=10;$i++)
@@ -2545,7 +2549,7 @@ function confreset(casereset) {
                           จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control formlength numonly" name="MIDEXAM_HOUR_LAB" id="MIDEXAM_HOUR_LAB" size="2" >&nbsp; ชั่วโมง
                         </div>
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                          <select style="height: 28px;" name="mexholac" id="mexholac" class="form-control formlength numonly" onchange="midexam_hour_lab()">
+                          <select  name="mexholac" id="mexholac" class="form-control formlength numonly" onchange="midexam_hour_lab()">
           <option value="0" selected>0</option>
           <?php
             for($i=1;$i<=10;$i++)
@@ -2583,7 +2587,7 @@ function confreset(casereset) {
                       จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input type="text" style="width: 70px" class="form-control formlength numonly" name="MIDEXAM_HOUR_LEC_SEC" id="MIDEXAM_HOUR_LEC_SEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
                     </div>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                      <select style="height: 28px;" name="mexholec_sec" id="mexholec_sec" class="form-control formlength numonly" onchange="midexam_hour_lec_sec()">
+                      <select  name="mexholec_sec" id="mexholec_sec" class="form-control formlength numonly" onchange="midexam_hour_lec_sec()">
           <option value="0" selected>0</option>
           <?php
             for($i=1;$i<=10;$i++)
@@ -2611,7 +2615,7 @@ function confreset(casereset) {
                           จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input type="text" class="form-control formlength numonly" name="MIDEXAM_HOUR_LAB_SEC" id="MIDEXAM_HOUR_LAB_SEC" size="2" >&nbsp; ชั่วโมง
                         </div>
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                          <select style="height: 28px;" name="mexholac_sec" id="mexholac_sec" class="form-control formlength numonly" onchange="midexam_hour_lab_sec()">
+                          <select  name="mexholac_sec" id="mexholac_sec" class="form-control formlength numonly" onchange="midexam_hour_lab_sec()">
           <option value="0" selected>0</option>
           <?php
             for($i=1;$i<=10;$i++)
@@ -2650,7 +2654,7 @@ function confreset(casereset) {
                         จำนวนชั่วโมงการสอบ<b>บรรยาย</b>&nbsp;:&nbsp;<input  style="width: 70px"type="text" class="form-control formlength numonly" name="FINEXAM_HOUR_LEC" id="FINEXAM_HOUR_LEC" size="2" maxlength="3" >&nbsp; ชั่วโมง
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                        <select style="height: 28px;" name="fexholec" id="fexholec" class="form-control formlength numonly" onchange="finexam_hour_lec()">
+                        <select name="fexholec" id="fexholec" class="form-control formlength numonly" onchange="finexam_hour_lec()">
           <option value="0" selected>0</option>
           <?php
             for($i=1;$i<=10;$i++)
@@ -2679,7 +2683,7 @@ function confreset(casereset) {
                             จำนวนชั่วโมงการสอบ<b>ปฏิบัติการ</b>&nbsp;:&nbsp;<input style="width: 70px" type="text" class="form-control formlength numonly" name="FINEXAM_HOUR_LAB" id="FINEXAM_HOUR_LAB" size="2" maxlength="3" >&nbsp; ชั่วโมง
                           </div>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนกรรมการคุมสอบ&nbsp;
-                            <select style="height: 28px;" name="fexholac" id="fexholac" class="form-control formlength numonly" onchange="finexam_hour_lab()">
+                            <select name="fexholac" id="fexholac" class="form-control formlength numonly" onchange="finexam_hour_lab()">
           <option value="0" selected>0</option>
           <?php
             for($i=1;$i<=10;$i++)
