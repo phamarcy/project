@@ -192,17 +192,20 @@ class Course
   {
     $DATA = array();
     $curr_semester = $this->DEADLINE->Get_Current_Semester();
-    for($i=1;$i<=3;$i++)
+    if($curr_semester != false)
     {
-      $history = $this->DEADLINE->Search_Semester_id($curr_semester['semester'],$curr_semester['year'] - $i );
-      if($history != false)
+      for($i=1;$i<=3;$i++)
       {
-        $data['id'] = $history;
-        $data['semester'] = $curr_semester['semester'];
-        $data['year'] = $curr_semester['year'] - $i;
-        if($this->Get_Dept_Course($department_id,$data['id']) != null)
+        $history = $this->DEADLINE->Search_Semester_id($curr_semester['semester'],$curr_semester['year'] - $i );
+        if($history != false)
         {
-          array_push($DATA,$data);
+          $data['id'] = $history;
+          $data['semester'] = $curr_semester['semester'];
+          $data['year'] = $curr_semester['year'] - $i;
+          if($this->Get_Dept_Course($department_id,$data['id']) != null)
+          {
+            array_push($DATA,$data);
+          }
         }
       }
     }
