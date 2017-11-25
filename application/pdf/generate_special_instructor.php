@@ -316,7 +316,7 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','โทรศัพท�
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','โทรศัพท์มือถือ '.$data_pdf['phone_mobile']))+3,7,iconv( 'UTF-8','TIS-620','โทรศัพท์มือถือ '.$data_pdf['phone_mobile']),0,"C");
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','อีเมลล์ '.$data_pdf['email'])),7,iconv( 'UTF-8','TIS-620','อีเมลล์ '.$data_pdf['email']),0,1,"C");
 $pdf->SetX(32);
-$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','กระบวนวิชานี้เป็นวิชา'))+5,7,iconv( 'UTF-8','TIS-620','หัวข้อที่เชิญมาสอน      '),0,"C");
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ประวัติการเชิญมาสอน '))+5,7,iconv( 'UTF-8','TIS-620','ประวัติการเชิญมาสอน    '),0,"C");
 $pdf->SetFont('ZapfDingbats','',14);
 if((int)$data_pdf['invited'] == 0)
 {
