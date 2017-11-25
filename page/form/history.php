@@ -43,6 +43,11 @@ if (isset($_POST['subject'])) {
     <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
     <!--ใช้ตัวนี้-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+    <style>
+        .pull-right {
+        margin-top: 0px;
+      }
+    </style>
     <script>
     var status = <?php echo $status; ?>;
     var msg = <?php echo $msg; ?>;
@@ -73,7 +78,7 @@ if (isset($_POST['subject'])) {
                 <input type="text" name="subject" class="form-control numonly" id="id" name="id" size="7" placeholder="e.g. 204111" maxlength="6" pattern=".{6,6}" required>
               </div>
               <input type="hidden" name="type" value="1">
-              <button type="submit" class="btn btn-outline btn-primary" >ค้นหา</button>
+              <button type="submit" class="btn  btn-primary" >ค้นหา</button>
             </div>
           </form>
           </center>
@@ -82,8 +87,6 @@ if (isset($_POST['subject'])) {
 
       $i =1;if (isset($history['comment'])):
         if (is_array($history['comment']) || is_object($history['comment'])) {
-
-        
         ?>
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -115,7 +118,7 @@ if (isset($_POST['subject'])) {
                                 <td ><?php echo $history['id'] ?></td>
                                 <td><?php echo $history['name'] ?></td>
                                 <td style="text-align:center;"><?php $x = array_keys($history['comment']); echo $x[$year];?></td>
-                                <td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#course<?php echo $year;?>" class="accordion-toggle">ดูข้อมูล</button></td>
+                                <td><button type="button" class="btn  btn-primary" data-toggle="collapse" data-target="#course<?php echo $year;?>" class="accordion-toggle">ดูข้อมูล</button></td>
                               </tr>
                           <tr class="hiddenRow">
                             <td colspan="12">
@@ -127,12 +130,16 @@ if (isset($_POST['subject'])) {
                                   <div class="panel-body">
                                     <div class="panel-group" id="comment<?php echo $x[$year] ?> ">
                                       <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                          <div class="panel-title" style="font-size:14px">
-                                            <a data-toggle="collapse" href="#comment<?php echo $x[$year] ?>-2"><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</b></a>
+                                        <div class="panel-heading clearfix">
+                                          <div class="panel-title pull-left" style="font-size:14px;padding-top: 8px">
+                                            <a data-toggle="collapse"  href="#comment" ><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</b></a>
                                           </div>
+                                        <div class="pull-right">
+                                            <button type="button" class="btn  btn-primary" data-toggle="collapse" data-target="#comment<?php echo $history['id'].str_replace('/','',$x[$year]) ?>" class="accordion-toggle">ดูข้อเสนอแนะ</button>                                          
                                         </div>
-                                        <div id="comment<?php echo $x[$year] ?>-2" class="panel-collapse collapse in">
+                                        </div>
+                                        
+                                        <div id="comment<?php echo $history['id'].str_replace('/','',$x[$year]) ?>" class="panel-collapse collapse">
                                           <div class="panel-body">
                                             <table class="table " style="font-size:14px">
                                               <thead>
@@ -169,12 +176,15 @@ if (isset($_POST['subject'])) {
                                             <div class="panel-group" id="teachersp<?php echo $x[$year] ?>">
                                               <?php foreach ($value['special'] as $keysp => $valuesp): ?>
                                                 <div class="panel panel-default">
-                                                  <div class="panel-heading">
-                                                    <div class="panel-title" style="font-size:14px">
-                                                        <a data-toggle="collapse" data-parent="#teachersp<?php echo $keysp.$year ?>" href="#teachersp<?php echo $keysp.$year ?>"><?php echo $valuesp['name'] ?></a>
+                                                  <div class="panel-heading clearfix">
+                                                    <div class="panel-title pull-left" style="font-size:14px;padding-top: 8px">
+                                                        <a data-toggle="collapse" data-parent="#teachersp<?php echo $keysp.$year.str_replace('/','',$x[$year]) ?>"><?php echo $valuesp['name'] ?></a>
+                                                    </div>
+                                                    <div class="pull-right">
+                                                      <button type="button" class="btn  btn-primary" data-toggle="collapse" data-target="#teachersp<?php echo $keysp.$year.str_replace('/','',$x[$year]) ?>" class="accordion-toggle">ดูข้อเสนอแนะ</button>                                          
                                                     </div>
                                                   </div>
-                                                  <div id="teachersp<?php echo $keysp.$year ?>" class="panel-collapse collapse">
+                                                  <div id="teachersp<?php echo $keysp.$year.str_replace('/','',$x[$year]) ?>" class="panel-collapse collapse">
                                                     <div class="panel-body">
                                                       <table class="table " style="font-size:14px">
                                                         <thead>
