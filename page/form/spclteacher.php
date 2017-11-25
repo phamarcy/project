@@ -147,7 +147,13 @@ li {
    document.getElementById('mobile').value = temp['phone_mobile'];
    document.getElementById('email').value = temp['email'];
    //var choice1 = temp['TEACHERDATA']['HISTORY'];
-   $('input[name="topic"][value="already"]').prop('checked', true);
+   if(temp['invited']=='1')
+   {
+     $('input[name="topic"][value="already"]').prop('checked', true);
+   }else {
+     $('input[name="topic"][value="yet"]').prop('checked', true);
+   }
+
    if(document.querySelector("input[name='topic']:checked").value=="already")
      {
        $('#cvlist').hide();
