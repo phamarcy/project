@@ -81,7 +81,7 @@ $Excel->getActiveSheet(0)->getStyle("A1:W3")->getFont()->setBold(true);
 //cell border
 $sheet1->getStyle('A1')->applyFromArray($border);
 $sheet1->getStyle('A2:B2')->applyFromArray($border);
-$sheet1->getStyle('A3:T3')->applyFromArray($border);
+$sheet1->getStyle('A3:W3')->applyFromArray($border);
 $Excel->getActiveSheet(0)
         ->setTitle('เกณฑ์การประเมินผล');
         foreach(range('A','Z') as $columnID)
