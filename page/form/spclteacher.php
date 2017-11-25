@@ -1123,12 +1123,18 @@ li {
   var costtotal = fixedcosttotal.toFixed(2);
 
   //HISTORY
-  if(document.querySelector("input[name='topic']:checked").value == "already")
+  if(casesubmit=='1')
   {
-    var historyteacher = 1;
+    if(document.querySelector("input[name='topic']:checked").value == "already")
+    {
+      var historyteacher = 1;
+    }else {
+      var historyteacher = 0;
+    }
   }else {
     var historyteacher = 0;
   }
+
 
   //split teachername
   var teachername_temp = document.getElementById('teachername').value;
