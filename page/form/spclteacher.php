@@ -2278,7 +2278,7 @@ function lastcal() {
 
       if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
       {
-        if(window.sumcheck==1 || casesubmit=='2')
+        if(window.sumcheck==1 || casesubmit=='2' || document.querySelector("input[name='paymethod']:checked").value == "0")
         {
             swal({
             title: 'แน่ใจหรือไม่',
