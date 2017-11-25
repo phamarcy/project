@@ -8,6 +8,11 @@ require_once(__DIR__."/../../application/class/person.php");
 require_once(__DIR__.'/../../application/class/manage_deadline.php');
 require_once(__DIR__."/../../application/class/course.php");
 require_once(__DIR__."/../../application/class/approval.php");
+if (isset($_SESSION['edithome'])) {
+  if ($_SESSION['edithome']==1) {
+    $_SESSION['level']=6;
+  }
+}
 $person = new Person();
 $deadline = new Deadline();
 $course = new course();

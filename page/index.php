@@ -53,7 +53,8 @@
 		}
 	}
 	if (isset($_GET['level'])) {
-		$_SESSION['level'] = $_GET['level'];
+		$_SESSION['level']    = $_GET['level'];
+		$_SESSION['edithome'] = $_GET['level'];
 	}
 	if ($check_assessor[0]==2) {
 		$show_btndep=1;
