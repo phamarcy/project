@@ -297,6 +297,8 @@ class approval
       }
       else if((int)$status_after == 7)
       {
+        $sql = "UPDATE `special_instructor` SET `invited` = '1' WHERE `instructor_id` = ".$instructor_id;
+        $result = $this->DB->Insert_Update_Delete($sql);
         //starting generate pdf
         $pdf_complete = $this->Send_Complete_Special($course_id,$instructor_id,'4');
         $pdf_result = json_decode($pdf_complete,true);
