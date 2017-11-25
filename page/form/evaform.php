@@ -2385,7 +2385,7 @@ function confreset(casereset) {
             <div class=" form-group">&nbsp;&nbsp;&nbsp;&nbsp;จำนวนหน่วยกิตทั้งหมด &nbsp;<input type="text" class="form-control formlength" name="TOTAL" id="TOTAL" size="5" maxlength="10" required pattern=".{8,10}" readonly>&nbsp; หน่วยกิต
             </div></div>
           </div>
-          <div class="form-group"><div class="form-inline" id="secdiv1">&nbsp;นักศึกษาที่ลงทะเบียนเรียนในตอนที่ 1 จำนวน&nbsp;<input style="width: 70px;" type="text" class="form-control formlength numonly" name="ENROLL1" id="ENROLL1" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>
+          <div class="form-group"><div class="form-inline" id="secdiv1">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ 1 จำนวน&nbsp;<input style="width: 70px;" type="text" class="form-control formlength numonly" name="ENROLL1" id="ENROLL1" size="2" maxlength="3" pattern=".{1,3}" required>&nbsp;คน </div>
             <?php
                 for ($i=2; $i<=5 ; $i++) {
                   echo '<div class="form-inline hide" style="display:none;" id="secdiv'.$i.'">นักศึกษาที่ลงทะเบียนเรียนในตอนที่ '.$i.' จำนวน&nbsp;<input style="width: 70px; display: none;" type="text" class="form-control formlength numonly" name="ENROLL'.$i.'" id="ENROLL'.$i.'" size="2" maxlength="3" pattern=".{1,3}">&nbsp;คน </div>';
