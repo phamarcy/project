@@ -63,6 +63,7 @@ $dept = $courseobj->Get_Dept_All();
 
  <style>
  input[type=text],input[type=date],input[type=time]{
+   font-weight:normal;
    height: 30px;
  }
 
@@ -82,6 +83,12 @@ table { width: auto !important; }
   width: 70%;
   resize: none;
 }
+
+
+li {
+    list-style-type: none;
+}
+
 
  </style>
 
@@ -2444,7 +2451,7 @@ function lastcal() {
     <ol>
 
       <li style="font-size: 14px;">
-        <b>รายละเอียดของอาจารย์พิเศษ</b>
+        <b>1. รายละเอียดของอาจารย์พิเศษ</b>
         <br>
         <div class="row">
           <ul>
@@ -2501,7 +2508,7 @@ function lastcal() {
       </li>
       <br>
       <li style="font-size: 14px;">
-        <b>รายละเอียดกระบวนวิชา</b>
+        <b>2. รายละเอียดกระบวนวิชา</b>
           <div class="row">
             <ul>
               <div class="form-inline">
@@ -2545,7 +2552,7 @@ function lastcal() {
       </li>
       <br>
       <li  style="font-size: 14px;;">
-        <b>ค่าใช้จ่าย </b>
+        <b>3. ค่าใช้จ่าย </b>
         <ul>
         <div class="form-inline">
           <div class="radio">
@@ -2615,7 +2622,7 @@ function lastcal() {
         </ul>
       </li>
       <li  style="font-size: 14px;" >
-        <b>เลือกไฟล์ Curriculum Vitae (CV) เพื่ออัปโหลด : </b><br />
+        <b>4. เลือกไฟล์ Curriculum Vitae (CV) เพื่ออัปโหลด : </b><br />
       <div id="cvdanger" class="col-md-5 form-inline form-group">
         <input type="file" class="filestyle" id="cv" name="cv" accept=".doc,.docx,.pdf" data-icon="false"><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
       </div>
