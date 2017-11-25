@@ -22,9 +22,6 @@ $type_status=$course->Get_Status_Text();
 
 $data_course     = json_decode($var, true);
 
-
-echo '<pre>'; var_dump($_SESSION); echo '</pre>';
-
 ?>
 <html>
 
