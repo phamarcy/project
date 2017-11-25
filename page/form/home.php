@@ -22,6 +22,9 @@ $type_status=$course->Get_Status_Text();
 
 $data_course     = json_decode($var, true);
 
+
+echo '<pre>'; var_dump($_SESSION); echo '</pre>';
+
 ?>
 <html>
 
@@ -287,7 +290,7 @@ $data_course     = json_decode($var, true);
 																<?php
 															} ?>
 																	<?php endif; ?>
-															<?php if (($value_course['evaluate']['edit']==true && ($value_course['evaluate']['status']==1|| $value_course['evaluate']['status']==3 || $value_course['evaluate']['status']==6) && ($_SESSION['level']==1 || $_SESSION['level']==2 || $_SESSION['admission']==1 || $_SESSION['admission']==2 )) || ( $value_course['evaluate']['status']==3 || $value_course['evaluate']['status']==6 )&&( $_SESSION['level']==1 || $_SESSION['level']==2 || $_SESSION['admission']==1 || $_SESSION['admission']==2) ): ?>
+															<?php if (($value_course['evaluate']['edit']==true && ($value_course['evaluate']['status']==1|| $value_course['evaluate']['status']==3 || $value_course['evaluate']['status']==6) && ($_SESSION['level']==1 || $_SESSION['level']==2  )) || ( $value_course['evaluate']['status']==3 || $value_course['evaluate']['status']==6 )&&( $_SESSION['level']==1 || $_SESSION['level']==2 ) ): ?>
 																<form action="evaform.php" method="post" class="forminline">
 																	<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
 																	<input type="hidden" name="semester" value="<?php echo $semester['semester'] ?>">
@@ -433,7 +436,7 @@ $data_course     = json_decode($var, true);
 																				<?php }
 																					} ?>
 																				
-																				<?php if (($valuesp['edit']==true && ($valuesp['status']==1 || $valuesp['status']==3 || $valuesp['status']==6) && ($_SESSION['level']==1 || $_SESSION['level']==2 || $_SESSION['admission']==1 || $_SESSION['admission']==2 )) || ( $valuesp['status']==3 || $valuesp['status']==6)&& ( $_SESSION['level']==1 || $_SESSION['level']==2 || $_SESSION['admission']==1 || $_SESSION['admission']==2)&&!$_SESSION['level']==6 ): ?>
+																				<?php if (($valuesp['edit']==true && ($valuesp['status']==1 || $valuesp['status']==3 || $valuesp['status']==6) && ($_SESSION['level']==1 || $_SESSION['level']==2  )) || ( $valuesp['status']==3 || $valuesp['status']==6)&& ( $_SESSION['level']==1 || $_SESSION['level']==2 )): ?>
 																				<form action="spclteacher.php" method="post" class="forminline">
 																				<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
 																				<input type="hidden" name="name" value="<?php echo $valuesp['name'] ?>">
