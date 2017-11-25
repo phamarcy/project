@@ -1298,7 +1298,7 @@ function senddata(data,file_data,casesubmit)
                        timer: 2000,
                        confirmButtonText: 'Ok'
                      }).then(function () {
-                       location.reload();
+                       window.location.reload();
                      }, function (dismiss) {
                      // dismiss can be 'cancel', 'overlay',
                      // 'close', and 'timer'
