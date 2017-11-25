@@ -66,8 +66,8 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
     {
       if($info == 'special') //special instrucor
       {
-        $sql = "SELECT `course_id`,`instructor_id`,`pdf_file` FROM `course_hire_special_instructor` WHERE `status` = '1' AND `semester_id` = ".$semester_id;
-        $sql .= " AND ce.`course_id` IN (SELECT `course_id` FROM `department_course_responsible` WHERE `department_id` = '".$dept."' AND `semester_id` = ".$semester_id.")";
+        $sql = "SELECT ci.`course_id`,ci.`instructor_id`,ci.`pdf_file` FROM `course_hire_special_instructor` ci WHERE `status` = '1' AND `semester_id` = ".$semester_id;
+        $sql .= " AND ci.`course_id` IN (SELECT `course_id` FROM `department_course_responsible` WHERE `department_id` = '".$dept."' AND `semester_id` = ".$semester_id.")";
         $result = $db->Query($sql);
         if($result)
         {
