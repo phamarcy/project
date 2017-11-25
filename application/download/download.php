@@ -33,6 +33,7 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
   $semester_id = $deadline->Search_Semester_id($semester,$year);
   $info = $_GET['info']; //evaluate , special
   $type = $_GET['type'];
+  $dept = $_GET['dept'];
   $zip = new ZipArchive();
   if($type == "report")
   {
@@ -66,6 +67,7 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
       if($info == 'special') //special instrucor
       {
         $sql = "SELECT `course_id`,`instructor_id`,`pdf_file` FROM `course_hire_special_instructor` WHERE `status` = '1' AND `semester_id` = ".$semester_id;
+        $sql .= " AND ce.`course_id` IN (SELECT `course_id` FROM `department_course_responsible` WHERE `department_id` = '".$dept."' AND `semester_id` = ".$semester_id.")";
         $result = $db->Query($sql);
         if($result)
         {
@@ -79,6 +81,8 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
       {
         $sql = "SELECT `course_id`,`pdf_file` FROM `course_evaluate` ce, `student_evaluate` se" ;
         $sql .= " WHERE  ce.`course_evaluate_id` = se.`course_evaluate_id` AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id;
+        $sql .= " AND ce.`course_id` IN (SELECT `course_id` FROM `department_course_responsible` WHERE `department_id` = '".$dept."' AND `semester_id` = ".$semester_id.")";
+        die($sql);
         $result = $db->Query($sql);
         if($result)
         {

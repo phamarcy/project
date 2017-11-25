@@ -73,7 +73,7 @@ class Report
       }
       $DATA = array();
       $DATA['info'] = array();
-      $DATA['download'] = $this->DOWNLOAD_URL."?course=all&type=report&info=evaluate&semester=".$semester."&year=".$year;
+      $DATA['download'] = $this->DOWNLOAD_URL."?course=all&type=report&dept=".$dept_id."&info=evaluate&semester=".$semester."&year=".$year;
       $sql ="SELECT `course_id` FROM `course_evaluate` WHERE `status` = '1' AND `semester_id` = ".$semester_id;
       $result = $this->DB->Query($sql);
       if($result)
@@ -156,7 +156,7 @@ class Report
       }
       $DATA = array();
       $DATA['info'] = array();
-      $DATA['download'] = $this->DOWNLOAD_URL."?course=all&type=report&info=special&semester=".$semester."&year=".$year;
+      $DATA['download'] = $this->DOWNLOAD_URL."?course=all&type=report&dept=".$dept_id."info=special&semester=".$semester."&year=".$year;
       $sql = "SELECT DISTINCT `course_id` FROM `course_hire_special_instructor` WHERE `status` = '1' AND `semester_id` = ".$semester_id;
       $result_course = $this->DB->Query($sql);
       if($result_course)
