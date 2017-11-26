@@ -925,7 +925,7 @@ else
 
 }
 $file_path = $file_path."/evaluate";
-$sec = (int)$num_section + 1;
+$sec = (int)$num_section;
 $file_path_sql = $file_path_sql."/evaluate/evaluate_".$data_pdf['course_id']."_".$sec."_".$semester['semester']."_".$semester['year'].".pdf";
 if(!file_exists($file_path))
 {
