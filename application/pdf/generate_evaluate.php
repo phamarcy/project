@@ -365,7 +365,7 @@ if($DATA['SUBMIT_TYPE'] != '4')
 {
 	$data_pdf['num_section'] = 1;
 }
-for($num_section = 0 ; $num_section < $data_pdf['num_section']; $num_section ++)
+for($num_section = 1 ; $num_section <= $data_pdf['num_section']; $num_section ++)
 {
 $pdf=new FPDF();
 
@@ -388,10 +388,9 @@ $pdf->Cell(0,10,iconv( 'UTF-8','cp874','ภาคการศึกษาที�
 
 $pdf->SetX(20);
 $pdf->SetFont('THSarabun_B','',14);
-$SECTION = '1';
 if($data_pdf['noorspe'] == "NORMAL")
 {
-	$nor_section = $data_pdf['num_section'];
+	$nor_section = $num_section;
 	$nor_credit = $data_pdf['credit_total'];
 	$nor_student = $data_pdf['student'][$num_section];
 	$spe_sction = '-';
@@ -400,7 +399,7 @@ if($data_pdf['noorspe'] == "NORMAL")
 }
 else if($data_pdf['noorspe'] == "SPECIAL")
 {
-	$spe_sction = $SECTION = $data_pdf['num_section'];
+	$spe_sction =  $num_section;
 	$spe_credit = $data_pdf['credit_total'];
 	$spe_student = $data_pdf['student'][$num_section];
 	$nor_section = '-';
