@@ -35,10 +35,11 @@
 		}
 	}
 
+	
 	$show_btn=0;
 	$show_btndep=0;
 	$show_btnmulti=0;
-	if ($check_assessor[1]==true || $check_assessor[2]==true || $_SESSION['level']==6) {
+	if ($check_assessor[1]==true || $check_assessor[2]==true || $_SESSION['level']== 6 || $_SESSION['admission']==1 ) {
 
 		if ($check_assessor[0]==1) {
 			$show_btn=1;
@@ -48,7 +49,7 @@
 
 		if ($check_assessor[1]==true && $check_assessor[2]==true) {
 			$show_btnmulti=1;
-		}elseif($check_assessor[2]==true || $_SESSION['level']==6){
+		}elseif($check_assessor[2]==true || $_SESSION['level']==6 || $_SESSION['admission']==1){
 			$show_btnmulti=1;
 		}
 	}
@@ -59,6 +60,9 @@
 	if ($check_assessor[0]==2) {
 		$show_btndep=1;
 	}
+
+	echo '<pre>$show_btn<br />'; var_dump($check_assessor,$show_btn,$show_btndep,$show_btnmulti); echo '</pre>';
+
 	$person->Close_connection();
  ?>
 <html>
