@@ -467,7 +467,7 @@ else {
     function addgroupstaff() {
       var checkdup=<?php echo count($assessor); ?>;
 
-      console.log(numgroup);
+ 
       if (countgroup == 0) {
       swal({
           title: 'แน่ใจหรือไม่',
@@ -562,7 +562,7 @@ else {
           success: function (data) {
             try {
               var msg = JSON.parse(data);
-              console.log(msg);
+           
               if (msg.status == "error") {
                 swal({
                   type: msg.status,
@@ -624,7 +624,7 @@ else {
 
 
             } catch (e) {
-              //console.log(data);
+              console.log(data);
               swal({
                 type: "error",
                 text: "ผิดพลาด ! กรุณาติดต่อผู้ดูแลระบบ",
@@ -653,7 +653,7 @@ else {
           var textgroup   = "hiddengroup"+course;
           var teacher     = document.getElementById(textteacher).value;
           var group       = document.getElementById(textgroup).value;
-          console.log(teacher,group);
+        
           $.ajax({
                     url:   '../../application/subject/responsible_staff.php',
                     type:  'POST',
@@ -878,7 +878,7 @@ else {
       $("form#course").submit(function () {
         //var file = document.forms['data']['filexcel'].files[0];
         var formData = new FormData(this);
-        //console.log(formData);
+        
         $.ajax({
           url: '../../application/subject/responsible_course_department.php',
           type: 'POST',
@@ -996,7 +996,7 @@ else {
         var hidden = document.getElementById('hidden').value;
         var type = "add_oldcourse";
         var dep = '<?php echo $dep_js ?>';
-        //console.log(dep);
+        
         $.ajax({
           url: '../../application/subject/responsible_course_department.php',
           type: 'POST',
