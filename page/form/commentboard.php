@@ -261,7 +261,7 @@ $end = strtotime($current_semester[0]['last_date']);
 
                       <div class="col-md-12 ">
                         <?php foreach ($data_forapprovalsp as $keysp => $sp) {  ?>
-                        <div class="panel panel-info">
+                        <div class="panel panel-default">
                           <div class="panel-heading">
                             <h5 class="panel-title" style="font-size:14px">
                               <?php echo $sp['id']." ".$sp['name'] ?>
