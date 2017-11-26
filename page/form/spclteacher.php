@@ -1255,8 +1255,9 @@ li {
                                confirmButtonColor: '#3085d6',
                                cancelButtonColor: '#d33',
                                confirmButtonText: 'Ok'
+                               allowOutsideClick: false
                              }).then(function () {
-                               location.reload();
+                               window.location.reload();
                              }, function (dismiss) {
                              // dismiss can be 'cancel', 'overlay',
                              // 'close', and 'timer'

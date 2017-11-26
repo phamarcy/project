@@ -1295,8 +1295,8 @@ function senddata(data,file_data,casesubmit)
                        showCancelButton: false,
                        confirmButtonColor: '#3085d6',
                        cancelButtonColor: '#d33',
-                       timer: 2000,
-                       confirmButtonText: 'Ok'
+                       confirmButtonText: 'Ok',
+                       allowOutsideClick: false
                      }).then(function () {
                        window.location.reload();
                      }, function (dismiss) {

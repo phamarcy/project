@@ -629,9 +629,9 @@ function confreset(casereset) {
       <ul class="nav nav-tabs">
           <li class="active"><a href="#main" data-toggle="tab">วิชาพื้นฐาน</a>
           </li>
-          <li><a href="#care" data-toggle="tab">ภาควิชาบาลเภสัชกรรม</a>
+          <li><a href="#care" data-toggle="tab"><?=$department[1]['name']?></a>
           </li>
-          <li><a href="#science" data-toggle="tab">ภาควิชาวิทยาศาสตร์เภสัชกรรม</a>
+          <li><a href="#science" data-toggle="tab"><?=$department[2]['name']?></a>
           </li>
       </ul>
 
