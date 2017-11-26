@@ -863,6 +863,12 @@ li {
                            confirmButtonText: 'Ok'
                          }).then(function () {
                             $('#dlhide,#search_1hide').show();
+                            if(temp['invited']=="1")
+                            {
+                              $('input[name="topic"][value="already"]').prop('checked', true);
+                            }else {
+                              $('input[name="topic"][value="yet"]').prop('checked', true);
+                            }
                          }, function (dismiss) {
                          // dismiss can be 'cancel', 'overlay',
                          // 'close', and 'timer'
