@@ -392,7 +392,7 @@ if($data_pdf['noorspe'] == "NORMAL")
 {
 	$nor_section = $num_section;
 	$nor_credit = $data_pdf['credit_total'];
-	$nor_student = $data_pdf['student'][$num_section];
+	$nor_student = $data_pdf['student'][$num_section-1];
 	$spe_sction = '-';
 	$spe_credit = '-';
 	$spe_student = '-';
@@ -401,7 +401,7 @@ else if($data_pdf['noorspe'] == "SPECIAL")
 {
 	$spe_sction =  $num_section;
 	$spe_credit = $data_pdf['credit_total'];
-	$spe_student = $data_pdf['student'][$num_section];
+	$spe_student = $data_pdf['student'][$num_section-1];
 	$nor_section = '-';
 	$nor_credit = '-';
 	$nor_student = '-';
