@@ -869,6 +869,9 @@ li {
                             }else {
                               $('input[name="topic"][value="yet"]').prop('checked', true);
                             }
+                            $('#cvlist').show();
+                            $('input[name=cv]').prop('required', true);
+                            $('#course').attr('readonly', false);
                          }, function (dismiss) {
                          // dismiss can be 'cancel', 'overlay',
                          // 'close', and 'timer'
