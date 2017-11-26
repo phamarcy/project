@@ -12,12 +12,15 @@
 	if (empty($_SESSION['admission'])) {
 		$_SESSION['admission']=0;
 	}
+	
 
 	$person = new Person();
 	$course = new Course();
 	$type_status=$course->Get_Status_Text();
 	$check_permission=$person->Check_Grant($_SESSION['id']);
 	$check_assessor=$person->Is_Assessor($_SESSION['id']);
+
+
 
 	if (isset($_POST['change_level'])) {
 		if($_SESSION['level']==1){
@@ -33,33 +36,59 @@
 		}elseif($_SESSION['level']==4){
 			$_SESSION['level']=2;
 		}
+
 	}
+	if (isset($_POST['change_levelfac'])) {
+		if ($_SESSION['level']==3) {
+			$_SESSION['level']=4;
+		}elseif($_SESSION['level']==4){
+			$_SESSION['level']=3;
+		}
 
+	}
+	
 
+	$_SESSION['oldlevel']=$check_assessor[0];
 	$show_btn=0;
 	$show_btndep=0;
+	$show_btnfac=0;
 	$show_btnmulti=0;
-	if ($check_assessor[1]==true || $check_assessor[2]==true || $_SESSION['level']== 6 || $_SESSION['admission']==1 ) {
-
-		if ($check_assessor[0]==1) {
+	$show_btnfacboard=0;
+	$show_btndepboard=0;
+	if ($check_assessor[1]==true || $check_assessor[2]==true || $_SESSION['level']== 6 || $_SESSION['admission']>=1 ) {
+		
+		
+		if ($check_assessor[1]==true && $check_assessor[2]==true) {
+			$show_btnmulti=1;
+		}elseif ( $_SESSION['admission']==1) {
+			$show_btnmulti=1;
+		}elseif ( $_SESSION['admission']==2) {
+			$show_btndepboard=1;
+		}elseif ( $_SESSION['admission']==3) {
+			$show_btnfacboard=1;
+		}
+		elseif($check_assessor[0]==1 && $check_assessor[1]==true  && $_SESSION['admission']==0 && $_SESSION['level']!=6) {
 			$show_btn=1;
-		}else if($check_assessor[0]==4){
+		}elseif ($check_assessor[0]==2 && $_SESSION['admission']==0 && $_SESSION['level']!=6) {
+			$show_btndep=1;
+		}elseif ($check_assessor[0]==3 && $_SESSION['admission']==0 && $_SESSION['level']!=6) {
+			$show_btnfac=1;
+		}
+		else if($check_assessor[0]==4){
 			$show_btn = 0;
 		}
 
-		if ($check_assessor[1]==true && $check_assessor[2]==true) {
-			$show_btnmulti=1;
-		}elseif($check_assessor[2]==true || $_SESSION['level']==6 || $_SESSION['admission']==1){
-			$show_btnmulti=1;
-		}
+	
+		
 	}
+
 	if (isset($_GET['level'])) {
 		$_SESSION['level']    = $_GET['level'];
 		$_SESSION['edithome'] = $_GET['level'];
 	}
-	if ($check_assessor[0]==2) {
-		$show_btndep=1;
-	}
+
+
+
 	$person->Close_connection();
  ?>
 <html>
@@ -406,8 +435,8 @@
 			<ul class="nav navbar-top-links navbar-right">
 				<form action="index.php" method="POST" class="form-inline">
 					<b>ยินดีต้อนรับ | <font color="#51cc62"> คุณ <?php echo $_SESSION['fname'].' ',$_SESSION['lname']; ?></font></b>
-					<?php
-					if ($show_btn==1 || $show_btnmulti==1 ||$show_btndep==1) {
+					<?php	
+					if ($show_btn==1 || $show_btnmulti==1 ||$show_btndep==1 || $show_btndepboard==1 || $show_btnfac==1 ||$show_btnfacboard==1) {
 						if ($_SESSION['level']==1) {
 							$status_name ="อาจารย์";
 						}else if ($_SESSION['level']==2) {
@@ -431,11 +460,17 @@
 						?>
 
 						<b>สถานะ : <?php echo $status_name;?> </b>&nbsp;
-						<?php if ($show_btn==1 && $show_btnmulti==0) {  ?>
+						
+						<?php 
+						
+						if ($show_btn==1) {  ?>
 							<button type="submit" class="btn btn-primary btn-outlne" name="change_level">เปลี่ยนสถานะ</button>
 						<?php } ?>
 						<?php if ($show_btndep==1) {  ?>
 							<button type="submit" class="btn btn-primary btn-outlne" name="change_leveldep">เปลี่ยนสถานะ</button>
+						<?php } ?>
+						<?php if ($show_btnfac==1) {  ?>
+							<button type="submit" class="btn btn-primary btn-outlne" name="change_levelfac">เปลี่ยนสถานะ</button>
 						<?php } ?>
 						<?php if ($show_btnmulti==1) {  ?>
 							<div class="dropdown" style="display:inline-block;">
@@ -443,6 +478,28 @@
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li><a href="index.php?level=1">อาจารย์</a></li>
+								<li><a href="index.php?level=4">คณะกรรมการ</a></li>
+								<li><a href="index.php?level=6">ผู้บริหาร</a></li>
+							</ul>
+							</div>
+						<?php } ?>
+						<?php if ($show_btnfacboard==1) {  ?>
+							<div class="dropdown" style="display:inline-block;">
+							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">เปลี่ยนสถานะ
+							<span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li><a href="index.php?level=3">เจ้าหน้าที่</a></li>
+								<li><a href="index.php?level=4">คณะกรรมการ</a></li>
+								<li><a href="index.php?level=6">ผู้บริหาร</a></li>
+							</ul>
+							</div>
+						<?php } ?>
+						<?php if ($show_btndepboard==1) {  ?>
+							<div class="dropdown" style="display:inline-block;">
+							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">เปลี่ยนสถานะ
+							<span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li><a href="index.php?level=2">เจ้าหน้าที่ภาค</a></li>
 								<li><a href="index.php?level=4">คณะกรรมการ</a></li>
 								<li><a href="index.php?level=6">ผู้บริหาร</a></li>
 							</ul>
@@ -495,12 +552,12 @@
 					<ul class="nav" id="side-menu">
 						<li>
 							<?php
-								if ($_SESSION['level']<=3 || $_SESSION['admission'] == 2 || $_SESSION['admission'] == 3) { ?>
+								if ($_SESSION['level']<=3 ) { ?>
 									<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> หน้าแรก</a>
 
 							<?php } ?>
 						</li>
-						<?php if($_SESSION['level'] == 2 || $_SESSION['admission']==2 ) { ?>
+						<?php if($_SESSION['level'] == 2  ) { ?>
 							<li>
 								<a href="#"><i class="fa fa-edit fa-fw"></i> กรอกข้อมูล<span class="fa arrow"></span></a>
 
@@ -522,7 +579,7 @@
 							<li>
 								<a href="#" onclick="loadDoc('form/addsubject.php')"><i class="fa fa-plus-circle fa-fw"></i> เพิ่มกระบวนวิชา</a>
 							</li>
-						<?php }if($_SESSION['level'] == 3 || $_SESSION['admission']==3){?>
+						<?php }if($_SESSION['level'] == 3 ){?>
 							<li>
 								<a href="#" onclick="loadDoc('form/managesubject.php')"><i class="fa fa-user-md fa-fw"></i> จัดการกระบวนวิชา</a>
 							</li>
@@ -535,12 +592,12 @@
 							<li>
 								<a href="#" onclick="loadDoc('form/config_term.php')"><i class="fa fa-user-md fa-fw"></i> กำหนดภาคการศึกษาปัจจุบัน</a>
 							</li>
-						<?php }if($_SESSION['level'] == 3 || $_SESSION['level'] == 2 || $_SESSION['admission']==2 || $_SESSION['admission']==3){ ?>
+						<?php }if($_SESSION['level'] == 3 || $_SESSION['level']==2 ){ ?>
 						<li>
 							<a href="#" onclick="loadDoc('form/report.php')"><i class="fa fa-bar-chart-o fa-fw"></i> รายงาน</a>
 						</li>
 						<?php }else { ?>
-						<?php if ($_SESSION['level']<=1 ||  $_SESSION['admission']==2 ): ?>
+						<?php if ($_SESSION['level']<=1  ): ?>
 							<li>
 								<a href="#"><i class="fa fa-edit fa-fw"></i> กรอกข้อมูล<span class="fa arrow"></span></a>
 
@@ -558,14 +615,14 @@
 							</li>
 						<?php endif; ?>
 						<?php }
-						if($_SESSION['level'] >= 4 || $_SESSION['admission'] == 1)
+						if($_SESSION['level'] >= 4 )
 						{
-							if(($_SESSION['level'] == 4 || $_SESSION['level'] == 5) && $check_assessor[1]==true  ){ ?>
+							if(($_SESSION['level'] == 4 || $_SESSION['level'] == 5) || $check_assessor[1]==true  &&!$_SESSION['level']==1){ ?>
 							<li>
 								<a href="#" onclick="loadDoc('form/comment.php')"><i class="fa fa-pencil-square fa-fw"></i> การพิจารณากระบวนวิชา</a>
 							</li>
 						<?php
-							}else if ($_SESSION['level']==6 || $_SESSION['admission'] == 1) { ?>
+							}else if ($_SESSION['level']==6 ) { ?>
 								<li>
 									<a href="#" onclick="loadDoc('form/commentboard.php')"><i class="fa fa-pencil-square fa-fw"></i> อนุมัติกระบวนวิชา</a>
 								</li>
@@ -580,10 +637,10 @@
 						 <li>
 							<?php
 								if ($_SESSION['level']==4 || $_SESSION['level']==5 ) { ?>
-									<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> สถานะการพิจารณา</a>
+									<a href="#" onclick="loadDoc('form/homeboard.php')"><i class="fa fa-home fa-fw"></i> สถานะการพิจารณา</a>
 								<?php
 								}elseif ($_SESSION['level']==6) { ?>
-									<a href="#" onclick="loadDoc('form/home.php')"><i class="fa fa-home fa-fw"></i> สถานะการอนุมัติ</a>
+									<a href="#" onclick="loadDoc('form/homeboard.php')"><i class="fa fa-home fa-fw"></i> สถานะการอนุมัติ</a>
 								<?php
 								}
 							?>
