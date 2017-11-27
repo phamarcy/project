@@ -953,7 +953,7 @@ li {
    {
      type_course_choice = "require";
    }else {
-     type_course_choice = "not";
+     type_course_choice = "choose";
    }
   // levelteacher
   if(document.querySelector("input[name='levelteacher']:checked").value=="pro")
