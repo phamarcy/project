@@ -352,9 +352,9 @@ li {
      $('#costspec2').prop('checked', true);
    }
 
-   document.getElementById('choice2num').value = temp['expense_lec_number'];
-   document.getElementById('choice2hour').value = temp['expense_lec_hour'];
-   document.getElementById('choice2cost').value = temp['expense_lec_cost'];
+   document.getElementById('choice2num').value = temp['expense_lab_number'];
+   document.getElementById('choice2hour').value = temp['expense_lab_hour'];
+   document.getElementById('choice2cost').value = temp['expense_lab_cost'];
 
 
    if(temp['expense_plane_check'] == 1)
@@ -1729,6 +1729,7 @@ li {
 
    // manage required form
    $("input[name='levelteacher']").change(function(){
+     window.sumcheck = 0;
      if($(this).val()=="pro")
      {
          $("#GOV_LEVEL").prop('required',true);
@@ -1744,6 +1745,7 @@ li {
      });
 
        $('#transplane').click(function(){
+         window.sumcheck = 0;
           if (this.checked) {
               $("#AIR_DEPART").prop('required',true);
               $("#AIR_ARRIVE").prop('required',true);
@@ -1762,6 +1764,7 @@ li {
       });
 
       $('#transtaxi').click(function(){
+        window.sumcheck = 0;
          if (this.checked) {
              $("#TAXI_DEPART").prop('required',true);
              $("#TAXI_ARRIVE").prop('required',true);
@@ -1780,6 +1783,7 @@ li {
      });
 
      $('#transselfcar').click(function(){
+       window.sumcheck = 0;
         if (this.checked) {
             $("#SELF_DISTANCT").prop('required',true);
             $("#selfunit").val("5");
@@ -1796,13 +1800,35 @@ li {
     });
 
     // CALCULATE
+
+    $('#choice1hour').keyup(function(){
+      window.sumcheck = 0;
+        var textone;
+        var texttwo;
+        textone = parseFloat($('#choice1hour').val());
+        texttwo = parseFloat($('#choice1num').val());
+        var result = textone*texttwo;
+        $('#choice1cost').val(result.toFixed(2));
+    });
+    $('#choice1num').keyup(function(){
+      window.sumcheck = 0;
+        var textone;
+        var texttwo;
+        textone = parseFloat($('#choice1hour').val());
+        texttwo = parseFloat($('#choice1num').val());
+        var result = textone*texttwo;
+        $('#choice1cost').val(result.toFixed(2));
+    });
+
     $("#costspec1").change(function(){
+      window.sumcheck = 0;
       if($('#costspec1').is(":checked"))
       {
         $('#choice1hour').val("0");
         $('#choice1cost').val("0");
         $('#choice1num').val("400");
         $('#choice1hour').keyup(function(){
+          window.sumcheck = 0;
             var textone;
             var texttwo;
             textone = parseFloat($('#choice1hour').val());
@@ -1811,6 +1837,7 @@ li {
             $('#choice1cost').val(result.toFixed(2));
         });
         $('#choice1num').keyup(function(){
+          window.sumcheck = 0;
             var textone;
             var texttwo;
             textone = parseFloat($('#choice1hour').val());
@@ -1826,13 +1853,35 @@ li {
 
 
     });
+
+    $('#choice2hour').keyup(function(){
+      window.sumcheck = 0;
+        var textone;
+        var texttwo;
+        textone = parseFloat($('#choice2hour').val());
+        texttwo = parseFloat($('#choice2num').val());
+        var result = textone*texttwo;
+        $('#choice2cost').val(result.toFixed(2));
+    });
+    $('#choice2num').keyup(function(){
+      window.sumcheck = 0;
+        var textone;
+        var texttwo;
+        textone = parseFloat($('#choice2hour').val());
+        texttwo = parseFloat($('#choice2num').val());
+        var result = textone*texttwo;
+        $('#choice2cost').val(result.toFixed(2));
+    });
+
   $("#costspec2").change(function(){
+    window.sumcheck = 0;
     if($('#costspec2').is(":checked"))
     {
       $('#choice2hour').val("0");
       $('#choice2cost').val("0");
       $('#choice2num').val("200");
       $('#choice2hour').keyup(function(){
+        window.sumcheck = 0;
           var textone;
           var texttwo;
           textone = parseFloat($('#choice2hour').val());
@@ -1841,6 +1890,7 @@ li {
           $('#choice2cost').val(result.toFixed(2));
       });
       $('#choice2num').keyup(function(){
+        window.sumcheck = 0;
           var textone;
           var texttwo;
           textone = parseFloat($('#choice2hour').val());
@@ -1857,6 +1907,7 @@ li {
 
 
     $('#SELF_DISTANCT').keyup(function(){
+      window.sumcheck = 0;
         var textone;
         var texttwo;
         textone = parseFloat($('#SELF_DISTANCT').val());
@@ -1866,6 +1917,7 @@ li {
     });
 
     $('#selfunit').keyup(function(){
+      window.sumcheck = 0;
         var textone;
         var texttwo;
         textone = parseFloat($('#SELF_DISTANCT').val());
@@ -1887,7 +1939,65 @@ li {
       $('#way2unit').val("0 ");
     }
 
+    $('#numnight').keyup(function(){
+      window.sumcheck = 0;
+      if($('#numnight').val()=='')
+      {
+        $('#pernight').val("0");
+      }
+      else {
+        var textone;
+        var texttwo;
+        textone = parseFloat($('#numnight').val());
+        if(document.querySelector("input[name='hotelchoice']:checked").value=="way1")
+        {  texttwo = parseFloat($('#way1unit').val());}
+        else if(document.querySelector("input[name='hotelchoice']:checked").value=="way2"){
+          {  texttwo = parseFloat($('#way2unit').val());}
+        }
+        var result = textone*texttwo;
+        $('#pernight').val(result.toFixed(2));
+      }
+    });
+
+    $('#way1unit').keyup(function(){
+      window.sumcheck = 0;
+      if(document.querySelector("input[name='hotelchoice']:checked").value=="way1")
+        {
+          if($('#numnight').val()=='')
+        {
+          $('#pernight').val("0");
+        }
+        else {
+          var textone;
+          var texttwo;
+          textone = parseFloat($('#numnight').val());
+          texttwo = parseFloat($('#way1unit').val());
+          var result = textone*texttwo;
+          $('#pernight').val(result.toFixed(2));
+        }
+      }
+    });
+
+    $('#way2unit').keyup(function(){
+      window.sumcheck = 0;
+      if(document.querySelector("input[name='hotelchoice']:checked").value=="way2"){
+      if($('#numnight').val()=='')
+      {
+        $('#pernight').val("0");
+      }
+      else {
+        var textone;
+        var texttwo;
+        textone = parseFloat($('#numnight').val());
+        texttwo = parseFloat($('#way2unit').val());
+        var result = textone*texttwo;
+        $('#pernight').val(result.toFixed(2));
+      }
+    }
+    });
+
     $("input[name='hotelchoice']").change(function(){
+      window.sumcheck = 0;
       if($(this).val()=="way1")
       {
         $('#numnight').val("0");
@@ -1983,6 +2093,7 @@ li {
       $("input[name='paymethod']").change(function(){
         if($(this).val()=="1")
         {
+          window.sumcheck = 0;
           $('#costhide').show();
         }else {
           $('#costhide').hide();
@@ -2292,7 +2403,31 @@ function lastcal() {
 
       if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
       {
-        if(window.sumcheck==1 || casesubmit=='2' || document.querySelector("input[name='paymethod']:checked").value == "0")
+        if($('#costspec1').is(":checked"))
+        {
+          if($('#choice1num').val()!="0" && $('#choice1hour').val()!="0")
+          {
+            var check1 = "1";
+          }else {
+            var check1 ="0";
+          }
+        }else {
+          var check1 = "1";
+        }
+
+        if($('#costspec2').is(":checked"))
+        {
+          if($('#choice2num').val()!="0" && $('#choice2hour').val()!="0")
+          {
+            var check2 = "1";
+          }else {
+            var check2 ="0";
+          }
+        }else {
+          var check2 = "1";
+        }
+
+        if((window.sumcheck==1 && check1=="1" && check2 =="1")  || document.querySelector("input[name='paymethod']:checked").value == "0" || casesubmit=='2' )
         {
             swal({
             title: 'แน่ใจหรือไม่',
@@ -2313,6 +2448,12 @@ function lastcal() {
 
           }
             })
+          }else if (check1=="0"||check2=="0") {
+            swal(
+              '',
+              'กรุณากรอกค่าสอนพิเศษให้ถูกต้อง',
+              'error'
+            )
           }else {
             swal(
               '',
@@ -2333,7 +2474,32 @@ function lastcal() {
         }
     }
     else {
-      if($("#course").val()!="" && $("#numstudent").val()!="" && $("#reason").val()!="" && $("#hour").val()!="")
+
+      if($('#costspec1').is(":checked"))
+      {
+        if($('#choice1num').val()!="0" && $('#choice1hour').val()!="0")
+        {
+          var check1 = "1";
+        }else {
+          var check1 ="0";
+        }
+      }else {
+        var check1 = "1";
+      }
+
+      if($('#costspec2').is(":checked"))
+      {
+        if($('#choice2num').val()!="0" && $('#choice2hour').val()!="0")
+        {
+          var check2 = "1";
+        }else {
+          var check2 ="0";
+        }
+      }else {
+        var check2 = "1";
+      }
+
+      if($("#course").val()!="" && $("#numstudent").val()!="" && $("#reason").val()!="" && $("#hour").val()!="" && (window.sumcheck==1 && check1=="1" && check2 =="1")  || document.querySelector("input[name='paymethod']:checked").value == "0" || casesubmit=='2')
       {
         swal({
         title: 'แน่ใจหรือไม่',
@@ -2354,6 +2520,19 @@ function lastcal() {
       }
         })
       }
+    else if (check1=="0"||check2=="0") {
+      swal(
+        '',
+        'กรุณากรอกค่าสอนพิเศษให้ถูกต้อง',
+        'error'
+      )
+    }else if(window.sumcheck==0) {
+      swal(
+        '',
+        'กรุณากดปุ่ม "คำนวณค่าใช้จ่ายทั้งหมด" ในหัวข้อที่ 3',
+        'error'
+      )
+    }
       else {
 
         //alert('กรุณากรอกข้อมูลให้ครบถ้วน');
@@ -2599,12 +2778,12 @@ function lastcal() {
             <li>ค่าสอนพิเศษ</li>
             <div class="checkbox">
               <div class="form-group">
-                <input type="checkbox" class="resetchecked"  name="costspec" id="costspec1" value="choice1"> &nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control formlength numonly resetvalue keyupcheck" name="choice1num" id="choice1num"  size="5" value="0"> ต่อชม.&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue keyupcheck" id="choice1hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
+                <input type="checkbox" class="resetchecked"  name="costspec" id="costspec1" value="choice1"> &nbsp;ปริญญาตรีบรรยาย <input type="text" class="form-control formlength numonly resetvalue keyupcheck nonzero1" name="choice1num" id="choice1num"  size="5" value="0"> ต่อชม.&nbsp;
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue keyupcheck nonzero1" id="choice1hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
               <input type="text" class="form-control formlength numonly resetvalue" id="choice1cost" size="5" data-minlength="5" min="0" max="99999" value="0" READONLY>&nbsp;&nbsp;บาท
               </div><br>
-              <div class="form-group"><input type="checkbox" class="resetchecked" name="costspec" id="costspec2" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ <input type="text" class="form-control formlength numonly resetvalue keyupcheck" name="choice2num" id="choice2num" size="5" value="0"> ต่อชม.&nbsp;
-              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue keyupcheck" id="choice2hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
+              <div class="form-group"><input type="checkbox" class="resetchecked" name="costspec" id="costspec2" value="choice2">&nbsp; ปริญญาตรีปฏิบัติการ <input type="text" class="form-control formlength numonly resetvalue keyupcheck nonzero2" name="choice2num" id="choice2num" size="5" value="0"> ต่อชม.&nbsp;
+              จำนวน&nbsp;&nbsp;<input type="text" class="form-control formlength numonly resetvalue keyupcheck nonzero2" id="choice2hour" size="5" data-minlength="1" min="0" max="99" value="0">&nbsp;&nbsp;ชั่วโมง&nbsp;&nbsp;เป็นเงิน&nbsp;&nbsp;
               <input type="text" class="form-control formlength numonly resetvalue" id="choice2cost" size="5" data-minlength="5" min="0" max="99999" value="0" READONLY>&nbsp;&nbsp;บาท
               </div>
             </div>
