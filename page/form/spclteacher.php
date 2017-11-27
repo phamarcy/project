@@ -2448,11 +2448,11 @@ function lastcal() {
 
          <div id="search_1hide" class="row form-inline" style="font-size:14px;">
            <div class="form-group" style="margin-top:10px;">
-             ค้นหารายชื่ออาจารย์พิเศษ
+             เพิ่มเติม/ค้นหา รายชื่ออาจารย์พิเศษ
              <input type="text" class="form-control formlength" name="search_1" id="search_1" list="dtl1" placeholder="ชื่อ-นามสกุล" size="35" onkeydown="searchname1();" >
              <datalist id="dtl1">
              </datalist>
-             <input type="button" class="btn btn-outline btn-primary" name="searchname" id="searchname" value="ค้นหาข้อมูล" onclick="checksubject(4,2);">
+             <input type="button" class="btn btn-outline btn-primary" name="searchname" id="searchname" value="ยืนยันข้อมูล" onclick="checksubject(4,2);">
             </div>
           </div>
       </center>
