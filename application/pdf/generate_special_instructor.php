@@ -424,8 +424,9 @@ for($i=0;$i<count($data_pdf["lecture_detail"]);$i++)
 
 	$current_x += 30;
 	$pdf->SetXY($before_x + 130 , $before_y);
-	$pdf->Cell(30,7,iconv('UTF-8','TIS-620',$data_pdf["lecture_detail"][$i]["teaching_room"]),0,1);
+	$pdf->MultiCell(30,7,iconv('UTF-8','TIS-620',$data_pdf["lecture_detail"][$i]["teaching_room"]),0,1);
 
+	$current_y = $pdf->GetY();
 	$pdf->SetXY($current_x, $current_y);
 
 }
