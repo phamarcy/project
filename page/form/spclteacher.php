@@ -2403,6 +2403,23 @@ function lastcal() {
 
       if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
       {
+        if(document.querySelector("input[name='levelteacher']:checked").value=="pro")
+        {
+          if($('#GOV_LEVEL').val()!="")
+          {
+            var level = "1";
+          }else {
+            var level = "0";
+          }
+        }else {
+          if($('#NORM_LEVEL').val()!="")
+          {
+            var level = "1";
+          }else {
+            var level = "0";
+          }
+        }
+
         if($('#costspec1').is(":checked"))
         {
           if($('#choice1num').val()!="0" && $('#choice1hour').val()!="0")
@@ -2427,7 +2444,62 @@ function lastcal() {
           var check2 = "1";
         }
 
-        if((window.sumcheck==1 && check1=="1" && check2 =="1")  || document.querySelector("input[name='paymethod']:checked").value == "0" || casesubmit=='2' )
+        if(document.querySelector("input[name='hotelchoice']:checked").value=="way1")
+        {
+          if($('#way1unit').val()!="0" && $('#numnight').val()!="0")
+          {
+            var hotel = "1";
+          }else {
+            var hotel = "0";
+          }
+        }else if (document.querySelector("input[name='hotelchoice']:checked").value=="way2") {
+          if($('#way2unit').val()!="0" && $('#numnight').val()!="0")
+          {
+            var hotel = "1";
+          }else {
+            var hotel = "0";
+          }
+        }else {
+          var hotel = "1";
+        }
+
+        if($('#transplane').is(":checked"))
+        {
+          if($('#AIR_DEPART').val()!="" && $('#AIR_ARRIVE').val()!="" && $('#planecost').val()!="0")
+          {
+            var plane = "1";
+          }else {
+            var plane ="0";
+          }
+        }else {
+          var plane = "1";
+        }
+
+        if($('#transtaxi').is(":checked"))
+        {
+          if($('#TAXI_ARRIVE').val()!="" && $('#TAXI_ARRIVE').val()!="" && $('#taxicost').val()!="0")
+          {
+            var taxi = "1";
+          }else {
+            var taxi ="0";
+          }
+        }else {
+          var taxi = "1";
+        }
+
+        if($('#transselfcar').is(":checked"))
+        {
+          if($('#SELF_DISTANCT').val()!="0" && $('#selfunit').val()!="0")
+          {
+            var self = "1";
+          }else {
+            var self ="0";
+          }
+        }else {
+          var self = "1";
+        }
+
+        if((window.sumcheck==1 && (check1=="1" && check2 =="1") && hotel=="1" && plane=="1" && taxi=="1" && self=="1" && level=="1" ) || document.querySelector("input[name='paymethod']:checked").value == "0" || casesubmit=='2' )
         {
             swal({
             title: 'แน่ใจหรือไม่',
@@ -2448,10 +2520,40 @@ function lastcal() {
 
           }
             })
+          }else if (level=="0") {
+            swal(
+              '',
+              'กรุณาระบุยศหรือตำแหน่งของอาจารย์พิเศษในหัวข้อค่าใช้จ่ายให้ถูกต้อง',
+              'error'
+            )
           }else if (check1=="0"||check2=="0") {
             swal(
               '',
               'กรุณากรอกค่าสอนพิเศษให้ถูกต้อง',
+              'error'
+            )
+          }else if (hotel=="0") {
+            swal(
+              '',
+              'กรุณากรอกค่าที่พักให้ถูกต้อง',
+              'error'
+            )
+          }else if (plane=="0") {
+            swal(
+              '',
+              'กรุณากรอกค่าพาหนะเดินทางด้วยเครื่องบินให้ถูกต้อง',
+              'error'
+            )
+          }else if (taxi=="0") {
+            swal(
+              '',
+              'กรุณากรอกค่าพาหนะเดินทางด้วยแท็กซี่ให้ถูกต้อง',
+              'error'
+            )
+          }else if (self=="0") {
+            swal(
+              '',
+              'กรุณากรอกค่าพาหนะเดินทางด้วยรถยนต์ส่วนตัวให้ถูกต้อง',
               'error'
             )
           }else {
@@ -2474,6 +2576,23 @@ function lastcal() {
         }
     }
     else {
+
+      if(document.querySelector("input[name='levelteacher']:checked").value=="pro")
+      {
+        if($('#GOV_LEVEL').val()!="")
+        {
+          var level = "1";
+        }else {
+          var level = "0";
+        }
+      }else {
+        if($('#NORM_LEVEL').val()!="")
+        {
+          var level = "1";
+        }else {
+          var level = "0";
+        }
+      }
 
       if($('#costspec1').is(":checked"))
       {
@@ -2499,7 +2618,62 @@ function lastcal() {
         var check2 = "1";
       }
 
-      if($("#course").val()!="" && $("#numstudent").val()!="" && $("#reason").val()!="" && $("#hour").val()!="" && (window.sumcheck==1 && check1=="1" && check2 =="1")  || document.querySelector("input[name='paymethod']:checked").value == "0" || casesubmit=='2')
+      if(document.querySelector("input[name='hotelchoice']:checked").value=="way1")
+      {
+        if($('#way1unit').val()!="0" && $('#numnight').val()!="0")
+        {
+          var hotel = "1";
+        }else {
+          var hotel = "0";
+        }
+      }else if (document.querySelector("input[name='hotelchoice']:checked").value=="way2") {
+        if($('#way2unit').val()!="0" && $('#numnight').val()!="0")
+        {
+          var hotel = "1";
+        }else {
+          var hotel = "0";
+        }
+      }else {
+        var hotel = "1";
+      }
+
+      if($('#transplane').is(":checked"))
+      {
+        if($('#AIR_DEPART').val()!="" && $('#AIR_ARRIVE').val()!="" && $('#planecost').val()!="0")
+        {
+          var plane = "1";
+        }else {
+          var plane ="0";
+        }
+      }else {
+        var plane = "1";
+      }
+
+      if($('#transtaxi').is(":checked"))
+      {
+        if($('#TAXI_ARRIVE').val()!="" && $('#TAXI_ARRIVE').val()!="" && $('#taxicost').val()!="0")
+        {
+          var taxi = "1";
+        }else {
+          var taxi ="0";
+        }
+      }else {
+        var taxi = "1";
+      }
+
+      if($('#transselfcar').is(":checked"))
+      {
+        if($('#SELF_DISTANCT').val()!="0" && $('#selfunit').val()!="0")
+        {
+          var self = "1";
+        }else {
+          var self ="0";
+        }
+      }else {
+        var self = "1";
+      }
+
+      if($("#course").val()!="" && $("#numstudent").val()!="" && $("#reason").val()!="" && $("#hour").val()!="" && (window.sumcheck==1 && (check1=="1" && check2 =="1") && hotel=="1" && plane=="1" && taxi=="1" && self=="1" && level=="1")  || document.querySelector("input[name='paymethod']:checked").value == "0" || casesubmit=='2')
       {
         swal({
         title: 'แน่ใจหรือไม่',
@@ -2519,14 +2693,43 @@ function lastcal() {
 
       }
         })
-      }
-    else if (check1=="0"||check2=="0") {
+    }else if (level=="0") {
+      swal(
+        '',
+        'กรุณาระบุยศหรือตำแหน่งของอาจารย์พิเศษในหัวข้อค่าใช้จ่ายให้ถูกต้อง',
+        'error'
+      )
+    }else if (check1=="0"||check2=="0") {
       swal(
         '',
         'กรุณากรอกค่าสอนพิเศษให้ถูกต้อง',
         'error'
       )
-    }else if(window.sumcheck==0) {
+    }else if (hotel=="0") {
+      swal(
+        '',
+        'กรุณากรอกค่าที่พักให้ถูกต้อง',
+        'error'
+      )
+    }else if (plane=="0") {
+      swal(
+        '',
+        'กรุณากรอกค่าพาหนะเดินทางด้วยเครื่องบินให้ถูกต้อง',
+        'error'
+      )
+    }else if (taxi=="0") {
+      swal(
+        '',
+        'กรุณากรอกค่าพาหนะเดินทางด้วยแท็กซี่ให้ถูกต้อง',
+        'error'
+      )
+    }else if (self=="0") {
+      swal(
+        '',
+        'กรุณากรอกค่าพาหนะเดินทางด้วยรถยนต์ส่วนตัวให้ถูกต้อง',
+        'error'
+      )
+    }else if(window.sumcheck==0){
       swal(
         '',
         'กรุณากดปุ่ม "คำนวณค่าใช้จ่ายทั้งหมด" ในหัวข้อที่ 3',
@@ -2769,7 +2972,7 @@ function lastcal() {
           <div class="form-inline">
             <li>อาจารย์พิเศษเป็น &nbsp;</li>
             <div class="radio">
-              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="pro" checked>&nbsp;ข้าราชการระดับ &nbsp;<input type="text" class="form-control formlength resettext" name="GOV_LEVEL" id="GOV_LEVEL"/></div>
+              <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="pro" checked>&nbsp; ข้าราชการระดับ &nbsp;<input type="text" class="form-control formlength resettext" name="GOV_LEVEL" id="GOV_LEVEL"/></div>
               <br>
               <div class="form-group"><input type="radio"  name="levelteacher" id="levelteacher" value="norm">&nbsp; บุคคลเอกชนเทียบตำแหน่งระดับ &nbsp;<input type="text" class="form-control formlength resettext" name="NORM_LEVEL" id="NORM_LEVEL"/></div>
             </div>
