@@ -121,7 +121,7 @@ if(isset($_POST['DATA']))
 
 
 			//measure_evaluate
-			$sql_measure_evaluate = "INSERT INTO `measure_evaluate`( `mid1_lec`, `mid1_lab`, `mid2_lec`, `mid2_lab`, `final_lec`, `final_lab`, `work_lec`, `work_lab`, `other_lec`, `other_lab`, `other_oth`, `total_lec`, `total_lab`, `msg`)VALUES (".$DATA["MEASURE_MID1_LEC"].",".$DATA["MEASURE_MID1_LAB"].",".$DATA["MEASURE_MID2_LEC"].",".$DATA["MEASURE_MID1_LAB"].",".$DATA["MEASURE_FINAL_LEC"].",".$DATA["MEASURE_FINAL_LAB"].",".$DATA["MEASURE_WORK_LEC"].",".$DATA["MEASURE_WORK_LAB"].",".$DATA["MEASURE_OTHER_LEC"].",".$DATA["MEASURE_OTHER_LAB"].",'".$DATA["MEASURE_OTHER_OTH"]."',".$DATA["MEASURE_TOTAL_LEC"].",".$DATA["MEASURE_TOTAL_LAB"].",'".trim($DATA["MEASURE_MSG"])."')";
+			$sql_measure_evaluate = "INSERT INTO `measure_evaluate`( `mid1_lec`, `mid1_lab`, `mid2_lec`, `mid2_lab`, `final_lec`, `final_lab`, `work_lec`, `work_lab`, `other_lec`, `other_lab`, `other_oth`, `total_lec`, `total_lab`, `msg`)VALUES (".$DATA["MEASURE_MID1_LEC"].",".$DATA["MEASURE_MID1_LAB"].",".$DATA["MEASURE_MID2_LEC"].",".$DATA["MEASURE_MID2_LAB"].",".$DATA["MEASURE_FINAL_LEC"].",".$DATA["MEASURE_FINAL_LAB"].",".$DATA["MEASURE_WORK_LEC"].",".$DATA["MEASURE_WORK_LAB"].",".$DATA["MEASURE_OTHER_LEC"].",".$DATA["MEASURE_OTHER_LAB"].",'".$DATA["MEASURE_OTHER_OTH"]."',".$DATA["MEASURE_TOTAL_LEC"].",".$DATA["MEASURE_TOTAL_LAB"].",'".trim($DATA["MEASURE_MSG"])."')";
 			$lastrow_measure_evaluate_id = "SELECT measure_evaluate_id FROM measure_evaluate ORDER BY measure_evaluate_id DESC LIMIT 1;";
 
 			$result_measure_evaluate = $db->Insert_Update_Delete($sql_measure_evaluate);
