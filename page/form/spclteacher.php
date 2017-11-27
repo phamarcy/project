@@ -393,15 +393,15 @@ li {
    $('input[name="hotelchoice"][value=' + choice5 + ']').prop('checked', true);
    if(choice5=="way3")
    {
-     document.getElementById('numnight').value = temp['expense_hotel_per_night'];
+     document.getElementById('numnight').value = temp['expense_hotel_number'];
      document.getElementById('pernight').value = temp['expense_hotel_cost'];
    }else if (choice5=="way1") {
-     document.getElementById('way1unit').value = temp['expense_hotel_number'];
-     document.getElementById('numnight').value = temp['expense_hotel_per_night'];
+     document.getElementById('way1unit').value = temp['expense_hotel_per_night'];
+     document.getElementById('numnight').value = temp['expense_hotel_number'];
      document.getElementById('pernight').value = temp['expense_hotel_cost'];
    }else {
-     document.getElementById('way2unit').value = temp['expense_hotel_number'];
-     document.getElementById('numnight').value = temp['expense_hotel_per_night'];
+     document.getElementById('way2unit').value = temp['expense_hotel_per_night'];
+     document.getElementById('numnight').value = temp['expense_hotel_number'];
      document.getElementById('pernight').value = temp['expense_hotel_cost'];
    }
    document.getElementById('totalcost').value = temp['cost_total'];
