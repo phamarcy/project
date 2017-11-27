@@ -950,7 +950,12 @@ function submitfunc(casesubmit) {
       var section = [];
       for(var i=1;i<=document.getElementById("SECTION").value;i++)
       {
-        section[i-1] = document.getElementById('ENROLL'+i).value;
+        if(document.getElementById('ENROLL'+i).value != "")
+        {
+          section[i-1] = document.getElementById('ENROLL'+i).value;
+        }else {
+          section[i-1] = "0";
+        }
       }
       sectionobj = section;
 
@@ -2073,11 +2078,12 @@ $(document).ready(function(){
     {
       window.sumcheck = 0;
       swal(
-        '',
-        'คะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100\nกรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง',
+        'คะแนนรวมปัจจุบัน : '+summea+'',
+        'คะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100\nกรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง )',
         'error'
       )
-      //alert('กรุณาตรวจสอบสัดส่วนการให้คะแนนใหม่อีกครั้ง\nคะแนนรวมของภาคบรรยายและภาคปฏิบัติต้องรวมกันได้ร้อยละ 100');
+      $('#MEASURE_TOTALLEC').val("");
+      $('#MEASURE_TOTALLAB').val("");
     }
     else {
 
