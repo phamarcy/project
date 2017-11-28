@@ -21,7 +21,8 @@
 	$check_assessor=$person->Is_Assessor($_SESSION['id']);
 
 
-
+	echo '<pre><br />'; var_dump($check_assessor); echo '</pre>';
+	
 	if (isset($_POST['change_level'])) {
 		if($_SESSION['level']==1){
 			$_SESSION['level']=4;
@@ -58,7 +59,7 @@
 	if ($check_assessor[1]==true || $check_assessor[2]==true || $_SESSION['level']== 6 || $_SESSION['admission']>=1 ) {
 
 
-		if ($check_assessor[1]==true && $check_assessor[2]==true) {
+		if (($check_assessor[1]==true && $check_assessor[2]==true) || $check_assessor[2]==true) {
 			$show_btnmulti=1;
 		}elseif ( $_SESSION['admission']==1) {
 			$show_btnmulti=1;
