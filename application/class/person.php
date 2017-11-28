@@ -103,12 +103,16 @@ class Person
 
   public function Get_Special_Instructor_Data($firstname,$lastname)
   {
-    $sql = "SELECT `prefix`,`firstname`,`lastname`,`position`,`qualification`,`work_place`,`phone`,`phone_sub`,`phone_mobile`,`email`,`invited` FROM `special_instructor` WHERE `firstname` = '".$firstname."' AND `lastname` = '".$lastname."'";
+    $sql = "SELECT `prefix`,`firstname`,`lastname`,`position`,`qualification`,`work_place`,`phone`,`phone_sub`,`phone_mobile`,`email`,`invited`,`cv` FROM `special_instructor` WHERE `firstname` = '".trim($firstname)."' AND `lastname` = '".trim($lastname)."'";
     $this->DB->Change_DB($this->DEFAULT_DB);
     $result = $this->DB->Query($sql);
     if($result)
     {
       $data = $result[0];
+      if($data['cv'] == null)
+      {
+        $data['cv'] = false;
+      }
       return $data;
     }
     else
