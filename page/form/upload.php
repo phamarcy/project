@@ -78,7 +78,7 @@ if ($checkday) {
     exit();
   }
 }else {
-  echo '<div class="alert alert-danger"><center>ระบบยังไม่มีภาคการศึกษา และปีการศึกษาปัจจุบัน กรุณาติดต่อเจ้าหน้าที่ </center></div>';
+  echo '<div class="alert alert-danger"><center>ระบบยังไม่ได้กำหนดเวลาในการอัปโหลดไฟล์เกรด</center></div>';
   die();
 }
 
