@@ -9,10 +9,22 @@
   $semester= $deadline->Get_Current_Semester();
   $dept = $person->Get_Staff_Dep($_SESSION['id']);
 
-  $coursemain = $courseobj->Get_All_Course(null);
+  $coursemain = $courseobj->Get_All_Course('');
   $coursecare = $courseobj->Get_All_Course('1202');
   $coursescience = $courseobj->Get_All_Course('1203');
   $department = $courseobj->Get_Dept_All();
+  for($i=0;$i<count($department);$i++)
+  {
+    if($department[$i]['code'] == '1202')
+    {
+      $dept_name['1202'] = $department[$i]['name'];
+    }
+    if ($department[$i]['code'] == '1203')
+    {
+      $dept_name['1203'] = $department[$i]['name'];
+      # code...
+    }
+  }
  ?>
  <html>
  <header>
@@ -629,9 +641,9 @@ function confreset(casereset) {
       <ul class="nav nav-tabs">
           <li class="active"><a href="#main" data-toggle="tab">วิชาพื้นฐาน</a>
           </li>
-          <li><a href="#care" data-toggle="tab"><?=$department[1]['name']?></a>
+          <li><a href="#care" data-toggle="tab"><?=$dept_name['1202']?></a>
           </li>
-          <li><a href="#science" data-toggle="tab"><?=$department[2]['name']?></a>
+          <li><a href="#science" data-toggle="tab"><?=$dept_name['1203']?></a>
           </li>
       </ul>
 
