@@ -100,6 +100,11 @@ li {
    webshims.polyfill('forms forms-ext');
 }
 
+function downloadfunc(){
+  var link = $('#spanfile').text();
+  window.open("../../files/cv/"+link);
+}
+
  function searchname1() {
 
        var name_s = $("#search_1").val();
@@ -406,6 +411,21 @@ li {
    }
    document.getElementById('totalcost').value = temp['cost_total'];
    $('#callist').show();
+
+   //download
+   if(temp['cv']!=false)
+   {
+     $('#cv').prop('required', false);
+     $('#cvlist').hide();
+     $('#spanfile').text(temp['cv']);
+     $('#downloadfile').show();
+   }
+   else {
+     $('#cv').prop('required', true);
+     $('#cvlist').show();
+     $('#spanfile').text("");
+     $('#downloadfile').hide();
+   }
 
    //buttondiv
    if(temp['ACCESS'] == true)
@@ -1683,6 +1703,10 @@ li {
                                    $('#hiddenh5').hide();
                                    $('#notfound').show();
                                    $('#department').val(temp['INFO'].department);
+                                   $('#cv').prop('required', true);
+                                   $('#cvlist').show();
+                                   $('#spanfile').text('');
+                                   $('#downloadfile').hide();
 
                                    $('#numstudent').val(parseInt(temp['INFO'].num_student));
                                    var course_id = document.getElementById('id').value;
@@ -3031,8 +3055,10 @@ function lastcal() {
       </li>
       <li  style="font-size: 14px;" >
         <b>4. เลือกไฟล์ Curriculum Vitae (CV) เพื่ออัปโหลด : </b><br />
-      <div id="cvdanger" class="col-md-5 form-inline form-group">
+      <div id="cvdanger" class="col-md-10 form-inline form-group">
         <input type="file" class="filestyle" id="cv" name="cv" accept=".doc,.docx,.pdf" data-icon="false"><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
+        &nbsp;<span id="spanfile"></span>&nbsp;&nbsp;
+        <input id="downloadfile" style="display:none; font-size: 14px;" class="btn btn-outline btn-primary" type="button" value="ดาวน์โหลดไฟล์ cv" onclick="downloadfunc();">
       </div>
       </li>
     </ol>

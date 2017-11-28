@@ -104,6 +104,11 @@
 <script id="contentScript">
 
 window.sumcheck = 0;
+
+function downloadfunc(){
+  var link = $('#spanfile').text();
+  window.open("../../files/syllabus/"+link);
+}
 // searchname
 function searchname(no,type) {
 
@@ -667,6 +672,21 @@ function getinfo(temp) {
   var choice5 = temp['absent'];
   $('input[name="ABSENT"][value=' + choice5 + ']').prop('checked', true);
 
+  //part8
+  if(temp['syllabus']!=false)
+  {
+    $('#syllabus').prop('required', false);
+    $('#reqq').hide();
+    $('#spanfile').text(temp['syllabus']);
+    $('#downloadfile').show();
+  }
+  else {
+    $('#syllabus').prop('required', true);
+    $('#reqq').show();
+    $('#spanfile').text("");
+    $('#downloadfile').hide();
+  }
+
   //buttondiv
   if(temp['ACCESS'] == true)
   {
@@ -962,101 +982,101 @@ function submitfunc(casesubmit) {
 
       if(document.getElementById("CALCULATE_A_MIN").value=="")
       {
-        var amin = "0";
+        var amin = "0.0";
       }else {
-        var amin  = document.getElementById("CALCULATE_A_MIN").value;
+        var amin  = (document.getElementById("CALCULATE_A_MIN").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_Bp_MIN").value=="")
       {
-        var bpmin = "0";
+        var bpmin = "0.0";
       }else {
-        var bpmin = document.getElementById("CALCULATE_Bp_MIN").value;
+        var bpmin = (document.getElementById("CALCULATE_Bp_MIN").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_B_MIN").value=="")
       {
-        var bmin = "0";
+        var bmin = "0.0";
       }else {
-        var bmin = document.getElementById("CALCULATE_B_MIN").value;
+        var bmin = (document.getElementById("CALCULATE_B_MIN").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_Cp_MIN").value=="")
       {
-        var cpmin = "0";
+        var cpmin = "0.0";
       }else {
-        var cpmin = document.getElementById("CALCULATE_Cp_MIN").value;
+        var cpmin = (document.getElementById("CALCULATE_Cp_MIN").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_C_MIN").value=="")
       {
-        var cmin = "0";
+        var cmin = "0.0";
       }else {
-        var cmin = document.getElementById("CALCULATE_C_MIN").value;
+        var cmin = (document.getElementById("CALCULATE_C_MIN").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_Dp_MIN").value=="")
       {
-        var dpmin = "0";
+        var dpmin = "0.0";
       }else {
-        var dpmin = document.getElementById("CALCULATE_Dp_MIN").value;
+        var dpmin = (document.getElementById("CALCULATE_Dp_MIN").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_D_MIN").value=="")
       {
-        var dmin = "0";
+        var dmin = "0.0";
       }else {
-        var dmin = document.getElementById("CALCULATE_D_MIN").value;
+        var dmin = (document.getElementById("CALCULATE_D_MIN").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_S_MIN").value=="")
       {
-        var smin = "0";
+        var smin = "0.0";
       }else {
-        var smin = document.getElementById("CALCULATE_S_MIN").value;
+        var smin = (document.getElementById("CALCULATE_S_MIN").value).toFixed(1);
       }
       //----------------
 
       if(document.getElementById("CALCULATE_Bp_MAX").value=="")
       {
-        var bpmax = "0";
+        var bpmax = "0.0";
       }else {
-        var bpmax = document.getElementById("CALCULATE_Bp_MAX").value;
+        var bpmax = (document.getElementById("CALCULATE_Bp_MAX").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_B_MAX").value=="")
       {
-        var bmax = "0";
+        var bmax = "0.0";
       }else {
-        var bmax = document.getElementById("CALCULATE_B_MAX").value;
+        var bmax = (document.getElementById("CALCULATE_B_MAX").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_Cp_MAX").value=="")
       {
-        var cpmax = "0";
+        var cpmax = "0.0";
       }else {
-        var cpmax = document.getElementById("CALCULATE_Cp_MAX").value;
+        var cpmax = (document.getElementById("CALCULATE_Cp_MAX").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_C_MAX").value=="")
       {
-        var cmax = "0";
+        var cmax = "0.0";
       }else {
-        var cmax = document.getElementById("CALCULATE_C_MAX").value;
+        var cmax = (document.getElementById("CALCULATE_C_MAX").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_Dp_MAX").value=="")
       {
-        var dpmax = "0";
+        var dpmax = "0.0";
       }else {
-        var dpmax = document.getElementById("CALCULATE_Dp_MAX").value;
+        var dpmax = (document.getElementById("CALCULATE_Dp_MAX").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_D_MAX").value=="")
       {
-        var dmax = "0";
+        var dmax = "0.0";
       }else {
-        var dmax = document.getElementById("CALCULATE_D_MAX").value;
+        var dmax = (document.getElementById("CALCULATE_D_MAX").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_F_MAX").value=="")
       {
-        var fmax = "0";
+        var fmax = "0.0";
       }else {
-        var fmax = document.getElementById("CALCULATE_F_MAX").value;
+        var fmax = (document.getElementById("CALCULATE_F_MAX").value).toFixed(1);
       }
       if(document.getElementById("CALCULATE_U_MAX").value=="")
       {
         var umax = "100";
       }else {
-        var umax = document.getElementById("CALCULATE_U_MAX").value;
+        var umax = (document.getElementById("CALCULATE_U_MAX").value).toFixed(1);
       }
       //------
 
@@ -1712,6 +1732,10 @@ $(document).ready(function(){
                                  document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                                  document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
                                  document.getElementById('TOTAL').value = temp['INFO']['credit'];
+                                 $('#syllabus').prop('required', true);
+                                 $('#reqq').show();
+                                 $('#spanfile').text('');
+                                 $('#downloadfile').hide();
                                }
                             }
 
@@ -1870,6 +1894,10 @@ $(document).ready(function(){
                                  document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                                  document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
                                  document.getElementById('TOTAL').value = temp['INFO']['credit'];
+                                 $('#syllabus').prop('required', true);
+                                 $('#reqq').show();
+                                 $('#spanfile').text('');
+                                 $('#downloadfile').hide();
                                }
                             }
 
@@ -2755,58 +2783,58 @@ function confreset(casereset) {
                 </tr>
                 <tr align="center">
                   <td>A</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_A_MIN" id="CALCULATE_A_MIN" maxlength="5" value="80.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_A_MIN" id="CALCULATE_A_MIN" maxlength="4" value="80.0"></td>
                   <td>ถึง</td>
                   <td><input type="text" class="form-control formlength numonly" name="CALCULATE_A_MAX" id="CALCULATE_A_MAX" placeholder="100" disabled></td>
 
                 </tr>
                 <tr align="center">
                   <td>B+</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Bp_MIN" id="CALCULATE_Bp_MIN" maxlength="5" value="75.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Bp_MIN" id="CALCULATE_Bp_MIN" maxlength="4" value="75.0"></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Bp_MAX" id="CALCULATE_Bp_MAX" maxlength="5" value="79.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Bp_MAX" id="CALCULATE_Bp_MAX" maxlength="4" value="79.9"></td>
 
                 </tr>
                 <tr align="center">
                   <td>B</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_B_MIN" id="CALCULATE_B_MIN" maxlength="5" value="70.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_B_MIN" id="CALCULATE_B_MIN" maxlength="4" value="70.0"></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_B_MAX" id="CALCULATE_B_MAX" maxlength="5" value="74.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_B_MAX" id="CALCULATE_B_MAX" maxlength="4" value="74.9"></td>
 
 
                 </tr>
                 <tr align="center">
                   <td>C+</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Cp_MIN" id="CALCULATE_Cp_MIN" maxlength="5" value="65.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Cp_MIN" id="CALCULATE_Cp_MIN" maxlength="4" value="65.0"></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Cp_MAX" id="CALCULATE_Cp_MAX" maxlength="5" value="69.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Cp_MAX" id="CALCULATE_Cp_MAX" maxlength="4" value="69.9"></td>
 
                 </tr>
                 <tr align="center">
                   <td>C</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_C_MIN" id="CALCULATE_C_MIN" maxlength="5" value="60.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_C_MIN" id="CALCULATE_C_MIN" maxlength="4" value="60.0"></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_C_MAX" id="CALCULATE_C_MAX" maxlength="5" value="64.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_C_MAX" id="CALCULATE_C_MAX" maxlength="4" value="64.9"></td>
 
                 </tr>
                 <tr align="center">
                   <td>D+</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" maxlength="5" value="55.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Dp_MIN" id="CALCULATE_Dp_MIN" maxlength="4" value="55.0"></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Dp_MAX" id="CALCULATE_Dp_MAX" maxlength="5" value="59.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_Dp_MAX" id="CALCULATE_Dp_MAX" maxlength="4" value="59.9"></td>
                 </tr>
                 <tr align="center">
                   <td>D</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_D_MIN" id="CALCULATE_D_MIN" maxlength="5" value="50.0"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_D_MIN" id="CALCULATE_D_MIN" maxlength="4" value="50.0"></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_D_MAX" id="CALCULATE_D_MAX" maxlength="5" value="54.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_D_MAX" id="CALCULATE_D_MAX" maxlength="4" value="54.9"></td>
 
                 </tr>
                 <tr align="center">
                   <td>F</td>
                   <td><input type="text" class="form-control formlength numonly" name="CALCULATE_F_MIN" id="CALCULATE_F_MIN" placeholder="0" disabled></td>
                   <td>ถึง</td>
-                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" maxlength="5" value="49.9"></td>
+                  <td><input type="text" class="form-control formlength numonly atof" name="CALCULATE_F_MAX" id="CALCULATE_F_MAX" maxlength="4" value="49.9"></td>
 
                 </tr>
               </table>
@@ -2866,8 +2894,10 @@ function confreset(casereset) {
           <br>
           <li style="font-size: 14px;" id="listcor">
             เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็น .doc , .docx หรือ .pdf เท่านั้น) : <br />
-          <div class="col-md-5 form-inline form-group">
-            <input type="file" class="filestyle" id="syllabus" data-icon="false" accept=".doc,.docx,.pdf" required><font color="red"><b> ** จำเป็น</b></font>
+          <div class="col-md-10 form-inline form-group">
+            <input type="file" class="filestyle" id="syllabus" data-icon="false" accept=".doc,.docx,.pdf" required><font color="red" id="reqq"><b> ** จำเป็น</b></font>
+            &nbsp;<span id="spanfile"></span>&nbsp;&nbsp;
+            <input id="downloadfile" style="display:none; font-size: 14px;" class="btn btn-outline btn-primary" type="button" value="ดาวน์โหลดไฟล์ Syllabus" onclick="downloadfunc();">
           </div>
           </li>
 
@@ -2893,7 +2923,7 @@ function confreset(casereset) {
       <li style="font-size: 14px;">
         <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็น .doc , .docx หรือ .pdf เท่านั้น) : </b><br />
         <div class="col-md-5 form-inline form-group">
-          <input type="file" class="filestyle" id="syllabus_2" data-icon="false" accept=".doc,.docx,.pdf" required><font color="red"><b> ** จำเป็น</b></font>
+          <input type="file" class="filestyle" id="syllabus_2" data-icon="false" accept=".doc,.docx,.pdf" required><font color="red" ><b> ** จำเป็น</b></font>
         </div>
       </li>
       <br><br>
