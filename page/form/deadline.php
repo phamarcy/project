@@ -107,7 +107,7 @@ function Load_Page(tab) {
 }
 
 //submit data to database
-$(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_special,#submitbtn_approve, #submitbtn_evaluate", function() {
+$(document).on('click', "#submitbtn_course,#submitbtn_syllabus,#submitbtn_special,#submitbtn_approve,#submitbtn_evaluate,#submitbtn_grade", function() {
   var button_object = $(this)
   var id = $(button_object).attr('id');
     swal({
@@ -222,11 +222,13 @@ $(document).on('click', "#delete", function() {
             </li>
             <li <?php echo ($_POST['tab'] == 'syllabus')? 'class="active"' : '' ?>><a href="#syllabus" data-toggle="tab">การอัปโหลดไฟล์ course syllabus</a>
             </li>
-            <li <?php echo ($_POST['tab'] == 'special')? 'class="active"' : '' ?>><a href="#special" data-toggle="tab">การกรอกข้อมูลอาจารพิเศษ</a>
+            <li <?php echo ($_POST['tab'] == 'special')? 'class="active"' : '' ?>><a href="#special" data-toggle="tab">การกรอกข้อมูลอาจารย์พิเศษ</a>
             </li>
             <li <?php echo ($_POST['tab'] == 'evaluate')? 'class="active"' : '' ?>><a href="#evaluate" data-toggle="tab">การประเมินกระบวนวิชา</a>
             </li>
             <li <?php echo ($_POST['tab'] == 'approve')? 'class="active"' : '' ?>><a href="#approve" data-toggle="tab">การพิจารณาเห็นชอบกระบวนวิชา</a>
+            </li>
+            <li <?php echo ($_POST['tab'] == 'grade')? 'class="active"' : '' ?>><a href="#grade" data-toggle="tab">การอัปโหลดไฟล์เกรด</a>
             </li>
         </ul>
         <!-- loading tab -->
@@ -381,7 +383,7 @@ $(document).on('click', "#delete", function() {
                     <div class="panel panel-default" style="margin-top: 20px;">
                         <div class="panel-heading">
                             <div class="form-inline">
-                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กรอกข้อมูลอาจารพิเศษ
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">กรอกข้อมูลอาจารย์พิเศษ
                                  </h5>
                             </div>
                         </div>
@@ -403,8 +405,8 @@ $(document).on('click', "#delete", function() {
                                         </div>
                                         <br>
                                         <div class="form-inline">
-                                            วันเปิดการกรอกข้อมูลอาจารพิเศษ <input class="form-control" style="width:160px" type="text" id="opendate"> <br><br>
-                                            วันสุดท้ายของการกรอกข้อมูลอาจารพิเศษ <input class="form-control" style="width:160px" type="text" id="lastdate"> <div id="warning"></div>
+                                            วันเปิดการกรอกข้อมูลอาจารย์พิเศษ <input class="form-control" style="width:160px" type="text" id="opendate"> <br><br>
+                                            วันสุดท้ายของการกรอกข้อมูลอาจารย์พิเศษ <input class="form-control" style="width:160px" type="text" id="lastdate"> <div id="warning"></div>
                                         </div>
                                         <br>
                                         <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
@@ -592,7 +594,152 @@ $(document).on('click', "#delete", function() {
                     </div>
                 </div>
             </div>
+            <div class="tab-pane fade <?php echo ($_POST['tab'] == 'evaluate')? ' in active' : '' ?>" id="evaluate">
+                <div class="container">
+                    <div class="panel panel-default" style="margin-top: 20px;">
+                        <div class="panel-heading">
+                            <div class="form-inline">
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">ประเมินกระบวนวิชา
+                                 </h5>
+                            </div>
+                        </div>
+                            <div class="panel-body" id="body_evaluate">
+                                <div class="well" style="position: relative;" id="group_evaluate">
+                                    <br>
+                                    <form>
+                                        <div class="form-inline">
+                                            <h style="width: 100px;">ภาคการศึกษาที่ </h>
+                                            <div class="form-group">
+                                                <select class="form-control" id="semester" style="width: 70px; ">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                            </div>
+                                            ปีการศึกษา
+                                            <input class="form-control" id="year" name="year" placeholder="e.g. 2560" style="width: 100px;">
+                                        </div>
+                                        <br>
+                                        <div class="form-inline">
+                                            วันเปิดการประเมินกระบวนวิชา <input class="form-control" style="width:160px" type="text" id="opendate"> <br><br>
+                                            วันสุดท้ายของการประเมินกระบวนวิชา <input class="form-control" style="width:160px" type="text" id="lastdate">
+                                            <div id="warning"></div>
+                                        </div>
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
+                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_evaluate" name="submit">บันทึก</button>
+                                        <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
+                                    </form>
+                                </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ลำดับ</th>
+                                            <th width="20%">ภาคการศึกษา</th>
+                                            <th width="20%">ปีการศึกษา</th>
+                                            <th>วันเริ่มต้น</th>
+                                            <th>วันสุดท้าย</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <?php
+                                        $result = $deadline->Search_all('4');
+                                        if($result)
+                                        {
+                                          for($i=0;$i<count($result);$i++)
+                                          {
+                                            $opendate = date( 'd/m/Y', strtotime($result[$i]['open_date']));
+                                            $lastdata = date( 'd/m/Y', strtotime($result[$i]['last_date']));
+                                            echo '<tr>
+                                                  <td>'.($i+1).'</td>
+                                                  <td>'.$result[$i]['semester_num'].'</td>
+                                                  <td>'.$result[$i]['year'].'</td>
+                                                  <td>'.$opendate.'</td>
+                                                  <td>'.$lastdata.'</td>
+                                                  </tr>';
+                                          }
+                                        }
+                                       ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade <?php echo ($_POST['tab'] == 'grade')? ' in active' : '' ?>" id="grade">
+                <div class="container">
+                    <div class="panel panel-default" style="margin-top: 20px;">
+                        <div class="panel-heading">
+                            <div class="form-inline">
+                                <h5 style="font-size : 16px;margin-bottom: 0px;margin-top: 0px;">อัปโหลดไฟล์เกรด
+                                 </h5>
+                            </div>
+                        </div>
+                            <div class="panel-body" id="body_grade">
+                                <div class="well" style="position: relative;" id="group_grade">
+                                    <br>
+                                    <form>
+                                        <div class="form-inline">
+                                            <h style="width: 100px;">ภาคการศึกษาที่ </h>
+                                            <div class="form-group">
+                                                <select class="form-control" id="semester" style="width: 70px; ">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                            </div>
+                                            ปีการศึกษา
+                                            <input class="form-control" id="year" name="year" placeholder="e.g. 2560" style="width: 100px;">
+                                        </div>
+                                        <br>
+                                        <div class="form-inline">
+                                            วันเปิดการอัปโหลดไฟล์เกรด <input class="form-control" style="width:160px" type="text" id="opendate"> <br><br>
+                                            วันสุดท้ายของการอัปโหลดไฟล์เกรด <input class="form-control" style="width:160px" type="text" id="lastdate">
+                                            <div id="warning"></div>
+                                        </div>
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 80px; bottom: 10px;" id="edit" disabled>แก้ไข</button> -->
+                                        <button type="button" class="btn btn-outline btn-default" style="position: absolute; right: 10px; bottom: 10px;" id="submitbtn_grade" name="submit">บันทึก</button>
+                                        <button type="button" class="btn btn-outline btn-default" id="delete" style="position: absolute; right: 10px; top: 10px;" disabled>X</button>
+                                    </form>
+                                </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ลำดับ</th>
+                                            <th width="20%">ภาคการศึกษา</th>
+                                            <th width="20%">ปีการศึกษา</th>
+                                            <th>วันเริ่มต้น</th>
+                                            <th>วันสุดท้าย</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <?php
+                                        $result = $deadline->Search_all('6');
+                                        if($result)
+                                        {
+                                          for($i=0;$i<count($result);$i++)
+                                          {
+                                            $opendate = date( 'd/m/Y', strtotime($result[$i]['open_date']));
+                                            $lastdata = date( 'd/m/Y', strtotime($result[$i]['last_date']));
+                                            echo '<tr>
+                                                  <td>'.($i+1).'</td>
+                                                  <td>'.$result[$i]['semester_num'].'</td>
+                                                  <td>'.$result[$i]['year'].'</td>
+                                                  <td>'.$opendate.'</td>
+                                                  <td>'.$lastdata.'</td>
+                                                  </tr>';
+                                          }
+                                        }
+                                       ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <script>
         $(function () {
             $('[id="opendate"]').each(function( index ) {

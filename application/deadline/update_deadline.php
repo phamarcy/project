@@ -48,6 +48,12 @@ else
 					$result = $deadline->Update($_POST['DATA'],$type);
 					$DATA = $result;
 				}
+				else if($type == 'grade')
+				{
+					$type = '6';
+					$result = $deadline->Update($_POST['DATA'],$type);
+					$DATA = $result;
+				}
 				else
 				{
 					$DATA['error'] = 'Invalid format';
