@@ -59,8 +59,8 @@ $end = strtotime($current_semester[0]['last_date']);
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../dist/css/scrollbar.css">
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/core/core.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
@@ -155,7 +155,7 @@ $end = strtotime($current_semester[0]['last_date']);
                   <div class="tab-content col-md-12">
                     <div id="subject" class="tab-pane fade in active">
                       <br>
-                     
+
                       <div class="col-md-12 ">
                         <?php
                         foreach ($data_forapproval as $key => $eva) { ?>
@@ -167,14 +167,14 @@ $end = strtotime($current_semester[0]['last_date']);
                                     <?php echo $eva['id']."  ".$eva['name']; ?>
                                   </a>
 
-                                  
+
                                 </h5>
                                 <div class="btn-group pull-right eva">
                                   <div class="forminline">
-                                  <?php if (isset($eva['syllabus']) ): ?> 
+                                  <?php if (isset($eva['syllabus']) ): ?>
                                     <a href="../../files<?php echo $eva['syllabus'] ?>" target="_blank" ><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดหลักสูตร</button></a>
                                     <?php endif; ?>
-                                    <?php if (isset($eva['evaluate'])): ?> 
+                                    <?php if (isset($eva['evaluate'])): ?>
                                     <a href="<?php echo $eva['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดแบบแจ้ง</button></a>
                                     <?php endif; ?>
                                     <?php if ($eva['status']==0) { ?>
@@ -236,7 +236,7 @@ $end = strtotime($current_semester[0]['last_date']);
                           <?php
                         }
                         ?>
-                    
+
                       </div>
                       <!-- col 12-->
 
@@ -250,7 +250,7 @@ $end = strtotime($current_semester[0]['last_date']);
                             <h5 class="panel-title" style="font-size:14px">
                               <?php echo $sp['id']." ".$sp['name'] ?>
                             </h5>
-                            
+
                           </div>
                           <div class="panel-body">
                             <?php foreach ($sp['instructor'] as $keycom => $spcomment) { ?>
@@ -264,15 +264,15 @@ $end = strtotime($current_semester[0]['last_date']);
                                   </h5>
                                   <div class="btn-group pull-right eva">
                                     <div class="forminline">
-                                  <?php if (isset($spcomment['pdf']) ): ?> 
-  
+                                  <?php if (isset($spcomment['pdf']) ): ?>
+
                                       <a href="<?php echo $spcomment['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดแบบเชิญอาจารย์พิเศษ</button></a>
                                     <?php endif; ?>
-                                    <?php if (isset($spcomment['cv']) ): ?> 
+                                    <?php if (isset($spcomment['cv']) ): ?>
 
                                       <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลด CV</button></a>
                                     <?php endif; ?>
-                                  
+
                                     <?php if ($spcomment['status']==0) { ?>
                                       <a type="button" class="btn  btn-success btn-sm" data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">การพิจารณา</a>
                                     <?php
@@ -296,9 +296,9 @@ $end = strtotime($current_semester[0]['last_date']);
 
                                     </form>
 
-                                    <?php 
+                                    <?php
                                     }?>
-                                    
+
                                     <table class="table " style="font-size:14px">
                                       <thead>
                                         <?php if ($_SESSION['level'] > 1  || $_SESSION['admission']==1): ?>
@@ -500,7 +500,7 @@ $end = strtotime($current_semester[0]['last_date']);
                   timer: 2000,
                   confirmButtonText: "Ok!",
                 });
-                
+
               }
           });
 
@@ -511,7 +511,7 @@ $end = strtotime($current_semester[0]['last_date']);
 
       function get_selectallsp() {
         var course = [];
- 
+
         var tempcourseAndName=[];
 
         var purecourse=[];
@@ -578,7 +578,7 @@ $end = strtotime($current_semester[0]['last_date']);
                         timer: 2000,
                         confirmButtonText: "Ok!",
                       });
-                    
+
                   }
                 }
               }));

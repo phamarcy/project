@@ -8,7 +8,7 @@ require_once(__DIR__."/../../application/class/manage_deadline.php");
 require_once(__DIR__."/../../application/class/course.php");
 $deadline = new Deadline;
 $grade = new Course;
-$_SESSION['semester']='false'; 
+$_SESSION['semester']='false';
 ?>
 <html>
 <header>
@@ -27,7 +27,7 @@ $_SESSION['semester']='false';
     <link href="../dist/css/bootstrap_file_field.css" rel="stylesheet" type="text/css" >
 
     <!-- Bootstrap Core JavaScript -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+    <script type="text/javascript" src="../vendor/jquery/jquery.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
     <script src="../dist/js/sweetalert2.min.js"></script>
@@ -65,13 +65,13 @@ $_SESSION['semester']='false';
 <form id="search-panel" method="post" action="#" data-toggle="validator" role="form">
             <h3 class="page-header"><center>อัปโหลดไฟล์เกรด</center></h3>
             <center> <div class="fa fa-exclamation-circle" style="color: #ec2c2c;font-size:16px;"></div><b style="color: #ec2c2c;font-size:16px;"> กรุณาเลือกภาคและปีการศึกษาที่ต้องการอัปโหลดไฟล์เกรด </b>
-          </center>  
+          </center>
           <br>
             <div class="form-inline">
                 <center>
 
-                     
-               
+
+
                     <h style="font-size : 14px">ภาคการศึกษาที่
                         <div class="form-group">
                             <select class="form-control" name="semester" style="width: 100px;" required>
@@ -121,7 +121,7 @@ if (isset($_POST['semester'])  && isset($_POST['year'])) {
       $_SESSION['term']=$deadline->Search_Semester_Term($semester);
       $_SESSION['grade']=$showgrade;
     }
-   
+
   }
 
 }
@@ -129,7 +129,7 @@ if (isset($_SESSION['term']) && isset($_SESSION['grade']))
 
 { ?>
   <div  style="padding-left: 30px; padding-right: 30px;">
- 
+
       <br>
       <div class="panel panel-default">
           <div class="panel-heading">
@@ -191,8 +191,8 @@ if (isset($_SESSION['term']) && isset($_SESSION['grade']))
 
 </div>
 <?php } ?>
-    
-    
+
+
 <script type="text/javascript">
  $(document).ready(function () {
     $('input[type=file]').change(function () {

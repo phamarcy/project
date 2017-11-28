@@ -12,7 +12,7 @@
 	if (empty($_SESSION['admission'])) {
 		$_SESSION['admission']=0;
 	}
-	
+
 
 	$person = new Person();
 	$course = new Course();
@@ -46,7 +46,7 @@
 		}
 
 	}
-	
+
 
 	$_SESSION['oldlevel']=$check_assessor[0];
 	$show_btn=0;
@@ -56,8 +56,8 @@
 	$show_btnfacboard=0;
 	$show_btndepboard=0;
 	if ($check_assessor[1]==true || $check_assessor[2]==true || $_SESSION['level']== 6 || $_SESSION['admission']>=1 ) {
-		
-		
+
+
 		if ($check_assessor[1]==true && $check_assessor[2]==true) {
 			$show_btnmulti=1;
 		}elseif ( $_SESSION['admission']==1) {
@@ -78,8 +78,8 @@
 			$show_btn = 0;
 		}
 
-	
-		
+
+
 	}
 
 	if (isset($_GET['level'])) {
@@ -125,7 +125,7 @@
 
 	<!-- Custom Theme JavaScript -->
 	<script src="dist/js/sb-admin-2.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+	<script src="vendor/core/core.js"></script>
 	<script type="text/javascript" src="dist/js/bootstrap-filestyle.min.js"></script>
 
 	  <link rel="stylesheet" href="dist/css/scrollbar.css">
@@ -435,7 +435,7 @@
 			<ul class="nav navbar-top-links navbar-right">
 				<form action="index.php" method="POST" class="form-inline">
 					<b>ยินดีต้อนรับ | <font color="#51cc62"> คุณ <?php echo $_SESSION['fname'].' ',$_SESSION['lname']; ?></font></b>
-					<?php	
+					<?php
 					if ($show_btn==1 || $show_btnmulti==1 ||$show_btndep==1 || $show_btndepboard==1 || $show_btnfac==1 ||$show_btnfacboard==1) {
 						if ($_SESSION['level']==1) {
 							$status_name ="อาจารย์";
@@ -460,9 +460,9 @@
 						?>
 
 						<b>สถานะ : <?php echo $status_name;?> </b>&nbsp;
-						
-						<?php 
-						
+
+						<?php
+
 						if ($show_btn==1) {  ?>
 							<button type="submit" class="btn btn-primary btn-outlne" name="change_level">เปลี่ยนสถานะ</button>
 						<?php } ?>

@@ -34,11 +34,11 @@ if (isset($_POST['subject'])) {
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../dist/css/scrollbar.css">
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+    <script type="text/javascript" src="../vendor/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <script src="../vendor/core/core.js"></script>
     <script src="../dist/js/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
     <!--ใช้ตัวนี้-->
@@ -83,7 +83,7 @@ if (isset($_POST['subject'])) {
           </form>
           </center>
         </div>
-      <?php 
+      <?php
 
       $i =1;if (isset($history['comment'])):
         if (is_array($history['comment']) || is_object($history['comment'])) {
@@ -109,8 +109,8 @@ if (isset($_POST['subject'])) {
                           </tr>
                         </thead>
                         <tbody>
-                     
-                            <?php 
+
+                            <?php
                              $year = 0;
                             foreach ($history['comment'] as $key => $value):?>
                               <tr>
@@ -135,10 +135,10 @@ if (isset($_POST['subject'])) {
                                             <a data-toggle="collapse"  href="#comment" ><b>แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา</b></a>
                                           </div>
                                         <div class="pull-right">
-                                            <button type="button" class="btn  btn-primary" data-toggle="collapse" data-target="#comment<?php echo $history['id'].str_replace('/','',$x[$year]) ?>" class="accordion-toggle">ดูข้อเสนอแนะ</button>                                          
+                                            <button type="button" class="btn  btn-primary" data-toggle="collapse" data-target="#comment<?php echo $history['id'].str_replace('/','',$x[$year]) ?>" class="accordion-toggle">ดูข้อเสนอแนะ</button>
                                         </div>
                                         </div>
-                                        
+
                                         <div id="comment<?php echo $history['id'].str_replace('/','',$x[$year]) ?>" class="panel-collapse collapse">
                                           <div class="panel-body">
                                             <table class="table " style="font-size:14px">
@@ -181,7 +181,7 @@ if (isset($_POST['subject'])) {
                                                         <a data-toggle="collapse" data-parent="#teachersp<?php echo $keysp.$year.str_replace('/','',$x[$year]) ?>"><?php echo $valuesp['name'] ?></a>
                                                     </div>
                                                     <div class="pull-right">
-                                                      <button type="button" class="btn  btn-primary" data-toggle="collapse" data-target="#teachersp<?php echo $keysp.$year.str_replace('/','',$x[$year]) ?>" class="accordion-toggle">ดูข้อเสนอแนะ</button>                                          
+                                                      <button type="button" class="btn  btn-primary" data-toggle="collapse" data-target="#teachersp<?php echo $keysp.$year.str_replace('/','',$x[$year]) ?>" class="accordion-toggle">ดูข้อเสนอแนะ</button>
                                                     </div>
                                                   </div>
                                                   <div id="teachersp<?php echo $keysp.$year.str_replace('/','',$x[$year]) ?>" class="panel-collapse collapse">
@@ -198,7 +198,7 @@ if (isset($_POST['subject'])) {
                                                             <tr>
                                                                 <td style="width:300pxpx"><?php echo $valuespcomment['name'] ?></td>
                                                                 <td><?php echo $valuespcomment['comment'] ?></td>
-                                                                <td><?php echo $valuespcomment['date'] ?></td>  
+                                                                <td><?php echo $valuespcomment['date'] ?></td>
                                                             </tr>
                                                             <?php endforeach; ?>
                                                         </tbody>

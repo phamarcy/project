@@ -62,11 +62,11 @@ $end = strtotime($current_semester[0]['last_date']);
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../dist/css/scrollbar.css">
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+    <script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <script src="../vendor/core/core.js"></script>
 
     <script src="../dist/js/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
@@ -182,10 +182,10 @@ $end = strtotime($current_semester[0]['last_date']);
                                   <?php if (isset($eva['syllabus']) ): ?>
                                     <a href="../../files<?php echo $eva['syllabus'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดหลักสูตร</button></a>
                                     <?php endif; ?>
-                                    <?php if (isset($eva['evaluate'])): ?> 
+                                    <?php if (isset($eva['evaluate'])): ?>
                                     <a href="<?php echo $eva['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดแบบแจ้ง</button></a>
                                     <?php endif; ?>
-                                    
+
                                     <a type="button" class="btn  btn-success btn-sm" data-toggle="collapse" href="#collapse<?php echo $eva['id'] ?>">อนุมัติ</a>
                                       <input type="checkbox" name="coursecheck" id="checkedAll" class="checkSingle" value="<?php echo $eva['id']?>"></input>
                                   </div>
@@ -266,7 +266,7 @@ $end = strtotime($current_semester[0]['last_date']);
                             <h5 class="panel-title" style="font-size:14px">
                               <?php echo $sp['id']." ".$sp['name'] ?>
                             </h5>
-                            
+
                           </div>
                           <div class="panel-body">
                             <?php foreach ($sp['instructor'] as $keycom => $spcomment) { ?>
@@ -277,20 +277,20 @@ $end = strtotime($current_semester[0]['last_date']);
                                     <a data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">
                                       <?php echo $spcomment['name'] ?>
                                     </a>
-                                    
+
 
                                   </h5>
                                   <div class="btn-group pull-right eva">
                                     <div class="forminline">
-                                    <?php if (isset($spcomment['pdf']) ): ?> 
+                                    <?php if (isset($spcomment['pdf']) ): ?>
                                     <a href="<?php echo $spcomment['pdf'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดแบบเชิญอาจารย์พิเศษ</button></a>
                                   <?php endif; ?>
-                                  <?php if (isset($spcomment['cv']) ): ?> 
+                                  <?php if (isset($spcomment['cv']) ): ?>
                                     <a href="../../files<?php echo $spcomment['cv'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลด CV</button></a>
                                   <?php endif; ?>
                                     <a type="button" class="btn  btn-success btn-sm" data-toggle="collapse" href="#collapsesp<?php echo $sp['id'].$spcomment['id'] ?>">อนุมัติ</a>&nbsp;
                                     <input type="checkbox" name="coursechecksp" id="checkedAllsp" class="checkSinglesp" value="<?php echo $sp['id']?>,<?php echo $spcomment['id']?>"></input>
-                                    
+
                                     </div>
                                   </div>
                                 </div>
@@ -308,7 +308,7 @@ $end = strtotime($current_semester[0]['last_date']);
                                       </div>
 
                                     </form>
-                                    <?php 
+                                    <?php
                                     }?>
                                     <table class="table " style="font-size:14px">
                                       <thead>
@@ -631,7 +631,7 @@ $end = strtotime($current_semester[0]['last_date']);
                   confirmButtonText: "Ok!",
                 });
               }
-              
+
           });
 
         }, function (dismiss) {
