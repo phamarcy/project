@@ -111,9 +111,11 @@ if(isset($_POST['DATA']))
 	{
 			//insert data into database
 			//criterion_grade
-			$sql_criterion_grade = "INSERT INTO `criterion_grade`(`criterion_type`, `explaination`, `A_min`, `A_max`, `B+_min`, `B+_max`, `B_min`, `B_max`, `C+_min`, `C+_max`, `C_min`, `C_max`, `D+_min`, `D+_max`, `D_max`, `D_min`, `F_max`, `S_min`, `U_max`) VALUES ('".$DATA["CALCULATE_TYPE"]."','".$DATA["CALCULATE_EXPLAINATION"]."',".$DATA["CALCULATE_A_MIN"].",100,".$DATA["CALCULATE_B+_MIN"].",".$DATA["CALCULATE_B+_MAX"].",".$DATA["CALCULATE_B_MIN"].",".$DATA["CALCULATE_B_MAX"].",".$DATA["CALCULATE_C+_MIN"].",".$DATA["CALCULATE_C+_MAX"].",".$DATA["CALCULATE_C_MIN"].",".$DATA["CALCULATE_C_MAX"].",".$DATA["CALCULATE_D+_MIN"].",".$DATA["CALCULATE_D+_MAX"].",".$DATA["CALCULATE_D_MIN"].",".$DATA["CALCULATE_D_MAX"].",".$DATA["CALCULATE_F_MAX"].",".$DATA["CALCULATE_S_MIN"].",".$DATA["CALCULATE_U_MAX"].")";
+			// number_format($number, 2, '.', ',')
+			$sql_criterion_grade = "INSERT INTO `criterion_grade`(`criterion_type`, `explaination`, `A_min`, `A_max`, `B+_min`, `B+_max`, `B_min`, `B_max`, `C+_min`, `C+_max`, `C_min`, `C_max`, `D+_min`, `D+_max`, `D_max`, `D_min`, `F_max`, `S_min`, `U_max`) VALUES";
+			$sql_criterion_grade .= "('".$DATA["CALCULATE_TYPE"]."','".$DATA["CALCULATE_EXPLAINATION"]."',".number_format($DATA["CALCULATE_A_MIN"],1,'.',',').",100.00,".number_format($DATA["CALCULATE_B+_MIN"],1,'.', ',').",".number_format($DATA["CALCULATE_B+_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_B_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_B_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_C+_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_C+_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_C_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_C_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_D+_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_D+_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_D_MIN"],1,'.',',').",";
+			$sql_criterion_grade .= number_format($DATA["CALCULATE_D_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_F_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_S_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_U_MAX"],1,'.',',').")";
 			$lastrow_criterion_grade_id = "SELECT criterion_grade_id FROM criterion_grade ORDER BY criterion_grade_id DESC LIMIT 1;";
-
 			$result_criterion_grade = $db->Insert_Update_Delete($sql_criterion_grade);
 			if ($result_criterion_grade) {
 			    $result_criterion_grade_id = $db->Query($lastrow_criterion_grade_id);
@@ -361,12 +363,7 @@ if($data_pdf == false)
 }
 //start generate pdf
 define('FPDF_FONTPATH','font/');
-if($DATA['SUBMIT_TYPE'] != '4')
-{
-	$data_pdf['num_section'] = 1;
-}
-for($num_section = 1 ; $num_section <= $data_pdf['num_section']; $num_section ++)
-{
+
 $pdf=new FPDF();
 
 $pdf->AddPage();
@@ -390,38 +387,30 @@ $pdf->SetX(20);
 $pdf->SetFont('THSarabun_B','',14);
 if($data_pdf['noorspe'] == "NORMAL")
 {
-	$nor_section = $num_section;
-	$nor_credit = $data_pdf['credit_total'];
-	$nor_student = $data_pdf['student'][$num_section-1];
-	$spe_sction = '-';
-	$spe_credit = '-';
-	$spe_student = '-';
+	$type = 'ภาคปกติ';
+
 }
 else if($data_pdf['noorspe'] == "SPECIAL")
 {
-	$spe_sction =  $num_section;
-	$spe_credit = $data_pdf['credit_total'];
-	$spe_student = $data_pdf['student'][$num_section-1];
-	$nor_section = '-';
-	$nor_credit = '-';
-	$nor_student = '-';
+	$type = 'ภาคพิเศษ';
 }
 // Topic 1
 $pdf->Cell(26,7,iconv( 'UTF-8','cp874','1. รหัสกระบวนวิชา'),0,0,"L");
 
 $pdf->SetFont('THSarabun','',14);
-$pdf->Cell(0,7,iconv( 'UTF-8','cp874','   '.$data_pdf['course_id'].'   ตอนที่   '.$nor_section.'   จำนวนหน่วยกิต   '.$nor_credit.'   จำนวนนักศึกษาลงทะเบียนเรียน   '.$nor_student.'   คน'),0,1,"L");
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','cp874','   '.$data_pdf['course_id']))+1,7,iconv( 'UTF-8','cp874','   '.$data_pdf['course_id']),0,"L");
 
 $pdf->SetFont('THSarabun_B','',14);
-$pdf->SetX(30);
-
-$pdf->Cell(15,7,iconv( 'UTF-8','cp874','ภาคพิเศษ'),0,0,"L");
-
+$pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','cp874',' '.$type.' ')),7,iconv( 'UTF-8','cp874',' '.$type.' '),0,0,"L");
+$x_pos = $pdf->GetX();
 $pdf->SetFont('THSarabun','',14);
-$pdf->Cell(0,7,iconv( 'UTF-8','cp874','ตอนที่   '.$spe_sction.'   จำนวนหน่วยกิต '.$spe_credit.' จำนวนนักศึกษาลงทะเบียนเรียน   '.$spe_student.'   คน'),0,1,"L");
-
+for($i=0;$i<$data_pdf['num_section'];$i++)
+{
+	$pdf->SetX($x_pos);
+	$pdf->Cell(0,7,iconv( 'UTF-8','cp874','   ตอนที่   '.($i+1).'   จำนวนหน่วยกิต   '.$data_pdf['credit_total'].'   จำนวนนักศึกษาลงทะเบียนเรียน   '.$data_pdf['student'][$i].'   คน'),0,1,"L");
+}
 $pdf->SetX(20);
-// $pdf->Ln();
+
 // Topic 2
 $pdf->SetFont('THSarabun_B','',14);
 $pdf->Cell(40,7,iconv( 'UTF-8','cp874','2. ลักษณะการเรียนการสอน: '),0,0,"L");
@@ -732,13 +721,13 @@ if($data_pdf['criterion_type'] == 'SU')
 {
 	$pdf->SetX(35);
 	$pdf->Cell(10,7,'S   = ',0,0,'C');
-	$pdf->Cell(50,7,iconv('UTF-8','cp874'," ตั้งแต่ ".$data_pdf['S_min']),0,0,'C');
+	$pdf->Cell(50,7,iconv('UTF-8','cp874'," ตั้งแต่ ".number_format($data_pdf['S_min'],1,'.',',')),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนขึ้นไป '),0,0,'C');
 	$pdf->Ln();
 
 	$pdf->SetX(35);
 	$pdf->Cell(10,7,'U   = ',0,0,'C');
-	$pdf->Cell(50,7,iconv('UTF-8','cp874'," น้อยกว่า ".$data_pdf['U_max']),0,0,'C');
+	$pdf->Cell(50,7,iconv('UTF-8','cp874'," น้อยกว่า ".number_format($data_pdf['U_max'],1,'.',',')),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนลงมา '),0,0,'C');
 	$pdf->Ln();
 
@@ -747,27 +736,27 @@ else if($data_pdf['criterion_type'] == 'CRITERIA')
 {
 	$pdf->SetX(35);
 	$pdf->Cell(10,7,'A   = ',0,0,'C');
-	$pdf->Cell(50,7,iconv('UTF-8','cp874',' ตั้งแต่ '.$data_pdf['A_min']),0,0,'C');
+	$pdf->Cell(50,7,iconv('UTF-8','cp874',' ตั้งแต่ '.number_format($data_pdf['A_min'],1,'.',',')),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนขึ้นไป '),0,0,'C');
 
 	$pdf->Cell(10,7,'D+  = ',0,0,'C');
-	$pdf->Cell(20,7,$data_pdf['D+_min'],0,0,'C');
+	$pdf->Cell(20,7,number_format($data_pdf['D+_min'],1,'.',','),0,0,'C');
 	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
-	$pdf->Cell(20,7,$data_pdf['D_max'],0,0,'C');
+	$pdf->Cell(20,7,number_format($data_pdf['D_max'],1,'.',','),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 	$pdf->Ln();
 
 	$pdf->SetX(35);
 	$pdf->Cell(10,7,'B+  = ',0,0,'C');
-	$pdf->Cell(20,7,$data_pdf['B+_min'],0,0,'C');
+	$pdf->Cell(20,7,number_format($data_pdf['B+_min'],1,'.',','),0,0,'C');
 	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
-	$pdf->Cell(20,7,$data_pdf['B+_max'],0,0,'C');
+	$pdf->Cell(20,7,number_format($data_pdf['B+_max'],1,'.',','),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 
 	$pdf->Cell(10,7,'D   = ',0,0,'C');
-	$pdf->Cell(20,7,$data_pdf['D_min'],0,0,'C');
+	$pdf->Cell(20,7,number_format($data_pdf['D_min'],1,'.',','),0,0,'C');
 	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
-	$pdf->Cell(20,7,$data_pdf['D_max'],0,0,'C');
+	$pdf->Cell(20,7,number_format($data_pdf['D_max'],1,'.',','),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 
 	$pdf->Ln();
@@ -775,29 +764,29 @@ else if($data_pdf['criterion_type'] == 'CRITERIA')
 	$pdf->SetX(35);
 
 	$pdf->Cell(10,7,'B   = ',0,0,'C');
-	$pdf->Cell(20,7,$data_pdf['B_min'],0,0,'C');
+	$pdf->Cell(20,7,number_format($data_pdf['B_min'],1,'.',','),0,0,'C');
 	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
-	$pdf->Cell(20,7,$data_pdf['B_max'],0,0,'C');
+	$pdf->Cell(20,7,number_format($data_pdf['B_max'],1,'.',','),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 
 	$pdf->Cell(10,7,'F   = ',0,0,'C');
-	$pdf->Cell(50,7,iconv('UTF-8','cp874',' น้อยกว่า '.$data_pdf['F_max']),0,0,'C');
+	$pdf->Cell(50,7,iconv('UTF-8','cp874',' น้อยกว่า '.number_format($data_pdf['F_max'],1,'.',',')),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนลงมา '),0,0,'C');
 	$pdf->Ln();
 
 	$pdf->SetX(35);
 	$pdf->Cell(10,7,'C+   = ',0,0,'C');
-	$pdf->Cell(20,7,$data_pdf['C+_min'],0,0,'C');
+	$pdf->Cell(20,7,number_format($data_pdf['C+_min'],1,'.',','),0,0,'C');
 	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
-	$pdf->Cell(20,7,$data_pdf['C+_max'],0,0,'C');
+	$pdf->Cell(20,7,number_format($data_pdf['C+_max'],1,'.',','),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 	$pdf->Ln();
 
 	$pdf->SetX(35);
 	$pdf->Cell(10,7,'C   = ',0,0,'C');
-	$pdf->Cell(20,7,$data_pdf['C_min'],0,0,'C');
+	$pdf->Cell(20,7,number_format($data_pdf['C_min'],1,'.',','),0,0,'C');
 	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
-	$pdf->Cell(20,7,$data_pdf['C_max'],0,0,'C');
+	$pdf->Cell(20,7,number_format($data_pdf['C_max'],1,'.',','),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 	$pdf->Ln();
 }
@@ -891,7 +880,6 @@ if($DATA['SUBMIT_TYPE'] == '3' || $DATA['SUBMIT_TYPE'] == '4')
 	$pdf->SetX(35);
 	$pdf->Cell(0,7,iconv('UTF-8','cp874','(หัวหน้าภาควิชา)'),0,1);
 	$person->Close_connection();
-
 }
 if($DATA['SUBMIT_TYPE'] == '1' || $DATA['SUBMIT_TYPE'] == '3')
 {
@@ -925,18 +913,16 @@ else
 
 }
 $file_path = $file_path."/evaluate";
-$sec = (int)$num_section;
-$file_path_sql = $file_path_sql."/evaluate/evaluate_".$data_pdf['course_id']."_".$sec."_".$semester['semester']."_".$semester['year'].".pdf";
+$file_path_sql = $file_path_sql."/evaluate/evaluate_".$data_pdf['course_id']."_".$semester['semester']."_".$semester['year'].".pdf";
 if(!file_exists($file_path))
 {
 	mkdir($file_path);
 }
 
-$pdf->Output($file_path."/evaluate_".$data_pdf['course_id']."_".$sec."_".$semester['semester']."_".$semester['year'].".pdf","F");
+$pdf->Output($file_path."/evaluate_".$data_pdf['course_id']."_".$semester['semester']."_".$semester['year'].".pdf","F");
 
-$sql = "UPDATE `student_evaluate` SET `pdf_file` = '".$file_path_sql."' WHERE `course_evaluate_id` = '".$data_pdf['course_evaluate_id']."' AND `section` = ".$sec;
+$sql = "UPDATE `student_evaluate` SET `pdf_file` = '".$file_path_sql."' WHERE `course_evaluate_id` = '".$data_pdf['course_evaluate_id']."'";
 $result = $db->Insert_Update_Delete($sql);
-}
 if($DATA['SUBMIT_TYPE'] == '1')
 {
 	$approve = new approval('1');
