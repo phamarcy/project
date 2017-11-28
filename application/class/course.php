@@ -825,8 +825,25 @@ class Course
 
   public function Get_Grade($teacher_id,$semester_id)
   {
-    $sql = "SELECT c.`course_id`,`course_name_en` as name FROM `course_responsible` cr,`course` c
-    WHERE cr.`teacher_id` = '".$teacher_id."' AND c.`course_id` = cr.`course_id` AND cr.`semester_id` = ".$semester_id;
+    if($_SESSION['level'] == '2')
+    {
+      $dept = $this->PERSON->Get_Staff_Dep($_SESSION['id']);
+      if($dept)
+      {
+        $sql = "SELECT c.`course_id`,c.`course_name_en`as name FROM `department_course_responsible` dr , `course` c ";
+        $sql .= " WHERE dr.`course_id` = c.`course_id` AND  dr.`department_id` = '".$dept['code']."' AND dr.`semester_id` = ".$semester_id;
+      }
+      else
+      {
+        $sql = '';
+      }
+    }
+    else
+    {
+      $sql = "SELECT c.`course_id`,`course_name_en` as name FROM `course_responsible` cr,`course` c
+      WHERE cr.`teacher_id` = '".$teacher_id."' AND c.`course_id` = cr.`course_id` AND cr.`semester_id` = ".$semester_id;
+    }
+
     $result = $this->DB->Query($sql);
     if($result)
     {

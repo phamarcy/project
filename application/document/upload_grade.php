@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once(__DIR__.'/../class/manage_deadline.php');
 require_once(__DIR__.'/../class/database.php');
 $db = new Database();
