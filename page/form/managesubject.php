@@ -95,13 +95,10 @@ else {
     <script src="../dist/js/sb-admin-2.js"></script>
     <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script src="../dist/js/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
-    <script type="text/javascript" src="../dist/js/bootstrap-filestyle.min.js"></script>
-	<script type="text/javascript" src="../dist/js/validator.min.js"></script>
-	<link rel="stylesheet" href="../dist/css/scrollbar.css">
-	<script src="../dist/js/core.js"></script>
 
     <title></title>
     <style>
@@ -482,7 +479,50 @@ else {
           confirmButtonText: 'ตกลง',
           cancelButtonText: 'ยกเลิก'
         }).then(function () {
-          $('#new_group').append('<div class="col-md-6"><div class="panel panel-info"><div class="panel-heading" role="tab" id="heading1"  style="font-size:14px;"><div class="panel-title" style="font-size:14px;"><a role="button" data-toggle="collapse" href="#collapse=" aria-expanded="true" aria-controls="collapse'+numgroup+'" class="trigger collapsed">คณะกรรมการชุดที่ '+numgroup+'</a></div></div><div id="collapse'+numgroup+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1"><div class="panel-body mypanel" style="font-size:14px;"><div class="form-group"><form role="form" data-toggle="validator" id="data"><label for="">เพิ่มคณะกรรมการ</label><div class="form-inline"><input type="text" class="form-control " name="teacher" id="TEACHERLEC_'+numgroup+'" list="dtl'+numgroup+'" placeholder="ชื่อ-นามสกุล" size="35"onkeydown="searchname('+numgroup+',"committee");" required><button type="button" class="btn btn-outline btn-primary" onclick="teacherGroup("'+numgroup+'","add",<?php echo $dep_js ?>)">เพิ่ม</button></div><datalist id="dtl'+numgroup+'"></datalist></form></div><hr><div class="form-group"><table class="table" style="font-size:14px"><thead><th>ลำดับ</th><th>ชื่อ-นามสกุล</th><th></th></thead><tbody></tbody></table></div></div></div></div></div>');
+          $('#new_group').append(
+        ` <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading" role="tab" id="heading1"  style="font-size:14px;">
+              <div class="panel-title" style="font-size:14px;">
+                <a role="button" data-toggle="collapse" href="#collapse=" aria-expanded="true" aria-controls="collapse${numgroup}" class="trigger collapsed">
+                คณะกรรมการชุดที่ ${numgroup}
+                </a>
+              </div>
+            </div>
+            <div id="collapse${numgroup}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+            <div class="panel-body mypanel" style="font-size:14px;">
+            <div class="form-group">
+              <form role="form" data-toggle="validator" id="data">
+                <label for="">เพิ่มคณะกรรมการ</label>
+                <div class="form-inline">
+                  <input type="text" class="form-control " name="teacher" id="TEACHERLEC_${numgroup}" list="dtl${numgroup}" placeholder="ชื่อ-นามสกุล" size="35"
+                    onkeydown="searchname(${numgroup},'committee');" required>
+                  <button type="button" class="btn btn-outline btn-primary" onclick="teacherGroup(${numgroup},'add',<?php echo $department['code']  ?>)">เพิ่ม</button>
+                </div>
+                <datalist id="dtl${numgroup}"></datalist>
+              </form>
+            </div>
+            <hr>
+            <div class="form-group">
+              <table class="table" style="font-size:14px">
+                <thead>
+                  <th>ลำดับ</th>
+                  <th>ชื่อ-นามสกุล</th>
+                  <th></th>
+                </thead>
+                <tbody>
+
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+            </div>
+          </div>
+        </div>
+      `
+        );
         countgroup++;
         }, function (dismiss) {
           if (dismiss === 'cancel') {}
@@ -1013,7 +1053,34 @@ else {
 
               if (count == 0) {
                 $('#table_old')
-                $('#show_old').append('<div class="panel panel-info"><div class="panel-heading" role="tab" id="heading"><div class="panel-title" style="font-size:14px;" ><b>ข้อมูลวิชาย้อนหลัง ${text}</b></div></div><div class="panel-collapse collapse in" id="collapse" role="tabpanel" aria-labelledbyzz="heading"><div class="panel-body"><input type="hidden" id="hidden" name="hidden" value="' +data +'"><button onclick="add()" class="btn btn-outline btn-primary">นำข้อมูลไปใช้</button><table class="table" style="font-size:14px"><thead><th>รหัสวิชา</th><th>ชื่อวิชา</th><th></th> </thead><tbody id="tbody"></tbody></table></div></div></div>');
+                $('#show_old').append(
+                  `
+
+        <div class="panel panel-info">
+        <div class="panel-heading" role="tab" id="heading">
+          <div class="panel-title" style="font-size:14px;" >
+          <b>
+            ข้อมูลวิชาย้อนหลัง ${text}
+          </b>
+          </div>
+        </div>
+        <div class="panel-collapse collapse in" id="collapse" role="tabpanel" aria-labelledbyzz="heading">
+          <div class="panel-body">
+
+          <input type="hidden" id="hidden" name="hidden" value='` +
+                  data +
+                  `'>
+          <button onclick="add()" class="btn btn-outline btn-primary">นำข้อมูลไปใช้</button>
+
+          <table class="table" style="font-size:14px">
+          <thead><th>รหัสวิชา</th><th>ชื่อวิชา</th><th></th> </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+          </div>
+        </div>
+        </div>
+      `
+                );
               }
               var k = '<tbody>'
               for (i = 0; i < obj.length; i++) {
@@ -1027,9 +1094,39 @@ else {
                 k += '<td>' + obj[i].id + '</td>';
                 k += '<td>' + obj[i].name + '</td>';
                 k +=
-                  '<td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#old' +obj[i].id + '" class="accordion-toggle">ผู้รับผิดชอบ</button></td>';
+                  '<td><button type="button" class="btn btn-outline btn-primary" data-toggle="collapse" data-target="#old' +
+                  obj[i].id + '" class="accordion-toggle">ผู้รับผิดชอบ</button></td>';
                 k += '</tr>';
-                k +='<tr class="hiddenRow"><td colspan="12"><div class="accordian-body collapse" id="old' +obj[i].id +'"><div class="panel panel-success"><div class="panel-heading"><b><b>รายชื่ออาจารย์ผู้รับผิดชอบ</b></b></div><div class="panel-body"><div class="row"><div class="col-md-6 "><b >อาจารย์ผู้รับผิดชอบกระบวนวิชา</b><p>' +obj[i].teacher +'</p></div><div class="col-md-6"><b >ชุดคณะกรรมการประเมินกระบวนวิชา</b><p>' +text_group +'</p></div></div></div></div></div></td></tr>';
+                k +=
+                  `<tr class="hiddenRow">
+                    <td colspan="12">
+                      <div class="accordian-body collapse" id="old` +
+                  obj[i].id +
+                  `">
+                        <div class="panel panel-success">
+                          <div class="panel-heading">
+                            <b><b>รายชื่ออาจารย์ผู้รับผิดชอบ</b></b>
+                          </div>
+                          <div class="panel-body">
+                              <div class="row">
+                                <div class="col-md-6 ">
+                                <b >อาจารย์ผู้รับผิดชอบกระบวนวิชา</b>
+                                  <p>` +
+                  obj[i].teacher +
+                  `</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <b >ชุดคณะกรรมการประเมินกระบวนวิชา</b>
+                                    <p>` +
+                  text_group +
+                  `</p>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>`;
               }
               k += '</tbody>';
               document.getElementById('tbody').innerHTML = k;
