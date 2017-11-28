@@ -140,6 +140,8 @@ if($result)
       continue;
     }
     $data = $course->Get_Document('evaluate',$course_id,null,null,$semester['semester'],$semester['year']);
+    var_dump($data);
+    die;
     if($data)
     {
       $Excel->setActiveSheetIndex(0)->setCellValue('A'.$row, $data['course_id']);
