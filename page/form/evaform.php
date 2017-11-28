@@ -664,8 +664,8 @@ function getinfo(temp) {
     $('.stou').prop('disabled',false);
     $('.atof').prop('required',false);
     $('.stou').prop('required',true);
-    document.getElementById("CALCULATE_S_MIN").value = temp['S_min'];
-    document.getElementById("CALCULATE_U_MAX").value = temp['U_max'];
+    document.getElementById("CALCULATE_S_MIN").value = parseFloat(temp['S_min']).toFixed(1);
+    document.getElementById("CALCULATE_U_MAX").value = parseFloat(temp['U_max']).toFixed(1);
   }
 
   //part7
