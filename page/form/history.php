@@ -42,7 +42,7 @@ if (isset($_POST['subject'])) {
     <script src="../dist/js/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../dist/css/sweetalert2.min.css">
     <!--ใช้ตัวนี้-->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+    <script type="text/javascript" src="../vendor/validator/validator.min.js"></script>
     <style>
         .pull-right {
         margin-top: 0px;
