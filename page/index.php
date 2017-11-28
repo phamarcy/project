@@ -21,7 +21,6 @@
 	$check_assessor=$person->Is_Assessor($_SESSION['id']);
 
 
-	echo '<pre><br />'; var_dump($check_assessor); echo '</pre>';
 	
 	if (isset($_POST['change_level'])) {
 		if($_SESSION['level']==1){
