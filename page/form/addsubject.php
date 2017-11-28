@@ -292,7 +292,7 @@ function checksubject() {
                         document.getElementById('TOTAL_2').value = hr_lec;
                         document.getElementById('TOTAL_3').value = hr_lab;
                         document.getElementById('TOTAL_4').value = hr_self;
-                        if(temp['INFO']['department_id']==null)
+                        if(temp['INFO']['department_id']== '')
                         {
                           document.getElementById('department').value = "0";
                         }else {
