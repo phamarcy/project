@@ -9,6 +9,7 @@ require_once(__DIR__."/../../application/class/course.php");
 $deadline = new Deadline;
 $grade = new Course;
 $_SESSION['semester']='false';
+$checkday =$deadline->Search_all(6);
 ?>
 <html>
 <header>
@@ -62,6 +63,27 @@ $_SESSION['semester']='false';
 </header>
 
 <body class="mybox" >
+<center style="padding-top:10px;">
+<?php 
+if ($checkday) {
+  $now = strtotime(date("Y-m-d"));
+  $start = strtotime($checkday[0]['open_date']);
+  $end = strtotime($checkday[0]['last_date']);
+
+  if ($now>$end){
+    echo  '<div class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> สิ้นสุดเวลาในการอัปโหลดเกรด<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
+    exit();
+  }elseif ($now<$start) {
+    echo  '<div class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> ยังไม่ถึงเวลาในการอัปโหลดเกรด<!DOCTYPE html></b></div><b style="color: red;font-size:16px;"></b> </div>';
+    exit();
+  }
+}else {
+  echo '<div class="alert alert-danger"><center>ระบบยังไม่มีภาคการศึกษา และปีการศึกษาปัจจุบัน กรุณาติดต่อเจ้าหน้าที่ </center></div>';
+  die();
+}
+
+    ?>
+</center>
 <form id="search-panel" method="post" action="#" data-toggle="validator" role="form">
             <h3 class="page-header"><center>อัปโหลดไฟล์เกรด</center></h3>
             <center> <div class="fa fa-exclamation-circle" style="color: #ec2c2c;font-size:16px;"></div><b style="color: #ec2c2c;font-size:16px;"> กรุณาเลือกภาคและปีการศึกษาที่ต้องการอัปโหลดไฟล์เกรด </b>
