@@ -984,49 +984,49 @@ function submitfunc(casesubmit) {
       {
         var amin = "0.0";
       }else {
-        var amin  = (document.getElementById("CALCULATE_A_MIN").value).toFixed(1);
+        var amin  = document.getElementById("CALCULATE_A_MIN").value;
       }
       if(document.getElementById("CALCULATE_Bp_MIN").value=="")
       {
         var bpmin = "0.0";
       }else {
-        var bpmin = (document.getElementById("CALCULATE_Bp_MIN").value).toFixed(1);
+        var bpmin = document.getElementById("CALCULATE_Bp_MIN").value;
       }
       if(document.getElementById("CALCULATE_B_MIN").value=="")
       {
         var bmin = "0.0";
       }else {
-        var bmin = (document.getElementById("CALCULATE_B_MIN").value).toFixed(1);
+        var bmin = document.getElementById("CALCULATE_B_MIN").value;
       }
       if(document.getElementById("CALCULATE_Cp_MIN").value=="")
       {
         var cpmin = "0.0";
       }else {
-        var cpmin = (document.getElementById("CALCULATE_Cp_MIN").value).toFixed(1);
+        var cpmin = document.getElementById("CALCULATE_Cp_MIN").value;
       }
       if(document.getElementById("CALCULATE_C_MIN").value=="")
       {
         var cmin = "0.0";
       }else {
-        var cmin = (document.getElementById("CALCULATE_C_MIN").value).toFixed(1);
+        var cmin = document.getElementById("CALCULATE_C_MIN").value;
       }
       if(document.getElementById("CALCULATE_Dp_MIN").value=="")
       {
         var dpmin = "0.0";
       }else {
-        var dpmin = (document.getElementById("CALCULATE_Dp_MIN").value).toFixed(1);
+        var dpmin = document.getElementById("CALCULATE_Dp_MIN").value;
       }
       if(document.getElementById("CALCULATE_D_MIN").value=="")
       {
         var dmin = "0.0";
       }else {
-        var dmin = (document.getElementById("CALCULATE_D_MIN").value).toFixed(1);
+        var dmin = document.getElementById("CALCULATE_D_MIN").value;
       }
       if(document.getElementById("CALCULATE_S_MIN").value=="")
       {
         var smin = "0.0";
       }else {
-        var smin = (document.getElementById("CALCULATE_S_MIN").value).toFixed(1);
+        var smin = document.getElementById("CALCULATE_S_MIN").value;
       }
       //----------------
 
@@ -1034,49 +1034,49 @@ function submitfunc(casesubmit) {
       {
         var bpmax = "0.0";
       }else {
-        var bpmax = (document.getElementById("CALCULATE_Bp_MAX").value).toFixed(1);
+        var bpmax = document.getElementById("CALCULATE_Bp_MAX").value;
       }
       if(document.getElementById("CALCULATE_B_MAX").value=="")
       {
         var bmax = "0.0";
       }else {
-        var bmax = (document.getElementById("CALCULATE_B_MAX").value).toFixed(1);
+        var bmax = document.getElementById("CALCULATE_B_MAX").value;
       }
       if(document.getElementById("CALCULATE_Cp_MAX").value=="")
       {
         var cpmax = "0.0";
       }else {
-        var cpmax = (document.getElementById("CALCULATE_Cp_MAX").value).toFixed(1);
+        var cpmax = document.getElementById("CALCULATE_Cp_MAX").value;
       }
       if(document.getElementById("CALCULATE_C_MAX").value=="")
       {
         var cmax = "0.0";
       }else {
-        var cmax = (document.getElementById("CALCULATE_C_MAX").value).toFixed(1);
+        var cmax = document.getElementById("CALCULATE_C_MAX").value;
       }
       if(document.getElementById("CALCULATE_Dp_MAX").value=="")
       {
         var dpmax = "0.0";
       }else {
-        var dpmax = (document.getElementById("CALCULATE_Dp_MAX").value).toFixed(1);
+        var dpmax = document.getElementById("CALCULATE_Dp_MAX").value;
       }
       if(document.getElementById("CALCULATE_D_MAX").value=="")
       {
         var dmax = "0.0";
       }else {
-        var dmax = (document.getElementById("CALCULATE_D_MAX").value).toFixed(1);
+        var dmax = document.getElementById("CALCULATE_D_MAX").value;
       }
       if(document.getElementById("CALCULATE_F_MAX").value=="")
       {
         var fmax = "0.0";
       }else {
-        var fmax = (document.getElementById("CALCULATE_F_MAX").value).toFixed(1);
+        var fmax = document.getElementById("CALCULATE_F_MAX").value;
       }
       if(document.getElementById("CALCULATE_U_MAX").value=="")
       {
         var umax = "100";
       }else {
-        var umax = (document.getElementById("CALCULATE_U_MAX").value).toFixed(1);
+        var umax = document.getElementById("CALCULATE_U_MAX").value;
       }
       //------
 
@@ -1244,7 +1244,7 @@ function submitfunc(casesubmit) {
         'MEASURE_MSG' : document.getElementById("psmeasure").value,
         'CALCULATE_TYPE' : document.querySelector("input[name='CALCULATE']:checked").value,
         'CALCULATE_EXPLAINATION' : document.getElementById("EXPLAINATION").value,
-        'CALCULATE_A_MAX' : "100",
+        'CALCULATE_A_MAX' : "100.0",
         'CALCULATE_A_MIN' : amin,
         'CALCULATE_B+_MIN' : bpmin,
         'CALCULATE_B+_MAX' : bpmax,
@@ -1259,11 +1259,11 @@ function submitfunc(casesubmit) {
         'CALCULATE_D_MIN' : dmin,
         'CALCULATE_D_MAX' : dmax,
         'CALCULATE_F_MAX' : fmax,
-        'CALCULATE_F_MIN' : "0",
-        'CALCULATE_S_MAX' : "100",
+        'CALCULATE_F_MIN' : "0.0",
+        'CALCULATE_S_MAX' : "100.0",
         'CALCULATE_S_MIN' : smin,
         'CALCULATE_U_MAX' : umax,
-        'CALCULATE_U_MIN' : "0",
+        'CALCULATE_U_MIN' : "0.0",
         'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,
         'SUBMIT_TYPE' : casesubmit,
         'USERID' : '<?php echo $_SESSION['id']; ?>',

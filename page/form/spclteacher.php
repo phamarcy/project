@@ -415,14 +415,10 @@ function downloadfunc(){
    //download
    if(temp['cv']!=false)
    {
-     $('#cv').prop('required', false);
-     $('#cvlist').hide();
      $('#spanfile').text(temp['cv']);
      $('#downloadfile').show();
    }
    else {
-     $('#cv').prop('required', true);
-     $('#cvlist').show();
      $('#spanfile').text("");
      $('#downloadfile').hide();
    }
@@ -786,6 +782,8 @@ function downloadfunc(){
      $('#topic1')[0].checked = false;
      $('#topic2')[0].checked = true;
      $('#cvlist').show();
+     $('#spanfile').text("");
+     $('#downloadfile').hide();
      $('input[name=cv]').prop('required', true);
    }else {
      $('#dlhide').hide();
@@ -1703,8 +1701,6 @@ function downloadfunc(){
                                    $('#hiddenh5').hide();
                                    $('#notfound').show();
                                    $('#department').val(temp['INFO'].department);
-                                   $('#cv').prop('required', true);
-                                   $('#cvlist').show();
                                    $('#spanfile').text('');
                                    $('#downloadfile').hide();
 
