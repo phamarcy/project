@@ -161,13 +161,9 @@ function downloadfunc(){
 
    if(document.querySelector("input[name='topic']:checked").value=="already")
      {
-       $('#cvlist').hide();
-       $('input[name=cv]').prop('required', false);
        $('#course').attr('readonly', true);
      }
      else {
-       $('#cvlist').show();
-       $('input[name=cv]').prop('required', true);
        $('#course').attr('readonly', false);
      }
 
@@ -412,16 +408,29 @@ function downloadfunc(){
    document.getElementById('totalcost').value = temp['cost_total'];
    $('#callist').show();
 
-   //download
+   //cv
    if(temp['cv']!=false)
    {
+     $('#cvlist').hide();
+     $('input[name=cv]').prop('required', false);
+     $('#submitbtn').removeClass("disabled");
+     $('#submitbtn').removeClass("disabled");
+     $("#submitbtn").prop("disabled", false);
+     $('#cvdanger').removeClass("has-error");
+     $('#cvdanger').removeClass("has-danger");
+     $('#submitbtn2').show();
+     $('#submitbtn').hide();
      $('#spanfile').text(temp['cv']);
      $('#downloadfile').show();
-   }
-   else {
+   }else {
+     $('#cvlist').show();
+     $('input[name=cv]').prop('required', true);
+     $('#submitbtn2').hide();
+     $('#submitbtn').show();
      $('#spanfile').text("");
      $('#downloadfile').hide();
    }
+
 
    //buttondiv
    if(temp['ACCESS'] == true)
@@ -457,14 +466,32 @@ function downloadfunc(){
    }
    if(document.querySelector("input[name='topic']:checked").value=="already")
      {
-       $('#cvlist').hide();
-       $('input[name=cv]').prop('required', false);
        $('#course').attr('readonly', true);
      }
      else {
+       $('#course').attr('readonly', false);
+     }
+
+     if(temp['cv']!=false)
+     {
+       $('#cvlist').hide();
+       $('input[name=cv]').prop('required', false);
+       $('#submitbtn').removeClass("disabled");
+       $('#submitbtn').removeClass("disabled");
+       $("#submitbtn").prop("disabled", false);
+       $('#cvdanger').removeClass("has-error");
+       $('#cvdanger').removeClass("has-danger");
+       $('#submitbtn2').show();
+       $('#submitbtn').hide();
+       $('#spanfile').text(temp['cv']);
+       $('#downloadfile').show();
+     }else {
        $('#cvlist').show();
        $('input[name=cv]').prop('required', true);
-       $('#course').attr('readonly', false);
+       $('#submitbtn2').hide();
+       $('#submitbtn').show();
+       $('#spanfile').text("");
+       $('#downloadfile').hide();
      }
 }
 
@@ -782,9 +809,11 @@ function downloadfunc(){
      $('#topic1')[0].checked = false;
      $('#topic2')[0].checked = true;
      $('#cvlist').show();
+     $('input[name=cv]').prop('required', true);
+     $('#submitbtn2').hide();
+     $('#submitbtn').show();
      $('#spanfile').text("");
      $('#downloadfile').hide();
-     $('input[name=cv]').prop('required', true);
    }else {
      $('#dlhide').hide();
      $('#search_1hide').show();
@@ -887,9 +916,13 @@ function downloadfunc(){
                             }else {
                               $('input[name="topic"][value="yet"]').prop('checked', true);
                             }
+                            $('#course').attr('readonly', false);
                             $('#cvlist').show();
                             $('input[name=cv]').prop('required', true);
-                            $('#course').attr('readonly', false);
+                            $('#submitbtn2').hide();
+                            $('#submitbtn').show();
+                            $('#spanfile').text("");
+                            $('#downloadfile').hide();
                          }, function (dismiss) {
                          // dismiss can be 'cancel', 'overlay',
                          // 'close', and 'timer'
@@ -2128,27 +2161,6 @@ function downloadfunc(){
 
       //cvlist
       $('#cvlist').hide();
-      $("input[name='topic']").change(function(){
-        if($(this).val()=="already")
-        {
-          $('#cvlist').hide();
-          $('input[name=cv]').prop('required', false);
-          $('#submitbtn').removeClass("disabled");
-          $('#submitbtn').removeClass("disabled");
-          $("#submitbtn").prop("disabled", false);
-          $('#cvdanger').removeClass("has-error");
-          $('#cvdanger').removeClass("has-danger");
-          $('#submitbtn2').show();
-          $('#submitbtn').hide();
-        }
-        else {
-          $('#cvlist').show();
-          $('input[name=cv]').prop('required', true);
-          $('#submitbtn2').hide();
-          $('#submitbtn').show();
-
-        }
-      });
 
       //Nan
       $('#choice1hour').keyup(function() {
