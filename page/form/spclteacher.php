@@ -1859,7 +1859,7 @@ function downloadfunc(){
        window.sumcheck = 0;
         if (this.checked) {
             $("#SELF_DISTANCT").prop('required',true);
-            $("#selfunit").val("5");
+            $("#selfunit").val("4");
             $("#selfcost").val("0");
         }
         else

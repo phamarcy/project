@@ -952,6 +952,7 @@ function checksubject(btntype,type){
 
                           }
                           else if(temp['INFO']==false && $('#COURSE_ID_2').val()!=""){
+                            $('#submitbtn2').hide();
                             swal(
                                '',
                                'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
@@ -966,12 +967,14 @@ function checksubject(btntype,type){
                                 'ท่านยังไม่เคยอัพโหลด Cousr Syllabus ของวิชานี้ <br>สามารถอัพโหลดไฟล์ได้ดังแบบฟอร์มข้างล่าง',
                                 'info'
                               )
+                              $('#submitbtn2').show();
                               document.getElementById('formdrpd2').style.display = "none";
                              document.getElementById('COURSE_ID_2').value = temp['INFO']['course_id'];
                            }
                            else {
                              if($('#COURSE_ID_2').val()=="" ||$('#COURSE_ID_2').val()==undefined )
                              {
+                               $('#submitbtn2').hide();
                                document.getElementById('formdrpd').style.display = "none";
                                swal(
                                   '',
@@ -1066,6 +1069,7 @@ function checksubject(btntype,type){
                     }
                     else {
                       swal.hideLoading()
+                      $('#submitbtn2').hide();
                       alert('error');
                     }
                   } catch (e) {
