@@ -1480,7 +1480,7 @@ function submitfunc(casesubmit) {
   else if(casesubmit=='0')
   {
     var data = {
-      'COURSE_ID' : document.getElementById('COURSE_ID_2'),
+      'COURSE_ID' : document.getElementById('COURSE_ID_2').value,
       'SUBMIT_TYPE' : casesubmit
     };
     senddata(JSON.stringify(data),getfile('0'),casesubmit);
