@@ -488,7 +488,8 @@ $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','ชำนาญกา�
 $pdf->Ln();
 $pdf->SetX(25);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','3.1 ค่าสอนพิเศษ '))+3,10,iconv('UTF-8','TIS-620','3.1 ค่าสอนพิเศษ'),0,1);
-
+$choice1 = '';
+$choice2 = '';
 $cost1 = $data_pdf["expense_lec_cost"];
 $hour1 = $data_pdf["expense_lec_hour"];
 $num1 = $data_pdf["expense_lec_number"];
