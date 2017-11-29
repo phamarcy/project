@@ -34,7 +34,7 @@ if (isset($_POST['subject'])) {
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../dist/css/scrollbar.css">
 
-    <script type="text/javascript" src="../vendor/jquery.js"></script>
+    <script type="text/javascript" src="../vendor/jquery/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
