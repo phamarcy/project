@@ -153,7 +153,7 @@ public function Update($data,$type)
     }
     else if($level == 1 || $_SESSION['admission'] == 1 )
     {
-      $sql .= " AND (`deadline_type` = '1' OR `deadline_type` = '2' OR `deadline_type` = '3')";
+      $sql .= " AND (`deadline_type` = '1' OR `deadline_type` = '2' OR `deadline_type` = '3' OR `deadline_type` = '6')";
     }
     else if($level == 6 && $_SESSION['admission']==0)
     {
@@ -203,6 +203,13 @@ public function Update($data,$type)
           $data['approve']['month'] = $month;
           $data['approve']['year'] = $year;
           $data['approve']['format'] = $result[$i]['last_date'];
+        }
+        else if($type == 6)
+        {
+          $data['grade']['day'] = $day;
+          $data['grade']['month'] = $month;
+          $data['grade']['year'] = $year;
+          $data['grade']['format'] = $result[$i]['last_date'];
         }
         // array_push($DATA,$data);
       }
