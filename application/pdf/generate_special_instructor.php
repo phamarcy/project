@@ -142,14 +142,14 @@ if(isset($_POST['DATA']))
 							if($hire_id)
 							{
 								$hire_id = $hire_id[0]['hire_id'];
+								$sql = "DELETE FROM `special_lecture_teach` WHERE  `hire_id` = ".$hire_id;
+								$result = $db->Insert_Update_Delete($sql);
 								for ($i=0; $i <$DATA["NUMTABLE"] ; $i++)
 								{
 									if($DATA["COURSEDATA_DETAIL"]["DATE"][$i] == '')
 									{
 										$DATA["COURSEDATA_DETAIL"]["DATE"][$i] = date("Y-m-d");
 									}
-									$sql = "DELETE FROM `special_lecture_teach` WHERE `topic_name` = '".$DATA["COURSEDATA_DETAIL"]["TOPICLEC"][$i]."' AND `hire_id` = ".$hire_id;
-									$result = $db->Insert_Update_Delete($sql);
 									$sql = "INSERT INTO `special_lecture_teach`(`topic_name`,`teaching_date`,`teaching_time_start`, `teaching_time_end`, `teaching_room`, `hire_id`) VALUES ('".$DATA["COURSEDATA_DETAIL"]["TOPICLEC"][$i]."','".$DATA["COURSEDATA_DETAIL"]["DATE"][$i]."','".$DATA["COURSEDATA_DETAIL"]["TIME_BEGIN"][$i]."','".$DATA["COURSEDATA_DETAIL"]["TIME_END"][$i]."','".$DATA["COURSEDATA_DETAIL"]["ROOM"][$i]."',".$hire_id.")";
 									$sql .= " ON DUPLICATE KEY UPDATE `topic_name` = '".$DATA["COURSEDATA_DETAIL"]["TOPICLEC"][$i]."', `teaching_date` = '".$DATA["COURSEDATA_DETAIL"]["DATE"][$i]."',`teaching_time_start` = '".$DATA["COURSEDATA_DETAIL"]["TIME_BEGIN"][$i]."', `teaching_time_end` = '".$DATA["COURSEDATA_DETAIL"]["TIME_END"][$i]."', `teaching_room` = '".$DATA["COURSEDATA_DETAIL"]["ROOM"][$i]."', `hire_id` = ".$hire_id;
 									$result = $db->Insert_Update_Delete($sql);
