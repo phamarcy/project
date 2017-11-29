@@ -904,8 +904,9 @@ function checksubject(btntype,type){
        });
   }else if(btntype==3)
   {
+    $('#submitbtn2').hide();
     var file_data = new FormData;
-    var course_id = String(document.getElementById('id').value);
+    var course_id = String(document.getElementById('COURSE_ID_2').value);
     JSON.stringify(course_id);
     JSON.stringify(type);
     file_data.append("course_id",course_id);
@@ -928,7 +929,6 @@ function checksubject(btntype,type){
                         {
                           if(temp['INFO']!=false && temp['DATA']!=false)
                           {
-                            $('#submitbtn2').show();
                             document.getElementById('COURSE_ID_2').value = temp['INFO']['course_id'];
                             document.getElementById('formdrpd2').style.display = "";
                             //cleardatalist
@@ -1048,7 +1048,7 @@ function checksubject(btntype,type){
                          'ดึงข้อมูลสำเร็จ',
                          'success'
                        )
-
+                         $('#submitbtn2').show();
                        if(temp['syllabus']!=false)
                        {
                          $('#syllabus2').prop('required', false);
