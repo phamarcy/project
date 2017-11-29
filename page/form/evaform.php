@@ -1051,13 +1051,13 @@ function checksubject(btntype,type){
                          $('#submitbtn2').show();
                        if(temp['syllabus']!=false)
                        {
-                         $('#syllabus2').prop('required', false);
+                         $('#syllabus_2').prop('required', false);
                          $('#reqq2').hide();
                          $('#spanfile2').text(temp['syllabus']);
                          $('#downloadfile2').show();
                        }
                        else {
-                         $('#syllabu2s').prop('required', true);
+                         $('#syllabus_2').prop('required', true);
                          $('#reqq2').show();
                          $('#spanfile2').text("");
                          $('#downloadfile2').hide();
@@ -3136,11 +3136,13 @@ function confreset(casereset) {
        </div>
       <li style="font-size: 14px;">
         <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็น .doc , .docx หรือ .pdf เท่านั้น) : </b><br />
+        <div class="row">
         <div class="col-md-5 form-inline form-group">
           <input type="file" class="filestyle" id="syllabus_2" data-icon="false" accept=".doc,.docx,.pdf" required><font color="red" id="reqq2" ><b> ** จำเป็น</b></font>
           &nbsp;<span id="spanfile2"></span>&nbsp;&nbsp;
           <input id="downloadfile2" style="display:none; font-size: 14px;" class="btn btn-outline btn-primary" type="button" value="ดาวน์โหลดไฟล์ Syllabus" onclick="downloadfunc2();">
         </div>
+      </div>
       </li>
       <br><br>
       <div align="center">
