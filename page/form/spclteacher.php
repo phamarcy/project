@@ -192,7 +192,7 @@ function downloadfunc(){
            '" value="ลบ" onclick="deleteRow(' + tr + ')"></center></div></td><td><input type="text" class="form-control formlength" name="dateteach' + tr + '" id="dateteach' + tr +
          '" value="'+temp["lecture_detail"][tr-1]["teaching_date"]+'"></td><td width="25%" style="text-align: center;"><div class="form-inline">' +
          '<select class="form-control formlength" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();" name="timebegin' + tr + '" id="timebegin' + tr + '">'+
-         '<option value="00:00:00">00:00 น.</option><option value="00:15:00">00:15 น.</option>' +
+         '<option value="00:00:00" selected="selected">00:00 น.</option><option value="00:15:00">00:15 น.</option>' +
          '<option value="00:30:00">00:30 น.</option><option value="00:45:00">00:45 น.</option>' +
          '<option value="01:00:00">01:00 น.</option><option value="01:15:00">01:15 น.</option>' +
          '<option value="01:30:00">01:30 น.</option><option value="01:45:00">01:45 น.</option>' +
@@ -2284,7 +2284,7 @@ function downloadfunc(){
            '" value="ลบ" onclick="deleteRow(' + (rowCount - 1) + ')"></center></div></td><td><input type="text" class="form-control formlength" name="dateteach' + (rowCount - 1) + '" id="dateteach' + (rowCount - 1) +
          '"></td><td width="25%" style="text-align: center;"><div class="form-inline">'+
          '<select class="form-control formlength" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();" name="timebegin' + (rowCount - 1) + '" id="timebegin' + (rowCount - 1) + '">'+
-         '<option value="00:00:00">00:00 น.</option><option value="00:15:00">00:15 น.</option>' +
+         '<option value="00:00:00" selected="selected">00:00 น.</option><option value="00:15:00">00:15 น.</option>' +
          '<option value="00:30:00">00:30 น.</option><option value="00:45:00">00:45 น.</option>' +
          '<option value="01:00:00">01:00 น.</option><option value="01:15:00">01:15 น.</option>' +
          '<option value="01:30:00">01:30 น.</option><option value="01:45:00">01:45 น.</option>' +
