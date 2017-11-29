@@ -101,6 +101,11 @@ if(isset($_POST['DATA']))
 
 	if($DATA['SUBMIT_TYPE'] == '0') //upload syllabus only
 	{
+		if(isset($_FILES['file']))
+		{
+			$file = $_FILES['file'];
+			Upload($file,$DATA['COURSE_ID']);
+		}
 		$return['status'] = "success";
 		$return['msg'] = 'อัพโหลดไฟล์เรียบร้อยแล้ว';
 		echo json_encode($return);
