@@ -173,6 +173,9 @@ $data_course     = json_decode($var, true);
 					<?php if (isset($deadline_form['special'])): ?>
 					<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับกรอกแบบขออนุมัติเชิญอาจารย์พิเศษ <?php echo $deadline_form['special']['day'].' '.$deadline_form['special']['month'].' '.$deadline_form['special']['year']."<br>"; ?> </b>
 					<?php endif; ?>
+          <?php if (isset($deadline_form['grade'])): ?>
+					<div class="glyphicon glyphicon-alert" style="color: red;font-size:16px;"></div><b style="color: red;font-size:16px;"> วันสุดท้ายสำหรับอัปโหลดไฟล์เกรด <?php echo $deadline_form['grade']['day'].' '.$deadline_form['grade']['month'].' '.$deadline_form['grade']['year']."<br>"; ?> </b>
+					<?php endif; ?>
 					<?php endif; ?>
 
 					<?php
@@ -245,7 +248,7 @@ $data_course     = json_decode($var, true);
 ?>
 								<div class="panel-group" id="accordione1">
 									<div class="panel panel-success">
-										<div class="panel-heading clearfix"> 
+										<div class="panel-heading clearfix">
 											<h4 class="panel-title  pull-left" style="font-size:14px;padding-top: 7.5px">
 												<b><u>กระบวนวิชา</u></b> :<?php echo $value_course['id']." ".$value_course['name']?>
 											</h4>
@@ -271,17 +274,17 @@ $data_course     = json_decode($var, true);
 											<div class="panel-group">
 												<div class="panel panel-default">
 													<div class="panel-heading clearfix" >
-													
+
 														<h3 class="panel-title pull-left " style="font-size:14px;padding-top: 8px" >
 															<a data-toggle="collapse" href="#evaluate<?php echo $value_course['id']."_".$key ?>">
 															<i class="fa fa-file-o fa-fw"></i><b> แบบแจ้งวิธีการวัดผล ประเมินผลการศึกษาและประมวลกระบวนวิชา  </b>
 															<i class="fa fa-long-arrow-right fa-fw"></i>
 															<?php echo $status_text ?>
 															</a>
-															
+
 														</h3>
 														<div class="btn-group pull-right eva">
-															
+
 														<?php if ($_SESSION['level']==3 || $_SESSION['admission']==3): ?>
 															<?php if(($value_course['evaluate']['status'])==4){ ?>
 																<div class="forminline">
@@ -314,7 +317,7 @@ $data_course     = json_decode($var, true);
 																<?php if ($_SESSION['level']==3 && ($value_course['evaluate']['status'])==4 || ($_SESSION['admission']==3 && $value_course['evaluate']['status']==4)): ?>
 																<label style="font-size:14px" ><input type="checkbox" name="coursecheck" id="checkedAll" class="checkSingle " value="<?php echo $value_course['id'] ?>"></input></label>
 															<?php endif; ?>
-															</div>	
+															</div>
 													</div>
 													<?php if (isset($_SESSION['level'])) { ?>
 													<div id="evaluate<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse">
@@ -381,7 +384,7 @@ $data_course     = json_decode($var, true);
 													<?php if (isset($_SESSION['level'])) { ?>
 													<div id="special<?php echo $value_course['id']."_".$key ?>" class="panel-collapse collapse  in">
 														<div class="panel-body" style="font-size:14px;">
-															<?php 
+															<?php
 																if (count($value_course['special'])==0) { ?>
 																	<div class="fa fa-exclamation-circle" style="color: #ec2c2c;font-size:16px;"></div><b style="color: #ec2c2c;font-size:16px;"> กระบวนวิชานี้ไม่ได้เชิญอาจารย์พิเศษ </b>
 														<?php		}
@@ -425,10 +428,10 @@ $data_course     = json_decode($var, true);
 																			<a data-toggle="collapse"  href="#special_<?php echo $value_course['id']."_".$keysp ?>">
 																				<?php echo $valuesp['name'] ?> </a>
 																			</b>
-																			<?php echo ' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp; ?> 
+																			<?php echo ' <i class="fa fa-long-arrow-right fa-fw"></i>'.$status_sp; ?>
 																		</h3>
 																		<div class="btn-group pull-right eva">
-																		<?php 
+																		<?php
 																			 if ($_SESSION['level']==3 || $_SESSION['admission']==3):
 																			if($valuesp['status']==4 ){ ?>
 																			<div class="forminline">
@@ -443,7 +446,7 @@ $data_course     = json_decode($var, true);
 																					</div>
 																				<?php }
 																					} ?>
-																				
+
 																				<?php if (($valuesp['edit']==true && ($valuesp['status']==1 || $valuesp['status']==3 || $valuesp['status']==6) && ($_SESSION['level']==1 || $_SESSION['level']==2  )) || ( $valuesp['status']==3 || $valuesp['status']==6)&& ( $_SESSION['level']==1 || $_SESSION['level']==2 )): ?>
 																				<form action="spclteacher.php" method="post" class="forminline">
 																				<input type="hidden" name="course_id" value="<?php echo $value_course['id'] ?>">
