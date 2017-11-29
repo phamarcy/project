@@ -109,6 +109,11 @@ function downloadfunc(){
   var link = $('#spanfile').text();
   window.open("../../files/syllabus/"+link);
 }
+
+function downloadfunc2(){
+  var link = $('#spanfile2').text();
+  window.open("../../files/syllabus/"+link);
+}
 // searchname
 function searchname(no,type) {
 
@@ -859,6 +864,204 @@ function checksubject(btntype,type){
                        )
                       getinfo(temp);
                       $('#dlhide').show();
+
+                    }
+                    else {
+                      swal.hideLoading()
+                      alert('error');
+                    }
+                  } catch (e) {
+                    swal.hideLoading()
+                    swal({
+                      title: 'เกิดข้อผิดพลาด',
+                      text: temp["msg"],
+                      type: 'error',
+                      showCancelButton: false,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Ok'
+                    }).then(function () {
+
+                    }, function (dismiss) {
+                    // dismiss can be 'cancel', 'overlay',
+                    // 'close', and 'timer'
+                    if (dismiss === 'cancel') {
+
+                    }
+                  })
+                       console.log('Error#542-decode error');
+                  }
+                },
+                  failure: function (result) {
+                       alert(result);
+                  },
+                  error: function (xhr, status, p3, p4) {
+                       var err = "Error " + " " + status + " " + p3 + " " + p4;
+                       if (xhr.responseText && xhr.responseText[0] == "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                       console.log(err);
+                  }
+       });
+  }else if(btntype==3)
+  {
+    var file_data = new FormData;
+    var course_id = String(document.getElementById('id').value);
+    JSON.stringify(course_id);
+    JSON.stringify(type);
+    file_data.append("course_id",course_id);
+    file_data.append("type",type);
+    var URL = '../../application/document/search_document.php';
+    $.ajax({
+                  url: URL,
+                  dataType: 'text',
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: file_data,
+                  type: 'post',
+                  success: function (result) {
+                        try {
+                          var temp = $.parseJSON(result);
+
+                        //buttondiv
+                        if(temp['ACCESS'] == true)
+                        {
+                          if(temp['INFO']!=false && temp['DATA']!=false)
+                          {
+                            $('#submitbtn2').show();
+                            document.getElementById('COURSE_ID_2').value = temp['INFO']['course_id'];
+                            document.getElementById('formdrpd2').style.display = "";
+                            //cleardatalist
+                            var selectobject = document.getElementById('semester2');
+                            var long = selectobject.length;
+                            if(long!=0 && long!=null)
+                            {
+                              for (var i=0; i<=long; i++){
+                                document.getElementsByName("semester2")[0].remove(0);
+                              }
+                            }
+
+                            for(var i=0;i<(Object.keys(temp['DATA']).length);i++)
+                            {
+                              var opt = document.createElement('option');
+                              opt.value = temp['DATA'][i].semester +"_"+ temp['DATA'][i].year;
+                              opt.innerHTML = "ภาคการศึกษาที่ " +temp['DATA'][i].semester +" ปีการศึกษา "+ temp['DATA'][i].year;
+                              document.getElementById('semester2').appendChild(opt);
+                            }
+
+
+                          }
+                          else if(temp['INFO']==false && $('#COURSE_ID_2').val()!=""){
+                            swal(
+                               '',
+                               'กระบวนวิชาที่ค้นหาไม่พบในระบบ <br> กรุณาติดต่อเจ้าหน้าที่ภาคที่สังกัด',
+                               'error'
+                             )
+                            document.getElementById('COURSE_ID_2').value = "";
+                            document.getElementById('formdrpd2').style.display = "none";
+                          }
+                          else if(temp['INFO']!=false && temp['DATA']==false){
+                             swal(
+                                '',
+                                'ท่านยังไม่เคยอัพโหลด Cousr Syllabus ของวิชานี้ <br>สามารถอัพโหลดไฟล์ได้ดังแบบฟอร์มข้างล่าง',
+                                'info'
+                              )
+                              document.getElementById('formdrpd2').style.display = "none";
+                             document.getElementById('COURSE_ID_2').value = temp['INFO']['course_id'];
+                           }
+                           else {
+                             if($('#COURSE_ID_2').val()=="" ||$('#COURSE_ID_2').val()==undefined )
+                             {
+                               document.getElementById('formdrpd').style.display = "none";
+                               swal(
+                                  '',
+                                  'กรุณากรอกรหัสกระบวนวิชาให้ถูกต้อง',
+                                  'error'
+                                )
+                             }
+                           }
+                        }else {
+                          swal(
+                             '',
+                             'กระบวนวิชานี้ไม่อยู่ในความรับผิดชอบของท่าน',
+                             'warning'
+                           )
+                          $('#submitbtn2').hide();
+                        }
+
+
+                      } catch (e) {
+                           console.log('Error#542-decode error');
+                      }
+                  },
+                  failure: function (result) {
+                       alert(result);
+                  },
+                  error: function (xhr, status, p3, p4) {
+                       var err = "Error " + " " + status + " " + p3 + " " + p4;
+                       if (xhr.responseText && xhr.responseText[0] == "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                       console.log(err);
+                  }
+       });
+  }else if (btntype==4) {
+    var file_data = new FormData;
+    var course_id = String(document.getElementById('COURSE_ID_2').value);
+    var semester_temp = document.getElementById('semester2').value;
+    var stringspl = semester_temp.split("_");
+    var semester = stringspl[0];
+    var year = stringspl[1];
+    JSON.stringify(course_id);
+    JSON.stringify(semester);
+    JSON.stringify(year);
+    JSON.stringify(type);
+    file_data.append("course_id",course_id);
+    file_data.append("semester",semester);
+    file_data.append("year",year);
+    file_data.append("type",type);
+    var URL = '../../application/document/search_document.php';
+    $.ajax({
+                  url: URL,
+                  dataType: 'text',
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: file_data,
+                  type: 'post',
+                  beforeSend: function() {
+                    swal({
+                      title: 'กรุณารอสักครู่',
+                      text: 'ระบบกำลังประมวลผล',
+                      allowOutsideClick: false
+                    })
+                    swal.showLoading()
+                  },
+                  success: function (result) {
+                    try {
+                      var temp = $.parseJSON(result);
+
+                    if(temp!=null)
+                    {
+                      swal.hideLoading()
+                      swal(
+                         'สำเร็จ!',
+                         'ดึงข้อมูลสำเร็จ',
+                         'success'
+                       )
+
+                       if(temp['syllabus']!=false)
+                       {
+                         $('#syllabus2').prop('required', false);
+                         $('#reqq2').hide();
+                         $('#spanfile2').text(temp['syllabus']);
+                         $('#downloadfile2').show();
+                       }
+                       else {
+                         $('#syllabu2s').prop('required', true);
+                         $('#reqq2').show();
+                         $('#spanfile2').text("");
+                         $('#downloadfile2').hide();
+                       }
 
                     }
                     else {
@@ -2919,16 +3122,29 @@ function confreset(casereset) {
     <br>
     <ol>
       <form data-toggle="validator" role="form" name="form2" id="form2">
-      <li style="font-size: 14px;"><div class="form-inline form-group"><b>รหัสกระบวนวิชา : </b><input style="width: 100px;" type="text" class="form-control formlength numonly" name="COURSE_ID_2" id="COURSE_ID_2"   maxlength="6" required pattern=".{6,6}" ></div></li>
+        <font color="red" style="font-size:14px;">** กรุณากรอกรหัสวิชาและค้นหาเพื่ออัพโหลดไฟล์ Course Syllabus **</font>
+      <li style="font-size: 14px;"><div class="form-inline form-group"><b>รหัสกระบวนวิชา : </b><input style="width: 100px;" type="text" class="form-control formlength numonly" name="COURSE_ID_2" id="COURSE_ID_2"   maxlength="6" required pattern=".{6,6}" > <input type="button" class="btn btn-outline btn-primary" value="ค้นหา" onclick="checksubject(3,1);"></div></li>
+      <div id="formdrpd2" style="display: none;">
+        <div class="form-inline">
+          <div class="form-group " style="font-size:16px;">
+             ดึงข้อมูลย้อนหลัง
+            <select class="form-control formlength" id="semester2" name="semester2" style="width: 300px; " >
+            </select>
+           </div>
+           <input type="button" class="btn btn-outline btn-primary" name="subhead2" id="subhead2" value="ยืนยัน" onclick="checksubject(4,1);">
+         </div>
+       </div>
       <li style="font-size: 14px;">
         <b>เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็น .doc , .docx หรือ .pdf เท่านั้น) : </b><br />
         <div class="col-md-5 form-inline form-group">
-          <input type="file" class="filestyle" id="syllabus_2" data-icon="false" accept=".doc,.docx,.pdf" required><font color="red" ><b> ** จำเป็น</b></font>
+          <input type="file" class="filestyle" id="syllabus_2" data-icon="false" accept=".doc,.docx,.pdf" required><font color="red" id="reqq2" ><b> ** จำเป็น</b></font>
+          &nbsp;<span id="spanfile2"></span>&nbsp;&nbsp;
+          <input id="downloadfile2" style="display:none; font-size: 14px;" class="btn btn-outline btn-primary" type="button" value="ดาวน์โหลดไฟล์ Syllabus" onclick="downloadfunc2();">
         </div>
       </li>
       <br><br>
       <div align="center">
-        <input type="submit" style="font-size: 18px;" class="btn btn-outline btn-success" name="submitbtn2" id="submitbtn2" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
+        <input type="submit" style="font-size: 18px; display:none;" class="btn btn-outline btn-success" name="submitbtn2" id="submitbtn2" value="ยืนยันเพื่อส่งข้อมูล" > &nbsp;
       </div>
     </form>
     </ol>
