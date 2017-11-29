@@ -671,7 +671,7 @@ $pdf->Cell(15,7,$data_pdf['final_hour_lab'],0,0,"C");
 $pdf->SetX(80);
 for($i=1;$i<=10;$i++)
 {
-	$pdf->Cell(60,7,$i < count($data_pdf['exam_final_committee_lec']) +1  ? iconv( 'UTF-8','cp874',$i.') '.$data_pdf['exam_final_committee_lab'][$i-1]) : $i.")",0);
+	$pdf->Cell(60,7,$i < count($data_pdf['exam_final_committee_lab']) +1  ? iconv( 'UTF-8','cp874',$i.') '.$data_pdf['exam_final_committee_lab'][$i-1]) : $i.")",0);
 	$j++;
 	if($j >=2)
 	{
