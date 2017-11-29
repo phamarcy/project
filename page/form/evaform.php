@@ -964,10 +964,10 @@ function checksubject(btntype,type){
                           else if(temp['INFO']!=false && temp['DATA']==false){
                              swal(
                                 '',
-                                'ท่านยังไม่เคยอัพโหลด Cousr Syllabus ของวิชานี้ <br>สามารถอัพโหลดไฟล์ได้ดังแบบฟอร์มข้างล่าง',
-                                'info'
+                                'ไม่สามารถอัปโหลดไฟล์ Course Syllabus ได้เนื่องจากท่านยังไม่ได้กรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา',
+                                'error'
                               )
-                              $('#submitbtn2').show();
+                              $('#submitbtn2').hide();
                               document.getElementById('formdrpd2').style.display = "none";
                              document.getElementById('COURSE_ID_2').value = temp['INFO']['course_id'];
                            }
