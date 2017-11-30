@@ -511,19 +511,19 @@ function getinfo(temp) {
   }
 
   //part4
-  document.getElementById('MEASURE_MIDLEC1').value = temp['mid1_lec'];
-  document.getElementById('MEASURE_MIDLAB1').value = temp['mid1_lab'];
-  document.getElementById('MEASURE_MIDLEC2').value = temp['mid2_lec'];
-  document.getElementById('MEASURE_MIDLAB2').value = temp['mid2_lab'];
-  document.getElementById('MEASURE_FINLEC').value = temp['final_lec'];
-  document.getElementById('MEASURE_FINLAB').value = temp['final_lab'];
-  document.getElementById('MEASURE_WORKLEC').value = temp['work_lec'];
-  document.getElementById('MEASURE_WORKLAB').value = temp['work_lab'];
-  document.getElementById('OTHER_MEA').value = temp['other_oth'];
-  document.getElementById('MEASURE_OTHLEC').value = temp['other_lec'];
-  document.getElementById('MEASURE_OTHLAB').value = temp['other_lab'];
-  document.getElementById('MEASURE_TOTALLEC').value = temp['total_lec'];
-  document.getElementById('MEASURE_TOTALLAB').value = temp['total_lab'];
+  document.getElementById('MEASURE_MIDLEC1').value = parseFloat(temp['mid1_lec']).toFixed(1);
+  document.getElementById('MEASURE_MIDLAB1').value = parseFloat(temp['mid1_lab']).toFixed(1);
+  document.getElementById('MEASURE_MIDLEC2').value = parseFloat(temp['mid2_lec']).toFixed(1);
+  document.getElementById('MEASURE_MIDLAB2').value = parseFloat(temp['mid2_lab']).toFixed(1);
+  document.getElementById('MEASURE_FINLEC').value = parseFloat(temp['final_lec']).toFixed(1);
+  document.getElementById('MEASURE_FINLAB').value = parseFloat(temp['final_lab']).toFixed(1);
+  document.getElementById('MEASURE_WORKLEC').value = parseFloat(temp['work_lec']).toFixed(1);
+  document.getElementById('MEASURE_WORKLAB').value = parseFloat(temp['work_lab']).toFixed(1);
+  document.getElementById('OTHER_MEA').value = parseFloat(temp['other_oth']).toFixed(1);
+  document.getElementById('MEASURE_OTHLEC').value = parseFloat(temp['other_lec']).toFixed(1);
+  document.getElementById('MEASURE_OTHLAB').value = parseFloat(temp['other_lab']).toFixed(1);
+  document.getElementById('MEASURE_TOTALLEC').value = parseFloat(temp['total_lec']).toFixed(1);
+  document.getElementById('MEASURE_TOTALLAB').value = parseFloat(temp['total_lab']).toFixed(1);
   document.getElementById('psmeasure').value = temp['msg'];
 
 
@@ -1289,117 +1289,129 @@ function submitfunc(casesubmit) {
 
       if(document.getElementById("MIDEXAM_HOUR_LEC").value=="")
       {
-        var h1 = "0";
+        var h1 = "0.0";
       }else {
         var h1 = document.getElementById("MIDEXAM_HOUR_LEC").value;
       }
 
       if(document.getElementById("MIDEXAM_HOUR_LAB").value=="")
       {
-        var h2 = "0";
+        var h2 = "0.0";
       }else {
         var h2 = document.getElementById("MIDEXAM_HOUR_LAB").value;
       }
 
       if(document.getElementById("MIDEXAM_HOUR_LEC_SEC").value=="")
       {
-        var h3 = "0";
+        var h3 = "0.0";
       }else {
         var h3 = document.getElementById("MIDEXAM_HOUR_LEC_SEC").value;
       }
 
       if(document.getElementById("MIDEXAM_HOUR_LAB_SEC").value=="")
       {
-        var h4 = "0";
+        var h4 = "0.0";
       }else {
         var h4 = document.getElementById("MIDEXAM_HOUR_LAB_SEC").value;
       }
 
       if(document.getElementById("FINEXAM_HOUR_LEC").value=="")
       {
-        var h5 = "0";
+        var h5 = "0.0";
       }else {
         var h5 = document.getElementById("FINEXAM_HOUR_LEC").value;
       }
 
       if(document.getElementById("FINEXAM_HOUR_LAB").value=="")
       {
-        var h6 = "0";
+        var h6 = "0.0";
       }else {
         var h6 = document.getElementById("FINEXAM_HOUR_LAB").value;
       }
 
       if(document.getElementById("MEASURE_MIDLEC1").value=="")
       {
-        var m1 = "0";
+        var m1 = "0.0";
       }else {
         var m1  = document.getElementById("MEASURE_MIDLEC1").value;
+        var m1 = parseFloat(m1).toFixed(1);
       }
       if(document.getElementById("MEASURE_MIDLAB1").value=="")
       {
-        var m2 = "0";
+        var m2 = "0.0";
       }else {
         var m2  = document.getElementById("MEASURE_MIDLAB1").value;
+        var m2 = parseFloat(m2).toFixed(1);
       }
       if(document.getElementById("MEASURE_MIDLEC2").value=="")
       {
-        var m3 = "0";
+        var m3 = "0.0";
       }else {
         var m3  = document.getElementById("MEASURE_MIDLEC2").value;
+        var m3 = parseFloat(m3).toFixed(1);
       }
       if(document.getElementById("MEASURE_MIDLAB2").value=="")
       {
-        var m4 = "0";
+        var m4 = "0.0";
       }else {
         var m4  = document.getElementById("MEASURE_MIDLAB2").value;
+        var m4 = parseFloat(m4).toFixed(1);
       }
       if(document.getElementById("MEASURE_FINLEC").value=="")
       {
-        var m5 = "0";
+        var m5 = "0.0";
       }else {
         var m5  = document.getElementById("MEASURE_FINLEC").value;
+        var m5 = parseFloat(m5).toFixed(1);
       }
       if(document.getElementById("MEASURE_FINLAB").value=="")
       {
-        var m6 = "0";
+        var m6 = "0.0";
       }else {
         var m6  = document.getElementById("MEASURE_FINLAB").value;
+        var m6 = parseFloat(m6).toFixed(1);
       }
       if(document.getElementById("MEASURE_WORKLEC").value=="")
       {
-        var m7 = "0";
+        var m7 = "0.0";
       }else {
         var m7  = document.getElementById("MEASURE_WORKLEC").value;
+        var m7 = parseFloat(m7).toFixed(1);
       }
       if(document.getElementById("MEASURE_WORKLAB").value=="")
       {
-        var m8 = "0";
+        var m8 = "0.0";
       }else {
         var m8  = document.getElementById("MEASURE_WORKLAB").value;
+        var m8 = parseFloat(m8).toFixed(1);
       }
       if(document.getElementById("MEASURE_OTHLEC").value=="")
       {
-        var m9 = "0";
+        var m9 = "0.0";
       }else {
         var m9  = document.getElementById("MEASURE_OTHLEC").value;
+        var m9 = parseFloat(m9).toFixed(1);
       }
       if(document.getElementById("MEASURE_OTHLAB").value=="")
       {
-        var m10 = "0";
+        var m10 = "0.0";
       }else {
         var m10  = document.getElementById("MEASURE_OTHLAB").value;
+        var m10 = parseFloat(m10).toFixed(1);
       }
       if(document.getElementById("MEASURE_TOTALLEC").value=="")
       {
-        var m11 = "0";
+        var m11 = "0.0";
       }else {
         var m11  = document.getElementById("MEASURE_TOTALLEC").value;
+        var m11 = parseFloat(m11).toFixed(1);
       }
       if(document.getElementById("MEASURE_TOTALLAB").value=="")
       {
-        var m12 = "0";
+        var m12 = "0.0";
       }else {
         var m12  = document.getElementById("MEASURE_TOTALLAB").value;
+        var m12 = parseFloat(m12).toFixed(1);
       }
 
 
@@ -2228,7 +2240,7 @@ $(document).ready(function(){
       var templec1 = parseFloat($('#MEASURE_MIDLEC1').val());
     }
     else {
-      var templec1 = parseFloat('0');
+      var templec1 = parseFloat('0.0');
     }
 
     if($("#MEASURE_MIDLEC2").val()!=null && $("#MEASURE_MIDLEC2").val()!="")
@@ -2236,7 +2248,7 @@ $(document).ready(function(){
       var templec2 = parseFloat($('#MEASURE_MIDLEC2').val());
     }
     else {
-      var templec2 = parseFloat('0');
+      var templec2 = parseFloat('0.0');
     }
 
     if($("#MEASURE_MIDLAB1").val()!=null && $("#MEASURE_MIDLAB1").val()!="")
@@ -2244,7 +2256,7 @@ $(document).ready(function(){
       var templab1 = parseFloat($('#MEASURE_MIDLAB1').val());
     }
     else {
-      var templab1 = parseFloat('0');
+      var templab1 = parseFloat('0.0');
     }
 
     if($("#MEASURE_MIDLAB2").val()!=null && $("#MEASURE_MIDLAB2").val()!="")
@@ -2252,7 +2264,7 @@ $(document).ready(function(){
       var templab2 = parseFloat($('#MEASURE_MIDLAB2').val());
     }
     else {
-      var templab2 = parseFloat('0');
+      var templab2 = parseFloat('0.0');
     }
 
     if($("#MEASURE_FINLEC").val()!=null && $("#MEASURE_FINLEC").val()!="")
@@ -2260,7 +2272,7 @@ $(document).ready(function(){
       var tempfinlec = parseFloat($('#MEASURE_FINLEC').val());
     }
     else {
-      var tempfinlec = parseFloat('0');
+      var tempfinlec = parseFloat('0.0');
     }
 
     if($("#MEASURE_FINLAB").val()!=null && $("#MEASURE_FINLAB").val()!="")
@@ -2268,7 +2280,7 @@ $(document).ready(function(){
       var tempfinlab = parseFloat($('#MEASURE_FINLAB').val());
     }
     else {
-      var tempfinlab = parseFloat('0');
+      var tempfinlab = parseFloat('0.0');
     }
 
     if($("#MEASURE_WORKLEC").val()!=null && $("#MEASURE_WORKLEC").val()!="")
@@ -2276,7 +2288,7 @@ $(document).ready(function(){
       var worklec = parseFloat($('#MEASURE_WORKLEC').val());
     }
     else {
-      var worklec = parseFloat('0');
+      var worklec = parseFloat('0.0');
     }
 
     if($("#MEASURE_WORKLAB").val()!=null && $("#MEASURE_WORKLAB").val()!="")
@@ -2284,7 +2296,7 @@ $(document).ready(function(){
       var worklab = parseFloat($('#MEASURE_WORKLAB').val());
     }
     else {
-      var worklab = parseFloat('0');
+      var worklab = parseFloat('0.0');
     }
 
     if($("#MEASURE_OTHLEC").val()!=null && $("#MEASURE_OTHLEC").val()!="")
@@ -2292,7 +2304,7 @@ $(document).ready(function(){
       var othlec = parseFloat($('#MEASURE_OTHLEC').val());
     }
     else {
-      var othlec = parseFloat('0');
+      var othlec = parseFloat('0.0');
     }
 
     if($("#MEASURE_OTHLAB").val()!=null && $("#MEASURE_OTHLAB").val()!="")
@@ -2300,16 +2312,19 @@ $(document).ready(function(){
       var othlab = parseFloat($('#MEASURE_OTHLAB').val());
     }
     else {
-      var othlab = parseFloat('0');
+      var othlab = parseFloat('0.0');
     }
 
     var totallec = parseFloat($('#MEASURE_TOTALLEC').val());
     var totallab = parseFloat($('#MEASURE_TOTALLAB').val());
-    var callec = templec1 + templec2 + tempfinlec + worklec + othlec;
-    var callab = templab1 + templab2 + tempfinlab + worklab + othlab;
+    var callec = parseFloat(templec1) + parseFloat(templec2) + parseFloat(tempfinlec) + parseFloat(worklec) + parseFloat(othlec);
+    var callec = parseFloat(callec).toFixed(1);
+    var callab = parseFloat(templab1) + parseFloat(templab2) + parseFloat(tempfinlab) + parseFloat(worklab) + parseFloat(othlab);
+    var callab = parseFloat(callab).toFixed(1);
 
-    var summea = callec + callab;
-    if(summea!=100)
+    var summea = parseFloat(callec)+parseFloat(callab);
+    var summea = parseFloat(summea).toFixed(1);
+    if(summea!=parseFloat(100).toFixed(1))
     {
       window.sumcheck = 0;
       swal(
@@ -2321,7 +2336,11 @@ $(document).ready(function(){
       $('#MEASURE_TOTALLAB').val("");
     }
     else {
-
+      swal(
+        'คะแนนรวมถูกต้อง',
+        'คะแนนรวมปัจจุบัน : '+summea+'',
+        'success'
+      )
       window.sumcheck = 1;
       $('#MEASURE_TOTALLEC').val(callec);
       $('#MEASURE_TOTALLAB').val(callab);
@@ -2721,29 +2740,29 @@ function confreset(casereset) {
               </tr>
               <tr>
                 <td colspan="2">1. สอบกลางภาคครั้งที่ 1</td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_MIDLEC1" id="MEASURE_MIDLEC1" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_MIDLAB1" id="MEASURE_MIDLAB1" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_MIDLEC1" id="MEASURE_MIDLEC1" size="10" value="0.0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_MIDLAB1" id="MEASURE_MIDLAB1" size="10" value="0.0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">2. สอบกลางภาคครั้งที่ 2</td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_MIDLEC2" id="MEASURE_MIDLEC2" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_MIDLAB2" id="MEASURE_MIDLAB2" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_MIDLEC2" id="MEASURE_MIDLEC2" size="10" value="0.0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_MIDLAB2" id="MEASURE_MIDLAB2" size="10" value="0.0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">3. สอบไล่ </td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_FINLEC" id="MEASURE_FINLEC" size="10" value="0.0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_FINLAB" id="MEASURE_FINLAB" size="10" value="0.0"></div></td>
               </tr>
               <tr>
                 <td colspan="2">4. งานมอบหมาย </td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_WORKLEC" id="MEASURE_WORKLEC" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_WORKLAB" id="MEASURE_WORKLAB" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_WORKLEC" id="MEASURE_WORKLEC" size="10" value="0.0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_WORKLAB" id="MEASURE_WORKLAB" size="10" value="0.0"></div></td>
               </tr>
               <tr name="addtr">
 
                 <td colspan="2"><div class="form-group form-inline">5. อื่นๆ โปรดระบุ &nbsp;&nbsp;<input type="text" class="form-control formlength" name="OTHER_MEA" id="OTHER_MEA" size="30"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_OTHLEC" id="MEASURE_OTHLEC" size="10" value="0"></div></td>
-                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_OTHLAB" id="MEASURE_OTHLAB" size="10" value="0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_OTHLEC" id="MEASURE_OTHLEC" size="10" value="0.0"></div></td>
+                <td><div class="form-group"><input type="text" class="form-control formlength numonly keyupcheck" name="MEASURE_OTHLAB" id="MEASURE_OTHLAB" size="10" value="0.0"></div></td>
               </tr>
               <tr>
                 <td colspan="2" align="right"><input type="button" class="btn btn-outline btn-warning" name="calmea" id="calmea" value="รวมคะแนน"></td>
