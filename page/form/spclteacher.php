@@ -1805,14 +1805,10 @@ function downloadfunc(){
      window.sumcheck = 0;
      if($(this).val()=="pro")
      {
-         $("#GOV_LEVEL").prop('required',true);
-         $("#NORM_LEVEL").prop('required',false);
          $("#NORM_LEVEL").val("");
      }
      else
      {
-       $("#GOV_LEVEL").prop('required',false);
-       $("#NORM_LEVEL").prop('required',true);
        $("#GOV_LEVEL").val("");
      }
      });
@@ -1899,7 +1895,13 @@ function downloadfunc(){
       {
         $('#choice1hour').val("0");
         $('#choice1cost').val("0");
-        $('#choice1num').val("400");
+        if($('input[name="levelteacher"]:checked').val()=="pro")
+        {
+          $('#choice1num').val("400");
+        }
+        else {
+          $('#choice1num').val("800");
+        }
         $('#choice1hour').keyup(function(){
           window.sumcheck = 0;
             var textone;
@@ -1952,7 +1954,13 @@ function downloadfunc(){
     {
       $('#choice2hour').val("0");
       $('#choice2cost').val("0");
-      $('#choice2num').val("200");
+      if($('input[name="levelteacher"]:checked').val()=="pro")
+      {
+        $('#choice2num').val("200");
+      }
+      else {
+        $('#choice2num').val("400");
+      }
       $('#choice2hour').keyup(function(){
         window.sumcheck = 0;
           var textone;
