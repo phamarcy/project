@@ -314,6 +314,22 @@ $pdf->Ln();
 $pdf->SetX(35);
 $pdf->MultiCell( 140, 7, iconv( 'UTF-8','TIS-620',$data_pdf['work_place']), 0,1);
 // $pdf->Ln();
+if($data_pdf['phone'] == '')
+{
+	$data_pdf['phone'] = '-';
+}
+if($data_pdf['phone_sub'] == '')
+{
+	$data_pdf['phone_sub'] = '-';
+}
+if($data_pdf['phone_mobile'] == '')
+{
+	$data_pdf['phone_mobile'] = '-';
+}
+if($data_pdf['email'] == '')
+{
+	$data_pdf['email'] = '-';
+}
 
 $pdf->SetX(30);
 $pdf->Cell($pdf->GetStringWidth(iconv( 'UTF-8','TIS-620','โทรศัพท์ '.$data_pdf['phone'].' ต่อ '.$data_pdf['phone_sub'])) + 5,7,iconv( 'UTF-8','TIS-620','โทรศัพท์ '.$data_pdf['phone'].' ต่อ '.$data_pdf['phone_sub']),0,"C");

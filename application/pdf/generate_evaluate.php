@@ -478,11 +478,13 @@ $j=0;
 $pdf->SetX(80);
 for($i=1;$i<6;$i++)
 {
-
 	$pdf->Cell(30,7,$i < count($data_pdf['teacher']) +1  ? iconv( 'UTF-8','cp874',$i.') '.$data_pdf['teacher'][$i-1]) : $i.")" ,0);
 	$pdf->Ln();
 	$pdf->SetX(80);
-
+}
+if($data_pdf['teacher_co'] == '')
+{
+	$data_pdf['teacher_co'] = '-';
 }
 $pdf->SetX(35);
 $pdf->Cell(20,7,iconv( 'UTF-8','cp874','อาจารย์ผู้ร่วมสอน '),0,1,"L");
@@ -549,10 +551,16 @@ $pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['total_lec'],1,'.
 $pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['total_lab'],1,'.',',')),0,0,"C");
 $pdf->Ln();
 
+if($data_pdf['msg'] == '')
+{
+	$data_pdf['msg'] = '-';
+}
+$pdf->SetX(25);
+$pdf->SetFont('THSarabun_B','',14);
+$pdf->Cell(0,7,iconv( 'UTF-8','cp874','หมายเหตุ'),0,1);
 $pdf->SetX(30);
 $pdf->SetFont('THSarabun','',14);
 $pdf->Write( 7 , iconv( 'UTF-8','cp874' , $data_pdf['msg'] ) );
-$pdf->Ln();
 $pdf->Ln();
 
 // Topic 5
@@ -681,7 +689,14 @@ for($i=1;$i<=10;$i++)
 	}
 }
 
+if($data_pdf['suggestion'] == '')
+{
+	$data_pdf['suggestion'] = '-';
+}
 $pdf->Ln();
+$pdf->SetX(25);
+$pdf->SetFont('THSarabun_B','',14);
+$pdf->Cell(0,7,iconv( 'UTF-8','cp874','หมายเหตุ (กรณีมีจำนวนผู้คุมสอบมากกว่า 10 คน) '),0,1);
 $pdf->SetX(30);
 $pdf->SetFont('THSarabun','',14);
 $pdf->Write( 7 , iconv( 'UTF-8','cp874' , $data_pdf['suggestion'] ) );
