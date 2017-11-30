@@ -304,7 +304,7 @@
 
 
 
-	<title>ยินดีต้อนรับ</title>
+	<title>ระบบงานข้อมูลของงานบริการการศึกษา</title>
 	<style>
 		form{
 			margin-top: 10px;

@@ -172,7 +172,7 @@ $end = strtotime($current_semester[0]['last_date']);
                                 <div class="btn-group pull-right eva">
                                   <div class="forminline">
                                   <?php if (isset($eva['syllabus']) ): ?>
-                                    <a href="../../files<?php echo $eva['syllabus'] ?>" target="_blank" ><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดหลักสูตร</button></a>
+                                    <a href="../../files<?php echo $eva['syllabus'] ?>" target="_blank" ><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลด course syllabus</button></a>
                                     <?php endif; ?>
                                     <?php if (isset($eva['evaluate'])): ?>
                                     <a href="<?php echo $eva['evaluate'] ?>" target="_blank" TITLE="คลิ็ก ! เพื่ดเปิดPDF"><button type="button" class="btn btn-default btn-sm" >ดาวน์โหลดแบบแจ้ง</button></a>
