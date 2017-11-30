@@ -680,14 +680,10 @@ function getinfo(temp) {
   //part8
   if(temp['syllabus']!=false)
   {
-    $('#syllabus').prop('required', false);
-    $('#reqq').hide();
     $('#spanfile').text(temp['syllabus']);
     $('#downloadfile').show();
   }
   else {
-    $('#syllabus').prop('required', true);
-    $('#reqq').show();
     $('#spanfile').text("");
     $('#downloadfile').hide();
   }
@@ -1054,14 +1050,10 @@ function checksubject(btntype,type){
                          $('#submitbtn2').show();
                        if(temp['syllabus']!=false)
                        {
-                         $('#syllabus_2').prop('required', false);
-                         $('#reqq2').hide();
                          $('#spanfile2').text(temp['syllabus']);
                          $('#downloadfile2').show();
                        }
                        else {
-                         $('#syllabus_2').prop('required', true);
-                         $('#reqq2').show();
                          $('#spanfile2').text("");
                          $('#downloadfile2').hide();
                        }
@@ -1830,8 +1822,6 @@ $(document).ready(function(){
       $('#bottomform').hide();
       $('#overtimemsg5').hide();
       $('#listcor').hide();
-      $('#syllabus').prop('required', false);
-      $('#syllabus_2').prop('required', false);
       $('#COURSE_ID_2').prop('required', false);";
 
       if(isset($_POST['course_id']))
@@ -1951,8 +1941,6 @@ $(document).ready(function(){
                                  document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                                  document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
                                  document.getElementById('TOTAL').value = temp['INFO']['credit'];
-                                 $('#syllabus').prop('required', true);
-                                 $('#reqq').show();
                                  $('#spanfile').text('');
                                  $('#downloadfile').hide();
                                }
@@ -1979,8 +1967,6 @@ $(document).ready(function(){
       $('#overtimemsg5').hide();
       $('#dlhide').hide();
       $('#formheader').hide();
-      $('#syllabus').prop('required', false);
-      $('#syllabus_2').prop('required', true);
       $('#COURSE_ID_2').prop('required', true);";
 
       if(isset($_POST['course_id']))
@@ -1992,8 +1978,6 @@ $(document).ready(function(){
       $('#overtimemsg3').hide();
       $('#bottomform').hide();
       $('#overtimemsg5').hide();
-      $('#syllabus').prop('required', true);
-      $('#syllabus_2').prop('required', false);
       $('#COURSE_ID_2').prop('required', false);";
 
       if(isset($_POST['course_id']))
@@ -2113,8 +2097,6 @@ $(document).ready(function(){
                                  document.getElementById('NAME_ENG_COURSE').value = temp['INFO']['course_name_en'];
                                  document.getElementById('NAME_TH_COURSE').value = temp['INFO']['course_name_th'];
                                  document.getElementById('TOTAL').value = temp['INFO']['credit'];
-                                 $('#syllabus').prop('required', true);
-                                 $('#reqq').show();
                                  $('#spanfile').text('');
                                  $('#downloadfile').hide();
                                }
@@ -2141,8 +2123,6 @@ $(document).ready(function(){
       $('#dlhide').hide();
       $('#formheader').hide();
       $('#bottomform').hide();
-      $('#syllabus').prop('required', false);
-      $('#syllabus_2').prop('required', false);
       $('#COURSE_ID_2').prop('required', false);";
     }
 
@@ -2984,7 +2964,7 @@ function confreset(casereset) {
                   </li>
           </li>
           </ul>
-            หมายเหตุ
+            หมายเหตุ (กรณีมีจำนวนผู้คุมสอบมากกว่า 10 คน)
             <br> <textarea class="form-control textareawidth" id="suggestion" rows="5"></textarea>
 
         </li>
@@ -3121,7 +3101,7 @@ function confreset(casereset) {
           <li style="font-size: 14px;" id="listcor">
             เลือกไฟล์ Course Syllabus (นามสกุลไฟล์ต้องเป็น .doc , .docx หรือ .pdf เท่านั้น) : <br />
           <div class="col-md-10 form-inline form-group">
-            <input type="file" class="filestyle" id="syllabus" data-icon="false" accept=".doc,.docx,.pdf" required><font color="red" id="reqq"><b> ** จำเป็น</b></font>
+            <input type="file" class="filestyle" id="syllabus" data-icon="false" accept=".doc,.docx,.pdf" >
             &nbsp;<span id="spanfile"></span>&nbsp;&nbsp;
             <input id="downloadfile" style="display:none; font-size: 14px;" class="btn btn-outline btn-primary" type="button" value="ดาวน์โหลดไฟล์ Syllabus" onclick="downloadfunc();">
           </div>
