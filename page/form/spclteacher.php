@@ -2950,16 +2950,16 @@ function lastcal() {
           </li>
 
           <div class="form-inline">
-            <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength numonly" id="tel" size="20" maxlength="10" required ></div>
+            <li>โทรศัพท์ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength numonly" id="tel" size="20" maxlength="10"  ></div>
               &nbsp;ต่อ&nbsp;<input type="text" class="form-control formlength numonly" id="subtel" size="2" maxlength="5"></li>
         </div>
         <div class="form-inline">
-          <li>โทรศัพท์มือถือ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength numonly" id="mobile" size="20" maxlength="10" required ></div>
+          <li>โทรศัพท์มือถือ &nbsp;&nbsp;<div class="form-group"><input type="text" class="form-control formlength numonly" id="mobile" size="20" maxlength="10"  ></div>
             </li>
       </div>
 
         <div class="form-inline">
-          <li>E-mail &nbsp;&nbsp;<div class="form-group"><input style="height: 30px;" type="email" class="form-control formlength" id="email" size="45" required ></div></li>
+          <li>E-mail &nbsp;&nbsp;<div class="form-group"><input style="height: 30px;" type="email" class="form-control formlength" id="email" size="45"  ></div></li>
         </div>
         <div class="form-inline">
           <li>ประวัติการเชิญมาสอน <br>
