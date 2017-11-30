@@ -473,15 +473,15 @@ $pdf->SetFont('THSarabun_B','',14);
 $pdf->Cell(50,7,iconv( 'UTF-8','cp874','3. รายชื่ออาจารย์ผู้สอน '),0,1,"L");
 $pdf->SetX(35);
 $pdf->SetFont('THSarabun','',14);
-$pdf->Cell(20,7,iconv( 'UTF-8','cp874','บรรยาย: '),0,0,"L");
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874','อาจารย์ผู้รับผิดชอบกระบวนวิชา: '),0,0,"L");
 $j=0;
-
+$pdf->SetX(80);
 for($i=1;$i<6;$i++)
 {
 
 	$pdf->Cell(30,7,$i < count($data_pdf['teacher']) +1  ? iconv( 'UTF-8','cp874',$i.') '.$data_pdf['teacher'][$i-1]) : $i.")" ,0);
 	$pdf->Ln();
-	$pdf->SetX(55);
+	$pdf->SetX(80);
 
 }
 $pdf->SetX(35);
@@ -505,39 +505,39 @@ $pdf->SetX(120);
 $pdf->Cell(20,7,iconv( 'UTF-8','cp874','ภาคทฤษฏี'),0,0,"C");
 $pdf->Cell(20,7,iconv( 'UTF-8','cp874','ภาคปฏิบัติ'),0,0,"C");
 $pdf->Ln();
-
+// number_format($data_pdf['S_min'],1,'.',',')
 $pdf->SetFont('THSarabun','',14);
 $pdf->SetX(25);
 $pdf->Cell(95,7,iconv( 'UTF-8','cp874','1. สอบกลางภาค ครั้งที่ 1'),0);
-$pdf->Cell(20,7,iconv( 'UTF-8','cp874',$data_pdf['mid1_lec'] ),0,0,"C");
-$pdf->Cell(20,7,iconv( 'UTF-8','cp874',$data_pdf['mid1_lab'] ),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['mid1_lec'],1,'.',',') ),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['mid1_lab'],1,'.',',') ),0,0,"C");
 
 $pdf->Ln();
 
 $pdf->SetX(25);
 $pdf->Cell(95,7,iconv( 'UTF-8','cp874','2. สอบกลางภาค ครั้งที่ 2'),0);
-$pdf->Cell(20,7,iconv( 'UTF-8','cp874',$data_pdf['mid2_lec'] ),0,0,"C");
-$pdf->Cell(20,7,iconv( 'UTF-8','cp874',$data_pdf['mid2_lab'] ),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['mid2_lec'],1,'.',',') ),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['mid2_lab'],1,'.',',') ),0,0,"C");
 
 $pdf->Ln();
 
 $pdf->SetX(25);
 $pdf->Cell(95,7,iconv( 'UTF-8','cp874','3. สอบไล่'),0);
-$pdf->Cell(20,7,iconv( 'UTF-8','cp874',$data_pdf['final_lec']),0,0,"C");
-$pdf->Cell(20,7,iconv( 'UTF-8','cp874',$data_pdf['final_lab']),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['final_lec'],1,'.',',')),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['final_lab'],1,'.',',')),0,0,"C");
 $pdf->Ln();
 
 $pdf->SetX(25);
 $pdf->Cell(95,7,iconv( 'UTF-8','cp874','4. งานมอบหมาย '),0);
-$pdf->Cell(20,7,iconv( 'UTF-8','cp874',$data_pdf['work_lec']),0,0,"C");
-$pdf->Cell(20,7,iconv( 'UTF-8','cp874',$data_pdf['work_lab']),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['work_lec'],1,'.',',')),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['work_lab'],1,'.',',')),0,0,"C");
 $pdf->Ln();
 
 
 $pdf->SetX(25);
 $pdf->Cell(95,7,iconv( 'UTF-8','cp874','5. อื่นๆ '.$data_pdf['other_oth']),0);
-$pdf->Cell(20,7,iconv( 'UTF-8','cp874',$data_pdf['other_lec']),0,0,"C");
-$pdf->Cell(20,7,iconv( 'UTF-8','cp874',$data_pdf['other_lab']),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['other_lec'],1,'.',',')),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['other_lab'],1,'.',',')),0,0,"C");
 $pdf->Ln();
 
 
@@ -545,13 +545,13 @@ $pdf->SetX(40);
 $pdf->SetFont('THSarabun_B','',14);
 $pdf->Cell(80,7,iconv( 'UTF-8','cp874','รวมคะแนน'),0);
 $pdf->SetFont('THSarabun','',14);
-$pdf->Cell(20,7,iconv( 'UTF-8','cp874',$data_pdf['total_lec']),0,0,"C");
-$pdf->Cell(20,7,iconv( 'UTF-8','cp874',$data_pdf['total_lab']),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['total_lec'],1,'.',',')),0,0,"C");
+$pdf->Cell(20,7,iconv( 'UTF-8','cp874',number_format($data_pdf['total_lab'],1,'.',',')),0,0,"C");
 $pdf->Ln();
 
 $pdf->SetX(30);
 $pdf->SetFont('THSarabun','',14);
-$pdf->Write( 7 , iconv( 'UTF-8','cp874' , $data_pdf['suggestion'] ) );
+$pdf->Write( 7 , iconv( 'UTF-8','cp874' , $data_pdf['msg'] ) );
 $pdf->Ln();
 $pdf->Ln();
 
@@ -680,8 +680,11 @@ for($i=1;$i<=10;$i++)
 		$pdf->SetX(80);
 	}
 }
-$pdf->Ln();
 
+$pdf->Ln();
+$pdf->SetX(30);
+$pdf->SetFont('THSarabun','',14);
+$pdf->Write( 7 , iconv( 'UTF-8','cp874' , $data_pdf['suggestion'] ) );
 $pdf->Ln();
 
  $pdf->AddPage();

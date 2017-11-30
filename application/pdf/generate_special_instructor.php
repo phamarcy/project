@@ -681,6 +681,8 @@ $person = new Person();
 $respond_teacher = $course->Get_Responsible_Teacher($data_pdf['course_id'],$semester['id']);
 $signature_file = $person->Get_Teacher_Signature($respond_teacher['id']);
 $teacher_name = $person->Get_Teacher_Name($respond_teacher['id'],'TH');
+$submit_name = $person->Get_Teacher_Name($data_pdf["submit_user_id"],'TH');
+$submit_signature_file = $person->Get_Teacher_Signature($data_pdf["submit_user_id"]);
 //end get
 
 $pdf->SetX(35);
@@ -688,7 +690,7 @@ $pdf->SetFont('THSarabun','',14);
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','ลงชื่อ'),0);
 if($signature_file != null)
 {
-	$pdf->Cell( 40, 7, $pdf->Image($signature_file, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
+	$pdf->Cell( 40, 7, $pdf->Image($submit_signature_file, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
 }
 $pdf->SetX($money_position-10);
 $pdf->Cell(10,7,iconv('UTF-8','TIS-620','ลงชื่อ'),0);
@@ -698,8 +700,8 @@ if($signature_file != null)
 }
 $pdf->Ln();
 
-$pdf->SetXY(40,$pdf->GetY()+3);
-$pdf->Cell(0,7,iconv('UTF-8','TIS-620','('.$teacher_name.')'),0);
+$pdf->SetXY(45,$pdf->GetY()+3);
+$pdf->Cell(0,7,iconv('UTF-8','TIS-620','('.$submit_name.')'),0);
 $pdf->SetX($money_position-5);
 $pdf->Cell(0,7,iconv('UTF-8','TIS-620','('.$teacher_name.')'),0,1);
 $pdf->SetX(45);
