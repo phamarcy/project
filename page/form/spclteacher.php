@@ -2461,25 +2461,8 @@ function lastcal() {
     if(casesubmit=='1'||casesubmit=='2')
     {
 
-      if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined)
+      if($("[required]").val()!=null && $("[required]").val()!="" && $("[required]").val()!= undefined && $("#hour").val()!=""&& $("#hour").val()!="0" && $("#hour").val()!="0.0" && $("#hour").val()!="0.00" && $("#hour").val()!="0.000")
       {
-        if(document.querySelector("input[name='levelteacher']:checked").value=="pro")
-        {
-          if($('#GOV_LEVEL').val()!="")
-          {
-            var level = "1";
-          }else {
-            var level = "0";
-          }
-        }else {
-          if($('#NORM_LEVEL').val()!="")
-          {
-            var level = "1";
-          }else {
-            var level = "0";
-          }
-        }
-
         if($('#costspec1').is(":checked"))
         {
           if($('#choice1num').val()!="0" && $('#choice1hour').val()!="0")
@@ -2559,7 +2542,7 @@ function lastcal() {
           var self = "1";
         }
 
-        if((window.sumcheck==1 && (check1=="1" && check2 =="1") && hotel=="1" && plane=="1" && taxi=="1" && self=="1" && level=="1" ) || document.querySelector("input[name='paymethod']:checked").value == "0" || casesubmit=='2' )
+        if((window.sumcheck==1 && (check1=="1" && check2 =="1") && hotel=="1" && plane=="1" && taxi=="1" && self=="1" ) && $("#hour").val()!=""&& $("#hour").val()!="0" && $("#hour").val()!="0.0" && $("#hour").val()!="0.00" && $("#hour").val()!="0.000" || document.querySelector("input[name='paymethod']:checked").value == "0" || casesubmit=='2' )
         {
             swal({
             title: 'แน่ใจหรือไม่',
@@ -2580,10 +2563,10 @@ function lastcal() {
 
           }
             })
-          }else if (level=="0") {
+          }else if ($("#hour").val()=="" || $("#hour").val()=="0"  || $("#hour").val()=="0.0"  || $("#hour").val()=="0.00"  || $("#hour").val()=="0.000") {
             swal(
               '',
-              'กรุณาระบุยศหรือตำแหน่งของอาจารย์พิเศษในหัวข้อค่าใช้จ่ายให้ถูกต้อง',
+              'กรุณาระบุจำนวนชั่วโมงของหัวข้อที่เชิญมาสอนให้ถูกต้อง',
               'error'
             )
           }else if (check1=="0"||check2=="0") {
@@ -2623,6 +2606,12 @@ function lastcal() {
               'error'
             )
           }
+      }else if ($("#hour").val()==""|| $("#hour").val()=="0" || $("#hour").val()=="0.0" || $("#hour").val()=="0.00" || $("#hour").val()=="0.000") {
+        swal(
+          '',
+          'กรุณาระบุจำนวนชั่วโมงของหัวข้อที่เชิญมาสอนให้ถูกต้อง',
+          'error'
+        )
       }
       else {
 
@@ -2733,7 +2722,7 @@ function lastcal() {
         var self = "1";
       }
 
-      if($("#course").val()!="" && $("#numstudent").val()!="" && $("#reason").val()!="" && $("#hour").val()!="" && (window.sumcheck==1 && (check1=="1" && check2 =="1") && hotel=="1" && plane=="1" && taxi=="1" && self=="1" && level=="1")  || document.querySelector("input[name='paymethod']:checked").value == "0" || casesubmit=='2')
+      if($("#course").val()!="" && $("#numstudent").val()!="" && $("#reason").val()!="" && $("#hour").val()!=""&& $("#hour").val()!="0" && $("#hour").val()!="0.0" && $("#hour").val()!="0.00" && $("#hour").val()!="0.000" && (window.sumcheck==1 && (check1=="1" && check2 =="1") && hotel=="1" && plane=="1" && taxi=="1" && self=="1")  || document.querySelector("input[name='paymethod']:checked").value == "0" || casesubmit=='2')
       {
         swal({
         title: 'แน่ใจหรือไม่',
@@ -2753,10 +2742,10 @@ function lastcal() {
 
       }
         })
-    }else if (level=="0") {
+    }else if ($("#hour").val()==""|| $("#hour").val()=="0" || $("#hour").val()=="0.0" || $("#hour").val()=="0.00" || $("#hour").val()=="0.000") {
       swal(
         '',
-        'กรุณาระบุยศหรือตำแหน่งของอาจารย์พิเศษในหัวข้อค่าใช้จ่ายให้ถูกต้อง',
+        'กรุณาระบุจำนวนชั่วโมงของหัวข้อที่เชิญมาสอนให้ถูกต้อง',
         'error'
       )
     }else if (check1=="0"||check2=="0") {

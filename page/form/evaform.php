@@ -519,7 +519,7 @@ function getinfo(temp) {
   document.getElementById('MEASURE_FINLAB').value = parseFloat(temp['final_lab']).toFixed(1);
   document.getElementById('MEASURE_WORKLEC').value = parseFloat(temp['work_lec']).toFixed(1);
   document.getElementById('MEASURE_WORKLAB').value = parseFloat(temp['work_lab']).toFixed(1);
-  document.getElementById('OTHER_MEA').value = parseFloat(temp['other_oth']).toFixed(1);
+  document.getElementById('OTHER_MEA').value =temp['other_oth'];
   document.getElementById('MEASURE_OTHLEC').value = parseFloat(temp['other_lec']).toFixed(1);
   document.getElementById('MEASURE_OTHLAB').value = parseFloat(temp['other_lab']).toFixed(1);
   document.getElementById('MEASURE_TOTALLEC').value = parseFloat(temp['total_lec']).toFixed(1);
