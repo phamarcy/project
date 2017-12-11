@@ -68,6 +68,23 @@ class Course
     }
     //search teacher data
   }
+  public function Get_Course_Name_th($course_id)
+  {
+
+    $sql="SELECT `course_name_th` FROM `course` WHERE `course_id` ='".$course_id."'";
+
+    $result = $this->DB->Query($sql);
+    if($result)
+    {
+      $course_name = $result[0]['course_name_th'];
+      return $course_name;
+    }
+    else
+    {
+      return '-';
+    }
+    //search teacher data
+  }
 //get all course in department
   public function Get_All_Course($dept_id)
   {

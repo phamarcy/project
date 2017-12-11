@@ -579,6 +579,9 @@
 							<li>
 								<a href="#" onclick="loadDoc('form/addsubject.php')"><i class="fa fa-plus-circle fa-fw"></i> เพิ่มกระบวนวิชา</a>
 							</li>
+							<li>
+								<a href="#" onclick="loadDoc('form/coverinvite.php')"><i class="fa fa-retweet fa-fw"></i> บันทึกข้อความ</a>
+							</li>
 						<?php }if($_SESSION['level'] == 3 ){?>
 							<li>
 								<a href="#" onclick="loadDoc('form/managesubject.php')"><i class="fa fa-user-md fa-fw"></i> จัดการกระบวนวิชา</a>
