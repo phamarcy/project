@@ -13,6 +13,10 @@ $report = new Report();
 $deadline = new Deadline();
 $person = new Person();
 $course = new Course();
+$current_dep=$person->Get_Staff_Dep($_SESSION['id']);
+$head_id=$person->Get_Head_Department($current_dep['code'],null);
+$head_name=$person->Get_Teacher_Name($head_id,"TH");
+
  ?>
 <html>
 <header>
@@ -99,9 +103,8 @@ $(function() {//<-- wrapped here
         $year = $_POST['year'];
   
        $semester_id = $deadline->Search_Semester_id($semester,$year);
-
        $coverdata = $report->get_cover($semester_id);
-       $current_dep=$person->Get_Staff_Dep($_SESSION['id']);
+
        $thaimonth=array("มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"); 
       
        $search_term=$deadline->Search_Semester_Term($semester_id);
@@ -115,7 +118,7 @@ $(function() {//<-- wrapped here
                 <div class="pull-left"><b>ส่วนงาน </b><?php echo $current_dep['name']; ?>  &nbsp;&nbsp;คณะเภสัชศาสตร์   โทร. 4351 </div><br>
                 <div class="pull-left"><b>ที่</b></div><center> วันที่  <?php echo date(" j "),$thaimonth[date("m")-1], "  ",date("Y")+543; ?>  </center>
                 <p><b>เรื่อง</b> ขออนุมัติเชิญอาจารย์พิเศษและค่าใช้จ่าย ประจำภาคการศึกษาที่ <?php echo $search_term['semester'] ?> ปีการศึกษา <?php echo $search_term['year']?> </p>
-                <p>----------------------------------------------------------------------------------------------------------------------------------------------------- </p>
+                <p>______________________________________________________________________________________________</p>
                 <p><b>เรียน </b> คณบดี (ผ่านรองคณบดีฝ่ายวิชาการ) </p>
                 <p> &nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;ด้วย<?php echo $current_dep['name']; ?> ขออนุมัติเชิญอาจารย์พิเศษและค่าใช้จ่าย เพื่อทำการสอนในภาค <br>การศึกษาที่ <?php echo $search_term['semester'] ?> ปีการศึกษา <?php echo $search_term['year']?>  โดยมีรายละเอียดดังต่อไปนี้:- </p><br>
                 
@@ -138,12 +141,12 @@ $(function() {//<-- wrapped here
                 <br>
                 <br>
               
-                <p style=" position: relative;left: 500px;">
-                    (<?php var_dump($person->Get_Head_Department('1202','203151'))?>)
+                <p style=" position: relative;left: 600px;">
+                    (<?php echo $head_name?>)
                     <br>
                     หัวหน้า<?php echo $current_dep['name']; ?>
                 </p>
-                <p>----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+                <p>____________________________________________________________________________________________________</p><br>
                 (&nbsp;&nbsp;) อนุมัติ 
             </div>
             <br>
