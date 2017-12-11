@@ -104,7 +104,10 @@ $(function() {//<-- wrapped here
   
        $semester_id = $deadline->Search_Semester_id($semester,$year);
        $coverdata = $report->get_cover($semester_id);
-
+        if (empty($coverdata)) {
+            echo '<div class="alert alert-danger"><center>ไม่พบข้อมูล</center></div>';
+            die();
+        }
        $thaimonth=array("มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"); 
       
        $search_term=$deadline->Search_Semester_Term($semester_id);
