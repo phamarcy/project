@@ -413,13 +413,14 @@ class Report
     array_push($DATA,$result1);
 
     for ($i=0; $i < count($result1) ; $i++) { 
-      $sql2 ="SELECT sum(student) as student FROM `student_evaluate` WHERE `course_evaluate_id` = '".$result1[$i]['course_evaluate_id']."'";
+      $sql2 ="SELECT sum(student) as student FROM `student_evaluate` WHERE `course_evaluate_id` = '".$result1[$i]['course_evaluate_id']."' ";
       $result2 = $this->DB->Query($sql2);
       if ($result2) {
         array_push($DATA[0][$i],$result2);
       }
-      $sql3 ="SELECT si.`firstname`,si.`lastname` FROM `course_hire_special_instructor` ci ,`special_instructor` si WHERE ci.`instructor_id` = si.`instructor_id` AND ci.`course_id` = '".$result1[$i]['course_id']."' AND ci.`semester_id` = '".$semester."'";
+      $sql3 ="SELECT si.`firstname`,si.`lastname` FROM `course_hire_special_instructor` ci ,`special_instructor` si WHERE ci.`instructor_id` = si.`instructor_id` AND ci.`course_id` = '".$result1[$i]['course_id']."' AND ci.`semester_id` = '".$semester."' AND ci.status='1' ";
       $result3 = $this->DB->Query($sql3);
+
       if ($result3) {
         array_push($DATA[0][$i],$result3);
       }
@@ -436,28 +437,14 @@ class Report
       }
     }
   
-   for ($j=0; $j < count($DATA[0]); $j++) { 
-    if (isset($DATA[0][$j][1][0]['firstname'])) {
-      if (($DATA[0][$j][1][0]['firstname'])==null) {
+  
+  for ($j=0; $j < count($DATA[0]); $j++) {
+    $split=$DATA[0][$j][1];
+      if (!isset($split[0]['firstname']) || isset($split[0]['cost']) || isset($split[0]['type_course'])) {
         array_splice($DATA[0], $j, 1); 
-        echo $j;
-       }
-    }else {
-      array_splice($DATA[0], $j, 1);
-    }
-   }
-    
-   for ($j=0; $j < count($DATA[0]); $j++) { 
-    if (isset($DATA[0][$j][1][0]['firstname'])) {
-      if (($DATA[0][$j][1][0]['firstname'])==null) {
-        array_splice($DATA[0], $j, 1); 
-        echo $j;
-       }
-    }else {
-      array_splice($DATA[0], $j, 1);
-    }
-   }
-
+        $j--;
+      };
+  } 
    return $DATA[0];
   }
 }

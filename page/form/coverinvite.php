@@ -97,12 +97,11 @@ $(function() {//<-- wrapped here
       <?php
              
 
-      if(isset($_POST['semester']) && isset($_POST['year']))
+      if(isset($_POST['semester']) &&isset($_POST['year']) )
       {
-        $semester = $_POST['semester'];
-        $year = $_POST['year'];
-  
-       $semester_id = $deadline->Search_Semester_id($semester,$year);
+        $semester   = $_POST['semester'];
+        $year       = $_POST['year'];
+       $semester_id = $deadline->Search_Semester_id($semester,$year); 
        $coverdata = $report->get_cover($semester_id);
         if (empty($coverdata)) {
             echo '<div class="alert alert-danger"><center>ไม่พบข้อมูล</center></div>';
@@ -132,11 +131,11 @@ $(function() {//<-- wrapped here
                             จำนวนนักศึกษาภาคปกติ <?php echo $value[0][0]['student'] ?> คน<br>
                             เป็นกระบวนวิชา ( <?php if ($value[2][0]['type_course']=='require') {echo "/"; } ?>  )  บังคับ  ( <?php if ($value[2][0]['type_course']=='choose') {echo "/"; } ?>  ) เลือก<br>
                             อาจารย์พิเศษที่เชิญ จำนวน <?php echo count($value[1]);?> คน (<?php foreach ($value[1] as $keysp =>$person) {echo ($keysp+1).".".$person['firstname']." ".$person['lastname']."  "; $count_sp+=1;} ?>)<br>
-                            ขอเบิกค่าใช้จ่าย <?php echo $value[0][0]['student'] ?> คน  จำนวนเงิน  <?php echo number_format($value[3][0]['cost']); $count_cost+=$value[3][0]['cost'] ?> บาท
+                            ขอเบิกค่าใช้จ่าย <?php echo $count_sp ?> คน  จำนวนเงิน  <?php echo number_format($value[3][0]['cost']); $count_cost+=$value[3][0]['cost'] ?> บาท
                         </li>
                         <?php } ?>
                     </ul>
-                <b>รวม <?php count($coverdata)?> กระบวนวิชา อาจารย์พิเศษที่เชิญ จำนวน <?php echo $count_sp; ?> คน ค่าใช้จ่ายทั้งหมด  <?php echo number_format($count_cost)?>.- บาท </b><br>
+                <b>รวม <?php echo count($coverdata)?> กระบวนวิชา อาจารย์พิเศษที่เชิญ จำนวน <?php echo $count_sp; ?> คน ค่าใช้จ่ายทั้งหมด  <?php echo number_format($count_cost)?>.- บาท </b><br>
                 จึงเรียนมาเพื่อโปรดพิจารณาอนุมัติ พร้อมนี้ได้แนบแบบฟอร์มขออนุมัติเชิญอาจารย์พิเศษมาด้วย แล้ว
                 <br>
                 <br>
