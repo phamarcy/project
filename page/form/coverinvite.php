@@ -116,12 +116,12 @@ $(function() {//<-- wrapped here
 
       ?>
             <hr>
-            <div class="container " style="font-size:18px">
+            <div class="container " style="font-size:18px;background-color: white;padding:50px;padding-bottom:100px">
                 <center><h2>บันทึกข้อความ</h2></center>
                 <div class="pull-left"><b>ส่วนงาน </b><?php echo $current_dep['name']; ?>  &nbsp;&nbsp;คณะเภสัชศาสตร์   โทร. 4351 </div><br>
                 <div class="pull-left"><b>ที่</b></div><center> วันที่  <?php echo date(" j "),$thaimonth[date("m")-1], "  ",date("Y")+543; ?>  </center>
                 <p><b>เรื่อง</b> ขออนุมัติเชิญอาจารย์พิเศษและค่าใช้จ่าย ประจำภาคการศึกษาที่ <?php echo $search_term['semester'] ?> ปีการศึกษา <?php echo $search_term['year']?> </p>
-                <p>______________________________________________________________________________________________</p>
+                <p>__________________________________________________________________________________________</p>
                 <p><b>เรียน </b> คณบดี (ผ่านรองคณบดีฝ่ายวิชาการ) </p>
                 <p> &nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;ด้วย<?php echo $current_dep['name']; ?> ขออนุมัติเชิญอาจารย์พิเศษและค่าใช้จ่าย เพื่อทำการสอนในภาค <br>การศึกษาที่ <?php echo $search_term['semester'] ?> ปีการศึกษา <?php echo $search_term['year']?>  โดยมีรายละเอียดดังต่อไปนี้:- </p><br>
                 
@@ -144,12 +144,12 @@ $(function() {//<-- wrapped here
                 <br>
                 <br>
               
-                <p style=" position: relative;left: 600px;">
+                <p style=" position: relative;left: 550px;">
                     (<?php echo $head_name?>)
                     <br>
                     หัวหน้า<?php echo $current_dep['name']; ?>
                 </p>
-                <p>____________________________________________________________________________________________________</p><br>
+                <p>__________________________________________________________________________________________</p><br>
                 (&nbsp;&nbsp;) อนุมัติ 
             </div>
             <br>
