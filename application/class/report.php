@@ -408,19 +408,21 @@ class Report
   public function get_cover($semester,$dep){
     $DATA = array();
 
-     $sql1 ="SELECT ce.`course_evaluate_id`,ce.`course_id` FROM `course_evaluate`as ce,course as c WHERE `semester_id` = '".$semester."' AND c.`course_id`=ce.`course_id` AND c.`department_id`='".$dep."' ";
+     $sql1 ="SELECT DISTINCT ch.`course_id` FROM `department_course_responsible` as dc,`course_hire_special_instructor` as ch WHERE dc.`course_id`=ch.`course_id` AND  ch.`semester_id` = '".$semester."'  AND dc.`department_id`='".$dep."' AND ch.status='1'";
     $result1 = $this->DB->Query($sql1);
     array_push($DATA,$result1);
+    
 
     for ($i=0; $i < count($result1) ; $i++) { 
-      $sql2 ="SELECT sum(student) as student FROM `student_evaluate` WHERE `course_evaluate_id` = '".$result1[$i]['course_evaluate_id']."' ";
+      $sql2 ="SELECT sum(num_student) as student FROM `course_hire_special_instructor` WHERE `course_id` = '".$result1[$i]['course_id']."' AND `semester_id` = '".$semester."' AND status='1'";
       $result2 = $this->DB->Query($sql2);
       if ($result2) {
         array_push($DATA[0][$i],$result2);
       }
+      
+
       $sql3 ="SELECT si.`firstname`,si.`lastname` FROM `course_hire_special_instructor` ci ,`special_instructor` si WHERE ci.`instructor_id` = si.`instructor_id` AND ci.`course_id` = '".$result1[$i]['course_id']."' AND ci.`semester_id` = '".$semester."' AND ci.status='1' AND ci.department='".$dep."' ";
       $result3 = $this->DB->Query($sql3);
-
       if ($result3) {
         array_push($DATA[0][$i],$result3);
       }
@@ -435,6 +437,7 @@ class Report
       if ($result5) {
         array_push($DATA[0][$i],$result5);
       }
+
     }
   
   for ($j=0; $j < count($DATA[0]); $j++) {
@@ -444,7 +447,7 @@ class Report
         $j--;
       };
   }
-
+  
    return $DATA[0];
   }
 }

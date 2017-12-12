@@ -95,6 +95,7 @@ $(function() {//<-- wrapped here
             </div>
       </form>
       <?php
+      
       if(isset($_POST['semester']) &&isset($_POST['year']) )
       {
         $semester   = $_POST['semester'];
