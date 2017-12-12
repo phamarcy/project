@@ -580,7 +580,7 @@
 								<a href="#" onclick="loadDoc('form/addsubject.php')"><i class="fa fa-plus-circle fa-fw"></i> เพิ่มกระบวนวิชา</a>
 							</li>
 							<li>
-								<a href="#" onclick="loadDoc('form/coverinvite.php')"><i class="fa fa-retweet fa-fw"></i> บันทึกข้อความ</a>
+								<a href="#" onclick="loadDoc('form/coverinvite.php')"><i class="fa fa-retweet fa-fw"></i> บันทึกข้อความ แบบเชิญอาจารย์พิเศษ</a>
 							</li>
 						<?php }if($_SESSION['level'] == 3 ){?>
 							<li>

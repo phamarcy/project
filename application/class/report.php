@@ -405,10 +405,10 @@ class Report
           $this->LOG->Write("MAIL FUNCTION : Failed to send E-mail");
         }
   } //end email
-  public function get_cover($semester){
+  public function get_cover($semester,$dep){
     $DATA = array();
 
-    $sql1 ="SELECT `course_evaluate_id`,`course_id` FROM `course_evaluate` WHERE `semester_id` = '".$semester."' ";
+     $sql1 ="SELECT `course_evaluate_id`,`course_id` FROM `course_evaluate` WHERE `semester_id` = '".$semester."' ";
     $result1 = $this->DB->Query($sql1);
     array_push($DATA,$result1);
 
@@ -418,25 +418,24 @@ class Report
       if ($result2) {
         array_push($DATA[0][$i],$result2);
       }
-      $sql3 ="SELECT si.`firstname`,si.`lastname` FROM `course_hire_special_instructor` ci ,`special_instructor` si WHERE ci.`instructor_id` = si.`instructor_id` AND ci.`course_id` = '".$result1[$i]['course_id']."' AND ci.`semester_id` = '".$semester."' AND ci.status='1' ";
+      $sql3 ="SELECT si.`firstname`,si.`lastname` FROM `course_hire_special_instructor` ci ,`special_instructor` si WHERE ci.`instructor_id` = si.`instructor_id` AND ci.`course_id` = '".$result1[$i]['course_id']."' AND ci.`semester_id` = '".$semester."' AND ci.status='1' AND ci.department='".$dep."' ";
       $result3 = $this->DB->Query($sql3);
 
       if ($result3) {
         array_push($DATA[0][$i],$result3);
       }
       
-      $sql4 ="SELECT DISTINCT `type_course` FROM `course_hire_special_instructor` WHERE  course_id = '".$result1[$i]['course_id']."' AND `semester_id` = '".$semester."' limit 1";
+      $sql4 ="SELECT DISTINCT `type_course` FROM `course_hire_special_instructor` WHERE  course_id = '".$result1[$i]['course_id']."' AND `semester_id` = '".$semester."' AND status='1' AND department='".$dep."' limit 1";
       $result4 = $this->DB->Query($sql4);
       if ($result4) {
         array_push($DATA[0][$i],$result4);
       }
-      $sql5 ="SELECT sum(ei.`cost_total`) as cost FROM `course_hire_special_instructor` ci,`expense_special_instructor` ei WHERE ci.`expense_id` = ei.`expense_id` AND ci.`course_id` = '".$result1[$i]['course_id']."' AND ci.`semester_id` = '".$semester."'";
+      $sql5 ="SELECT sum(ei.`cost_total`) as cost FROM `course_hire_special_instructor` ci,`expense_special_instructor` ei WHERE ci.`expense_id` = ei.`expense_id` AND ci.`course_id` = '".$result1[$i]['course_id']."' AND ci.`semester_id` = '".$semester."' AND ci.status='1' AND ci.department='".$dep."'";
       $result5 = $this->DB->Query($sql5);
       if ($result5) {
         array_push($DATA[0][$i],$result5);
       }
     }
-  
   
   for ($j=0; $j < count($DATA[0]); $j++) {
     $split=$DATA[0][$j][1];
@@ -444,7 +443,8 @@ class Report
         array_splice($DATA[0], $j, 1); 
         $j--;
       };
-  } 
+  }
+
    return $DATA[0];
   }
 }

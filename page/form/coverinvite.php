@@ -71,7 +71,7 @@ $(function() {//<-- wrapped here
 
 <body>
         <form id="search-panel" method="post" action="#" data-toggle="validator" role="form">
-            <h3 class="page-header"><center>บันทึกข้อความ</center></h3>
+            <h3 class="page-header"><center>บันทึกข้อความ แบบเชิญอาจารย์พิเศษ</center></h3>
             <div class="form-inline">
                 <center>
                     <h style="font-size : 14px">ภาคการศึกษาที่
@@ -95,14 +95,13 @@ $(function() {//<-- wrapped here
             </div>
       </form>
       <?php
-             
-
       if(isset($_POST['semester']) &&isset($_POST['year']) )
       {
         $semester   = $_POST['semester'];
         $year       = $_POST['year'];
-       $semester_id = $deadline->Search_Semester_id($semester,$year); 
-       $coverdata = $report->get_cover($semester_id);
+        $semester_id = $deadline->Search_Semester_id($semester,$year); 
+
+       $coverdata = $report->get_cover($semester_id,$current_dep['code']);
         if (empty($coverdata)) {
             echo '<div class="alert alert-danger"><center>ไม่พบข้อมูล</center></div>';
             die();
