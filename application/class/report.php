@@ -411,22 +411,22 @@ class Report
      $sql1 ="SELECT DISTINCT ch.`course_id` FROM `department_course_responsible` as dc,`course_hire_special_instructor` as ch WHERE dc.`course_id`=ch.`course_id` AND  ch.`semester_id` = '".$semester."'  AND dc.`department_id`='".$dep."' AND ch.status='1'";
     $result1 = $this->DB->Query($sql1);
     array_push($DATA,$result1);
-    
 
-    for ($i=0; $i < count($result1) ; $i++) { 
-      $sql2 ="SELECT sum(num_student) as student FROM `course_hire_special_instructor` WHERE `course_id` = '".$result1[$i]['course_id']."' AND `semester_id` = '".$semester."' AND status='1'";
+
+    for ($i=0; $i < count($result1) ; $i++) {
+      $sql2 ="SELECT `num_student` as student FROM `course_hire_special_instructor` WHERE `course_id` = '".$result1[$i]['course_id']."' AND `semester_id` = '".$semester."' AND status='1'";
       $result2 = $this->DB->Query($sql2);
       if ($result2) {
         array_push($DATA[0][$i],$result2);
       }
-      
+
 
       $sql3 ="SELECT si.`firstname`,si.`lastname` FROM `course_hire_special_instructor` ci ,`special_instructor` si WHERE ci.`instructor_id` = si.`instructor_id` AND ci.`course_id` = '".$result1[$i]['course_id']."' AND ci.`semester_id` = '".$semester."' AND ci.status='1' AND ci.department='".$dep."' ";
       $result3 = $this->DB->Query($sql3);
       if ($result3) {
         array_push($DATA[0][$i],$result3);
       }
-      
+
       $sql4 ="SELECT DISTINCT `type_course` FROM `course_hire_special_instructor` WHERE  course_id = '".$result1[$i]['course_id']."' AND `semester_id` = '".$semester."' AND status='1' AND department='".$dep."' limit 1";
       $result4 = $this->DB->Query($sql4);
       if ($result4) {
@@ -439,15 +439,15 @@ class Report
       }
 
     }
-  
+
   for ($j=0; $j < count($DATA[0]); $j++) {
     $split=$DATA[0][$j][1];
       if (!isset($split[0]['firstname']) || isset($split[0]['cost']) || isset($split[0]['type_course'])) {
-        array_splice($DATA[0], $j, 1); 
+        array_splice($DATA[0], $j, 1);
         $j--;
       };
   }
-  
+
    return $DATA[0];
   }
 }
