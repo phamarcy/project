@@ -414,7 +414,7 @@ class Report
 
 
     for ($i=0; $i < count($result1) ; $i++) {
-      $sql2 ="SELECT `num_student` as student FROM `course_hire_special_instructor` WHERE `course_id` = '".$result1[$i]['course_id']."' AND `semester_id` = '".$semester."' AND status='1'";
+      $sql2 ="SELECT MAX(`num_student`) as student FROM `course_hire_special_instructor` WHERE `course_id` = '".$result1[$i]['course_id']."' AND `semester_id` = '".$semester."' AND status='1'";
       $result2 = $this->DB->Query($sql2);
       if ($result2) {
         array_push($DATA[0][$i],$result2);
