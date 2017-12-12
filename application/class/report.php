@@ -408,7 +408,7 @@ class Report
   public function get_cover($semester,$dep){
     $DATA = array();
 
-     $sql1 ="SELECT `course_evaluate_id`,`course_id` FROM `course_evaluate` WHERE `semester_id` = '".$semester."' ";
+     $sql1 ="SELECT ce.`course_evaluate_id`,ce.`course_id` FROM `course_evaluate`as ce,course as c WHERE `semester_id` = '".$semester."' AND c.`course_id`=ce.`course_id` AND c.`department_id`='".$dep."' ";
     $result1 = $this->DB->Query($sql1);
     array_push($DATA,$result1);
 
