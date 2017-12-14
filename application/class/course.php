@@ -88,7 +88,7 @@ class Course
 //get all course in department
   public function Get_All_Course($dept_id)
   {
-    $sql = "SELECT `course_id`as id,`course_name_en` as name_en,`course_name_th`as name_th,`credit` FROM `course`";
+    $sql = "SELECT `course_id`as id,`course_name_en` as name_en,`course_name_th`as name_th,`credit` FROM `course` ORDER BY `course_id` ASC";
     if($dept_id != 'all')
     {
       $sql .=" WHERE `department_id` = '".$dept_id."'";
