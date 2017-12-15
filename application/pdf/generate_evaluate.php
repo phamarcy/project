@@ -114,9 +114,6 @@ if(isset($_POST['DATA']))
 	}
 	else if($DATA['SUBMIT_TYPE'] != 3 && $DATA['SUBMIT_TYPE'] != 4)
 	{
-			//insert data into database
-			//criterion_grade
-			// number_format($number, 2, '.', ',')
 			$sql_criterion_grade = "INSERT INTO `criterion_grade`(`criterion_type`, `explaination`, `A_min`, `A_max`, `B+_min`, `B+_max`, `B_min`, `B_max`, `C+_min`, `C+_max`, `C_min`, `C_max`, `D+_min`, `D+_max`, `D_max`, `D_min`, `F_max`, `S_min`, `U_max`) VALUES";
 			$sql_criterion_grade .= "('".$DATA["CALCULATE_TYPE"]."','".$DATA["CALCULATE_EXPLAINATION"]."',".number_format($DATA["CALCULATE_A_MIN"],1,'.',',').",100.00,".number_format($DATA["CALCULATE_B+_MIN"],1,'.', ',').",".number_format($DATA["CALCULATE_B+_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_B_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_B_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_C+_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_C+_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_C_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_C_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_D+_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_D+_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_D_MIN"],1,'.',',').",";
 			$sql_criterion_grade .= number_format($DATA["CALCULATE_D_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_F_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_S_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_U_MAX"],1,'.',',').")";
@@ -291,7 +288,7 @@ if(isset($_POST['DATA']))
 			                        VALUES ('".$DATA["COURSE_ID"]."','".$DATA["NORORSPE"]."',".$DATA["SECTION"].",'".$DATA["CREDIT_TOTAL"]."','".$DATA["TYPE_TEACHING"]."','".$DATA["TYPE_TEACHING_NAME"]."','".$DATA["TEACHER-CO"]."','".$semester['id']."','".$result_criterion_grade_id[0]["criterion_grade_id"]."','".$result_exam_evaluate_id[0]["exam_evaluate_id"]."','".$result_measure_evaluate_id[0]["measure_evaluate_id"]."','".$DATA["ABSENT"]."','0','".$DATA["USERID"]."','".$mysqldate."')";
 
 			$sql_course_evaluate .= "ON DUPLICATE KEY UPDATE `noorspe` = '".$DATA["NORORSPE"]."',`num_section` = ".$DATA["SECTION"].",`credit_total` = '".$DATA["CREDIT_TOTAL"]."',`type` = '".$DATA["TYPE_TEACHING"]."',`type_other` = '".$DATA["TYPE_TEACHING_NAME"]."',`teacher_co` = '".$DATA["TEACHER-CO"]."', `semester_id` = '".$semester['id']."',`criterion_grade_id` = '".$result_criterion_grade_id[0]["criterion_grade_id"]."',`exam_evaluate_id` = '".$result_exam_evaluate_id[0]["exam_evaluate_id"]."', `measure_evaluate_id` = '".$result_measure_evaluate_id[0]["measure_evaluate_id"]."',`absent` = '".$DATA["ABSENT"]."',`status` = '0',`submit_user_id` = '".$DATA["USERID"]."',`submit_date` = '".$mysqldate."'";
-			$lastrow_course_evaluate = "SELECT course_evaluate_id FROM course_evaluate ORDER BY course_evaluate_id DESC LIMIT 1";
+			$lastrow_course_evaluate = "SELECT course_evaluate_id FROM course_evaluate WHERE `course_id` = '".$DATA["COURSE_ID"]."' AND `semester_id` = ".$semester['id'];
 
 			$result_course_evaluate = $db->Insert_Update_Delete($sql_course_evaluate);
 			if ($result_course_evaluate) {
