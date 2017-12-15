@@ -124,7 +124,7 @@ class Person
   public function Get_All_Prefix()
   {
     $this->DB->Change_DB($this->PERSON_DB);
-    $sql = "SELECT `code`,`name` FROM `prefix`";
+    $sql = "SELECT `code`,`name` FROM `prefix` ORDER BY `name_full`";
     $result = $this->DB->Query($sql);
     $this->DB->Change_DB($this->DEFAULT_DB);
     if($result)
