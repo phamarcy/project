@@ -673,6 +673,9 @@
 								<?php
 							}
 						?>
+						<li>
+							<a href="../files/manual/manual.docx" ><i class="fa fa-book  fa-fw"></i> คู่มือการใช้งาน</a>
+						</li>
 					</ul>
 				</div>
 				<!-- /.sidebar-collapse -->

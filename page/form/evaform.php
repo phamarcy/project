@@ -851,7 +851,8 @@ function checksubject(btntype,type){
                       var temp = $.parseJSON(result);
 
                     if(temp!=null)
-                    {
+                    {   
+                      
                       swal.hideLoading()
                       swal(
                          'สำเร็จ!',
@@ -860,7 +861,7 @@ function checksubject(btntype,type){
                        )
                       getinfo(temp);
                       $('#dlhide').show();
-
+                      document.getElementById('showsemester').innerHTML = '<b style="color: red;font-size:16px;">ภาคการศึกษาที่ถูกเลือก '+semester+'/'+year+' </b>';
                     }
                     else {
                       swal.hideLoading()
@@ -2583,8 +2584,7 @@ function confreset(casereset) {
      </div>
    </div>
        </form>
-
-
+  <div id="showsemester"></div>
   </center>
 </div>
 
@@ -2964,7 +2964,7 @@ function confreset(casereset) {
                   </li>
           </li>
           </ul>
-            หมายเหตุ (กรณีมีจำนวนผู้คุมสอบมากกว่า 10 คน)
+            หมายเหตุ (เงื่อนไขอื่นๆเกี่ยวกับการสอบ โปรดระบุ)
             <br> <textarea class="form-control textareawidth" id="suggestion" rows="5"></textarea>
 
         </li>
