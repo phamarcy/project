@@ -2827,7 +2827,7 @@ function lastcal() {
 <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
   <div class="row">
     <center>
-      <h3 class="page-header">การเชิญอาจารย์พิเศษ</h3>
+      <h3 class="page-header">การเชิญอาจารย์พิเศษ <br> <?php if(isset($current['semester']) && isset($current['year'])){ echo "ภาคเรียนที่ ".$current['semester']." ปีการศึกษา ".$current['year']; }?></h3>
       <h5 id="hiddenh5">กระบวนวิชาที่ต้องการเชิญอาจารย์พิเศษ</h5>
       <h5 id="hiddenh5_found"></h5>
 

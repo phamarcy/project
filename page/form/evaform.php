@@ -851,8 +851,8 @@ function checksubject(btntype,type){
                       var temp = $.parseJSON(result);
 
                     if(temp!=null)
-                    {   
-                      
+                    {
+
                       swal.hideLoading()
                       swal(
                          'สำเร็จ!',
@@ -2559,7 +2559,7 @@ function confreset(casereset) {
   <div id="wrapper" style="padding-left: 30px; padding-right: 30px;">
 <div class="row">
   <center>
-    <h3 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์</h3>
+    <h3 class="page-header">แบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา คณะเภสัชศาสตร์ <br> <?php if(isset($current['semester']) && isset($current['year'])){ echo "ภาคเรียนที่ ".$current['semester']." ปีการศึกษา ".$current['year']; }?></h3>
     <div id="overtimemsg" class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> ไม่สามารถกรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษา <br><br> เนื่องจากช่วงเวลาที่ทำการยังไม่เปิดให้บริการหรือสิ้นสุดลง !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg2"></p></b> </div>
     <div id="overtimemsg3" class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> ไม่สามารถอัปโหลดไฟล์ Course Syllabus <br><br> เนื่องจากช่วงเวลาที่ทำการยังไม่เปิดให้บริการหรือสิ้นสุดลง !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg4"></p></b> </div>
     <div id="overtimemsg5" class="alert alert-danger"><div class="glyphicon glyphicon-alert" style="color: red;font-size:18px;" ><b> ไม่สามารถกรอกแบบแจ้งวิธีการวัดผลและประเมินผลการศึกษาและอัปโหลดไฟล์ Course Syllabus <br><br> เนื่องจากช่วงเวลาที่ทำการยังไม่เปิดให้บริการหรือสิ้นสุดลง !</b></div><b style="color: red;font-size:16px;"> <p id="overtimemsg6"></p></b> </div>
