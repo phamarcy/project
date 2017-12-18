@@ -411,20 +411,11 @@ function downloadfunc(){
    //cv
    if(temp['cv']!=false)
    {
-     $('#cvlist').hide();
-     $('input[name=cv]').prop('required', false);
-     $('#submitbtn').removeClass("disabled");
-     $('#submitbtn').removeClass("disabled");
-     $("#submitbtn").prop("disabled", false);
-     $('#cvdanger').removeClass("has-error");
-     $('#cvdanger').removeClass("has-danger");
      $('#submitbtn2').show();
      $('#submitbtn').hide();
      $('#spanfile').text(temp['cv']);
      $('#downloadfile').show();
    }else {
-     $('#cvlist').show();
-     $('input[name=cv]').prop('required', true);
      $('#submitbtn2').hide();
      $('#submitbtn').show();
      $('#spanfile').text("");
@@ -474,20 +465,11 @@ function downloadfunc(){
 
      if(temp['cv']!=false)
      {
-       $('#cvlist').hide();
-       $('input[name=cv]').prop('required', false);
-       $('#submitbtn').removeClass("disabled");
-       $('#submitbtn').removeClass("disabled");
-       $("#submitbtn").prop("disabled", false);
-       $('#cvdanger').removeClass("has-error");
-       $('#cvdanger').removeClass("has-danger");
        $('#submitbtn2').show();
        $('#submitbtn').hide();
        $('#spanfile').text(temp['cv']);
        $('#downloadfile').show();
      }else {
-       $('#cvlist').show();
-       $('input[name=cv]').prop('required', true);
        $('#submitbtn2').hide();
        $('#submitbtn').show();
        $('#spanfile').text("");
@@ -808,8 +790,6 @@ function downloadfunc(){
      $('#dlhide').hide();
      $('#topic1')[0].checked = false;
      $('#topic2')[0].checked = true;
-     $('#cvlist').show();
-     $('input[name=cv]').prop('required', true);
      $('#submitbtn2').hide();
      $('#submitbtn').show();
      $('#spanfile').text("");
@@ -917,8 +897,6 @@ function downloadfunc(){
                               $('input[name="topic"][value="yet"]').prop('checked', true);
                             }
                             $('#course').attr('readonly', false);
-                            $('#cvlist').show();
-                            $('input[name=cv]').prop('required', true);
                             $('#submitbtn2').hide();
                             $('#submitbtn').show();
                             $('#spanfile').text("");
@@ -2187,8 +2165,6 @@ function downloadfunc(){
 
       });
 
-      //cvlist
-      $('#cvlist').hide();
 
       //Nan
       $('#choice1hour').keyup(function() {
@@ -3081,7 +3057,7 @@ function lastcal() {
       <li  style="font-size: 14px;" >
         <b>4. เลือกไฟล์ Curriculum Vitae (CV) เพื่ออัปโหลด : </b><br />
       <div id="cvdanger" class="col-md-10 form-inline form-group">
-        <input type="file" class="filestyle" id="cv" name="cv" accept=".doc,.docx,.pdf" data-icon="false"><font color="red"><b id="cvlist"> ** จำเป็น</b></font>
+        <input type="file" class="filestyle" id="cv" name="cv" accept=".doc,.docx,.pdf" data-icon="false"><font color="red"></font>
         &nbsp;<span id="spanfile"></span>&nbsp;&nbsp;
         <input id="downloadfile" style="display:none; font-size: 14px;" class="btn btn-outline btn-primary" type="button" value="ดาวน์โหลดไฟล์ cv" onclick="downloadfunc();">
       </div>
