@@ -693,7 +693,7 @@ if($data_pdf['suggestion'] == '')
 $pdf->Ln();
 $pdf->SetX(25);
 $pdf->SetFont('THSarabun_B','',14);
-$pdf->Cell(0,7,iconv( 'UTF-8','cp874','หมายเหตุ (กรณีมีจำนวนผู้คุมสอบมากกว่า 10 คน) '),0,1);
+$pdf->Cell(0,7,iconv( 'UTF-8','cp874','หมายเหตุ (เงื่อนไขอื่นๆเกี่ยวกับการสอบ โปรดระบุ) '),0,1);
 $pdf->SetX(30);
 $pdf->SetFont('THSarabun','',14);
 $pdf->Write( 7 , iconv( 'UTF-8','cp874' , $data_pdf['suggestion'] ) );
