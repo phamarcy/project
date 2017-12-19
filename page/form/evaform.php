@@ -861,7 +861,6 @@ function checksubject(btntype,type){
                        )
                       getinfo(temp);
                       $('#dlhide').show();
-                      document.getElementById('showsemester').innerHTML = '<b style="color: red;font-size:16px;">ภาคการศึกษาที่ถูกเลือก '+semester+'/'+year+' </b>';
                     }
                     else {
                       swal.hideLoading()
@@ -2584,7 +2583,6 @@ function confreset(casereset) {
      </div>
    </div>
        </form>
-  <div id="showsemester"></div>
   </center>
 </div>
 
