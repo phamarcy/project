@@ -762,7 +762,7 @@ else if($data_pdf['criterion_type'] == 'CRITERIA')
 	$pdf->Cell(10,7,'D+  = ',0,0,'C');
 	$pdf->Cell(20,7,number_format($data_pdf['D+_min'],1,'.',','),0,0,'C');
 	$pdf->Cell(10,7,iconv('UTF-8','cp874','  ถึง  '),0,0,'C');
-	$pdf->Cell(20,7,number_format($data_pdf['D_max'],1,'.',','),0,0,'C');
+	$pdf->Cell(20,7,number_format($data_pdf['D+_max'],1,'.',','),0,0,'C');
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 	$pdf->Ln();
 
