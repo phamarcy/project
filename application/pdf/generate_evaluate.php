@@ -848,7 +848,7 @@ $signature_file = $person->Get_Teacher_Signature($respond_teacher['id']);
 $teacher_name = $person->Get_Teacher_Name($respond_teacher['id'],'TH');
 
 $pdf->Cell(10,7,iconv('UTF-8','cp874','ลงชื่อ'),0);
-if($signature_file != null)
+if(!is_null($signature_file))
 {
 	$pdf->Cell( 40, 7, $pdf->Image($signature_file, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
 }
@@ -888,7 +888,7 @@ if($DATA['SUBMIT_TYPE'] == '3' || $DATA['SUBMIT_TYPE'] == '4')
 	$pdf->Ln();
 	$pdf->SetX(25);
 	$pdf->Cell(10,7,iconv('UTF-8','cp874','ลงชื่อ'),0);
-	if($signature_approver_file != null)
+	if(!is_null($signature_approver_file))
 	{
 		$pdf->Cell( 40, 7, $pdf->Image($signature_approver_file, $pdf->GetX(), $pdf->GetY(), 30,10), 0, 0, 'L', false );
 	}
