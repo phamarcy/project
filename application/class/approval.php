@@ -454,6 +454,7 @@ class approval
       $sql = "SELECT DISTINCT `course_id` FROM `approval_course`
       WHERE `semester_id` = '".$this->SEMESTER_ID."'";
     }
+      $sql .= "ORDER BY `course_id";
       $result = $this->DB->Query($sql);
       if($result)
       {

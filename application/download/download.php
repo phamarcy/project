@@ -68,6 +68,7 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
       {
         $sql = "SELECT ci.`course_id`,ci.`instructor_id`,ci.`pdf_file` FROM `course_hire_special_instructor` ci WHERE `status` = '1' AND `semester_id` = ".$semester_id;
         $sql .= " AND ci.`course_id` IN (SELECT `course_id` FROM `department_course_responsible` WHERE `department_id` = '".$dept."' AND `semester_id` = ".$semester_id.")";
+        $sql .= "ORDER BY ci.`course_id`";
         $result = $db->Query($sql);
         if($result)
         {
@@ -82,6 +83,7 @@ if(isset($_GET['course']) && isset($_GET['semester']) && isset($_GET['year']) &&
         $sql = "SELECT `course_id`,`pdf_file` FROM `course_evaluate` ce, `student_evaluate` se" ;
         $sql .= " WHERE  ce.`course_evaluate_id` = se.`course_evaluate_id` AND ce.`status` = '1'AND se.`section` = 1 AND ce.`semester_id` = ".$semester_id;
         $sql .= " AND ce.`course_id` IN (SELECT `course_id` FROM `department_course_responsible` WHERE `department_id` = '".$dept."' AND `semester_id` = ".$semester_id.")";
+         $sql .= "ORDER BY `course_id`";
         $result = $db->Query($sql);
         if($result)
         {

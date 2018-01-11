@@ -74,7 +74,7 @@ class Report
       $DATA = array();
       $DATA['info'] = array();
       $DATA['download'] = $this->DOWNLOAD_URL."?course=all&type=report&dept=".$dept_id."&info=evaluate&semester=".$semester."&year=".$year;
-      $sql ="SELECT `course_id` FROM `course_evaluate` WHERE `status` = '1' AND `semester_id` = ".$semester_id;
+      $sql ="SELECT `course_id` FROM `course_evaluate` WHERE `status` = '1' AND `semester_id` = ".$semester_id." ORDER BY `course_id`";
       $result = $this->DB->Query($sql);
       if($result)
       {
