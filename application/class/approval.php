@@ -784,12 +784,14 @@ class approval
     {
       $sql = "SELECT DISTINCT `course_id` FROM `approval_course`
       WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
+      $sql .= " ORDER BY `course_id";
     }
     else if($this->USER_LEVEL < 6)
     {
       $sql = "SELECT DISTINCT sa.`course_id` FROM `subject_assessor` sa,`group_assessor` ga,`approval_course` ac
        WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
        AND ac.`status` >= '1' AND ac.`course_id` = sa.`course_id` AND ac.`semester_id` =".$this->SEMESTER_ID;
+       $sql .= " ORDER BY sa.`course_id";
     }
 
     $result = $this->DB->Query($sql);
@@ -853,12 +855,15 @@ class approval
     {
       $sql = "SELECT DISTINCT `course_id` FROM `approval_special`
       WHERE `status` = '5' AND `semester_id` =".$this->SEMESTER_ID;
+      $sql .= " ORDER BY `course_id";
     }
     else if($this->USER_LEVEL < 6)
     {
       $sql = "SELECT DISTINCT sa.`course_id` FROM `subject_assessor` sa,`group_assessor` ga,`approval_special` ac
        WHERE sa.`assessor_group_num` = ga.`group_num` AND ga.`teacher_id` = '".$teacher_id."'
        AND ac.`status` >= '1' AND ac.`course_id` = sa.`course_id` AND ac.`semester_id` = ".$this->SEMESTER_ID;
+       $sql .= " ORDER BY sa.`course_id";
+
     }
     $result = $this->DB->Query($sql);
     if($result)
