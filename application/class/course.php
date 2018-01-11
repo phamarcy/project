@@ -125,6 +125,7 @@ class Course
     {
       $sql .= " AND dc.`semester_id` = ".$semester_id;
     }
+    $sql .= " ORDER BY c.`course_id`";
     $result = $this->DB->Query($sql);
 
     if($result)

@@ -153,7 +153,7 @@ $(function() {//<-- wrapped here
                               {
                                 $download_all = $data_eva['download'];
                               ?>
-                              <a target="_blank" href="<?php echo $download_all; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ Evaluation Form ทั้งหมด</button></a>
+                              <a target="_blank" href="<?php echo $download_all; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์แบบแจ้งฯ ทั้งหมด</button></a>
                             <?php } ?>
                             </div>
                             </div>
@@ -177,7 +177,7 @@ $(function() {//<-- wrapped here
                                           <th>ชื่อวิชา</th>
                                           <th>Grade</th>
                                           <th>Syllabus</th>
-                                          <th>Evaluation Form</th>
+                                          <th>แบบแจ้งฯ</th>
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -221,7 +221,7 @@ $(function() {//<-- wrapped here
                             {
                             $download_all_special =  $data_special['download'];
                             ?>
-                            <a target="_blank" href="<?php echo $download_all_special; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์ Instructor Form ทั้งหมด</button></a>
+                            <a target="_blank" href="<?php echo $download_all_special; ?>"><button style="float: right;" type="button" class="btn btn-success">ดาวน์โหลดไฟล์แบบเชิญอาจารย์พิเศษ ทั้งหมด</button></a>
                             <?php } ?>
                           </div>
                           </div>
@@ -253,7 +253,7 @@ $(function() {//<-- wrapped here
                                                     <th width="10%">#</th>
                                                     <th width="60%">ชื่อ - สกุล</th>
                                                     <th width="10%">CV</th>
-                                                    <th width="20%">Instructor Form</th>
+                                                    <th width="20%">แบบเชิญอาจารย์พิเศษ</th>
                                                 </tr>
                                             </thead>
                                             <tbody>';
@@ -264,7 +264,7 @@ $(function() {//<-- wrapped here
                                                   <td width="10%">'.$num_special.'</td>
                                                   <td width="60%">'.$data_special['info'][$i]['special'][$j]['name'].'</td>
                                                   <td width="10%"><a target="_blank" href="../../files'.$data_special['info'][$i]['special'][$j]['cv'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
-                                                  <td width="20%"><a target="_blank" href="'.$data_special['info'][$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                                                  <td width="20%"><center><a target="_blank" href="'.$data_special['info'][$i]['special'][$j]['pdf'].'"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></center></td>
                                                   </tr>';
                                             }
                                             echo '</tbody>
