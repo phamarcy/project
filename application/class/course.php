@@ -851,6 +851,7 @@ class Course
       {
         $sql = "SELECT c.`course_id`,c.`course_name_en`as name FROM `department_course_responsible` dr , `course` c ";
         $sql .= " WHERE dr.`course_id` = c.`course_id` AND  dr.`department_id` = '".$dept['code']."' AND dr.`semester_id` = ".$semester_id;
+        $sql .= " ORDER BY c.`course_id`";
       }
       else
       {
@@ -861,6 +862,7 @@ class Course
     {
       $sql = "SELECT c.`course_id`,`course_name_en` as name FROM `course_responsible` cr,`course` c
       WHERE cr.`teacher_id` = '".$teacher_id."' AND c.`course_id` = cr.`course_id` AND cr.`semester_id` = ".$semester_id;
+      $sql .= " ORDER BY c.`course_id`";
     }
 
     $result = $this->DB->Query($sql);
