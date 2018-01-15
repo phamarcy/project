@@ -74,14 +74,16 @@ $Excel->setActiveSheetIndex(0)
             ->setCellValue('T3', 'ชม.สอบไล่ (บรรยาย)')
             ->setCellValue('U3', 'ชม.สอบไล่ (lab)')
             ->setCellValue('V3', 'วิธีการตัดเกรด')
-            ->setCellValue('W3', 'การให้ลำดับขั้นถ้านักศึกษาขาดสอบ');
+            ->setCellValue('W3', 'การให้ลำดับขั้นถ้านักศึกษาขาดสอบ')
+            ->setCellValue('X3', 'หมายเหตุ (กรณีมีจำนวนผู้คุมสอบมากกว่า 10 คน) ');
+
 
 //bold heading
-$Excel->getActiveSheet(0)->getStyle("A1:W3")->getFont()->setBold(true);
+$Excel->getActiveSheet(0)->getStyle("A1:X3")->getFont()->setBold(true);
 //cell border
 $sheet1->getStyle('A1')->applyFromArray($border);
 $sheet1->getStyle('A2:B2')->applyFromArray($border);
-$sheet1->getStyle('A3:W3')->applyFromArray($border);
+$sheet1->getStyle('A3:X3')->applyFromArray($border);
 $Excel->getActiveSheet(0)
         ->setTitle('เกณฑ์การประเมินผล');
         foreach(range('A','Z') as $columnID)
@@ -193,6 +195,8 @@ if($result)
       	$absent = 'นำคะแนนทั้งหมดมาประเมิน';
       }
       $Excel->setActiveSheetIndex(0)->setCellValue('W'.$row,$absent);
+      $Excel->setActiveSheetIndex(0)->setCellValue('X'.$row,$data['suggestion']);
+      
       $Excel->setActiveSheetIndex(1)->setCellValue('A'.$row,$data['course_id']);
       $count_committee = count($data['exam_mid1_committee_lec']);
       $committee = '';
@@ -251,7 +255,7 @@ if($result)
     }
   }
   $row--;
-  $sheet1->getStyle('A4:W'.$row)->applyFromArray($border);
+  $sheet1->getStyle('A4:X'.$row)->applyFromArray($border);
   $sheet2->getStyle('A4:G'.$row)->applyFromArray($border);
 }
 
