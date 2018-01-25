@@ -3108,7 +3108,7 @@ function confreset(casereset) {
             นักศึกษาที่ขาดสอบในการวัดผลครั้งสุดท้าย &nbsp;&nbsp;โดยไม่ได้รับอนุญาตให้เลื่อนการสอบตามข้อบังคับ ของมหาวิทยาลัยเชียงใหม่ ว่าด้วยการศึกษาชั้นปริญญาตรี อาจารย์ผู้สอนจะประเมินดังนี้
             <br>
             <div class="form-inline"><div class="form-group"><div class="radio">
-            <input type="radio" name="ABSENT" id="ABSENT1" value="F" required checked>&nbsp;ให้ลำดับขั้น F &nbsp;&nbsp; <br>
+            <input type="radio" name="ABSENT" id="ABSENT1" value="F" required>&nbsp;ให้ลำดับขั้น F &nbsp;&nbsp; <br>
             <input type="radio" name="ABSENT" id="ABSENT2" value="U" >&nbsp;ให้อักษร U &nbsp;&nbsp;<br>
             <input type="radio" name="ABSENT" id="ABSENT3" value="CAL" >&nbsp;นำคะแนนทั้งหมดที่นักศึกษาได้รับก่อนการสอบไล่มาประเมิน &nbsp;&nbsp;<br>
           </div></div></div>
