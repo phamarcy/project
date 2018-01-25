@@ -675,7 +675,7 @@ function getinfo(temp) {
 
   //part7
   var choice5 = temp['absent'];
-  if(choice5=="-")
+  if(choice5=="NAN")
   {
     }else {
     $('input[name="ABSENT"][value=' + choice5 + ']').prop('checked', true);
@@ -1414,7 +1414,7 @@ function submitfunc(casesubmit) {
       var checked = document.querySelector("input[name='ABSENT']:checked");
       var stringcheck;
       if (!checked) {
-          stringcheck = '-';
+          stringcheck = "NAN";
       } else {
           stringcheck = checked;
       }
