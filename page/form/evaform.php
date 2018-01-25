@@ -1411,10 +1411,10 @@ function submitfunc(casesubmit) {
       }
 
 
-      var checked = document.querySelector("input[name='ABSENT']:checked");
       var stringcheck;
-      if (!checked) {
+      if (!document.querySelector("input[name='ABSENT']:checked")) {
           stringcheck = "NAN";
+          console.log(stringcheck);
       } else {
           stringcheck = checked;
       }
