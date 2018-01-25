@@ -1573,7 +1573,7 @@ function senddata(data,file_data,casesubmit)
                       swal.hideLoading()
                       swal({
                         title: 'เกิดข้อผิดพลาด',
-                        text: temp["msg"],
+                        text: 'กรุณาติดต่อเจ้าหน้าที่',
                         type: 'error',
                         showCancelButton: false,
                         confirmButtonColor: '#3085d6',
