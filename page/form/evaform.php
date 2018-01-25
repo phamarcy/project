@@ -1415,7 +1415,7 @@ function submitfunc(casesubmit) {
       if (!document.querySelector("input[name='ABSENT']:checked")) {
           stringcheck = "NAN";
       } else {
-          stringcheck = checked;
+          stringcheck = document.querySelector("input[name='ABSENT']:checked");
       }
 
 
