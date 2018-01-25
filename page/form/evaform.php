@@ -1569,6 +1569,24 @@ function senddata(data,file_data,casesubmit)
                    }
                  } catch (e) {
                       console.log('Error#542-decode error');
+                      swal.hideLoading()
+                      swal({
+                        title: 'เกิดข้อผิดพลาด',
+                        text: temp["msg"],
+                        type: 'error',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ok'
+                      }).then(function () {
+
+                      }, function (dismiss) {
+                      // dismiss can be 'cancel', 'overlay',
+                      // 'close', and 'timer'
+                      if (dismiss === 'cancel') {
+
+                      }
+                    })
                  }
                  },
                  failure: function (result) {
