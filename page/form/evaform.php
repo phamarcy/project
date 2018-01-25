@@ -1407,6 +1407,14 @@ function submitfunc(casesubmit) {
       }
 
 
+      var checked = document.querySelector("input[name='ABSENT']:checked");
+      var stringcheck;
+      if (!checked) {
+          stringcheck = '-';
+      } else {
+          stringcheck = checked;
+      }
+
 
       var data = {
         'COURSE_ID': document.getElementById("COURSE_ID").value,
@@ -1475,7 +1483,7 @@ function submitfunc(casesubmit) {
         'CALCULATE_S_MIN' : smin,
         'CALCULATE_U_MAX' : umax,
         'CALCULATE_U_MIN' : "0.0",
-        'ABSENT' : document.querySelector("input[name='ABSENT']:checked").value,
+        'ABSENT' : checked,
         'SUBMIT_TYPE' : casesubmit,
         'USERID' : '<?php echo $_SESSION['id']; ?>',
         'DATE' : '<?php echo date('d'); ?>',
