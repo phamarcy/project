@@ -1519,6 +1519,7 @@ function senddata(data,file_data,casesubmit)
                  success: function (result) {
                    try {
                      var temp = $.parseJSON(result);
+                     console.log(temp);
 
 
                    if(temp["status"]=='success')
