@@ -1414,7 +1414,6 @@ function submitfunc(casesubmit) {
       var stringcheck;
       if (!document.querySelector("input[name='ABSENT']:checked")) {
           stringcheck = "NAN";
-          console.log(stringcheck);
       } else {
           stringcheck = checked;
       }
@@ -1487,7 +1486,7 @@ function submitfunc(casesubmit) {
         'CALCULATE_S_MIN' : smin,
         'CALCULATE_U_MAX' : umax,
         'CALCULATE_U_MIN' : "0.0",
-        'ABSENT' : checked,
+        'ABSENT' : stringcheck,
         'SUBMIT_TYPE' : casesubmit,
         'USERID' : '<?php echo $_SESSION['id']; ?>',
         'DATE' : '<?php echo date('d'); ?>',
