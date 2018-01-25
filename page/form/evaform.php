@@ -675,7 +675,11 @@ function getinfo(temp) {
 
   //part7
   var choice5 = temp['absent'];
-  $('input[name="ABSENT"][value=' + choice5 + ']').prop('checked', true);
+  if(choice5=="-")
+  {
+    }else {
+    $('input[name="ABSENT"][value=' + choice5 + ']').prop('checked', true);
+  }
 
   //part8
   if(temp['syllabus']!=false)
