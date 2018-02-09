@@ -665,6 +665,9 @@
 									<li>
 										<a href="#" onclick="loadDoc('form/grant.php')"><i class="fa fa-users fa-fw"></i> มอบอำนาจการอนุมัติ</a>
 									</li>
+									<li>
+										<a href="#" onclick="loadDoc('form/summary.php')"><i class="fa fa-retweet fa-fw"></i> สรุปข้อมูล</a>
+									</li>
 								<?php
 								}
 								 ?>
