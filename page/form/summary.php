@@ -246,10 +246,10 @@ $COURSE_OBJ = new Course();
                                                 echo "<td>บรรยาย</td>";
                                                 break;
                                             case 'LECLAB':
-                                                echo "<td>บรรยายและปฏิบัติ</td>";
+                                                echo "<td>บรรยายและงานปฏิบัติการ</td>";
                                                 break;
                                             case 'SPE':
-                                                echo "<td>โครงงาน</td>";
+                                                echo "<td>โครงงานทางเภสัชกรรม</td>";
                                                 break;
                                             case 'TRA':
                                                 echo "<td>ฝึกงาน</td>";
@@ -407,10 +407,10 @@ $COURSE_OBJ = new Course();
                                                 echo "<td>บรรยาย</td>";
                                                 break;
                                             case 'LECLAB':
-                                                echo "<td>บรรยายและปฏิบัติ</td>";
+                                                echo "<td>บรรยายและงานปฏิบัติการ</td>";
                                                 break;
                                             case 'SPE':
-                                                echo "<td>โครงงาน</td>";
+                                                echo "<td>โครงงานทางเภสัชกรรม</td>";
                                                 break;
                                             case 'TRA':
                                                 echo "<td>ฝึกงาน</td>";
@@ -568,10 +568,10 @@ $COURSE_OBJ = new Course();
                                                 echo "<td>บรรยาย</td>";
                                                 break;
                                             case 'LECLAB':
-                                                echo "<td>บรรยายและปฏิบัติ</td>";
+                                                echo "<td>บรรยายและงานปฏิบัติการ</td>";
                                                 break;
                                             case 'SPE':
-                                                echo "<td>โครงงาน</td>";
+                                                echo "<td>โครงงานทางเภสัชกรรม</td>";
                                                 break;
                                             case 'TRA':
                                                 echo "<td>ฝึกงาน</td>";
