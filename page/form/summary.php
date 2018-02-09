@@ -173,6 +173,7 @@ $COURSE_OBJ = new Course();
                 <br>
                 <?php if($all_course[$sem] != 0) { ?>
                 <ul>
+                    <?php if($science_course[$sem] != 0) { ?>
                     <li><b>ภาควิชาวิทยาศาสตร์เภสัชกรรม <br><br></b>
                 <?php
                  $sql = "SELECT ce.`course_id` FROM `course_evaluate` ce,`course` c WHERE ce.`course_id` = c.`course_id` AND c.`department_id` = '1203' AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id[$sem];
@@ -330,7 +331,9 @@ $COURSE_OBJ = new Course();
                             </tbody>
                         </table>
                         </li>
+                        <?php } ?>
                 <br>
+                <?php if($care_course[$sem] != 0) { ?>
                     <li><b>ภาควิชาบริบาลเภสัชกรรม <br><br></b>
                 <?php
                 $data = null;
@@ -489,7 +492,9 @@ $COURSE_OBJ = new Course();
                             </tbody>
                         </table>                           
                     </li>
+                    <?php } ?>
                     <br>
+                    <?php if($base_course[$sem] != 0) { ?>
                     <li><b>วิชาพื้นฐาน <br><br></b>
                     <?php
                 $data = null;
@@ -648,6 +653,7 @@ $COURSE_OBJ = new Course();
                             </tbody>
                         </table>                        
                     </li>
+                    <?php } ?>
                 </ul>
                 <?php } ?>
             </div>
