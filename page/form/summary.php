@@ -133,11 +133,11 @@ $COURSE_OBJ = new Course();
      	<div>
      		<div>
      		<ul class="nav nav-tabs">
-                    <li class="active"><a href="#1" data-toggle="tab" aria-expanded="true">1/2560</a>
+                    <li class="active"><a href="#1" data-toggle="tab" aria-expanded="true">1/<?=$year ?></a>
                     </li>
-                    <li class=""><a href="#2" data-toggle="tab" aria-expanded="false">2/2560</a>
+                    <li class=""><a href="#2" data-toggle="tab" aria-expanded="false">2/<?=$year ?></a>
                     </li>
-                    <li class=""><a href="#3" data-toggle="tab" aria-expanded="false">3/2560</a>
+                    <li class=""><a href="#3" data-toggle="tab" aria-expanded="false">3/<?=$year ?></a>
                     </li>
              </ul>
              <br>
@@ -182,7 +182,7 @@ $COURSE_OBJ = new Course();
                     $course = $result;
                     for ($i=0; $i < count($course) ; $i++) 
                     { 
-                        $data[$i] = $COURSE_OBJ->Get_Document('evaluate',$course[$i]['course_id'],null,null,'1','2560');
+                        $data[$i] = $COURSE_OBJ->Get_Document('evaluate',$course[$i]['course_id'],null,null,'1',$year);
                         $sql = "SELECT `course_name_th`,`credit` FROM `course` 
                         WHERE `course_id` = '".$course[$i]['course_id']."'";
                         $result_course_info = $DB->Query($sql);
@@ -341,7 +341,7 @@ $COURSE_OBJ = new Course();
                     $course = $result;
                     for ($i=0; $i < count($course) ; $i++) 
                     { 
-                        $data[$i] = $COURSE_OBJ->Get_Document('evaluate',$course[$i]['course_id'],null,null,'1','2560');
+                        $data[$i] = $COURSE_OBJ->Get_Document('evaluate',$course[$i]['course_id'],null,null,'1',$year);
                         $sql = "SELECT `course_name_th`,`credit` FROM `course` WHERE `course_id` = '".$course[$i]['course_id']."'";
                         $result_course_info = $DB->Query($sql);
                         if($result_course_info)
@@ -500,7 +500,7 @@ $COURSE_OBJ = new Course();
                     $course = $result;
                     for ($i=0; $i < count($course) ; $i++) 
                     { 
-                        $data[$i] = $COURSE_OBJ->Get_Document('evaluate',$course[$i]['course_id'],null,null,'1','2560');
+                        $data[$i] = $COURSE_OBJ->Get_Document('evaluate',$course[$i]['course_id'],null,null,'1',$year);
                         $sql = "SELECT `course_name_th`,`credit` FROM `course` WHERE `course_id` = '".$course[$i]['course_id']."'";
                         $result_course_info = $DB->Query($sql);
                         if($result_course_info)
