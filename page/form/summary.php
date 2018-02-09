@@ -176,7 +176,7 @@ $COURSE_OBJ = new Course();
                     <?php if($science_course[$sem] != 0) { ?>
                     <li><b>ภาควิชาวิทยาศาสตร์เภสัชกรรม <br><br></b>
                 <?php
-                 $sql = "SELECT ce.`course_id` FROM `course_evaluate` ce,`course` c WHERE ce.`course_id` = c.`course_id` AND c.`department_id` = '1203' AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id[$sem];
+                 $sql = "SELECT ce.`course_id` FROM `course_evaluate` ce,`course` c WHERE ce.`course_id` = c.`course_id` AND c.`department_id` = '1203' AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id[$sem]." ORDER BY ce.`course_id`";
                  $result = $DB->Query($sql);
                  if($result)
                  {
@@ -306,9 +306,9 @@ $COURSE_OBJ = new Course();
                                         {
                                             $CAL_SU = '/';
                                         }
-                                        echo "<td>".$CAL_GROUP."</td>";
-                                        echo "<td>".$CAL_CRITERIA."</td>";
-                                        echo "<td>".$CAL_SU."</td>";
+                                        echo "<td><center>".$CAL_GROUP."</center></td>";
+                                        echo "<td><center>".$CAL_CRITERIA."</center></td>";
+                                        echo "<td><center>".$CAL_SU."</center></td>";
 
                                         $absent = '';
                                         if($data[$i]['absent'] == 'F')
@@ -337,7 +337,7 @@ $COURSE_OBJ = new Course();
                     <li><b>ภาควิชาบริบาลเภสัชกรรม <br><br></b>
                 <?php
                 $data = null;
-                 $sql = "SELECT ce.`course_id` FROM `course_evaluate` ce,`course` c WHERE ce.`course_id` = c.`course_id` AND c.`department_id` = '1202' AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id[$sem];
+                 $sql = "SELECT ce.`course_id` FROM `course_evaluate` ce,`course` c WHERE ce.`course_id` = c.`course_id` AND c.`department_id` = '1202' AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id[$sem]." ORDER BY ce.`course_id`";
                  $result = $DB->Query($sql);
                  if($result)
                  {
@@ -467,9 +467,9 @@ $COURSE_OBJ = new Course();
                                         {
                                             $CAL_SU = '/';
                                         }
-                                        echo "<td>".$CAL_GROUP."</td>";
-                                        echo "<td>".$CAL_CRITERIA."</td>";
-                                        echo "<td>".$CAL_SU."</td>";
+                                        echo "<td><center>".$CAL_GROUP."</center></td>";
+                                        echo "<td><center>".$CAL_CRITERIA."</center></td>";
+                                        echo "<td><center>".$CAL_SU."</center></td>";
 
                                         $absent = '';
                                         if($data[$i]['absent'] == 'F')
@@ -498,7 +498,7 @@ $COURSE_OBJ = new Course();
                     <li><b>วิชาพื้นฐาน <br><br></b>
                     <?php
                 $data = null;
-                 $sql = "SELECT ce.`course_id` FROM `course_evaluate` ce,`course` c WHERE ce.`course_id` = c.`course_id` AND c.`department_id` = '' AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id[$sem];
+                 $sql = "SELECT ce.`course_id` FROM `course_evaluate` ce,`course` c WHERE ce.`course_id` = c.`course_id` AND c.`department_id` = '' AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id[$sem]." ORDER BY ce.`course_id`";
                  $result = $DB->Query($sql);
                  if($result)
                  {
@@ -628,9 +628,9 @@ $COURSE_OBJ = new Course();
                                         {
                                             $CAL_SU = '/';
                                         }
-                                        echo "<td>".$CAL_GROUP."</td>";
-                                        echo "<td>".$CAL_CRITERIA."</td>";
-                                        echo "<td>".$CAL_SU."</td>";
+                                        echo "<td><center>".$CAL_GROUP."</center></td>";
+                                        echo "<td><center>".$CAL_CRITERIA."</center></td>";
+                                        echo "<td><center>".$CAL_SU."</center></td>";
 
                                         $absent = '';
                                         if($data[$i]['absent'] == 'F')
