@@ -176,6 +176,7 @@ $COURSE_OBJ = new Course();
                     <?php if($science_course[$sem] != 0) { ?>
                     <li><b>ภาควิชาวิทยาศาสตร์เภสัชกรรม <br><br></b>
                 <?php
+                $data = null;
                  $sql = "SELECT ce.`course_id` FROM `course_evaluate` ce,`course` c WHERE ce.`course_id` = c.`course_id` AND c.`department_id` = '1203' AND ce.`status` = '1' AND ce.`semester_id` = ".$semester_id[$sem]." ORDER BY ce.`course_id`";
                  $result = $DB->Query($sql);
                  if($result)
