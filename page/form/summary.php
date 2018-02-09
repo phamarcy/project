@@ -313,11 +313,11 @@ $COURSE_OBJ = new Course();
                                         $absent = '';
                                         if($data[$i]['absent'] == 'F')
                                         {
-                                            $absent = 'F';
+                                            $absent = 'ให้ลำดับขั้น F';
                                         }
                                         else if($data[$i]['absent'] == 'U')
                                         {
-                                            $absent = 'U';
+                                            $absent = 'ให้อักษร U';
                                         }
                                         else if($data[$i]['absent'] == 'CAL')
                                         {
@@ -474,11 +474,11 @@ $COURSE_OBJ = new Course();
                                         $absent = '';
                                         if($data[$i]['absent'] == 'F')
                                         {
-                                            $absent = 'F';
+                                            $absent = 'ให้ลำดับขั้น F';
                                         }
                                         else if($data[$i]['absent'] == 'U')
                                         {
-                                            $absent = 'U';
+                                            $absent = 'ให้อักษร U';
                                         }
                                         else if($data[$i]['absent'] == 'CAL')
                                         {
