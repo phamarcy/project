@@ -1356,7 +1356,7 @@ function downloadfunc(){
                              swal.hideLoading()
                              swal({
                                title: 'เกิดข้อผิดพลาด',
-                               text: 'กรุกรุณาติดต่อเจ้าหน้าที่',
+                               text: 'กรุณาติดต่อเจ้าหน้าที่',
                                type: 'error',
                                showCancelButton: false,
                                confirmButtonColor: '#3085d6',
