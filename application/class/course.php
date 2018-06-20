@@ -495,8 +495,17 @@ class Course
 // search course evaluate, special instructor data
   public function Search_Document($type,$course_id,$teacher_id)
   {
+    if($teacher_id != null)
+    {
+      $check_access = $this->Check_Access($teacher_id,$course_id);
+    }
+    else
+    {
+      $check_access = null;
+    }
     if($type =='special')
     {
+      $check_access = true;
       $sql = "SELECT DISTINCT si.`instructor_id`,`firstname`,`lastname`,s.`semester_num`,s.`year` FROM `special_instructor` si,`course_hire_special_instructor` ci, `semester` s
       WHERE ci.`course_id` = '".$course_id."' AND ci.`instructor_id` = si.`instructor_id` AND ci.`semester_id` = s.`semester_id` ORDER BY `ci`.`updated_date` DESC" ;
     }
@@ -506,14 +515,7 @@ class Course
       WHERE e.`course_id` = '".$course_id."' AND e.`semester_id` = s.`semester_id` ORDER BY e.`updated_date` DESC" ;
     }
     $data = array();
-    if($teacher_id != null)
-    {
-      $check_access = $this->Check_Access($teacher_id,$course_id);
-    }
-    else
-    {
-      $check_access = null;
-    }
+    
     $result = $this->DB->Query($sql);
     if($result)
     {
@@ -759,6 +761,7 @@ class Course
     }
     else if($type == 'special')
     {
+      $check_access = true;
       $lecture_detail = array();
       $sql = "SELECT st.`topic_name`,st.`teaching_date`,st.`teaching_time_start`,st.`teaching_time_end`,st.`teaching_room` FROM `special_lecture_teach` st, `course_hire_special_instructor` ci ";
       $sql .= "WHERE ci.`instructor_id` = ".$instructor_id." AND ci.`course_id` = '".$course_id."' AND st.`hire_id` = ci.`hire_id` AND ci.`semester_id` = ".$semester_id;
