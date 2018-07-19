@@ -790,8 +790,8 @@ else if($data_pdf['criterion_type'] == 'CRITERIA')
 	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน'),0,0,'C');
 
 	$pdf->Cell(10,7,'F   = ',0,0,'C');
-	$pdf->Cell(50,7,iconv('UTF-8','cp874',' น้อยกว่า '.number_format($data_pdf['F_max'],1,'.',',')),0,0,'C');
-	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนนลงมา '),0,0,'C');
+	$pdf->Cell(50,7,iconv('UTF-8','cp874',' น้อยกว่าหรือเท่ากับ '.number_format($data_pdf['F_max'],1,'.',',')),0,0,'C');
+	$pdf->Cell(20,7,iconv('UTF-8','cp874','คะแนน '),0,0,'C');
 	$pdf->Ln();
 
 	$pdf->SetX(35);
