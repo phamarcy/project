@@ -114,7 +114,7 @@ if(isset($_POST['DATA']))
 	}
 	else if($DATA['SUBMIT_TYPE'] != 3 && $DATA['SUBMIT_TYPE'] != 4)
 	{
-			$sql_criterion_grade = "INSERT INTO `criterion_grade`(`criterion_type`, `explaination`, `A_min`, `A_max`, `B+_min`, `B+_max`, `B_min`, `B_max`, `C+_min`, `C+_max`, `C_min`, `C_max`, `D+_min`, `D+_max`, `D_max`, `D_min`, `F_max`, `S_min`, `U_max`) VALUES";
+			$sql_criterion_grade = "INSERT INTO `criterion_grade`(`criterion_type`, `explaination`, `A_min`, `A_max`, `B+_min`, `B+_max`, `B_min`, `B_max`, `C+_min`, `C+_max`, `C_min`, `C_max`, `D+_min`, `D+_max`, `D_min`, `D_max`, `F_max`, `S_min`, `U_max`) VALUES";
 			$sql_criterion_grade .= "('".$DATA["CALCULATE_TYPE"]."','".$DATA["CALCULATE_EXPLAINATION"]."',".number_format($DATA["CALCULATE_A_MIN"],1,'.',',').",100.00,".number_format($DATA["CALCULATE_B+_MIN"],1,'.', ',').",".number_format($DATA["CALCULATE_B+_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_B_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_B_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_C+_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_C+_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_C_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_C_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_D+_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_D+_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_D_MIN"],1,'.',',').",";
 			$sql_criterion_grade .= number_format($DATA["CALCULATE_D_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_F_MAX"],1,'.',',').",".number_format($DATA["CALCULATE_S_MIN"],1,'.',',').",".number_format($DATA["CALCULATE_U_MAX"],1,'.',',').")";
 			$lastrow_criterion_grade_id = "SELECT criterion_grade_id FROM criterion_grade ORDER BY criterion_grade_id DESC LIMIT 1;";
